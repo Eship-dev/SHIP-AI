@@ -51,6 +51,10 @@
                 "settings": {
                     "bundleName": "com.eshipjet.zeshipjet.i18n.i18n"
                 }
+            },
+            "eshipjetModel": {
+              "type": "sap.ui.model.json.JSONModel",
+              "uri": "model/data.json"
             }
         },
         "resources": {
