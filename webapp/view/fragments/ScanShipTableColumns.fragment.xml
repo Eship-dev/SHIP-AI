@@ -1,0 +1,29 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover	id="myPopover" contentWidth="20%"	 placement="Left">
+		<content>
+        <Table	id="myScanColumnSelectId" mode="MultiSelect" items="{path : 'ScanShipTableDataModel>/columns'}" >
+		<ColumnListItem vAlign="Middle">
+			<cells>				
+				<Text text="{ScanShipTableDataModel>label}" />				
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column>
+				<header>
+					<Text text="Columns" />
+				</header>
+			</Column>			
+		</columns>
+        </Table>
+        </content>
+        <footer>
+            <Toolbar >
+                <ToolbarSpacer/>
+                <Button text="Ok" press="onScanShipColSelectOkPress" type="Emphasized"></Button>
+                <Button text="Close" press="onScanShipColSelectClosePress"></Button>
+            </Toolbar>
+        </footer>      
+	</Popover>   
+</core:FragmentDefinition>

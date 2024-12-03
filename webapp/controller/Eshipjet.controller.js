@@ -16,15 +16,15 @@ sap.ui.define([
     "use strict";
 
     var ButtonType = library.ButtonType,
-        PlacementType = library.PlacementType;
+        PlacementType = library.PlacementType,
+        oController, oResourceBundle;
 
     return Controller.extend("com.eshipjet.zeshipjet.controller.Eshipjet", {
         Formatter: formatter,
         onInit: function () {
-
             var oModel = new JSONModel(sap.ui.require.toUrl("com/eshipjet/zeshipjet/model/data.json"));
             this.getView().setModel(oModel);
-
+            oController = this;
             // Initialize a JSON model to store chat messages
             var obj = {
                 "messages": [],
@@ -33,9 +33,49 @@ sap.ui.define([
             }
             const oShipperCopilotModel = new JSONModel(obj);
             this.getView().setModel(oShipperCopilotModel, "ShipperCopilotModel");
-
+            oResourceBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
             this._setToggleButtonTooltip(!Device.system.desktop);
         },
+
+        _handleDisplayScanShipTable: function() {
+            var oController = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label,oTemplate, oHboxControl;    
+            var scanShipTableData = eshipjetModel.getData().scanShipTableData;
+            var ScanShipTableDataModel = new JSONModel(scanShipTableData);
+            this.getView().setModel(ScanShipTableDataModel, "ScanShipTableDataModel");
+            const oTable = oView.byId("idScanAndShipTable");                      
+            oTable.setModel(ScanShipTableDataModel);
+            oTable.bindColumns("/columns", function(sId, oContext) {
+                columnName = oContext.getObject().name;
+                label = oContext.getObject().label;   
+                     
+                if(columnName === "actions"){
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Link1 = new sap.m.Link({ text: "View"});
+                    var Link2 = new sap.m.Link({ endIcon:"sap-icon://navigation-down-arrow"});                               
+                    oHBox.addItem(Link1);          
+                    oHBox.addItem(Link2);                 
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible:oContext.getObject().visible,
+                        width:"8rem",
+                        sortProperty:columnName
+                    });
+                }else{      
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible:oContext.getObject().visible,
+                        width:"8rem",
+                        sortProperty:columnName
+                    });
+                }
+    
+            });           
+            oTable.bindRows("/rows");   
+          },
 
         onItemSelect: function (oEvent) {
             var oItem = oEvent.getParameter("item");
@@ -60,6 +100,7 @@ sap.ui.define([
                 };
                 var oModel = new JSONModel(oModel);
                 this.getView().setModel(oModel, "oModel");
+                this._handleDisplayScanShipTable();
             } else if (sKey === "Orders") {
 
             } else if (sKey === "ShipRequestLabel") {
@@ -256,7 +297,8 @@ sap.ui.define([
                     contentType: "application/json", // Set content type to JSON if sending JSON data
                     data: JSON.stringify(obj),
                     success: function (response) {
-                        var oModel = that.getView().getModel("oModel");
+                        var ScanShipTableDataModel = that.getView().getModel("ScanShipTableDataModel");
+                        
                         var obj = {
                             "sapShipmentID": response.HeaderInfo.DocumentNumber,
                             "CreatedDate": response.HeaderInfo.CreatedDate,
@@ -284,10 +326,10 @@ sap.ui.define([
                         }
 
                         that.encodedLabel = obj.encodedLabel;
-                        var oModelItems = oModel.getData().items;
-                        oModelItems.push(obj);
-                        oModel.updateBindings(true);
-                        oModel.setProperty("/SASTableLength", oModelItems.length);
+                        var rows = ScanShipTableDataModel.getData().rows;
+                        rows.push(obj);
+                        ScanShipTableDataModel.updateBindings(true);
+                        // eshipjetModel.setProperty("/scanShipTableData/ScanShipTableLength", rows.length);
                         // Handle successful response
                         BusyIndicator.hide();
                         resolve(response);
@@ -370,15 +412,44 @@ sap.ui.define([
             });
         },
 
-        openPersoDialog: function (oEvt) {
-            const oTable = this.getView().byId("idScanAndShipTable");
+        openPersoDialog: function (oEvent) {
+            var oController = this;
+            var oButton = oEvent.getSource(),
+            oView = this.getView();
 
-            Engine.getInstance().show(oTable, ["Columns", "Sorter"], {
-                contentHeight: "35rem",
-                contentWidth: "32rem",
-                source: oEvt.getSource()
+            // create popover
+            if (!this._pScanPopover) {
+                this._pScanPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ScanShipTableColumns",
+                    controller: this
+                }).then(function(oPopover) {
+                    oView.addDependent(oPopover);                    
+                    return oPopover;
+                });
+            }
+            this._pScanPopover.then(function(oPopover) {
+                oController.ColumnsVisiblity();
+                oPopover.openBy(oButton);
             });
         },
+
+        ColumnsVisiblity:function(){
+            var oController = this;
+            var oView = oController.getView();
+            var oScanTableModel = oView.getModel("eshipjetModel");
+            var aColumns = oScanTableModel.getProperty("/scanShipTableData/columns");
+            var oScanTable = oView.byId("myScanColumnSelectId");
+            var aTableItems = oScanTable.getItems();
+          
+            aColumns.map( function(oColObj){
+                aTableItems.map(function(oItem){
+                    if(oColObj.name === oItem.getBindingContext("ScanShipTableDataModel").getObject().name && oColObj.visible){
+                        oItem.setSelected(true);
+                    }
+                });            
+            });
+          },
 
         handleDownArrowPress: function (oEvent) {
             var oButton = oEvent.getSource(),
@@ -585,6 +656,35 @@ sap.ui.define([
         },
         onBatchShipFilterPopoverApplyPress:function(){
             this.byId("idBatchShipFilterPopover").close();
+        },
+
+        onScanShipColSelectOkPress:function(){
+            var  oView = this.getView()
+            var  oScanTable = oView.byId("myScanColumnSelectId");
+            var ScanShipTableDataModel = oView.getModel("ScanShipTableDataModel");
+            var oScanTblItems = oScanTable.getItems();        
+            var aColumnsData = ScanShipTableDataModel.getProperty("/columns"); 
+            oScanTblItems.map(function(oTableItems){
+                aColumnsData.map(function(oColObj){
+                    if(oTableItems.getBindingContext("ScanShipTableDataModel").getObject().name === oColObj.name){
+                        if(oTableItems.getSelected()){
+                            oColObj.visible = true;
+                        }else{
+                            oColObj.visible = false;
+                        }
+                    }
+
+                })
+            });
+            ScanShipTableDataModel.updateBindings(true);
+            this._pScanPopover.then(function(oPopover) {
+                oPopover.close();
+            });
+        },
+        onScanShipColSelectClosePress:function(){
+            this._pScanPopover.then(function(oPopover) {
+                oPopover.close();
+            });
         }
 
     });

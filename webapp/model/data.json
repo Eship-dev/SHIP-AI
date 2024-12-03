@@ -138,5 +138,117 @@
         {"text":"Copy"},
         {"text":"Delete"},
         {"text":"Print"}
-    ]
+    ],
+
+	"scanShipTableData":{
+		"columns": [
+			{
+				"name": "sapShipmentID",
+				"label": "SAP Shipment ID",
+				"visible": true
+			},
+			{
+				"name": "CreatedDate",
+				"label": "Created Date",
+				"visible": true
+			},
+			{
+				"name": "ShipDate",
+				"label": "Ship Date",
+				"visible": true
+			},
+			{
+				"name": "ShipmentType",
+				"label": "Shipment Type",
+				"visible": true
+			},
+			{
+				"name": "shipMethod",
+				"label": "Shipment Method",
+				"visible": true
+			},
+			{
+				"name": "ServiceName",
+				"label": "Service Name",
+				"visible": true
+			},
+			{
+				"name": "TrackingNumber",
+				"label": "Tracking Number",
+				"visible": true
+			},
+			{
+				"name": "status",
+				"label": "Status",
+				"visible": true
+			},
+			{
+				"name": "ShipToContact",
+				"label": "Ship To Contact",
+				"visible": true
+			},
+			{
+				"name": "ShipToCompany",
+				"label": "Ship To Company",
+				"visible": true
+			},
+			{
+				"name": "ShipToAddressLine1",
+				"label": "Ship To AddressLine1",
+				"visible": true
+			},
+			{
+				"name": "shipToCity",
+				"label": "Ship To City",
+				"visible": true
+			},
+			{
+				"name": "shipToState",
+				"label": "Ship To State",
+				"visible": true
+			},
+			{
+				"name": "shipToCountry",
+				"label": "Ship To Country",
+				"visible": true
+			},
+			{
+				"name": "shipToZipcode",
+				"label": "Ship To Zipcode",
+				"visible": true
+			},
+			{
+				"name": "shipToPhone",
+				"label": "Ship To Phone",
+				"visible": true
+			},
+			{
+				"name": "shipToEmail",
+				"label": "Ship To Email",
+				"visible": true
+			},
+			{
+				"name": "requesterName",
+				"label": "Requestor Name",
+				"visible": true
+			},
+			{
+				"name": "orderType",
+				"label": "Order Type",
+				"visible": true
+			},
+			{
+				"name": "connectedTo",
+				"label": "Connected To",
+				"visible": true
+			},
+			{
+				"name": "actions",
+				"label": "Ship Now",
+				"visible": true
+			}
+		],
+		"rows": [],
+		"ScanShipTableLength":""
+	}
 }
