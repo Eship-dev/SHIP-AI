@@ -1,0 +1,21 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Popover
+		contentWidth="10%"
+		showHeader="false"
+		id="idScanAndShipActionPopover"
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+		placement="Bottom"
+		initialFocus="email">
+		<List
+            items="{eshipjetModel>/scanAndShipActionPopoverItems}" >
+            <StandardListItem
+                type="Active"
+                press="handleSASActionPress"
+	    		title="{eshipjetModel>text}"/>
+    	</List>
+	</Popover>
+</core:FragmentDefinition>

@@ -1,1 +1,326 @@
 /* Enter your custom styles here */
+/* Enter your custom styles here */
+
+/* Enter your custom styles here */
+
+/* Chat message bubbles */
+.messageBox {
+    padding: 8px;
+    border-radius: 8px;
+    max-width: 70%;
+    margin: 4px 0;
+    color: white;
+  }
+  
+  .userMessage {
+    background-color: #007bff; /* Blue for user messages */
+    margin-right: 10px;
+    align-self: flex-end;
+  }
+  
+  .botMessage {
+    background-color: #555555; /* Grey for bot messages */
+    margin-left: 10px;
+    align-self: flex-start;
+  }
+  
+  /* Align input and button at the bottom */
+  .sapMPage .sapMPageContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .itemsBackground{
+    background-color: #c1d1df;
+    height: 5rem;
+    width: 15rem;
+    padding: 2rem;
+    margin: 1rem;
+    border-radius: 0.5rem;
+  }
+
+ /* style.css */
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 600px; /* Constrain the width for better readability */
+  margin: 0 auto; /* Center the chat container on the page */
+}
+
+.conversationList {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.messageContainer {
+  padding: 8px;
+}
+
+.messageText {
+  max-width: 75%;
+}
+
+.actionToolbar {
+  background-color: #f3f3f3;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.inputContainer {
+  padding: 4px;
+  border-top: 1px solid #ddd;
+}
+
+
+.ship-copilot-button {
+  padding: 15px;
+  margin-right: 10px;
+  border: 1px solid hsl(0, 0%, 84%);
+  transition: box-shadow 0.3s;
+  width: 198px;
+  height: 113px !important;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+  background-color: #f4f5f8;
+}
+
+.ship-copilot-button:hover>.sapMBtnHoverable {
+    background-color: transparent !important;
+}
+
+.ship-copilot-button:focus>.sapMFocusable {
+    outline: none !important;
+}
+
+.ship-copilot-button:focus > span, .ship-copilot-button:focus-visible > span {
+  border: none !important;
+}
+
+.ship-copilot-button > span {
+  height: 100% !important;
+  background-color: transparent;
+  border: none !important;
+  width: 100%;
+  padding: 15px !important;
+  text-align: left;
+  display: block !important;
+}
+
+.ship-copilot-button .sapMBtnContent {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22.4px;
+  display: block !important;
+  color: #898989;
+  text-align: left;
+  white-space: initial;
+  margin-top: 10px;
+}
+
+.ship-copilot-button .sapUiIcon {
+  display: block;
+  max-height: auto !important;
+}
+
+.ship-copilot-button .sapUiIcon::before {
+  font-size: 24px !important;
+}
+
+.all-shipments .sapUiIcon::before {
+  color: orange;
+}
+
+.country-shipments .sapUiIcon::before {
+  color: blue;
+}
+
+.open-order-status .sapUiIcon::before {
+  color: #e26af7;
+}
+
+.ship-copilot-top-section {
+  margin-top: 15vh !important;
+}
+
+.ship-copilot-top-section, .ship-copilot-search-section {
+  width: 625px !important;
+  margin: 0 auto;
+  position: relative;
+}
+
+.ship-copilot-search-section {
+  margin-top: 24px;
+}
+
+.ship-copilot-search-section > div:first-child, .ship-copilot-search-section .sapMInput  {
+  width: 100% !important;
+  height: auto !important;
+} 
+
+.ship-copilot-search-section input{
+  padding: 10px 20px;
+  width: 100%;
+  background-color: #f4f5f8 !important;
+  border-radius: 35px !important;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  height: 52px;
+}
+
+.ship-copilot-search-section .sapMFocus.sapMInputBase .sapMInputBaseContentWrapper:not(.sapMInputBaseDisabledWrapper)::before {
+    content: none !important;
+}
+
+
+.co-pilot-search-text {
+  padding: 5px 18px;
+  border-radius: 22px;
+  background-color: #eeeeee;
+  color: #515151;
+  font-size: 16px;
+}
+
+.ship-copilot-search-section .sapMInputBaseContentWrapper {
+  background-color: transparent !important;
+  border: none;
+  height: auto !important;
+  background: transparent;
+  box-shadow: none !important;
+}
+
+.ship-copilot-search-section .sapMInputBaseContentWrapper:hover {
+  background: transparent !important;
+}
+
+.ship-copilot-search-section button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px !important;
+  border-radius: 100%;
+  background-color: #000;
+}
+
+.ship-copilot-search-section button:hover > span {
+  background-color: transparent !important;
+}
+
+.ship-copilot-search-section button > span {
+  width: 100%;
+  height: 100%  !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  min-width: 28px !important;
+  border: none;
+}
+
+.ship-copilot-search-section span::before {
+  color: #f4f5f8;
+}
+
+.ship-copilot-page {
+  background-color: #fff;
+}
+
+.ship-copilot-page .sapMScrollContScroll {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.ship-copilot-page > section {
+  padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.co-pilot-search-results {
+  flex: 1;
+  overflow-y: scroll;
+  width: 625px !important;
+  margin: 0 auto;
+}
+
+.co-pilot-search-results li {
+  border-bottom: none !important;
+}
+
+.co-pilot-search-results li:focus {
+  outline: none !important;
+}
+
+.ship-tiles-page:not(.sapMNavItemHidden) {
+  display: flex !important;
+  justify-content: center;
+}
+
+
+.ship-tile-container {
+  display: flex !important;
+  column-gap: 20px;
+}
+
+.ship-tile {
+  display: flex;
+  width: 230px !important;
+  height: 180px !important;
+  row-gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ship-tile div:has(> img) {
+  display: flex;
+  justify-content: center;
+  height: auto;
+  padding: 0;
+}
+
+.ship-tile img {
+  width: 82px;
+  height: auto;
+}
+
+div:has(> .ship-tile-content), .ship-tile-content > div, div.ship-tile-content {
+  height: auto;
+  width: 100%;
+}
+button.ship-tile-button {
+  width: 100%;
+  padding: 12px 15px !important;
+  background-color: #ebedf9;
+  border: none;
+  height: auto !important;
+  border-radius: 6px;
+}
+
+button.ship-tile-button span {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  color: #030e4c !important;
+}
+
+.shipment-toolbar {
+  padding: 2rem !important
+}
+
+.darkTheme{
+  background-color: black !important;
+  color: white !important;
+}
+
+.borderSolid{
+  border-color: white !important;
+  border-style: solid !important;
+  border-width: 1px !important;
+}

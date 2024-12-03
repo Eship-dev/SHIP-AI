@@ -1,0 +1,142 @@
+{
+	"selectedKey": "page2",
+	"image": "css/images/image.png",
+	"SideNavigation":true,
+	"navigation": [
+		{
+			"title": "SAP ShipperCopilot",
+			"icon": "sap-icon://overlay",
+			"key": "ShipperCopilot",
+			"sortKey": "A"
+		},
+		{
+			"title": "Orders",
+			"icon": "sap-icon://cart",
+			"key": "Orders",
+			"sortKey": "B"
+		},
+		{
+			"title": "Ship Request/Label",
+			"icon": "sap-icon://add-product",
+			"key": "ShipRequestLabel",
+			"sortKey": "B"
+		},
+		{
+			"title": "Ship Now",
+			"icon": "sap-icon://shipping-status",
+			"key": "ShipNow",
+			"sortKey": "C"
+			
+		},
+		{
+			"title": "Quote Now",
+			"icon": "sap-icon://my-sales-order",
+			"key": "QuoteNow",
+			"sortKey": "C"
+			
+		},
+		{
+			"title": "Track Now",
+			"icon": "sap-icon://clinical-task-tracker",
+			"key": "TrackNow",
+			"sortKey": "C"
+		},
+		{
+			"title": "Manifest",
+			"icon": "sap-icon://browse-folder",
+			"key": "Manifest",
+			"sortKey": "D"
+		},
+		{
+			"title": "AES Direct",
+			"icon": "sap-icon://browse-folder",
+			"key": "AESDirect",
+			"sortKey": "D"
+		},
+		{
+			"title": "Scan & Ship",
+			"icon": "sap-icon://bar-code",
+			"key": "ScanShip",
+			"sortKey": "E"
+		},
+		{
+			"title": "Batch Ship",
+			"icon": "sap-icon://batch-payments",
+			"key": "BatchShip",
+			"sortKey": "E"
+		},
+		{
+			"title": "RFID Nexus",
+			"icon": "sap-icon://badge",
+			"key": "RFIDNexus",
+			"sortKey": "F"
+		},
+		{
+			"title": "Dashboard",
+			"icon": "sap-icon://bbyd-dashboard",
+			"key": "Dashboard",
+			"sortKey": "G"
+		},
+		{
+			"title": "Reports",
+			"icon": "sap-icon://expense-report",
+			"key": "Reports",
+			"sortKey": "G"
+		}
+	],
+	"fixedNavigation": [
+		{
+			"title": "Fixed Item 1",
+			"icon": "sap-icon://employee"
+		},
+		{
+			"title": "Fixed Item 2",
+			"icon": "sap-icon://building"
+		},
+		{
+			"title": "Fixed Item 3",
+			"icon": "sap-icon://card"
+		}
+	],
+	"headerItems": [
+		{
+			"text": "File"
+		},
+		{
+			"text": "Edit"
+		},
+		{
+			"text": "View"
+		},
+		{
+			"text": "Settings"
+		},
+		{
+			"text": "Help"
+		}
+	],
+
+	"TileCollection" : [
+		{
+			"image" : "css/images/shiprequest.png",
+			"title" : "Ship Request/Label"
+		},
+		{
+			"image" : "css/images/shipnow.png",
+			"title" : "Ship Now"
+		},
+		{
+			"image" : "css/images/track.png",
+			"title" : "Track Now"
+		}
+		
+	],
+
+	"scanAndShipActionPopoverItems":[
+        {"text":"View"},
+        {"text":"Edit"},
+        {"text":"Copy"},
+        {"text":"Delete"},
+        {"text":"Print"}
+    ]
+}

@@ -1,0 +1,81 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Popover
+		contentWidth="45%"
+		showHeader="false"
+		id="idOrdersFilterPopover"
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+		placement="Bottom"
+		initialFocus="email">
+		<Toolbar >
+			<ToolbarSpacer ></ToolbarSpacer>
+				<Button icon="sap-icon://decline" press="onOrderFilterPopoverClosePress" ></Button>
+		</Toolbar>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+					text="Reset"
+					type="Ghost"
+					press="onOrderFilterPopoverResetPress" />
+                <Button
+					text="Apply"
+					type="Success"
+					press="onOrderFilterPopoverApplyPress" />
+			</OverflowToolbar>
+		</footer>
+        <VBox >
+		<HBox >
+			<VBox class="sapUiSmallMargin" width="30%" >
+			<Label text="Location Name" width="100%" />
+					<ComboBox
+						width="100%"
+						items="{}">
+						<core:Item key="{key}" text="{text}" />
+					</ComboBox>
+			</VBox>
+			<VBox class="sapUiSmallMargin" width="30%" >
+					<Label text="Ship From Date" width="100%" />
+					<DatePicker
+						width="100%"
+						placeholder="Enter Date"
+						change="handleChange"
+						class="sapUiSmallMarginBottom"/>
+			</VBox>
+			<VBox class="sapUiSmallMargin" width="30%" >
+					<Label text="Ship To Date" width="100%" />
+					<DatePicker
+						width="100%"
+						placeholder="Enter Date"
+						change="handleChange"
+						class="sapUiSmallMarginBottom"/>
+			</VBox>
+		</HBox>
+        <HBox>
+        	<VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
+					<Label text="Connect To" width="100%" />
+					<ComboBox
+						width="100%"
+						items="{}">
+						<core:Item key="{key}" text="{text}" />
+					</ComboBox>
+			</VBox>
+            <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
+					<Label text="Order Type" width="100%" />
+					<ComboBox
+						width="100%"
+						items="{}">
+						<core:Item key="{key}" text="{text}" />
+					</ComboBox>
+			</VBox>
+            <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
+					<Label text="Delivery No" width="100%" />
+					<Input value="{}" width="100%"></Input>
+			</VBox>
+		</HBox>
+        </VBox>
+	</Popover>
+</core:FragmentDefinition>
