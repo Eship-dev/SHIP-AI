@@ -1,16 +1,16 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
-
-	<Toolbar  class="sapUiSmallMargin borderSolid scan-ship-toolbar">
-        <Title text="Scan and Ship" class="sapUiTinyMarginBeginEnd scan-ship-toolbar-title"/>
-        <Input class="scan-ship-toolbar-input" width="10rem" id="userscanShipInput" placeholder="Enter SAP DN, Handing Unit or ODO" ></Input>
+    <VBox>
+	<Toolbar class="sapUiTinyMargin" height="5rem">
+        <Title text="Scan and Ship"/>
+        <Input  width="20rem" id="userscanShipInput" placeholder="Enter SAP DN, Handing Unit or ODO" ></Input>
         <!-- <TextArea width="20rem" rows="2" id="userInput" placeholder="Enter SAP DN, Handing Unit or ODO" ></TextArea> -->
-        <Button text="Ship Now" type="Accept" press="onScanShipSearchPress" class="scan-ship-button" ></Button>
+        <Button text="Ship Now" type="Accept" press="onScanShipSearchPress"  ></Button>
         <ToolbarSpacer />
-        <Button text="Void Now" type="Reject" class="scan-ship-button"></Button>
+        <Button text="Void Now" type="Reject"></Button>
 	</Toolbar>
 
-        <ui:Table	rowActionCount="0"	id="idScanAndShipTable"		class="sapUiSmallMargin borderSolid"
+        <ui:Table class="sapUiTinyMargin" 	rowActionCount="0"	id="idScanAndShipTable"
 					selectionMode="None"	paste="onPaste"		ariaLabelledBy="title">
 					<ui:extension>
 							<OverflowToolbar>
@@ -28,7 +28,7 @@
 					</ui:extension>									
 				<ui:footer>
                 <Toolbar>
-                    <Text text="Total"></Text>
+                    <Text text="Total Shipped by John Marsh: 1"></Text>
                     <ToolbarSpacer/>
                     <Button  text="First"     type="Emphasized"/>
                     <Button  text="Previous"  type="Emphasized"/>
@@ -39,7 +39,7 @@
 		    </ui:footer>
 		</ui:Table>
 
-
+    </VBox>
 
 
 
