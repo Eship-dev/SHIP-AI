@@ -1,6 +1,1793 @@
-<mvc:View controllerName="com.eshipjet.zeshipjet.controller.Eshipjet"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-    </Page>
+<mvc:View
+	controllerName="com.eshipjet.zeshipjet.controller.Eshipjet"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:tnt="sap.tnt"
+	xmlns:ui="sap.ui.table"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	height="100%">
+	<tnt:ToolPage id="toolPage">
+		<tnt:header>
+			<tnt:ToolHeader>
+				<Button
+					id="sideNavigationToggleButton"
+					icon="sap-icon://menu2"
+					type="Transparent"
+					press=".onSideNavButtonPress">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+				<Text text="SAP ShipperCopilot 6.4"/>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://add"/>
+				<Button icon="sap-icon://menu"/>
+				<Button icon="sap-icon://action-settings"/>
+				<Button icon="sap-icon://bell"/>
+			</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:sideContent >
+			<tnt:SideNavigation
+			 	visible="{eshipjetModel>/SideNavigation}"
+				expanded="true"
+				selectedKey="{eshipjetModel>/selectedKey}"
+				itemSelect=".onItemSelect">
+				<tnt:NavigationList items="{path: 'eshipjetModel>/navigation'}">
+					<tnt:NavigationListItem
+						class="textBold"
+						text="{eshipjetModel>title}"
+						icon="{eshipjetModel>icon}"
+						key="{eshipjetModel>key}">
+					</tnt:NavigationListItem>
+				</tnt:NavigationList>
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+		<tnt:mainContents>
+			<NavContainer id="pageContainer" initialPage="Dashboard">
+				<pages>
+					<ScrollContainer
+						id="Dashboard"
+						horizontal="false"
+						vertical="true"
+						height="100%"
+						class="sapUiContentPadding ship-tiles-page">
+						<FlexBox justifyContent="Center" alignItems="Center" height="100%">	
+							<l:HorizontalLayout id="TileContainerExpanded"
+				                    allowWrapping="true"
+				                    content="{eshipjetModel>/TileCollection}"
+				                    class="sapUiTinyMargin ship-tile-container">
+									<GenericTile press="onTilePress" class="ship-tile"
+										headerImage="{eshipjetModel>image}">
+										<TileContent class="ship-tile-content">
+											<Button class="ship-tile-button" text="{eshipjetModel>title}"/>
+										</TileContent>
+									</GenericTile>
+							</l:HorizontalLayout>
+						</FlexBox>
+					</ScrollContainer>
+					<ScrollContainer
+						id="ShipperCopilot"
+						horizontal="false"
+						vertical="true"
+						height="100%"
+						class="sapUiContentPadding ship-copilot-page">
+									<VBox visible="{ShipperCopilotModel>/iconState}" class="ship-copilot-top-section">
+										<HBox class="sapUiLargeMarginTop" justifyContent="Center">
+											<Image src="{value: 'com/eshipjet/zeshipjet/css/images/copilotlogo.png',formatter: 'sap.ui.require.toUrl'}" width="5rem" height="5rem"/>
+										</HBox>
+										<HBox class="sapUiLargeMarginTop" justifyContent="Center">
+											<Button class="sapUiTinyMargin ship-copilot-button all-shipments" icon="sap-icon://in-progress"  text="Show all Shipments"/>
+											<Button class="sapUiTinyMargin ship-copilot-button country-shipments" icon="sap-icon://product" text="Coutry wise Shipments" />
+											<Button class="sapUiTinyMargin ship-copilot-button open-order-status" icon="sap-icon://shipping-status" text="Orders with Open Status"/>
+										</HBox>
+									</VBox>
+
+									<!-- Chat List -->
+									<List id="chatList" items="{ShipperCopilotModel>/messages}" class="co-pilot-search-results" visible="{ShipperCopilotModel>/listState}" >
+										<CustomListItem class="sapUiTinyMargin" >
+											<HBox justifyContent="{= ${ShipperCopilotModel>sender} === 'You' ? 'End' : 'Start'}">
+											<VBox class="messageBox {= ${ShipperCopilotModel>sender} === 'You' ? 'userMessage' : 'botMessage'}">
+												<Text text="{ShipperCopilotModel>text}" wrapping="true" class="co-pilot-search-text" visible="{= ${ShipperCopilotModel>sender} === 'You'}" />
+												<HBox>
+												<Image class="sapUiSmallMarginEnd" src="{value: 'com/eshipjet/zeshipjet/css/images/copilotlogo.png',formatter: 'sap.ui.require.toUrl'}" width="16px" height="auto" visible="{= ${ShipperCopilotModel>sender} === 'BotError' || ${ShipperCopilotModel>sender} === 'Bot'}"/>
+												<Text text="{ShipperCopilotModel>text}" wrapping="true" visible="{= ${ShipperCopilotModel>sender} === 'BotError'}" />
+												<Image src="{ShipperCopilotModel>text}"
+													width="70%" height="70%"
+													press="onZoomImage" visible="{= ${ShipperCopilotModel>sender} === 'Bot'}" />
+												</HBox>    
+											</VBox>
+											</HBox>
+										</CustomListItem>
+									</List>
+
+									<HBox justifyContent="Center" class="ship-copilot-search-section">
+										<Input id="userInput" class="sapUiTinyMarginEnd" placeholder="Good Afternoon Robert, I'm ready for the task" width="30rem" submit="onSendPress"/>
+										<Button icon="sap-icon://arrow-top" press="onSendPress"/>
+									</HBox>
+					</ScrollContainer>
+
+					<!-- Orders Starts here -->
+					<ScrollContainer id="Orders" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+						<Toolbar height="20%" width="100%" >
+			<VBox width="100%" >
+				<Text text="Order" class="sapUiSmallMargin textBold" ></Text>
+				<Text text="25" class="sapUiSmallMarginBegin textBold" ></Text>
+				<Text text="Total" class="sapUiSmallMarginBegin"></Text>
+				<Button type="Emphasized" width="98%" class="sapUiSmallMargin" ></Button>
+			</VBox>
+		</Toolbar>
+
+    	<ui:Table
+				id="idOrderTable"
+                class="sapUiTinyMarginTop"
+				rows="{eshipjetModel>/Orderitems}"
+				selectionMode="None"
+				visibleRowCount="13">
+				<ui:extension>
+					<OverflowToolbar style="Clear">
+                        <Button icon="sap-icon://filter" press="onOrdersFilterPress"></Button>
+                        <ToolbarSpacer />
+                            <Button icon="sap-icon://action"></Button>
+                            <Button icon="sap-icon://action-settings"></Button>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column width="8rem">
+						<Label text="Order ID" />
+						<ui:template>
+							<Text text="{eshipjetModel>orderId}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="8rem">
+						<Label text="Created Date" />
+						<ui:template>
+							<Text text="{eshipjetModel>createdDate}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship Date" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipDate}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Shipment Type" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipmentType}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship Method" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipMethod}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="10rem">
+						<Label text="Service Name" />
+						<ui:template>
+							<Text text="{eshipjetModel>serviceName}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Tracking Number" />
+						<ui:template>
+							<Text text="{eshipjetModel>trackingNo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Status" />
+						<ui:template>
+                            <Link text="{eshipjetModel>status}"></Link>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="10rem">
+						<Label text="Ship To Contact" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToContact}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship To Company" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToCompany}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship To Country" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToCountry}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship To Zipcode" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToZipCode}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Connected To" />
+						<ui:template>
+							<Text text="{eshipjetModel>connectedTo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Order Type" />
+						<ui:template>
+							<Text text="{eshipjetModel>orderType}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="6rem">
+						<Label text="Actions" />
+						<ui:template>
+                            <Link text="{eshipjetModel>actions}"></Link>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+<!-- </content> -->
+        <!-- <footer> -->
+            <Toolbar >
+                <ToolbarSpacer />
+                    <Button text="First" enabled="false"></Button>
+                    <Button text="Previous" enabled="false"></Button>
+                    <Text text="1-25 of 25"></Text>
+                    <Button text="Next" enabled="false"></Button>
+                    <Button text="Last" enabled="false"></Button>
+            </Toolbar>
+					</ScrollContainer>
+
+	<!-- Ship Request Label Starts here -->
+<ScrollContainer id="ShipRequestLabel" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+
+	<Toolbar width="auto" >
+			<Text text="Ship Requests / Labels" class="textBold sapUiTinyMarginBegin" ></Text>
+				<ToolbarSpacer />
+					<Button text="Create Ship Request/Label" type="Success" activeIcon="false" icon="false" ></Button>
+		</Toolbar>
+		<Toolbar height="15%" >
+			<HBox width="100%">
+				<VBox class="sapUiTinyMargin" width="25%" >
+					<Text text="34" class="textBold"></Text>
+					<Text text="Total" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Emphasized" press="handleTrackNowFilterBtnPress" id="idShipRequestTotalBtn" icon="false" width="100%"  ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="24" class="textBold"></Text>
+					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Success" press="handleTrackNowFilterBtnPress" id="idShipRequestShippedBtn" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="3" class="textBold"></Text>
+					<Text text="Open" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Critical" press="handleTrackNowFilterBtnPress" id="idShipRequestOpenBtn" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="3" class="textBold"></Text>
+					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Negative" press="handleTrackNowFilterBtnPress" id="idShipRequestCancelledBtn" icon="false" width="100%" ></Button>
+				</VBox>
+			</HBox>
+		</Toolbar>
+
+    <ui:Table
+                id="idShipRequestTable"
+                class="sapUiSmallMarginTop"
+				rows="{eshipjetModel>/TrackNowItems}"
+				selectionMode="None"
+				visibleRowCount="0">
+				<ui:extension>
+					<OverflowToolbar style="Clear">
+                        <Button icon="sap-icon://filter" press="onShipReqFltrPress"></Button>
+                        <ToolbarSpacer />
+                            <Button icon="sap-icon://action"></Button>
+                            <Button icon="sap-icon://action-settings"></Button>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column width="8rem">
+						<Label text="Request ID/Label" />
+						<ui:template>
+							<Text text="{eshipjetModel>requestId}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="8rem">
+						<Label text="Created Date" />
+						<ui:template>
+							<Text text="{eshipjetModel>createdDate}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship Date" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipDate}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship Method" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipMethod}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="10rem">
+						<Label text="Service Name" />
+						<ui:template>
+							<Text text="{eshipjetModel>serviceName}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Status" />
+						<ui:template>
+                            <Link text="{eshipjetModel>status}" ></Link>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="13rem"  defaultFilterOperator="true" filterOperator="show">
+						<Label text="Tracking Number" />
+						<ui:template>
+							<Link text="{eshipjetModel>trackingNo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="10rem">
+						<Label text="Ship To Contact" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToContact}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship To Company" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToCompany}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Connected To" />
+						<ui:template>
+							<Text text="{eshipjetModel>connectedTo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Order Type" />
+						<ui:template>
+							<Text text="{eshipjetModel>orderType}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship To City" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToCity}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship To Country" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToCountry}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Shipment Type" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipmentType}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="6rem">
+						<Label text="Actions" />
+						<ui:template>
+                            <Link text="{eshipjetModel>actions}"></Link>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+</ScrollContainer>	
+					<!-- Ship Now Starts here -->
+					<ScrollContainer id="ShipNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+						
+							<Toolbar class="sapUiTinyMarginBottom" height="10%">
+								<!-- <ToolbarSpacer /> -->
+								<Button icon="sap-icon://past" />
+								<Text text="Ship Now"/>
+								<ComboBox items="{eshipjetModel>/secondComboboxItems}">
+									<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+								</ComboBox>
+								<SearchField width="10rem" class="sapUiSmallMargin" />
+								<Button text="Get" type="Ghost"></Button>
+								<Button text="Consolidation" type="Ghost" press="handleConsolidationPress"></Button>
+								<Label text="Pickup Date" labelFor="DP1"/>
+								<DatePicker id="DP1" width="13rem" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" placeholder="Enter Date" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
+								<Label text="Ship Date" labelFor="DP2"/>
+								<DatePicker id="DP2" width="13rem" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" placeholder="Enter Date" change="handleChange" value="{path: 'eshipjetModel>/shipDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
+								<Button text="New" type="Ghost"></Button>
+								<ToolbarSpacer />
+							</Toolbar>
+
+							<!-- Icon Tab Bar Starts here -->
+							<IconTabBar id="idIconTabBarFiori2" expanded="{device>/isNoPhone}">
+								<items>
+
+									<!-- Ship From / To Tab Starts here -->
+									<IconTabFilter text="Ship From / To" key="info">
+										<VBox>
+											<f:SimpleForm id="SimpleFormChangeColumn_threeGroups346" editable="true" layout="ColumnLayout" columnsM="3" columnsL="4" columnsXL="6">
+												<f:toolbar>
+													<Toolbar >
+														<ToolbarSpacer />
+														<Button text="Validate Address" />
+													</Toolbar>
+												</f:toolbar>
+												<f:content>
+													<Toolbar ariaLabelledBy="idShipFrom">
+														<Title id="idShipFrom" text="Ship From"/>
+														<Button icon="sap-icon://customer-briefing" press="handleShipFromPickAnAddressPress"/>
+													</Toolbar>
+													<Label text="Contact Name" />
+													<Input value="{shipFromModel>/contactName}" />
+													<Label text="Address Line 1" />
+													<Input value="{shipFromModel>/AddressLine1}"></Input>
+													<Label text="City" />
+													<Input value="{shipFromModel>/city}" placeholder="City" width="10rem" />
+													<Input value="{shipFromModel>/state}" placeholder="State / Province" width="10rem" />
+													<Label text="Email" />
+													<Input value="{shipFromModel>/email}" />
+													<Label text="Company Name" />
+													<Input value="{shipFromModel>/companyName}" />
+													<Label text="Address Line 2" />
+													<Input value="{shipFromModel>/AddressLine2}" />
+													<Label text="Zip / Postal Code" />
+													<Input value="{shipFromModel>/zipCode}" placeholder="Zip / Postal Code" width="10rem" />
+													<ComboBox placeholder="Country" items="{eshipjetModel>/countriesList}" selectedKey="{shipFromModel>/country}" width="10rem">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+													<Label text="Phone No" />
+													<Input value="{shipFromModel>/phone}" placeholder="Phone No" width="10rem" />
+													<ComboBox placeholder="Address Type" selectedKey="{shipFromModel>/state}" items="{eshipjetModel>/addressType}" width="10rem">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+													<Toolbar ariaLabelledBy="idShipTo">
+														<Title id="idShipTo" text="Ship To"/>
+														<Button icon="sap-icon://customer-briefing" press="handleShipToPickAnAddressPress" />
+														<Button icon="sap-icon://add" press="handleCreateAddressPress"></Button>
+													</Toolbar>
+													<Label text="Contact Name" />
+													<Input value="{shipToModel>/contactName}" />
+													<Label text="Address Line 1" />
+													<Input value="{shipToModel>/AddressLine1}"></Input>
+													<Label text="City" />
+													<Input value="{shipToModel>/city}" placeholder="City" width="10rem" />
+													<Input value="{shipToModel>/state}" placeholder="State / Province" width="10rem" />
+													<Label text="Email" />
+													<Input value="{shipToModel>/email}" />
+													<Label text="Company Name" />
+													<Input value="{shipToModel>/companyName}" />
+													<Label text="Address Line 2" />
+													<Input value="{shipToModel>/AddressLine2}" />
+													<Label text="Zip / Postal Code" />
+													<Input value="{shipToModel>/zipCode}" placeholder="Zip / Postal Code" width="10rem" />
+													<ComboBox placeholder="Country" selectedKey="{shipToModel>/country}" items="{eshipjetModel>/countriesList}" width="10rem">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+													<Label text="Phone No" />
+													<Input value="{shipToModel>/phone}" placeholder="Phone No" width="10rem" />
+													<ComboBox placeholder="Address Type" selectedKey="{shipToModel/addressType}" items="{eshipjetModel>/addressType}" width="10rem">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+												</f:content>
+											</f:SimpleForm>
+
+											<Table id="idBusinessPartnersTable" inset="false" items="{eshipjetModel>/BusinessPartners}">
+												<headerToolbar>
+													<OverflowToolbar>
+														<content>
+															<Title text="Business Partners" level="H2"/>
+														</content>
+													</OverflowToolbar>
+												</headerToolbar>
+												<columns>
+													<Column width="3rem">
+														<Text text="" />
+													</Column>
+													<Column >
+														<Text text="Partner Type" />
+													</Column>
+													<Column >
+														<Text text="Contact Name" />
+													</Column>
+													<Column >
+														<Text text="Company Name" />
+													</Column>
+													<Column >
+														<Text text="Address Line 1" />
+													</Column>
+													<Column >
+														<Text text="Address Line 2" />
+													</Column>
+													<Column >
+														<Text text="State / Province" />
+													</Column>
+													<Column >
+														<Text text="City" />
+													</Column>
+													<Column >
+														<Text text="Zip / Postal Code" />
+													</Column>
+													<Column >
+														<Text text="Country" />
+													</Column>
+													<Column >
+														<Text text="Phone No" />
+													</Column>
+													<Column >
+														<Text text="Email" />
+													</Column>
+												</columns>
+												<items>
+													<ColumnListItem vAlign="Middle">
+														<cells>
+															<Button icon="sap-icon://search" type="Transparent" press="handleSearchPickAnAddressPress"></Button>
+															<Input value="{eshipjetModel>PartnerType}" />
+															<Input value="{eshipjetModel>contactName}" />
+															<Input value="{eshipjetModel>companyName}" />
+															<Input value="{eshipjetModel>AddressLine1}" />
+															<Input value="{eshipjetModel>AddressLine2}" />
+															<Input value="{eshipjetModel>state}" />
+															<Input value="{eshipjetModel>city}" />
+															<Input value="{eshipjetModel>zipCode}" />
+															<Input value="{eshipjetModel>country}" />
+															<Input value="{eshipjetModel>phone}" />
+															<Input value="{eshipjetModel>email}" />
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+
+										</VBox>
+									</IconTabFilter>
+
+
+									<!-- Routing and Billing Details Tab Starts here -->
+
+									<IconTabFilter text="Routing and Billing Details" key="Routing and Billing Details">
+										<VBox>
+											<f:SimpleForm id="RoutingandBillingDetails" editable="true" layout="ColumnLayout" columnsM="3" columnsL="4" columnsXL="6">
+												<f:content>
+													<Label text="Ship Method" />
+													<ComboBox items="{eshipjetModel>/shipMethod}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+													<Label text="Payment Type" />
+													<ComboBox items="{eshipjetModel>/paymentType}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+													<Label text="Service Name" />
+													<ComboBox items="{eshipjetModel>/serviceName}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+													<Label text="Cost Center" />
+													<ComboBox items="{eshipjetModel>/costCenter}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+													<Label text="Ship Method ID" />
+													<Input value="{eshipjetModel>/shipMethodId}" />
+													<Label text="PO No" />
+													<Input value="{eshipjetModel>/poNo}" />
+													<Label text="Account No" />
+													<Button text="Get Carrier" width="10rem" />
+													<Input value="{eshipjetModel>/accountNumber}" width="10rem" />
+													<Label text="Invoice No" />
+													<Input value="{eshipjetModel>/invoiceNo}" />
+												</f:content>
+											</f:SimpleForm>
+											<Label text="Special Instructions"></Label>
+											<TextArea value="{eshipjetModel>/specialInstructions}" width="100%"></TextArea>
+											<f:SimpleForm id="RoutingandBillingDetails2" editable="true" layout="ColumnLayout" columnsM="3" columnsL="4" columnsXL="6">
+												<f:content>
+													<Label text="Signature Option" />
+													<ComboBox items="{eshipjetModel>/signatureOption}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+													<Label text="Dry Ice" />
+													<Input value="{eshipjetModel>/dryIce}" />
+													<Label text="Packing Cost" />
+													<Input value="{eshipjetModel>/packingCost}" />
+													<Label text=""></Label>
+													<CheckBox text="Residential Delivery" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text=""></Label>
+													<CheckBox text="COD" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text=""></Label>
+													<CheckBox text="Ship Alert Email" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text="Misc Options" />
+													<ComboBox items="{eshipjetModel>/miscOptions}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+													<Label text="Insurance Charge" />
+													<Input value="{eshipjetModel>/insuranceChange}" />
+													<Label text=""></Label>
+													<CheckBox text="Home Delivery" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text=""></Label>
+													<CheckBox text="Inside Delivery" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text=""></Label>
+													<CheckBox text="Broker Select" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text=""></Label>
+													<CheckBox text="Third Party Consignee" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text="Indicia" />
+													<ComboBox items="{eshipjetModel>/indicia}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+													<Label text="Handling Cost" />
+													<Input value="{eshipjetModel>/handlingCost}" />
+													<Label text="Home Delivery Date" />
+													<Input value="{eshipjetModel>/homeDeliveryDate}" width="10rem" />
+													<Label text=""></Label>
+													<CheckBox text="Inside Pickup" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text=""></Label>
+													<CheckBox text="Hold at location" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text=""></Label>
+													<CheckBox text="Fedex One Rate" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text="Ancillary Endorsement" />
+													<ComboBox items="{eshipjetModel>/ancillaryEndorsement}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+													<Label text="Freight Charge" />
+													<Input value="{eshipjetModel>/freightCharge}" />
+													<Label text=""></Label>
+													<CheckBox text="Saturday Pickup" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text=""></Label>
+													<CheckBox text="Alcohol" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text=""></Label>
+													<CheckBox text="Return Label" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text=""></Label>
+													<CheckBox text="Exception Notifications" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text="Lithium Batteries" />
+													<ComboBox items="{eshipjetModel>/lithiumBatteries}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+													<Label text="Taxes or Misc Charges" />
+													<Input value="{eshipjetModel>/taxesOrMiscCharges}" />
+													<Label text=""></Label>
+													<CheckBox text="Saturday Delivery" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text=""></Label>
+													<CheckBox text="Dry Ice Only" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text=""></Label>
+													<CheckBox text="Email Notifications" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text=""></Label>
+													<CheckBox text="Delivery Notifications" class="sapUiSmallMarginTop"></CheckBox>
+												</f:content>
+											</f:SimpleForm>
+										</VBox>
+									</IconTabFilter>
+
+
+									<!-- Additional Info Tab Starts here -->
+									<IconTabFilter text="Additional Info" key="Additional Info">
+										<VBox class="sapUiSmallMargin">
+											<f:SimpleForm id="AdditionalInfo" editable="true" layout="ColumnLayout" columnsM="3" columnsL="4" columnsXL="6">
+												<f:content>
+													<Label text="Customer No" />
+													<Input value="{}"></Input>
+													<Label text="References" />
+													<ComboBox items="{}">
+														<core:Item key="{}" text="{}" />
+													</ComboBox>
+													<Label text="Move Code" />
+													<ComboBox items="{}">
+														<core:Item key="{}" text="{}" />
+													</ComboBox>
+													<Label text="PO No" />
+													<Input value="{}" />
+													<Label text="Prefix" />
+													<Input value="{}" />
+													<Label text="Shipment Method" />
+													<ComboBox items="{}">
+														<core:Item key="{}" text="{}" />
+													</ComboBox>
+													<Label text="Invoice No" />
+													<Input value="{}" />
+													<Label text="Incoterm Location" />
+													<Input value="{}"></Input>
+													<Label text="Refer" />
+													<ComboBox items="{}">
+														<core:Item key="{}" text="{}" />
+													</ComboBox>
+													<Label text="SO No" />
+													<Input value="{}" />
+													<Label text="Transportation Mode" />
+													<ComboBox items="{}">
+														<core:Item key="{}" text="{}" />
+													</ComboBox>
+												</f:content>
+											</f:SimpleForm>
+											<Label text="Notes"></Label>
+											<TextArea width="100%"></TextArea>
+										</VBox>
+									</IconTabFilter>
+
+
+									<!-- Pack Tab Starts here -->
+									<IconTabFilter text="Pack" key="Pack">
+										<Table id="Pack" inset="false" class="sapUiTinyMarginTop" items="{eshipjetModel>/pickAddProductTable}">
+											<headerToolbar>
+												<OverflowToolbar>
+													<content>
+														<HBox >
+															<Label text="Scan Product" class="sapUiTinyMargin" />
+															<Input value="{}" width="5rem"></Input>
+															<Label text="Quantity" class="sapUiTinyMargin" />
+															<StepInput id="quantityInput" value="" min="0" max="100" step="1" width="5rem" class="sapUiLargeMarginEnd" valueState="None" />
+															<Label text="Package Type" class="sapUiTinyMargin" />
+															<ComboBox items="{}" width="6rem" class="sapUiLargeMarginEnd">
+																<core:Item key="{}" text="{}" />
+															</ComboBox>
+															<Label text="Dimensions" class="sapUiTinyMargin" />
+															<ComboBox items="{eshipjetModel>/packDimensions}" selectedKey="{dimensionModel>/dimension}" width="8rem">
+																<core:Item key="{eshipjetModel>dimension}" text="{eshipjetModel>dimension}" />
+															</ComboBox>
+															<Button icon="sap-icon://add" press="handleDimensionAddPress" class="sapUiLargeMarginEnd"></Button>
+															<Label text="Total Pkgs/Weight" class="sapUiTinyMargin sapUiMediumMarginBegin" />
+															<StepInput id="stepDownInput" value="{dimensionModel>/weightStepDown}" min="0" max="100" step="1" width="100px" valueState="None" />
+															<Text text="/" class="sapUiTinyMargin"></Text>
+															<StepInput id="stepUpInput" value="{dimensionModel>/weightStepUp}" min="0" max="100" step="1" width="100px" valueState="None" />
+															<Button text="Auto Pack" press="handleAutoPackPress" width="auto" type="Ghost" class="sapUiTinyMarginBegin"></Button>
+														</HBox>
+													</content>
+												</OverflowToolbar>
+											</headerToolbar>
+											<columns>
+												<Column >
+													<Text text="#" />
+												</Column>
+												<Column >
+													<Text text="Product Code" />
+												</Column>
+												<Column >
+													<Text text="Description" />
+												</Column>
+												<Column >
+													<Text text="EPC-RFID No" />
+												</Column>
+												<Column >
+													<Text text="Dimensions" />
+												</Column>
+												<Column >
+													<Text text="Total Qty" />
+												</Column>
+												<Column >
+													<Text text="Balance Qty" />
+												</Column>
+												<Column >
+													<Text text="Partial Qty" />
+												</Column>
+												<Column >
+													<Text text="Is Serial" />
+												</Column>
+												<Column >
+													<Text text="Is DG" />
+												</Column>
+												<Column >
+													<core:Icon src="sap-icon://delete" press="handleDeleteAllPickAddProductTable" tooltip="Delete All" color="red">
+													</core:Icon>
+												</Column>
+											</columns>
+											<items>
+												<ColumnListItem vAlign="Middle">
+													<cells>
+														<Text text="{eshipjetModel>#}" />
+														<Text text="{eshipjetModel>productCode}" />
+														<Text text="{eshipjetModel>description}" />
+														<Text text="{eshipjetModel>epcRfidNo}" />
+														<Text text="{eshipjetModel>dimensions}" />
+														<Text text="{eshipjetModel>totalQty}" />
+														<Text text="{eshipjetModel>balanceQty}" />
+														<Text text="{eshipjetModel>partialQty}" />
+														<!-- <Text text="{eshipjetModel>isSerial}" />
+										<Text text="{eshipjetModel>isDG}" /> -->
+														<CheckBox ></CheckBox>
+														<CheckBox ></CheckBox>
+														<!-- <core:Icon src="{eshipjetModel>deleteIcon}" press="handlePackTable2DeletePress" tooltip="Delete" color="red">
+										</core:Icon> -->
+														<Button icon="{eshipjetModel>deleteIcon}" press="handlePackProductTableDeletePress" tooltip="Delete" type="Reject"></Button>
+													</cells>
+												</ColumnListItem>
+											</items>
+										</Table>
+										<Toolbar width="100%" class="sapUiMediumMarginTop">
+											<OverflowToolbar width="100%">
+												<Button text="Add Product" press="handleAddProductPress" type="Ghost" width="8rem"></Button>
+												<ToolbarSpacer />
+												<core:Icon src="sap-icon://action-settings">
+												</core:Icon>
+											</OverflowToolbar>
+										</Toolbar>
+
+										<Table id="Pack2" inset="false" class="sapUiSmallMarginTop" items="{eshipjetModel>/packTable2}">
+											<headerToolbar >
+												<OverflowToolbar class="sapUiSmallMarginBottom">
+													<Label text="Scan Handling Unit" class="sapUiTinyMargin"></Label>
+													<Input value="{}" width="8rem"></Input>
+													<ToolbarSpacer />
+													<Button text="Pack" type="Ghost" class="sapUiTinyMarginEnd"></Button>
+													<Button text="Pack All" type="Ghost"></Button>
+													<ToolbarSpacer />
+												</OverflowToolbar>
+											</headerToolbar>
+											<columns >
+												<Column >
+													<Text text="#" />
+												</Column>
+												<Column >
+													<Text text="H.U" />
+												</Column>
+												<Column >
+													<Text text="ERP Handling Unit" />
+												</Column>
+												<Column >
+													<Text text="Weight" />
+												</Column>
+												<Column >
+													<Text text="" />
+												</Column>
+												<Column >
+													<Text text="Weight Units" />
+												</Column>
+												<Column >
+													<Text text="Dimensions" />
+												</Column>
+												<Column >
+													<Text text="Dimension Units" />
+												</Column>
+												<Column >
+													<Text text="Class" />
+												</Column>
+												<Column >
+													<Text text="Tracking#" />
+												</Column>
+												<Column >
+													<core:Icon src="sap-icon://delete" press="handleDeleteAll" tooltip="Delete All" color="red">
+													</core:Icon>
+												</Column>
+											</columns>
+											<items>
+												<ColumnListItem vAlign="Middle">
+													<cells>
+														<Text text="{eshipjetModel>#}" />
+														<Link text="{eshipjetModel>HU}" press="handleHULinkPress"></Link>
+														<Text text="{eshipjetModel>erpHandlingUnit}" />
+														<Text text="{eshipjetModel>Weight}" />
+														<core:Icon src="{eshipjetModel>shipmentIcon}" press="handlePackTable2ShipmentPress" tooltip="Shipment">
+														</core:Icon>
+														<Text text="{eshipjetModel>WeightUnits}" />
+														<Text text="{eshipjetModel>Dimensions}" />
+														<Text text="{eshipjetModel>DimensionUnits}" />
+														<Text text="{eshipjetModel>Class}" />
+														<Text text="{eshipjetModel>Tracking}" />
+														<!-- <core:Icon src="{eshipjetModel>deleteIcon}" press="handlePackTable2DeletePress" tooltip="Delete" color="red">
+										</core:Icon> -->
+														<Button icon="{eshipjetModel>deleteIcon}" press="handlePackTable2DeletePress" tooltip="Delete" type="Reject"></Button>
+													</cells>
+												</ColumnListItem>
+											</items>
+										</Table>
+									</IconTabFilter>
+
+
+									<!-- International Details Tab Starts here -->
+									<IconTabFilter text="International Details" key="International Details">
+										<VBox>
+											<f:SimpleForm id="InternationalDetails" editable="true" layout="ColumnLayout" columnsM="3" columnsL="3" columnsXL="6">
+												<f:content>
+													<Label text="INT Duties/Taxes" />
+													<ComboBox items="{eshipjetModel>/intDutiesTaxes}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+													<Label text="Duties Account No" />
+													<Input value="{eshipjetModel>/dutiesAccountNo}"></Input>
+													<Label text="Payor Country Code" />
+													<Input value="{eshipjetModel>/payorCountryCode}" />
+													<Label text="Payor Zip Code" />
+													<Input value="{eshipjetModel>/payorZipCode}" />
+													<Label text="Ship From Tax No" />
+													<Input value="{eshipjetModel>/shipFromTaxNo}" />
+													<Label text="Permit No" />
+													<Input value="{eshipjetModel>/permitNo}" />
+													<Label text="ITN/XTN (SED/EEI)" />
+													<Input value="{eshipjetModel>/itn_xtn}" />
+													<Label text="Booking Confirm No" />
+													<Input value="{eshipjetModel>/bookingConfirmNo}" />
+													<Label text="B13A Filing Option" />
+													<ComboBox items="{eshipjetModel>/B13AFillingOption}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+													<Label text="ATLAS MRN No" />
+													<Input value="{eshipjetModel>/atlasMRNNo}"></Input>
+													<Label text="Ship To Tax No" />
+													<Input value="{eshipjetModel>/shipToTaxNo}" />
+													<Label text="Customs Declared Value" />
+													<Input value="{eshipjetModel>/customsDeclaredValue}" />
+													<Label text="Terms of Shipment" />
+													<ComboBox items="{eshipjetModel>/incoTeam}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+													<Label text="Reason for Export" />
+													<ComboBox items="{eshipjetModel>/reasonForExport}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+													<Label text="Compli. Statement" />
+													<Input value="{eshipjetModel>/compilStatement}" />
+													<Label text="IncoTerm Location" />
+													<Input value="{eshipjetModel>/incoTeamLocation}" />
+
+													<Label text="Freight Forwarder Tax No" />
+													<Input value="{eshipjetModel>/freightForwordTaxNo}" />
+													<Label text="Documents Content Type"></Label>
+													<ComboBox items="{eshipjetModel>/documentContentType}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+												</f:content>
+											</f:SimpleForm>
+
+											<Table inset="false" items="{}">
+												<columns>
+													<Column width="auto">
+														<Text text="H.U." />
+													</Column>
+													<Column width="auto">
+														<Text text="Product No" />
+													</Column>
+													<Column width="auto">
+														<Text text="License No" />
+													</Column>
+													<Column width="auto">
+														<Text text="ECCN" />
+													</Column>
+													<Column width="auto">
+														<Text text="Description" />
+													</Column>
+													<Column width="auto">
+														<Text text="UOM" />
+													</Column>
+													<Column width="auto">
+														<Text text="Currency" />
+													</Column>
+													<Column width="auto">
+														<Text text="Country of MFR" />
+													</Column>
+													<Column width="8rem">
+														<Text text="Harmonized Code" />
+													</Column>
+													<Column width="auto">
+														<Text text="Weight" />
+													</Column>
+													<Column width="auto">
+														<Text text="Quantity" />
+													</Column>
+													<Column width="auto">
+														<Text text="Unit Value" />
+													</Column>
+												</columns>
+												<items>
+													<ColumnListItem vAlign="Middle">
+														<cells>
+															<Text text="{}" />
+															<Text text="{}" />
+															<Text text="{}" />
+															<Text text="{}" />
+															<Text text="{}" />
+															<Text text="{}" />
+															<Text text="{}" />
+															<Text text="{}" />
+															<Text text="{}" />
+															<Text text="{}" />
+															<Text text="{}" />
+															<Text text="{}" />
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+
+										</VBox>
+									</IconTabFilter>
+
+
+									<!-- Charges Tab Starts here -->
+									<IconTabFilter text="Charges" key="Charges">
+										<Text text="Charges go here ..." />
+									</IconTabFilter>
+
+									<!-- Documents Tab Starts here -->
+									<IconTabFilter text="Documents" key="Documents">
+										<Text text="Documents go here ..." />
+									</IconTabFilter>
+
+									<!-- Track Tab Starts here -->
+									<IconTabFilter text="Track" key="Track">
+										<Text text="Track content goes here ..." />
+									</IconTabFilter>
+								</items>
+							</IconTabBar>
+					</ScrollContainer>
+
+<!-- Quote Now Starts here -->
+<ScrollContainer id="QuoteNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+<Toolbar height="5rem" >
+            <HBox width="100%" >
+                <Text text="Quote Now" class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiLargeMarginEnd quoteNowText" ></Text>
+                <!-- <Input class="sapUiSmallMarginEnd" liveChange="handleShipmentOrderEnter" width="15rem" placeholder="Scan or Enter Shipment Order" ></Input> -->
+                <TextArea rows="1"  class="sapUiSmallMarginEnd" width="15rem" placeholder="Scan or Enter Shipment Order"  ></TextArea>
+                <Button id="idQuoteNow" text="Quote Now" type="Accept" class="sapUiSmallMarginBegin" ></Button>
+            </HBox>
+            <ToolbarSpacer ></ToolbarSpacer>
+                <Button text="Clear" class="sapUiSmallMarginEnd" type="Reject" ></Button>
+        </Toolbar>
+
+        <Toolbar height="35rem" class="sapUiSmallMarginTop" >
+            <ToolbarSpacer />
+                <Text text="Enter Shipment Order to get the latest and best quote available."></Text>
+            <ToolbarSpacer />
+        </Toolbar>
+</ScrollContainer>
+
+		<!-- Track Now Starts here -->
+					<ScrollContainer id="TrackNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+						<Toolbar width="auto" >
+			<Text text="Track Shipments: 114 in Last 7 Days" class="textBold"></Text>
+				<ToolbarSpacer />
+					<Text text="11/23/2024 - 11/29/2024" class="textBold"></Text>
+		</Toolbar>
+
+		<!-- <content> -->
+		<Toolbar height="15%" >
+			<HBox width="100%" >
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="3" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Success" press="handleTrackNowFilterBtnPress" id="idShippedBtn" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="3" class="sapUiTinyMarginBottom"></Text>
+					<Text text="In-Transit" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Emphasized" press="handleTrackNowFilterBtnPress" id="idInTransitBtn" icon="false" width="100%"  ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="3" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Negative" press="handleTrackNowFilterBtnPress" id="idCancelledBtn" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="3" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Delivered" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Success" press="handleTrackNowFilterBtnPress" id="idDeliveredBtn" icon="false" width="100%" ></Button>
+				</VBox>
+			</HBox>
+		</Toolbar>
+
+					<ui:Table
+								id="idTrackNowTable"
+								class="sapUiSmallMarginTop"
+								rows="{eshipjetModel>/TrackNowItems}"
+								selectionMode="None">
+								<ui:extension>
+									<OverflowToolbar style="Clear">
+										<Button icon="sap-icon://filter" press="onTrackNowFilterPress"></Button>
+										<ToolbarSpacer />
+											<Button icon="sap-icon://action"></Button>
+											<Button icon="sap-icon://action-settings"></Button>
+									</OverflowToolbar>
+								</ui:extension>
+								<ui:columns>
+									<ui:Column width="8rem">
+										<Label text="Request ID/Label" />
+										<ui:template>
+											<Text text="{eshipjetModel>requestId}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Created Date" />
+										<ui:template>
+											<Text text="{eshipjetModel>createdDate}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Ship Date" />
+										<ui:template>
+											<Text text="{eshipjetModel>shipDate}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Ship Method" />
+										<ui:template>
+											<Text text="{eshipjetModel>shipMethod}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="10rem">
+										<Label text="Service Name" />
+										<ui:template>
+											<Text text="{eshipjetModel>serviceName}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Status" />
+										<ui:template>
+											<Link text="{eshipjetModel>status}" ></Link>
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="13rem"  defaultFilterOperator="true" filterOperator="show">
+										<Label text="Tracking Number" />
+										<ui:template>
+											<Link text="{eshipjetModel>trackingNo}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="10rem">
+										<Label text="Ship To Contact" />
+										<ui:template>
+											<Text text="{eshipjetModel>shipToContact}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Ship To Company" />
+										<ui:template>
+											<Text text="{eshipjetModel>shipToCompany}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Connected To" />
+										<ui:template>
+											<Text text="{eshipjetModel>connectedTo}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Order Type" />
+										<ui:template>
+											<Text text="{eshipjetModel>orderType}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Ship To City" />
+										<ui:template>
+											<Text text="{eshipjetModel>shipToCity}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Ship To Country" />
+										<ui:template>
+											<Text text="{eshipjetModel>shipToCountry}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Shipment Type" />
+										<ui:template>
+											<Text text="{eshipjetModel>shipmentType}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="6rem">
+										<Label text="Actions" />
+										<ui:template>
+											<!-- <Text text="{eshipjetModel>actions}" wrapping="false" /> -->
+											<Link text="{eshipjetModel>actions}"></Link>
+										</ui:template>
+									</ui:Column>
+								</ui:columns>
+							</ui:Table>
+					</ScrollContainer>
+
+	<ScrollContainer id="Manifest" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+	<!-- Manifest Starts here -->
+	<Toolbar width="auto">
+			<Text text="Shipping Manifest" class="textBold" ></Text>
+				<ToolbarSpacer />
+					<Button text="Manifest and Print" icon="sap-icon://down" type="Success" iconFirst="true" ></Button>
+		</Toolbar>
+
+		<!-- <content> -->
+		<Toolbar height="15%" >
+			<HBox width="100%" >
+				<VBox class="sapUiTinyMargin" width="33%">
+					<Text text="1" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Total Shipments" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Emphasized" press="handleManifestFilterBtnPress" id="idTotalShipmentsBtn" icon="false" width="100%"  ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="33%">
+					<Text text="2" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Total No. of Pieces" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Critical" press="handleManifestFilterBtnPress" id="idTotalNoOfPiecesBtn" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="33%">
+					<Text text="3" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Total Weight" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Success" press="handleManifestFilterBtnPress" id="idTotalWeightBtn" icon="false" width="100%" ></Button>
+				</VBox>
+			</HBox>
+		</Toolbar>
+    <ui:Table
+                id="idManifestTable"
+                class="sapUiSmallMarginTop"
+				rows="{eshipjetModel>/TrackNowItems}"
+				selectionMode="None"
+				visibleRowCount="14">
+				<ui:extension>
+					<OverflowToolbar style="Clear">
+                        <Button icon="sap-icon://filter" press="handleTrackNowFltrIconPress"></Button>
+                        <ToolbarSpacer />
+                            <Button icon="sap-icon://action"></Button>
+                            <Button icon="sap-icon://action-settings"></Button>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column width="8rem">
+						<Label text="Request ID/Label" />
+						<ui:template>
+							<Text text="{eshipjetModel>requestId}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="8rem">
+						<Label text="Created Date" />
+						<ui:template>
+							<Text text="{eshipjetModel>createdDate}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship Date" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipDate}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship Method" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipMethod}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="10rem">
+						<Label text="Service Name" />
+						<ui:template>
+							<Text text="{eshipjetModel>serviceName}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Status" />
+						<ui:template>
+                            <Link text="{eshipjetModel>status}" ></Link>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="13rem"  defaultFilterOperator="true" filterOperator="show">
+						<Label text="Tracking Number" />
+						<ui:template>
+							<Link text="{eshipjetModel>trackingNo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="10rem">
+						<Label text="Ship To Contact" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToContact}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship To Company" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToCompany}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Connected To" />
+						<ui:template>
+							<Text text="{eshipjetModel>connectedTo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Order Type" />
+						<ui:template>
+							<Text text="{eshipjetModel>orderType}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship To City" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToCity}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship To Country" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToCountry}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Shipment Type" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipmentType}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="6rem">
+						<Label text="Actions" />
+						<ui:template>
+                            <Link text="{eshipjetModel>actions}"></Link>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+		</ScrollContainer>
+
+	<!-- AES Direct Starts here -->
+	<ScrollContainer id="AESDirect" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+		<Toolbar width="auto">
+			<Text text="AES Direct" class="numberBold" ></Text>
+				<ToolbarSpacer />
+					<Button text="Add EEI" type="Success"></Button>
+		</Toolbar>
+
+		<!-- <content> -->
+		<Toolbar height="15%" >
+			<HBox width="100%" >
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="0" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Total" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Emphasized" press="handleTrackNowFilterBtnPress" id="idAESDirectTotalBtn" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="0" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Open" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Critical" press="handleTrackNowFilterBtnPress" id="idAESDirectOpenBtn" icon="false" width="100%"  ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="0" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Success" press="handleTrackNowFilterBtnPress" id="idAESDirectShippedBtn" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="0" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Negative" press="handleTrackNowFilterBtnPress" id="idAESDirectCancelledBtn" icon="false" width="100%" ></Button>
+				</VBox>
+			</HBox>
+		</Toolbar>
+    <ui:Table
+                id="idAesDirectTable"
+                class="sapUiSmallMarginTop"
+				rows="{eshipjetModel>/TrackNowItems}"
+				selectionMode="None"
+				visibleRowCount="12">
+				<ui:extension>
+					<OverflowToolbar style="Clear">
+                        <Button icon="sap-icon://filter" press="handleTrackNowFltrIconPress"></Button>
+                        <ToolbarSpacer />
+                            <Button icon="sap-icon://action"></Button>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column width="8rem">
+						<Label text="Request ID/Label" />
+						<ui:template>
+							<Text text="{eshipjetModel>requestId}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="8rem">
+						<Label text="Created Date" />
+						<ui:template>
+							<Text text="{eshipjetModel>createdDate}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship Date" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipDate}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship Method" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipMethod}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="10rem">
+						<Label text="Service Name" />
+						<ui:template>
+							<Text text="{eshipjetModel>serviceName}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Status" />
+						<ui:template>
+                            <Link text="{eshipjetModel>status}" ></Link>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="13rem"  defaultFilterOperator="true" filterOperator="show">
+						<Label text="Tracking Number" />
+						<ui:template>
+							<Link text="{eshipjetModel>trackingNo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="10rem">
+						<Label text="Ship To Contact" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToContact}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship To Company" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToCompany}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Connected To" />
+						<ui:template>
+							<Text text="{eshipjetModel>connectedTo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Order Type" />
+						<ui:template>
+							<Text text="{eshipjetModel>orderType}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship To City" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToCity}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship To Country" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToCountry}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Shipment Type" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipmentType}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="6rem">
+						<Label text="Actions" />
+						<ui:template>
+                            <Link text="{eshipjetModel>actions}"></Link>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+		</ScrollContainer>
+
+	<!-- Scan And Ship Starts here -->
+					<ScrollContainer
+						id="ScanShip"
+						horizontal="false"
+						vertical="true"
+						height="100%"
+						class="sapUiContentPadding darkTheme">
+						<!-- <VBox> -->
+							<Toolbar  class="shipment-toolbar darkTheme borderSolid">
+								<Title text="Scan and Ship" class="sapUiTinyMarginBeginEnd darkTheme"/>
+								<Input width="20rem" id="userscanShipInput" placeholder="Enter SAP DN, Handing Unit or ODO" ></Input>
+								<!-- <TextArea width="20rem" rows="2" id="userInput" placeholder="Enter SAP DN, Handing Unit or ODO" ></TextArea> -->
+
+								<Button text="Ship Now" type="Accept" press="onScanShipSearchPress" ></Button>
+								<ToolbarSpacer />
+									<Button text="Void Now" type="Reject"></Button>
+							</Toolbar>
+
+							<ui:Table
+								rowActionCount="0"
+								id="idScanAndShipTable"
+								class="sapUiTinyMarginTop darkTheme"
+								rows="{oModel>/items}"
+								selectionMode="None"
+								paste="onPaste"
+								ariaLabelledBy="title"
+								visibleRowCount="{oModel>/SASTableLength}" >
+								<ui:extension class="darkTheme" >
+									<OverflowToolbar>
+										<Button icon="sap-icon://filter" press="scanAndShipFilterPopoverPress"></Button>
+										<ToolbarSpacer ></ToolbarSpacer>
+											<Button icon="sap-icon://action" press="handleSASTableExportToExcel"></Button>
+											<Button icon="sap-icon://action-settings" press="openPersoDialog" ></Button>
+									</OverflowToolbar>
+								</ui:extension>
+								<ui:columns class="darkTheme" >
+									<ui:Column width="8rem">
+										<Label text="SAP Shipment ID" />
+										<ui:template>
+											<Text text="{oModel>sapShipmentID}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Created Date" />
+										<ui:template>
+											<Text text="{
+												path: 'oModel>CreatedDate',
+												formatter: '.Formatter.formatDate'
+											}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Ship Date" />
+										<ui:template>
+											<Text text="{
+												path: 'oModel>ShipDate',
+												formatter: '.Formatter.formatDate'
+											}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Shipment Type" />
+										<ui:template>
+											<Text text="{oModel>ShipmentType}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Ship Method" />
+										<ui:template>
+											<Text text="{oModel>shipMethod}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Service Name" />
+										<ui:template>
+											<Text text="{oModel>ServiceName}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Tracking Number" />
+										<ui:template>
+											<Text text="{oModel>TrackingNumber}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Status" />
+										<ui:template>
+											<Text text="{oModel>status}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Ship To Contact" />
+										<ui:template>
+											<Text text="{oModel>ShipToContact}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Ship To Company" />
+										<ui:template>
+											<Text text="{oModel>ShipToCompany}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Ship To Address Line 1" />
+										<ui:template>
+											<Text text="{oModel>ShipToAddressLine1}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Ship To City" />
+										<ui:template>
+											<Text text="{oModel>shipToCity}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Ship To State" />
+										<ui:template>
+											<Text text="{oModel>shipToState}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Ship To Country" />
+										<ui:template>
+											<Text text="{oModel>shipToCountry}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Ship to Zipcode" />
+										<ui:template>
+											<Text text="{oModel>shipToZipcode}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Ship To Phone" />
+										<ui:template>
+											<Text text="{oModel>shipToPhone}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Ship To Email" />
+										<ui:template>
+											<Text text="{oModel>shipToEmail}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Requester Name" />
+										<ui:template>
+											<Text text="{oModel>requesterName}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Connected To" />
+										<ui:template>
+											<Text text="{oModel>connectedTo}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="8rem">
+										<Label text="Order Type" />
+										<ui:template>
+											<Text text="{oModel>orderType}" wrapping="false" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="6rem">
+										<Label text="Actions" />
+										<ui:template>
+											<Button text="{oModel>actions}" type="Transparent" />
+										</ui:template>
+									</ui:Column>
+									<ui:Column width="3.5rem">
+										<Label text="" />
+										<ui:template>
+											<Button icon="{oModel>downArrow}" press="handleDownArrowPress" type="Transparent" />
+										</ui:template>
+									</ui:Column>
+								</ui:columns>
+							</ui:Table>
+
+					<Toolbar  class="sapUiSmallMargin darkTheme" >
+						<Text text="Total Shipped by John Marsh {oModel>/SASTableLength}" class="darkTheme" ></Text>
+						<ToolbarSpacer ></ToolbarSpacer>
+							<Button text="First" enabled="false" class="darkTheme" ></Button>
+							<Button text="Previous" enabled="false" class="darkTheme" ></Button>
+							<Text text="1-0 of 0" class="darkTheme" ></Text>
+							<Button text="Next" class="darkTheme" ></Button>
+							<Button text="Last" class="darkTheme" ></Button>
+					</Toolbar>
+					</ScrollContainer>
+
+<!-- Batch Ship Starts here -->
+	<ScrollContainer id="BatchShip" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+		<Toolbar >
+			<Text text="Batch Shipping" class="numberBold" ></Text>
+            <ToolbarSpacer ></ToolbarSpacer>
+                <Button text="Create Batch" type="Success" activeIcon="false" ></Button>
+		</Toolbar>
+
+		<!-- <content> -->
+		<Toolbar height="15%" >
+			<HBox width="100%">
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="10" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Total" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Emphasized" press="handleTrackNowFilterBtnPress" id="idBatchShipTotalBtn" icon="false" width="100%"  ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="0" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Open" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Critical" press="handleTrackNowFilterBtnPress" id="idBatchShipOpenBtn" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="10" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Success" press="handleTrackNowFilterBtnPress" id="idBatchShipShippedBtn" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="0" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Negative" press="handleTrackNowFilterBtnPress" id="idBatchShipCancelledBtn" icon="false" width="100%" ></Button>
+				</VBox>
+			</HBox>
+		</Toolbar>
+    		<ui:Table
+                id="idBatchShipTable"
+				rows="{eshipjetModel>/TrackNowItems}"
+				class="sapUiSmallMarginTop"
+				selectionMode="None"
+				visibleRowCount="14">
+				<ui:extension>
+					<OverflowToolbar style="Clear">
+                        <Button icon="sap-icon://filter" press="onBatchShipFilterPress"></Button>
+						<ToolbarSpacer />
+							<Label text="Batch Number" class="sapUiLargeMarginEnd"></Label>
+							<ComboBox
+								width="18rem"
+							 	class="sapUiSmallMarginEnd"
+								items="{}">
+								<core:Item key="{key}" text="{text}" />
+							</ComboBox>
+							<Button text="Ship Batch Now" type="Ghost" width="12rem" class="sapUiSmallMarginEnd" ></Button>
+							<Button text="Viod Batch Now" type="Success" width="12rem" ></Button>
+						<ToolbarSpacer />
+                        <ToolbarSpacer />
+                            <Button icon="sap-icon://action"></Button>
+                            <Button icon="sap-icon://action-settings"></Button>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column width="8rem">
+						<Label text="Request ID/Label" />
+						<ui:template>
+							<Text text="{eshipjetModel>requestId}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="8rem">
+						<Label text="Created Date" />
+						<ui:template>
+							<Text text="{eshipjetModel>createdDate}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship Date" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipDate}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship Method" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipMethod}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="10rem">
+						<Label text="Service Name" />
+						<ui:template>
+							<Text text="{eshipjetModel>serviceName}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Status" />
+						<ui:template>
+                            <Link text="{eshipjetModel>status}" ></Link>
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="13rem"  defaultFilterOperator="true" filterOperator="show">
+						<Label text="Tracking Number" />
+						<ui:template>
+							<Link text="{eshipjetModel>trackingNo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="10rem">
+						<Label text="Ship To Contact" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToContact}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship To Company" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToCompany}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Connected To" />
+						<ui:template>
+							<Text text="{eshipjetModel>connectedTo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Order Type" />
+						<ui:template>
+							<Text text="{eshipjetModel>orderType}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship To City" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToCity}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Ship To Country" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipToCountry}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="8rem">
+						<Label text="Shipment Type" />
+						<ui:template>
+							<Text text="{eshipjetModel>shipmentType}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="6rem">
+						<Label text="Actions" />
+						<ui:template>
+                            <Link text="{eshipjetModel>actions}"></Link>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+	</ScrollContainer>
+
+				</pages>
+			</NavContainer>
+		</tnt:mainContents>
+	</tnt:ToolPage>
 </mvc:View>
