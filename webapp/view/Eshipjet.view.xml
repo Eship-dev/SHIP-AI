@@ -22,9 +22,9 @@
 				</Button>
 				<Text text="SAP ShipperCopilot 6.4"/>
 				<ToolbarSpacer/>
-				<Button icon="sap-icon://add" press="onPressAddButton"/>
-				<Button icon="sap-icon://menu"/>
-				<Button icon="sap-icon://action-settings"  press="onDashboardSettingPress" />
+				<Button icon="sap-icon://action-settings" press="onPressSettingsButton"/>
+				<!-- <Button icon="sap-icon://menu"/>
+				<Button icon="sap-icon://action-settings"  press="onDashboardSettingPress" /> -->
 				<Button icon="sap-icon://bell"/>
 			</tnt:ToolHeader>
 		</tnt:header>

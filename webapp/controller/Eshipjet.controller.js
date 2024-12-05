@@ -867,7 +867,7 @@ sap.ui.define([
 			oBinding.filter(aFilters, "Application");
 
         },
-        onPressAddButton:function(oEvent){
+        onPressSettingsButton:function(oEvent){
             var oButton = oEvent.getSource(),
             oView = this.getView();
                 // create popover
