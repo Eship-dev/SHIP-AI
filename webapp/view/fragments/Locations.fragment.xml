@@ -1,0 +1,64 @@
+<core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
+
+    <VBox class="sapUiTinyMargin sapUiLargeMarginEnd" >
+        <Toolbar  class="toolbarbottomborder" design="Transparent"> 
+            <Title text="Locations"></Title>
+            <ToolbarSpacer ></ToolbarSpacer>
+                <HBox>
+                    <Button type="Emphasized" text="Add Location"></Button>
+                    <Button type="Emphasized" icon="sap-icon://navigation-down-arrow"></Button>
+                </HBox>
+        </Toolbar>
+        
+        <HeaderContainer width="100%" class="headerContent sapUiTinyMargin" scroll="false" showOverflowItem="true" >						
+            <VBox >
+                <TileContent footer="Total Locations" >
+                    <content>
+                        <NumericContent value="14" valueColor="Neutral" indicator="None"/>
+                    </content>
+                </TileContent>
+                <Button type="Emphasized" press="handleTrackNowFilterBtnPress"  icon="false" width="22rem" ></Button>
+            </VBox>
+            <VBox >
+                <TileContent footer="Active" >
+                    <content>
+                        <NumericContent value="13" valueColor="Neutral" indicator="None" press="press"/>
+                    </content>
+                </TileContent>
+                <Button type="Negative" press="handleTrackNowFilterBtnPress"  icon="false" width="22rem"  ></Button>
+            </VBox>
+            <VBox>
+                <TileContent footer="InActive" >
+                    <content>
+                        <NumericContent value="1" valueColor="Neutral" indicator="None" press="press"/>
+                    </content>
+                </TileContent>
+                <Button type="Negative" press="handleTrackNowFilterBtnPress"  icon="false" width="22rem" ></Button>
+            </VBox>
+					
+		</HeaderContainer>
+	</VBox>
+    <ui:Table	id="_IDLocationTable"	width="100%"	class="headerContent sapUiTinyMarginEnd sapUiTinyMarginBegin"
+             	selectionMode="None"	paste="onPaste" 	ariaLabelledBy="title">
+    <ui:extension>
+        <OverflowToolbar style="Clear">										
+            <ToolbarSpacer />
+                <Button icon="sap-icon://action" ></Button>
+                <Button icon="sap-icon://action-settings"></Button>
+        </OverflowToolbar>
+    </ui:extension>	
+    <ui:footer>
+    <Toolbar>
+        
+        <ToolbarSpacer/>
+        <Button  text="First"     type="Emphasized"/>
+        <Button  text="Previous"  type="Emphasized"/>
+        <Text    text="1-0 of 0" />
+        <Button  text="Next"       type="Emphasized"/>
+        <Button  text="Last"       type="Emphasized"/>
+    </Toolbar>
+	</ui:footer>							
+    </ui:Table>
+    
+
+</core:FragmentDefinition>

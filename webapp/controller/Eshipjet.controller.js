@@ -11,8 +11,10 @@ sap.ui.define([
     "sap/ui/core/format/DateFormat",
     "sap/ui/core/Fragment",
     "sap/ui/export/Spreadsheet",
-    "../model/formatter"
-], function (Device, Controller, JSONModel, Popover, Button, library, MessageToast, BusyIndicator, Dialog, DateFormat, Fragment, Spreadsheet, formatter) {
+    "../model/formatter",
+    "sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
+], function (Device, Controller, JSONModel, Popover, Button, library, MessageToast, BusyIndicator, Dialog, DateFormat, Fragment, Spreadsheet, formatter,Filter, FilterOperator) {
     "use strict";
 
     var ButtonType = library.ButtonType,
@@ -52,7 +54,7 @@ sap.ui.define([
                      
                 if(columnName === "actions"){
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
-                    var Link1 = new sap.m.Link({ text: "View"});
+                    var Link1 = new sap.m.Link({ text: "View Now"});
                     var Link2 = new sap.m.Link({ endIcon:"sap-icon://navigation-down-arrow"});                               
                     oHBox.addItem(Link1);          
                     oHBox.addItem(Link2);                 
@@ -667,7 +669,7 @@ sap.ui.define([
             oScanTblItems.map(function(oTableItems){
                 aColumnsData.map(function(oColObj){
                     if(oTableItems.getBindingContext("ScanShipTableDataModel").getObject().name === oColObj.name){
-                        if(oTableItems.getSelected()){
+                        if(oTableItems.getSelected()){``
                             oColObj.visible = true;
                         }else{
                             oColObj.visible = false;
@@ -685,7 +687,198 @@ sap.ui.define([
             this._pScanPopover.then(function(oPopover) {
                 oPopover.close();
             });
-        }
+        },
+        onColumnSearch:function(oEvent){
+            var aFilters = [];
+			var sQuery = oEvent.getSource().getValue();
+			if (sQuery && sQuery.length > 0) {
+				var filter = new Filter("label", FilterOperator.Contains, sQuery);
+				aFilters.push(filter);
+			}
+			// update list binding
+			var oList = oController.getView().byId("myScanColumnSelectId");
+			var oBinding = oList.getBinding("items");
+			oBinding.filter(aFilters, "Application");
+
+        },
+        onPressAddButton:function(oEvent){
+            var oButton = oEvent.getSource(),
+            oView = this.getView();
+                // create popover
+                if (!this._dashBoardAddPopover) {
+                    this._dashBoardAddPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.DashboardAddIconPopover",
+                        controller: this
+                    }).then(function(oPopover) {
+                        oView.addDependent(oPopover);                    
+                        return oPopover;
+                    });
+                }
+                this._dashBoardAddPopover.then(function(oPopover) {
+                    oPopover.openBy(oButton);
+                });
+    
+          },
+          handlePopoverListItemPress:function(oEvent){
+            var oSrc = oEvent.getSource();
+            var oView = oController.getView();
+            var oCurrObj = oSrc.getBindingContext().getObject();
+            var oToolPage = this.byId("toolPage");
+            var oPageContainer = this.byId("pageContainer");
+                oToolPage.setSideExpanded(false);
+                this._dashBoardAddPopover.then(function(oPopover) {
+                    oPopover.close();
+                });
+                if(oCurrObj && oCurrObj.name === "Locations"){
+
+                    oController._displayTables("_IDLocationTable", "LocationTableColumns", "LocationTableRows", "Locations");
+                    oPageContainer.to(oView.createId("_ID_Location_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "Address Book"){
+
+                    oController._displayTables("_IDAddressBookTable", "AddressBookTableColumns", "AddressBookTableRows", "Address Book");
+                    oPageContainer.to(oView.createId("_ID_AddressBook_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "Users"){
+
+                    oController._displayTables("_IDUsersTable", "UsersTableColumns", "UsersTableRows", "Users");
+                    oPageContainer.to(oView.createId("_ID_Users_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "Roles"){
+
+                    oController._displayTables("_IDRolesTable", "RolesTableColumns", "RolesTableRows", "Roles");
+                    oPageContainer.to(oView.createId("_ID_Roles_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "Carrier Catalog"){
+
+                    oController._displayTables("_IDCarriesCatalogTable", "CarrierCatalogTableColumns", "CarrierCatalogTableRows", "Carrier Catalog");
+                    oPageContainer.to(oView.createId("_ID_CarrierCatalog_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "Carrier Accounts"){
+
+                    oController._displayTables("_IDCarriesAccountsTable", "CarrierAccountsTableColumns", "CarrierAccountsTableRows", "Carrier Accounts");
+                    oPageContainer.to(oView.createId("_ID_CarrierAccounts_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "Cost Centers"){
+
+                    oController._displayTables("_IDCostCenterTable", "CostCenterTableColumns", "CostCenterTableRows", "Cost Centers");
+                    oPageContainer.to(oView.createId("_ID_CostCenters_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "Statuses"){
+
+                    oController._displayTables("_IDStatusesTable", "StatusesTableColumns", "StatusesTableRows", "Statuses");
+                    oPageContainer.to(oView.createId("_ID_Statuses_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "Products"){
+
+                    oController._displayTables("_IDProductsTable", "ProductsTableColumns", "ProductsTableRows", "Products");
+                    oPageContainer.to(oView.createId("_ID_Products_TableScrollContainer"));
+
+                    
+                }else if(oCurrObj && oCurrObj.name === "Package Types"){
+
+                    oController._displayTables("_IDPackageTypesTable", "PackageTypeTableColumns", "PackageTypeTableRows", "Package Types");
+                    oPageContainer.to(oView.createId("_ID_PackageTypes_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "Third Party"){
+
+                    oController._displayTables("_IDThirdPartyTable", "ThirdPartiesTableColumns", "ThirdPartiesTableRows", "Third Party");
+                    oPageContainer.to(oView.createId("_ID_ThirdParties_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "LTL Classes"){
+
+                    oController._displayTables("_IDLTLClassTable", "LtlClassesTableColumns", "LtlClassesTableRows", "LTL Classes");
+                    oPageContainer.to(oView.createId("_ID_LTLClasses_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "NMFC"){
+
+                    oController._displayTables("_IDNMFCTable", "NmfcTableColumns", "NmfcTableRows", "NMFC");
+                    oPageContainer.to(oView.createId("_ID_NMFC_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "MOT"){
+
+                    oController._displayTables("_IDModeOfTransportTable", "MotTableColumns", "MotTableRows", "MOT");
+                    oPageContainer.to(oView.createId("_ID_MOT_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "Order Types"){
+
+                    oController._displayTables("_IDOrderTypeTable", "OrderTypesTableColumns", "OrderTypesTableRows", "Order Types");
+                    oPageContainer.to(oView.createId("_ID_OrderTypes_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "Incoterms"){
+
+                    oController._displayTables("_ID_IncotermsTable", "IncoTermsTableColumns", "IncoTermsTableRows", "Incoterms");
+                    oPageContainer.to(oView.createId("_ID_Incoterms_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "Dimensions"){
+
+                    oController._displayTables("_ID_DimensionTable", "DiemnsionsTableColumns", "DiemnsionsTableRows", "Dimensions");
+                    oPageContainer.to(oView.createId("_ID_Dimensions_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "Payment Types"){
+
+                    oController._displayTables("_ID_PaymentTypeTable", "PaymentTypesTableColumns", "PaymentTypesTableRows", "Payment Types");
+                    oPageContainer.to(oView.createId("_ID_PaymentTypes_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "SMTP Configuration"){
+
+                    oController._displayTables("_ID_SMTPConfigTable", "SMTPConfigsTableColumns", "SMTPConfigsTableRows", "SMTP Configuration");
+                    oPageContainer.to(oView.createId("_ID_SMTPConfig_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "ERP Configuration"){
+
+                    oController._displayTables("_ID_ERPTable", "ERPTableColumns", "ERPTableRows", "ERP Configuration");
+                    oPageContainer.to(oView.createId("_ID_ERP_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "Countries"){
+
+                    oController._displayTables("_ID_CountriesTable", "CountriesTableColumns", "CountriesTableRows", "Countries");
+                    oPageContainer.to(oView.createId("_ID_Countries_TableScrollContainer"));
+
+                }else if(oCurrObj && oCurrObj.name === "EU Countries"){
+
+                    oController._displayTables("_ID_EUCountriesTable", "EUCountriesTableColumns", "EUCountriesTableRows", "EU Countries");
+                    oPageContainer.to(oView.createId("_ID_EUCountries_TableScrollContainer"));
+
+                }    
+          },
+          _displayTables:function(oTableId, aColumns, aRows, selectedItem){
+            var oView = oController.getView(), columnName , columnLabel;
+            const oTable = oView.byId(oTableId);
+            var oModel = oView.getModel();
+            if(oTable){
+                oTable.setModel(oModel);
+                oTable.bindColumns("/"+aColumns, function(sId, oContext) {
+                    columnName = oContext.getObject().key; 
+                    columnLabel =  oContext.getObject().label;
+                              
+                    if(columnName === "actions"){
+                        var oHBox = new sap.m.HBox({}); // Create Text instance 
+                        var Link1 = new sap.m.Link({ text: "View"});
+                        var Link2 = new sap.m.Link({ endIcon:"sap-icon://navigation-down-arrow"});                               
+                        oHBox.addItem(Link1);          
+                        oHBox.addItem(Link2);                 
+                        return new sap.ui.table.Column({
+                            label: columnLabel,
+                            template: oHBox,
+                            visible:oContext.getObject().visible,
+                            width:"8rem",
+                            sortProperty:columnName
+                        });
+                    }else{      
+                        return new sap.ui.table.Column({
+                            label: columnLabel,
+                            template: columnName,
+                            visible:oContext.getObject().visible,
+                            width:"8rem",
+                            sortProperty:columnName
+                        });
+                    }
+                });           
+                oTable.bindRows("/"+aRows);  
+            }
+          }
 
     });
 });

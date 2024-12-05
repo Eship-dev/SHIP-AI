@@ -22,9 +22,9 @@
 				</Button>
 				<Text text="SAP ShipperCopilot 6.4"/>
 				<ToolbarSpacer/>
-				<Button icon="sap-icon://add"/>
+				<Button icon="sap-icon://add" press="onPressAddButton"/>
 				<Button icon="sap-icon://menu"/>
-				<Button icon="sap-icon://action-settings"/>
+				<Button icon="sap-icon://action-settings"  press="onDashboardSettingPress" />
 				<Button icon="sap-icon://bell"/>
 			</tnt:ToolHeader>
 		</tnt:header>
@@ -1602,6 +1602,93 @@
 				</ui:columns>
 			</ui:Table>
 	</ScrollContainer>
+					<ScrollContainer	id="_ID_Location_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Locations" type="XML" />
+					</ScrollContainer> 
+
+					<ScrollContainer	id="_ID_AddressBook_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.AddressBook" type="XML" />
+					</ScrollContainer> 
+
+					<ScrollContainer	id="_ID_Users_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Users" type="XML" />
+					</ScrollContainer>
+
+					<ScrollContainer	id="_ID_Roles_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Roles" type="XML" />
+					</ScrollContainer>
+
+					<ScrollContainer	id="_ID_CarrierCatalog_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.CarrierCatalog" type="XML" />
+					</ScrollContainer> 
+
+					<ScrollContainer	id="_ID_CarrierAccounts_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.CarrierAccounts" type="XML" />
+					</ScrollContainer>
+
+					<ScrollContainer	id="_ID_CostCenters_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.CostCenters" type="XML" />
+					</ScrollContainer>
+
+					<ScrollContainer	id="_ID_Statuses_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Statuses" type="XML" />
+					</ScrollContainer> 
+
+					<ScrollContainer	id="_ID_Products_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Products" type="XML" />
+					</ScrollContainer>
+
+					<ScrollContainer	id="_ID_PackageTypes_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.PackageTypes" type="XML" />
+					</ScrollContainer> 
+
+					<ScrollContainer	id="_ID_ThirdParties_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ThirdParty" type="XML" />
+					</ScrollContainer> 
+
+					<ScrollContainer	id="_ID_LTLClasses_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.LTLClasses" type="XML" />
+					</ScrollContainer> 
+
+					<ScrollContainer	id="_ID_NMFC_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.NMFCTable" type="XML" />
+					</ScrollContainer> 
+					
+					<ScrollContainer	id="_ID_MOT_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ModeOfTransport" type="XML" />
+					</ScrollContainer>
+
+					<ScrollContainer	id="_ID_OrderTypes_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.OrderTypes" type="XML" />
+					</ScrollContainer>
+
+					<ScrollContainer	id="_ID_Incoterms_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Incoterms" type="XML" />
+					</ScrollContainer> 
+
+					<ScrollContainer	id="_ID_Dimensions_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.DimensionsTable" type="XML" />
+					</ScrollContainer> 
+
+					<ScrollContainer	id="_ID_PaymentTypes_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.PaymentTypes" type="XML" />
+					</ScrollContainer> 
+
+					<ScrollContainer	id="_ID_SMTPConfig_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.SMTPTable" type="XML" />
+					</ScrollContainer> 
+
+					<ScrollContainer	id="_ID_ERP_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ERPTable" type="XML" />
+					</ScrollContainer> 
+
+					<ScrollContainer	id="_ID_Countries_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.CountriesTable" type="XML" />
+					</ScrollContainer> 
+
+					<ScrollContainer	id="_ID_EUCountries_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.EUCountries" type="XML" />
+					</ScrollContainer> 
 
 				</pages>
 			</NavContainer>

@@ -1,0 +1,17 @@
+<core:FragmentDefinition    xmlns="sap.m"	xmlns:core="sap.ui.core">
+	<Popover	id="myDashboardAddIconPopover"   horizontalScrolling="false" 	 placement="Bottom"  showHeader="false">
+        <content>
+                <HBox  id="_IDDachboardAddIconHbox" justifyContent="SpaceBetween">
+                <List  id="IconListId1" items="{/AddIconListSet1}"  class="ClsBorderRight sapUiSmallMarginTopBottom sapUiSmallMarginBeginEnd"  includeItemInSelection="true">                                   
+                    <StandardListItem id="_IDGenStandardListItem"  type="Active"  title="{name}"   press="handlePopoverListItemPress" />
+                </List>                
+                <List  id="IconListId2" items="{/AddIconListSet2}"  class="ClsBorderRight sapUiSmallMarginTopBottom sapUiSmallMarginBeginEnd"   includeItemInSelection="true">                   
+                    <StandardListItem id="_IDGenStandardListItem2"   type="Active" title="{name}"   press="handlePopoverListItemPress"/>
+                </List>
+                <List  id="IconListId3" items="{/AddIconListSet3}"  class="sapUiSmallMarginTopBottom sapUiSmallMarginBeginEnd"  includeItemInSelection="true">                   
+                    <StandardListItem id="_IDGenStandardListItem3" type="Active"   title="{name}"   press="handlePopoverListItemPress"    />
+                </List>
+                </HBox>
+        </content>
+    </Popover>   
+</core:FragmentDefinition>

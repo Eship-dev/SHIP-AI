@@ -1,28 +1,37 @@
 <core:FragmentDefinition
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
-	<Popover	id="myPopover" contentWidth="20%"	 placement="Left">
+	<Popover	id="myPopover"  contentWidth="20%"	 placement="Left">
+		<customHeader>
+			<VBox id="_IDGenVBox">
+				<Toolbar id="_IDGenHBox" class="toolbarbottomborder">
+					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" id="_IDGenTitle" text="Columns"></Title>
+					<ToolbarSpacer id="_IDGenToolbarSpacer1" ></ToolbarSpacer>					
+					<Button id="_IDCloseIconPopover" icon="sap-icon://decline" press="onScanShipColSelectClosePress"></Button>
+				</Toolbar>
+				<SearchField id="_IDGenSearchField" placeholder="Search Columns"   liveChange="onColumnSearch"></SearchField>
+			</VBox>
+		</customHeader>
 		<content>
         <Table	id="myScanColumnSelectId" mode="MultiSelect" items="{path : 'ScanShipTableDataModel>/columns'}" >
-		<ColumnListItem vAlign="Middle">
+		<ColumnListItem id="_IDGenColumnListItem1" vAlign="Middle">
 			<cells>				
-				<Text text="{ScanShipTableDataModel>label}" />				
+				<Text id="_IDGenText" text="{ScanShipTableDataModel>label}" />				
 			</cells>
 		</ColumnListItem>
 		<columns>
-			<Column>
+			<Column id="_IDGenColumn">
 				<header>
-					<Text text="Columns" />
+					<Text id="_IDGenText1" text="Select All" />
 				</header>
 			</Column>			
 		</columns>
         </Table>
         </content>
         <footer>
-            <Toolbar >
-                <ToolbarSpacer/>
-                <Button text="Ok" press="onScanShipColSelectOkPress" type="Emphasized"></Button>
-                <Button text="Close" press="onScanShipColSelectClosePress"></Button>
+            <Toolbar id="_IDGenToolbar" >
+                <ToolbarSpacer id="_IDGenToolbarSpacer"/>
+                <Button id="_IDGenButton" text="Apply" press="onScanShipColSelectOkPress" type="Emphasized"></Button>               
             </Toolbar>
         </footer>      
 	</Popover>   

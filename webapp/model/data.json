@@ -250,5 +250,1022 @@
 		],
 		"rows": [],
 		"ScanShipTableLength":""
-	}
+	},
+	"AddIconListSet1": [
+        {
+            "name": "Locations"
+        },
+        {
+            "name": "Address Book"
+        },
+        {
+            "name": "Users"
+        },
+        {
+            "name": "Roles"
+        },
+        {
+            "name": "Carrier Catalog"
+        },
+        {
+            "name": "Carrier Accounts"
+        },
+        {
+            "name": "Cost Centers"
+        },
+        {
+            "name": "Statuses"
+        },
+        {
+            "name": "Products"
+        },
+        {
+            "name": "Package Types"
+        }
+    ],
+    "AddIconListSet2": [
+        {
+            "name": "Third Party"
+        },
+        {
+            "name": "LTL Classes"
+        },
+        {
+            "name": "NMFC"
+        },
+        {
+            "name": "MOT"
+        },
+        {
+            "name": "Order Types"
+        },
+        {
+            "name": "Incoterms"
+        },
+        {
+            "name": "Tracking Range"
+        },
+        {
+            "name": "Dimensions"
+        },
+        {
+            "name": "Payment Types"
+        }
+    ],
+    "AddIconListSet3": [
+        {
+            "name": "Company Settings"
+        },
+        {
+            "name": "SMTP Configuration"
+        },
+        {
+            "name": "ERP Configuration"
+        },
+        {
+            "name": "Default Configuration"
+        },
+        {
+            "name": "Countries"
+        },
+        {
+            "name": "EU Countries"
+        }
+    ],
+	"LocationTableColumns": [
+        {
+            "key": "locationName",
+            "label": "locationName",
+            "visible": true
+        },
+        {
+            "key": "contactName",
+            "label": "contactName",
+            "visible": true
+        },
+        {
+            "key": "phonenum",
+            "label": "phonenum",
+            "visible": true
+        },
+        {
+            "key": "loctionEmail",
+            "label": "loctionEmail",
+            "visible": true
+        },
+        {
+            "key": "addressLine1",
+            "label": "addressLine1",
+            "visible": false
+        },
+        {
+            "key": "addressLine2",
+            "label": "addressLine2",
+            "visible": false
+        },
+        {
+            "key": "stateProvience",
+            "label": "stateProvience",
+            "visible": true
+        },
+        {
+            "key": "locaCity",
+            "label": "locaCity",
+            "visible": true
+        },
+        {
+            "key": "locZip",
+            "label": "locZip",
+            "visible": false
+        },
+        {
+            "key": "locCountry",
+            "label": "locCountry",
+            "visible": true
+        },
+        {
+            "key": "locWeightUnit",
+            "label": "locWeightUnit",
+            "visible": false
+        },
+        {
+            "key": "locCurr",
+            "label": "locCurr",
+            "visible": false
+        },
+        {
+            "key": "locDimensionUnit",
+            "label": "locDimensionUnit",
+            "visible": false
+        },
+        {
+            "key": "locStatus",
+            "label": "locStatus",
+            "visible": true
+        }
+    ],
+    "LocationTableRows": [],
+	"AddressBookTableColumns": [
+        {
+            "key": "contactName",
+            "label": "Contact Name",
+            "visible": true
+        },
+        {
+            "key": "companyName",
+            "label": "Company Name",
+            "visible": true
+        },
+        {
+            "key": "phonenum",
+            "label": "Phone No",
+            "visible": true
+        },
+        {
+            "key": "addressEmail",
+            "label": "Address Email",
+            "visible": true
+        },
+        {
+            "key": "addressLine1",
+            "label": "Address Line 1",
+            "visible": false
+        },
+        {
+            "key": "addressLine2",
+            "label": "Address Line 2",
+            "visible": false
+        },
+        {
+            "key": "addressLine3",
+            "label": "Address Line 3",
+            "visible": false
+        },
+        {
+            "key": "stateProvience",
+            "label": "State / Provience",
+            "visible": true
+        },
+        {
+            "key": "addressCity",
+            "label": "City",
+            "visible": true
+        },
+        {
+            "key": "addressZip",
+            "label": "Zip / Postal Code",
+            "visible": false
+        },
+        {
+            "key": "addressCountry",
+            "label": "Country",
+            "visible": true
+        },
+        {
+            "key": "addCategory",
+            "label": "Address Category",
+            "visible": false
+        },
+        {
+            "key": "addressType",
+            "label": "Address Type",
+            "visible": false
+        },
+        {
+            "key": "addCostCenter",
+            "label": "Cost Center",
+            "visible": false
+        },
+        {
+            "key": "lockerNo",
+            "label": "Locker No",
+            "visible": true
+        },
+        {
+            "key": "lockerLocation",
+            "label": "Locker Location",
+            "visible": true
+        },
+        {
+            "key": "lockerAccCode",
+            "label": "Locker Access Code",
+            "visible": true
+        },
+        {
+            "key": "buildingNo",
+            "label": "Building No",
+            "visible": true
+        },
+        {
+            "key": "floorNo",
+            "label": "Floor No",
+            "visible": true
+        },
+        {
+            "key": "mailStop",
+            "label": "Mail Stop",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        },
+        {
+            "key": "rfidTag",
+            "label": "RFID Tag",
+            "visible": true
+        }
+    ],
+    "AddressBookTableRows": [],
+	"UsersTableColumns": [
+        {
+            "key": "locationName",
+            "label": "Location Name",
+            "visible": true
+        },
+        {
+            "key": "userId",
+            "label": "User ID",
+            "visible": true
+        },
+        {
+            "key": "firstName",
+            "label": "First Name",
+            "visible": true
+        },
+        {
+            "key": "lastName",
+            "label": "Last Name",
+            "visible": true
+        },
+        {
+            "key": "phonenum",
+            "label": "Phone No",
+            "visible": true
+        },
+        {
+            "key": "userEmail",
+            "label": "Email",
+            "visible": true
+        },
+        {
+            "key": "addressLine1",
+            "label": "Address Line 1",
+            "visible": false
+        },
+        {
+            "key": "addressLine2",
+            "label": "Address Line 2",
+            "visible": false
+        },
+        {
+            "key": "addressLine3",
+            "label": "Address Line 3",
+            "visible": false
+        },
+        {
+            "key": "addressCity",
+            "label": "City",
+            "visible": true
+        },
+        {
+            "key": "addressZip",
+            "label": "Zip / Postal Code",
+            "visible": true
+        },
+        {
+            "key": "addressCountry",
+            "label": "Country",
+            "visible": true
+        },
+        {
+            "key": "userRole",
+            "label": "Role",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        }
+    ],
+    "UsersTableRows": [],
+	"RolesTableColumns": [
+        {
+            "key": "roleId",
+            "label": "Role ID",
+            "visible": true
+        },
+        {
+            "key": "roleName",
+            "label": "Role Name",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        }
+    ],
+    "RolesTableRows": [],
+	"CarrierCatalogTableColumns": [
+        {
+            "key": "shipMethodId",
+            "label": "Ship Method ID",
+            "visible": true
+        },
+        {
+            "key": "shipMethodName",
+            "label": "Ship Method",
+            "visible": true
+        },
+        {
+            "key": "shipMethodType",
+            "label": "Ship Method Type",
+            "visible": true
+        },
+        {
+            "key": "shipMethodCoverage",
+            "label": "Ship Method Coverage",
+            "visible": true
+        },
+        {
+            "key": "shipMethodStatus",
+            "label": "Status",
+            "visible": true
+        }
+    ],
+    "CarrierCatalogTableRows": [],
+	"CarrierAccountsTableColumns": [
+        {
+            "key": "locationName",
+            "label": "Location Name",
+            "visible": true
+        },
+        {
+            "key": "shipMethodName",
+            "label": "Ship Method",
+            "visible": true
+        },
+        {
+            "key": "costCenter",
+            "label": "Cost Center",
+            "visible": true
+        },
+        {
+            "key": "shipFromCountry",
+            "label": "Ship From Country",
+            "visible": true
+        },
+        {
+            "key": "shipToCountry",
+            "label": "Ship To Country",
+            "visible": true
+        },
+        {
+            "key": "shipUrl",
+            "label": "Ship Url",
+            "visible": true
+        },
+        {
+            "key": "voidUrl",
+            "label": "Void Url",
+            "visible": true
+        },
+        {
+            "key": "rateUrl",
+            "label": "Rate Url",
+            "visible": true
+        },
+        {
+            "key": "trackUrl",
+            "label": "Track Url",
+            "visible": true
+        },
+        {
+            "key": "environment",
+            "label": "Environment",
+            "visible": true
+        },
+        {
+            "key": "carrierType",
+            "label": "Carrier Type",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        },
+        {
+            "key": "erpCarrierID",
+            "label": "ERP Carrier ID",
+            "visible": true
+        },
+        {
+            "key": "rateShop",
+            "label": "Rate Shop",
+            "visible": true
+        }
+    ],
+    "CarrierAccountsTableRows": [],
+    "CostCenterTableColumns": [
+        {
+            "key": "locationName",
+            "label": "Location Name",
+            "visible": true
+        },
+        {
+            "key": "costCenterCode",
+            "label": "Cost Center Code",
+            "visible": true
+        },
+        {
+            "key": "desc",
+            "label": "Description",
+            "visible": true
+        },
+        {
+            "key": "managerName",
+            "label": "Manager Name",
+            "visible": true
+        },
+        {
+            "key": "managerMail",
+            "label": "Manager Email",
+            "visible": true
+        },
+        {
+            "key": "emailNotity",
+            "label": "Email Notification",
+            "visible": true
+        },
+        {
+            "key": "mangerPhoneNo",
+            "label": "Manager Phone No",
+            "visible": true
+        },
+        {
+            "key": "accountNo",
+            "label": "Account No",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        },
+        {
+            "key": "environment",
+            "label": "Environment",
+            "visible": true
+        }
+    ],
+    "CostCenterTableRows": [],
+    "StatusesTableColumns": [
+        {
+            "key": "locationName",
+            "label": "Location Name",
+            "visible": true
+        },
+        {
+            "key": "code",
+            "label": "Code",
+            "visible": true
+        },
+        {
+            "key": "colorPicker",
+            "label": "Color Picker",
+            "visible": true
+        },
+        {
+            "key": "desc",
+            "label": "Description",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        }
+    ],
+    "StatusesTableRows": [],
+    "ProductsTableColumns": [
+        {
+            "key": "locationName",
+            "label": "Location Name",
+            "visible": true
+        },
+        {
+            "key": "itemNo",
+            "label": "Item No",
+            "visible": true
+        },
+        {
+            "key": "productNo",
+            "label": "Product No",
+            "visible": true
+        },
+        {
+            "key": "desc",
+            "label": "Description",
+            "visible": true
+        },
+        {
+            "key": "quantity",
+            "label": "Quantity",
+            "visible": true
+        },
+        {
+            "key": "unitCost",
+            "label": "Unit Cost",
+            "visible": true
+        },
+        {
+            "key": "unitWeight",
+            "label": "Unit Weight",
+            "visible": true
+        },
+        {
+            "key": "dimensions",
+            "label": "Dimensions",
+            "visible": true
+        },
+        {
+            "key": "harmonizedcode",
+            "label": "Harmonized Code",
+            "visible": true
+        },
+        {
+            "key": "eccn",
+            "label": "ECCN",
+            "visible": true
+        },
+        {
+            "key": "unNo",
+            "label": "Un No",
+            "visible": true
+        },
+        {
+            "key": "class",
+            "label": "Class",
+            "visible": true
+        },
+        {
+            "key": "nmfc",
+            "label": "NMFC",
+            "visible": true
+        },
+        {
+            "key": "uom",
+            "label": "UOM",
+            "visible": true
+        },
+        {
+            "key": "epcRfidNo",
+            "label": "EPC-RFID",
+            "visible": true
+        },
+        {
+            "key": "countryOfMFR",
+            "label": "Country Of MFR",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        }
+    ],
+    "ProductsTableRows": [],
+    "PackageTypeTableColumns": [
+        {
+            "key": "locationName",
+            "label": "Location Name",
+            "visible": true
+        },
+        {
+            "key": "packageCode",
+            "label": "Package Code",
+            "visible": true
+        },
+        {
+            "key": "packageType",
+            "label": "Package Type",
+            "visible": true
+        },
+        {
+            "key": "shipMethod",
+            "label": "Ship Method",
+            "visible": true
+        },
+        {
+            "key": "dimensionUnits",
+            "label": "Dimension Units",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        }
+    ],
+    "PackageTypeTableRows": [],
+    "ThirdPartiesTableColumns": [
+        {
+            "key": "locationName",
+            "label": "Location Name",
+            "visible": true
+        },
+        {
+            "key": "account",
+            "label": "Account #",
+            "visible": true
+        },
+        {
+            "key": "contactName",
+            "label": "Contact Name",
+            "visible": true
+        },
+        {
+            "key": "companyName",
+            "label": "Company Name",
+            "visible": true
+        },
+        {
+            "key": "addressLine1",
+            "label": "Address Line 1",
+            "visible": false
+        },
+        {
+            "key": "addressLine2",
+            "label": "Address Line 2",
+            "visible": false
+        },
+        {
+            "key": "addressCity",
+            "label": "City",
+            "visible": true
+        },
+        {
+            "key": "stateProvience",
+            "label": "State / Provience",
+            "visible": true
+        },
+        {
+            "key": "addressZip",
+            "label": "Zip / Postal Code",
+            "visible": true
+        },
+        {
+            "key": "addressCountry",
+            "label": "Country",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        }
+    ],
+    "ThirdPartiesTableRows": [],
+    "LtlClassesTableColumns": [
+        {
+            "key": "locationName",
+            "label": "Location Name",
+            "visible": true
+        },
+        {
+            "key": "ltlClass",
+            "label": "LtL Class",
+            "visible": true
+        },
+        {
+            "key": "shipMethod",
+            "label": "Ship Method",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        }
+    ],
+    "LtlClassesTableRows": [],
+    "NmfcTableColumns": [
+        {
+            "key": "locationName",
+            "label": "Location Name",
+            "visible": true
+        },
+        {
+            "key": "nmfcCode",
+            "label": "NMFC Code",
+            "visible": true
+        },
+        {
+            "key": "nmfcDesc",
+            "label": "NMFC Description",
+            "visible": true
+        },
+        {
+            "key": "shipMethod",
+            "label": "Ship Method",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        }
+    ],
+    "NmfcTableRows": [],
+    "MotTableColumns": [
+        {
+            "key": "locationName",
+            "label": "Location Name",
+            "visible": true
+        },
+        {
+            "key": "mode",
+            "label": "Mode",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        }
+    ],
+    "MotTableRows": [],
+    "OrderTypesTableColumns": [
+        {
+            "key": "locationName",
+            "label": "Location Name",
+            "visible": true
+        },
+        {
+            "key": "orderTypeCode",
+            "label": "Order Type Code",
+            "visible": true
+        },
+        {
+            "key": "orderTypeDesc",
+            "label": "Order Type Description",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        }
+    ],
+    "OrderTypesTableRows": [],
+    "IncoTermsTableColumns": [
+        {
+            "key": "incoterm",
+            "label": "Incoterm",
+            "visible": true
+        },
+        {
+            "key": "desc",
+            "label": "Description",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        }
+    ],
+    "IncoTermsTableRows": [],
+    "DiemnsionsTableColumns": [
+        {
+            "key": "locationName",
+            "label": "Location Name",
+            "visible": true
+        },
+        {
+            "key": "dimensionCode",
+            "label": "Dimension Code",
+            "visible": true
+        },
+        {
+            "key": "dimensionValue",
+            "label": "Dimension Value",
+            "visible": true
+        },
+        {
+            "key": "length",
+            "label": "Length",
+            "visible": true
+        },
+        {
+            "key": "width",
+            "label": "Width",
+            "visible": true
+        },
+        {
+            "key": "height",
+            "label": "Height",
+            "visible": true
+        },
+        {
+            "key": "maxWeight",
+            "label": "Maximum Weight",
+            "visible": true
+        },
+        {
+            "key": "materialWeight",
+            "label": "Material Weight",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        }
+    ],
+    "DiemnsionsTableRows": [],
+    "PaymentTypesTableColumns": [
+        {
+            "key": "paymentType",
+            "label": "Payment Type",
+            "visible": true
+        },
+        {
+            "key": "paymentCode",
+            "label": "Payment Code",
+            "visible": true
+        },
+        {
+            "key": "desc",
+            "label": "Description",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        }
+    ],
+    "PaymentTypesTableRows": [],
+    "SMTPConfigsTableColumns": [
+        {
+            "key": "locationName",
+            "label": "Location Name",
+            "visible": true
+        },
+        {
+            "key": "smtpServerName",
+            "label": "SMTP Server Name",
+            "visible": true
+        },
+        {
+            "key": "portNo",
+            "label": "Port No",
+            "visible": true
+        },
+        {
+            "key": "email",
+            "label": "Email",
+            "visible": true
+        },
+        {
+            "key": "userID",
+            "label": "User ID",
+            "visible": true
+        },
+        {
+            "key": "password",
+            "label": "Password",
+            "visible": true
+        },
+        {
+            "key": "emailPriority",
+            "label": "Email Priority",
+            "visible": true
+        },
+        {
+            "key": "userEmail",
+            "label": "User Email",
+            "visible": true
+        },
+        {
+            "key": "ssl",
+            "label": "SSL",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        }
+    ],
+    "SMTPConfigsTableRows": [],
+    "ERPTableColumns": [
+        {
+            "key": "locationName",
+            "label": "Location Name",
+            "visible": true
+        },
+        {
+            "key": "erpName",
+            "label": "ERP Name",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        }
+    ],
+    "ERPTableRows": [],
+    "CountriesTableColumns": [
+        {
+            "key": "countryCode",
+            "label": "Country Code",
+            "visible": true
+        },
+        {
+            "key": "countryDesc",
+            "label": "Country Description",
+            "visible": true
+        },
+        {
+            "key": "region",
+            "label": "Region",
+            "visible": true
+        },
+        {
+            "key": "currency",
+            "label": "Currency",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        }
+    ],
+    "CountriesTableRows": [],
+    "EUCountriesTableColumns": [
+        {
+            "key": "countryCode",
+            "label": "Country Code",
+            "visible": true
+        },
+        {
+            "key": "countryDesc",
+            "label": "Country Description",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        }
+    ],
+    "EUCountriesTableRows": []
 }

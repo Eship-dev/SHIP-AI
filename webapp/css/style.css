@@ -324,3 +324,15 @@ button.ship-tile-button span {
   border-style: solid !important;
   border-width: 1px !important;
 }
+
+.size1 {
+	font-size : 1.5rem;
+}
+
+.toolbarbottomborder.sapMTB.sapMTBStandard {
+  border-bottom: none !important;
+}
+
+.ClsBorderRight{
+  border-right: solid #D9D9D9 1px;
+}
