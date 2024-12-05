@@ -1,0 +1,19 @@
+<core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
+
+	    <Toolbar height="8rem" >
+            <HBox width="100%" >
+                <Text text="Quote Now" class="sapUiSmallMargin quoteNowText" ></Text>
+                <TextArea width="20rem" rows="1" class="sapUiSmallMargin customInput" placeholder="Scan or Enter Shipment Order"  ></TextArea>
+                <Button id="idQuoteNow" text="Quote Now" type="Accept" class="sapUiSmallMarginBegin sapUiSmallMarginTop" ></Button>
+            </HBox>
+            <ToolbarSpacer ></ToolbarSpacer>
+                <Button text="Clear" class="sapUiSmallMarginEnd sapUiSmallMarginBottom" type="Reject" ></Button>
+        </Toolbar>
+
+        <Toolbar height="32rem" class="sapUiSmallMarginTop" >
+            <ToolbarSpacer />
+                <Text text="Enter Shipment Order to get the latest and best quote available."></Text>
+            <ToolbarSpacer />
+        </Toolbar>
+</core:FragmentDefinition>

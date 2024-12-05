@@ -145,7 +145,7 @@
 			{
 				"name": "sapShipmentID",
 				"label": "SAP Shipment ID",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "CreatedDate",
@@ -160,7 +160,7 @@
 			{
 				"name": "ShipmentType",
 				"label": "Shipment Type",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "shipMethod",
@@ -195,56 +195,56 @@
 			{
 				"name": "ShipToAddressLine1",
 				"label": "Ship To AddressLine1",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "shipToCity",
 				"label": "Ship To City",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "shipToState",
 				"label": "Ship To State",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "shipToCountry",
 				"label": "Ship To Country",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "shipToZipcode",
 				"label": "Ship To Zipcode",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "shipToPhone",
 				"label": "Ship To Phone",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "shipToEmail",
 				"label": "Ship To Email",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "requesterName",
 				"label": "Requestor Name",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "orderType",
 				"label": "Order Type",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "connectedTo",
 				"label": "Connected To",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "actions",
-				"label": "Ship Now",
+				"label": "Actions",
 				"visible": true
 			}
 		],

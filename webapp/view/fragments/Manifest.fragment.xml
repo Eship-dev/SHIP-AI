@@ -1,0 +1,45 @@
+<core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
+
+	    <Toolbar width="auto">
+			<Text text="Shipping Manifest" class="textBold" ></Text>
+				<ToolbarSpacer />
+					<Button text="Manifest and Print" icon="sap-icon://down" type="Success" iconFirst="true" ></Button>
+		</Toolbar>
+
+		<Toolbar height="15%" >
+			<HBox width="100%" >
+				<VBox class="sapUiTinyMargin" width="33%">
+					<Text text="1" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Total Shipments" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Emphasized" press="handleManifestFilterBtnPress" id="idTotalShipmentsBtn" icon="false" width="100%"  ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="33%">
+					<Text text="2" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Total No. of Pieces" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Critical" press="handleManifestFilterBtnPress" id="idTotalNoOfPiecesBtn" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="33%">
+					<Text text="3" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Total Weight" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Success" press="handleManifestFilterBtnPress" id="idTotalWeightBtn" icon="false" width="100%" ></Button>
+				</VBox>
+			</HBox>
+		</Toolbar>
+
+            <ui:Table
+                id="idManifestTable"
+                class="sapUiSmallMarginTop"
+				rows="{eshipjetModel>/TrackNowItems}"
+				selectionMode="None"
+				visibleRowCount="14">
+				<ui:extension>
+					<OverflowToolbar style="Clear">
+                        <Button icon="sap-icon://filter" press="handleTrackNowFltrIconPress"></Button>
+                        <ToolbarSpacer />
+                            <Button icon="sap-icon://action"></Button>
+                            <Button icon="sap-icon://action-settings"></Button>
+					</OverflowToolbar>
+				</ui:extension>
+		</ui:Table>
+</core:FragmentDefinition>

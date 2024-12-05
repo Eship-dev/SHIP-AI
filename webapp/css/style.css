@@ -325,14 +325,78 @@ button.ship-tile-button span {
   border-width: 1px !important;
 }
 
-.size1 {
-	font-size : 1.5rem;
+
+
+span.sapMBtnInner.sapMBtnAccept {
+  background-image: none;
+  background-color: var(--sapButton_Accept_Background);
+  border-color: var(--sapButton_Accept_BorderColor);
+  color: var(--sapButton_Accept_TextColor);
+  height: 43px;
+  padding-top: 10px;
+  width: 110px;
+}
+span.sapMBtnInner.sapMBtnReject {
+  background-image: none;
+  background-color: var(--sapButton_Reject_Background);
+  border-color: var(--sapButton_Reject_BorderColor);
+  color: var(--sapButton_Reject_TextColor);
+  height: 43px;
+  width: 110px;
+  padding-top: 8px;
 }
 
-.toolbarbottomborder.sapMTB.sapMTBStandard {
-  border-bottom: none !important;
+.sapUiSizeCompact .sapMInputBaseInner {
+  padding: 0 0.5rem;
+  min-width: 2rem;
 }
 
-.ClsBorderRight{
-  border-right: solid #D9D9D9 1px;
+.sapUiSizeCompact .sapMInputBase.sapMTextArea .sapMTextAreaInner, .sapUiSizeCompact .sapMInputBase.sapMTextArea .sapMTextAreaMirror {
+  padding: .1875rem .5rem .125rem;
+  padding-top: 10px;
+}
+
+.customInput{
+  height: 43px !important;
+  min-height: 43px !important;
+}
+
+.frieghtReviewBtnShip {
+  font-family: AvenirNextCyrMedium !important;
+  background: gray !important;
+  margin-top: 12px !important;
+  color: #fff !important;
+  border-radius: 15px !important;
+  border: 1px solid #4E9C2D !important;
+  height: 43px !important;
+  width: 110px !important;
+  cursor: pointer;
+}
+.buttonHoverEffectGreen:hover{
+  background-color: rgb(63, 231, 29) !important;
+  color: white !important;
+  border-radius: 10px !important;
+  height: 43px !important;
+  width: 110px !important;
+  margin-top: 12px !important;
+  cursor: pointer;
+}
+.frieghtReviewBtnVoid {
+  font-family: AvenirNextCyrMedium !important;
+  background-color: gray !important;
+  color: #fff !important;
+  border-radius: 15px !important;
+  border: 1px solid #4E9C2D !important;
+  font-size: 16px !important;
+  height: 43px !important;
+  width: 110px !important;
+  margin-top: 12px !important;
+}
+.buttonHoverEffectRed:hover{
+  background-color: red !important;
+  border-radius: 10px !important;
+  color: black !important;
+  height: 43px !important;
+  width: 110px !important;
+  margin-top: 12px !important;
 }

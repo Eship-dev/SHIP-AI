@@ -13,11 +13,11 @@
         <ui:Table class="sapUiTinyMargin" 	rowActionCount="0"	id="idScanAndShipTable"
 					selectionMode="None"	paste="onPaste"		ariaLabelledBy="title">
 					<ui:extension>
-							<OverflowToolbar>
-							<Button icon="sap-icon://filter" press="scanAndShipFilterPopoverPress"></Button>
+						<OverflowToolbar>
+							<Button icon="sap-icon://filter" press="scanShipFilterPopoverPress"></Button>
 							<ToolbarSpacer ></ToolbarSpacer>
-							<Button icon="sap-icon://action" press="handleSASTableExportToExcel"></Button>
-                            <Button icon="sap-icon://action-settings" press="openPersoDialog" >
+							<Button icon="sap-icon://action" press="onScanShipExportToExcel"></Button>
+                            <Button icon="sap-icon://action-settings" press="openScanShipColNamesPopover" >
                                 <customData>
                                     <core:CustomData key="remember" value="true" />
                                     <core:CustomData key="showClearButton" value="true" />
@@ -30,11 +30,11 @@
                 <Toolbar>
                     <Text text="Total Shipped by John Marsh: 1"></Text>
                     <ToolbarSpacer/>
-                    <Button  text="First"     type="Emphasized"/>
-                    <Button  text="Previous"  type="Emphasized"/>
-                    <Text    text="1-0 of 0" />
-                    <Button  text="Next"       type="Emphasized"/>
-                    <Button  text="Last"       type="Emphasized"/>
+                    <Button  text="First" enabled="false" />
+                    <Button  text="Previous" enabled="false"/>
+                    <Text    text="1-0 of 0" class="darkTheme" />
+                    <Button  text="Next" />
+                    <Button  text="Last" />
 				</Toolbar>
 		    </ui:footer>
 		</ui:Table>

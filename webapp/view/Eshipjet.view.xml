@@ -83,8 +83,6 @@
 											<Button class="sapUiTinyMargin ship-copilot-button open-order-status" icon="sap-icon://shipping-status" text="Orders with Open Status"/>
 										</HBox>
 									</VBox>
-
-									<!-- Chat List -->
 									<List id="chatList" items="{ShipperCopilotModel>/messages}" class="co-pilot-search-results" visible="{ShipperCopilotModel>/listState}" >
 										<CustomListItem class="sapUiTinyMargin" >
 											<HBox justifyContent="{= ${ShipperCopilotModel>sender} === 'You' ? 'End' : 'Start'}">
@@ -101,7 +99,6 @@
 											</HBox>
 										</CustomListItem>
 									</List>
-
 									<HBox justifyContent="Center" class="ship-copilot-search-section">
 										<Input id="userInput" class="sapUiTinyMarginEnd" placeholder="Good Afternoon Robert, I'm ready for the task" width="30rem" submit="onSendPress"/>
 										<Button icon="sap-icon://arrow-top" press="onSendPress"/>
@@ -110,6 +107,9 @@
 
 					<!-- Orders Starts here -->
 					<ScrollContainer id="Orders" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Orders" type="XML" />
+					</ScrollContainer>
+					<!-- <ScrollContainer id="Orders" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
 						<Toolbar height="20%" width="100%" >
 			<VBox width="100%" >
 				<Text text="Order" class="sapUiSmallMargin textBold" ></Text>
@@ -226,8 +226,6 @@
 					</ui:Column>
 				</ui:columns>
 			</ui:Table>
-<!-- </content> -->
-        <!-- <footer> -->
             <Toolbar >
                 <ToolbarSpacer />
                     <Button text="First" enabled="false"></Button>
@@ -236,11 +234,14 @@
                     <Button text="Next" enabled="false"></Button>
                     <Button text="Last" enabled="false"></Button>
             </Toolbar>
-					</ScrollContainer>
+					</ScrollContainer> -->
 
-	<!-- Ship Request Label Starts here -->
-<ScrollContainer id="ShipRequestLabel" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
-
+<!-- Ship Request Label Starts here -->
+		<ScrollContainer id="ShipRequestLabel" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+				<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ShipRequestLabel" type="XML" />
+		</ScrollContainer>
+	
+	<!-- <ScrollContainer id="ShipRequestLabel" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
 	<Toolbar width="auto" >
 			<Text text="Ship Requests / Labels" class="textBold sapUiTinyMarginBegin" ></Text>
 				<ToolbarSpacer />
@@ -270,8 +271,7 @@
 				</VBox>
 			</HBox>
 		</Toolbar>
-
-    <ui:Table
+    		<ui:Table
                 id="idShipRequestTable"
                 class="sapUiSmallMarginTop"
 				rows="{eshipjetModel>/TrackNowItems}"
@@ -378,8 +378,10 @@
 					</ui:Column>
 				</ui:columns>
 			</ui:Table>
-</ScrollContainer>	
-					<!-- Ship Now Starts here -->
+</ScrollContainer>	 -->
+
+
+		<!-- Ship Now Starts here -->
 					<ScrollContainer id="ShipNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
 						
 							<Toolbar class="sapUiTinyMarginBottom" height="10%">
@@ -389,8 +391,8 @@
 								<ComboBox items="{eshipjetModel>/secondComboboxItems}">
 									<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 								</ComboBox>
-								<SearchField width="10rem" class="sapUiSmallMargin" />
-								<Button text="Get" type="Ghost"></Button>
+								<SearchField width="10rem" class="sapUiSmallMargin" id="idShipNowSearch" />
+								<Button text="Get" type="Ghost" press="onShipNowGrtPress" ></Button>
 								<Button text="Consolidation" type="Ghost" press="handleConsolidationPress"></Button>
 								<Label text="Pickup Date" labelFor="DP1"/>
 								<DatePicker id="DP1" width="13rem" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" placeholder="Enter Date" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
@@ -420,26 +422,26 @@
 														<Button icon="sap-icon://customer-briefing" press="handleShipFromPickAnAddressPress"/>
 													</Toolbar>
 													<Label text="Contact Name" />
-													<Input value="{shipFromModel>/contactName}" />
+													<Input value="{ShipNowDataModel>/ShipFromCONTACT}" />
 													<Label text="Address Line 1" />
-													<Input value="{shipFromModel>/AddressLine1}"></Input>
+													<Input value="{ShipNowDataModel>/ShipFromADDRESS_LINE1}"></Input>
 													<Label text="City" />
-													<Input value="{shipFromModel>/city}" placeholder="City" width="10rem" />
-													<Input value="{shipFromModel>/state}" placeholder="State / Province" width="10rem" />
+													<Input value="{ShipNowDataModel>/ShipFromCITY}" placeholder="City" width="10rem" />
+													<Input value="{ShipNowDataModel>/ShipFromSTATE}" placeholder="State / Province" width="10rem" />
 													<Label text="Email" />
-													<Input value="{shipFromModel>/email}" />
+													<Input value="{ShipNowDataModel>/ShipFromEMAIL}" />
 													<Label text="Company Name" />
-													<Input value="{shipFromModel>/companyName}" />
+													<Input value="{ShipNowDataModel>/ShipFromCOMPANY}" />
 													<Label text="Address Line 2" />
-													<Input value="{shipFromModel>/AddressLine2}" />
+													<Input value="{ShipNowDataModel>/ShipFromADDRESS_LINE2}" />
 													<Label text="Zip / Postal Code" />
-													<Input value="{shipFromModel>/zipCode}" placeholder="Zip / Postal Code" width="10rem" />
-													<ComboBox placeholder="Country" items="{eshipjetModel>/countriesList}" selectedKey="{shipFromModel>/country}" width="10rem">
+													<Input value="{ShipNowDataModel>/ShipFromZIPCODE}" placeholder="Zip / Postal Code" width="10rem" />
+													<ComboBox placeholder="Country" items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipFromCOUNTRY}" width="10rem">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Phone No" />
-													<Input value="{shipFromModel>/phone}" placeholder="Phone No" width="10rem" />
-													<ComboBox placeholder="Address Type" selectedKey="{shipFromModel>/state}" items="{eshipjetModel>/addressType}" width="10rem">
+													<Input value="{ShipNowDataModel>/ShipFromPHONE}" placeholder="Phone No" width="10rem" />
+													<ComboBox placeholder="Address Type" selectedKey="{ShipNowDataModel>/ShipFromSTATE}" items="{eshipjetModel>/addressType}" width="10rem">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Toolbar ariaLabelledBy="idShipTo">
@@ -448,26 +450,26 @@
 														<Button icon="sap-icon://add" press="handleCreateAddressPress"></Button>
 													</Toolbar>
 													<Label text="Contact Name" />
-													<Input value="{shipToModel>/contactName}" />
+													<Input value="{ShipNowDataModel>/ShipToCONTACT}" />
 													<Label text="Address Line 1" />
-													<Input value="{shipToModel>/AddressLine1}"></Input>
+													<Input value="{ShipNowDataModel>/ShipToADDRESS_LINE1}"></Input>
 													<Label text="City" />
-													<Input value="{shipToModel>/city}" placeholder="City" width="10rem" />
-													<Input value="{shipToModel>/state}" placeholder="State / Province" width="10rem" />
+													<Input value="{ShipNowDataModel>/ShipToCITY}" placeholder="City" width="10rem" />
+													<Input value="{ShipNowDataModel>/ShipToSTATE}" placeholder="State / Province" width="10rem" />
 													<Label text="Email" />
-													<Input value="{shipToModel>/email}" />
+													<Input value="{ShipNowDataModel>/ShipToEMAIL}" />
 													<Label text="Company Name" />
-													<Input value="{shipToModel>/companyName}" />
+													<Input value="{ShipNowDataModel>/ShipToCOMPANY}" />
 													<Label text="Address Line 2" />
-													<Input value="{shipToModel>/AddressLine2}" />
+													<Input value="{ShipNowDataModel>/ShipToADDRESS_LINE2}" />
 													<Label text="Zip / Postal Code" />
-													<Input value="{shipToModel>/zipCode}" placeholder="Zip / Postal Code" width="10rem" />
-													<ComboBox placeholder="Country" selectedKey="{shipToModel>/country}" items="{eshipjetModel>/countriesList}" width="10rem">
+													<Input value="{ShipNowDataModel>/ShipToZIPCODE}" placeholder="Zip / Postal Code" width="10rem" />
+													<ComboBox placeholder="Country" selectedKey="{ShipNowDataModel>/ShipToCOUNTRY}" items="{eshipjetModel>/countriesList}" width="10rem">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Phone No" />
-													<Input value="{shipToModel>/phone}" placeholder="Phone No" width="10rem" />
-													<ComboBox placeholder="Address Type" selectedKey="{shipToModel/addressType}" items="{eshipjetModel>/addressType}" width="10rem">
+													<Input value="{ShipNowDataModel>/ShipToPHONE}" placeholder="Phone No" width="10rem" />
+													<ComboBox placeholder="Address Type" selectedKey="{ShipNowDataModel/ShipToSTATE}" items="{eshipjetModel>/addressType}" width="10rem">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 												</f:content>
@@ -1005,11 +1007,14 @@
 					</ScrollContainer>
 
 <!-- Quote Now Starts here -->
-<ScrollContainer id="QuoteNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+			<ScrollContainer	id="QuoteNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+				<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.QuoteNow" type="XML" />
+			</ScrollContainer>
+
+<!-- <ScrollContainer id="QuoteNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
 <Toolbar height="5rem" >
             <HBox width="100%" >
                 <Text text="Quote Now" class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiLargeMarginEnd quoteNowText" ></Text>
-                <!-- <Input class="sapUiSmallMarginEnd" liveChange="handleShipmentOrderEnter" width="15rem" placeholder="Scan or Enter Shipment Order" ></Input> -->
                 <TextArea rows="1"  class="sapUiSmallMarginEnd" width="15rem" placeholder="Scan or Enter Shipment Order"  ></TextArea>
                 <Button id="idQuoteNow" text="Quote Now" type="Accept" class="sapUiSmallMarginBegin" ></Button>
             </HBox>
@@ -1022,17 +1027,19 @@
                 <Text text="Enter Shipment Order to get the latest and best quote available."></Text>
             <ToolbarSpacer />
         </Toolbar>
-</ScrollContainer>
+</ScrollContainer> -->
 
 		<!-- Track Now Starts here -->
-					<ScrollContainer id="TrackNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
-						<Toolbar width="auto" >
+			<ScrollContainer	id="TrackNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+				<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.TrackNow" type="XML" />
+			</ScrollContainer>
+			<!-- <ScrollContainer id="TrackNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+				<Toolbar width="auto" >
 			<Text text="Track Shipments: 114 in Last 7 Days" class="textBold"></Text>
 				<ToolbarSpacer />
 					<Text text="11/23/2024 - 11/29/2024" class="textBold"></Text>
 		</Toolbar>
 
-		<!-- <content> -->
 		<Toolbar height="15%" >
 			<HBox width="100%" >
 				<VBox class="sapUiTinyMargin" width="25%">
@@ -1159,23 +1166,26 @@
 									<ui:Column width="6rem">
 										<Label text="Actions" />
 										<ui:template>
-											<!-- <Text text="{eshipjetModel>actions}" wrapping="false" /> -->
 											<Link text="{eshipjetModel>actions}"></Link>
 										</ui:template>
 									</ui:Column>
 								</ui:columns>
 							</ui:Table>
-					</ScrollContainer>
+					</ScrollContainer> -->
 
-	<ScrollContainer id="Manifest" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+
 	<!-- Manifest Starts here -->
+	<ScrollContainer	id="Manifest" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+		<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Manifest" type="XML" />
+	</ScrollContainer>
+
+	<!-- <ScrollContainer id="Manifest" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
 	<Toolbar width="auto">
 			<Text text="Shipping Manifest" class="textBold" ></Text>
 				<ToolbarSpacer />
 					<Button text="Manifest and Print" icon="sap-icon://down" type="Success" iconFirst="true" ></Button>
 		</Toolbar>
 
-		<!-- <content> -->
 		<Toolbar height="15%" >
 			<HBox width="100%" >
 				<VBox class="sapUiTinyMargin" width="33%">
@@ -1302,17 +1312,20 @@
 					</ui:Column>
 				</ui:columns>
 			</ui:Table>
-		</ScrollContainer>
+		</ScrollContainer> -->
 
 	<!-- AES Direct Starts here -->
-	<ScrollContainer id="AESDirect" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+	<ScrollContainer	id="AESDirect" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+		<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.AESDirect" type="XML" />
+	</ScrollContainer>
+
+	<!-- <ScrollContainer id="AESDirect" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
 		<Toolbar width="auto">
 			<Text text="AES Direct" class="numberBold" ></Text>
 				<ToolbarSpacer />
 					<Button text="Add EEI" type="Success"></Button>
 		</Toolbar>
 
-		<!-- <content> -->
 		<Toolbar height="15%" >
 			<HBox width="100%" >
 				<VBox class="sapUiTinyMargin" width="25%">
@@ -1443,22 +1456,25 @@
 					</ui:Column>
 				</ui:columns>
 			</ui:Table>
-		</ScrollContainer>
+		</ScrollContainer> -->
 
 	<!-- Scan And Ship Starts here -->
-					<ScrollContainer	id="ScanShip"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
-						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ScanAndShip" type="XML" />
+					<ScrollContainer	id="ScanShip"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding darkTheme">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ScanAndShip" type="XML" class="darkTheme" />
 					</ScrollContainer>
 
 <!-- Batch Ship Starts here -->
-	<ScrollContainer id="BatchShip" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+
+	<ScrollContainer	id="BatchShip"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+		<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.BatchShip" type="XML" />
+	</ScrollContainer>
+
+	<!-- <ScrollContainer id="BatchShip" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
 		<Toolbar >
 			<Text text="Batch Shipping" class="numberBold" ></Text>
             <ToolbarSpacer ></ToolbarSpacer>
                 <Button text="Create Batch" type="Success" activeIcon="false" ></Button>
 		</Toolbar>
-
-		<!-- <content> -->
 		<Toolbar height="15%" >
 			<HBox width="100%">
 				<VBox class="sapUiTinyMargin" width="25%">

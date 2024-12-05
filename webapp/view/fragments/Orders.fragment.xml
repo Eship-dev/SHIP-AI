@@ -1,0 +1,43 @@
+<core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
+
+	    <Toolbar height="20%" width="100%" >
+			<VBox width="100%" >
+				<Text text="Order" class="sapUiSmallMargin textBold" ></Text>
+				<Text text="25" class="sapUiSmallMarginBegin textBold" ></Text>
+				<Text text="Total" class="sapUiSmallMarginBegin"></Text>
+				<Button type="Emphasized" width="98%" class="sapUiSmallMargin" ></Button>
+			</VBox>
+		</Toolbar>
+
+        <ui:Table id="idOrdersTable"
+                class="sapUiTinyMarginTop"
+				rows="{eshipjetModel>/Orderitems}"
+				selectionMode="None"
+				visibleRowCount="13">
+					<ui:extension>
+						<OverflowToolbar>
+							<Button icon="sap-icon://filter" press="onOrdersFilterPopoverPress"></Button>
+							<ToolbarSpacer ></ToolbarSpacer>
+							<Button icon="sap-icon://action" press="onOrdersExportToExcel"></Button>
+                            <Button icon="sap-icon://action-settings" press="openOrdersColNamesPopover" >
+                                <customData>
+                                    <core:CustomData key="remember" value="true" />
+                                    <core:CustomData key="showClearButton" value="true" />
+                                    <core:CustomData key="confirmButtonText" value="Ok" />
+                                </customData>
+							</Button>										
+						</OverflowToolbar>
+					</ui:extension>									
+				<ui:footer>
+                <Toolbar>
+                    <ToolbarSpacer/>
+                    <Button  text="First"     type="Emphasized"/>
+                    <Button  text="Previous"  type="Emphasized"/>
+                    <Text    text="1-0 of 0" />
+                    <Button  text="Next"       type="Emphasized"/>
+                    <Button  text="Last"       type="Emphasized"/>
+				</Toolbar>
+		    </ui:footer>
+		</ui:Table>
+</core:FragmentDefinition>

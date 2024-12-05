@@ -12,7 +12,7 @@
 		initialFocus="email">
 		<Toolbar >
 			<ToolbarSpacer ></ToolbarSpacer>
-				<Button icon="sap-icon://decline" press="handleScanAndShipClosePress" ></Button>
+				<Button icon="sap-icon://decline" press="onScanShipFilterClosePress" ></Button>
 		</Toolbar>
 		<footer>
 			<OverflowToolbar>
@@ -20,11 +20,11 @@
 				<Button
 					text="Reset"
 					type="Ghost"
-					press="handleScanAndShipPopoverResetPress" />
+					press="onScanShipFilterResetPress" />
                 <Button
 					text="Apply"
 					type="Success"
-					press="handleScanAndShipPopoverApplyPress" />
+					press="onScanShipFilterApplyPress" />
 			</OverflowToolbar>
 		</footer>
 		<HBox >

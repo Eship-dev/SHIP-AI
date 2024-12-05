@@ -1,0 +1,49 @@
+<core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
+
+	    		<Toolbar width="auto" >
+			<Text text="Track Shipments: 114 in Last 7 Days" class="textBold"></Text>
+				<ToolbarSpacer />
+					<Text text="11/23/2024 - 11/29/2024" class="textBold"></Text>
+		</Toolbar>
+
+		<Toolbar height="15%" >
+			<HBox width="100%" >
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="3" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Success" press="handleTrackNowFilterBtnPress" id="idShippedBtn" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="3" class="sapUiTinyMarginBottom"></Text>
+					<Text text="In-Transit" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Emphasized" press="handleTrackNowFilterBtnPress" id="idInTransitBtn" icon="false" width="100%"  ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="3" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Negative" press="handleTrackNowFilterBtnPress" id="idCancelledBtn" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="3" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Delivered" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Success" press="handleTrackNowFilterBtnPress" id="idDeliveredBtn" icon="false" width="100%" ></Button>
+				</VBox>
+			</HBox>
+		</Toolbar>
+
+            <ui:Table
+				id="idTrackNowTable"
+				class="sapUiSmallMarginTop"
+				rows="{eshipjetModel>/TrackNowItems}"
+				selectionMode="None">
+				<ui:extension>
+					<OverflowToolbar style="Clear">
+						<Button icon="sap-icon://filter" press="onTrackNowFilterPress"></Button>
+						<ToolbarSpacer />
+						<Button icon="sap-icon://action"></Button>
+					<Button icon="sap-icon://action-settings"></Button>
+				</OverflowToolbar>
+			</ui:extension>
+		</ui:Table>
+</core:FragmentDefinition>
