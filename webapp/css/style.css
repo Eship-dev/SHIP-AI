@@ -314,6 +314,71 @@ button.ship-tile-button span {
   padding: 2rem !important
 }
 
+.scan-ship-toolbar {
+  padding: 2rem !important;
+  height: auto !important;
+  align-items: stretch;
+}
+
+.scan-ship-toolbar__title {
+  align-self: center;
+}
+
+.scan-ship-toolbar__input {
+  flex: 4;
+  height: auto !important;
+}
+
+.scan-ship-toolbar__input > div {
+  height: auto !important;
+}
+
+.scan-ship-toolbar__input input {
+  height: 52px;
+}
+
+@keyframes animateBtn {
+  0% {
+    box-shadow: 0px 0px 5px rgba(0, 188, 212, 0.4);
+  }
+  50% {
+    box-shadow: 0px 0px 20px rgba(0, 188, 212, 0.6);
+  }
+   100% {
+    box-shadow: 0px 0px 5px rgba(0, 188, 212, 0.4);
+   }
+}
+
+.scan-ship-toolbar__button {
+  padding: 0 !important;
+  height: auto !important;
+}
+
+.scan-ship-toolbar__button:hover span {
+  background-color: #4E9C2D !important;
+  color: #fff !important;
+  border: 1px solid #4E9C2D !important;
+  animation: animateBtn 1s infinite;
+}
+
+.scan-ship-toolbar__button_void:hover span {
+  background-color: red !important;
+  border: 1px solid red !important;
+}
+
+
+.scan-ship-toolbar__button:hover bdi {
+  color: #fff !important;
+
+}
+
+.scan-ship-toolbar__button span {
+  height: 100% !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center;
+}
+
 .darkTheme{
   background-color: black !important;
   color: white !important;

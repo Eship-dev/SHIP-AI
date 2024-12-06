@@ -1663,7 +1663,16 @@ sap.ui.define([
                 });
                 oTable.bindRows("/" + aRows);
             }
-        }
+          },
+
+          onThemeChange:function(oEvent){
+            var bState = oEvent.getSource().getState();
+            if(bState){
+                document.body.style.filter = "invert(0)";
+            }else{
+                document.body.style.filter = "invert(1)";
+            }
+          }
 
     });
 });

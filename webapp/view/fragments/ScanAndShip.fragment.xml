@@ -1,13 +1,13 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
     <VBox>
-	<Toolbar class="sapUiTinyMargin" height="5rem">
-        <Title text="Scan and Ship"/>
-        <Input  width="20rem" id="userscanShipInput" placeholder="Enter SAP DN, Handing Unit or ODO" ></Input>
+	<Toolbar class="sapUiTinyMargin scan-ship-toolbar">
+        <Title text="Scan and Ship" class="scan-ship-toolbar__title"/>
+        <Input class="scan-ship-toolbar__input" id="userscanShipInput" placeholder="Enter SAP DN, Handing Unit or ODO" ></Input>
         <!-- <TextArea width="20rem" rows="2" id="userInput" placeholder="Enter SAP DN, Handing Unit or ODO" ></TextArea> -->
-        <Button text="Ship Now" type="Accept" press="onScanShipSearchPress"  ></Button>
+        <Button  class="scan-ship-toolbar__button" text="Ship Now" type="Accept" press="onScanShipSearchPress"  ></Button>
         <ToolbarSpacer />
-        <Button text="Void Now" type="Reject"></Button>
+        <Button class="scan-ship-toolbar__button scan-ship-toolbar__button_void" text="Void Now" type="Reject"></Button>
 	</Toolbar>
 
         <ui:Table class="sapUiTinyMargin" 	rowActionCount="0"	id="idScanAndShipTable"

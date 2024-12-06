@@ -13,7 +13,7 @@
 			<tnt:ToolHeader>
 				<Button
 					id="sideNavigationToggleButton"
-					icon="sap-icon://menu2"
+					icon="{value:'com/eshipjet/zeshipjet/css/images/menu.png', formatter:'sap.ui.require.toUrl'}"
 					type="Transparent"
 					press=".onSideNavButtonPress">
 					<layoutData>
@@ -22,6 +22,11 @@
 				</Button>
 				<Text text="SAP ShipperCopilot 6.4"/>
 				<ToolbarSpacer/>
+				<Switch state="true" customTextOn="Lite" customTextOff="Dark" change="onThemeChange">
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+				</Switch>
 				<Button icon="sap-icon://action-settings" press="onPressSettingsButton"/>
 				<Button icon="sap-icon://bell"/>
 			</tnt:ToolHeader>
@@ -760,8 +765,8 @@
 	</ScrollContainer>
 
 	<!-- Scan And Ship Starts here -->
-					<ScrollContainer	id="ScanShip"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding darkTheme">
-						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ScanAndShip" type="XML" class="darkTheme" />
+					<ScrollContainer	id="ScanShip"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ScanAndShip" type="XML"/>
 					</ScrollContainer>
 
 <!-- Batch Ship Starts here -->
