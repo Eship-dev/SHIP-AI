@@ -52,7 +52,7 @@
 						<ToolbarSpacer />
                         <ToolbarSpacer />
                             <Button icon="sap-icon://action"></Button>
-                            <Button icon="sap-icon://action-settings"></Button>
+                            <Button icon="sap-icon://action-settings" press="openBatchShipColNamesPopover"></Button>
 					</OverflowToolbar>
 				</ui:extension>
 		</ui:Table>

@@ -1,0 +1,38 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover  contentWidth="20%" placement="Left">
+		<customHeader>
+			<VBox >
+				<Toolbar class="toolbarbottomborder">
+					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="Columns"></Title>
+					<ToolbarSpacer ></ToolbarSpacer>					
+					<Button icon="sap-icon://decline" press="onTrackNowColSelectClosePress"></Button>
+				</Toolbar>
+				<SearchField placeholder="Search Columns"   liveChange="onColumnSearch"></SearchField>
+			</VBox>
+		</customHeader>
+		<content>
+        <Table	id="myTrackNowColumnSelectId" mode="MultiSelect" items="{path : 'TrackNowTableDataModel>/TrackNowColumns'}" >
+		<ColumnListItem id="_IDGenTrackNowColumnListItem1" vAlign="Middle">
+			<cells>				
+				<Text text="{TrackNowTableDataModel>label}" />				
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column >
+				<header>
+					<Text text="Select All" />
+				</header>
+			</Column>			
+		</columns>
+        </Table>
+        </content>
+        <footer>
+            <Toolbar >
+                <ToolbarSpacer />
+                <Button text="Apply" press="onoTrackNowColSelectOkPress" type="Emphasized"></Button>               
+            </Toolbar>
+        </footer>      
+	</Popover>   
+</core:FragmentDefinition>

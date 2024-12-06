@@ -1,44 +1,36 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
-    <VBox class="sapUiTinyMargin sapUiLargeMarginEnd" >
-        <Toolbar  class="toolbarbottomborder" design="Transparent"> 
-            <Title text="NMFC Classes"></Title>
-            <ToolbarSpacer ></ToolbarSpacer>
-            <HBox>
-                <Button type="Emphasized" text="Add NMFC"></Button>
-                <Button type="Emphasized" icon="sap-icon://navigation-down-arrow"></Button>
-            </HBox>
-        </Toolbar>
+    <Toolbar width="auto">
+			<Text text="NMFC Classes" class="textBold" ></Text>
+				<ToolbarSpacer />
+					<HBox>
+                    <Button type="Success" text="Add NMFC Class"></Button>
+                    <Button type="Success" icon="sap-icon://navigation-down-arrow"></Button>
+                </HBox>
+		</Toolbar>
+
+        <Toolbar height="15%" >
+			<HBox width="100%" >
+				<VBox class="sapUiTinyMargin" width="33%">
+					<Text text="1" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Total NMFC Classes" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Emphasized" press="handleManifestFilterBtnPress" icon="false" width="100%"  ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="33%">
+					<Text text="2" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Active" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Critical" press="handleManifestFilterBtnPress" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="33%">
+					<Text text="3" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Inactive" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Success" press="handleManifestFilterBtnPress" icon="false" width="100%" ></Button>
+				</VBox>
+			</HBox>
+		</Toolbar>
+
         
-        <HeaderContainer width="100%" class="headerContent sapUiTinyMargin" scroll="false" showOverflowItem="true" >						
-            <VBox >
-                <TileContent footer="Total NMFC Classes" >
-                    <content>
-                        <NumericContent value="10" valueColor="Neutral" indicator="None"/>
-                    </content>
-                </TileContent>
-                <Button type="Emphasized" press="handleTrackNowFilterBtnPress"  icon="false" width="22rem" ></Button>
-            </VBox>
-            <VBox >
-                <TileContent footer="Active" >
-                    <content>
-                        <NumericContent value="10" valueColor="Neutral" indicator="None" press="press"/>
-                    </content>
-                </TileContent>
-                <Button type="Negative" press="handleTrackNowFilterBtnPress"  icon="false" width="22rem"  ></Button>
-            </VBox>
-            <VBox>
-                <TileContent footer="InActive" >
-                    <content>
-                        <NumericContent value="0" valueColor="Neutral" indicator="None" press="press"/>
-                    </content>
-                </TileContent>
-                <Button type="Negative" press="handleTrackNowFilterBtnPress"  icon="false" width="22rem" ></Button>
-            </VBox>
-					
-		</HeaderContainer>
-	</VBox>
-    <ui:Table	id="_IDNMFCTable"	width="100%"	class="headerContent sapUiTinyMarginEnd sapUiTinyMarginBegin"
+    <ui:Table	id="_IDNMFCTable"	width="100%"	class="headerContent sapUiTinyMarginTop"
              	selectionMode="None"	paste="onPaste" 	ariaLabelledBy="title">
     <ui:extension>
         <OverflowToolbar style="Clear">										

@@ -12,15 +12,14 @@
 
         <ui:Table id="idOrdersTable"
                 class="sapUiTinyMarginTop"
-				rows="{eshipjetModel>/Orderitems}"
 				selectionMode="None"
-				visibleRowCount="13">
+				visibleRowCount="10">
 					<ui:extension>
 						<OverflowToolbar>
 							<Button icon="sap-icon://filter" press="onOrdersFilterPopoverPress"></Button>
 							<ToolbarSpacer ></ToolbarSpacer>
-							<Button icon="sap-icon://action" press="onOrdersExportToExcel"></Button>
-                            <Button icon="sap-icon://action-settings" press="openOrdersColNamesPopover" >
+							<Button icon="sap-icon://action" press="onOrdersExportToExcel" ></Button>
+                            <Button icon="sap-icon://action-settings" press="openOrderColNamesPopover" >
                                 <customData>
                                     <core:CustomData key="remember" value="true" />
                                     <core:CustomData key="showClearButton" value="true" />

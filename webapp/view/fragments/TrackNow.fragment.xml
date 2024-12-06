@@ -42,7 +42,7 @@
 						<Button icon="sap-icon://filter" press="onTrackNowFilterPress"></Button>
 						<ToolbarSpacer />
 						<Button icon="sap-icon://action"></Button>
-					<Button icon="sap-icon://action-settings"></Button>
+					<Button icon="sap-icon://action-settings" press="openTrackNowColNamesPopover"></Button>
 				</OverflowToolbar>
 			</ui:extension>
 		</ui:Table>

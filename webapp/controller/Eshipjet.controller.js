@@ -13,8 +13,8 @@ sap.ui.define([
     "sap/ui/export/Spreadsheet",
     "../model/formatter",
     "sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function (Device, Controller, JSONModel, Popover, Button, library, MessageToast, BusyIndicator, Dialog, DateFormat, Fragment, Spreadsheet, formatter,Filter, FilterOperator) {
+    "sap/ui/model/FilterOperator"
+], function (Device, Controller, JSONModel, Popover, Button, library, MessageToast, BusyIndicator, Dialog, DateFormat, Fragment, Spreadsheet, formatter, Filter, FilterOperator) {
     "use strict";
 
     var ButtonType = library.ButtonType,
@@ -39,45 +39,45 @@ sap.ui.define([
             this._setToggleButtonTooltip(!Device.system.desktop);
         },
 
-        _handleDisplayScanShipTable: function() {
-            var oController = this;
-            const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label,oTemplate, oHboxControl;    
-            var scanShipTableData = eshipjetModel.getData().scanShipTableData;
-            var ScanShipTableDataModel = new JSONModel(scanShipTableData);
-            this.getView().setModel(ScanShipTableDataModel, "ScanShipTableDataModel");
-            const oTable = oView.byId("idScanAndShipTable");                      
-            oTable.setModel(ScanShipTableDataModel);
-            oTable.bindColumns("/columns", function(sId, oContext) {
-                columnName = oContext.getObject().name;
-                label = oContext.getObject().label;   
-                     
-                if(columnName === "actions"){
-                    var oHBox = new sap.m.HBox({}); // Create Text instance 
-                    var Link1 = new sap.m.Link({ text: "View Now"});
-                    var Link2 = new sap.m.Link({ endIcon:"sap-icon://navigation-down-arrow"});                               
-                    oHBox.addItem(Link1);          
-                    oHBox.addItem(Link2);                 
-                    return new sap.ui.table.Column({
-                        label: oResourceBundle.getText(columnName),
-                        template: oHBox,
-                        visible:oContext.getObject().visible,
-                        width:"8rem",
-                        sortProperty:columnName
-                    });
-                }else{      
-                    return new sap.ui.table.Column({
-                        label: oResourceBundle.getText(columnName),
-                        template: columnName,
-                        visible:oContext.getObject().visible,
-                        width:"8rem",
-                        sortProperty:columnName
-                    });
-                }
-    
-            });           
-            oTable.bindRows("/rows");   
-          },
+        // _handleDisplayScanShipTable: function () {
+        //     var oController = this;
+        //     const oView = oController.getView();
+        //     var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+        //     var scanShipTableData = eshipjetModel.getData().scanShipTableData;
+        //     var ScanShipTableDataModel = new JSONModel(scanShipTableData);
+        //     this.getView().setModel(ScanShipTableDataModel, "ScanShipTableDataModel");
+        //     const oTable = oView.byId("idScanAndShipTable");
+        //     oTable.setModel(ScanShipTableDataModel);
+        //     oTable.bindColumns("/columns", function (sId, oContext) {
+        //         columnName = oContext.getObject().name;
+        //         label = oContext.getObject().label;
+
+        //         if (columnName === "actions") {
+        //             var oHBox = new sap.m.HBox({}); // Create Text instance 
+        //             var Link1 = new sap.m.Link({ text: "View Now" });
+        //             var Link2 = new sap.m.Link({ endIcon: "sap-icon://navigation-down-arrow" });
+        //             oHBox.addItem(Link1);
+        //             oHBox.addItem(Link2);
+        //             return new sap.ui.table.Column({
+        //                 label: oResourceBundle.getText(columnName),
+        //                 template: oHBox,
+        //                 visible: oContext.getObject().visible,
+        //                 width: "8rem",
+        //                 sortProperty: columnName
+        //             });
+        //         } else {
+        //             return new sap.ui.table.Column({
+        //                 label: oResourceBundle.getText(columnName),
+        //                 template: columnName,
+        //                 visible: oContext.getObject().visible,
+        //                 width: "8rem",
+        //                 sortProperty: columnName
+        //             });
+        //         }
+
+        //     });
+        //     oTable.bindRows("/rows");
+        // },
 
         onItemSelect: function (oEvent) {
             var oItem = oEvent.getParameter("item");
@@ -96,26 +96,31 @@ sap.ui.define([
                 const oShipperCopilotModel = new JSONModel(obj);
                 this.getView().setModel(oShipperCopilotModel, "ShipperCopilotModel");
             } else if (sKey === "ScanShip") {
-                var oModel = {
-                    "items": [],
-                    "SASTableLength": 0
-                };
-                var oModel = new JSONModel(oModel);
-                this.getView().setModel(oModel, "oModel");
+                // var oModel = {
+                //     "items": [],
+                //     "SASTableLength": 0
+                // };
+                // var oModel = new JSONModel(oModel);
+                // this.getView().setModel(oModel, "oModel");
                 this._handleDisplayScanShipTable();
             } else if (sKey === "Orders") {
-
+                this._handleDisplayOrdersTable();
             } else if (sKey === "ShipRequestLabel") {
-
+                this._handleDisplayShipReqTable();
             } else if (sKey === "QuoteNow") {
 
+            }else if (sKey === "TrackNow") {
+                this._handleDisplayTrackNowTable();
             } else if (sKey === "Manifest") {
-
+                this._handleDisplayManifestTable();
             } else if (sKey === "AESDirect") {
 
             } else if (sKey === "Dashboard") {
 
+            } else if (sKey === "BatchShip") {
+                this._handleDisplayBatchShipTable();
             }
+
 
             eshipjetModel.setProperty("/SideNavigation", false);
             this.byId("pageContainer").to(this.getView().createId(sKey));
@@ -277,7 +282,7 @@ sap.ui.define([
 
         // Ship Now changes starts here
 
-        onShipNowGrtPress: async function () {
+        onShipNowGetPress: async function () {
             var that = this;
             BusyIndicator.show();
             const sUserMessage = this.getView().byId("idShipNowSearch").getValue();
@@ -365,7 +370,7 @@ sap.ui.define([
                 label = oContext.getObject().label;
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
-                    var Btn1 = new sap.m.Button({ text: "Ship Now", type: "Transparent", class: "sapUiSmallMargin" });
+                    var Btn1 = new sap.m.Button({ text: "Ship Now", type: "Transparent" });
                     var Btn2 = new sap.m.Button({
                         icon: "sap-icon://megamenu", type: "Transparent",
                         press: function (oEvent) {
@@ -381,7 +386,7 @@ sap.ui.define([
                         width: "8rem",
                         sortProperty: columnName
                     });
-                }else if (columnName === "CreatedDate" || columnName === "ShipDate") {
+                } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
                     var DateTxt = new sap.m.Text({
                         text: {
                             path: 'ScanShipTableDataModel>ShipDate',
@@ -423,12 +428,12 @@ sap.ui.define([
                 });
             }
             this._pScanPopover.then(function (oPopover) {
-                oController.ColumnsVisiblity();
+                oController.ScanShipColumnsVisiblity();
                 oPopover.openBy(oButton);
             });
         },
 
-        ColumnsVisiblity: function () {
+        ScanShipColumnsVisiblity: function () {
             var oView = oController.getView();
             var oScanTableModel = oView.getModel("eshipjetModel");
             var aColumns = oScanTableModel.getProperty("/scanShipTableData/columns");
@@ -616,7 +621,7 @@ sap.ui.define([
 
         handleDownArrowPress: function (oEvent) {
             var aPath = oEvent.getSource().getBindingContext().sPath.split("/");
-            var idx = parseInt(aPath[aPath.length-1]);
+            var idx = parseInt(aPath[aPath.length - 1]);
             var eshipjetModel = this.getView().getModel("eshipjetModel");
             var scanShipTableData = eshipjetModel.getData().scanShipTableData;
             this.encodedLabel = scanShipTableData.rows[idx].encodedLabel;
@@ -670,7 +675,7 @@ sap.ui.define([
             }
             this._oDialog.open();
         },
-        // Scan And Ship Changes End
+        // Scan & Ship Changes End
 
 
         // Dashboard Tiles Changes Starts
@@ -700,6 +705,127 @@ sap.ui.define([
         // Dashboar Tiles Changes End
 
         // Order Changes Starts
+
+        _handleDisplayOrdersTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var OrderTableData = eshipjetModel.getData().OrderTableData;
+            var OrderTableDataModel = new JSONModel(OrderTableData);
+            this.getView().setModel(OrderTableDataModel, "OrderTableDataModel");
+            const oTable = oView.byId("idOrdersTable");
+            oTable.setModel(OrderTableDataModel);
+            oTable.bindColumns("/OrderColumns", function (sId, oContext) {
+                columnName = oContext.getObject().name;
+                label = oContext.getObject().label;
+                if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "Edit", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: "8rem",
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
+                    var DateTxt = new sap.m.Text({
+                        text: {
+                            path: 'OrderTableDataModel>ShipDate',
+                            formatter: formatter.formatDate  // Attach the formatter dynamically
+                        },
+                        wrapping: false
+                    });
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: "10rem",
+                        sortProperty: columnName
+                    });
+                } else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: "10rem",
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/rows");
+        },
+
+        openOrderColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pOrderPopover) {
+                this._pOrderPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.OrderTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pOrderPopover.then(function (oPopover) {
+                oController.OrderColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        OrderColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var oOrderTableModel = oView.getModel("eshipjetModel");
+            var aColumns = oOrderTableModel.getProperty("/OrderTableData/OrderColumns");
+            var oOrderTable = oView.byId("myOrderColumnSelectId");
+            var aTableItems = oOrderTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.name === oItem.getBindingContext("OrderTableDataModel").getObject().name && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onoOrderColSelectOkPress: function () {
+            var oView = this.getView()
+            var oOrderTable = oView.byId("myOrderColumnSelectId");
+            var OrderTableDataModel = oView.getModel("OrderTableDataModel");
+            var oOrderTblItems = oOrderTable.getItems();
+            var aColumnsData = OrderTableDataModel.getProperty("/OrderColumns");
+            oOrderTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("OrderTableDataModel").getObject().name === oColObj.name) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            OrderTableDataModel.updateBindings(true);
+            this._pOrderPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onOrderColSelectClosePress: function () {
+            this._pOrderPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
 
         onOrdersFilterPopoverPress: function (oEvent) {
             var oButton = oEvent.getSource(),
@@ -731,6 +857,127 @@ sap.ui.define([
         // Order Changes End
 
         // Ship Request/Lable Code Changes Starts
+
+        _handleDisplayShipReqTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var ShipReqTableData = eshipjetModel.getData().ShipReqTableData;
+            var ShipReqTableDataModel = new JSONModel(ShipReqTableData);
+            this.getView().setModel(ShipReqTableDataModel, "ShipReqTableDataModel");
+            const oTable = oView.byId("idShipReqsTable");
+            oTable.setModel(ShipReqTableDataModel);
+            oTable.bindColumns("/ShipReqColumns", function (sId, oContext) {
+                columnName = oContext.getObject().name;
+                label = oContext.getObject().label;
+                if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: "8rem",
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
+                    var DateTxt = new sap.m.Text({
+                        text: {
+                            path: 'ShipReqTableDataModel>ShipDate',
+                            formatter: formatter.formatDate  // Attach the formatter dynamically
+                        },
+                        wrapping: false
+                    });
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: "10rem",
+                        sortProperty: columnName
+                    });
+                } else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: "10rem",
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/rows");
+        },
+
+        openShipReqColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pShipReqPopover) {
+                this._pShipReqPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipReqTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pShipReqPopover.then(function (oPopover) {
+                oController.ShipReqColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        ShipReqColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var oShipReqTableModel = oView.getModel("eshipjetModel");
+            var aColumns = oShipReqTableModel.getProperty("/ShipReqTableData/ShipReqColumns");
+            var oShipReqTable = oView.byId("myShipReqColumnSelectId");
+            var aTableItems = oShipReqTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.name === oItem.getBindingContext("ShipReqTableDataModel").getObject().name && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onoShipReqColSelectOkPress: function () {
+            var oView = this.getView()
+            var oShipReqTable = oView.byId("myShipReqColumnSelectId");
+            var ShipReqTableDataModel = oView.getModel("ShipReqTableDataModel");
+            var oShipReqTblItems = oShipReqTable.getItems();
+            var aColumnsData = ShipReqTableDataModel.getProperty("/ShipReqColumns");
+            oShipReqTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("ShipReqTableDataModel").getObject().name === oColObj.name) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            ShipReqTableDataModel.updateBindings(true);
+            this._pShipReqPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onShipReqColSelectClosePress: function () {
+            this._pShipReqPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
 
         onShipReqFltrPress: function (oEvent) {
             var oButton = oEvent.getSource(),
@@ -766,6 +1013,127 @@ sap.ui.define([
 
         // Track Now changes start
 
+        _handleDisplayTrackNowTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var TrackNowTableData = eshipjetModel.getData().TrackNowTableData;
+            var TrackNowTableDataModel = new JSONModel(TrackNowTableData);
+            this.getView().setModel(TrackNowTableDataModel, "TrackNowTableDataModel");
+            const oTable = oView.byId("idTrackNowTable");
+            oTable.setModel(TrackNowTableDataModel);
+            oTable.bindColumns("/TrackNowColumns", function (sId, oContext) {
+                columnName = oContext.getObject().name;
+                label = oContext.getObject().label;
+                if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "Edit", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: "8rem",
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
+                    var DateTxt = new sap.m.Text({
+                        text: {
+                            path: 'TrackNowTableDataModel>ShipDate',
+                            formatter: formatter.formatDate  // Attach the formatter dynamically
+                        },
+                        wrapping: false
+                    });
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: "10rem",
+                        sortProperty: columnName
+                    });
+                } else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: "10rem",
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/rows");
+        },
+
+        openTrackNowColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pTrackNowPopover) {
+                this._pTrackNowPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.TrackNowTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pTrackNowPopover.then(function (oPopover) {
+                oController.TrackNowColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        TrackNowColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var oTrackNowTableModel = oView.getModel("eshipjetModel");
+            var aColumns = oTrackNowTableModel.getProperty("/TrackNowTableData/TrackNowColumns");
+            var oTrackNowTable = oView.byId("myTrackNowColumnSelectId");
+            var aTableItems = oTrackNowTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.name === oItem.getBindingContext("TrackNowTableDataModel").getObject().name && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onoTrackNowColSelectOkPress: function () {
+            var oView = this.getView()
+            var oTrackNowTable = oView.byId("myTrackNowColumnSelectId");
+            var TrackNowTableDataModel = oView.getModel("TrackNowTableDataModel");
+            var oTrackNowTblItems = oTrackNowTable.getItems();
+            var aColumnsData = TrackNowTableDataModel.getProperty("/TrackNowColumns");
+            oTrackNowTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("TrackNowTableDataModel").getObject().name === oColObj.name) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            TrackNowTableDataModel.updateBindings(true);
+            this._pTrackNowPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onTrackNowColSelectClosePress: function () {
+            this._pTrackNowPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
         onTrackNowFilterPress: function (oEvent) {
             var oButton = oEvent.getSource(),
                 oView = this.getView();
@@ -797,7 +1165,255 @@ sap.ui.define([
 
         // Track Now changes End
 
+
+        // Manifest Changes Starts here
+
+        _handleDisplayManifestTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var ManifestTableData = eshipjetModel.getData().ManifestTableData;
+            var ManifestTableDataModel = new JSONModel(ManifestTableData);
+            this.getView().setModel(ManifestTableDataModel, "ManifestTableDataModel");
+            const oTable = oView.byId("idManifestTable");
+            oTable.setModel(ManifestTableDataModel);
+            oTable.bindColumns("/ManifestColumns", function (sId, oContext) {
+                columnName = oContext.getObject().name;
+                label = oContext.getObject().label;
+                if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: "8rem",
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
+                    var DateTxt = new sap.m.Text({
+                        text: {
+                            path: 'ManifestTableDataModel>ShipDate',
+                            formatter: formatter.formatDate  // Attach the formatter dynamically
+                        },
+                        wrapping: false
+                    });
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: "10rem",
+                        sortProperty: columnName
+                    });
+                } else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: "10rem",
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/rows");
+        },
+
+        openManifestColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pManifestPopover) {
+                this._pManifestPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ManifestTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pManifestPopover.then(function (oPopover) {
+                oController.ManifestColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        ManifestColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var oManifestTableModel = oView.getModel("eshipjetModel");
+            var aColumns = oManifestTableModel.getProperty("/ManifestTableData/ManifestColumns");
+            var oManifestTable = oView.byId("myManifestColumnSelectId");
+            var aTableItems = oManifestTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.name === oItem.getBindingContext("ManifestTableDataModel").getObject().name && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onManifestColSelectOkPress: function () {
+            var oView = this.getView()
+            var oManifestTable = oView.byId("myManifestColumnSelectId");
+            var ManifestTableDataModel = oView.getModel("ManifestTableDataModel");
+            var oManifestTblItems = oManifestTable.getItems();
+            var aColumnsData = ManifestTableDataModel.getProperty("/ManifestColumns");
+            oManifestTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("ManifestTableDataModel").getObject().name === oColObj.name) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            ManifestTableDataModel.updateBindings(true);
+            this._pManifestPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onManifestColSelectClosePress: function () {
+            this._pManifestPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        // Manifest Changes End here
+
         // Batch Ship Changes Starts
+
+        _handleDisplayBatchShipTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var BatchShipTableData = eshipjetModel.getData().BatchShipTableData;
+            var BatchShipTableDataModel = new JSONModel(BatchShipTableData);
+            this.getView().setModel(BatchShipTableDataModel, "BatchShipTableDataModel");
+            const oTable = oView.byId("idBatchShipTable");
+            oTable.setModel(BatchShipTableDataModel);
+            oTable.bindColumns("/BatchShipColumns", function (sId, oContext) {
+                columnName = oContext.getObject().name;
+                label = oContext.getObject().label;
+                if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: "8rem",
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
+                    var DateTxt = new sap.m.Text({
+                        text: {
+                            path: 'BatchShipTableDataModel>ShipDate',
+                            formatter: formatter.formatDate  // Attach the formatter dynamically
+                        },
+                        wrapping: false
+                    });
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: "10rem",
+                        sortProperty: columnName
+                    });
+                } else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: "10rem",
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/rows");
+        },
+
+        openBatchShipColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pBatchShipPopover) {
+                this._pBatchShipPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.BatchShipTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pBatchShipPopover.then(function (oPopover) {
+                oController.BatchShipColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        BatchShipColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var oBatchShipTableModel = oView.getModel("eshipjetModel");
+            var aColumns = oBatchShipTableModel.getProperty("/BatchShipTableData/BatchShipColumns");
+            var oBatchShipTable = oView.byId("myBatchShipColumnSelectId");
+            var aTableItems = oBatchShipTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.name === oItem.getBindingContext("BatchShipTableDataModel").getObject().name && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onBatchShipColSelectOkPress: function () {
+            var oView = this.getView()
+            var oBatchShipTable = oView.byId("myBatchShipColumnSelectId");
+            var BatchShipTableDataModel = oView.getModel("BatchShipTableDataModel");
+            var oBatchShipTblItems = oBatchShipTable.getItems();
+            var aColumnsData = BatchShipTableDataModel.getProperty("/BatchShipColumns");
+            oBatchShipTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("BatchShipTableDataModel").getObject().name === oColObj.name) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            BatchShipTableDataModel.updateBindings(true);
+            this._pBatchShipPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onBatchShipColSelectClosePress: function () {
+            this._pBatchShipPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
         onBatchShipFilterPress: function (oEvent) {
             var oButton = oEvent.getSource(),
                 oView = this.getView();
@@ -826,18 +1442,19 @@ sap.ui.define([
             this.byId("idBatchShipFilterPopover").close();
         },
 
-        onScanShipColSelectOkPress:function(){
-            var  oView = this.getView()
-            var  oScanTable = oView.byId("myScanColumnSelectId");
+        onScanShipColSelectOkPress: function () {
+            var oView = this.getView()
+            var oScanTable = oView.byId("myScanColumnSelectId");
             var ScanShipTableDataModel = oView.getModel("ScanShipTableDataModel");
-            var oScanTblItems = oScanTable.getItems();        
-            var aColumnsData = ScanShipTableDataModel.getProperty("/columns"); 
-            oScanTblItems.map(function(oTableItems){
-                aColumnsData.map(function(oColObj){
-                    if(oTableItems.getBindingContext("ScanShipTableDataModel").getObject().name === oColObj.name){
-                        if(oTableItems.getSelected()){``
+            var oScanTblItems = oScanTable.getItems();
+            var aColumnsData = ScanShipTableDataModel.getProperty("/columns");
+            oScanTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("ScanShipTableDataModel").getObject().name === oColObj.name) {
+                        if (oTableItems.getSelected()) {
+                            ``
                             oColObj.visible = true;
-                        }else{
+                        } else {
                             oColObj.visible = false;
                         }
                     }
@@ -845,206 +1462,208 @@ sap.ui.define([
                 })
             });
             ScanShipTableDataModel.updateBindings(true);
-            this._pScanPopover.then(function(oPopover) {
+            this._pScanPopover.then(function (oPopover) {
                 oPopover.close();
             });
         },
-        onScanShipColSelectClosePress:function(){
-            this._pScanPopover.then(function(oPopover) {
+        onScanShipColSelectClosePress: function () {
+            this._pScanPopover.then(function (oPopover) {
                 oPopover.close();
             });
         },
-        onColumnSearch:function(oEvent){
+        onColumnSearch: function (oEvent) {
             var aFilters = [];
-			var sQuery = oEvent.getSource().getValue();
-			if (sQuery && sQuery.length > 0) {
-				var filter = new Filter("label", FilterOperator.Contains, sQuery);
-				aFilters.push(filter);
-			}
-			// update list binding
-			var oList = oController.getView().byId("myScanColumnSelectId");
-			var oBinding = oList.getBinding("items");
-			oBinding.filter(aFilters, "Application");
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myScanColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
 
         },
-        onPressSettingsButton:function(oEvent){
+        onPressSettingsButton: function (oEvent) {
             var oButton = oEvent.getSource(),
-            oView = this.getView();
-                // create popover
-                if (!this._dashBoardAddPopover) {
-                    this._dashBoardAddPopover = Fragment.load({
-                        id: oView.getId(),
-                        name: "com.eshipjet.zeshipjet.view.fragments.DashboardAddIconPopover",
-                        controller: this
-                    }).then(function(oPopover) {
-                        oView.addDependent(oPopover);                    
-                        return oPopover;
-                    });
-                }
-                this._dashBoardAddPopover.then(function(oPopover) {
-                    oPopover.openBy(oButton);
+                oView = this.getView();
+            // create popover
+            if (!this._dashBoardAddPopover) {
+                this._dashBoardAddPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.DashboardAddIconPopover",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
                 });
-    
-          },
-          handlePopoverListItemPress:function(oEvent){
+            }
+            this._dashBoardAddPopover.then(function (oPopover) {
+                oPopover.openBy(oButton);
+            });
+
+        },
+        handlePopoverListItemPress: function (oEvent) {
             var oSrc = oEvent.getSource();
             var oView = oController.getView();
             var oCurrObj = oSrc.getBindingContext().getObject();
             var oToolPage = this.byId("toolPage");
             var oPageContainer = this.byId("pageContainer");
-                oToolPage.setSideExpanded(false);
-                this._dashBoardAddPopover.then(function(oPopover) {
-                    oPopover.close();
-                });
-                if(oCurrObj && oCurrObj.name === "Locations"){
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            oToolPage.setSideExpanded(false);
+            this._dashBoardAddPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+            if (oCurrObj && oCurrObj.name === "Locations") {
 
-                    oController._displayTables("_IDLocationTable", "LocationTableColumns", "LocationTableRows", "Locations");
-                    oPageContainer.to(oView.createId("_ID_Location_TableScrollContainer"));
+                oController._displayTables("_IDLocationTable", "LocationTableColumns", "LocationTableRows", "Locations");
+                oPageContainer.to(oView.createId("_ID_Location_TableScrollContainer"));
 
-                }else if(oCurrObj && oCurrObj.name === "Address Book"){
+            } else if (oCurrObj && oCurrObj.name === "Address Book") {
 
-                    oController._displayTables("_IDAddressBookTable", "AddressBookTableColumns", "AddressBookTableRows", "Address Book");
-                    oPageContainer.to(oView.createId("_ID_AddressBook_TableScrollContainer"));
+                oController._displayTables("_IDAddressBookTable", "AddressBookTableColumns", "AddressBookTableRows", "Address Book");
+                oPageContainer.to(oView.createId("_ID_AddressBook_TableScrollContainer"));
 
-                }else if(oCurrObj && oCurrObj.name === "Users"){
+            } else if (oCurrObj && oCurrObj.name === "Users") {
 
-                    oController._displayTables("_IDUsersTable", "UsersTableColumns", "UsersTableRows", "Users");
-                    oPageContainer.to(oView.createId("_ID_Users_TableScrollContainer"));
+                oController._displayTables("_IDUsersTable", "UsersTableColumns", "UsersTableRows", "Users");
+                oPageContainer.to(oView.createId("_ID_Users_TableScrollContainer"));
 
-                }else if(oCurrObj && oCurrObj.name === "Roles"){
+            } else if (oCurrObj && oCurrObj.name === "Roles") {
 
-                    oController._displayTables("_IDRolesTable", "RolesTableColumns", "RolesTableRows", "Roles");
-                    oPageContainer.to(oView.createId("_ID_Roles_TableScrollContainer"));
+                oController._displayTables("_IDRolesTable", "RolesTableColumns", "RolesTableRows", "Roles");
+                oPageContainer.to(oView.createId("_ID_Roles_TableScrollContainer"));
 
-                }else if(oCurrObj && oCurrObj.name === "Carrier Catalog"){
+            } else if (oCurrObj && oCurrObj.name === "Carrier Catalog") {
 
-                    oController._displayTables("_IDCarriesCatalogTable", "CarrierCatalogTableColumns", "CarrierCatalogTableRows", "Carrier Catalog");
-                    oPageContainer.to(oView.createId("_ID_CarrierCatalog_TableScrollContainer"));
+                oController._displayTables("_IDCarriesCatalogTable", "CarrierCatalogTableColumns", "CarrierCatalogTableRows", "Carrier Catalog");
+                oPageContainer.to(oView.createId("_ID_CarrierCatalog_TableScrollContainer"));
 
-                }else if(oCurrObj && oCurrObj.name === "Carrier Accounts"){
+            } else if (oCurrObj && oCurrObj.name === "Carrier Accounts") {
 
-                    oController._displayTables("_IDCarriesAccountsTable", "CarrierAccountsTableColumns", "CarrierAccountsTableRows", "Carrier Accounts");
-                    oPageContainer.to(oView.createId("_ID_CarrierAccounts_TableScrollContainer"));
+                oController._displayTables("_IDCarriesAccountsTable", "CarrierAccountsTableColumns", "CarrierAccountsTableRows", "Carrier Accounts");
+                oPageContainer.to(oView.createId("_ID_CarrierAccounts_TableScrollContainer"));
 
-                }else if(oCurrObj && oCurrObj.name === "Cost Centers"){
+            } else if (oCurrObj && oCurrObj.name === "Cost Centers") {
 
-                    oController._displayTables("_IDCostCenterTable", "CostCenterTableColumns", "CostCenterTableRows", "Cost Centers");
-                    oPageContainer.to(oView.createId("_ID_CostCenters_TableScrollContainer"));
+                oController._displayTables("_IDCostCenterTable", "CostCenterTableColumns", "CostCenterTableRows", "Cost Centers");
+                oPageContainer.to(oView.createId("_ID_CostCenters_TableScrollContainer"));
 
-                }else if(oCurrObj && oCurrObj.name === "Statuses"){
+            } else if (oCurrObj && oCurrObj.name === "Statuses") {
 
-                    oController._displayTables("_IDStatusesTable", "StatusesTableColumns", "StatusesTableRows", "Statuses");
-                    oPageContainer.to(oView.createId("_ID_Statuses_TableScrollContainer"));
+                oController._displayTables("_IDStatusesTable", "StatusesTableColumns", "StatusesTableRows", "Statuses");
+                oPageContainer.to(oView.createId("_ID_Statuses_TableScrollContainer"));
 
-                }else if(oCurrObj && oCurrObj.name === "Products"){
+            } else if (oCurrObj && oCurrObj.name === "Products") {
 
-                    oController._displayTables("_IDProductsTable", "ProductsTableColumns", "ProductsTableRows", "Products");
-                    oPageContainer.to(oView.createId("_ID_Products_TableScrollContainer"));
+                oController._displayTables("_IDProductsTable", "ProductsTableColumns", "ProductsTableRows", "Products");
+                oPageContainer.to(oView.createId("_ID_Products_TableScrollContainer"));
 
-                    
-                }else if(oCurrObj && oCurrObj.name === "Package Types"){
 
-                    oController._displayTables("_IDPackageTypesTable", "PackageTypeTableColumns", "PackageTypeTableRows", "Package Types");
-                    oPageContainer.to(oView.createId("_ID_PackageTypes_TableScrollContainer"));
+            } else if (oCurrObj && oCurrObj.name === "Package Types") {
 
-                }else if(oCurrObj && oCurrObj.name === "Third Party"){
+                oController._displayTables("_IDPackageTypesTable", "PackageTypeTableColumns", "PackageTypeTableRows", "Package Types");
+                oPageContainer.to(oView.createId("_ID_PackageTypes_TableScrollContainer"));
 
-                    oController._displayTables("_IDThirdPartyTable", "ThirdPartiesTableColumns", "ThirdPartiesTableRows", "Third Party");
-                    oPageContainer.to(oView.createId("_ID_ThirdParties_TableScrollContainer"));
+            } else if (oCurrObj && oCurrObj.name === "Third Party") {
 
-                }else if(oCurrObj && oCurrObj.name === "LTL Classes"){
+                oController._displayTables("_IDThirdPartyTable", "ThirdPartiesTableColumns", "ThirdPartiesTableRows", "Third Party");
+                oPageContainer.to(oView.createId("_ID_ThirdParties_TableScrollContainer"));
 
-                    oController._displayTables("_IDLTLClassTable", "LtlClassesTableColumns", "LtlClassesTableRows", "LTL Classes");
-                    oPageContainer.to(oView.createId("_ID_LTLClasses_TableScrollContainer"));
+            } else if (oCurrObj && oCurrObj.name === "LTL Classes") {
 
-                }else if(oCurrObj && oCurrObj.name === "NMFC"){
+                oController._displayTables("_IDLTLClassTable", "LtlClassesTableColumns", "LtlClassesTableRows", "LTL Classes");
+                oPageContainer.to(oView.createId("_ID_LTLClasses_TableScrollContainer"));
 
-                    oController._displayTables("_IDNMFCTable", "NmfcTableColumns", "NmfcTableRows", "NMFC");
-                    oPageContainer.to(oView.createId("_ID_NMFC_TableScrollContainer"));
+            } else if (oCurrObj && oCurrObj.name === "NMFC") {
 
-                }else if(oCurrObj && oCurrObj.name === "MOT"){
+                oController._displayTables("_IDNMFCTable", "NmfcTableColumns", "NmfcTableRows", "NMFC");
+                oPageContainer.to(oView.createId("_ID_NMFC_TableScrollContainer"));
 
-                    oController._displayTables("_IDModeOfTransportTable", "MotTableColumns", "MotTableRows", "MOT");
-                    oPageContainer.to(oView.createId("_ID_MOT_TableScrollContainer"));
+            } else if (oCurrObj && oCurrObj.name === "MOT") {
 
-                }else if(oCurrObj && oCurrObj.name === "Order Types"){
+                oController._displayTables("_IDModeOfTransportTable", "MotTableColumns", "MotTableRows", "MOT");
+                oPageContainer.to(oView.createId("_ID_MOT_TableScrollContainer"));
 
-                    oController._displayTables("_IDOrderTypeTable", "OrderTypesTableColumns", "OrderTypesTableRows", "Order Types");
-                    oPageContainer.to(oView.createId("_ID_OrderTypes_TableScrollContainer"));
+            } else if (oCurrObj && oCurrObj.name === "Order Types") {
 
-                }else if(oCurrObj && oCurrObj.name === "Incoterms"){
+                oController._displayTables("_IDOrderTypeTable", "OrderTypesTableColumns", "OrderTypesTableRows", "Order Types");
+                oPageContainer.to(oView.createId("_ID_OrderTypes_TableScrollContainer"));
 
-                    oController._displayTables("_ID_IncotermsTable", "IncoTermsTableColumns", "IncoTermsTableRows", "Incoterms");
-                    oPageContainer.to(oView.createId("_ID_Incoterms_TableScrollContainer"));
+            } else if (oCurrObj && oCurrObj.name === "Incoterms") {
 
-                }else if(oCurrObj && oCurrObj.name === "Dimensions"){
+                oController._displayTables("_ID_IncotermsTable", "IncoTermsTableColumns", "IncoTermsTableRows", "Incoterms");
+                oPageContainer.to(oView.createId("_ID_Incoterms_TableScrollContainer"));
 
-                    oController._displayTables("_ID_DimensionTable", "DiemnsionsTableColumns", "DiemnsionsTableRows", "Dimensions");
-                    oPageContainer.to(oView.createId("_ID_Dimensions_TableScrollContainer"));
+            } else if (oCurrObj && oCurrObj.name === "Dimensions") {
 
-                }else if(oCurrObj && oCurrObj.name === "Payment Types"){
+                oController._displayTables("_ID_DimensionTable", "DiemnsionsTableColumns", "DiemnsionsTableRows", "Dimensions");
+                oPageContainer.to(oView.createId("_ID_Dimensions_TableScrollContainer"));
 
-                    oController._displayTables("_ID_PaymentTypeTable", "PaymentTypesTableColumns", "PaymentTypesTableRows", "Payment Types");
-                    oPageContainer.to(oView.createId("_ID_PaymentTypes_TableScrollContainer"));
+            } else if (oCurrObj && oCurrObj.name === "Payment Types") {
 
-                }else if(oCurrObj && oCurrObj.name === "SMTP Configuration"){
+                oController._displayTables("_ID_PaymentTypeTable", "PaymentTypesTableColumns", "PaymentTypesTableRows", "Payment Types");
+                oPageContainer.to(oView.createId("_ID_PaymentTypes_TableScrollContainer"));
 
-                    oController._displayTables("_ID_SMTPConfigTable", "SMTPConfigsTableColumns", "SMTPConfigsTableRows", "SMTP Configuration");
-                    oPageContainer.to(oView.createId("_ID_SMTPConfig_TableScrollContainer"));
+            } else if (oCurrObj && oCurrObj.name === "SMTP Configuration") {
 
-                }else if(oCurrObj && oCurrObj.name === "ERP Configuration"){
+                oController._displayTables("_ID_SMTPConfigTable", "SMTPConfigsTableColumns", "SMTPConfigsTableRows", "SMTP Configuration");
+                oPageContainer.to(oView.createId("_ID_SMTPConfig_TableScrollContainer"));
 
-                    oController._displayTables("_ID_ERPTable", "ERPTableColumns", "ERPTableRows", "ERP Configuration");
-                    oPageContainer.to(oView.createId("_ID_ERP_TableScrollContainer"));
+            } else if (oCurrObj && oCurrObj.name === "ERP Configuration") {
 
-                }else if(oCurrObj && oCurrObj.name === "Countries"){
+                oController._displayTables("_ID_ERPTable", "ERPTableColumns", "ERPTableRows", "ERP Configuration");
+                oPageContainer.to(oView.createId("_ID_ERP_TableScrollContainer"));
 
-                    oController._displayTables("_ID_CountriesTable", "CountriesTableColumns", "CountriesTableRows", "Countries");
-                    oPageContainer.to(oView.createId("_ID_Countries_TableScrollContainer"));
+            } else if (oCurrObj && oCurrObj.name === "Countries") {
 
-                }else if(oCurrObj && oCurrObj.name === "EU Countries"){
+                oController._displayTables("_ID_CountriesTable", "CountriesTableColumns", "CountriesTableRows", "Countries");
+                oPageContainer.to(oView.createId("_ID_Countries_TableScrollContainer"));
 
-                    oController._displayTables("_ID_EUCountriesTable", "EUCountriesTableColumns", "EUCountriesTableRows", "EU Countries");
-                    oPageContainer.to(oView.createId("_ID_EUCountries_TableScrollContainer"));
+            } else if (oCurrObj && oCurrObj.name === "EU Countries") {
 
-                }    
-          },
-          _displayTables:function(oTableId, aColumns, aRows, selectedItem){
-            var oView = oController.getView(), columnName , columnLabel;
+                oController._displayTables("_ID_EUCountriesTable", "EUCountriesTableColumns", "EUCountriesTableRows", "EU Countries");
+                oPageContainer.to(oView.createId("_ID_EUCountries_TableScrollContainer"));
+
+            }
+            eshipjetModel.setProperty("/SideNavigation", false);
+        },
+        _displayTables: function (oTableId, aColumns, aRows, selectedItem) {
+            var oView = oController.getView(), columnName, columnLabel;
             const oTable = oView.byId(oTableId);
             var oModel = oView.getModel();
-            if(oTable){
+            if (oTable) {
                 oTable.setModel(oModel);
-                oTable.bindColumns("/"+aColumns, function(sId, oContext) {
-                    columnName = oContext.getObject().key; 
-                    columnLabel =  oContext.getObject().label;
-                              
-                    if(columnName === "actions"){
+                oTable.bindColumns("/" + aColumns, function (sId, oContext) {
+                    columnName = oContext.getObject().key;
+                    columnLabel = oContext.getObject().label;
+
+                    if (columnName === "actions") {
                         var oHBox = new sap.m.HBox({}); // Create Text instance 
-                        var Link1 = new sap.m.Link({ text: "View"});
-                        var Link2 = new sap.m.Link({ endIcon:"sap-icon://navigation-down-arrow"});                               
-                        oHBox.addItem(Link1);          
-                        oHBox.addItem(Link2);                 
+                        var Link1 = new sap.m.Link({ text: "View" });
+                        var Link2 = new sap.m.Link({ endIcon: "sap-icon://navigation-down-arrow" });
+                        oHBox.addItem(Link1);
+                        oHBox.addItem(Link2);
                         return new sap.ui.table.Column({
                             label: columnLabel,
                             template: oHBox,
-                            visible:oContext.getObject().visible,
-                            width:"8rem",
-                            sortProperty:columnName
+                            visible: oContext.getObject().visible,
+                            width: "8rem",
+                            sortProperty: columnName
                         });
-                    }else{      
+                    } else {
                         return new sap.ui.table.Column({
                             label: columnLabel,
                             template: columnName,
-                            visible:oContext.getObject().visible,
-                            width:"8rem",
-                            sortProperty:columnName
+                            visible: oContext.getObject().visible,
+                            width: "8rem",
+                            sortProperty: columnName
                         });
                     }
-                });           
-                oTable.bindRows("/"+aRows);  
+                });
+                oTable.bindRows("/" + aRows);
             }
-          }
+        }
 
     });
 });

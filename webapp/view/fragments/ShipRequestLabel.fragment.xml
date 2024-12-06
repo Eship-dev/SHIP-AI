@@ -31,7 +31,7 @@
 			</HBox>
 		</Toolbar>
 
-        <ui:Table id="idShipRequestTable"
+        <ui:Table id="idShipReqsTable"
                 class="sapUiTinyMarginTop"
 				rows="{eshipjetModel>/Orderitems}"
 				selectionMode="None"
@@ -41,7 +41,7 @@
 							<Button icon="sap-icon://filter" press="onOrdersFilterPopoverPress"></Button>
 							<ToolbarSpacer ></ToolbarSpacer>
 							<Button icon="sap-icon://action" press="onOrdersExportToExcel"></Button>
-                            <Button icon="sap-icon://action-settings" press="openOrdersColNamesPopover" >
+                            <Button icon="sap-icon://action-settings" press="openShipReqColNamesPopover" >
                                 <customData>
                                     <core:CustomData key="remember" value="true" />
                                     <core:CustomData key="showClearButton" value="true" />

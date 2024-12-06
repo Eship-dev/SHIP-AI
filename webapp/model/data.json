@@ -251,6 +251,631 @@
 		"rows": [],
 		"ScanShipTableLength":""
 	},
+
+	"OrderTableData":{
+		"OrderColumns": [
+			{
+				"name": "orderID",
+				"label": "Order ID",
+				"visible": true
+			},
+			{
+				"name": "CreatedDate",
+				"label": "Created Date",
+				"visible": true
+			},
+			{
+				"name": "ShipDate",
+				"label": "Ship Date",
+				"visible": true
+			},
+			{
+				"name": "ShipmentType",
+				"label": "Shipment Type",
+				"visible": false
+			},
+			{
+				"name": "shipMethod",
+				"label": "Shipment Method",
+				"visible": true
+			},
+			{
+				"name": "ServiceName",
+				"label": "Service Name",
+				"visible": true
+			},
+			{
+				"name": "TrackingNumber",
+				"label": "Tracking Number",
+				"visible": true
+			},
+			{
+				"name": "status",
+				"label": "Status",
+				"visible": true
+			},
+			{
+				"name": "ShipToContact",
+				"label": "Ship To Contact",
+				"visible": true
+			},
+			{
+				"name": "ShipToCompany",
+				"label": "Ship To Company",
+				"visible": true
+			},
+			{
+				"name": "ShipToAddressLine1",
+				"label": "Ship To AddressLine1",
+				"visible": false
+			},
+			{
+				"name": "shipToCity",
+				"label": "Ship To City",
+				"visible": false
+			},
+			{
+				"name": "shipToState",
+				"label": "Ship To State",
+				"visible": false
+			},
+			{
+				"name": "shipToCountry",
+				"label": "Ship To Country",
+				"visible": false
+			},
+			{
+				"name": "shipToZipcode",
+				"label": "Ship To Zipcode",
+				"visible": false
+			},
+			{
+				"name": "shipToPhone",
+				"label": "Ship To Phone",
+				"visible": false
+			},
+			{
+				"name": "shipToEmail",
+				"label": "Ship To Email",
+				"visible": false
+			},
+			{
+				"name": "requesterName",
+				"label": "Requestor Name",
+				"visible": false
+			},
+			{
+				"name": "connectedTo",
+				"label": "Connected To",
+				"visible": false
+			},
+			{
+				"name": "orderType",
+				"label": "Order Type",
+				"visible": false
+			},
+			{
+				"name": "priorityLevel",
+				"label": "Priority Level",
+				"visible": false
+			},
+			{
+				"name": "actions",
+				"label": "Actions",
+				"visible": true
+			}
+		],
+		"orderRows": []
+	},
+
+    "ShipReqTableData":{
+		"ShipReqColumns": [
+			{
+				"name": "locationName",
+				"label": "Location Name",
+				"visible": false
+			},
+			{
+				"name": "consolidationID",
+				"label": "Consolidation ID",
+				"visible": false
+			},
+			{
+				"name": "requestIdLabelId",
+				"label": "Request ID / Label ID",
+				"visible": true
+			},
+			{
+				"name": "CreatedDate",
+				"label": "Created Date",
+				"visible": true
+			},
+			{
+				"name": "ShipDate",
+				"label": "Ship Date",
+				"visible": true
+			},
+			{
+				"name": "ShipmentType",
+				"label": "Shipment Type",
+				"visible": false
+			},
+
+            {
+				"name": "shipMethod",
+				"label": "Ship Method",
+				"visible": true
+			},
+            {
+				"name": "ServiceName",
+				"label": "Service Name",
+				"visible": true
+			},
+			{
+				"name": "TrackingNumber",
+				"label": "Tracking Number",
+				"visible": true
+			},
+			{
+				"name": "status",
+				"label": "Status",
+				"visible": true
+			},
+			{
+				"name": "ShipToContact",
+				"label": "Ship To Contact",
+				"visible": true
+			},
+			{
+				"name": "ShipToCompany",
+				"label": "Ship To Company",
+				"visible": true
+			},
+			{
+				"name": "ShipToAddressLine1",
+				"label": "Ship To AddressLine1",
+				"visible": false
+			},
+            {
+				"name": "shipToStateProvince",
+				"label": "Ship To State / Province",
+				"visible": false
+			},
+			{
+				"name": "shipToCity",
+				"label": "Ship To City",
+				"visible": true
+			},
+			{
+				"name": "shipToZipPostalCode",
+				"label": "Ship To Zip / Postal Code",
+				"visible": false
+			},
+			{
+				"name": "shipToCountry",
+				"label": "Ship To Country",
+				"visible": false
+			},
+			{
+				"name": "shipToPhone",
+				"label": "Ship To Phone",
+				"visible": false
+			},
+			{
+				"name": "shipToEmail",
+				"label": "Ship To Email",
+				"visible": false
+			},
+			{
+				"name": "requesterName",
+				"label": "Requestor Name",
+				"visible": false
+			},
+			{
+				"name": "connectedTo",
+				"label": "Connected To",
+				"visible": false
+			},
+			{
+				"name": "orderType",
+				"label": "Order Type",
+				"visible": false
+			},
+			{
+				"name": "RFID",
+				"label": "RFID",
+				"visible": false
+			},
+			{
+				"name": "actions",
+				"label": "Actions",
+				"visible": true
+			}
+		],
+		"ShipReqRows": []
+	},
+
+    "TrackNowTableData":{
+		"TrackNowColumns": [
+			{
+				"name": "locationName",
+				"label": "Location Name",
+				"visible": true
+			},
+			{
+				"name": "requestIdLabelId",
+				"label": "Request ID / Label ID",
+				"visible": true
+			},
+			{
+				"name": "CreatedDate",
+				"label": "Created Date",
+				"visible": true
+			},
+			{
+				"name": "ShipDate",
+				"label": "Ship Date",
+				"visible": true
+			},
+            {
+				"name": "shipMethod",
+				"label": "Ship Method",
+				"visible": true
+			},
+            {
+				"name": "ServiceName",
+				"label": "Service Name",
+				"visible": true
+			},
+            {
+				"name": "status",
+				"label": "Status",
+				"visible": true
+			},
+			{
+				"name": "TrackingNumber",
+				"label": "Tracking Number",
+				"visible": true
+			},
+			{
+				"name": "ShipToContact",
+				"label": "Ship To Contact",
+				"visible": false
+			},
+			{
+				"name": "ShipToCompany",
+				"label": "Ship To Company",
+				"visible": false
+			},
+            {
+				"name": "connectedTo",
+				"label": "Connected To",
+				"visible": false
+			},
+			{
+				"name": "orderType",
+				"label": "Order Type",
+				"visible": false
+			},
+			{
+				"name": "ShipToAddressLine1",
+				"label": "Ship To AddressLine1",
+				"visible": false
+			},
+			{
+				"name": "shipToCity",
+				"label": "Ship To City",
+				"visible": false
+			},
+            {
+				"name": "shipToStateProvince",
+				"label": "Ship To State / Province",
+				"visible": false
+			},
+			{
+				"name": "shipToCountry",
+				"label": "Ship To Country",
+				"visible": false
+			},
+			{
+				"name": "shipToZipPostalCode",
+				"label": "Ship To Zip / Postal Code",
+				"visible": false
+			},
+			{
+				"name": "shipToPhone",
+				"label": "Ship To Phone",
+				"visible": false
+			},
+			{
+				"name": "shipToEmail",
+				"label": "Ship To Email",
+				"visible": false
+			},
+			{
+				"name": "requesterName",
+				"label": "Requestor Name",
+				"visible": false
+			},
+			{
+				"name": "ShipmentType",
+				"label": "Shipment Type",
+				"visible": true
+			},
+            {
+				"name": "priorityLevel",
+				"label": "Priority Level",
+				"visible": true
+			},
+			{
+				"name": "actions",
+				"label": "Actions",
+				"visible": true
+			}
+		],
+		"TrackNowRows": []
+	},
+
+    "ManifestTableData":{
+		"ManifestColumns": [
+			{
+				"name": "requestIdLabelId",
+				"label": "Request ID / Label ID",
+				"visible": true
+			},
+			{
+				"name": "CreatedDate",
+				"label": "Created Date",
+				"visible": true
+			},
+			{
+				"name": "ShipDate",
+				"label": "Ship Date",
+				"visible": true
+			},
+			{
+				"name": "ShipmentType",
+				"label": "Shipment Type",
+				"visible": true
+			},
+
+            {
+				"name": "shipMethod",
+				"label": "Ship Method",
+				"visible": true
+			},
+            {
+				"name": "ServiceName",
+				"label": "Service Name",
+				"visible": true
+			},
+			{
+				"name": "TrackingNumber",
+				"label": "Tracking Number",
+				"visible": true
+			},
+			{
+				"name": "status",
+				"label": "Status",
+				"visible": true
+			},
+			{
+				"name": "ShipToContact",
+				"label": "Ship To Contact",
+				"visible": false
+			},
+			{
+				"name": "ShipToCompany",
+				"label": "Ship To Company",
+				"visible": false
+			},
+			{
+				"name": "ShipToAddressLine1",
+				"label": "Ship To AddressLine1",
+				"visible": false
+			},
+			{
+				"name": "shipToCity",
+				"label": "Ship To City",
+				"visible": false
+			},
+            {
+				"name": "shipToState",
+				"label": "Ship To State",
+				"visible": false
+			},
+			{
+				"name": "shipToCountry",
+				"label": "Ship To Country",
+				"visible": false
+			},
+            {
+				"name": "shipToZipcode",
+				"label": "Ship To Zipcode",
+				"visible": false
+			},
+			{
+				"name": "shipToPhone",
+				"label": "Ship To Phone",
+				"visible": false
+			},
+			{
+				"name": "shipToEmail",
+				"label": "Ship To Email",
+				"visible": false
+			},
+			{
+				"name": "requesterName",
+				"label": "Requestor Name",
+				"visible": false
+			},
+			{
+				"name": "connectedTo",
+				"label": "Connected To",
+				"visible": false
+			},
+			{
+				"name": "orderType",
+				"label": "Order Type",
+				"visible": false
+			},
+			{
+				"name": "priorityLevel",
+				"label": "Priority Level",
+				"visible": true
+			},
+			{
+				"name": "actions",
+				"label": "Actions",
+				"visible": true
+			}
+		],
+		"ManifestRows": []
+	},
+
+    "BatchShipTableData":{
+		"BatchShipColumns": [
+			{
+				"name": "batchId",
+				"label": "Batch ID",
+				"visible": true
+			},
+			{
+				"name": "batchDescription",
+				"label": "Batch Description",
+				"visible": true
+			},
+			{
+				"name": "BatchRequestId",
+				"label": "Batch-Request ID",
+				"visible": true
+			},
+			{
+				"name": "CreatedDate",
+				"label": "Created Date",
+				"visible": true
+			},
+			{
+				"name": "ShipDate",
+				"label": "Ship Date",
+				"visible": true
+			},
+			{
+				"name": "ShipmentType",
+				"label": "Shipment Type",
+				"visible": true
+			},
+
+            {
+				"name": "shipMethod",
+				"label": "Ship Method",
+				"visible": true
+			},
+            {
+				"name": "ServiceName",
+				"label": "Service Name",
+				"visible": true
+			},
+			{
+				"name": "TrackingNumber",
+				"label": "Tracking Number",
+				"visible": true
+			},
+			{
+				"name": "status",
+				"label": "Status",
+				"visible": true
+			},
+			{
+				"name": "ShipToContact",
+				"label": "Ship To Contact",
+				"visible": false
+			},
+			{
+				"name": "ShipToCompany",
+				"label": "Ship To Company",
+				"visible": false
+			},
+			{
+				"name": "ShipToAddressLine1",
+				"label": "Ship To AddressLine1",
+				"visible": false
+			},
+			{
+				"name": "shipToCity",
+				"label": "Ship To City",
+				"visible": false
+			},
+            {
+				"name": "shipToState",
+				"label": "Ship To State",
+				"visible": false
+			},
+            {
+				"name": "shipToCountry",
+				"label": "Ship To Country",
+				"visible": false
+			},
+			{
+				"name": "shipToZipcode",
+				"label": "Ship To Zipcode",
+				"visible": false
+			},
+			{
+				"name": "shipToPhone",
+				"label": "Ship To Phone",
+				"visible": false
+			},
+			{
+				"name": "shipToEmail",
+				"label": "Ship To Email",
+				"visible": false
+			},
+			{
+				"name": "requesterName",
+				"label": "Requestor Name",
+				"visible": false
+			},
+			{
+				"name": "connectedTo",
+				"label": "Connected To",
+				"visible": false
+			},
+			{
+				"name": "orderType",
+				"label": "Order Type",
+				"visible": false
+			},
+			{
+				"name": "priorityLevel",
+				"label": "Priority Level",
+				"visible": true
+			},
+
+            {
+				"name": "RFID",
+				"label": "RFID",
+				"visible": true
+			},
+            {
+				"name": "Updated",
+				"label": "Updated",
+				"visible": true
+			},
+            {
+				"name": "Notes",
+				"label": "Notes",
+				"visible": true
+			},
+			{
+				"name": "actions",
+				"label": "Actions",
+				"visible": true
+			}
+		],
+		"BatchShipRows": []
+	},
+
 	"AddIconListSet1": [
         {
             "name": "Locations"

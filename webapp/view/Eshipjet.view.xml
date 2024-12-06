@@ -124,7 +124,7 @@
 									<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 								</ComboBox>
 								<SearchField width="10rem" class="sapUiSmallMargin" id="idShipNowSearch" />
-								<Button text="Get" type="Ghost" press="onShipNowGrtPress" ></Button>
+								<Button text="Get" type="Ghost" press="onShipNowGetPress" ></Button>
 								<Button text="Consolidation" type="Ghost" press="handleConsolidationPress"></Button>
 								<Label text="Pickup Date" labelFor="DP1"/>
 								<DatePicker id="DP1" width="13rem" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" placeholder="Enter Date" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
