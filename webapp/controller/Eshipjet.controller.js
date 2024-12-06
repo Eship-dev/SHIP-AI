@@ -15,8 +15,6 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator"
 ], function (Device, Controller, JSONModel, Popover, Button, library, MessageToast, BusyIndicator, Dialog, DateFormat, Fragment, Spreadsheet, formatter, Filter, FilterOperator) {
-    "sap/ui/model/FilterOperator"
-], function (Device, Controller, JSONModel, Popover, Button, library, MessageToast, BusyIndicator, Dialog, DateFormat, Fragment, Spreadsheet, formatter, Filter, FilterOperator) {
     "use strict";
 
     var ButtonType = library.ButtonType,
@@ -1453,9 +1451,6 @@ sap.ui.define([
         onScanShipColSelectOkPress: function () {
             var oView = this.getView()
             var oScanTable = oView.byId("myScanColumnSelectId");
-        onScanShipColSelectOkPress: function () {
-            var oView = this.getView()
-            var oScanTable = oView.byId("myScanColumnSelectId");
             var ScanShipTableDataModel = oView.getModel("ScanShipTableDataModel");
             var oScanTblItems = oScanTable.getItems();
             var aColumnsData = ScanShipTableDataModel.getProperty("/columns");
@@ -1642,13 +1637,7 @@ sap.ui.define([
             const oTable = oView.byId(oTableId);
             var oModel = oView.getModel();
             if (oTable) {
-            if (oTable) {
-                oTable.setModel(oModel);
-                oTable.bindColumns("/" + aColumns, function (sId, oContext) {
-                    columnName = oContext.getObject().key;
-                    columnLabel = oContext.getObject().label;
-
-                    if (columnName === "actions") {
+                oTable.setModel(oModel);    
                 oTable.bindColumns("/" + aColumns, function (sId, oContext) {
                     columnName = oContext.getObject().key;
                     columnLabel = oContext.getObject().label;
