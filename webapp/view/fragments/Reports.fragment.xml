@@ -1,0 +1,262 @@
+<core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core"   xmlns:viz="sap.viz.ui5.controls" xmlns:layout="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data" height="100%">
+
+            <Toolbar
+                height="3rem"
+                
+            >
+                <HBox
+                    width="100%"
+                    justifyContent="Start"
+                    alignItems="Center"
+                >
+                    <!-- Location Name and Dropdown -->
+                        <Label
+                            text="Location Name"
+                            width="auto"
+                            class="sapPaddingTopBottom sapUiSmallMarginEnd"
+                        />
+                        <ComboBox
+                            width="15rem"
+                            class="sapUiSmallMarginEnd"
+                        >
+                            <core:Item
+                                key="{key}"
+                                text="{text}"
+                            />
+                        </ComboBox>
+
+                        <!-- From Date and Input -->
+                        <Label
+                            text="From Date"
+                            width="auto"
+                            class="sapPaddingTopBottom sapUiSmallMarginEnd"
+                        />
+                        <DatePicker
+                            id="RP"
+                            valueFormat="MM/dd/yyyy"
+                            displayFormat="MM/dd/yyyy"
+                            placeholder="Select Date"
+                            change="handleChange"
+                            class="sapUiSmallMarginEnd"
+                        />
+                         <!-- To Date and Input -->
+                        <Label
+                            text="To Date"
+                            width="auto"
+                            class=" sapUiSmallMarginBegin"
+                        />
+                        <DatePicker
+                            id="RP1"
+                            valueFormat="MM/dd/yyyy"
+                            displayFormat="MM/dd/yyyy"
+                            placeholder="Select Date"
+                            change="handleChange"
+                            class="sapUiSmallMarginBegin"
+                        />
+                    <!-- Apply Button -->
+                    <Button
+                        text="Apply"
+                        class="sapUiLargeMarginBegin"
+                    />
+                </HBox>
+            </Toolbar>
+
+        <!-- Chart: Code Area -->
+ 
+      <layout:Grid
+    id="chartGrid"
+    defaultSpan="L3 M6 S12"
+    hSpacing="1"
+    vSpacing="1"
+    width="100%"
+    class="sapUiSmallMargin">
+
+    <!-- Chart FixFlex 1 -->
+    <layout:FixFlex id='chartFixFlex' minFlexSize="275">
+        <layout:flexContent>
+            <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
+                height='100%' width="100%" vizType='pie'
+                vizProperties="{ title: {text : 'By Shipment Volume', visible : true}, plotArea: {
+                        dataLabel: {
+                            visible: true
+                        }
+                    }}">
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{eshipjetModel>/CarrierData}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="TotalPackages"
+                                value="{eshipjetModel>Carrier}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Carrier"
+                                value="{eshipjetModel>TotalPackages}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+                <viz:feeds>
+                    <viz.feeds:FeedItem uid="size" type="Measure" values="Carrier" />
+                    <viz.feeds:FeedItem uid="color" type="Dimension" values="TotalPackages" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover id="idPopOver"></viz:Popover>
+                </viz:dependents>
+            </viz:VizFrame>
+        </layout:flexContent>
+    </layout:FixFlex>
+
+    <!-- Chart FixFlex 2 -->
+    <layout:FixFlex id='chartFixFlex1' minFlexSize="275">
+        <layout:flexContent>
+            <viz:VizFrame id="idVizFrame1" uiConfig="{applicationSet:'fiori'}"
+                height='100%' width="100%" vizType='pie'
+                vizProperties="{ title: {text : 'By Shipment Weight', visible : true}, plotArea: {
+                        dataLabel: {
+                            visible: true
+                        }
+                    }}">
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{eshipjetModel>/WeightData}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="TotalWeight"
+                                value="{eshipjetModel>Carrier}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Carrier"
+                                value="{eshipjetModel>TotalWeight}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+                <viz:feeds>
+                    <viz.feeds:FeedItem uid="size" type="Measure" values="Carrier" />
+                    <viz.feeds:FeedItem uid="color" type="Dimension" values="TotalWeight" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover id="idPopOver1"></viz:Popover>
+                </viz:dependents>
+            </viz:VizFrame>
+        </layout:flexContent>
+    </layout:FixFlex>
+
+    <!-- Chart FixFlex 3 -->
+
+    <layout:FixFlex id='chartFixFlex2' minFlexSize="275">
+        <layout:flexContent>
+            <viz:VizFrame id="idVizFrame2" uiConfig="{applicationSet:'fiori'}"
+                height='100%' width="100%" vizType='vertical_bullet'
+                vizProperties="{ title: {text : 'Shipments and Total Freight Cost', visible : true}, plotArea: {
+                        dataLabel: {
+                            visible: true
+                        }
+                    }}">
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{eshipjetModel>/FreightCostData}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="TotalFreightCost"
+                                value="{eshipjetModel>Carrier}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Carrier"
+                                value="{eshipjetModel>TotalFreightCost}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+                <viz:feeds>
+                    <viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure"
+                        values="Carrier" />
+                    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension"
+                        values="TotalFreightCost" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover id="idPopOver2"></viz:Popover>
+                </viz:dependents>
+            </viz:VizFrame>
+        </layout:flexContent>
+    </layout:FixFlex>
+
+    <!-- Chart FixFlex 4 -->
+    <layout:FixFlex id='chartFixFlex3' minFlexSize="275" >
+        <layout:flexContent>
+            <viz:VizFrame id="idVizFrame3" uiConfig="{applicationSet:'fiori'}"
+                height='100%' width="100%" vizType='pie'
+                vizProperties="{ title: {text : 'Shipment Volume By Country', visible : true}, plotArea: {
+                        dataLabel: {
+                            visible: true
+                        }
+                    }}">
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{eshipjetModel>/FreightCostData}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="TotalFreightCost"
+                                value="{eshipjetModel>Carrier}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Carrier"
+                                value="{eshipjetModel>TotalFreightCost}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+                <viz:feeds>
+                    <viz.feeds:FeedItem uid="size" type="Measure" values="Carrier" />
+                    <viz.feeds:FeedItem uid="color" type="Dimension" values="TotalFreightCost" />
+                </viz:feeds>
+                <viz:dependents>
+                    <viz:Popover id="idPopOver3"></viz:Popover>
+                </viz:dependents>
+            </viz:VizFrame>
+        </layout:flexContent>
+    </layout:FixFlex>
+
+</layout:Grid>
+            <Table
+                id="shipmentTable"
+                inset="false"  
+                growing="true"
+                growingThreshold="10"
+                items="{
+                path: 'eshipjetModel>/freightData' }">
+
+                <columns>
+                    <Column>
+                        <Label text="Location" />
+                    </Column>
+                    <Column>
+                        <Label text="Location Name" />
+                    </Column>
+                    <Column>
+                        <Label text="Carrier" />
+                    </Column>
+                    <Column>
+                        <Label text="Total Weight (LBS)" />
+                    </Column>
+                    <Column>
+                        <Label text="Total Packages" />
+                    </Column>
+                    <Column>
+                        <Label text="Total Freight Cost" />
+                    </Column>
+                    <Column>
+                        <Label text="Discounted Freight" />
+                    </Column>
+                    <Column>
+                        <Label text="Average Freight Cost" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{eshipjetModel>Location}" />
+                            <Text text="{eshipjetModel>LocationName}" />
+                            <Text text="{eshipjetModel>Carrier}" />
+                            <Text text="{eshipjetModel>TotalWeightLBS}" />
+                            <Text text="{eshipjetModel>TotalPackages}" />
+                            <Text text="{eshipjetModel>TotalFreightCost}" />
+                            <Text text="{eshipjetModel>DiscountedFreight}" />
+                            <Text text="{eshipjetModel>AverageFreightCost}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+</core:FragmentDefinition>

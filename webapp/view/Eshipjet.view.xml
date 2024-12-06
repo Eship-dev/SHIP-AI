@@ -775,6 +775,12 @@
 		<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.BatchShip" type="XML" />
 	</ScrollContainer>
 
+<!-- Batch Reports Starts here -->
+
+	<ScrollContainer	id="Reports"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+		<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Reports" type="XML" />
+	</ScrollContainer>
+
 <!-- Settings Button Icon Functionality changes starts here -->
 
 					<ScrollContainer	id="_ID_Location_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">

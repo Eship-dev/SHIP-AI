@@ -15,6 +15,8 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator"
 ], function (Device, Controller, JSONModel, Popover, Button, library, MessageToast, BusyIndicator, Dialog, DateFormat, Fragment, Spreadsheet, formatter, Filter, FilterOperator) {
+    "sap/ui/model/FilterOperator"
+], function (Device, Controller, JSONModel, Popover, Button, library, MessageToast, BusyIndicator, Dialog, DateFormat, Fragment, Spreadsheet, formatter, Filter, FilterOperator) {
     "use strict";
 
     var ButtonType = library.ButtonType,
@@ -116,6 +118,10 @@ sap.ui.define([
             } else if (sKey === "AESDirect") {
 
             } else if (sKey === "Dashboard") {
+
+            } else if (sKey === "Reports") {
+
+            } else if (sKey === "Reports") {
 
             } else if (sKey === "BatchShip") {
                 this._handleDisplayBatchShipTable();
@@ -387,6 +393,7 @@ sap.ui.define([
                         sortProperty: columnName
                     });
                 } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
+                } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
                     var DateTxt = new sap.m.Text({
                         text: {
                             path: 'ScanShipTableDataModel>ShipDate',
@@ -621,6 +628,7 @@ sap.ui.define([
 
         handleDownArrowPress: function (oEvent) {
             var aPath = oEvent.getSource().getBindingContext().sPath.split("/");
+            var idx = parseInt(aPath[aPath.length - 1]);
             var idx = parseInt(aPath[aPath.length - 1]);
             var eshipjetModel = this.getView().getModel("eshipjetModel");
             var scanShipTableData = eshipjetModel.getData().scanShipTableData;
@@ -1445,6 +1453,9 @@ sap.ui.define([
         onScanShipColSelectOkPress: function () {
             var oView = this.getView()
             var oScanTable = oView.byId("myScanColumnSelectId");
+        onScanShipColSelectOkPress: function () {
+            var oView = this.getView()
+            var oScanTable = oView.byId("myScanColumnSelectId");
             var ScanShipTableDataModel = oView.getModel("ScanShipTableDataModel");
             var oScanTblItems = oScanTable.getItems();
             var aColumnsData = ScanShipTableDataModel.getProperty("/columns");
@@ -1509,12 +1520,11 @@ sap.ui.define([
             var oCurrObj = oSrc.getBindingContext().getObject();
             var oToolPage = this.byId("toolPage");
             var oPageContainer = this.byId("pageContainer");
-            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
-            oToolPage.setSideExpanded(false);
-            this._dashBoardAddPopover.then(function (oPopover) {
-                oPopover.close();
-            });
-            if (oCurrObj && oCurrObj.name === "Locations") {
+                oToolPage.setSideExpanded(false);
+                this._dashBoardAddPopover.then(function(oPopover) {
+                    oPopover.close();
+                });
+                if(oCurrObj && oCurrObj.name === "Locations"){
 
                 oController._displayTables("_IDLocationTable", "LocationTableColumns", "LocationTableRows", "Locations");
                 oPageContainer.to(oView.createId("_ID_Location_TableScrollContainer"));
@@ -1615,7 +1625,7 @@ sap.ui.define([
                 oController._displayTables("_ID_ERPTable", "ERPTableColumns", "ERPTableRows", "ERP Configuration");
                 oPageContainer.to(oView.createId("_ID_ERP_TableScrollContainer"));
 
-            } else if (oCurrObj && oCurrObj.name === "Countries") {
+                }else if(oCurrObj && oCurrObj.name === "Countries"){
 
                 oController._displayTables("_ID_CountriesTable", "CountriesTableColumns", "CountriesTableRows", "Countries");
                 oPageContainer.to(oView.createId("_ID_Countries_TableScrollContainer"));
@@ -1626,12 +1636,12 @@ sap.ui.define([
                 oPageContainer.to(oView.createId("_ID_EUCountries_TableScrollContainer"));
 
             }
-            eshipjetModel.setProperty("/SideNavigation", false);
         },
         _displayTables: function (oTableId, aColumns, aRows, selectedItem) {
             var oView = oController.getView(), columnName, columnLabel;
             const oTable = oView.byId(oTableId);
             var oModel = oView.getModel();
+            if (oTable) {
             if (oTable) {
                 oTable.setModel(oModel);
                 oTable.bindColumns("/" + aColumns, function (sId, oContext) {
@@ -1639,7 +1649,16 @@ sap.ui.define([
                     columnLabel = oContext.getObject().label;
 
                     if (columnName === "actions") {
+                oTable.bindColumns("/" + aColumns, function (sId, oContext) {
+                    columnName = oContext.getObject().key;
+                    columnLabel = oContext.getObject().label;
+
+                    if (columnName === "actions") {
                         var oHBox = new sap.m.HBox({}); // Create Text instance 
+                        var Link1 = new sap.m.Link({ text: "View" });
+                        var Link2 = new sap.m.Link({ endIcon: "sap-icon://navigation-down-arrow" });
+                        oHBox.addItem(Link1);
+                        oHBox.addItem(Link2);
                         var Link1 = new sap.m.Link({ text: "View" });
                         var Link2 = new sap.m.Link({ endIcon: "sap-icon://navigation-down-arrow" });
                         oHBox.addItem(Link1);

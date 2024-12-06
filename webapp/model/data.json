@@ -1,143 +1,148 @@
 {
-	"selectedKey": "page2",
-	"image": "css/images/image.png",
-	"SideNavigation":true,
-	"navigation": [
-		{
-			"title": "SAP ShipperCopilot",
-			"icon": "sap-icon://overlay",
-			"key": "ShipperCopilot",
-			"sortKey": "A"
-		},
-		{
-			"title": "Orders",
-			"icon": "sap-icon://cart",
-			"key": "Orders",
-			"sortKey": "B"
-		},
-		{
-			"title": "Ship Request/Label",
-			"icon": "sap-icon://add-product",
-			"key": "ShipRequestLabel",
-			"sortKey": "B"
-		},
-		{
-			"title": "Ship Now",
-			"icon": "sap-icon://shipping-status",
-			"key": "ShipNow",
-			"sortKey": "C"
-			
-		},
-		{
-			"title": "Quote Now",
-			"icon": "sap-icon://my-sales-order",
-			"key": "QuoteNow",
-			"sortKey": "C"
-			
-		},
-		{
-			"title": "Track Now",
-			"icon": "sap-icon://clinical-task-tracker",
-			"key": "TrackNow",
-			"sortKey": "C"
-		},
-		{
-			"title": "Manifest",
-			"icon": "sap-icon://browse-folder",
-			"key": "Manifest",
-			"sortKey": "D"
-		},
-		{
-			"title": "AES Direct",
-			"icon": "sap-icon://browse-folder",
-			"key": "AESDirect",
-			"sortKey": "D"
-		},
-		{
-			"title": "Scan & Ship",
-			"icon": "sap-icon://bar-code",
-			"key": "ScanShip",
-			"sortKey": "E"
-		},
-		{
-			"title": "Batch Ship",
-			"icon": "sap-icon://batch-payments",
-			"key": "BatchShip",
-			"sortKey": "E"
-		},
-		{
-			"title": "RFID Nexus",
-			"icon": "sap-icon://badge",
-			"key": "RFIDNexus",
-			"sortKey": "F"
-		},
-		{
-			"title": "Dashboard",
-			"icon": "sap-icon://bbyd-dashboard",
-			"key": "Dashboard",
-			"sortKey": "G"
-		},
-		{
-			"title": "Reports",
-			"icon": "sap-icon://expense-report",
-			"key": "Reports",
-			"sortKey": "G"
-		}
-	],
-	"fixedNavigation": [
-		{
-			"title": "Fixed Item 1",
-			"icon": "sap-icon://employee"
-		},
-		{
-			"title": "Fixed Item 2",
-			"icon": "sap-icon://building"
-		},
-		{
-			"title": "Fixed Item 3",
-			"icon": "sap-icon://card"
-		}
-	],
-	"headerItems": [
-		{
-			"text": "File"
-		},
-		{
-			"text": "Edit"
-		},
-		{
-			"text": "View"
-		},
-		{
-			"text": "Settings"
-		},
-		{
-			"text": "Help"
-		}
-	],
-
-	"TileCollection" : [
-		{
-			"image" : "css/images/shiprequest.png",
-			"title" : "Ship Request/Label"
-		},
-		{
-			"image" : "css/images/shipnow.png",
-			"title" : "Ship Now"
-		},
-		{
-			"image" : "css/images/track.png",
-			"title" : "Track Now"
-		}
-		
-	],
-
-	"scanAndShipActionPopoverItems":[
-        {"text":"View"},
-        {"text":"Edit"},
-        {"text":"Copy"},
-        {"text":"Delete"},
-        {"text":"Print"}
+    "selectedKey": "page2",
+    "image": "css/images/image.png",
+    "SideNavigation": true,
+    "navigation": [
+        {
+            "title": "SAP ShipperCopilot",
+            "icon": "sap-icon://overlay",
+            "key": "ShipperCopilot",
+            "sortKey": "A"
+        },
+        {
+            "title": "Orders",
+            "icon": "sap-icon://cart",
+            "key": "Orders",
+            "sortKey": "B"
+        },
+        {
+            "title": "Ship Request/Label",
+            "icon": "sap-icon://add-product",
+            "key": "ShipRequestLabel",
+            "sortKey": "B"
+        },
+        {
+            "title": "Ship Now",
+            "icon": "sap-icon://shipping-status",
+            "key": "ShipNow",
+            "sortKey": "C"
+        },
+        {
+            "title": "Quote Now",
+            "icon": "sap-icon://my-sales-order",
+            "key": "QuoteNow",
+            "sortKey": "C"
+        },
+        {
+            "title": "Track Now",
+            "icon": "sap-icon://clinical-task-tracker",
+            "key": "TrackNow",
+            "sortKey": "C"
+        },
+        {
+            "title": "Manifest",
+            "icon": "sap-icon://browse-folder",
+            "key": "Manifest",
+            "sortKey": "D"
+        },
+        {
+            "title": "AES Direct",
+            "icon": "sap-icon://browse-folder",
+            "key": "AESDirect",
+            "sortKey": "D"
+        },
+        {
+            "title": "Scan & Ship",
+            "icon": "sap-icon://bar-code",
+            "key": "ScanShip",
+            "sortKey": "E"
+        },
+        {
+            "title": "Batch Ship",
+            "icon": "sap-icon://batch-payments",
+            "key": "BatchShip",
+            "sortKey": "E"
+        },
+        {
+            "title": "RFID Nexus",
+            "icon": "sap-icon://badge",
+            "key": "RFIDNexus",
+            "sortKey": "F"
+        },
+        {
+            "title": "Dashboard",
+            "icon": "sap-icon://bbyd-dashboard",
+            "key": "Dashboard",
+            "sortKey": "G"
+        },
+        {
+            "title": "Reports",
+            "icon": "sap-icon://expense-report",
+            "key": "Reports",
+            "sortKey": "G"
+        }
+    ],
+    "fixedNavigation": [
+        {
+            "title": "Fixed Item 1",
+            "icon": "sap-icon://employee"
+        },
+        {
+            "title": "Fixed Item 2",
+            "icon": "sap-icon://building"
+        },
+        {
+            "title": "Fixed Item 3",
+            "icon": "sap-icon://card"
+        }
+    ],
+    "headerItems": [
+        {
+            "text": "File"
+        },
+        {
+            "text": "Edit"
+        },
+        {
+            "text": "View"
+        },
+        {
+            "text": "Settings"
+        },
+        {
+            "text": "Help"
+        }
+    ],
+    "TileCollection": [
+        {
+            "image": "css/images/shiprequest.png",
+            "title": "Ship Request/Label"
+        },
+        {
+            "image": "css/images/shipnow.png",
+            "title": "Ship Now"
+        },
+        {
+            "image": "css/images/track.png",
+            "title": "Track Now"
+        }
+    ],
+    "scanAndShipActionPopoverItems": [
+        {
+            "text": "View"
+        },
+        {
+            "text": "Edit"
+        },
+        {
+            "text": "Copy"
+        },
+        {
+            "text": "Delete"
+        },
+        {
+            "text": "Print"
+        }
     ],
 
 	"scanShipTableData":{
@@ -957,7 +962,7 @@
             "name": "EU Countries"
         }
     ],
-	"LocationTableColumns": [
+    "LocationTableColumns": [
         {
             "key": "locationName",
             "label": "locationName",
@@ -1030,7 +1035,7 @@
         }
     ],
     "LocationTableRows": [],
-	"AddressBookTableColumns": [
+    "AddressBookTableColumns": [
         {
             "key": "contactName",
             "label": "Contact Name",
@@ -1143,7 +1148,7 @@
         }
     ],
     "AddressBookTableRows": [],
-	"UsersTableColumns": [
+    "UsersTableColumns": [
         {
             "key": "locationName",
             "label": "Location Name",
@@ -1216,7 +1221,7 @@
         }
     ],
     "UsersTableRows": [],
-	"RolesTableColumns": [
+    "RolesTableColumns": [
         {
             "key": "roleId",
             "label": "Role ID",
@@ -1234,7 +1239,7 @@
         }
     ],
     "RolesTableRows": [],
-	"CarrierCatalogTableColumns": [
+    "CarrierCatalogTableColumns": [
         {
             "key": "shipMethodId",
             "label": "Ship Method ID",
@@ -1262,7 +1267,7 @@
         }
     ],
     "CarrierCatalogTableRows": [],
-	"CarrierAccountsTableColumns": [
+    "CarrierAccountsTableColumns": [
         {
             "key": "locationName",
             "label": "Location Name",
@@ -1892,5 +1897,198 @@
             "visible": true
         }
     ],
-    "EUCountriesTableRows": []
+    "EUCountriesTableRows": [],
+    
+        "CarrierData": [
+            {
+                "Carrier": "ABF",
+                "TotalPackages": 38
+            },
+            {
+                "Carrier": "Blue Dart",
+                "TotalPackages": 8
+            },
+            {
+                "Carrier": "DHL",
+                "TotalPackages": 134
+            },
+            {
+                "Carrier": "FedEx",
+                "TotalPackages": 1244
+            },
+            {
+                "Carrier": "Generic Carrier",
+                "TotalPackages": 16
+            },
+            {
+                "Carrier": "JPMorgan Chase Internal",
+                "TotalPackages": 84
+            },
+            {
+                "Carrier": "RL",
+                "TotalPackages": 134
+            },
+            {
+                "Carrier": "UPS",
+                "TotalPackages": 3886
+            },
+            {
+                "Carrier": "USPS",
+                "TotalPackages": 160
+            }
+        ],
+        
+            "WeightData": [
+                {
+                    "Carrier": "ABF",
+                    "TotalWeight": 0
+                },
+                {
+                    "Carrier": "Blue Dart",
+                    "TotalWeight": 160
+                },
+                {
+                    "Carrier": "DHL",
+                    "TotalWeight": 520
+                },
+                {
+                    "Carrier": "FedEx",
+                    "TotalWeight": 11486
+                },
+                {
+                    "Carrier": "Generic Carrier",
+                    "TotalWeight": 160
+                },
+                {
+                    "Carrier": "JPMorgan Chase Internal",
+                    "TotalWeight": 1044
+                },
+                {
+                    "Carrier": "RL",
+                    "TotalWeight": 1320
+                },
+                {
+                    "Carrier": "UPS",
+                    "TotalWeight": 44914
+                },
+                {
+                    "Carrier": "USPS",
+                    "TotalWeight": 1232
+                }
+            ],
+            
+                "FreightCostData": [
+                    {
+                        "Carrier": "ABF",
+                        "TotalFreightCost": 2835.38
+                    },
+                    {
+                        "Carrier": "Blue Dart",
+                        "TotalFreightCost": 60.96
+                    },
+                    {
+                        "Carrier": "DHL",
+                        "TotalFreightCost": 2803.7
+                    },
+                    {
+                        "Carrier": "FedEx",
+                        "TotalFreightCost": 31539.14
+                    },
+                    {
+                        "Carrier": "Generic Carrier",
+                        "TotalFreightCost": 132
+                    },
+                    {
+                        "Carrier": "JPMorgan Chase Internal",
+                        "TotalFreightCost": 1768.8
+                    },
+                    {
+                        "Carrier": "RL",
+                        "TotalFreightCost": 23913.32
+                    },
+                    {
+                        "Carrier": "UPS",
+                        "TotalFreightCost": 48117.56
+                    },
+                    {
+                        "Carrier": "USPS",
+                        "TotalFreightCost": 1021.4
+                    }
+                ],
+            
+        
+        "freightData": [
+          {
+            "Location": "1001",
+            "LocationName": "eshipjet software inc",
+            "Carrier": "ABF",
+            "TotalWeightLBS": 0,
+            "TotalPackages": 38,
+            "TotalFreightCost": "$2835.38",
+            "DiscountedFreight": "$2835.38",
+            "AverageFreightCost": "$405.05"
+          },
+          {
+            "Location": "1001",
+            "LocationName": "eshipjet software inc",
+            "Carrier": "Blue Dart",
+            "TotalWeightLBS": 160,
+            "TotalPackages": 8,
+            "TotalFreightCost": "$60.96",
+            "DiscountedFreight": "$60.96",
+            "AverageFreightCost": "$60.96"
+          },
+          {
+            "Location": "1001",
+            "LocationName": "eshipjet software inc",
+            "Carrier": "DHL",
+            "TotalWeightLBS": 520,
+            "TotalPackages": 134,
+            "TotalFreightCost": "$2803.7",
+            "DiscountedFreight": "$2803.7",
+            "AverageFreightCost": "$233.64"
+          },
+          {
+            "Location": "1001",
+            "LocationName": "eshipjet software inc",
+            "Carrier": "FedEx",
+            "TotalWeightLBS": 11486,
+            "TotalPackages": 1244,
+            "TotalFreightCost": "$31539.14",
+            "DiscountedFreight": "$31539.14",
+            "AverageFreightCost": "$927.62"
+          },
+          {
+            "Location": "1001",
+            "LocationName": "eshipjet software inc",
+            "Carrier": "Generic Carrier",
+            "TotalWeightLBS": 160,
+            "TotalPackages": 16,
+            "TotalFreightCost": "$132",
+            "DiscountedFreight": "$132",
+            "AverageFreightCost": "$66"
+          },
+          {
+            "Location": "1001",
+            "LocationName": "eshipjet software inc",
+            "Carrier": "JPMorgan Chase Internal",
+            "TotalWeightLBS": 1044,
+            "TotalPackages": 84,
+            "TotalFreightCost": "$1768.8",
+            "DiscountedFreight": "$1768.8",
+            "AverageFreightCost": "$160.8"
+          },
+          {
+            "Location": "1001",
+            "LocationName": "eshipjet software inc",
+            "Carrier": "USPS",
+            "TotalWeightLBS": 1232,
+            "TotalPackages": 160,
+            "TotalFreightCost": "$1021.4",
+            "DiscountedFreight": "$1021.4",
+            "AverageFreightCost": "$60.08"
+          }
+        ]
+      
+    
 }
