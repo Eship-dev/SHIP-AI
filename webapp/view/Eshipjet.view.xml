@@ -1,28 +1,17 @@
-<mvc:View
-	controllerName="com.eshipjet.zeshipjet.controller.Eshipjet"
-	xmlns="sap.m"
-	xmlns:core="sap.ui.core"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:tnt="sap.tnt"
-	xmlns:ui="sap.ui.table"
-	xmlns:l="sap.ui.layout"
-	xmlns:f="sap.ui.layout.form"
-	height="100%">
+<mvc:View	controllerName="com.eshipjet.zeshipjet.controller.Eshipjet" xmlns="sap.m"	xmlns:core="sap.ui.core"	xmlns:mvc="sap.ui.core.mvc"	 xmlns:tnt="sap.tnt" 	xmlns:ui="sap.ui.table"
+	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	height="100%">
 	<tnt:ToolPage id="toolPage">
 		<tnt:header>
 			<tnt:ToolHeader>
-				<Button
-					id="sideNavigationToggleButton"
-					icon="{value:'com/eshipjet/zeshipjet/css/images/menu.png', formatter:'sap.ui.require.toUrl'}"
-					type="Transparent"
-					press=".onSideNavButtonPress">
+				<Button		id="sideNavigationToggleButton"		icon="{value:'com/eshipjet/zeshipjet/css/images/menu.png', formatter:'sap.ui.require.toUrl'}"
+					type="Transparent"		press=".onSideNavButtonPress">
 					<layoutData>
 						<OverflowToolbarLayoutData priority="NeverOverflow" />
 					</layoutData>
 				</Button>
 				<Text text="SAP ShipperCopilot 6.4"/>
 				<ToolbarSpacer/>
-				<Switch state="true" customTextOn="Lite" customTextOff="Dark" change="onThemeChange">
+				<Switch state="true"  change="onThemeChange">
 					<layoutData>
 						<FlexItemData growFactor="1" />
 					</layoutData>
@@ -32,17 +21,9 @@
 			</tnt:ToolHeader>
 		</tnt:header>
 		<tnt:sideContent >
-			<tnt:SideNavigation
-			 	visible="{eshipjetModel>/SideNavigation}"
-				expanded="true"
-				selectedKey="{eshipjetModel>/selectedKey}"
-				itemSelect=".onItemSelect">
+			<tnt:SideNavigation	 	visible="{eshipjetModel>/SideNavigation}"	expanded="true"		selectedKey="{eshipjetModel>/selectedKey}"	itemSelect=".onItemSelect">
 				<tnt:NavigationList items="{path: 'eshipjetModel>/navigation'}">
-					<tnt:NavigationListItem
-						class="textBold"
-						text="{eshipjetModel>title}"
-						icon="{eshipjetModel>icon}"
-						key="{eshipjetModel>key}">
+					<tnt:NavigationListItem		class="textBold"	text="{eshipjetModel>title}"	icon="{eshipjetModel>icon}" 	key="{eshipjetModel>key}">
 					</tnt:NavigationListItem>
 				</tnt:NavigationList>
 			</tnt:SideNavigation>
@@ -70,6 +51,7 @@
 							</l:HorizontalLayout>
 						</FlexBox>
 					</ScrollContainer>
+
 					<ScrollContainer
 						id="ShipperCopilot"
 						horizontal="false"
@@ -108,27 +90,32 @@
 									</HBox>
 					</ScrollContainer>
 
-	<!-- Orders Starts here -->
-			<ScrollContainer id="Orders" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
-				<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Orders" type="XML" />
-			</ScrollContainer>
+					<!-- Orders Starts here -->
+					<ScrollContainer id="Orders" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Orders" type="XML" />
+					</ScrollContainer>
 
-<!-- Ship Request Label Starts here -->
-		<ScrollContainer id="ShipRequestLabel" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
-				<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ShipRequestLabel" type="XML" />
-		</ScrollContainer>
+				<!-- Ship Request Label Starts here -->
+					<ScrollContainer id="ShipRequestLabel" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+							<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ShipRequestLabel" type="XML" />
+					</ScrollContainer>
 
-
-	<!-- Ship Now Starts here -->
-					<ScrollContainer id="ShipNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
-						
+				<!-- Ship Now Starts here -->
+				<ScrollContainer id="ShipNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+					<!-- <Page  id="ShipNow"  showHeader="false"/>
+						<content>		 -->
 							<Toolbar class="sapUiTinyMarginBottom" height="10%">
-								<Button icon="sap-icon://past" />
+								<Button icon="sap-icon://past"  press="onOpenRecentShipmentPopover"/>
 								<Text text="Ship Now"/>
+								<ToolbarSpacer/>
+								<Button  icon="sap-icon://decline" press="onPressCloseShipNow"/>
+							</Toolbar>	   
+							<Toolbar class="sapUiTinyMarginBottom" height="10%">							
 								<ComboBox items="{eshipjetModel>/secondComboboxItems}">
 									<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 								</ComboBox>
-								<SearchField width="10rem" class="sapUiSmallMargin" id="idShipNowSearch" />
+								<Label text="SAP Delivery Number" labelFor="SAPDelLabel"/>
+								<SearchField class="sapUiSmallMargin" id="idShipNowSearch"  width="10%"/>
 								<Button text="Get" type="Ghost" press="onShipNowGetPress" ></Button>
 								<Button text="Consolidation" type="Ghost" press="handleConsolidationPress"></Button>
 								<Label text="Pickup Date" labelFor="DP1"/>
@@ -138,8 +125,7 @@
 								<Button text="New" type="Ghost"></Button>
 								<ToolbarSpacer />
 							</Toolbar>
-
-							<!-- Icon Tab Bar Starts here -->
+							<!-- Icon Tab Bar Starts here -->			
 							<IconTabBar id="idIconTabBarFiori2" expanded="{device>/isNoPhone}">
 								<items>
 
@@ -147,12 +133,6 @@
 									<IconTabFilter text="Ship From / To" key="info">
 										<VBox>
 											<f:SimpleForm id="SimpleFormChangeColumn_threeGroups346" editable="true" layout="ColumnLayout" columnsM="3" columnsL="4" columnsXL="6">
-												<f:toolbar>
-													<Toolbar >
-														<ToolbarSpacer />
-														<Button text="Validate Address" />
-													</Toolbar>
-												</f:toolbar>
 												<f:content>
 													<Toolbar ariaLabelledBy="idShipFrom">
 														<Title id="idShipFrom" text="Ship From"/>
@@ -163,8 +143,16 @@
 													<Label text="Address Line 1" />
 													<Input value="{ShipNowDataModel>/ShipFromADDRESS_LINE1}"></Input>
 													<Label text="City" />
-													<Input value="{ShipNowDataModel>/ShipFromCITY}" placeholder="City" width="10rem" />
-													<Input value="{ShipNowDataModel>/ShipFromSTATE}" placeholder="State / Province" width="10rem" />
+													<Input value="{ShipNowDataModel>/ShipFromCITY}" placeholder="City" >
+														<layoutData>
+															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+														</layoutData>
+													</Input>
+													<Input value="{ShipNowDataModel>/ShipFromSTATE}" placeholder="State / Province">
+														<layoutData>
+															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+														</layoutData>
+													</Input>
 													<Label text="Email" />
 													<Input value="{ShipNowDataModel>/ShipFromEMAIL}" />
 													<Label text="Company Name" />
@@ -172,27 +160,51 @@
 													<Label text="Address Line 2" />
 													<Input value="{ShipNowDataModel>/ShipFromADDRESS_LINE2}" />
 													<Label text="Zip / Postal Code" />
-													<Input value="{ShipNowDataModel>/ShipFromZIPCODE}" placeholder="Zip / Postal Code" width="10rem" />
-													<ComboBox placeholder="Country" items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipFromCOUNTRY}" width="10rem">
+													<Input value="{ShipNowDataModel>/ShipFromZIPCODE}" placeholder="Zip / Postal Code">
+													<layoutData>
+															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+														</layoutData>
+													</Input>
+													<ComboBox placeholder="Country" items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipFromCOUNTRY}">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+														<layoutData>
+															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+														</layoutData>													
 													</ComboBox>
 													<Label text="Phone No" />
-													<Input value="{ShipNowDataModel>/ShipFromPHONE}" placeholder="Phone No" width="10rem" />
-													<ComboBox placeholder="Address Type" selectedKey="{ShipNowDataModel>/ShipFromSTATE}" items="{eshipjetModel>/addressType}" width="10rem">
+													<Input value="{ShipNowDataModel>/ShipFromPHONE}" placeholder="Phone No"  >
+														<layoutData>
+															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+														</layoutData>
+													</Input>
+													<ComboBox placeholder="Address Type" selectedKey="{ShipNowDataModel>/ShipFromSTATE}" items="{eshipjetModel>/addressType}" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+														<layoutData>
+															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+														</layoutData>
 													</ComboBox>
 													<Toolbar ariaLabelledBy="idShipTo">
 														<Title id="idShipTo" text="Ship To"/>
 														<Button icon="sap-icon://customer-briefing" press="handleShipToPickAnAddressPress" />
 														<Button icon="sap-icon://add" press="handleCreateAddressPress"></Button>
+														<ToolbarSpacer ></ToolbarSpacer>
+														<Button text="Validate Address" />
 													</Toolbar>
 													<Label text="Contact Name" />
 													<Input value="{ShipNowDataModel>/ShipToCONTACT}" />
 													<Label text="Address Line 1" />
 													<Input value="{ShipNowDataModel>/ShipToADDRESS_LINE1}"></Input>
 													<Label text="City" />
-													<Input value="{ShipNowDataModel>/ShipToCITY}" placeholder="City" width="10rem" />
-													<Input value="{ShipNowDataModel>/ShipToSTATE}" placeholder="State / Province" width="10rem" />
+													<Input value="{ShipNowDataModel>/ShipToCITY}" placeholder="City">
+														<layoutData>
+															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+														</layoutData>
+													</Input>
+													<Input value="{ShipNowDataModel>/ShipToSTATE}" placeholder="State / Province" >
+														<layoutData>
+															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+														</layoutData>									
+													</Input>
 													<Label text="Email" />
 													<Input value="{ShipNowDataModel>/ShipToEMAIL}" />
 													<Label text="Company Name" />
@@ -200,14 +212,28 @@
 													<Label text="Address Line 2" />
 													<Input value="{ShipNowDataModel>/ShipToADDRESS_LINE2}" />
 													<Label text="Zip / Postal Code" />
-													<Input value="{ShipNowDataModel>/ShipToZIPCODE}" placeholder="Zip / Postal Code" width="10rem" />
-													<ComboBox placeholder="Country" selectedKey="{ShipNowDataModel>/ShipToCOUNTRY}" items="{eshipjetModel>/countriesList}" width="10rem">
+													<Input value="{ShipNowDataModel>/ShipToZIPCODE}" placeholder="Zip / Postal Code" >
+														<layoutData>
+															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+														</layoutData>
+													</Input>
+													<ComboBox placeholder="Country" selectedKey="{ShipNowDataModel>/ShipToCOUNTRY}" items="{eshipjetModel>/countriesList}" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+														<layoutData>
+															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+														</layoutData>
 													</ComboBox>
 													<Label text="Phone No" />
-													<Input value="{ShipNowDataModel>/ShipToPHONE}" placeholder="Phone No" width="10rem" />
-													<ComboBox placeholder="Address Type" selectedKey="{ShipNowDataModel/ShipToSTATE}" items="{eshipjetModel>/addressType}" width="10rem">
+													<Input value="{ShipNowDataModel>/ShipToPHONE}" placeholder="Phone No">
+														<layoutData>
+															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+														</layoutData>
+													</Input>
+													<ComboBox placeholder="Address Type" selectedKey="{ShipNowDataModel/ShipToSTATE}" items="{eshipjetModel>/addressType}" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+														<layoutData>
+															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+														</layoutData>
 													</ComboBox>
 												</f:content>
 											</f:SimpleForm>
@@ -308,15 +334,26 @@
 													<Input value="{eshipjetModel>/shipMethodId}" />
 													<Label text="PO No" />
 													<Input value="{eshipjetModel>/poNo}" />
-													<Label text="Account No" />
-													<Button text="Get Carrier" width="10rem" />
-													<Input value="{eshipjetModel>/accountNumber}" width="10rem" />
+													<Label text="Account No" class="LabelPadClass" />
+													<Button text="Get Carrier" >
+														<layoutData>
+															<f:ColumnElementData cellsSmall="4" cellsLarge="4" />
+														</layoutData>
+													</Button>
+													<Input value="{eshipjetModel>/accountNumber}" >
+														
+													</Input>
 													<Label text="Invoice No" />
 													<Input value="{eshipjetModel>/invoiceNo}" />
 												</f:content>
 											</f:SimpleForm>
-											<Label text="Special Instructions"></Label>
-											<TextArea value="{eshipjetModel>/specialInstructions}" width="100%"></TextArea>
+											<Toolbar class="toolbarbottomborder" height="10%" width="100%">		
+												<VBox width="99%">					
+													<Label text="Special Instructions" class="sapUiTinyMarginBegin"></Label>
+													<TextArea value="{eshipjetModel>/specialInstructions}" width="100%"  class="sapUiTinyMarginBegin"></TextArea>
+												</VBox>
+											</Toolbar>		
+											<VBox height="1rem" />				
 											<f:SimpleForm id="RoutingandBillingDetails2" editable="true" layout="ColumnLayout" columnsM="3" columnsL="4" columnsXL="6">
 												<f:content>
 													<Label text="Signature Option" />
@@ -434,37 +471,45 @@
 													</ComboBox>
 												</f:content>
 											</f:SimpleForm>
-											<Label text="Notes"></Label>
-											<TextArea width="100%"></TextArea>
+											<Toolbar class="toolbarbottomborder" height="10%" width="100%">		
+												<VBox width="99%">					
+													<Label text="Notes" class="sapUiTinyMarginBegin"></Label>
+													<TextArea value="{eshipjetModel>/specialInstructions}" width="100%"  class="sapUiTinyMarginBegin"></TextArea>
+												</VBox>
+											</Toolbar>									
 										</VBox>
 									</IconTabFilter>
 
 
 									<!-- Pack Tab Starts here -->
 									<IconTabFilter text="Pack" key="Pack">
-										<Table id="Pack" inset="false" class="sapUiTinyMarginTop" items="{eshipjetModel>/pickAddProductTable}">
+										<Table id="Pack" inset="false"  width="100%" class="sapUiTinyMarginTop" items="{eshipjetModel>/pickAddProductTable}">
 											<headerToolbar>
 												<OverflowToolbar>
 													<content>
 														<HBox >
 															<Label text="Scan Product" class="sapUiTinyMargin" />
-															<Input value="{}" width="5rem"></Input>
-															<Label text="Quantity" class="sapUiTinyMargin" />
-															<StepInput id="quantityInput" value="" min="0" max="100" step="1" width="5rem" class="sapUiLargeMarginEnd" valueState="None" />
+															<Input value="{}"></Input>
+
+															<Label text="Quantity" class="sapUiTinyMargin"/>
+															<StepInput id="quantityInput" value="" min="0" max="100" step="1"  width="8%"  valueState="None" />
+
 															<Label text="Package Type" class="sapUiTinyMargin" />
-															<ComboBox items="{}" width="6rem" class="sapUiLargeMarginEnd">
+															<ComboBox items="{}"  width="60%">
 																<core:Item key="{}" text="{}" />
 															</ComboBox>
+
 															<Label text="Dimensions" class="sapUiTinyMargin" />
-															<ComboBox items="{eshipjetModel>/packDimensions}" selectedKey="{dimensionModel>/dimension}" width="8rem">
+															<ComboBox items="{eshipjetModel>/packDimensions}" selectedKey="{dimensionModel>/dimension}">
 																<core:Item key="{eshipjetModel>dimension}" text="{eshipjetModel>dimension}" />
 															</ComboBox>
-															<Button icon="sap-icon://add" press="handleDimensionAddPress" class="sapUiLargeMarginEnd"></Button>
-															<Label text="Total Pkgs/Weight" class="sapUiTinyMargin sapUiMediumMarginBegin" />
-															<StepInput id="stepDownInput" value="{dimensionModel>/weightStepDown}" min="0" max="100" step="1" width="100px" valueState="None" />
-															<Text text="/" class="sapUiTinyMargin"></Text>
-															<StepInput id="stepUpInput" value="{dimensionModel>/weightStepUp}" min="0" max="100" step="1" width="100px" valueState="None" />
-															<Button text="Auto Pack" press="handleAutoPackPress" width="auto" type="Ghost" class="sapUiTinyMarginBegin"></Button>
+															<Button icon="sap-icon://add" press="handleDimensionAddPress" class="sapUiSmallMarginEnd"></Button>
+
+															<Label text="Total Pkgs/Weight"  class="sapUiTinyMargin"/>
+															<StepInput id="stepDownInput" value="{dimensionModel>/weightStepDown}" min="0" max="100" step="1"  width="6rem"  valueState="None" />
+															<Text text="/" width="10%"></Text>
+															<StepInput id="stepUpInput" value="{dimensionModel>/weightStepUp}" min="0" max="100" step="1" width="6rem" valueState="None" />
+															<Button text="Auto Pack" press="handleAutoPackPress"  type="Ghost" ></Button>
 														</HBox>
 													</content>
 												</OverflowToolbar>
@@ -472,6 +517,11 @@
 											<columns>
 												<Column >
 													<Text text="#" />
+													<footer>
+														<Toolbar class="toolbarbottomborder">															
+															<Button text="Add Product" press="handleAddProductPress" type="Ghost" ></Button>																
+														</Toolbar>														
+													</footer>
 												</Column>
 												<Column >
 													<Text text="Product Code" />
@@ -527,14 +577,7 @@
 												</ColumnListItem>
 											</items>
 										</Table>
-										<Toolbar width="100%" class="sapUiMediumMarginTop">
-											<OverflowToolbar width="100%">
-												<Button text="Add Product" press="handleAddProductPress" type="Ghost" width="8rem"></Button>
-												<ToolbarSpacer />
-												<core:Icon src="sap-icon://action-settings">
-												</core:Icon>
-											</OverflowToolbar>
-										</Toolbar>
+										
 
 										<Table id="Pack2" inset="false" class="sapUiSmallMarginTop" items="{eshipjetModel>/packTable2}">
 											<headerToolbar >
@@ -544,7 +587,10 @@
 													<ToolbarSpacer />
 													<Button text="Pack" type="Ghost" class="sapUiTinyMarginEnd"></Button>
 													<Button text="Pack All" type="Ghost"></Button>
-													<ToolbarSpacer />
+													<Button text="Multi Level Pack" type="Ghost"></Button>
+													<ToolbarSpacer />												
+													<core:Icon src="sap-icon://action-settings">
+													</core:Icon>
 												</OverflowToolbar>
 											</headerToolbar>
 											<columns >
@@ -740,40 +786,40 @@
 										<Text text="Track content goes here ..." />
 									</IconTabFilter>
 								</items>
-							</IconTabBar>
+							</IconTabBar>   			
+						<!-- </content>
+					</Page> -->
+				</ScrollContainer>
+
+				<!-- Quote Now Starts here -->
+					<ScrollContainer	id="QuoteNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.QuoteNow" type="XML" />
 					</ScrollContainer>
 
-<!-- Quote Now Starts here -->
-			<ScrollContainer	id="QuoteNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
-				<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.QuoteNow" type="XML" />
-			</ScrollContainer>
+				<!-- Track Now Starts here -->
+					<ScrollContainer	id="TrackNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.TrackNow" type="XML" />
+					</ScrollContainer>
 
-		<!-- Track Now Starts here -->
-			<ScrollContainer	id="TrackNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
-				<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.TrackNow" type="XML" />
-			</ScrollContainer>
+				<!-- Manifest Starts here -->
+					<ScrollContainer	id="Manifest" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Manifest" type="XML" />
+					</ScrollContainer>
 
+				<!-- AES Direct Starts here -->
+					<ScrollContainer	id="AESDirect" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.AESDirect" type="XML" />
+					</ScrollContainer>
 
-	<!-- Manifest Starts here -->
-	<ScrollContainer	id="Manifest" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
-		<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Manifest" type="XML" />
-	</ScrollContainer>
-
-	<!-- AES Direct Starts here -->
-	<ScrollContainer	id="AESDirect" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
-		<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.AESDirect" type="XML" />
-	</ScrollContainer>
-
-	<!-- Scan And Ship Starts here -->
+				<!-- Scan And Ship Starts here -->
 					<ScrollContainer	id="ScanShip"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ScanAndShip" type="XML"/>
 					</ScrollContainer>
 
-<!-- Batch Ship Starts here -->
-
-	<ScrollContainer	id="BatchShip"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
-		<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.BatchShip" type="XML" />
-	</ScrollContainer>
+				<!-- Batch Ship Starts here -->
+					<ScrollContainer	id="BatchShip"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.BatchShip" type="XML" />
+					</ScrollContainer>
 
 <!-- Batch Reports Starts here -->
 
@@ -870,7 +916,6 @@
 					<ScrollContainer	id="_ID_EUCountries_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.EUCountries" type="XML" />
 					</ScrollContainer> 
-
 				</pages>
 			</NavContainer>
 		</tnt:mainContents>

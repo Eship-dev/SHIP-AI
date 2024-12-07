@@ -1,0 +1,31 @@
+<core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
+    <Popover	id="myPopoverRecentShipment"  contentWidth="30%" placement="Bottom">  
+		<customHeader>
+			<VBox id="_IDGenVBoxRecentShipment">
+				<Toolbar id="_IDGenHBoxRecentShipment" class="toolbarbottomborder">
+					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" id="_IDGenTitleRecentShipment" text="Recent Shipments"></Title>
+					<ToolbarSpacer id="_IDGenToolbarSpacer1RecentShipment" ></ToolbarSpacer>					
+					<Button id="_IDCloseIconPopoverRecentShipment" icon="sap-icon://decline" press="onRecentShipmentClosePress"></Button>
+				</Toolbar>				
+			</VBox>
+		</customHeader>
+		<content>
+        <Table	id="rencentShipmentTblId"  items="{path : '/RecentShipmentSet'}" >
+		<ColumnListItem  vAlign="Middle">
+			<cells>				
+			  	<ObjectStatus	text="{shipmentNo}" 	state="Error" />
+                <Text      text="{date}" />	
+                <Text  text="{ContactName}"  wrapping="false" />	
+                <Text  text="{shipMethod}" />				
+			</cells>
+		</ColumnListItem>
+		<columns>	
+        <Column ></Column>				
+        <Column ></Column>				
+        <Column ></Column>				
+        <Column ></Column>				
+		</columns>
+        </Table>
+            </content>        
+	</Popover>   
+</core:FragmentDefinition>

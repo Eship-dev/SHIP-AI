@@ -352,7 +352,7 @@ button.ship-tile-button span {
 }
 
 .scan-ship-toolbar {
-  padding: 2rem !important;
+  padding: 1rem !important;
   height: auto !important;
   align-items: stretch;
 }
@@ -368,6 +368,7 @@ button.ship-tile-button span {
 
 .scan-ship-toolbar__input > div {
   height: auto !important;
+
 }
 
 .scan-ship-toolbar__input input {
@@ -505,4 +506,14 @@ span.sapMBtnInner.sapMBtnReject {
   width: 110px !important;
   margin-top: 12px !important;
 }
-/* vinay test comment */
+
+/* ShipNow page  Page Begin*/
+.toolbarbottomborder.sapMTB.sapMTBStandard { 
+  border-bottom: none !important; 
+}
+
+.LabelPadClass{
+  padding-left: 35% !important;
+}
+
+/* ShipNow page  Page End*/

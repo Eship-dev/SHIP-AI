@@ -2088,7 +2088,69 @@
             "DiscountedFreight": "$1021.4",
             "AverageFreightCost": "$60.08"
           }
-        ]
+        ],
+        "RecentShipmentSet":[{
+            "shipmentNo":"80000022",
+            "date":"12/06/2024",
+            "ContactName": "Plant 1710 as Business Partner",
+            "shipMethod":"UPS"
+        },
+        {
+            "shipmentNo":"80000022",
+            "date":"12/06/2024",
+            "ContactName": "Plant 1710 as Business Partner",
+            "shipMethod":"UPS"
+        },
+        {
+            "shipmentNo":"80000022",
+            "date":"12/06/2024",
+            "ContactName": "Plant 1710 as Business Partner",
+            "shipMethod":"UPS"
+        },
+        {
+            "shipmentNo":"80000022",
+            "date":"12/06/2024",
+            "ContactName": "Plant 1710 as Business Partner",
+            "shipMethod":"UPS"
+        },
+        {
+            "shipmentNo":"80000022",
+            "date":"12/06/2024",
+            "ContactName": "Plant 1710 as Business Partner",
+            "shipMethod":"UPS"
+        }],
+        "ShipNowIconTabs":[{
+            "tabName":"Ship From / To",
+            "tabKey" :"ShipFrom_to"
+        },
+        {
+            "tabName":"Routing & Billing Details",
+            "tabKey" :"Routing_And_Billing_Details"
+        },
+        {
+            "tabName":"Additional Info",
+            "tabKey" :"Additional_Info"
+        },
+        {
+            "tabName":"Pack",
+            "tabKey" :"Pack"
+        },
+        {
+            "tabName":"International Details",
+            "tabKey" :"International_Details"
+        },{
+            "tabName":"DG",
+            "tabKey" :"DG"
+        },{
+            "tabName":"Charges",
+            "tabKey" :"Charges"
+        },{
+            "tabName":"Dcuments",
+            "tabKey" :"Dcuments"
+        },{
+            "tabName":"Track",
+            "tabKey" :"Track"
+        }]
       
     
 }

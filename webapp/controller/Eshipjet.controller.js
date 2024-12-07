@@ -694,8 +694,8 @@ sap.ui.define([
                 var sKey = "ShipRequestLabel";
                 this.byId("pageContainer").to(this.getView().createId(sKey));
             } else if (tileTitle === "Ship Now") {
-                var sKey = "ShipNow";
-                this.byId("pageContainer").to(this.getView().createId(sKey));
+                var sKey = "ShipNow";                
+                this.byId("pageContainer").to(this.getView().createId(sKey));                
             } else if (tileTitle === "Track Now") {
                 var sKey = "TrackNow";
                 this.byId("pageContainer").to(this.getView().createId(sKey));
@@ -1476,6 +1476,31 @@ sap.ui.define([
                 oPopover.close();
             });
         },
+        onOpenRecentShipmentPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            // create popover
+            if (!this._recentShipPopover) {
+                this._recentShipPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.RecentShipment",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._recentShipPopover.then(function (oPopover) {
+                oPopover.openBy(oButton);
+            });
+
+        },
+        onRecentShipmentClosePress: function () {
+            this._recentShipPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
         onColumnSearch: function (oEvent) {
             var aFilters = [];
             var sQuery = oEvent.getSource().getValue();
@@ -1679,6 +1704,9 @@ sap.ui.define([
             }else{
                 document.body.classList.add("dark-theme");
             }
+          },
+          onPressCloseShipNow:function(){
+            
           }
 
     });
