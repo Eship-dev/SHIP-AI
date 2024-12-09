@@ -1819,7 +1819,7 @@ sap.ui.define([
             if (oDialog) {
                 oDialog.close(); // Close the dialog
             }
-        }
+        },
         
 
         // Address Book Column Names Popover code changes starts here
@@ -2937,5 +2937,91 @@ sap.ui.define([
         },
 
         // MOT Column Names Popover code changes End here
+
+    // Locations Column Names Popover code changes starts here
+
+    openLocationsColNamesPopover: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._pLocationsPopover) {
+            this._pLocationsPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.LocationsTableColumns",
+                controller: this
+            }).then(function (oPopover) {
+                oView.addDependent(oPopover);
+                return oPopover;
+            });
+        }
+        this._pLocationsPopover.then(function (oPopover) {
+            oController.LocationsColumnsVisiblity();
+            oPopover.openBy(oButton);
+        });
+    },
+
+    LocationsColumnsVisiblity: function () {
+        var oView = oController.getView();
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var aColumns = eshipjetModel.getProperty("/LocationTableColumns");
+        var oLocationsTable = oView.byId("myLocationsColumnSelectId");
+        var aTableItems = oLocationsTable.getItems();
+
+        aColumns.map(function (oColObj) {
+            aTableItems.map(function (oItem) {
+                if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                    oItem.setSelected(true);
+                }
+            });
+        });
+    },
+
+    onLocationsColNameSearch: function (oEvent) {
+        var aFilters = [];
+        var sQuery = oEvent.getSource().getValue();
+        if (sQuery && sQuery.length > 0) {
+            var filter = new Filter("label", FilterOperator.Contains, sQuery);
+            aFilters.push(filter);
+        }
+        // update list binding
+        var oList = oController.getView().byId("myLocationsColumnSelectId");
+        var oBinding = oList.getBinding("items");
+        oBinding.filter(aFilters, "Application");
+
+    },
+
+    onLocationsColSelectOkPress: function () {
+        var oView = this.getView();
+        var oLocationsTable = oView.byId("myLocationsColumnSelectId");
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var oTable = oView.byId("_IDLocationTable")
+        oTable.setModel(eshipjetModel);
+
+        var oLocationsTblItems = oLocationsTable.getItems();
+        var aColumnsData = eshipjetModel.getProperty("/LocationTableColumns");
+        oLocationsTblItems.map(function (oTableItems) {
+            aColumnsData.map(function (oColObj) {
+                if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                    if (oTableItems.getSelected()) {
+                        oColObj.visible = true;
+                    } else {
+                        oColObj.visible = false;
+                    }
+                }
+            })
+        });
+        eshipjetModel.updateBindings(true);
+        oLocationsTable.setModel(eshipjetModel);
+        this._pLocationsPopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+    onLocationsColSelectClosePress: function () {
+        this._pLocationsPopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+
+    // Locations Column Names Popover code changes End here
+
     });
 });
