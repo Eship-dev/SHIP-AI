@@ -481,6 +481,19 @@ sap.ui.define([
                 oPopover.close();
             });
         },
+        onScanShipColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myScanColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
 
         onScanShipSearchPress: async function () {
             var that = this;
@@ -803,6 +816,19 @@ sap.ui.define([
                 });
             });
         },
+        onOrderColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myOrderColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
 
         onoOrderColSelectOkPress: function () {
             var oView = this.getView()
@@ -954,6 +980,20 @@ sap.ui.define([
                     }
                 });
             });
+        },
+
+        onShipReqColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myShipReqColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
         },
 
         onoShipReqColSelectOkPress: function () {
@@ -1111,6 +1151,20 @@ sap.ui.define([
             });
         },
 
+        onTrackNowColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myTrackNowColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
         onoTrackNowColSelectOkPress: function () {
             var oView = this.getView()
             var oTrackNowTable = oView.byId("myTrackNowColumnSelectId");
@@ -1266,6 +1320,20 @@ sap.ui.define([
             });
         },
 
+        onManifestColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myManifestColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
         onManifestColSelectOkPress: function () {
             var oView = this.getView()
             var oManifestTable = oView.byId("myManifestColumnSelectId");
@@ -1389,6 +1457,20 @@ sap.ui.define([
                     }
                 });
             });
+        },
+
+        onBatchShipColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myBatchShipColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
         },
 
         onBatchShipColSelectOkPress: function () {
@@ -1681,7 +1763,7 @@ sap.ui.define([
                         oHBox.addItem(Link1);
                         oHBox.addItem(Link2);
                         return new sap.ui.table.Column({
-                            label: columnLabel,
+                            label: oResourceBundle.getText(columnName),
                             template: oHBox,
                             visible: oContext.getObject().visible,
                             width: "8rem",
@@ -1689,7 +1771,7 @@ sap.ui.define([
                         });
                     } else {
                         return new sap.ui.table.Column({
-                            label: columnLabel,
+                            label: oResourceBundle.getText(columnName),
                             template: columnName,
                             visible: oContext.getObject().visible,
                             width: "8rem",

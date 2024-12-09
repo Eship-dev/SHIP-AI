@@ -1,7 +1,7 @@
 <core:FragmentDefinition
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
-	<Popover	id="myPopover"  contentWidth="20%"	 placement="Left">
+	<Popover	id="myPopover"  contentWidth="20%"	 placement="Left" contentHeight="40%">
 		<customHeader>
 			<VBox id="_IDGenVBox">
 				<Toolbar id="_IDGenHBox" class="toolbarbottomborder">
@@ -9,7 +9,7 @@
 					<ToolbarSpacer id="_IDGenToolbarSpacer1" ></ToolbarSpacer>					
 					<Button id="_IDCloseIconPopover" icon="sap-icon://decline" press="onScanShipColSelectClosePress"></Button>
 				</Toolbar>
-				<SearchField id="_IDGenSearchField" placeholder="Search Columns"   liveChange="onColumnSearch"></SearchField>
+				<SearchField id="_IDGenSearchField" placeholder="Search Columns"   liveChange="onScanShipColNameSearch"></SearchField>
 			</VBox>
 		</customHeader>
 		<content>

@@ -405,7 +405,6 @@
 				"label": "Shipment Type",
 				"visible": false
 			},
-
             {
 				"name": "shipMethod",
 				"label": "Ship Method",
@@ -966,7 +965,7 @@
         {
             "key": "locationName",
             "label": "locationName",
-            "visible": true
+            "visible": false
         },
         {
             "key": "contactName",

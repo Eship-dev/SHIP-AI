@@ -7,16 +7,16 @@
 				<Toolbar class="toolbarbottomborder">
 					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="Columns"></Title>
 					<ToolbarSpacer ></ToolbarSpacer>					
-					<Button icon="sap-icon://decline" press="onShipReqColSelectClosePress"></Button>
+					<Button icon="sap-icon://decline" press="onLocationsColSelectClosePress"></Button>
 				</Toolbar>
-				<SearchField placeholder="Search Columns"   liveChange="onShipReqColNameSearch"></SearchField>
+				<SearchField placeholder="Search Columns"   liveChange="onLocationsColNameSearch"></SearchField>
 			</VBox>
 		</customHeader>
 		<content>
-        <Table	id="myShipReqColumnSelectId" mode="MultiSelect" items="{path : 'ShipReqTableDataModel>/ShipReqColumns'}" >
-		<ColumnListItem id="_IDGenShipReqColumnListItem1" vAlign="Middle">
+        <Table	id="myLocationsColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/LocationTableColumns'}" >
+		<ColumnListItem id="_IDGenLocationsColumnListItem1" vAlign="Middle">
 			<cells>				
-				<Text text="{ShipReqTableDataModel>label}" />				
+				<Text text="{eshipjetModel>label}" />				
 			</cells>
 		</ColumnListItem>
 		<columns>
@@ -31,7 +31,7 @@
         <footer>
             <Toolbar >
                 <ToolbarSpacer />
-                <Button text="Apply" press="onoShipReqColSelectOkPress" type="Emphasized"></Button>               
+                <Button text="Apply" press="onLocationsColSelectOkPress" type="Emphasized"></Button>               
             </Toolbar>
         </footer>      
 	</Popover>   
