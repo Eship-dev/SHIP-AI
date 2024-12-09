@@ -1,0 +1,38 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover  contentWidth="20%" placement="Left" contentHeight="40%" >
+		<customHeader>
+			<VBox >
+				<Toolbar class="toolbarbottomborder">
+					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="Columns"></Title>
+					<ToolbarSpacer ></ToolbarSpacer>					
+					<Button icon="sap-icon://decline" press="onAddressBookColSelectClosePress"></Button>
+				</Toolbar>
+				<SearchField placeholder="Search Columns"   liveChange="onAddressBookColNameSearch"></SearchField>
+			</VBox>
+		</customHeader>
+		<content>
+        <Table	id="myAddressBookColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/AddressBookTableColumns'}" >
+		<ColumnListItem id="_IDGenAddressBookColumnListItem1" vAlign="Middle">
+			<cells>				
+				<Text text="{eshipjetModel>label}" />				
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column >
+				<header>
+					<Text text="Select All" />
+				</header>
+			</Column>			
+		</columns>
+        </Table>
+        </content>
+        <footer>
+            <Toolbar >
+                <ToolbarSpacer />
+                <Button text="Apply" press="onAddressBookColSelectOkPress" type="Emphasized"></Button>               
+            </Toolbar>
+        </footer>      
+	</Popover>   
+</core:FragmentDefinition>

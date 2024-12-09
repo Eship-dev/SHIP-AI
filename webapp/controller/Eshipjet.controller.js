@@ -1822,5 +1822,175 @@ sap.ui.define([
         }
         
 
+        // Address Book Column Names Popover code changes starts here
+
+        openAddressBookColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pAddressBookPopover) {
+                this._pAddressBookPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.AddressBookTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pAddressBookPopover.then(function (oPopover) {
+                oController.AddressBookColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        AddressBookColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/AddressBookTableColumns");
+            var oAddressBookTable = oView.byId("myAddressBookColumnSelectId");
+            var aTableItems = oAddressBookTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onAddressBookColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myAddressBookColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onAddressBookColSelectOkPress: function () {
+            var oView = this.getView();
+            var oAddressBookTable = oView.byId("myAddressBookColumnSelectId");
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var oTable = oView.byId("_IDAddressBookTable")
+            oTable.setModel(eshipjetModel);
+
+            var oAddressBookTblItems = oAddressBookTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/AddressBookTableColumns");
+            oAddressBookTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            oAddressBookTable.setModel(eshipjetModel);
+            this._pAddressBookPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onAddressBookColSelectClosePress: function () {
+            this._pAddressBookPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        // Address Book Column Names Popover code changes End here
+
+
+        // Users Column Names Popover code changes starts here
+
+        openUsersColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pUsersPopover) {
+                this._pUsersPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.UsersTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pUsersPopover.then(function (oPopover) {
+                oController.UsersColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        UsersColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/UsersTableColumns");
+            var oUsersTable = oView.byId("myUsersColumnSelectId");
+            var aTableItems = oUsersTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onUsersColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myUsersColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onUsersColSelectOkPress: function () {
+            var oView = this.getView();
+            var oUsersTable = oView.byId("myUsersColumnSelectId");
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var oTable = oView.byId("_IDUsersTable")
+            oTable.setModel(eshipjetModel);
+
+            var oUsersTblItems = oUsersTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/UsersTableColumns");
+            oUsersTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            oUsersTable.setModel(eshipjetModel);
+            this._pUsersPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onUsersColSelectClosePress: function () {
+            this._pUsersPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        // Users Column Names Popover code changes End here
     });
 });
