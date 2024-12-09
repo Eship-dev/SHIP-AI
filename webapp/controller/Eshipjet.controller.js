@@ -1393,7 +1393,7 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: oHBox,
                         visible: oContext.getObject().visible,
-                        width: "8rem",
+                        // width: "8rem",
                         sortProperty: columnName
                     });
                 } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
@@ -1408,7 +1408,7 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: columnName,
                         visible: oContext.getObject().visible,
-                        width: "10rem",
+                        // width: "10rem",
                         sortProperty: columnName
                     });
                 } else {
@@ -1416,7 +1416,7 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: columnName,
                         visible: oContext.getObject().visible,
-                        width: "10rem",
+                        // width: "10rem",
                         sortProperty: columnName
                     });
                 }

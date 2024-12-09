@@ -3,7 +3,9 @@
 	<tnt:ToolPage id="toolPage">
 		<tnt:header>
 			<tnt:ToolHeader>
-				<Button		id="sideNavigationToggleButton"		icon="{value:'com/eshipjet/zeshipjet/css/images/menu.png', formatter:'sap.ui.require.toUrl'}"
+				<!-- <Button		id="sideNavigationToggleButton"		icon="{value:'com/eshipjet/zeshipjet/css/images/menu.png', formatter:'sap.ui.require.toUrl'}"
+					type="Transparent"		press=".onSideNavButtonPress"> -->
+					<Button		id="sideNavigationToggleButton"		icon="sap-icon://screen-split-one"
 					type="Transparent"		press=".onSideNavButtonPress">
 					<layoutData>
 						<OverflowToolbarLayoutData priority="NeverOverflow" />
@@ -109,30 +111,27 @@
 								<Text text="Ship Now"/>
 								<ToolbarSpacer/>
 								<Button  icon="sap-icon://decline" press="onPressCloseShipNow"/>
-							</Toolbar>	   
-							<Toolbar class="sapUiTinyMarginBottom" height="10%">							
-								<ComboBox items="{eshipjetModel>/secondComboboxItems}">
-									<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
-								</ComboBox>
-								<Label text="SAP Delivery Number"  wrapping="true"   labelFor="SAPDelLabel"/>
-								<SearchField class="sapUiSmallMargin" id="idShipNowSearch"  width="10%"/>
-								<Button text="Get" type="Ghost" press="onShipNowGetPress" ></Button>
-								<Button text="Consolidation" type="Ghost" press="handleConsolidationPress"></Button>
-								<Label text="Pickup Date"   wrapping="true" labelFor="DP1"/>
-								<DatePicker id="DP1" width="13rem"   valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" placeholder="Enter Date" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
-								<Label text="Ship Date" labelFor="DP2"  wrapping="true"/>
-								<DatePicker id="DP2" width="13rem" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" placeholder="Enter Date" change="handleChange" value="{path: 'eshipjetModel>/shipDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
-								<Button text="New" type="Ghost"></Button>
+							</Toolbar>
+							<Toolbar class="sapUiTinyMarginBottom" height="10%">
+								<Label text="SAP Delivery Number"  wrapping="true" width="11%" labelFor="SAPDelLabel"/>
+								<SearchField class="sapUiSmallMargin" id="idShipNowSearch"  width="11%"/>
+								<Button text="Get" type="Ghost" press="onShipNowGetPress" width="11%"></Button>
+								<Button text="Consolidation" type="Ghost" press="handleConsolidationPress" width="11%"></Button>
+								<Label text="Pickup Date"   wrapping="true" labelFor="DP1" width="7%"/>
+								<DatePicker id="DP1" width="15%"   valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
+								<Label text="Ship Date" labelFor="DP2"  wrapping="true" width="7%"/>
+								<DatePicker id="DP2" width="15%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/shipDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
+								<Button text="New" type="Ghost" width="11%" ></Button>
 								<ToolbarSpacer />
 							</Toolbar>
 							<!-- Icon Tab Bar Starts here -->			
-							<IconTabBar id="idIconTabBarFiori2" expanded="{device>/isNoPhone}">
-								<items>
+							<IconTabBar id="idIconTabBarFiori2" expanded="{device>/isNoPhone}" >
+								<items >
 
 									<!-- Ship From / To Tab Starts here -->
-									<IconTabFilter text="Ship From / To" key="info">
+									<IconTabFilter text="Ship From / To" key="info" >
 										<VBox>
-											<f:SimpleForm id="SimpleFormChangeColumn_threeGroups346" editable="true" layout="ColumnLayout" columnsM="3" columnsL="4" columnsXL="6">
+											<f:SimpleForm id="SimpleFormChangeColumn_threeGroups346" editable="true" layout="ColumnLayout" columnsM="3" columnsL="4" columnsXL="4">
 												<f:content>
 													<Toolbar ariaLabelledBy="idShipFrom">
 														<Title id="idShipFrom" text="Ship From"/>
@@ -143,12 +142,14 @@
 													<Label text="Address Line 1" />
 													<Input value="{ShipNowDataModel>/ShipFromADDRESS_LINE1}"></Input>
 													<Label text="City" />
-													<Input value="{ShipNowDataModel>/ShipFromCITY}" placeholder="City" >
+													
+													<Input value="{ShipNowDataModel>/ShipFromSTATE}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<Input value="{ShipNowDataModel>/ShipFromSTATE}" placeholder="State / Province">
+													<!-- <Label text="State / Province" /> -->
+													<Input value="{ShipNowDataModel>/ShipFromCITY}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
@@ -160,24 +161,24 @@
 													<Label text="Address Line 2" />
 													<Input value="{ShipNowDataModel>/ShipFromADDRESS_LINE2}" />
 													<Label text="Zip / Postal Code" />
-													<Input value="{ShipNowDataModel>/ShipFromZIPCODE}" placeholder="Zip / Postal Code">
+													<Input value="{ShipNowDataModel>/ShipFromZIPCODE}" >
 													<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox placeholder="Country" items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipFromCOUNTRY}">
+													<ComboBox items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipFromCOUNTRY}">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>													
 													</ComboBox>
 													<Label text="Phone No" />
-													<Input value="{ShipNowDataModel>/ShipFromPHONE}" placeholder="Phone No"  >
+													<Input value="{ShipNowDataModel>/ShipFromPHONE}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox placeholder="Address Type" selectedKey="{ShipNowDataModel>/ShipFromSTATE}" items="{eshipjetModel>/addressType}" >
+													<ComboBox selectedKey="{ShipNowDataModel>/ShipFromSTATE}" items="{eshipjetModel>/addressType}" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
@@ -194,13 +195,13 @@
 													<Input value="{ShipNowDataModel>/ShipToCONTACT}" />
 													<Label text="Address Line 1" />
 													<Input value="{ShipNowDataModel>/ShipToADDRESS_LINE1}"></Input>
-													<Label text="City" />
-													<Input value="{ShipNowDataModel>/ShipToCITY}" placeholder="City">
+													<Label text="State / Province" />
+													<Input value="{ShipNowDataModel>/ShipToCITY}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<Input value="{ShipNowDataModel>/ShipToSTATE}" placeholder="State / Province" >
+													<Input value="{ShipNowDataModel>/ShipToSTATE}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>									
@@ -212,24 +213,24 @@
 													<Label text="Address Line 2" />
 													<Input value="{ShipNowDataModel>/ShipToADDRESS_LINE2}" />
 													<Label text="Zip / Postal Code" />
-													<Input value="{ShipNowDataModel>/ShipToZIPCODE}" placeholder="Zip / Postal Code" >
+													<Input value="{ShipNowDataModel>/ShipToZIPCODE}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox placeholder="Country" selectedKey="{ShipNowDataModel>/ShipToCOUNTRY}" items="{eshipjetModel>/countriesList}" >
+													<ComboBox selectedKey="{ShipNowDataModel>/ShipToCOUNTRY}" items="{eshipjetModel>/countriesList}" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</ComboBox>
 													<Label text="Phone No" />
-													<Input value="{ShipNowDataModel>/ShipToPHONE}" placeholder="Phone No">
+													<Input value="{ShipNowDataModel>/ShipToPHONE}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox placeholder="Address Type" selectedKey="{ShipNowDataModel/ShipToSTATE}" items="{eshipjetModel>/addressType}" >
+													<ComboBox selectedKey="{ShipNowDataModel/ShipToSTATE}" items="{eshipjetModel>/addressType}" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
@@ -312,10 +313,10 @@
 
 									<IconTabFilter text="Routing and Billing Details" key="Routing and Billing Details">
 										<VBox>
-											<f:SimpleForm id="RoutingandBillingDetails" editable="true" layout="ColumnLayout" columnsM="3" columnsL="4" columnsXL="6">
+											<f:SimpleForm id="RoutingandBillingDetails" editable="true" layout="ColumnLayout" columnsM="3" columnsL="4" columnsXL="4" >
 												<f:content>
 													<Label text="Ship Method" />
-													<ComboBox items="{eshipjetModel>/shipMethod}">
+													<ComboBox items="{eshipjetModel>/shipMethod}" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Payment Type" />
@@ -354,7 +355,7 @@
 												</VBox>
 											</Toolbar>		
 											<VBox height="1rem" />				
-											<f:SimpleForm id="RoutingandBillingDetails2" editable="true" layout="ColumnLayout" columnsM="3" columnsL="4" columnsXL="6">
+											<f:SimpleForm id="RoutingandBillingDetails2" editable="true" layout="ColumnLayout" columnsM="3" columnsL="4" columnsXL="5">
 												<f:content>
 													<Label text="Signature Option" />
 													<ComboBox items="{eshipjetModel>/signatureOption}">
@@ -376,9 +377,9 @@
 													</ComboBox>
 													<Label text="Insurance Charge" />
 													<Input value="{eshipjetModel>/insuranceChange}" />
-													<Label text=""></Label>
+													<Label text="" visible="false"></Label>
 													<CheckBox text="Home Delivery" class="sapUiSmallMarginTop"></CheckBox>
-													<Label text=""></Label>
+													<Label text="" visible="false" ></Label>
 													<CheckBox text="Inside Delivery" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
 													<CheckBox text="Broker Select" class="sapUiSmallMarginTop"></CheckBox>
@@ -391,7 +392,9 @@
 													<Label text="Handling Cost" />
 													<Input value="{eshipjetModel>/handlingCost}" />
 													<Label text="Home Delivery Date" />
-													<Input value="{eshipjetModel>/homeDeliveryDate}" width="10rem" />
+													<DatePicker
+														value="{eshipjetModel>/homeDeliveryDate}"
+														class="sapUiSmallMarginBottom"/>
 													<Label text=""></Label>
 													<CheckBox text="Inside Pickup" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
@@ -435,40 +438,53 @@
 									<!-- Additional Info Tab Starts here -->
 									<IconTabFilter text="Additional Info" key="Additional Info">
 										<VBox class="sapUiSmallMargin">
-											<f:SimpleForm id="AdditionalInfo" editable="true" layout="ColumnLayout" columnsM="3" columnsL="4" columnsXL="6">
+											<f:SimpleForm id="AdditionalInfo" editable="true" layout="ColumnLayout" columnsM="3" columnsL="4" columnsXL="4">
 												<f:content>
-													<Label text="Customer No" />
-													<Input value="{}"></Input>
-													<Label text="References" />
-													<ComboBox items="{}">
-														<core:Item key="{}" text="{}" />
-													</ComboBox>
-													<Label text="Move Code" />
-													<ComboBox items="{}">
-														<core:Item key="{}" text="{}" />
-													</ComboBox>
 													<Label text="PO No" />
-													<Input value="{}" />
+													<Input value="{}"></Input>
 													<Label text="Prefix" />
-													<Input value="{}" />
-													<Label text="Shipment Method" />
-													<ComboBox items="{}">
-														<core:Item key="{}" text="{}" />
-													</ComboBox>
-													<Label text="Invoice No" />
-													<Input value="{}" />
-													<Label text="Incoterm Location" />
 													<Input value="{}"></Input>
 													<Label text="Refer" />
 													<ComboBox items="{}">
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
-													<Label text="SO No" />
+													<Label text="Description" />
+													<Input value="{}" />
+
+													<Label text="Invoice No" />
 													<Input value="{}" />
 													<Label text="Transportation Mode" />
 													<ComboBox items="{}">
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
+													<Label text="Insurance Amount" />
+													<Input value="{}" />
+													<Label text="IncoTerm" />
+													<ComboBox items="{}">
+														<core:Item key="{}" text="{}" />
+													</ComboBox>
+
+													<Label text="SO No" />
+													<Input value="{}" />
+													<Label text="Move Code" />
+													<ComboBox items="{}">
+														<core:Item key="{}" text="{}" />
+													</ComboBox>
+													<Label text="Insurance Currency" />
+													<Input value="{}" />
+													<Label text="IncoTerm Location" />
+													<Input value="{}" />
+
+													<Label text="References" />
+													<ComboBox items="{}">
+														<core:Item key="{}" text="{}" />
+													</ComboBox>
+													<Label text="Shipment Method" />
+													<ComboBox items="{}">
+														<core:Item key="{}" text="{}" />
+													</ComboBox>
+													<Label text="Currency" />
+													<Input value="{}" />
 												</f:content>
 											</f:SimpleForm>
 											<Toolbar class="toolbarbottomborder" height="10%" width="100%">		
@@ -485,17 +501,17 @@
 									<IconTabFilter text="Pack" key="Pack">
 										<Table id="Pack" inset="false"  width="100%" class="sapUiTinyMarginTop" items="{eshipjetModel>/pickAddProductTable}">
 											<headerToolbar>
-												<OverflowToolbar>
+												<OverflowToolbar >
 													<content>
-														<HBox >
+														<HBox width="100%" >
 															<Label text="Scan Product" class="sapUiTinyMargin" />
 															<Input value="{}"></Input>
 
 															<Label text="Quantity" class="sapUiTinyMargin"/>
-															<StepInput id="quantityInput" value="" min="0" max="100" step="1"  width="8%"  valueState="None" />
+															<StepInput id="quantityInput" value="" min="0" max="100" step="1" width="8%" valueState="None" />
 
 															<Label text="Package Type" class="sapUiTinyMargin" />
-															<ComboBox items="{}"  width="60%">
+															<ComboBox items="{}" >
 																<core:Item key="{}" text="{}" />
 															</ComboBox>
 
@@ -507,7 +523,7 @@
 
 															<Label text="Total Pkgs/Weight"  class="sapUiTinyMargin"/>
 															<StepInput id="stepDownInput" value="{dimensionModel>/weightStepDown}" min="0" max="100" step="1"  width="6rem"  valueState="None" />
-															<Text text="/" width="10%"></Text>
+															<Text text="/" width="10%" class="sapUiTinyMarginTop" ></Text>
 															<StepInput id="stepUpInput" value="{dimensionModel>/weightStepUp}" min="0" max="100" step="1" width="6rem" valueState="None" />
 															<Button text="Auto Pack" press="handleAutoPackPress"  type="Ghost" ></Button>
 														</HBox>
@@ -662,32 +678,36 @@
 													<ComboBox items="{eshipjetModel>/intDutiesTaxes}">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
-													<Label text="Duties Account No" />
-													<Input value="{eshipjetModel>/dutiesAccountNo}"></Input>
 													<Label text="Payor Country Code" />
 													<Input value="{eshipjetModel>/payorCountryCode}" />
+													<Label text="Permit No" />
+													<Input value="{eshipjetModel>/permitNo}" />
+
 													<Label text="Payor Zip Code" />
 													<Input value="{eshipjetModel>/payorZipCode}" />
 													<Label text="Ship From Tax No" />
 													<Input value="{eshipjetModel>/shipFromTaxNo}" />
-													<Label text="Permit No" />
-													<Input value="{eshipjetModel>/permitNo}" />
-													<Label text="ITN/XTN (SED/EEI)" />
-													<Input value="{eshipjetModel>/itn_xtn}" />
-													<Label text="Booking Confirm No" />
-													<Input value="{eshipjetModel>/bookingConfirmNo}" />
 													<Label text="B13A Filing Option" />
 													<ComboBox items="{eshipjetModel>/B13AFillingOption}">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
+
+													<Label text="ITN/XTN (SED/EEI)" />
+													<Input value="{eshipjetModel>/itn_xtn}" />
+													<Label text="Booking Confirm No" />
+													<Input value="{eshipjetModel>/bookingConfirmNo}" />
+													<Label text="Customs Declared Value" />
+													<Input value="{eshipjetModel>/customsDeclaredValue}" />
+
 													<Label text="ATLAS MRN No" />
 													<Input value="{eshipjetModel>/atlasMRNNo}"></Input>
 													<Label text="Ship To Tax No" />
 													<Input value="{eshipjetModel>/shipToTaxNo}" />
-													<Label text="Customs Declared Value" />
-													<Input value="{eshipjetModel>/customsDeclaredValue}" />
-													<Label text="Terms of Shipment" />
-													<ComboBox items="{eshipjetModel>/incoTeam}">
+													<Label text="Currency" />
+													<Input value="{eshipjetModel>/Currency}"></Input>
+
+													<Label text="Documents Content Type"></Label>
+													<ComboBox items="{eshipjetModel>/documentContentType}">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Reason for Export" />
@@ -696,15 +716,12 @@
 													</ComboBox>
 													<Label text="Compli. Statement" />
 													<Input value="{eshipjetModel>/compilStatement}" />
-													<Label text="IncoTerm Location" />
-													<Input value="{eshipjetModel>/incoTeamLocation}" />
 
+													<Label text="Duties Account No" />
+													<Input value="{eshipjetModel>/dutiesAccountNo}"></Input>
 													<Label text="Freight Forwarder Tax No" />
 													<Input value="{eshipjetModel>/freightForwordTaxNo}" />
-													<Label text="Documents Content Type"></Label>
-													<ComboBox items="{eshipjetModel>/documentContentType}">
-														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
-													</ComboBox>
+													
 												</f:content>
 											</f:SimpleForm>
 
@@ -782,7 +799,7 @@
 									</IconTabFilter>
 
 									<!-- Track Tab Starts here -->
-									<IconTabFilter text="Track" key="Track">
+									<IconTabFilter text="Track" key="Track" >
 										<Text text="Track content goes here ..." />
 									</IconTabFilter>
 								</items>
