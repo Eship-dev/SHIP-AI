@@ -32,7 +32,7 @@
                     <ToolbarSpacer/>
                     <Button  text="First" enabled="false" />
                     <Button  text="Previous" enabled="false"/>
-                    <Text    text="1-0 of 0" class="darkTheme" />
+                    <Text    text="1-0 of 0"/>
                     <Button  text="Next" />
                     <Button  text="Last" />
 				</Toolbar>

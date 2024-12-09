@@ -226,7 +226,7 @@
 .ship-copilot-search-section span::before {
   color: #f4f5f8;
 }
-
+/* Ship copilot styles */
 .ship-copilot-page {
   background-color: #fff;
 }
@@ -257,6 +257,43 @@
 .co-pilot-search-results li:focus {
   outline: none !important;
 }
+
+/*Ship copilot datk theme*/
+body.dark-theme .ship-copilot-page {
+  background-color:  #212121;
+
+  .co-pilot-search-results li {
+    background-color:  #212121;;
+    span {
+      color: #fff !important;
+    }
+    .co-pilot-search-text  {
+      background-color: rgb(47, 47, 47);
+      color: rgb(236, 236, 236);
+    }
+  }
+
+  .ship-copilot-button {
+    background-color: #212121 !important;
+    border: 1px solid #d5d5d5 !important;
+  }
+  .ship-copilot-search-section input {
+    background-color: #2f2f2f !important;
+    color: #ffffff !important;
+  }
+  .ship-copilot-search-section input::placeholder {
+    color: #898989 !important;
+  }
+  .ship-copilot-search-section button {
+    background-color: rgb(103, 103, 103) !important;
+   }
+
+   .ship-copilot-search-section span::before {
+    color:#212121;
+   }
+}
+
+/* Ship copilot styles ends*/
 
 .ship-tiles-page:not(.sapMNavItemHidden) {
   display: flex !important;
@@ -325,7 +362,7 @@ button.ship-tile-button span {
 }
 
 .scan-ship-toolbar__input {
-  flex: 4;
+  width: 400px !important;
   height: auto !important;
 }
 
@@ -352,16 +389,19 @@ button.ship-tile-button span {
 .scan-ship-toolbar__button {
   padding: 0 !important;
   height: auto !important;
+  cursor: pointer;
 }
 
-.scan-ship-toolbar__button:hover span {
+.scan-ship-toolbar__button:hover > span {
   background-color: #4E9C2D !important;
   color: #fff !important;
   border: 1px solid #4E9C2D !important;
   animation: animateBtn 1s infinite;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
 }
 
-.scan-ship-toolbar__button_void:hover span {
+.scan-ship-toolbar__button_void:hover > span {
   background-color: red !important;
   border: 1px solid red !important;
 }

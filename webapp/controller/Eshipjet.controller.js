@@ -391,7 +391,6 @@ sap.ui.define([
                         sortProperty: columnName
                     });
                 } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
-                } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
                     var DateTxt = new sap.m.Text({
                         text: {
                             path: 'ScanShipTableDataModel>ShipDate',
@@ -1676,9 +1675,9 @@ sap.ui.define([
           onThemeChange:function(oEvent){
             var bState = oEvent.getSource().getState();
             if(bState){
-                document.body.style.filter = "invert(0)";
+                document.body.classList.remove("dark-theme");
             }else{
-                document.body.style.filter = "invert(1)";
+                document.body.classList.add("dark-theme");
             }
           }
 
