@@ -1705,8 +1705,9 @@ sap.ui.define([
                 document.body.classList.add("dark-theme");
             }
           },
-          onPressCloseShipNow:function(){
-            
+          onPressCloseShipNow:function(){            
+            var oPageContainer = this.byId("pageContainer");
+            oPageContainer.to(this.getView().createId("Dashboard"));            
           }
 
     });

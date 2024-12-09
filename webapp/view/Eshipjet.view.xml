@@ -114,13 +114,13 @@
 								<ComboBox items="{eshipjetModel>/secondComboboxItems}">
 									<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 								</ComboBox>
-								<Label text="SAP Delivery Number" labelFor="SAPDelLabel"/>
+								<Label text="SAP Delivery Number"  wrapping="true"   labelFor="SAPDelLabel"/>
 								<SearchField class="sapUiSmallMargin" id="idShipNowSearch"  width="10%"/>
 								<Button text="Get" type="Ghost" press="onShipNowGetPress" ></Button>
 								<Button text="Consolidation" type="Ghost" press="handleConsolidationPress"></Button>
-								<Label text="Pickup Date" labelFor="DP1"/>
-								<DatePicker id="DP1" width="13rem" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" placeholder="Enter Date" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
-								<Label text="Ship Date" labelFor="DP2"/>
+								<Label text="Pickup Date"   wrapping="true" labelFor="DP1"/>
+								<DatePicker id="DP1" width="13rem"   valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" placeholder="Enter Date" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
+								<Label text="Ship Date" labelFor="DP2"  wrapping="true"/>
 								<DatePicker id="DP2" width="13rem" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" placeholder="Enter Date" change="handleChange" value="{path: 'eshipjetModel>/shipDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
 								<Button text="New" type="Ghost"></Button>
 								<ToolbarSpacer />
