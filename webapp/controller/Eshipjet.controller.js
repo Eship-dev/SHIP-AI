@@ -1992,5 +1992,950 @@ sap.ui.define([
         },
 
         // Users Column Names Popover code changes End here
+
+
+        // Roles Column Names Popover code changes starts here
+
+        openRolesColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pRolesPopover) {
+                this._pRolesPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.RolesTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pRolesPopover.then(function (oPopover) {
+                oController.RolesColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        RolesColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/RolesTableColumns");
+            var oRolesTable = oView.byId("myRolesColumnSelectId");
+            var aTableItems = oRolesTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onRolesColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myRolesColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onRolesColSelectOkPress: function () {
+            var oView = this.getView();
+            var oRolesTable = oView.byId("myRolesColumnSelectId");
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var oTable = oView.byId("_IDRolesTable")
+            oTable.setModel(eshipjetModel);
+
+            var oRolesTblItems = oRolesTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/RolesTableColumns");
+            oRolesTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            oRolesTable.setModel(eshipjetModel);
+            this._pRolesPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onRolesColSelectClosePress: function () {
+            this._pRolesPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        // Roles Column Names Popover code changes End here
+
+
+        // CarrierCatalog Column Names Popover code changes starts here
+
+        openCarrierCatalogColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pCarrierCatalogPopover) {
+                this._pCarrierCatalogPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.CarrierCatalogTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pCarrierCatalogPopover.then(function (oPopover) {
+                oController.CarrierCatalogColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        CarrierCatalogColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/CarrierCatalogTableColumns");
+            var oCarrierCatalogTable = oView.byId("myCarrierCatalogColumnSelectId");
+            var aTableItems = oCarrierCatalogTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onCarrierCatalogColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myCarrierCatalogColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onCarrierCatalogColSelectOkPress: function () {
+            var oView = this.getView();
+            var oCarrierCatalogTable = oView.byId("myCarrierCatalogColumnSelectId");
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var oTable = oView.byId("_IDCarriesCatalogTable")
+            oTable.setModel(eshipjetModel);
+
+            var oCarrierCatalogTblItems = oCarrierCatalogTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/CarrierCatalogTableColumns");
+            oCarrierCatalogTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            oCarrierCatalogTable.setModel(eshipjetModel);
+            this._pCarrierCatalogPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onCarrierCatalogColSelectClosePress: function () {
+            this._pCarrierCatalogPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        // CarrierCatalog Column Names Popover code changes End here
+
+
+        // CarrierAccount Column Names Popover code changes starts here
+
+        openCarrierAccountColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pCarrierAccountPopover) {
+                this._pCarrierAccountPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.CarrierAccountTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pCarrierAccountPopover.then(function (oPopover) {
+                oController.CarrierAccountColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        CarrierAccountColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/CarrierAccountsTableColumns");
+            var oCarrierAccountTable = oView.byId("myCarrierAccountColumnSelectId");
+            var aTableItems = oCarrierAccountTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onCarrierAccountColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myCarrierAccountColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onCarrierAccountColSelectOkPress: function () {
+            var oView = this.getView();
+            var oCarrierAccountTable = oView.byId("myCarrierAccountColumnSelectId");
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var oTable = oView.byId("_IDCarriesAccountsTable")
+            oTable.setModel(eshipjetModel);
+
+            var oCarrierAccountTblItems = oCarrierAccountTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/CarrierAccountsTableColumns");
+            oCarrierAccountTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            oCarrierAccountTable.setModel(eshipjetModel);
+            this._pCarrierAccountPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onCarrierAccountColSelectClosePress: function () {
+            this._pCarrierAccountPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        // CarrierAccount Column Names Popover code changes End here
+
+
+        // CostCenter Column Names Popover code changes starts here
+
+        openCostCenterColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pCostCenterPopover) {
+                this._pCostCenterPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.CostCenterTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pCostCenterPopover.then(function (oPopover) {
+                oController.CostCenterColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        CostCenterColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/CostCenterTableColumns");
+            var oCostCenterTable = oView.byId("myCostCenterColumnSelectId");
+            var aTableItems = oCostCenterTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onCostCenterColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myCostCenterColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onCostCenterColSelectOkPress: function () {
+            var oView = this.getView();
+            var oCostCenterTable = oView.byId("myCostCenterColumnSelectId");
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var oTable = oView.byId("_IDCostCenterTable")
+            oTable.setModel(eshipjetModel);
+
+            var oCostCenterTblItems = oCostCenterTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/CostCenterTableColumns");
+            oCostCenterTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            oCostCenterTable.setModel(eshipjetModel);
+            this._pCostCenterPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onCostCenterColSelectClosePress: function () {
+            this._pCostCenterPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        // CostCenter Column Names Popover code changes End here
+
+        // Statuses Column Names Popover code changes starts here
+
+        openStatusesColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pStatusesPopover) {
+                this._pStatusesPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.StatusesTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pStatusesPopover.then(function (oPopover) {
+                oController.StatusesColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        StatusesColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/StatusesTableColumns");
+            var oStatusesTable = oView.byId("myStatusesColumnSelectId");
+            var aTableItems = oStatusesTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onStatusesColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myStatusesColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onStatusesColSelectOkPress: function () {
+            var oView = this.getView();
+            var oStatusesTable = oView.byId("myStatusesColumnSelectId");
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var oTable = oView.byId("_IDStatusesTable")
+            oTable.setModel(eshipjetModel);
+
+            var oStatusesTblItems = oStatusesTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/StatusesTableColumns");
+            oStatusesTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            oStatusesTable.setModel(eshipjetModel);
+            this._pStatusesPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onStatusesColSelectClosePress: function () {
+            this._pStatusesPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        // Statuses Column Names Popover code changes End here
+
+
+        // Products Column Names Popover code changes starts here
+
+        openProductsColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pProductsPopover) {
+                this._pProductsPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ProductsTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pProductsPopover.then(function (oPopover) {
+                oController.ProductsColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        ProductsColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/ProductsTableColumns");
+            var oProductsTable = oView.byId("myProductsColumnSelectId");
+            var aTableItems = oProductsTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onProductsColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myProductsColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onProductsColSelectOkPress: function () {
+            var oView = this.getView();
+            var oProductsTable = oView.byId("myProductsColumnSelectId");
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var oTable = oView.byId("_IDProductsTable")
+            oTable.setModel(eshipjetModel);
+
+            var oProductsTblItems = oProductsTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/ProductsTableColumns");
+            oProductsTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            oProductsTable.setModel(eshipjetModel);
+            this._pProductsPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onProductsColSelectClosePress: function () {
+            this._pProductsPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        // Products Column Names Popover code changes End here
+
+
+        // PackageTypes Column Names Popover code changes starts here
+
+        openPackageTypesColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pPackageTypesPopover) {
+                this._pPackageTypesPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.PackageTypesTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pPackageTypesPopover.then(function (oPopover) {
+                oController.PackageTypesColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        PackageTypesColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/PackageTypeTableColumns");
+            var oPackageTypesTable = oView.byId("myPackageTypesColumnSelectId");
+            var aTableItems = oPackageTypesTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onPackageTypesColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myPackageTypesColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onPackageTypesColSelectOkPress: function () {
+            var oView = this.getView();
+            var oPackageTypesTable = oView.byId("myPackageTypesColumnSelectId");
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var oTable = oView.byId("_IDPackageTypesTable")
+            oTable.setModel(eshipjetModel);
+
+            var oPackageTypesTblItems = oPackageTypesTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/PackageTypeTableColumns");
+            oPackageTypesTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            oPackageTypesTable.setModel(eshipjetModel);
+            this._pPackageTypesPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onPackageTypesColSelectClosePress: function () {
+            this._pPackageTypesPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        // PackageTypes Column Names Popover code changes End here
+
+
+        // ThirdParties Column Names Popover code changes starts here
+
+        openThirdPartiesColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pThirdPartiesPopover) {
+                this._pThirdPartiesPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ThirdPartiesTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pThirdPartiesPopover.then(function (oPopover) {
+                oController.ThirdPartiesColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        ThirdPartiesColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/ThirdPartiesTableColumns");
+            var oThirdPartiesTable = oView.byId("myThirdPartiesColumnSelectId");
+            var aTableItems = oThirdPartiesTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onThirdPartiesColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myThirdPartiesColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onThirdPartiesColSelectOkPress: function () {
+            var oView = this.getView();
+            var oThirdPartiesTable = oView.byId("myThirdPartiesColumnSelectId");
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var oTable = oView.byId("_IDThirdPartyTable")
+            oTable.setModel(eshipjetModel);
+
+            var oThirdPartiesTblItems = oThirdPartiesTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/ThirdPartiesTableColumns");
+            oThirdPartiesTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            oThirdPartiesTable.setModel(eshipjetModel);
+            this._pThirdPartiesPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onThirdPartiesColSelectClosePress: function () {
+            this._pThirdPartiesPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        // ThirdParties Column Names Popover code changes End here
+
+
+        // LTLClasses Column Names Popover code changes starts here
+
+        openLTLClassesColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pLTLClassesPopover) {
+                this._pLTLClassesPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.LTLClassesTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pLTLClassesPopover.then(function (oPopover) {
+                oController.LTLClassesColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        LTLClassesColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/LtlClassesTableColumns");
+            var oLTLClassesTable = oView.byId("myLTLClassesColumnSelectId");
+            var aTableItems = oLTLClassesTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onLTLClassesColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myLTLClassesColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onLTLClassesColSelectOkPress: function () {
+            var oView = this.getView();
+            var oLTLClassesTable = oView.byId("myLTLClassesColumnSelectId");
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var oTable = oView.byId("_IDLTLClassTable")
+            oTable.setModel(eshipjetModel);
+
+            var oLTLClassesTblItems = oLTLClassesTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/LtlClassesTableColumns");
+            oLTLClassesTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            oLTLClassesTable.setModel(eshipjetModel);
+            this._pLTLClassesPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onLTLClassesColSelectClosePress: function () {
+            this._pLTLClassesPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        // LTLClasses Column Names Popover code changes End here
+
+
+        // NMFC Column Names Popover code changes starts here
+
+        openNMFCColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pNMFCPopover) {
+                this._pNMFCPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.NMFCTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pNMFCPopover.then(function (oPopover) {
+                oController.NMFCColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        NMFCColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/NmfcTableColumns");
+            var oNMFCTable = oView.byId("myNMFCColumnSelectId");
+            var aTableItems = oNMFCTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onNMFCColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myNMFCColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onNMFCColSelectOkPress: function () {
+            var oView = this.getView();
+            var oNMFCTable = oView.byId("myNMFCColumnSelectId");
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var oTable = oView.byId("_IDNMFCTable")
+            oTable.setModel(eshipjetModel);
+
+            var oNMFCTblItems = oNMFCTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/NmfcTableColumns");
+            oNMFCTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            oNMFCTable.setModel(eshipjetModel);
+            this._pNMFCPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onNMFCColSelectClosePress: function () {
+            this._pNMFCPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        // NMFC Column Names Popover code changes End here
+
+
+        // MOT Column Names Popover code changes starts here
+
+        openMOTColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pMOTPopover) {
+                this._pMOTPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.MOTTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pMOTPopover.then(function (oPopover) {
+                oController.MOTColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        MOTColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/MotTableColumns");
+            var oMOTTable = oView.byId("myMOTColumnSelectId");
+            var aTableItems = oMOTTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onMOTColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myMOTColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onMOTColSelectOkPress: function () {
+            var oView = this.getView();
+            var oMOTTable = oView.byId("myMOTColumnSelectId");
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var oTable = oView.byId("_IDModeOfTransportTable")
+            oTable.setModel(eshipjetModel);
+
+            var oMOTTblItems = oMOTTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/MotTableColumns");
+            oMOTTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            oMOTTable.setModel(eshipjetModel);
+            this._pMOTPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onMOTColSelectClosePress: function () {
+            this._pMOTPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        // MOT Column Names Popover code changes End here
     });
 });

@@ -1,0 +1,38 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover  contentWidth="20%" placement="Left" contentHeight="40%" >
+		<customHeader>
+			<VBox >
+				<Toolbar class="toolbarbottomborder">
+					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="Columns"></Title>
+					<ToolbarSpacer ></ToolbarSpacer>					
+					<Button icon="sap-icon://decline" press="onThirdPartiesColSelectClosePress"></Button>
+				</Toolbar>
+				<SearchField placeholder="Search Columns"   liveChange="onThirdPartiesColNameSearch"></SearchField>
+			</VBox>
+		</customHeader>
+		<content>
+        <Table	id="myThirdPartiesColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/ThirdPartiesTableColumns'}" >
+		<ColumnListItem id="_IDGenThirdPartiesColumnListItem1" vAlign="Middle">
+			<cells>				
+				<Text text="{eshipjetModel>label}" />				
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column >
+				<header>
+					<Text text="Select All" />
+				</header>
+			</Column>			
+		</columns>
+        </Table>
+        </content>
+        <footer>
+            <Toolbar >
+                <ToolbarSpacer />
+                <Button text="Apply" press="onThirdPartiesColSelectOkPress" type="Emphasized"></Button>               
+            </Toolbar>
+        </footer>      
+	</Popover>   
+</core:FragmentDefinition>
