@@ -1644,7 +1644,11 @@ sap.ui.define([
                 oController._displayTables("_ID_ERPTable", "ERPTableColumns", "ERPTableRows", "ERP Configuration");
                 oPageContainer.to(oView.createId("_ID_ERP_TableScrollContainer"));
 
-                }else if(oCurrObj && oCurrObj.name === "Countries"){
+            } else if (oCurrObj && oCurrObj.name === "Default Configuration") {
+
+               this.OpenDefaultConfigDialog();
+
+            }else if(oCurrObj && oCurrObj.name === "Countries"){
 
                 oController._displayTables("_ID_CountriesTable", "CountriesTableColumns", "CountriesTableRows", "Countries");
                 oPageContainer.to(oView.createId("_ID_Countries_TableScrollContainer"));
@@ -1705,10 +1709,36 @@ sap.ui.define([
                 document.body.classList.add("dark-theme");
             }
           },
-          onPressCloseShipNow:function(){            
-            var oPageContainer = this.byId("pageContainer");
-            oPageContainer.to(this.getView().createId("Dashboard"));            
-          }
+          OpenDefaultConfigDialog: function () {
+            var oView = this.getView();
+            if (!this.byId("openDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.DefaultConfigDialog",
+                    controller: this // Pass the controller for binding
+                }).then(function (oDialog) {
+                    oView.addDependent(oDialog); 
+                    oDialog.open(); 
+                });
+            } else {
+                this.byId("openDialog").open(); // Open existing dialog
+            }
+        },
+        // Function to handle the "Cancel" button
+        CancelDialog: function () {
+            var oDialog = this.byId("openDialog");
+            if (oDialog) {
+                oDialog.close();
+            }
+        },
+        // Function to handle the "Update" button
+        UpdateDialog: function () {
+            var oDialog = this.byId("openDialog");
+            if (oDialog) {
+                oDialog.close(); // Close the dialog
+            }
+        }
+        
 
     });
 });
