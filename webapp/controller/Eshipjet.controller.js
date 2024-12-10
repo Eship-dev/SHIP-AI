@@ -1808,14 +1808,12 @@ sap.ui.define([
                 this.byId("openDialog").open(); // Open existing dialog
             }
         },
-        // Function to handle the "Cancel" button
         CancelDialog: function () {
             var oDialog = this.byId("openDialog");
             if (oDialog) {
                 oDialog.close();
             }
         },
-        // Function to handle the "Update" button
         UpdateDialog: function () {
             var oDialog = this.byId("openDialog");
             if (oDialog) {
