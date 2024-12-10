@@ -133,16 +133,17 @@
                          <Label text="Dimension Unit" />
                          <ComboBox id="idLocationType1" placeholder="Select">
                          </ComboBox>
-                        <Label text="Currency" />
-                        <Input />
-                        <Label text="Time Zone" />
-                        <Input />
-                        <Label text="Status" />
+                          <Label text="Status" />
                         <Switch state="true" enabled="false">
 				            <layoutData>
 					            <FlexItemData growFactor="1" />
 				            </layoutData>
 			            </Switch>
+                        <Label text="Currency" />
+                        <Input />
+                        <Label text="Time Zone" />
+                        <Input />
+                       
 					</f:content>
 				</f:SimpleForm>
             </FlexBox>
