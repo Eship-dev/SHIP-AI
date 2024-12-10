@@ -3708,5 +3708,32 @@ sap.ui.define([
     },
 
     // EUCountries Column Names Popover code changes End here
+
+    // add location popover changes start
+    onAddLocationPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        // create popover
+        if (!this._AddLocPopover) {
+            this._AddLocPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.AddLocationPopover",
+                controller: this
+            }).then(function (oAddLocPopover) {
+                oView.addDependent(oAddLocPopover);
+                return oAddLocPopover;
+            });
+        }
+        this._AddLocPopover.then(function (oAddLocPopover) {
+            oAddLocPopover.openBy(oButton);
+        });
+    },
+
+    onAddLocationClosePress: function (oEvent) {
+        this.byId("addLocationPopover").close();
+    },
+    // add location popover changes end
+
+
     });
 });
