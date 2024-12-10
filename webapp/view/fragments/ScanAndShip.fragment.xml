@@ -1,6 +1,6 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
-    <VBox>
+    <VBox class="scan-ship-page">
 	<Toolbar class="sapUiTinyMargin scan-ship-toolbar">
         <Title text="Scan and Ship" class="scan-ship-toolbar__title"/>
         <Input class="scan-ship-toolbar__input" id="userscanShipInput" placeholder="Enter SAP DN, Handing Unit or ODO" ></Input>
@@ -10,10 +10,10 @@
         <Button class="scan-ship-toolbar__button scan-ship-toolbar__button_void" text="Void Now" type="Reject"></Button>
 	</Toolbar>
 
-        <ui:Table class="sapUiTinyMargin" 	rowActionCount="0"	id="idScanAndShipTable"
+        <ui:Table class="sapUiTinyMargin scan-ship-table" 	rowActionCount="0"	id="idScanAndShipTable"
 					selectionMode="None"	paste="onPaste"		ariaLabelledBy="title">
 					<ui:extension>
-						<OverflowToolbar>
+						<OverflowToolbar class="scan-ship-table__toolbar">
 							<Button icon="sap-icon://filter" press="scanShipFilterPopoverPress"></Button>
 							<ToolbarSpacer ></ToolbarSpacer>
 							<Button icon="sap-icon://action" press="onScanShipExportToExcel"></Button>
@@ -27,7 +27,7 @@
 						</OverflowToolbar>
 					</ui:extension>									
 				<ui:footer>
-                <Toolbar>
+                <Toolbar class="scan-ship-table_footer_toolbar">
                     <Text text="Total Shipped by John Marsh: 1"></Text>
                     <ToolbarSpacer/>
                     <Button  text="First" enabled="false" />
