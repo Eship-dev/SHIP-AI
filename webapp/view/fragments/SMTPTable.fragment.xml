@@ -36,7 +36,7 @@
         <OverflowToolbar style="Clear">										
             <ToolbarSpacer />
                 <Button icon="sap-icon://action" ></Button>
-                <Button icon="sap-icon://action-settings"></Button>
+                <Button icon="sap-icon://action-settings" press="openSMTPColNamesPopover"></Button>
         </OverflowToolbar>
     </ui:extension>	
     <ui:footer>

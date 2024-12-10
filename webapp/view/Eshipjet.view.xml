@@ -143,13 +143,13 @@
 													<Input value="{ShipNowDataModel>/ShipFromADDRESS_LINE1}"></Input>
 													<Label text="City" />
 													
-													<Input value="{ShipNowDataModel>/ShipFromSTATE}" >
+													<Input value="{ShipNowDataModel>/ShipFromCITY}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
 													<!-- <Label text="State / Province" /> -->
-													<Input value="{ShipNowDataModel>/ShipFromCITY}" >
+													<Input value="{ShipNowDataModel>/ShipFromSTATE}" placeholder="State" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
@@ -166,7 +166,7 @@
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipFromCOUNTRY}">
+													<ComboBox items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipFromCOUNTRY}" placeholder="Country">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
@@ -178,7 +178,7 @@
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox selectedKey="{ShipNowDataModel>/ShipFromSTATE}" items="{eshipjetModel>/addressType}" >
+													<ComboBox selectedKey="{ShipNowDataModel>/ShipFromSTATE}" items="{eshipjetModel>/addressType}" placeholder="Address Type">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
@@ -196,12 +196,12 @@
 													<Label text="Address Line 1" />
 													<Input value="{ShipNowDataModel>/ShipToADDRESS_LINE1}"></Input>
 													<Label text="State / Province" />
-													<Input value="{ShipNowDataModel>/ShipToCITY}" >
+													<Input value="{ShipNowDataModel>/ShipToSTATE}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<Input value="{ShipNowDataModel>/ShipToSTATE}" >
+													<Input value="{ShipNowDataModel>/ShipToCITY}" placeholder="City" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>									
@@ -218,7 +218,7 @@
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox selectedKey="{ShipNowDataModel>/ShipToCOUNTRY}" items="{eshipjetModel>/countriesList}" >
+													<ComboBox selectedKey="{ShipNowDataModel>/ShipToCOUNTRY}" items="{eshipjetModel>/countriesList}" placeholder="Country">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
@@ -230,7 +230,7 @@
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox selectedKey="{ShipNowDataModel/ShipToSTATE}" items="{eshipjetModel>/addressType}" >
+													<ComboBox selectedKey="{ShipNowDataModel/ShipToSTATE}" items="{eshipjetModel>/addressType}" placeholder="Address Type">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
@@ -500,8 +500,8 @@
 									<!-- Pack Tab Starts here -->
 									<IconTabFilter text="Pack" key="Pack">
 										<Table id="Pack" inset="false"  width="100%" class="sapUiTinyMarginTop" items="{eshipjetModel>/pickAddProductTable}">
-											<headerToolbar>
-												<OverflowToolbar >
+											<headerToolbar >
+												<OverflowToolbar height="15%" class="sapUiSmallMarginBottom">
 													<content>
 														<HBox width="100%" >
 															<Label text="Scan Product" class="sapUiTinyMargin" />
@@ -530,6 +530,13 @@
 													</content>
 												</OverflowToolbar>
 											</headerToolbar>
+											<infoToolbar>
+												<Toolbar >
+													<Title text="Product"></Title>
+													<ToolbarSpacer />
+														<Button icon="sap-icon://action-settings"></Button>
+												</Toolbar>
+											</infoToolbar>
 											<columns>
 												<Column >
 													<Text text="#" />

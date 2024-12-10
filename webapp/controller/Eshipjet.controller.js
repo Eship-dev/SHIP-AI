@@ -1618,6 +1618,7 @@ sap.ui.define([
         handlePopoverListItemPress: function (oEvent) {
             var oSrc = oEvent.getSource();
             var oView = oController.getView();
+            var eshipjetModel = oView.getModel("eshipjetModel");
             var oCurrObj = oSrc.getBindingContext().getObject();
             var oToolPage = this.byId("toolPage");
             var oPageContainer = this.byId("pageContainer");
@@ -1708,7 +1709,7 @@ sap.ui.define([
 
             } else if (oCurrObj && oCurrObj.name === "Dimensions") {
 
-                oController._displayTables("_ID_DimensionTable", "DiemnsionsTableColumns", "DiemnsionsTableRows", "Dimensions");
+                oController._displayTables("_ID_DimensionTable", "DimensionsTableColumns", "DiemnsionsTableRows", "Dimensions");
                 oPageContainer.to(oView.createId("_ID_Dimensions_TableScrollContainer"));
 
             } else if (oCurrObj && oCurrObj.name === "Payment Types") {
@@ -1741,6 +1742,7 @@ sap.ui.define([
                 oPageContainer.to(oView.createId("_ID_EUCountries_TableScrollContainer"));
 
             }
+            eshipjetModel.setProperty("/SideNavigation", false);
         },
         _displayTables: function (oTableId, aColumns, aRows, selectedItem) {
             var oView = oController.getView(), columnName, columnLabel;
@@ -3023,5 +3025,690 @@ sap.ui.define([
 
     // Locations Column Names Popover code changes End here
 
+    // OrderTypes Column Names Popover code changes starts here
+
+    openOrderTypesColNamesPopover: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._pOrderTypesPopover) {
+            this._pOrderTypesPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.OrderTypesTableColumns",
+                controller: this
+            }).then(function (oPopover) {
+                oView.addDependent(oPopover);
+                return oPopover;
+            });
+        }
+        this._pOrderTypesPopover.then(function (oPopover) {
+            oController.OrderTypesColumnsVisiblity();
+            oPopover.openBy(oButton);
+        });
+    },
+
+    OrderTypesColumnsVisiblity: function () {
+        var oView = oController.getView();
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var aColumns = eshipjetModel.getProperty("/OrderTypesTableColumns");
+        var oOrderTypesTable = oView.byId("myOrderTypesColumnSelectId");
+        var aTableItems = oOrderTypesTable.getItems();
+
+        aColumns.map(function (oColObj) {
+            aTableItems.map(function (oItem) {
+                if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                    oItem.setSelected(true);
+                }
+            });
+        });
+    },
+
+    onOrderTypesColNameSearch: function (oEvent) {
+        var aFilters = [];
+        var sQuery = oEvent.getSource().getValue();
+        if (sQuery && sQuery.length > 0) {
+            var filter = new Filter("label", FilterOperator.Contains, sQuery);
+            aFilters.push(filter);
+        }
+        // update list binding
+        var oList = oController.getView().byId("myOrderTypesColumnSelectId");
+        var oBinding = oList.getBinding("items");
+        oBinding.filter(aFilters, "Application");
+
+    },
+
+    onOrderTypesColSelectOkPress: function () {
+        var oView = this.getView();
+        var oOrderTypesTable = oView.byId("myOrderTypesColumnSelectId");
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var oTable = oView.byId("_IDOrderTypeTable")
+        oTable.setModel(eshipjetModel);
+
+        var oOrderTypesTblItems = oOrderTypesTable.getItems();
+        var aColumnsData = eshipjetModel.getProperty("/OrderTypesTableColumns");
+        oOrderTypesTblItems.map(function (oTableItems) {
+            aColumnsData.map(function (oColObj) {
+                if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                    if (oTableItems.getSelected()) {
+                        oColObj.visible = true;
+                    } else {
+                        oColObj.visible = false;
+                    }
+                }
+            })
+        });
+        eshipjetModel.updateBindings(true);
+        oOrderTypesTable.setModel(eshipjetModel);
+        this._pOrderTypesPopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+    onOrderTypesColSelectClosePress: function () {
+        this._pOrderTypesPopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+
+    // OrderTypes Column Names Popover code changes End here
+
+
+    // Incoterms Column Names Popover code changes starts here
+
+    openIncotermsColNamesPopover: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._pIncotermsPopover) {
+            this._pIncotermsPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.IncotermsTableColumns",
+                controller: this
+            }).then(function (oPopover) {
+                oView.addDependent(oPopover);
+                return oPopover;
+            });
+        }
+        this._pIncotermsPopover.then(function (oPopover) {
+            oController.IncotermsColumnsVisiblity();
+            oPopover.openBy(oButton);
+        });
+    },
+
+    IncotermsColumnsVisiblity: function () {
+        var oView = oController.getView();
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var aColumns = eshipjetModel.getProperty("/IncoTermsTableColumns");
+        var oIncotermsTable = oView.byId("myIncotermsColumnSelectId");
+        var aTableItems = oIncotermsTable.getItems();
+
+        aColumns.map(function (oColObj) {
+            aTableItems.map(function (oItem) {
+                if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                    oItem.setSelected(true);
+                }
+            });
+        });
+    },
+
+    onIncotermsColNameSearch: function (oEvent) {
+        var aFilters = [];
+        var sQuery = oEvent.getSource().getValue();
+        if (sQuery && sQuery.length > 0) {
+            var filter = new Filter("label", FilterOperator.Contains, sQuery);
+            aFilters.push(filter);
+        }
+        // update list binding
+        var oList = oController.getView().byId("myIncotermsColumnSelectId");
+        var oBinding = oList.getBinding("items");
+        oBinding.filter(aFilters, "Application");
+
+    },
+
+    onIncotermsColSelectOkPress: function () {
+        var oView = this.getView();
+        var oIncotermsTable = oView.byId("myIncotermsColumnSelectId");
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var oTable = oView.byId("_ID_IncotermsTable")
+        oTable.setModel(eshipjetModel);
+
+        var oIncotermsTblItems = oIncotermsTable.getItems();
+        var aColumnsData = eshipjetModel.getProperty("/IncoTermsTableColumns");
+        oIncotermsTblItems.map(function (oTableItems) {
+            aColumnsData.map(function (oColObj) {
+                if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                    if (oTableItems.getSelected()) {
+                        oColObj.visible = true;
+                    } else {
+                        oColObj.visible = false;
+                    }
+                }
+            })
+        });
+        eshipjetModel.updateBindings(true);
+        oIncotermsTable.setModel(eshipjetModel);
+        this._pIncotermsPopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+    onIncotermsColSelectClosePress: function () {
+        this._pIncotermsPopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+
+    // Incoterms Column Names Popover code changes End here
+
+
+    // Dimensions Column Names Popover code changes starts here
+
+    openDimensionsColNamesPopover: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._pDimensionsPopover) {
+            this._pDimensionsPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.DimensionsTableColumns",
+                controller: this
+            }).then(function (oPopover) {
+                oView.addDependent(oPopover);
+                return oPopover;
+            });
+        }
+        this._pDimensionsPopover.then(function (oPopover) {
+            oController.DimensionsColumnsVisiblity();
+            oPopover.openBy(oButton);
+        });
+    },
+
+    DimensionsColumnsVisiblity: function () {
+        var oView = oController.getView();
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var aColumns = eshipjetModel.getProperty("/DimensionsTableColumns");
+        var oDimensionsTable = oView.byId("myDimensionsColumnSelectId");
+        var aTableItems = oDimensionsTable.getItems();
+
+        aColumns.map(function (oColObj) {
+            aTableItems.map(function (oItem) {
+                if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                    oItem.setSelected(true);
+                }
+            });
+        });
+    },
+
+    onDimensionsColNameSearch: function (oEvent) {
+        var aFilters = [];
+        var sQuery = oEvent.getSource().getValue();
+        if (sQuery && sQuery.length > 0) {
+            var filter = new Filter("label", FilterOperator.Contains, sQuery);
+            aFilters.push(filter);
+        }
+        // update list binding
+        var oList = oController.getView().byId("myDimensionsColumnSelectId");
+        var oBinding = oList.getBinding("items");
+        oBinding.filter(aFilters, "Application");
+
+    },
+
+    onDimensionsColSelectOkPress: function () {
+        var oView = this.getView();
+        var oDimensionsTable = oView.byId("myDimensionsColumnSelectId");
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var oTable = oView.byId("_ID_DimensionTable")
+        oTable.setModel(eshipjetModel);
+
+        var oDimensionsTblItems = oDimensionsTable.getItems();
+        var aColumnsData = eshipjetModel.getProperty("/DimensionsTableColumns");
+        oDimensionsTblItems.map(function (oTableItems) {
+            aColumnsData.map(function (oColObj) {
+                if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                    if (oTableItems.getSelected()) {
+                        oColObj.visible = true;
+                    } else {
+                        oColObj.visible = false;
+                    }
+                }
+            })
+        });
+        eshipjetModel.updateBindings(true);
+        oDimensionsTable.setModel(eshipjetModel);
+        this._pDimensionsPopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+    onDimensionsColSelectClosePress: function () {
+        this._pDimensionsPopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+
+    // Dimensions Column Names Popover code changes End here
+
+
+    // PaymentTypes Column Names Popover code changes starts here
+
+    openPaymentTypesColNamesPopover: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._pPaymentTypesPopover) {
+            this._pPaymentTypesPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.PaymentTypesTableColumns",
+                controller: this
+            }).then(function (oPopover) {
+                oView.addDependent(oPopover);
+                return oPopover;
+            });
+        }
+        this._pPaymentTypesPopover.then(function (oPopover) {
+            oController.PaymentTypesColumnsVisiblity();
+            oPopover.openBy(oButton);
+        });
+    },
+
+    PaymentTypesColumnsVisiblity: function () {
+        var oView = oController.getView();
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var aColumns = eshipjetModel.getProperty("/PaymentTypesTableColumns");
+        var oPaymentTypesTable = oView.byId("myPaymentTypesColumnSelectId");
+        var aTableItems = oPaymentTypesTable.getItems();
+
+        aColumns.map(function (oColObj) {
+            aTableItems.map(function (oItem) {
+                if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                    oItem.setSelected(true);
+                }
+            });
+        });
+    },
+
+    onPaymentTypesColNameSearch: function (oEvent) {
+        var aFilters = [];
+        var sQuery = oEvent.getSource().getValue();
+        if (sQuery && sQuery.length > 0) {
+            var filter = new Filter("label", FilterOperator.Contains, sQuery);
+            aFilters.push(filter);
+        }
+        // update list binding
+        var oList = oController.getView().byId("myPaymentTypesColumnSelectId");
+        var oBinding = oList.getBinding("items");
+        oBinding.filter(aFilters, "Application");
+
+    },
+
+    onPaymentTypesColSelectOkPress: function () {
+        var oView = this.getView();
+        var oPaymentTypesTable = oView.byId("myPaymentTypesColumnSelectId");
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var oTable = oView.byId("_ID_PaymentTypeTable")
+        oTable.setModel(eshipjetModel);
+
+        var oPaymentTypesTblItems = oPaymentTypesTable.getItems();
+        var aColumnsData = eshipjetModel.getProperty("/PaymentTypesTableColumns");
+        oPaymentTypesTblItems.map(function (oTableItems) {
+            aColumnsData.map(function (oColObj) {
+                if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                    if (oTableItems.getSelected()) {
+                        oColObj.visible = true;
+                    } else {
+                        oColObj.visible = false;
+                    }
+                }
+            })
+        });
+        eshipjetModel.updateBindings(true);
+        oPaymentTypesTable.setModel(eshipjetModel);
+        this._pPaymentTypesPopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+    onPaymentTypesColSelectClosePress: function () {
+        this._pPaymentTypesPopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+
+    // PaymentTypes Column Names Popover code changes End here
+
+    // SMTP Column Names Popover code changes starts here
+
+    openSMTPColNamesPopover: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._pSMTPPopover) {
+            this._pSMTPPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.SMTPTableColumns",
+                controller: this
+            }).then(function (oPopover) {
+                oView.addDependent(oPopover);
+                return oPopover;
+            });
+        }
+        this._pSMTPPopover.then(function (oPopover) {
+            oController.SMTPColumnsVisiblity();
+            oPopover.openBy(oButton);
+        });
+    },
+
+    SMTPColumnsVisiblity: function () {
+        var oView = oController.getView();
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var aColumns = eshipjetModel.getProperty("/SMTPConfigsTableColumns");
+        var oSMTPTable = oView.byId("mySMTPColumnSelectId");
+        var aTableItems = oSMTPTable.getItems();
+
+        aColumns.map(function (oColObj) {
+            aTableItems.map(function (oItem) {
+                if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                    oItem.setSelected(true);
+                }
+            });
+        });
+    },
+
+    onSMTPColNameSearch: function (oEvent) {
+        var aFilters = [];
+        var sQuery = oEvent.getSource().getValue();
+        if (sQuery && sQuery.length > 0) {
+            var filter = new Filter("label", FilterOperator.Contains, sQuery);
+            aFilters.push(filter);
+        }
+        // update list binding
+        var oList = oController.getView().byId("mySMTPColumnSelectId");
+        var oBinding = oList.getBinding("items");
+        oBinding.filter(aFilters, "Application");
+
+    },
+
+    onSMTPColSelectOkPress: function () {
+        var oView = this.getView();
+        var oSMTPTable = oView.byId("mySMTPColumnSelectId");
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var oTable = oView.byId("_ID_SMTPConfigTable")
+        oTable.setModel(eshipjetModel);
+
+        var oSMTPTblItems = oSMTPTable.getItems();
+        var aColumnsData = eshipjetModel.getProperty("/SMTPConfigsTableColumns");
+        oSMTPTblItems.map(function (oTableItems) {
+            aColumnsData.map(function (oColObj) {
+                if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                    if (oTableItems.getSelected()) {
+                        oColObj.visible = true;
+                    } else {
+                        oColObj.visible = false;
+                    }
+                }
+            })
+        });
+        eshipjetModel.updateBindings(true);
+        oSMTPTable.setModel(eshipjetModel);
+        this._pSMTPPopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+    onSMTPColSelectClosePress: function () {
+        this._pSMTPPopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+
+    // SMTP Column Names Popover code changes End here
+
+
+    // ERP Column Names Popover code changes starts here
+
+    openERPColNamesPopover: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._pERPPopover) {
+            this._pERPPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.ERPTableColumns",
+                controller: this
+            }).then(function (oPopover) {
+                oView.addDependent(oPopover);
+                return oPopover;
+            });
+        }
+        this._pERPPopover.then(function (oPopover) {
+            oController.ERPColumnsVisiblity();
+            oPopover.openBy(oButton);
+        });
+    },
+
+    ERPColumnsVisiblity: function () {
+        var oView = oController.getView();
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var aColumns = eshipjetModel.getProperty("/ERPTableColumns");
+        var oERPTable = oView.byId("myERPColumnSelectId");
+        var aTableItems = oERPTable.getItems();
+
+        aColumns.map(function (oColObj) {
+            aTableItems.map(function (oItem) {
+                if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                    oItem.setSelected(true);
+                }
+            });
+        });
+    },
+
+    onERPColNameSearch: function (oEvent) {
+        var aFilters = [];
+        var sQuery = oEvent.getSource().getValue();
+        if (sQuery && sQuery.length > 0) {
+            var filter = new Filter("label", FilterOperator.Contains, sQuery);
+            aFilters.push(filter);
+        }
+        // update list binding
+        var oList = oController.getView().byId("myERPColumnSelectId");
+        var oBinding = oList.getBinding("items");
+        oBinding.filter(aFilters, "Application");
+
+    },
+
+    onERPColSelectOkPress: function () {
+        var oView = this.getView();
+        var oERPTable = oView.byId("myERPColumnSelectId");
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var oTable = oView.byId("_ID_ERPTable")
+        oTable.setModel(eshipjetModel);
+
+        var oERPTblItems = oERPTable.getItems();
+        var aColumnsData = eshipjetModel.getProperty("/ERPTableColumns");
+        oERPTblItems.map(function (oTableItems) {
+            aColumnsData.map(function (oColObj) {
+                if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                    if (oTableItems.getSelected()) {
+                        oColObj.visible = true;
+                    } else {
+                        oColObj.visible = false;
+                    }
+                }
+            })
+        });
+        eshipjetModel.updateBindings(true);
+        oERPTable.setModel(eshipjetModel);
+        this._pERPPopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+    onERPColSelectClosePress: function () {
+        this._pERPPopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+
+    // ERP Column Names Popover code changes End here
+
+
+    // Countries Column Names Popover code changes starts here
+
+    openCountriesColNamesPopover: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._pCountriesPopover) {
+            this._pCountriesPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.CountriesTableColumns",
+                controller: this
+            }).then(function (oPopover) {
+                oView.addDependent(oPopover);
+                return oPopover;
+            });
+        }
+        this._pCountriesPopover.then(function (oPopover) {
+            oController.CountriesColumnsVisiblity();
+            oPopover.openBy(oButton);
+        });
+    },
+
+    CountriesColumnsVisiblity: function () {
+        var oView = oController.getView();
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var aColumns = eshipjetModel.getProperty("/CountriesTableColumns");
+        var oCountriesTable = oView.byId("myCountriesColumnSelectId");
+        var aTableItems = oCountriesTable.getItems();
+
+        aColumns.map(function (oColObj) {
+            aTableItems.map(function (oItem) {
+                if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                    oItem.setSelected(true);
+                }
+            });
+        });
+    },
+
+    onCountriesColNameSearch: function (oEvent) {
+        var aFilters = [];
+        var sQuery = oEvent.getSource().getValue();
+        if (sQuery && sQuery.length > 0) {
+            var filter = new Filter("label", FilterOperator.Contains, sQuery);
+            aFilters.push(filter);
+        }
+        // update list binding
+        var oList = oController.getView().byId("myCountriesColumnSelectId");
+        var oBinding = oList.getBinding("items");
+        oBinding.filter(aFilters, "Application");
+
+    },
+
+    onCountriesColSelectOkPress: function () {
+        var oView = this.getView();
+        var oCountriesTable = oView.byId("myCountriesColumnSelectId");
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var oTable = oView.byId("_ID_CountriesTable")
+        oTable.setModel(eshipjetModel);
+
+        var oCountriesTblItems = oCountriesTable.getItems();
+        var aColumnsData = eshipjetModel.getProperty("/CountriesTableColumns");
+        oCountriesTblItems.map(function (oTableItems) {
+            aColumnsData.map(function (oColObj) {
+                if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                    if (oTableItems.getSelected()) {
+                        oColObj.visible = true;
+                    } else {
+                        oColObj.visible = false;
+                    }
+                }
+            })
+        });
+        eshipjetModel.updateBindings(true);
+        oCountriesTable.setModel(eshipjetModel);
+        this._pCountriesPopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+    onCountriesColSelectClosePress: function () {
+        this._pCountriesPopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+
+    // Countries Column Names Popover code changes End here
+
+
+    // EUCountries Column Names Popover code changes starts here
+
+    openEUCountriesColNamesPopover: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._pEUCountriesPopover) {
+            this._pEUCountriesPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.EUCountriesTableColumns",
+                controller: this
+            }).then(function (oPopover) {
+                oView.addDependent(oPopover);
+                return oPopover;
+            });
+        }
+        this._pEUCountriesPopover.then(function (oPopover) {
+            oController.EUCountriesColumnsVisiblity();
+            oPopover.openBy(oButton);
+        });
+    },
+
+    EUCountriesColumnsVisiblity: function () {
+        var oView = oController.getView();
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var aColumns = eshipjetModel.getProperty("/EUCountriesTableColumns");
+        var oEUCountriesTable = oView.byId("myEUCountriesColumnSelectId");
+        var aTableItems = oEUCountriesTable.getItems();
+
+        aColumns.map(function (oColObj) {
+            aTableItems.map(function (oItem) {
+                if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                    oItem.setSelected(true);
+                }
+            });
+        });
+    },
+
+    onEUCountriesColNameSearch: function (oEvent) {
+        var aFilters = [];
+        var sQuery = oEvent.getSource().getValue();
+        if (sQuery && sQuery.length > 0) {
+            var filter = new Filter("label", FilterOperator.Contains, sQuery);
+            aFilters.push(filter);
+        }
+        // update list binding
+        var oList = oController.getView().byId("myEUCountriesColumnSelectId");
+        var oBinding = oList.getBinding("items");
+        oBinding.filter(aFilters, "Application");
+
+    },
+
+    onEUCountriesColSelectOkPress: function () {
+        var oView = this.getView();
+        var oEUCountriesTable = oView.byId("myEUCountriesColumnSelectId");
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var oTable = oView.byId("_ID_EUCountriesTable")
+        oTable.setModel(eshipjetModel);
+
+        var oEUCountriesTblItems = oEUCountriesTable.getItems();
+        var aColumnsData = eshipjetModel.getProperty("/EUCountriesTableColumns");
+        oEUCountriesTblItems.map(function (oTableItems) {
+            aColumnsData.map(function (oColObj) {
+                if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                    if (oTableItems.getSelected()) {
+                        oColObj.visible = true;
+                    } else {
+                        oColObj.visible = false;
+                    }
+                }
+            })
+        });
+        eshipjetModel.updateBindings(true);
+        oEUCountriesTable.setModel(eshipjetModel);
+        this._pEUCountriesPopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+    onEUCountriesColSelectClosePress: function () {
+        this._pEUCountriesPopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+
+    // EUCountries Column Names Popover code changes End here
     });
 });

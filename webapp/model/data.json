@@ -1709,7 +1709,7 @@
         }
     ],
     "IncoTermsTableRows": [],
-    "DiemnsionsTableColumns": [
+    "DimensionsTableColumns": [
         {
             "key": "locationName",
             "label": "Location Name",
