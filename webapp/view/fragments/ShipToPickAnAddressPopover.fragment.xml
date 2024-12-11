@@ -4,7 +4,7 @@
     height="100%">
 
     <Popover id="idShipToPickAnAddressPopover"  
-            placement="Auto" 
+            placement="Bottom" 
             contentWidth="90%"
             showHeader="true"
             class="sapUiResponsivePadding--header sapUiResponsivePadding--footer">
