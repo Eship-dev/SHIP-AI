@@ -16,7 +16,7 @@
                 <ToolbarSpacer />
                 <Button 
                     icon="sap-icon://decline" 
-                    press="onPopoverClose" 
+                    press="ShipFromPopoverClose" 
                     type="Transparent" />
             </Toolbar>
         </customHeader>
@@ -93,9 +93,9 @@
         <!-- Footer with Actions -->
         <footer>
             <OverflowToolbar>
-                <Button text="Cancel" press="onPopoverClose" />
+                <Button text="Cancel"   press="ShipFromCancelPopover" />
                 <ToolbarSpacer />
-                <Button type="Emphasized" text="Select" press="onAddressSelect" />
+                <Button type="Emphasized" text="Select" press="SelectPopover" />
             </OverflowToolbar>
         </footer>
     </Popover>

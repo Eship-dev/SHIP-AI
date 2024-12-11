@@ -3764,10 +3764,28 @@ sap.ui.define([
             oAddPickPopover.openBy(oButton);
         });
     },
-
-    onAddLocationClosePress: function (oEvent) {
-        this.byId("idShipNowPickAnAddressPopover").close();
+    ShipFromPopoverClose: function () {
+        var oPopover = this.byId("idShipNowPickAnAddressPopover");
+        if (oPopover) {
+            oPopover.close(); // Close the popover
+        }
     },
+    ShipFromCancelPopover: function () {
+        var oPopover = this.byId("idShipNowPickAnAddressPopover");
+        if (oPopover) {
+            oPopover.close(); // Close the popover
+        }
+    },
+    
+    SelectPopover: function () {
+        var oPopover = this.byId("idShipNowPickAnAddressPopover");
+        if (oPopover) {
+            oPopover.close(); // Close the popover
+        }
+    },
+    
+    
+    
 
     
      // add ShipNowPickAnAddressPopover changes start
@@ -3789,11 +3807,24 @@ sap.ui.define([
             oAddPickPopover.openBy(oButton);
         });
     },
-
-    onAddLocationClosePress: function (oEvent) {
-        this.byId("idShipToPickAnAddressPopover").close();
-    },
-    // add ShipPickAnAddressPopover changes end
-    
+        ShipToPopoverClose: function () {
+            var oPopover = this.byId("idShipToPickAnAddressPopover");
+            if (oPopover) {
+                oPopover.close(); // Close the popover
+            }
+        },
+        ShipToCancelPopover: function () {
+            var oPopover = this.byId("idShipToPickAnAddressPopover");
+            if (oPopover) {
+                oPopover.close(); // Close the popover
+            }
+        },
+        
+        ShipToSelectPopover: function () {
+            var oPopover = this.byId("idShipToPickAnAddressPopover");
+            if (oPopover) {
+                oPopover.close(); // Close the popover
+            }
+        },
     });
 });
