@@ -35,7 +35,6 @@
             <ui:Table
 				id="idTrackNowTable"
 				class="sapUiSmallMarginTop"
-				rows="{eshipjetModel>/TrackNowItems}"
 				selectionMode="None">
 				<ui:extension>
 					<OverflowToolbar style="Clear">

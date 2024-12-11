@@ -1,0 +1,102 @@
+<core:FragmentDefinition 
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    height="100%">
+
+    <Popover id="idShipToPickAnAddressPopover"  
+            placement="Auto" 
+            contentWidth="90%"
+            showHeader="true"
+            class="sapUiResponsivePadding--header sapUiResponsivePadding--footer">
+        
+        <!-- Custom Header -->
+        <customHeader>
+            <Toolbar>
+                <Title text="Pick An Address" />
+                <ToolbarSpacer />
+                <Button 
+                    icon="sap-icon://decline" 
+                    press="onPopoverClose" 
+                    type="Transparent" />
+            </Toolbar>
+        </customHeader>
+
+        <content>
+        <Toolbar height="100%">
+            <Table 
+                id="idShipToAddressTable"
+                inset="false"
+                mode="SingleSelectLeft"
+                items="{
+                    path: '/addresses'
+                }">
+                <columns>
+                    <Column>
+                        <Text text="Contact Name" />
+                    </Column>
+                    <Column>
+                        <Text text="Company Name" />
+                    </Column>
+                    <Column>
+                        <Text text="Address Line 1" />
+                    </Column>
+                    <Column>
+                        <Text text="Address Line 2" />
+                    </Column>
+                    <Column>
+                        <Text text="Address Line 3" />
+                    </Column>
+                    <Column>
+                        <Text text="City" />
+                    </Column>
+                    <Column>
+                        <Text text="State" />
+                    </Column>
+                    <Column>
+                        <Text text="Zipcode" />
+                    </Column>
+                    <Column>
+                        <Text text="Country" />
+                    </Column>
+                    <Column>
+                        <Text text="Phone" />
+                    </Column>
+                    <Column>
+                        <Text text="Email" />
+                    </Column>
+                    <Column>
+                        <Text text="Address Type" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{contactName}" />
+                            <Text text="{companyName}" />
+                            <Text text="{addressLine1}" />
+                            <Text text="{addressLine2}" />
+                            <Text text="{addressLine3}" />
+                            <Text text="{city}" />
+                            <Text text="{state}" />
+                            <Text text="{zipcode}" />
+                            <Text text="{country}" />
+                            <Text text="{phone}" />
+                            <Text text="{email}" />
+                            <Text text="{addressType}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            </Toolbar>
+        </content>
+
+        <!-- Footer with Actions -->
+        <footer>
+            <OverflowToolbar>
+                <Button text="Cancel" press="onPopoverClose" />
+                <ToolbarSpacer />
+                <Button type="Emphasized" text="Select" press="onAddressSelect" />
+            </OverflowToolbar>
+        </footer>
+    </Popover>
+</core:FragmentDefinition>

@@ -779,7 +779,7 @@ sap.ui.define([
                     });
                 }
             });
-            oTable.bindRows("/rows");
+            oTable.bindRows("/orderRows");
         },
 
         openOrderColNamesPopover: function (oEvent) {
@@ -944,7 +944,7 @@ sap.ui.define([
                     });
                 }
             });
-            oTable.bindRows("/rows");
+            oTable.bindRows("/ShipReqRows");
         },
 
         openShipReqColNamesPopover: function (oEvent) {
@@ -1113,7 +1113,7 @@ sap.ui.define([
                     });
                 }
             });
-            oTable.bindRows("/rows");
+            oTable.bindRows("/TrackNowRows");
         },
 
         openTrackNowColNamesPopover: function (oEvent) {
@@ -3734,6 +3734,55 @@ sap.ui.define([
     },
     // add location popover changes end
 
+     // add ShipNowPickAnAddressPopover changes start
+     ShipNowPickAnAddressPopoverPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        
+        if (!this._AddPickPopover) {
+            this._AddPickPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.ShipNowPickAnAddressPopover",
+                controller: this
+            }).then(function (oAddPickPopover) {
+                oView.addDependent(oAddPickPopover);
+                return oAddPickPopover;
+            });
+        }
+        this._AddPickPopover.then(function (oAddPickPopover) {
+            oAddPickPopover.openBy(oButton);
+        });
+    },
 
+    onAddLocationClosePress: function (oEvent) {
+        this.byId("idShipNowPickAnAddressPopover").close();
+    },
+
+    
+     // add ShipNowPickAnAddressPopover changes start
+     ShipToPickAnAddressPopoverPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        // create popover
+        if (!this._AddPickPopover) {
+            this._AddPickPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.ShipToPickAnAddressPopover",
+                controller: this
+            }).then(function (oAddPickPopover) {
+                oView.addDependent(oAddPickPopover);
+                return oAddPickPopover;
+            });
+        }
+        this._AddPickPopover.then(function (oAddPickPopover) {
+            oAddPickPopover.openBy(oButton);
+        });
+    },
+
+    onAddLocationClosePress: function (oEvent) {
+        this.byId("idShipToPickAnAddressPopover").close();
+    },
+    // add ShipPickAnAddressPopover changes end
+    
     });
 });

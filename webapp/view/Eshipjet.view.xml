@@ -135,7 +135,7 @@
 												<f:content>
 													<Toolbar ariaLabelledBy="idShipFrom">
 														<Title id="idShipFrom" text="Ship From"/>
-														<Button icon="sap-icon://customer-briefing" press="handleShipFromPickAnAddressPress"/>
+														<Button icon="sap-icon://customer-briefing" press="ShipNowPickAnAddressPopoverPress"/>
 													</Toolbar>
 													<Label text="Contact Name" />
 													<Input value="{ShipNowDataModel>/ShipFromCONTACT}" />
@@ -186,7 +186,7 @@
 													</ComboBox>
 													<Toolbar ariaLabelledBy="idShipTo">
 														<Title id="idShipTo" text="Ship To"/>
-														<Button icon="sap-icon://customer-briefing" press="handleShipToPickAnAddressPress" />
+														<Button icon="sap-icon://customer-briefing" press="ShipToPickAnAddressPopoverPress" />
 														<Button icon="sap-icon://add" press="handleCreateAddressPress"></Button>
 														<ToolbarSpacer ></ToolbarSpacer>
 														<Button text="Validate Address" />
