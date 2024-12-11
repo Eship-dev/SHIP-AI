@@ -739,7 +739,6 @@ sap.ui.define([
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
                         template: oHBox,
-                        visible: oContext.getObject().visible,
                         width: minWidth,
                         sortProperty: columnName
                     });
@@ -753,7 +752,7 @@ sap.ui.define([
                     });
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
-                        template: DateTxt,
+                        template: columnName,
                         visible: oContext.getObject().visible,
                         width: minWidth,
                         sortProperty: columnName
@@ -1027,7 +1026,7 @@ sap.ui.define([
             });
         },
 
-        onShipReqFltrPress: function (oEvent) {
+        onShipReqFilterPopoverPress: function (oEvent) {
             var oButton = oEvent.getSource(),
                 oView = this.getView();
             // create popover
@@ -1906,6 +1905,7 @@ sap.ui.define([
             });
             eshipjetModel.updateBindings(true);
             oAddressBookTable.setModel(eshipjetModel);
+            this._handleDisplayAddressBookTable();
             this._pAddressBookPopover.then(function (oPopover) {
                 oPopover.close();
             });
@@ -1915,6 +1915,59 @@ sap.ui.define([
                 oPopover.close();
             });
         },
+
+        
+
+    _handleDisplayAddressBookTable: function () {
+        var that = this;
+        const oView = oController.getView();
+        var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+        var AddressBookTableColumns = eshipjetModel.getData().AddressBookTableColumns;
+        const oTable = oView.byId("_IDAddressBookTable");
+        oTable.setModel(eshipjetModel);
+        var count = 0;
+        for(var i=0; i<AddressBookTableColumns.length; i++){
+            if(AddressBookTableColumns[i].visible === true){
+                count += 1
+            }
+        }
+        oTable.bindColumns("/AddressBookTableColumns", function (sId, oContext) {
+            columnName = oContext.getObject().key;
+            label = oContext.getObject().label;
+            var minWidth = "100%";
+            if(count>10){
+                var minWidth = "250px";
+            }
+            if (columnName === "actions") {
+                var oHBox = new sap.m.HBox({}); // Create Text instance 
+                var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                var Btn2 = new sap.m.Button({
+                    icon: "sap-icon://megamenu", type: "Transparent",
+                    press: function (oEvent) {
+                        that.handleDownArrowPress(oEvent);
+                    }
+                });
+                oHBox.addItem(Btn1);
+                oHBox.addItem(Btn2);
+                return new sap.ui.table.Column({
+                    label: oResourceBundle.getText(columnName),
+                    template: oHBox,
+                    visible: oContext.getObject().visible,
+                    width: minWidth,
+                    sortProperty: columnName
+                });
+            } else {
+                return new sap.ui.table.Column({
+                    label: oResourceBundle.getText(columnName),
+                    template: columnName,
+                    visible: oContext.getObject().visible,
+                    width: minWidth,
+                    sortProperty: columnName
+                });
+            }
+        });
+        oTable.bindRows("/AddressBookTableRows");
+    },
 
         // Address Book Column Names Popover code changes End here
 
@@ -1992,6 +2045,7 @@ sap.ui.define([
             });
             eshipjetModel.updateBindings(true);
             oUsersTable.setModel(eshipjetModel);
+            this._handleDisplayUsersTable();
             this._pUsersPopover.then(function (oPopover) {
                 oPopover.close();
             });
@@ -2000,6 +2054,58 @@ sap.ui.define([
             this._pUsersPopover.then(function (oPopover) {
                 oPopover.close();
             });
+        },
+
+
+        _handleDisplayUsersTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var UsersTableColumns = eshipjetModel.getData().UsersTableColumns;
+            const oTable = oView.byId("_IDUsersTable");
+            oTable.setModel(eshipjetModel);
+            var count = 0;
+            for(var i=0; i<UsersTableColumns.length; i++){
+                if(UsersTableColumns[i].visible === true){
+                    count += 1
+                }
+            }
+            oTable.bindColumns("/UsersTableColumns", function (sId, oContext) {
+                columnName = oContext.getObject().key;
+                label = oContext.getObject().label;
+                var minWidth = "100%";
+                if(count>10){
+                    var minWidth = "250px";
+                }
+                if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/UsersTableRows");
         },
 
         // Users Column Names Popover code changes End here
@@ -2078,6 +2184,7 @@ sap.ui.define([
             });
             eshipjetModel.updateBindings(true);
             oRolesTable.setModel(eshipjetModel);
+            this._handleDisplayRolesTable();
             this._pRolesPopover.then(function (oPopover) {
                 oPopover.close();
             });
@@ -2086,6 +2193,57 @@ sap.ui.define([
             this._pRolesPopover.then(function (oPopover) {
                 oPopover.close();
             });
+        },
+
+        _handleDisplayRolesTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var RolesTableColumns = eshipjetModel.getData().RolesTableColumns;
+            const oTable = oView.byId("_IDLocationTable");
+            oTable.setModel(eshipjetModel);
+            var count = 0;
+            for(var i=0; i<RolesTableColumns.length; i++){
+                if(RolesTableColumns[i].visible === true){
+                    count += 1
+                }
+            }
+            oTable.bindColumns("/RolesTableColumns", function (sId, oContext) {
+                columnName = oContext.getObject().key;
+                label = oContext.getObject().label;
+                var minWidth = "100%";
+                if(count>10){
+                    var minWidth = "250px";
+                }
+                if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/RolesTableRows");
         },
 
         // Roles Column Names Popover code changes End here
@@ -2164,6 +2322,7 @@ sap.ui.define([
             });
             eshipjetModel.updateBindings(true);
             oCarrierCatalogTable.setModel(eshipjetModel);
+            this._handleDisplayCarrierCatalogTable();
             this._pCarrierCatalogPopover.then(function (oPopover) {
                 oPopover.close();
             });
@@ -2172,6 +2331,57 @@ sap.ui.define([
             this._pCarrierCatalogPopover.then(function (oPopover) {
                 oPopover.close();
             });
+        },
+
+        _handleDisplayCarrierCatalogTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var CarrierCatalogTableColumns = eshipjetModel.getData().CarrierCatalogTableColumns;
+            const oTable = oView.byId("_IDCarriesCatalogTable");
+            oTable.setModel(eshipjetModel);
+            var count = 0;
+            for(var i=0; i<CarrierCatalogTableColumns.length; i++){
+                if(CarrierCatalogTableColumns[i].visible === true){
+                    count += 1
+                }
+            }
+            oTable.bindColumns("/CarrierCatalogTableColumns", function (sId, oContext) {
+                columnName = oContext.getObject().key;
+                label = oContext.getObject().label;
+                var minWidth = "100%";
+                if(count>10){
+                    var minWidth = "250px";
+                }
+                if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/CarrierCatalogTableRows");
         },
 
         // CarrierCatalog Column Names Popover code changes End here
@@ -2250,6 +2460,7 @@ sap.ui.define([
             });
             eshipjetModel.updateBindings(true);
             oCarrierAccountTable.setModel(eshipjetModel);
+            this._handleDisplayCarrierAccountTable();
             this._pCarrierAccountPopover.then(function (oPopover) {
                 oPopover.close();
             });
@@ -2258,6 +2469,57 @@ sap.ui.define([
             this._pCarrierAccountPopover.then(function (oPopover) {
                 oPopover.close();
             });
+        },
+
+        _handleDisplayCarrierAccountTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var CarrierAccountsTableColumns = eshipjetModel.getData().CarrierAccountsTableColumns;
+            const oTable = oView.byId("_IDCarriesAccountsTable");
+            oTable.setModel(eshipjetModel);
+            var count = 0;
+            for(var i=0; i<CarrierAccountsTableColumns.length; i++){
+                if(CarrierAccountsTableColumns[i].visible === true){
+                    count += 1
+                }
+            }
+            oTable.bindColumns("/CarrierAccountsTableColumns", function (sId, oContext) {
+                columnName = oContext.getObject().key;
+                label = oContext.getObject().label;
+                var minWidth = "100%";
+                if(count>10){
+                    var minWidth = "250px";
+                }
+                if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/CarrierAccountsTableRows");
         },
 
         // CarrierAccount Column Names Popover code changes End here
@@ -2336,6 +2598,7 @@ sap.ui.define([
             });
             eshipjetModel.updateBindings(true);
             oCostCenterTable.setModel(eshipjetModel);
+            this._handleDisplayCostCenterTable();
             this._pCostCenterPopover.then(function (oPopover) {
                 oPopover.close();
             });
@@ -2344,6 +2607,57 @@ sap.ui.define([
             this._pCostCenterPopover.then(function (oPopover) {
                 oPopover.close();
             });
+        },
+
+        _handleDisplayCostCenterTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var CostCenterTableColumns = eshipjetModel.getData().CostCenterTableColumns;
+            const oTable = oView.byId("_IDCostCenterTable");
+            oTable.setModel(eshipjetModel);
+            var count = 0;
+            for(var i=0; i<CostCenterTableColumns.length; i++){
+                if(CostCenterTableColumns[i].visible === true){
+                    count += 1
+                }
+            }
+            oTable.bindColumns("/CostCenterTableColumns", function (sId, oContext) {
+                columnName = oContext.getObject().key;
+                label = oContext.getObject().label;
+                var minWidth = "100%";
+                if(count>10){
+                    var minWidth = "250px";
+                }
+                if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/CostCenterTableRows");
         },
 
         // CostCenter Column Names Popover code changes End here
@@ -2421,6 +2735,7 @@ sap.ui.define([
             });
             eshipjetModel.updateBindings(true);
             oStatusesTable.setModel(eshipjetModel);
+            this._handleDisplayStatusesTable();
             this._pStatusesPopover.then(function (oPopover) {
                 oPopover.close();
             });
@@ -2429,6 +2744,57 @@ sap.ui.define([
             this._pStatusesPopover.then(function (oPopover) {
                 oPopover.close();
             });
+        },
+
+        _handleDisplayStatusesTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var StatusesTableColumns = eshipjetModel.getData().StatusesTableColumns;
+            const oTable = oView.byId("_IDStatusesTable");
+            oTable.setModel(eshipjetModel);
+            var count = 0;
+            for(var i=0; i<StatusesTableColumns.length; i++){
+                if(StatusesTableColumns[i].visible === true){
+                    count += 1
+                }
+            }
+            oTable.bindColumns("/StatusesTableColumns", function (sId, oContext) {
+                columnName = oContext.getObject().key;
+                label = oContext.getObject().label;
+                var minWidth = "100%";
+                if(count>10){
+                    var minWidth = "250px";
+                }
+                if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/StatusesTableRows");
         },
 
         // Statuses Column Names Popover code changes End here
@@ -2507,6 +2873,7 @@ sap.ui.define([
             });
             eshipjetModel.updateBindings(true);
             oProductsTable.setModel(eshipjetModel);
+            this._handleDisplayProductsTable();
             this._pProductsPopover.then(function (oPopover) {
                 oPopover.close();
             });
@@ -2515,6 +2882,57 @@ sap.ui.define([
             this._pProductsPopover.then(function (oPopover) {
                 oPopover.close();
             });
+        },
+
+        _handleDisplayProductsTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var ProductsTableColumns = eshipjetModel.getData().ProductsTableColumns;
+            const oTable = oView.byId("_IDProductsTable");
+            oTable.setModel(eshipjetModel);
+            var count = 0;
+            for(var i=0; i<ProductsTableColumns.length; i++){
+                if(ProductsTableColumns[i].visible === true){
+                    count += 1
+                }
+            }
+            oTable.bindColumns("/ProductsTableColumns", function (sId, oContext) {
+                columnName = oContext.getObject().key;
+                label = oContext.getObject().label;
+                var minWidth = "100%";
+                if(count>10){
+                    var minWidth = "250px";
+                }
+                if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/ProductsTableRows");
         },
 
         // Products Column Names Popover code changes End here
@@ -2593,6 +3011,7 @@ sap.ui.define([
             });
             eshipjetModel.updateBindings(true);
             oPackageTypesTable.setModel(eshipjetModel);
+            this._handleDisplayPackageTypesTable();
             this._pPackageTypesPopover.then(function (oPopover) {
                 oPopover.close();
             });
@@ -2601,6 +3020,57 @@ sap.ui.define([
             this._pPackageTypesPopover.then(function (oPopover) {
                 oPopover.close();
             });
+        },
+
+        _handleDisplayPackageTypesTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var PackageTypeTableColumns = eshipjetModel.getData().PackageTypeTableColumns;
+            const oTable = oView.byId("_IDPackageTypesTable");
+            oTable.setModel(eshipjetModel);
+            var count = 0;
+            for(var i=0; i<PackageTypeTableColumns.length; i++){
+                if(PackageTypeTableColumns[i].visible === true){
+                    count += 1
+                }
+            }
+            oTable.bindColumns("/PackageTypeTableColumns", function (sId, oContext) {
+                columnName = oContext.getObject().key;
+                label = oContext.getObject().label;
+                var minWidth = "100%";
+                if(count>10){
+                    var minWidth = "250px";
+                }
+                if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/PackageTypeTableRows");
         },
 
         // PackageTypes Column Names Popover code changes End here
@@ -3022,6 +3492,7 @@ sap.ui.define([
         });
         eshipjetModel.updateBindings(true);
         oLocationsTable.setModel(eshipjetModel);
+        this._handleDisplayLocationTable();
         this._pLocationsPopover.then(function (oPopover) {
             oPopover.close();
         });
@@ -3030,6 +3501,58 @@ sap.ui.define([
         this._pLocationsPopover.then(function (oPopover) {
             oPopover.close();
         });
+    },
+    
+
+    _handleDisplayLocationTable: function () {
+        var that = this;
+        const oView = oController.getView();
+        var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+        var LocationTableColumns = eshipjetModel.getData().LocationTableColumns;
+        const oTable = oView.byId("_IDLocationTable");
+        oTable.setModel(eshipjetModel);
+        var count = 0;
+        for(var i=0; i<LocationTableColumns.length; i++){
+            if(LocationTableColumns[i].visible === true){
+                count += 1
+            }
+        }
+        oTable.bindColumns("/LocationTableColumns", function (sId, oContext) {
+            columnName = oContext.getObject().key;
+            label = oContext.getObject().label;
+            var minWidth = "100%";
+            if(count>10){
+                var minWidth = "250px";
+            }
+            if (columnName === "actions") {
+                var oHBox = new sap.m.HBox({}); // Create Text instance 
+                var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                var Btn2 = new sap.m.Button({
+                    icon: "sap-icon://megamenu", type: "Transparent",
+                    press: function (oEvent) {
+                        that.handleDownArrowPress(oEvent);
+                    }
+                });
+                oHBox.addItem(Btn1);
+                oHBox.addItem(Btn2);
+                return new sap.ui.table.Column({
+                    label: oResourceBundle.getText(columnName),
+                    template: oHBox,
+                    visible: oContext.getObject().visible,
+                    width: minWidth,
+                    sortProperty: columnName
+                });
+            } else {
+                return new sap.ui.table.Column({
+                    label: oResourceBundle.getText(columnName),
+                    template: columnName,
+                    visible: oContext.getObject().visible,
+                    width: minWidth,
+                    sortProperty: columnName
+                });
+            }
+        });
+        oTable.bindRows("/LocationTableRows");
     },
 
     // Locations Column Names Popover code changes End here

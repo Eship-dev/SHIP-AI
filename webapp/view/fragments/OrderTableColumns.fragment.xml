@@ -16,7 +16,7 @@
         <Table	id="myOrderColumnSelectId" mode="MultiSelect" items="{path : 'OrderTableDataModel>/OrderColumns'}" >
 		<ColumnListItem id="_IDGenOrderColumnListItem1" vAlign="Middle">
 			<cells>				
-				<Text text="{OrderTableDataModel>label}" />				
+				<Text text="{OrderTableDataModel>label}" visible="{= ${OrderTableDataModel>label} === 'Actions' ? false : true }" />				
 			</cells>
 		</ColumnListItem>
 		<columns>

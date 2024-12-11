@@ -90,8 +90,8 @@
 										<Input id="userInput" class="sapUiTinyMarginEnd" placeholder="Good Afternoon Robert, I'm ready for the task" width="30rem" submit="onSendPress"/>
 										<Button icon="sap-icon://arrow-top" press="onSendPress"/>
 									</HBox>
-					</ScrollContainer>
 
+					</ScrollContainer>
 					<!-- Orders Starts here -->
 					<ScrollContainer id="Orders" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Orders" type="XML" />

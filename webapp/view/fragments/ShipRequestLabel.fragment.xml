@@ -38,9 +38,9 @@
 				visibleRowCount="13">
 					<ui:extension>
 						<OverflowToolbar>
-							<Button icon="sap-icon://filter" press="onOrdersFilterPopoverPress"></Button>
+							<Button icon="sap-icon://filter" press="onShipReqFilterPopoverPress"></Button>
 							<ToolbarSpacer ></ToolbarSpacer>
-							<Button icon="sap-icon://action" press="onOrdersExportToExcel"></Button>
+							<Button icon="sap-icon://action" press="onShipReqExportToExcel"></Button>
                             <Button icon="sap-icon://action-settings" press="openShipReqColNamesPopover" >
                                 <customData>
                                     <core:CustomData key="remember" value="true" />

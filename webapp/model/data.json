@@ -366,8 +366,7 @@
 			},
 			{
 				"name": "actions",
-				"label": "Actions",
-				"visible": true
+				"label": "Actions"
 			}
 		],
 		"orderRows": [
@@ -649,9 +648,6 @@
 			}
 		],
 		"ShipReqRows": [
-            {
-                
-            }
             
         ]
 	},
