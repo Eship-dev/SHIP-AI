@@ -115,13 +115,13 @@
 							<Toolbar class="sapUiTinyMarginBottom" height="10%">
 								<Label text="SAP Delivery Number"  wrapping="true" width="11%" labelFor="SAPDelLabel"/>
 								<SearchField class="sapUiSmallMargin" id="idShipNowSearch"  width="11%"/>
-								<Button text="Get" type="Ghost" press="onShipNowGetPress" width="11%"></Button>
-								<Button text="Consolidation" type="Ghost" press="handleConsolidationPress" width="11%"></Button>
+								<Button text="Get" type="Ghost" class="scan-ship-toolbar__button" press="onShipNowGetPress" width="11%"></Button>
+								<Button text="Consolidation" class="scan-ship-toolbar__button" type="Ghost" press="handleConsolidationPress" width="11%"></Button>
 								<Label text="Pickup Date"   wrapping="true" labelFor="DP1" width="7%"/>
 								<DatePicker id="DP1" width="15%"   valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
 								<Label text="Ship Date" labelFor="DP2"  wrapping="true" width="7%"/>
 								<DatePicker id="DP2" width="15%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/shipDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
-								<Button text="New" type="Ghost" width="11%" ></Button>
+								<Button text="New" class="scan-ship-toolbar__button" type="Ghost" width="11%" ></Button>
 								<ToolbarSpacer />
 							</Toolbar>
 							<!-- Icon Tab Bar Starts here -->			
@@ -189,7 +189,7 @@
 														<Button icon="sap-icon://customer-briefing" press="ShipToPickAnAddressPopoverPress" />
 														<Button icon="sap-icon://add" press="handleCreateAddressPress"></Button>
 														<ToolbarSpacer ></ToolbarSpacer>
-														<Button text="Validate Address" />
+														<Button text="Validate Address" class="scan-ship-toolbar__button" type="Ghost" width="25%" />
 													</Toolbar>
 													<Label text="Contact Name" />
 													<Input value="{ShipNowDataModel>/ShipToCONTACT}" />
@@ -336,7 +336,7 @@
 													<Label text="PO No" />
 													<Input value="{eshipjetModel>/poNo}" />
 													<Label text="Account No" class="LabelPadClass" />
-													<Button text="Get Carrier" >
+													<Button text="Get Carrier" class="scan-ship-toolbar__button" type="Ghost" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="4" cellsLarge="4" />
 														</layoutData>
@@ -502,7 +502,7 @@
 										<Table id="Pack" inset="false"  width="100%" class="sapUiTinyMarginTop" items="{eshipjetModel>/pickAddProductTable}">
 											<headerToolbar >
 												<OverflowToolbar height="15%" class="sapUiSmallMarginBottom">
-													<content>
+													<content >
 														<HBox width="100%" >
 															<Label text="Scan Product" class="sapUiTinyMargin" />
 															<Input value="{}"></Input>
@@ -525,7 +525,7 @@
 															<StepInput id="stepDownInput" value="{dimensionModel>/weightStepDown}" min="0" max="100" step="1"  width="6rem"  valueState="None" />
 															<Text text="/" width="10%" class="sapUiTinyMarginTop" ></Text>
 															<StepInput id="stepUpInput" value="{dimensionModel>/weightStepUp}" min="0" max="100" step="1" width="6rem" valueState="None" />
-															<Button text="Auto Pack" press="handleAutoPackPress"  type="Ghost" ></Button>
+															<Button text="Auto Pack" press="handleAutoPackPress" ></Button>
 														</HBox>
 													</content>
 												</OverflowToolbar>
@@ -608,9 +608,9 @@
 													<Label text="Scan Handling Unit" class="sapUiTinyMargin"></Label>
 													<Input value="{}" width="8rem"></Input>
 													<ToolbarSpacer />
-													<Button text="Pack" type="Ghost" class="sapUiTinyMarginEnd"></Button>
-													<Button text="Pack All" type="Ghost"></Button>
-													<Button text="Multi Level Pack" type="Ghost"></Button>
+													<Button text="Pack" class="scan-ship-toolbar__button sapUiTinyMarginEnd" type="Ghost" width="5%" ></Button>
+													<Button text="Pack All" class="scan-ship-toolbar__button" type="Ghost" width="8%" ></Button>
+													<Button text="Multi Level Pack" class="scan-ship-toolbar__button" type="Ghost" width="12%" ></Button>
 													<ToolbarSpacer />												
 													<core:Icon src="sap-icon://action-settings">
 													</core:Icon>

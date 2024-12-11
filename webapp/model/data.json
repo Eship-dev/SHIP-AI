@@ -282,32 +282,32 @@
 			{
 				"name": "shipMethod",
 				"label": "Shipment Method",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "ServiceName",
 				"label": "Service Name",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "TrackingNumber",
 				"label": "Tracking Number",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "status",
 				"label": "Status",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "ShipToContact",
 				"label": "Ship To Contact",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "ShipToCompany",
 				"label": "Ship To Company",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "ShipToAddressLine1",

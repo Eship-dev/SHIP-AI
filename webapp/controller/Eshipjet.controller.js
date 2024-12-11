@@ -39,46 +39,6 @@ sap.ui.define([
             this._setToggleButtonTooltip(!Device.system.desktop);
         },
 
-        // _handleDisplayScanShipTable: function () {
-        //     var oController = this;
-        //     const oView = oController.getView();
-        //     var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
-        //     var scanShipTableData = eshipjetModel.getData().scanShipTableData;
-        //     var ScanShipTableDataModel = new JSONModel(scanShipTableData);
-        //     this.getView().setModel(ScanShipTableDataModel, "ScanShipTableDataModel");
-        //     const oTable = oView.byId("idScanAndShipTable");
-        //     oTable.setModel(ScanShipTableDataModel);
-        //     oTable.bindColumns("/columns", function (sId, oContext) {
-        //         columnName = oContext.getObject().name;
-        //         label = oContext.getObject().label;
-
-        //         if (columnName === "actions") {
-        //             var oHBox = new sap.m.HBox({}); // Create Text instance 
-        //             var Link1 = new sap.m.Link({ text: "View Now" });
-        //             var Link2 = new sap.m.Link({ endIcon: "sap-icon://navigation-down-arrow" });
-        //             oHBox.addItem(Link1);
-        //             oHBox.addItem(Link2);
-        //             return new sap.ui.table.Column({
-        //                 label: oResourceBundle.getText(columnName),
-        //                 template: oHBox,
-        //                 visible: oContext.getObject().visible,
-        //                 width: "8rem",
-        //                 sortProperty: columnName
-        //             });
-        //         } else {
-        //             return new sap.ui.table.Column({
-        //                 label: oResourceBundle.getText(columnName),
-        //                 template: columnName,
-        //                 visible: oContext.getObject().visible,
-        //                 width: "8rem",
-        //                 sortProperty: columnName
-        //             });
-        //         }
-
-        //     });
-        //     oTable.bindRows("/rows");
-        // },
-
         onItemSelect: function (oEvent) {
             var oItem = oEvent.getParameter("item");
             var sKey = oItem.getKey();
@@ -369,9 +329,21 @@ sap.ui.define([
             this.getView().setModel(ScanShipTableDataModel, "ScanShipTableDataModel");
             const oTable = oView.byId("idScanAndShipTable");
             oTable.setModel(ScanShipTableDataModel);
+            var ScanShipTableDataModel = this.getView().getModel("ScanShipTableDataModel");
+            var columns = ScanShipTableDataModel.getData().columns;
+            var count = 0;
+            for(var i=0; i<columns.length; i++){
+                if(columns[i].visible === true){
+                    count += 1
+                }
+            }
             oTable.bindColumns("/columns", function (sId, oContext) {
                 columnName = oContext.getObject().name;
                 label = oContext.getObject().label;
+                var minWidth = "100%";
+                if(count>10){
+                    var minWidth = "250px";
+                }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
                     var Btn1 = new sap.m.Button({ text: "Ship Now", type: "Transparent" });
@@ -387,7 +359,7 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: oHBox,
                         visible: oContext.getObject().visible,
-                        width: "8rem",
+                        width: minWidth,
                         sortProperty: columnName
                     });
                 } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
@@ -402,7 +374,7 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: columnName,
                         visible: oContext.getObject().visible,
-                        width: "10rem",
+                        width: minWidth,
                         sortProperty: columnName
                     });
                 } else {
@@ -410,7 +382,7 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: columnName,
                         visible: oContext.getObject().visible,
-                        width: "10rem",
+                        width: minWidth,
                         sortProperty: columnName
                     });
                 }
@@ -472,6 +444,7 @@ sap.ui.define([
                 })
             });
             ScanShipTableDataModel.updateBindings(true);
+            this._handleDisplayScanShipTable();
             this._pScanPopover.then(function (oPopover) {
                 oPopover.close();
             });
@@ -704,12 +677,14 @@ sap.ui.define([
             var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
             var tileTitle = oEvent.getParameters().domRef.innerText;
             if (tileTitle === "Ship Request/Label") {
+                this._handleDisplayShipReqTable();
                 var sKey = "ShipRequestLabel";
                 this.byId("pageContainer").to(this.getView().createId(sKey));
             } else if (tileTitle === "Ship Now") {
                 var sKey = "ShipNow";                
                 this.byId("pageContainer").to(this.getView().createId(sKey));                
             } else if (tileTitle === "Track Now") {
+                this._handleDisplayTrackNowTable();
                 var sKey = "TrackNow";
                 this.byId("pageContainer").to(this.getView().createId(sKey));
             }
@@ -733,9 +708,23 @@ sap.ui.define([
             this.getView().setModel(OrderTableDataModel, "OrderTableDataModel");
             const oTable = oView.byId("idOrdersTable");
             oTable.setModel(OrderTableDataModel);
+            var OrderTableDataModel = this.getView().getModel("OrderTableDataModel");
+            var OrderColumns = OrderTableDataModel.getData().OrderColumns;
+            var count = 0;
+            for(var i=0; i<OrderColumns.length; i++){
+                if(OrderColumns[i].visible === true){
+                    count += 1
+                }
+            }
             oTable.bindColumns("/OrderColumns", function (sId, oContext) {
                 columnName = oContext.getObject().name;
                 label = oContext.getObject().label;
+                var minWidth = "100%";
+                if(count>10){
+                    var minWidth = "250px";
+                }
+                
+
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
                     var Btn1 = new sap.m.Button({ text: "Edit", type: "Transparent" });
@@ -751,22 +740,22 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: oHBox,
                         visible: oContext.getObject().visible,
-                        width: "8rem",
+                        width: minWidth,
                         sortProperty: columnName
                     });
                 } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
                     var DateTxt = new sap.m.Text({
                         text: {
                             path: 'OrderTableDataModel>ShipDate',
-                            formatter: formatter.formatDate  // Attach the formatter dynamically
+                            formatter: formatter.formatDate
                         },
                         wrapping: false
                     });
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
-                        template: columnName,
+                        template: DateTxt,
                         visible: oContext.getObject().visible,
-                        width: "10rem",
+                        width: minWidth,
                         sortProperty: columnName
                     });
                 } else {
@@ -774,7 +763,7 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: columnName,
                         visible: oContext.getObject().visible,
-                        width: "10rem",
+                        width: minWidth,
                         sortProperty: columnName
                     });
                 }
@@ -848,6 +837,7 @@ sap.ui.define([
                 })
             });
             OrderTableDataModel.updateBindings(true);
+            this._handleDisplayOrdersTable();
             this._pOrderPopover.then(function (oPopover) {
                 oPopover.close();
             });
@@ -898,9 +888,21 @@ sap.ui.define([
             this.getView().setModel(ShipReqTableDataModel, "ShipReqTableDataModel");
             const oTable = oView.byId("idShipReqsTable");
             oTable.setModel(ShipReqTableDataModel);
+            var ShipReqTableDataModel = this.getView().getModel("ShipReqTableDataModel");
+            var ShipReqColumns = ShipReqTableDataModel.getData().ShipReqColumns;
+            var count = 0;
+            for(var i=0; i<ShipReqColumns.length; i++){
+                if(ShipReqColumns[i].visible === true){
+                    count += 1
+                }
+            }
             oTable.bindColumns("/ShipReqColumns", function (sId, oContext) {
                 columnName = oContext.getObject().name;
                 label = oContext.getObject().label;
+                var minWidth = "100%";
+                if(count>10){
+                    var minWidth = "250px";
+                }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
                     var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
@@ -916,7 +918,7 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: oHBox,
                         visible: oContext.getObject().visible,
-                        width: "8rem",
+                        width: minWidth,
                         sortProperty: columnName
                     });
                 } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
@@ -931,7 +933,7 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: columnName,
                         visible: oContext.getObject().visible,
-                        width: "10rem",
+                        width: minWidth,
                         sortProperty: columnName
                     });
                 } else {
@@ -939,7 +941,7 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: columnName,
                         visible: oContext.getObject().visible,
-                        width: "10rem",
+                        width: minWidth,
                         sortProperty: columnName
                     });
                 }
@@ -1014,6 +1016,7 @@ sap.ui.define([
                 })
             });
             ShipReqTableDataModel.updateBindings(true);
+            this._handleDisplayShipReqTable();
             this._pShipReqPopover.then(function (oPopover) {
                 oPopover.close();
             });
@@ -1067,9 +1070,21 @@ sap.ui.define([
             this.getView().setModel(TrackNowTableDataModel, "TrackNowTableDataModel");
             const oTable = oView.byId("idTrackNowTable");
             oTable.setModel(TrackNowTableDataModel);
+            var TrackNowTableDataModel = this.getView().getModel("TrackNowTableDataModel");
+            var TrackNowColumns = TrackNowTableDataModel.getData().TrackNowColumns;
+            var count = 0;
+            for(var i=0; i<TrackNowColumns.length; i++){
+                if(TrackNowColumns[i].visible === true){
+                    count += 1
+                }
+            }
             oTable.bindColumns("/TrackNowColumns", function (sId, oContext) {
                 columnName = oContext.getObject().name;
                 label = oContext.getObject().label;
+                var minWidth = "100%";
+                if(count>10){
+                    var minWidth = "250px";
+                }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
                     var Btn1 = new sap.m.Button({ text: "Edit", type: "Transparent" });
@@ -1085,7 +1100,7 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: oHBox,
                         visible: oContext.getObject().visible,
-                        width: "8rem",
+                        width: minWidth,
                         sortProperty: columnName
                     });
                 } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
@@ -1100,7 +1115,7 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: columnName,
                         visible: oContext.getObject().visible,
-                        width: "10rem",
+                        width: minWidth,
                         sortProperty: columnName
                     });
                 } else {
@@ -1108,7 +1123,7 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: columnName,
                         visible: oContext.getObject().visible,
-                        width: "10rem",
+                        width: minWidth,
                         sortProperty: columnName
                     });
                 }
@@ -1183,6 +1198,7 @@ sap.ui.define([
                 })
             });
             TrackNowTableDataModel.updateBindings(true);
+            this._handleDisplayTrackNowTable();
             this._pTrackNowPopover.then(function (oPopover) {
                 oPopover.close();
             });
@@ -1236,9 +1252,21 @@ sap.ui.define([
             this.getView().setModel(ManifestTableDataModel, "ManifestTableDataModel");
             const oTable = oView.byId("idManifestTable");
             oTable.setModel(ManifestTableDataModel);
+            var ManifestTableDataModel = this.getView().getModel("ManifestTableDataModel");
+            var ManifestColumns = ManifestTableDataModel.getData().ManifestColumns;
+            var count = 0;
+            for(var i=0; i<ManifestColumns.length; i++){
+                if(ManifestColumns[i].visible === true){
+                    count += 1
+                }
+            }
             oTable.bindColumns("/ManifestColumns", function (sId, oContext) {
                 columnName = oContext.getObject().name;
                 label = oContext.getObject().label;
+                var minWidth = "100%";
+                if(count>10){
+                    var minWidth = "250px";
+                }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
                     var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
@@ -1254,7 +1282,7 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: oHBox,
                         visible: oContext.getObject().visible,
-                        width: "8rem",
+                        width: minWidth,
                         sortProperty: columnName
                     });
                 } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
@@ -1269,7 +1297,7 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: columnName,
                         visible: oContext.getObject().visible,
-                        width: "10rem",
+                        width: minWidth,
                         sortProperty: columnName
                     });
                 } else {
@@ -1277,7 +1305,7 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: columnName,
                         visible: oContext.getObject().visible,
-                        width: "10rem",
+                        width: minWidth,
                         sortProperty: columnName
                     });
                 }
@@ -1352,6 +1380,7 @@ sap.ui.define([
                 })
             });
             ManifestTableDataModel.updateBindings(true);
+            this._handleDisplayManifestTable();
             this._pManifestPopover.then(function (oPopover) {
                 oPopover.close();
             });
@@ -1375,9 +1404,21 @@ sap.ui.define([
             this.getView().setModel(BatchShipTableDataModel, "BatchShipTableDataModel");
             const oTable = oView.byId("idBatchShipTable");
             oTable.setModel(BatchShipTableDataModel);
+            var BatchShipTableDataModel = this.getView().getModel("BatchShipTableDataModel");
+            var BatchShipColumns = BatchShipTableDataModel.getData().BatchShipColumns;
+            var count = 0;
+            for(var i=0; i<BatchShipColumns.length; i++){
+                if(BatchShipColumns[i].visible === true){
+                    count += 1
+                }
+            }
             oTable.bindColumns("/BatchShipColumns", function (sId, oContext) {
                 columnName = oContext.getObject().name;
                 label = oContext.getObject().label;
+                var minWidth = "100%";
+                if(count>10){
+                    var minWidth = "250px";
+                }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
                     var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
@@ -1393,7 +1434,7 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: oHBox,
                         visible: oContext.getObject().visible,
-                        // width: "8rem",
+                        width: minWidth,
                         sortProperty: columnName
                     });
                 } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
@@ -1408,7 +1449,7 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: columnName,
                         visible: oContext.getObject().visible,
-                        // width: "10rem",
+                        width: minWidth,
                         sortProperty: columnName
                     });
                 } else {
@@ -1416,7 +1457,7 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: columnName,
                         visible: oContext.getObject().visible,
-                        // width: "10rem",
+                        width: minWidth,
                         sortProperty: columnName
                     });
                 }
@@ -1491,6 +1532,7 @@ sap.ui.define([
                 })
             });
             BatchShipTableDataModel.updateBindings(true);
+            this._handleDisplayBatchShipTable();
             this._pBatchShipPopover.then(function (oPopover) {
                 oPopover.close();
             });
@@ -1529,35 +1571,6 @@ sap.ui.define([
             this.byId("idBatchShipFilterPopover").close();
         },
 
-        onScanShipColSelectOkPress: function () {
-            var oView = this.getView()
-            var oScanTable = oView.byId("myScanColumnSelectId");
-            var ScanShipTableDataModel = oView.getModel("ScanShipTableDataModel");
-            var oScanTblItems = oScanTable.getItems();
-            var aColumnsData = ScanShipTableDataModel.getProperty("/columns");
-            oScanTblItems.map(function (oTableItems) {
-                aColumnsData.map(function (oColObj) {
-                    if (oTableItems.getBindingContext("ScanShipTableDataModel").getObject().name === oColObj.name) {
-                        if (oTableItems.getSelected()) {
-                            ``
-                            oColObj.visible = true;
-                        } else {
-                            oColObj.visible = false;
-                        }
-                    }
-
-                })
-            });
-            ScanShipTableDataModel.updateBindings(true);
-            this._pScanPopover.then(function (oPopover) {
-                oPopover.close();
-            });
-        },
-        onScanShipColSelectClosePress: function () {
-            this._pScanPopover.then(function (oPopover) {
-                oPopover.close();
-            });
-        },
         onOpenRecentShipmentPopover: function (oEvent) {
             var oButton = oEvent.getSource(),
                 oView = this.getView();
@@ -1768,7 +1781,6 @@ sap.ui.define([
                             label: oResourceBundle.getText(columnName),
                             template: oHBox,
                             visible: oContext.getObject().visible,
-                            width: "8rem",
                             sortProperty: columnName
                         });
                     } else {
@@ -1776,7 +1788,6 @@ sap.ui.define([
                             label: oResourceBundle.getText(columnName),
                             template: columnName,
                             visible: oContext.getObject().visible,
-                            width: "8rem",
                             sortProperty: columnName
                         });
                     }
