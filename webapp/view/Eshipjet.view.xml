@@ -98,7 +98,7 @@
 
 					</ScrollContainer>
 
-					</ScrollContainer>
+					
 					<!-- Orders Starts here -->
 					<ScrollContainer id="Orders" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Orders" type="XML" />
