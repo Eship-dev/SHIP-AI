@@ -71,7 +71,7 @@
 										</HBox>
 										<HBox class="sapUiLargeMarginTop" justifyContent="Center">
 											<Button class="sapUiTinyMargin ship-copilot-button all-shipments" icon="sap-icon://in-progress"  text="Show all Shipments"/>
-											<Button class="sapUiTinyMargin ship-copilot-button country-shipments" icon="sap-icon://product" text="Coutry wise Shipments" />
+											<Button class="sapUiTinyMargin ship-copilot-button country-shipments" icon="sap-icon://product" text="Country wise Shipments" />
 											<Button class="sapUiTinyMargin ship-copilot-button open-order-status" icon="sap-icon://shipping-status" text="Orders with Open Status"/>
 										</HBox>
 									</VBox>
