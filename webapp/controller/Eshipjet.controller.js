@@ -1309,7 +1309,7 @@ sap.ui.define([
                     });
                 }
             });
-            oTable.bindRows("/rows");
+            oTable.bindRows("/ManifestRows");
         },
 
         openManifestColNamesPopover: function (oEvent) {
@@ -1461,7 +1461,7 @@ sap.ui.define([
                     });
                 }
             });
-            oTable.bindRows("/rows");
+            oTable.bindRows("/BatchShipRows");
         },
 
         openBatchShipColNamesPopover: function (oEvent) {
@@ -1779,6 +1779,14 @@ sap.ui.define([
                         return new sap.ui.table.Column({
                             label: oResourceBundle.getText(columnName),
                             template: oHBox,
+                            visible: oContext.getObject().visible,
+                            sortProperty: columnName
+                        });
+                    }else if (columnName === "status") {
+                        var oSwitch = new sap.m.Switch({ type:"AcceptReject"}); // Create Text instance 
+                        return new sap.ui.table.Column({
+                            label: oResourceBundle.getText(columnName),
+                            template: oSwitch,
                             visible: oContext.getObject().visible,
                             sortProperty: columnName
                         });
@@ -4265,6 +4273,25 @@ sap.ui.define([
 
     onAddLocationClosePress: function (oEvent) {
         this.byId("addLocationPopover").close();
+    },
+    AddLocPopoverClose: function () {
+        var oPopover = this.byId("addLocationPopover");
+        if (oPopover) {
+            oPopover.close(); // Close the popover
+        }
+    },
+    AddLocCancelPopover: function () {
+        var oPopover = this.byId("addLocationPopover");
+        if (oPopover) {
+            oPopover.close(); // Close the popover
+        }
+    },
+    
+    AddLocSelectPopover: function () {
+        var oPopover = this.byId("addLocationPopover");
+        if (oPopover) {
+            oPopover.close(); // Close the popover
+        }
     },
     // add location popover changes end
 

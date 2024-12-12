@@ -9,7 +9,6 @@
             placement="Left" 
             contentWidth="50%"
             showHeader="true"
-			
 			class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
             >
 			 <!-- Custom Header -->
@@ -30,9 +29,9 @@
     </customHeader>
 		 <footer>
             <OverflowToolbar>
-                <Button text="Cancel" press="_generateInvalidUserInput" />
+                <Button text="Cancel" press="AddLocCancelPopover" />
                 <ToolbarSpacer/>
-                <Button type="Emphasized" text="Save" />
+                <Button type="Emphasized" text="Save" press="AddLocSelectPopover" />
             </OverflowToolbar>
         </footer>
 
@@ -134,7 +133,7 @@
                          <ComboBox id="idLocationType1" placeholder="Select">
                          </ComboBox>
                           <Label text="Status" />
-                        <Switch state="true" enabled="false">
+                        <Switch state="true" >
 				            <layoutData>
 					            <FlexItemData growFactor="1" />
 				            </layoutData>
