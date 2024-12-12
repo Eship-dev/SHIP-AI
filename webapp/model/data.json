@@ -648,8 +648,6 @@
 			}
 		],
 		"ShipReqRows": [
-<<<<<<< HEAD
-=======
             {
                 "requestIdLabelId": "DN000001385",
                 "CreatedDate": "12/10/2024",
@@ -820,8 +818,6 @@
                 "shipToPhone": "+91 915 492 735",
                 "shipToEmail": "info@eshipjet.ai"
               }
->>>>>>> b27c3a7 (binded data to all tables)
-            
         ]
 	},
 
