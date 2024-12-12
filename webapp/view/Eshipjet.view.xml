@@ -957,4 +957,9 @@
 			</NavContainer>
 		</tnt:mainContents>
 	</tnt:ToolPage>
+	           <OverflowToolbar class="eship-footer">
+			<ToolbarSpacer/>
+				<Text text="© copyright 2024 eshipjet.ai, Inc. All rights reserved."/>
+			<ToolbarSpacer/>
+		</OverflowToolbar>
 </mvc:View>
