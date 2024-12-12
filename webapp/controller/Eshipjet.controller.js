@@ -5020,5 +5020,51 @@ sap.ui.define([
                 oPopover.close(); // Close the popover
             }
         },
+        // add ShipNowPlusIcon popover changes start
+            onShipNowAddIconPress: function (oEvent) {
+                var oButton = oEvent.getSource(),
+                    oView = this.getView();
+                // create popover
+                if (!this._AddLocPopover) {
+                    this._AddLocPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.ShipNowAddIconPopover",
+                        controller: this
+                    }).then(function (oAddLocPopover) {
+                        oView.addDependent(oAddLocPopover);
+                        return oAddLocPopover;
+                    });
+                }
+                this._AddLocPopover.then(function (oAddLocPopover) {
+                    oAddLocPopover.openBy(oButton);
+                });
+            },
+
+            onAddLocationClosePress: function (oEvent) {
+                this.byId("idShipNowAddIconPopover").close();
+            },
+            ShipNowAddIconClosePress: function () {
+                var oPopover = this.byId("idShipNowAddIconPopover");
+                if (oPopover) {
+                    oPopover.close(); // Close the popover
+                }
+            },
+            ShipNowAddIconCancelPopover: function () {
+                var oPopover = this.byId("idShipNowAddIconPopover");
+                if (oPopover) {
+                    oPopover.close(); // Close the popover
+                }
+            },
+            
+            ShipNowAddIconSelectPopover: function () {
+                var oPopover = this.byId("idShipNowAddIconPopover");
+                if (oPopover) {
+                    oPopover.close(); // Close the popover
+                }
+            },
+            // add location p
+
+
+
     });
 });

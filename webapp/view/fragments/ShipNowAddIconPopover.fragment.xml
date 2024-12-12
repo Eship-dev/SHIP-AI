@@ -5,17 +5,17 @@
     xmlns:f="sap.ui.layout.form"
     height="100%">
 
-    <Popover id="idShipNowPlusIconPopover"  
-            placement="Left" 
-            contentWidth="50%"
+    <Popover id="idShipNowAddIconPopover"  
+            placement="Right" 
+             contentWidth="35%"
+            contentHeight="50%"
             showHeader="true"
 			class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
             >
 			 <!-- Custom Header -->
     <customHeader>
         <Toolbar>
-            <!-- Title -->
-            <Title text="Add Location" />
+            <Title text="Create Address" />
             
             <!-- Spacer to push close button to the right -->
             <ToolbarSpacer />
@@ -23,24 +23,43 @@
             <!-- Close Button -->
             <Button 
                 icon="sap-icon://decline" 
-                press="onAddLocationClosePress" 
+                press="ShipNowAddIconClosePress" 
                 type="Transparent" />
         </Toolbar>
     </customHeader>
 		 <footer>
             <OverflowToolbar>
-                <Button text="Cancel" press="AddLocCancelPopover" />
+                <Button text="Cancel" press="ShipNowAddIconCancelPopover" />
                 <ToolbarSpacer/>
-                <Button type="Emphasized" text="Save" press="AddLocSelectPopover" />
+                <Button type="Emphasized" text="Save" press="ShipNowAddIconSelectPopover" />
             </OverflowToolbar>
         </footer>
-
-		
         <content>
-            
-           
-       	<Toolbar height="100%">
            	<f:SimpleForm editable="true"
+							  layout="ColumnLayout"
+							  columnsM="2"
+							  columnsL="2"
+							  columnsXL="2"
+                               class="customSimpleFormShadow">
+					<f:content>
+						<Toolbar ariaLabelledBy="idShipFrom">
+                                <Button icon="sap-icon://customer-briefing" press="handleAddLocPress"/>
+								<Title id="ShipNowPlusTitle" text="ContactInfo"/>
+						</Toolbar>
+						 <Label text="Contact Name" />
+                         <Input />
+                         <Label text="Phone No" />
+                         <Input />
+                        <Label text="Company Name" />
+                        <Input />
+                        <Label text="Email" />
+                        <Input />
+					</f:content>
+				</f:SimpleForm>
+         
+         <f:SimpleForm editable="true"
+                        class="customSimpleFormShadow"
+                        width="auto"
 							  layout="ColumnLayout"
 							  columnsM="2"
 							  columnsL="2"
@@ -48,7 +67,7 @@
 					<f:content>
 						<Toolbar ariaLabelledBy="idShipFrom">
                                 <Button icon="sap-icon://customer-briefing" press="handleAddLocPress"/>
-								<Title id="ShipNowPlusTitle" text="Name and Contact"/>
+								<Title id="idAddLocaTionFrom" text="Name and Contact"/>
 						</Toolbar>
 						 <Label text="Location Code" />
                          <Input />
@@ -62,44 +81,8 @@
                         <Input />
 					</f:content>
 				</f:SimpleForm>
-              	</Toolbar>
 
-            <Toolbar height="100%">
-           	<f:SimpleForm editable="true"
-							  layout="ColumnLayout"
-							  columnsM="2"
-							  columnsL="2"
-							  columnsXL="2">
-					<f:content>
-						<Toolbar ariaLabelledBy="idShipFrom">
-                                <Button icon="sap-icon://customer-briefing" press="handleAddLocPress"/>
-								<Title id="ShipNowPlusIconPopover2" text="Address Info"/>
-						</Toolbar>
-						 <Label text="Address Line 1" />
-                         <Input />
-                         <Label text="City" />
-                         <Input />
-                        <Label text="Zip / Postal Code" />
-                        <Input />
-                        <Label text="Ship From Tax" />
-                        <Input />
-                         <Label text="Address Line 2" />
-                        <Input />
-                        <Label text="State / Province" />
-                        <Input />
-                        <Label text="Country" />
-                        <Input />
-					</f:content>
-				</f:SimpleForm>
-              </Toolbar>
-
-
-       
-           	
-               	
-
-        
-
+           
         </content>      
 
        

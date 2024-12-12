@@ -194,7 +194,7 @@
 													<Toolbar ariaLabelledBy="idShipTo">
 														<Title id="idShipTo" text="Ship To"/>
 														<Button icon="sap-icon://customer-briefing" press="ShipToPickAnAddressPopoverPress" />
-														<Button icon="sap-icon://add" press="handleCreateAddressPress"></Button>
+														<Button icon="sap-icon://add" press="onShipNowAddIconPress"></Button>
 														<ToolbarSpacer ></ToolbarSpacer>
 														<Button text="Validate Address" class="scan-ship-toolbar__button" type="Ghost" width="25%" />
 													</Toolbar>
