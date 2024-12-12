@@ -1,4 +1,6 @@
 {
+    "allViewsFooter": true,
+    "shipNowViewFooter": false,
     "selectedKey": "page2",
     "image": "css/images/image.png",
     "SideNavigation": true,

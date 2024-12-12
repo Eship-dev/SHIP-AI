@@ -16,9 +16,4 @@
                 <Text text="Enter Shipment Order to get the latest and best quote available."></Text>
             <ToolbarSpacer />
         </Toolbar>
-        <OverflowToolbar class="eship-footer">
-			<ToolbarSpacer/>
-				<Text text="© copyright 2024 eshipjet.ai, Inc. All rights reserved."/>
-			<ToolbarSpacer/>
-		</OverflowToolbar>
 </core:FragmentDefinition>

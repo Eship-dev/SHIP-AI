@@ -95,11 +95,6 @@
 										<Input id="userInput" class="sapUiTinyMarginEnd" placeholder="Good Afternoon Robert, I'm ready for the task" width="30rem" submit="onSendPress"/>
 										<Button icon="sap-icon://arrow-top" press="onSendPress"/>
 									</HBox>
-									<OverflowToolbar class="eship-footer">
-										<ToolbarSpacer/>
-											<Text text="© copyright 2024 eshipjet.ai, Inc. All rights reserved."/>
-										<ToolbarSpacer/>
-									</OverflowToolbar>
 
 					</ScrollContainer>
 
@@ -823,12 +818,7 @@
 									</IconTabFilter>
 								</items>
 							</IconTabBar>
-							<OverflowToolbar class="eship-footer ship-now-footer">
-								<ToolbarSpacer/>
-								<Button text="Get Shipping Rates" class="ship-now-footer_ship-rates"/>
-								<ToolbarSpacer/>
-								<Button text="Ship Now" class="ship-now-footer_ship-now" />
-							</OverflowToolbar>   			
+							   			
 						<!-- </content>
 					</Page> -->
 				</ScrollContainer>
@@ -962,4 +952,16 @@
 			</NavContainer>
 		</tnt:mainContents>
 	</tnt:ToolPage>
+	    <OverflowToolbar class="eship-footer" visible="{eshipjetModel>/allViewsFooter}">
+			<ToolbarSpacer/>
+				<Text text="© copyright 2024 eshipjet.ai, Inc. All rights reserved."/>
+			<ToolbarSpacer/>
+		</OverflowToolbar>
+
+		<OverflowToolbar class="eship-footer ship-now-footer" visible="{eshipjetModel>/shipNowViewFooter}">
+			<ToolbarSpacer/>
+				<Button text="Get Shipping Rates" class="ship-now-footer_ship-rates"/>
+			<ToolbarSpacer/>
+				<Button text="Ship Now" class="ship-now-footer_ship-now" />
+		</OverflowToolbar>
 </mvc:View>

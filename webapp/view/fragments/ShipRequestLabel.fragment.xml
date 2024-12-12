@@ -61,9 +61,4 @@
 				</Toolbar>
 		    </ui:footer>
 		</ui:Table>
-		<OverflowToolbar class="eship-footer">
-			<ToolbarSpacer/>
-				<Text text="© copyright 2024 eshipjet.ai, Inc. All rights reserved."/>
-			<ToolbarSpacer/>
-		</OverflowToolbar>
 </core:FragmentDefinition>

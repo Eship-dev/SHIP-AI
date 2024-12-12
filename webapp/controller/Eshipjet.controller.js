@@ -55,33 +55,46 @@ sap.ui.define([
                 }
                 const oShipperCopilotModel = new JSONModel(obj);
                 this.getView().setModel(oShipperCopilotModel, "ShipperCopilotModel");
+                eshipjetModel.setProperty("/allViewsFooter", true);
+                eshipjetModel.setProperty("/shipNowViewFooter", false);
             } else if (sKey === "ScanShip") {
-                // var oModel = {
-                //     "items": [],
-                //     "SASTableLength": 0
-                // };
-                // var oModel = new JSONModel(oModel);
-                // this.getView().setModel(oModel, "oModel");
+                eshipjetModel.setProperty("/allViewsFooter", true);
+                eshipjetModel.setProperty("/shipNowViewFooter", false);
                 this._handleDisplayScanShipTable();
             } else if (sKey === "Orders") {
+                eshipjetModel.setProperty("/allViewsFooter", true);
+                eshipjetModel.setProperty("/shipNowViewFooter", false);
                 this._handleDisplayOrdersTable();
             } else if (sKey === "ShipRequestLabel") {
+                eshipjetModel.setProperty("/allViewsFooter", true);
+                eshipjetModel.setProperty("/shipNowViewFooter", false);
                 this._handleDisplayShipReqTable();
+            } else if (sKey === "ShipNow") {
+                eshipjetModel.setProperty("/allViewsFooter", false);
+                eshipjetModel.setProperty("/shipNowViewFooter", true);
             } else if (sKey === "QuoteNow") {
-
+                eshipjetModel.setProperty("/allViewsFooter", true);
+                eshipjetModel.setProperty("/shipNowViewFooter", false);
             }else if (sKey === "TrackNow") {
+                eshipjetModel.setProperty("/allViewsFooter", true);
+                eshipjetModel.setProperty("/shipNowViewFooter", false);
                 this._handleDisplayTrackNowTable();
             } else if (sKey === "Manifest") {
+                eshipjetModel.setProperty("/allViewsFooter", true);
+                eshipjetModel.setProperty("/shipNowViewFooter", false);
                 this._handleDisplayManifestTable();
             } else if (sKey === "AESDirect") {
-
+                eshipjetModel.setProperty("/allViewsFooter", true);
+                eshipjetModel.setProperty("/shipNowViewFooter", false);
             } else if (sKey === "Dashboard") {
-
+                eshipjetModel.setProperty("/allViewsFooter", true);
+                eshipjetModel.setProperty("/shipNowViewFooter", false);
             } else if (sKey === "Reports") {
-
-            } else if (sKey === "Reports") {
-
+                eshipjetModel.setProperty("/allViewsFooter", true);
+                eshipjetModel.setProperty("/shipNowViewFooter", false);
             } else if (sKey === "BatchShip") {
+                eshipjetModel.setProperty("/allViewsFooter", true);
+                eshipjetModel.setProperty("/shipNowViewFooter", false);
                 this._handleDisplayBatchShipTable();
             }
 
@@ -679,13 +692,19 @@ sap.ui.define([
             if (tileTitle === "Ship Request/Label") {
                 this._handleDisplayShipReqTable();
                 var sKey = "ShipRequestLabel";
+                eshipjetModel.setProperty("/allViewsFooter", true);
+                eshipjetModel.setProperty("/shipNowViewFooter", false);
                 this.byId("pageContainer").to(this.getView().createId(sKey));
             } else if (tileTitle === "Ship Now") {
-                var sKey = "ShipNow";                
+                var sKey = "ShipNow";    
+                eshipjetModel.setProperty("/allViewsFooter", false);
+                eshipjetModel.setProperty("/shipNowViewFooter", true);            
                 this.byId("pageContainer").to(this.getView().createId(sKey));                
             } else if (tileTitle === "Track Now") {
                 this._handleDisplayTrackNowTable();
                 var sKey = "TrackNow";
+                eshipjetModel.setProperty("/allViewsFooter", true);
+                eshipjetModel.setProperty("/shipNowViewFooter", false);
                 this.byId("pageContainer").to(this.getView().createId(sKey));
             }
             var SideNavigation = eshipjetModel.getProperty("/SideNavigation");
@@ -1631,6 +1650,8 @@ sap.ui.define([
             var oSrc = oEvent.getSource();
             var oView = oController.getView();
             var eshipjetModel = oView.getModel("eshipjetModel");
+            eshipjetModel.setProperty("/allViewsFooter", true);
+            eshipjetModel.setProperty("/shipNowViewFooter", false);
             var oCurrObj = oSrc.getBindingContext().getObject();
             var oToolPage = this.byId("toolPage");
             var oPageContainer = this.byId("pageContainer");
