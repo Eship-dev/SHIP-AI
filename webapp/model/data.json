@@ -256,7 +256,7 @@
 			}
 		],
 		"rows": [],
-		"ScanShipTableLength":""
+		"ScanShipTableLength": 0
 	},
 
 	"OrderTableData":{

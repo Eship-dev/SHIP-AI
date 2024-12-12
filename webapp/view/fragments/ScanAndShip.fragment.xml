@@ -11,7 +11,7 @@
 	</Toolbar>
 
         <ui:Table class="sapUiTinyMargin scan-ship-table" 	rowActionCount="0"	id="idScanAndShipTable"
-					selectionMode="None"	paste="onPaste"		ariaLabelledBy="title">
+					selectionMode="None"	paste="onPaste"		ariaLabelledBy="title" visibleRowCount="14">
 					<ui:extension>
 						<OverflowToolbar class="scan-ship-table__toolbar">
 							<Button icon="sap-icon://filter" press="scanShipFilterPopoverPress"></Button>
@@ -28,7 +28,7 @@
 					</ui:extension>									
 				<ui:footer>
                 <Toolbar class="scan-ship-table_footer_toolbar">
-                    <Text text="Total Shipped by John Marsh: 1"></Text>
+                    <Text text="Total Shipped by John Marsh: {ScanShipTableDataModel>/ScanShipTableLength}" ></Text>
                     <ToolbarSpacer/>
                     <Button  text="First" enabled="false" />
                     <Button  text="Previous" enabled="false"/>
@@ -41,6 +41,17 @@
 
     </VBox>
 
+    <!-- <OverflowToolbar class="eship-footer ship-now-footer" >
+			<Toolbar class="scan-ship-table_footer_toolbar eship-footer sapUiSmallMarginBegin sapUiSmallMarginEnd" width="98%" >
+                    <Text text="Total Shipped by John Marsh: 1"></Text>
+                    <ToolbarSpacer/>
+                    <Button  text="First" enabled="false" />
+                    <Button  text="Previous" enabled="false"/>
+                    <Text    text="1-0 of 0"/>
+                    <Button  text="Next" />
+                    <Button  text="Last" />
+				</Toolbar>
+		</OverflowToolbar> -->
 
 
 

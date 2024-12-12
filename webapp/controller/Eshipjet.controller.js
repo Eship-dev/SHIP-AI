@@ -535,7 +535,7 @@ sap.ui.define([
                         var rows = ScanShipTableDataModel.getData().rows;
                         rows.push(obj);
                         ScanShipTableDataModel.updateBindings(true);
-                        // eshipjetModel.setProperty("/scanShipTableData/ScanShipTableLength", rows.length);
+                        ScanShipTableDataModel.setProperty("/ScanShipTableLength", rows.length);
                         // Handle successful response
                         BusyIndicator.hide();
                         resolve(response);

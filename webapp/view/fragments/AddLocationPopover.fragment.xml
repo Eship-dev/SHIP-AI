@@ -5,11 +5,12 @@
     xmlns:f="sap.ui.layout.form"
     height="100%">
 
-    <Popover id="addLocationPopover"  
+    <Popover id="addLocationPopover" 
             placement="Left" 
-            contentWidth="50%"
+            contentWidth="45%"
+            contentHeight="80%"
             showHeader="true"
-			class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+			class="sapUiResponsivePadding--header sapUiResponsivePadding--footer addLocationPopoverSpace"
             >
 			 <!-- Custom Header -->
     <customHeader>
@@ -36,11 +37,12 @@
         </footer>
 
 		
-        <content>
+        <content >
             
            
-       	<Toolbar height="100%">
            	<f:SimpleForm editable="true"
+                        class="customSimpleFormShadow"
+                        width="auto"
 							  layout="ColumnLayout"
 							  columnsM="2"
 							  columnsL="2"
@@ -62,10 +64,10 @@
                         <Input />
 					</f:content>
 				</f:SimpleForm>
-              	</Toolbar>
 
-            <Toolbar height="100%">
            	<f:SimpleForm editable="true"
+                        class="customSimpleFormShadow"
+                        width="auto"
 							  layout="ColumnLayout"
 							  columnsM="2"
 							  columnsL="2"
@@ -91,11 +93,11 @@
                         <Input />
 					</f:content>
 				</f:SimpleForm>
-              </Toolbar>
-
 
        
            	<f:SimpleForm editable="true"
+                        class="customSimpleFormShadow"
+                        width="auto"
 							  layout="ColumnLayout"
 							  columnsM="2"
 							  columnsL="2"
@@ -115,8 +117,9 @@
 				</f:SimpleForm>
                	
 
-        <FlexBox class="sapUiSmall">
            	<f:SimpleForm editable="true"
+                            class="customSimpleFormShadow"
+                            width="auto"
 							  layout="ColumnLayout"
 							  columnsM="2"
 							  columnsL="2"
@@ -145,7 +148,6 @@
                        
 					</f:content>
 				</f:SimpleForm>
-            </FlexBox>
 
         </content>      
 
