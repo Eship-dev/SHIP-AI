@@ -1991,6 +1991,7 @@ sap.ui.define([
                     label: oResourceBundle.getText(columnName),
                     template: oSwitch,
                     visible: oContext.getObject().visible,
+                    width: minWidth,
                     sortProperty: columnName
                 });
             } else {
@@ -2128,6 +2129,15 @@ sap.ui.define([
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
                         template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "status") {
+                    var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oSwitch,
                         visible: oContext.getObject().visible,
                         width: minWidth,
                         sortProperty: columnName
@@ -2270,6 +2280,15 @@ sap.ui.define([
                         width: minWidth,
                         sortProperty: columnName
                     });
+                } else if (columnName === "status") {
+                    var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oSwitch,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
                 } else {
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
@@ -2404,6 +2423,15 @@ sap.ui.define([
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
                         template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "status") {
+                    var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oSwitch,
                         visible: oContext.getObject().visible,
                         width: minWidth,
                         sortProperty: columnName
@@ -2546,6 +2574,15 @@ sap.ui.define([
                         width: minWidth,
                         sortProperty: columnName
                     });
+                } else if (columnName === "status" || columnName === "rateShop" || columnName === "edoc" || columnName === "manualRates") {
+                    var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oSwitch,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
                 } else {
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
@@ -2684,6 +2721,15 @@ sap.ui.define([
                         width: minWidth,
                         sortProperty: columnName
                     });
+                } else if (columnName === "status") {
+                    var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oSwitch,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
                 } else {
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
@@ -2817,6 +2863,15 @@ sap.ui.define([
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
                         template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "status") {
+                    var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oSwitch,
                         visible: oContext.getObject().visible,
                         width: minWidth,
                         sortProperty: columnName
@@ -2959,6 +3014,15 @@ sap.ui.define([
                         width: minWidth,
                         sortProperty: columnName
                     });
+                } else if (columnName === "status") {
+                    var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oSwitch,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
                 } else {
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
@@ -3093,6 +3157,15 @@ sap.ui.define([
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
                         template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "status") {
+                    var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oSwitch,
                         visible: oContext.getObject().visible,
                         width: minWidth,
                         sortProperty: columnName
@@ -3235,6 +3308,15 @@ sap.ui.define([
                         width: minWidth,
                         sortProperty: columnName
                     });
+                } else if (columnName === "status") {
+                    var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oSwitch,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
                 } else {
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
@@ -3369,6 +3451,15 @@ sap.ui.define([
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
                         template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "status") {
+                    var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oSwitch,
                         visible: oContext.getObject().visible,
                         width: minWidth,
                         sortProperty: columnName
@@ -3511,6 +3602,15 @@ sap.ui.define([
                         width: minWidth,
                         sortProperty: columnName
                     });
+                } else if (columnName === "status") {
+                    var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oSwitch,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
                 } else {
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
@@ -3645,6 +3745,15 @@ sap.ui.define([
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
                         template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "status") {
+                    var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oSwitch,
                         visible: oContext.getObject().visible,
                         width: minWidth,
                         sortProperty: columnName
@@ -3787,6 +3896,15 @@ sap.ui.define([
                     width: minWidth,
                     sortProperty: columnName
                 });
+            } else if (columnName === "status") {
+                var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                return new sap.ui.table.Column({
+                    label: oResourceBundle.getText(columnName),
+                    template: oSwitch,
+                    visible: oContext.getObject().visible,
+                    width: minWidth,
+                    sortProperty: columnName
+                });
             } else {
                 return new sap.ui.table.Column({
                     label: oResourceBundle.getText(columnName),
@@ -3920,6 +4038,15 @@ sap.ui.define([
                 return new sap.ui.table.Column({
                     label: oResourceBundle.getText(columnName),
                     template: oHBox,
+                    visible: oContext.getObject().visible,
+                    width: minWidth,
+                    sortProperty: columnName
+                });
+            } else if (columnName === "status") {
+                var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                return new sap.ui.table.Column({
+                    label: oResourceBundle.getText(columnName),
+                    template: oSwitch,
                     visible: oContext.getObject().visible,
                     width: minWidth,
                     sortProperty: columnName
@@ -4062,6 +4189,15 @@ sap.ui.define([
                     width: minWidth,
                     sortProperty: columnName
                 });
+            } else if (columnName === "status") {
+                var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                return new sap.ui.table.Column({
+                    label: oResourceBundle.getText(columnName),
+                    template: oSwitch,
+                    visible: oContext.getObject().visible,
+                    width: minWidth,
+                    sortProperty: columnName
+                });
             } else {
                 return new sap.ui.table.Column({
                     label: oResourceBundle.getText(columnName),
@@ -4196,6 +4332,15 @@ sap.ui.define([
                 return new sap.ui.table.Column({
                     label: oResourceBundle.getText(columnName),
                     template: oHBox,
+                    visible: oContext.getObject().visible,
+                    width: minWidth,
+                    sortProperty: columnName
+                });
+            } else if (columnName === "status") {
+                var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                return new sap.ui.table.Column({
+                    label: oResourceBundle.getText(columnName),
+                    template: oSwitch,
                     visible: oContext.getObject().visible,
                     width: minWidth,
                     sortProperty: columnName
@@ -4337,6 +4482,15 @@ sap.ui.define([
                     width: minWidth,
                     sortProperty: columnName
                 });
+            } else if (columnName === "status") {
+                var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                return new sap.ui.table.Column({
+                    label: oResourceBundle.getText(columnName),
+                    template: oSwitch,
+                    visible: oContext.getObject().visible,
+                    width: minWidth,
+                    sortProperty: columnName
+                });
             } else {
                 return new sap.ui.table.Column({
                     label: oResourceBundle.getText(columnName),
@@ -4470,6 +4624,15 @@ sap.ui.define([
                 return new sap.ui.table.Column({
                     label: oResourceBundle.getText(columnName),
                     template: oHBox,
+                    visible: oContext.getObject().visible,
+                    width: minWidth,
+                    sortProperty: columnName
+                });
+            } else if (columnName === "status" || columnName === "ssl") {
+                var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                return new sap.ui.table.Column({
+                    label: oResourceBundle.getText(columnName),
+                    template: oSwitch,
                     visible: oContext.getObject().visible,
                     width: minWidth,
                     sortProperty: columnName
@@ -4612,6 +4775,15 @@ sap.ui.define([
                     width: minWidth,
                     sortProperty: columnName
                 });
+            } else if (columnName === "status") {
+                var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                return new sap.ui.table.Column({
+                    label: oResourceBundle.getText(columnName),
+                    template: oSwitch,
+                    visible: oContext.getObject().visible,
+                    width: minWidth,
+                    sortProperty: columnName
+                });
             } else {
                 return new sap.ui.table.Column({
                     label: oResourceBundle.getText(columnName),
@@ -4750,6 +4922,15 @@ sap.ui.define([
                     width: minWidth,
                     sortProperty: columnName
                 });
+            } else if (columnName === "status") {
+                var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                return new sap.ui.table.Column({
+                    label: oResourceBundle.getText(columnName),
+                    template: oSwitch,
+                    visible: oContext.getObject().visible,
+                    width: minWidth,
+                    sortProperty: columnName
+                });
             } else {
                 return new sap.ui.table.Column({
                     label: oResourceBundle.getText(columnName),
@@ -4884,6 +5065,15 @@ sap.ui.define([
                 return new sap.ui.table.Column({
                     label: oResourceBundle.getText(columnName),
                     template: oHBox,
+                    visible: oContext.getObject().visible,
+                    width: minWidth,
+                    sortProperty: columnName
+                });
+            } else if (columnName === "status") {
+                var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                return new sap.ui.table.Column({
+                    label: oResourceBundle.getText(columnName),
+                    template: oSwitch,
                     visible: oContext.getObject().visible,
                     width: minWidth,
                     sortProperty: columnName

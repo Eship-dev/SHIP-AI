@@ -2896,6 +2896,21 @@
             "key": "rateShop",
             "label": "Rate Shop",
             "visible": true
+        },
+        {
+            "key": "edoc",
+            "label": "EDOC",
+            "visible": true
+        },
+        {
+            "key": "manualRates",
+            "label": "Manual Rates",
+            "visible": true
+        },
+        {
+            "key": "actions",
+            "label": "Actions",
+            "visible": true
         }
     ],
     "CarrierAccountsTableRows": [
