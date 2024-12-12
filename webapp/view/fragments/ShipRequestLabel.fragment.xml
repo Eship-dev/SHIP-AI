@@ -51,14 +51,14 @@
 						</OverflowToolbar>
 					</ui:extension>									
 				<ui:footer>
-                <Toolbar>
-                    <ToolbarSpacer/>
-                    <Button  text="First"     type="Emphasized"/>
-                    <Button  text="Previous"  type="Emphasized"/>
-                    <Text    text="1-0 of 0" />
-                    <Button  text="Next"       type="Emphasized"/>
-                    <Button  text="Last"       type="Emphasized"/>
-				</Toolbar>
-		    </ui:footer>
+					<Toolbar class="scan-ship-table_footer_toolbar">
+						<ToolbarSpacer/>
+						<Button  text="First" enabled="false" />
+						<Button  text="Previous" enabled="false"/>
+						<Text    text="1-50 of 74"/>
+						<Button  text="Next" />
+						<Button  text="Last" />
+					</Toolbar>
+				</ui:footer>
 		</ui:Table>
 </core:FragmentDefinition>

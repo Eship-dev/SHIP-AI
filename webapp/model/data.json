@@ -1944,17 +1944,17 @@
     "LocationTableColumns": [
         {
             "key": "locationName",
-            "label": "locationName",
+            "label": "Location Name",
             "visible": false
         },
         {
             "key": "contactName",
-            "label": "contactName",
+            "label": "Contact Name",
             "visible": true
         },
         {
             "key": "phonenum",
-            "label": "phonenum",
+            "label": "Phone No",
             "visible": true
         },
         {
@@ -1964,52 +1964,52 @@
         },
         {
             "key": "addressLine1",
-            "label": "addressLine1",
+            "label": "Address Line 1",
             "visible": false
         },
         {
             "key": "addressLine2",
-            "label": "addressLine2",
+            "label": "Address Line 2",
             "visible": false
         },
         {
             "key": "stateProvience",
-            "label": "stateProvience",
+            "label": "State Provience",
             "visible": true
         },
         {
             "key": "locaCity",
-            "label": "locaCity",
+            "label": "Location City",
             "visible": true
         },
         {
             "key": "locZip",
-            "label": "locZip",
+            "label": "ZipCode",
             "visible": false
         },
         {
             "key": "locCountry",
-            "label": "locCountry",
+            "label": "Country",
             "visible": true
         },
         {
             "key": "locWeightUnit",
-            "label": "locWeightUnit",
+            "label": "Weight Unit",
             "visible": false
         },
         {
             "key": "locCurr",
-            "label": "locCurr",
+            "label": "Currency",
             "visible": false
         },
         {
             "key": "locDimensionUnit",
-            "label": "locDimensionUnit",
+            "label": "Dimension Unit",
             "visible": false
         },
         {
             "key": "status",
-            "label": "status",
+            "label": "Status",
             "visible": true
         }
     ],
@@ -2736,7 +2736,7 @@
         },
         {
             "key": "status",
-            "label": "shipMethodStatus",
+            "label": "Ship Method Status",
             "visible": true
         }
     ],
@@ -3455,7 +3455,7 @@
         },
         {
             "key": "ltlClass",
-            "label": "LtL Class",
+            "label": "LTL Class",
             "visible": true
         },
         {

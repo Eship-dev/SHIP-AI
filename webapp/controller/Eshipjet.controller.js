@@ -1803,8 +1803,8 @@ sap.ui.define([
                             visible: oContext.getObject().visible,
                             sortProperty: columnName
                         });
-                    }else if (columnName === "status") {
-                        var oSwitch = new sap.m.Switch({ type:"AcceptReject"}); // Create Text instance 
+                    } else if (columnName === "status") {
+                        var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
                         return new sap.ui.table.Column({
                             label: oResourceBundle.getText(columnName),
                             template: oSwitch,
@@ -1983,6 +1983,14 @@ sap.ui.define([
                     template: oHBox,
                     visible: oContext.getObject().visible,
                     width: minWidth,
+                    sortProperty: columnName
+                });
+            } else if (columnName === "status" || columnName === "rfidTag") {
+                var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                return new sap.ui.table.Column({
+                    label: oResourceBundle.getText(columnName),
+                    template: oSwitch,
+                    visible: oContext.getObject().visible,
                     sortProperty: columnName
                 });
             } else {
