@@ -50,7 +50,7 @@
 					<f:content>
 						<Toolbar ariaLabelledBy="idShipFrom">
                                 <Button icon="sap-icon://customer-briefing" press="handleAddLocPress"/>
-								<Title id="idAddLocaTionFrom" text="Name and Contact"/>
+								<Title id="idAddLocaTionFrom11" text="Name and Contact"/>
 						</Toolbar>
 						 <Label text="Location Code" />
                          <Input />

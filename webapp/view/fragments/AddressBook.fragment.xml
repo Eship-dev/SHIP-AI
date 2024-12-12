@@ -5,7 +5,7 @@
 			<Text text="Address Book" class="textBold" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button type="Success" text="Add Address Book"></Button>
+                    <Button type="Success" text="Add Address Book" press="onAddAdressBookIconPress"></Button>
                     <Button type="Success" icon="sap-icon://navigation-down-arrow"></Button>
                 </HBox>
 		</Toolbar>

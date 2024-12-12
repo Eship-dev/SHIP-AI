@@ -5062,7 +5062,87 @@ sap.ui.define([
                     oPopover.close(); // Close the popover
                 }
             },
-            // add location p
+            
+
+             // add onAddAdressBookIconPress popover changes start
+             onAddAdressBookIconPress: function (oEvent) {
+                var oButton = oEvent.getSource(),
+                    oView = this.getView();
+                // create popover
+                if (!this._AddLocPopover) {
+                    this._AddLocPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.AddAddressBookPopover",
+                        controller: this
+                    }).then(function (oAddLocPopover) {
+                        oView.addDependent(oAddLocPopover);
+                        return oAddLocPopover;
+                    });
+                }
+                this._AddLocPopover.then(function (oAddLocPopover) {
+                    oAddLocPopover.openBy(oButton);
+                });
+            },
+            AddAddressBookClosePress: function () {
+                var oPopover = this.byId("idAddAddressBookPopover");
+                if (oPopover) {
+                    oPopover.close(); // Close the popover
+                }
+            },
+            AddAddressBookCancelPopover: function () {
+                var oPopover = this.byId("idAddAddressBookPopover");
+                if (oPopover) {
+                    oPopover.close(); // Close the popover
+                }
+            },
+            
+            AddAddressBookSelectPopover: function () {
+                var oPopover = this.byId("idAddAddressBookPopover");
+                if (oPopover) {
+                    oPopover.close(); // Close the popover
+                }
+            },
+
+
+             // add onAddAdressBookIconPress popover changes start
+             onAddUserIconPress: function (oEvent) {
+                var oButton = oEvent.getSource(),
+                    oView = this.getView();
+                // create popover
+                if (!this._AddLocPopover) {
+                    this._AddLocPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.AddUserPopOver",
+                        controller: this
+                    }).then(function (oAddLocPopover) {
+                        oView.addDependent(oAddLocPopover);
+                        return oAddLocPopover;
+                    });
+                }
+                this._AddLocPopover.then(function (oAddLocPopover) {
+                    oAddLocPopover.openBy(oButton);
+                });
+            },
+            AddAddressBookClosePress: function () {
+                var oPopover = this.byId("idAddUserPopover");
+                if (oPopover) {
+                    oPopover.close(); // Close the popover
+                }
+            },
+            AddAddressBookCancelPopover: function () {
+                var oPopover = this.byId("idAddUserPopover");
+                if (oPopover) {
+                    oPopover.close(); // Close the popover
+                }
+            },
+            
+            AddAddressBookSelectPopover: function () {
+                var oPopover = this.byId("idAddUserPopover");
+                if (oPopover) {
+                    oPopover.close(); // Close the popover
+                }
+            },
+            
 
 
 
