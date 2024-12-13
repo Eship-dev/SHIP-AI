@@ -24,7 +24,7 @@
                 <!-- Close Button -->
                 <Button
                     icon="sap-icon://decline"
-                    press="ShipNowAddIconClosePress"
+                    press="onShipNowAddClosePress"
                     type="Transparent"
                 />
             </Toolbar>

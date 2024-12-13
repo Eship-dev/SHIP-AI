@@ -5048,7 +5048,7 @@ sap.ui.define([
                 });
             },
 
-            onAddLocationClosePress: function (oEvent) {
+            onShipNowAddClosePress: function (oEvent) {
                 this.byId("idShipNowAddIconPopover").close();
             },
             ShipNowAddIconClosePress: function () {
