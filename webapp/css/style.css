@@ -660,3 +660,7 @@ span.sapMBtnInner.sapMBtnReject {
   background-color: #ffffff;
   margin: 15px !important;
 }
+
+.sapTntNLIFirstLevel .sapTntNLIText {
+  font-weight: normal !important;
+}

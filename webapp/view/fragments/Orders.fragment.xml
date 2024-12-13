@@ -29,7 +29,7 @@
 						</OverflowToolbar>
 					</ui:extension>									
 					<ui:footer>
-					<Toolbar class="scan-ship-table_footer_toolbar">
+					<Toolbar >
 						<ToolbarSpacer/>
 						<Button  text="First" enabled="false" />
 						<Button  text="Previous" enabled="false"/>
