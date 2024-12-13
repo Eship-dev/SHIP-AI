@@ -1,0 +1,59 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.f"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:svm="sap.ui.comp.smartvariants"
+    xmlns:ui="sap.ui.table"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core" >
+    <Dialog
+        id="idShipNowConsolidationDialog"
+        showHeader="false"
+        contentWidth="80%"
+        contentHeight="70%" >
+        <Toolbar >
+            <Title text="Consolidation"></Title>
+            <ToolbarSpacer ></ToolbarSpacer>
+                <Button icon="sap-icon://decline" press="onConsolidationClosePress"></Button>
+        </Toolbar>
+        <Toolbar height="8rem" class="customSimpleFormShadow" >
+            <HBox width="100%" >
+                <TextArea width="20rem" rows="1" class="sapUiSmallMargin customInput" placeholder="Scan or Enter Shipment Order"  ></TextArea>
+                <Button text="Get Details" type="Accept" class="sapUiSmallMarginBegin sapUiSmallMarginTop" ></Button>
+                <Button text="Clear" class="sapUiSmallMarginBegin sapUiSmallMarginTop" type="Reject" ></Button>
+            </HBox>
+        </Toolbar>
+
+        <ui:Table id="idShipNowConsolidationTable"
+                class="sapUiTinyMarginTop customSimpleFormShadow"
+				selectionMode="None"
+				visibleRowCount="7">
+					<ui:extension>
+						<OverflowToolbar>
+							<Button icon="sap-icon://filter" press="onConsolidationFilterPopoverPress"></Button>
+							<ToolbarSpacer ></ToolbarSpacer>
+							<Button icon="sap-icon://action" press="onConsolidationExportToExcel" ></Button>
+                            <Button icon="sap-icon://action-settings" press="openShipNowConsolidationColNamesPopover" >
+                                <customData>
+                                    <core:CustomData key="remember" value="true" />
+                                    <core:CustomData key="showClearButton" value="true" />
+                                    <core:CustomData key="confirmButtonText" value="Ok" />
+                                </customData>
+							</Button>										
+						</OverflowToolbar>
+					</ui:extension>
+		</ui:Table>
+        <footer >
+                    <Toolbar >
+                        <Button  text="Close" press="onConsolidationClosePress" />
+                        <ToolbarSpacer/>
+                            <Button  text="Delete All" type="Negative"/>
+                            <Button  text="Create Consolidation" type="Success" />
+                    </Toolbar>
+            </footer>
+    </Dialog>
+</core:FragmentDefinition>

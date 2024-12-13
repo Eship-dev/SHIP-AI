@@ -13,7 +13,7 @@
 				</Button>
 				<Text text="SAP ShipperCopilot 6.4"/>
 				<ToolbarSpacer/>
-				<Switch state="true"  change="onThemeChange">
+				<Switch state="{eshipjetModel>/darkTheme}"  change="onThemeChange" visible="{eshipjetModel>/showDarkThemeSwitch}" >
 					<layoutData>
 						<FlexItemData growFactor="1" />
 					</layoutData>

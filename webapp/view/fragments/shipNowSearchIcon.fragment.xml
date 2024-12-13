@@ -1,18 +1,180 @@
 <core:FragmentDefinition
     xmlns="sap.m"
     xmlns:l="sap.ui.layout"
-    xmlns:f="sap.ui.layout.form"
-    xmlns:core="sap.ui.core">
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.f"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:svm="sap.ui.comp.smartvariants"
+    xmlns:ui="sap.ui.table"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core" >
     <Dialog
-        id="openDialog11"
-        title="Default Configuration"
-    >
-        
+        id="idShipNowSearchDialog"
+        showHeader="false"
+        contentWidth="80%"
+        contentHeight="70%" >
 
-        <Toolbar>
+        <Toolbar >
+            <Text text="Shipment History"></Text>
             <ToolbarSpacer />
-            <Button text="Cancel" press=".CancelDialog" type="Negative" />
-            <Button text="Update" press=".UpdateDialog" type="Success" />
+            <Button icon="sap-icon://decline" press="onShipNowSearchDialogClosePress"></Button>
         </Toolbar>
+
+        
+						<fb:FilterBar persistencyKey="myPersKey" useToolbar="false" search=".onSearch" clear="true" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+							<fb:filterGroupItems>
+								<fb:FilterGroupItem name="LocationName" label="Location Name" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<ComboBox
+											name="LocationName"
+											items="{}" >
+											<core:Item key="{key}" text="{name}"/>
+										</ComboBox>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+                                <fb:FilterGroupItem name="ShipMethod" label="Ship Method" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<ComboBox
+											name="ShipMethod"
+											items="{}" >
+											<core:Item key="{key}" text="{name}"/>
+										</ComboBox>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+                                <fb:FilterGroupItem name="FromDate" label="From Date" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<DatePicker
+                                            name="FromDate"
+                                            value="{}" />
+									</fb:control>
+								</fb:FilterGroupItem>
+
+                                <fb:FilterGroupItem name="ToDate" label="To Date" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<DatePicker
+                                            name="ToDate"
+                                            value="{}" />
+									</fb:control>
+								</fb:FilterGroupItem>
+								
+                                <fb:FilterGroupItem name="FeederSystem" label="Feeder System" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<ComboBox
+											name="FeederSystem"
+											items="{}" >
+											<core:Item key="{key}" text="{name}"/>
+										</ComboBox>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+                                <fb:FilterGroupItem name="requestIdLabelId" label="Request Id / Label Id" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input name="requestIdLabelId" value=""></Input>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+                                <fb:FilterGroupItem name="ShipToCompanyName" label="Ship To Company Name" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input name="ShipToCompanyName" value=""></Input>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+                                <fb:FilterGroupItem name="Status" label="Status" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<ComboBox
+											name="Status"
+											items="{}" >
+											<core:Item key="{key}" text="{name}"/>
+										</ComboBox>
+									</fb:control>
+								</fb:FilterGroupItem>
+							</fb:filterGroupItems>
+						</fb:FilterBar>
+
+
+
+            <ui:Table
+				rows="{}"
+                visibleRowCount="8"
+				selectionMode="None">
+				<ui:columns>
+					<ui:Column width="auto" minWidth="150px">
+						<Label text="Request Id / Label Id" />
+						<ui:template>
+							<Text text="" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" minWidth="150px">
+						<Label text="Ship Date" />
+						<ui:template>
+							<Text text="" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="auto" minWidth="150px">
+						<Label text="Ship Method" />
+						<ui:template>
+							<Text text="" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" minWidth="150px">
+						<Label text="Service Name" />
+						<ui:template>
+							<Text text="" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="auto" minWidth="150px">
+						<Label text="Ship To Contact" />
+						<ui:template>
+							<Text text="" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" minWidth="150px">
+						<Label text="Ship To Company" />
+						<ui:template>
+							<Text text="" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="auto" minWidth="150px">
+						<Label text="Ship To Zip / Postal Code" />
+						<ui:template>
+							<Text text="" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" minWidth="150px">
+						<Label text="Country" />
+						<ui:template>
+							<Text text="" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="auto" minWidth="150px">
+						<Label text="Tracking Number" />
+						<ui:template>
+							<Text text="" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" minWidth="150px">
+						<Label text="Status" />
+						<ui:template>
+							<Text text="" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+			
+            <footer >
+                    <Toolbar >
+                        <Text text="Total Shipments: 64"></Text>
+                        <ToolbarSpacer/>
+                            <Button  text="First" />
+                            <Button  text="Previous" />
+                            <Text    text="51-64 of 64" />
+                            <Button  text="Next" enabled="false" />
+                            <Button  text="Last" enabled="false" />
+                    </Toolbar>
+            </footer>
     </Dialog>
 </core:FragmentDefinition>

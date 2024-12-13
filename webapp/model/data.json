@@ -1,6 +1,8 @@
 {
     "allViewsFooter": true,
     "shipNowViewFooter": false,
+    "showDarkThemeSwitch": false,
+    "darkTheme": true,
     "selectedKey": "page2",
     "image": "css/images/image.png",
     "SideNavigation": true,
@@ -4338,7 +4340,133 @@
           "shipToEmail": "info@google.com"
         }
         
-      ]
+      ],
+
+      "ShipNowConsolidationTableData":{
+        "ShipNowConsolidationColumns":[
+            {
+                "key": "locationName",
+                "label": "Location Name",
+                "visible": false
+            },
+            {
+                "key": "consolidationId",
+                "label": "Consolidation Id",
+                "visible": true
+            },
+            {
+                "key": "shipmentId",
+                "label": "Shipment Id",
+                "visible": true
+            },
+            {
+                "key": "CreatedDate",
+                "label": "Created Date",
+                "visible": true
+            },
+            {
+                "key": "ShipDate",
+                "label": "Ship Date",
+                "visible": true
+            },
+            {
+                "key": "ShipmentType",
+                "label": "Shipment Type",
+                "visible": false
+            },
+            {
+                "key": "shipMethod",
+                "label": "Ship Method",
+                "visible": true
+            },
+            {
+                "key": "ServiceName",
+                "label": "Service Name",
+                "visible": true
+            },
+            {
+                "key": "TrackingNumber",
+                "label": "Tracking Number",
+                "visible": true
+            },
+            {
+                "key": "status",
+                "label": "Status",
+                "visible": true
+            },
+            {
+                "key": "ShipToContact",
+                "label": "Ship To Contact",
+                "visible": true
+            },
+            {
+                "key": "ShipToCompany",
+                "label": "Ship To Company",
+                "visible": true
+            },
+            {
+                "key": "ShipToAddressLine1",
+                "label": "ship To Address Line",
+                "visible": false
+            },
+            {
+                "key": "shipToStateProvince",
+                "label": "Ship To State / Province",
+                "visible": false
+            },
+            {
+                "key": "shipToCity",
+                "label": "Ship To City",
+                "visible": false
+            },
+            {
+                "key": "shipToZipPostalCode",
+                "label": "Ship To Zip / Postal Code",
+                "visible": false
+            },
+            {
+                "key": "shipToCountry",
+                "label": "Ship To Country",
+                "visible": false
+            },
+            {
+                "key": "shipToPhoneNo",
+                "label": "Ship To Phone No",
+                "visible": false
+            },
+            {
+                "key": "shipToEmail",
+                "label": "Ship To Email",
+                "visible": false
+            },
+            {
+                "key": "requesterName",
+                "label": "Requester Name",
+                "visible": false
+            },
+            {
+                "key": "connectedTo",
+                "label": "Connected To",
+                "visible": false
+            },
+            {
+                "key": "orderType",
+                "label": "Order Type",
+                "visible": false
+            },
+            {
+                "key": "RFID",
+                "label": "RFID",
+                "visible": false
+            },
+            {
+                "key": "actions",
+                "label": "Actions",
+                "visible": true
+            }
+        ],
+        "ShipNowConsolidationRows":[]
+      }
       
     
 }

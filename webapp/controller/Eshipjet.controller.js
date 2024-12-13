@@ -59,44 +59,80 @@ sap.ui.define([
                 this.getView().setModel(oShipperCopilotModel, "ShipperCopilotModel");
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/showDarkThemeSwitch", true);
+                eshipjetModel.setProperty("/darkTheme", true);
+                document.body.classList.remove("dark-theme");
             } else if (sKey === "ScanShip") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/showDarkThemeSwitch", true);
+                eshipjetModel.setProperty("/darkTheme", true);
+                document.body.classList.remove("dark-theme");
                 this._handleDisplayScanShipTable();
             } else if (sKey === "Orders") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/showDarkThemeSwitch", false);
+                eshipjetModel.setProperty("/darkTheme", false);
+                document.body.classList.remove("dark-theme");
                 this._handleDisplayOrdersTable();
             } else if (sKey === "ShipRequestLabel") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/showDarkThemeSwitch", false);
+                eshipjetModel.setProperty("/darkTheme", false);
+                document.body.classList.remove("dark-theme");
                 this._handleDisplayShipReqTable();
             } else if (sKey === "ShipNow") {
                 eshipjetModel.setProperty("/allViewsFooter", false);
                 eshipjetModel.setProperty("/shipNowViewFooter", true);
+                eshipjetModel.setProperty("/showDarkThemeSwitch", false);
+                eshipjetModel.setProperty("/darkTheme", false);
+                document.body.classList.remove("dark-theme");
             } else if (sKey === "QuoteNow") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/showDarkThemeSwitch", false);
+                eshipjetModel.setProperty("/darkTheme", false);
+                document.body.classList.remove("dark-theme");
             }else if (sKey === "TrackNow") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/showDarkThemeSwitch", false);
+                eshipjetModel.setProperty("/darkTheme", false);
+                document.body.classList.remove("dark-theme");
                 this._handleDisplayTrackNowTable();
             } else if (sKey === "Manifest") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/showDarkThemeSwitch", false);
+                eshipjetModel.setProperty("/darkTheme", false);
+                document.body.classList.remove("dark-theme");
                 this._handleDisplayManifestTable();
             } else if (sKey === "AESDirect") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/showDarkThemeSwitch", false);
+                eshipjetModel.setProperty("/darkTheme", false);
+                document.body.classList.remove("dark-theme");
             } else if (sKey === "Dashboard") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/showDarkThemeSwitch", false);
+                eshipjetModel.setProperty("/darkTheme", false);
+                document.body.classList.remove("dark-theme");
             } else if (sKey === "Reports") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/showDarkThemeSwitch", false);
+                eshipjetModel.setProperty("/darkTheme", false);
+                document.body.classList.remove("dark-theme");
             } else if (sKey === "BatchShip") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/showDarkThemeSwitch", false);
+                eshipjetModel.setProperty("/darkTheme", false);
+                document.body.classList.remove("dark-theme");
                 this._handleDisplayBatchShipTable();
             }
 
@@ -5343,30 +5379,220 @@ sap.ui.define([
 
             onShipNowSearchDialog: function () {
                 var oView = this.getView();
-                if (!this.byId("openDialog")) {
+                if (!this.byId("idShipNowSearchDialog")) {
                     Fragment.load({
                         id: oView.getId(),
                         name: "com.eshipjet.zeshipjet.view.fragments.shipNowSearchIcon",
-                        controller: this // Pass the controller for binding
-                    }).then(function (oDialog) {
-                        oView.addDependent(oDialog); 
-                        oDialog.open(); 
+                        controller: this
+                    }).then(function (oShipNowSearchDialog) {
+                        oView.addDependent(oShipNowSearchDialog); 
+                        oShipNowSearchDialog.open(); 
                     });
                 } else {
-                    this.byId("openDialog").open(); // Open existing dialog
+                    this.byId("idShipNowSearchDialog").open();
                 }
             },
-            CancelDialog: function () {
-                var oDialog = this.byId("openDialog");
-                if (oDialog) {
-                    oDialog.close();
+            onShipNowSearchDialogClosePress: function () {
+                this.byId("idShipNowSearchDialog").close();
+            },
+
+            handleConsolidationPress:function(){
+                var that = this;
+                var oView = this.getView();
+                if (!this.byId("idShipNowConsolidationDialog")) {
+                    Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.shipNowConsolidationDialog",
+                        controller: this
+                    }).then(function (oShipNowConsolidationDialog) {
+                        oView.addDependent(oShipNowConsolidationDialog); 
+                        oShipNowConsolidationDialog.open(); 
+                        that._handleDisplayShipNowConsolidationTable();
+                    });
+                } else {
+                    this.byId("idShipNowConsolidationDialog").open();
+                    this._handleDisplayShipNowConsolidationTable();
                 }
             },
-            UpdateDialog: function () {
-                var oDialog = this.byId("openDialog");
-                if (oDialog) {
-                    oDialog.close(); // Close the dialog
+            onConsolidationClosePress:function(){
+                this.byId("idShipNowConsolidationDialog").close();
+            },
+
+
+            _handleDisplayShipNowConsolidationTable: function () {
+                var that = this;
+                const oView = oController.getView();
+                var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+                var ShipNowConsolidationTableData = eshipjetModel.getData().ShipNowConsolidationTableData;
+                var ShipNowConsolidationTableDataModel = new JSONModel(ShipNowConsolidationTableData);
+                this.getView().setModel(ShipNowConsolidationTableDataModel, "ShipNowConsolidationTableDataModel");
+                const oTable = oView.byId("idShipNowConsolidationTable");
+                oTable.setModel(ShipNowConsolidationTableDataModel);
+                var ShipNowConsolidationTableDataModel = this.getView().getModel("ShipNowConsolidationTableDataModel");
+                var ShipNowConsolidationColumns = ShipNowConsolidationTableDataModel.getData().ShipNowConsolidationColumns;
+                var count = 0;
+                for(var i=0; i<ShipNowConsolidationColumns.length; i++){
+                    if(ShipNowConsolidationColumns[i].visible === true){
+                        count += 1
+                    }
                 }
+                oTable.bindColumns("/ShipNowConsolidationColumns", function (sId, oContext) {
+                    columnName = oContext.getObject().key;
+                    label = oContext.getObject().label;
+                    var minWidth = "100%";
+                    if(count>10){
+                        var minWidth = "120px";
+                    }
+                    
+    
+                    if (columnName === "actions") {
+                        var oHBox = new sap.m.HBox({}); // Create Text instance 
+                        var Btn1 = new sap.m.Button({ text: "Edit", type: "Transparent" });
+                        var Btn2 = new sap.m.Button({
+                            icon: "sap-icon://megamenu", type: "Transparent",
+                            press: function (oEvent) {
+                                that.handleDownArrowPress(oEvent);
+                            }
+                        });
+                        oHBox.addItem(Btn1);
+                        oHBox.addItem(Btn2);
+                        return new sap.ui.table.Column({
+                            label: oResourceBundle.getText(columnName),
+                            template: oHBox,
+                            width: minWidth,
+                            sortProperty: columnName
+                        });
+                    } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
+                        var DateTxt = new sap.m.Text({
+                            text: {
+                                path: 'ShipNowConsolidationTableDataModel>ShipDate',
+                                formatter: formatter.formatDate
+                            },
+                            wrapping: false
+                        });
+                        return new sap.ui.table.Column({
+                            label: oResourceBundle.getText(columnName),
+                            template: columnName,
+                            visible: oContext.getObject().visible,
+                            width: minWidth,
+                            sortProperty: columnName
+                        });
+                    } else {
+                        return new sap.ui.table.Column({
+                            label: oResourceBundle.getText(columnName),
+                            template: columnName,
+                            visible: oContext.getObject().visible,
+                            width: minWidth,
+                            sortProperty: columnName
+                        });
+                    }
+                });
+                oTable.bindRows("/ShipNowConsolidationRows");
+            },
+    
+            openShipNowConsolidationColNamesPopover: function (oEvent) {
+                var oButton = oEvent.getSource(),
+                    oView = this.getView();
+                if (!this._pShipNowConsolidationPopover) {
+                    this._pShipNowConsolidationPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.ShipNowConsolidationTableColumns",
+                        controller: this
+                    }).then(function (oPopover) {
+                        oView.addDependent(oPopover);
+                        return oPopover;
+                    });
+                }
+                this._pShipNowConsolidationPopover.then(function (oPopover) {
+                    oController.ShipNowConsolidationColumnsVisiblity();
+                    oPopover.openBy(oButton);
+                });
+            },
+    
+            ShipNowConsolidationColumnsVisiblity: function () {
+                var oView = oController.getView();
+                var oShipNowConsolidationTableModel = oView.getModel("eshipjetModel");
+                var aColumns = oShipNowConsolidationTableModel.getProperty("/ShipNowConsolidationTableData/ShipNowConsolidationColumns");
+                var oShipNowConsolidationTable = oView.byId("myShipNowConsolidationColumnSelectId");
+                var aTableItems = oShipNowConsolidationTable.getItems();
+    
+                aColumns.map(function (oColObj) {
+                    aTableItems.map(function (oItem) {
+                        if (oColObj.key === oItem.getBindingContext("ShipNowConsolidationTableDataModel").getObject().key && oColObj.visible) {
+                            oItem.setSelected(true);
+                        }
+                    });
+                });
+            },
+            onShipNowConsolidationColNameSearch: function (oEvent) {
+                var aFilters = [];
+                var sQuery = oEvent.getSource().getValue();
+                if (sQuery && sQuery.length > 0) {
+                    var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                    aFilters.push(filter);
+                }
+                // update list binding
+                var oList = oController.getView().byId("myShipNowConsolidationColumnSelectId");
+                var oBinding = oList.getBinding("items");
+                oBinding.filter(aFilters, "Application");
+    
+            },
+    
+            onoShipNowConsolidationColSelectOkPress: function () {
+                var oView = this.getView()
+                var oShipNowConsolidationTable = oView.byId("myShipNowConsolidationColumnSelectId");
+                var ShipNowConsolidationTableDataModel = oView.getModel("ShipNowConsolidationTableDataModel");
+                var oShipNowConsolidationTblItems = oShipNowConsolidationTable.getItems();
+                var aColumnsData = ShipNowConsolidationTableDataModel.getProperty("/ShipNowConsolidationColumns");
+                oShipNowConsolidationTblItems.map(function (oTableItems) {
+                    aColumnsData.map(function (oColObj) {
+                        if (oTableItems.getBindingContext("ShipNowConsolidationTableDataModel").getObject().key === oColObj.key) {
+                            if (oTableItems.getSelected()) {
+                                oColObj.visible = true;
+                            } else {
+                                oColObj.visible = false;
+                            }
+                        }
+                    })
+                });
+                ShipNowConsolidationTableDataModel.updateBindings(true);
+                this._handleDisplayShipNowConsolidationTable();
+                this._pShipNowConsolidationPopover.then(function (oPopover) {
+                    oPopover.close();
+                });
+            },
+            onShipNowConsolidationColSelectClosePress: function () {
+                this._pShipNowConsolidationPopover.then(function (oPopover) {
+                    oPopover.close();
+                });
+            },
+    
+            onConsolidationFilterPopoverPress: function (oEvent) {
+                var oButton = oEvent.getSource(),
+                    oView = this.getView();
+                if (!this._ShipNowConsolidationPopover) {
+                    this._ShipNowConsolidationPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.ShipNowConsolidationFilterPopover",
+                        controller: this
+                    }).then(function (ShipNowConsolidationPopover) {
+                        oView.addDependent(ShipNowConsolidationPopover);
+                        // ShipNowConsolidationPopover.bindElement("/ProductCollection/0");
+                        return ShipNowConsolidationPopover;
+                    });
+                }
+                this._ShipNowConsolidationPopover.then(function (ShipNowConsolidationPopover) {
+                    ShipNowConsolidationPopover.openBy(oButton);
+                });
+            },
+            onConsolidationFilterPopoverClosePress: function () {
+                this.byId("idShipNowConsolidationFilterPopover").close();
+            },
+            onConsolidationFilterPopoverResetPress: function () {
+                this.byId("idShipNowConsolidationFilterPopover").close();
+            },
+            onConsolidationFilterPopoverApplyPress: function () {
+                this.byId("idShipNowConsolidationFilterPopover").close();
             },
             
     });
