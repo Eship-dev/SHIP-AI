@@ -1,0 +1,18 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <Dialog
+        id="openDialog11"
+        title="Default Configuration"
+    >
+        
+
+        <Toolbar>
+            <ToolbarSpacer />
+            <Button text="Cancel" press=".CancelDialog" type="Negative" />
+            <Button text="Update" press=".UpdateDialog" type="Success" />
+        </Toolbar>
+    </Dialog>
+</core:FragmentDefinition>

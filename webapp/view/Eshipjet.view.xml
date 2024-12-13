@@ -121,7 +121,7 @@
 							</Toolbar>
 							<Toolbar class="sapUiTinyMarginBottom" height="10%">
 								<Label text="SAP Delivery Number"  wrapping="true" width="11%" labelFor="SAPDelLabel"/>
-								<SearchField class="sapUiSmallMargin" id="idShipNowSearch"  width="11%"/>
+								<SearchField class="sapUiSmallMargin" id="idShipNowSearch" search="onShipNowSearchDialog"  width="11%" />
 								<Button text="Get" type="Ghost" class="scan-ship-toolbar__button" press="onShipNowGetPress" width="11%"></Button>
 								<Button text="Consolidation" class="scan-ship-toolbar__button" type="Ghost" press="handleConsolidationPress" width="11%"></Button>
 								<Label text="Pickup Date"   wrapping="true" labelFor="DP1" width="7%"/>

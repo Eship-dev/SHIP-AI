@@ -22,73 +22,91 @@
         </customHeader>
 
         <content>
-        <Toolbar height="100%">
-            <Table 
-                id="idShipAddressTable"
-                inset="false"
-                mode="SingleSelectLeft"
-                items="{
-                    path: '/addresses'
-                }">
-                <columns>
-                    <Column>
-                        <Text text="Contact Name" />
-                    </Column>
-                    <Column>
-                        <Text text="Company Name" />
-                    </Column>
-                    <Column>
-                        <Text text="Address Line 1" />
-                    </Column>
-                    <Column>
-                        <Text text="Address Line 2" />
-                    </Column>
-                    <Column>
-                        <Text text="Address Line 3" />
-                    </Column>
-                    <Column>
-                        <Text text="City" />
-                    </Column>
-                    <Column>
-                        <Text text="State" />
-                    </Column>
-                    <Column>
-                        <Text text="Zipcode" />
-                    </Column>
-                    <Column>
-                        <Text text="Country" />
-                    </Column>
-                    <Column>
-                        <Text text="Phone" />
-                    </Column>
-                    <Column>
-                        <Text text="Email" />
-                    </Column>
-                    <Column>
-                        <Text text="Address Type" />
-                    </Column>
-                </columns>
-                <items>
-                    <ColumnListItem>
-                        <cells>
-                            <Text text="{contactName}" />
-                            <Text text="{companyName}" />
-                            <Text text="{addressLine1}" />
-                            <Text text="{addressLine2}" />
-                            <Text text="{addressLine3}" />
-                            <Text text="{city}" />
-                            <Text text="{state}" />
-                            <Text text="{zipcode}" />
-                            <Text text="{country}" />
-                            <Text text="{phone}" />
-                            <Text text="{email}" />
-                            <Text text="{addressType}" />
-                        </cells>
-                    </ColumnListItem>
-                </items>
-            </Table>
-            </Toolbar>
+            <!-- Scrollable container for the table -->
+            <ScrollContainer 
+                horizontal="true"
+                vertical="true"
+                width="100%"
+                height="auto">
+                <Table 
+                    id="idShipAddressTable"
+                    width="100%"
+                    inset="false"
+                    mode="SingleSelectLeft"
+                    items="{
+                        path: '/addresses'
+                    }">
+                    <columns>
+                        <Column>
+                            <Text text="Contact Name" />
+                        </Column>
+                        <Column>
+                            <Text text="Company Name" />
+                        </Column>
+                        <Column>
+                            <Text text="Address Line 1" />
+                        </Column>
+                        <Column>
+                            <Text text="Address Line 2" />
+                        </Column>
+                        <Column>
+                            <Text text="Address Line 3" />
+                        </Column>
+                        <Column>
+                            <Text text="City" />
+                        </Column>
+                        <Column>
+                            <Text text="State" />
+                        </Column>
+                        <Column>
+                            <Text text="Zipcode" />
+                        </Column>
+                        <Column>
+                            <Text text="Country" />
+                        </Column>
+                        <Column>
+                            <Text text="Phone" />
+                        </Column>
+                        <Column>
+                            <Text text="Email" />
+                        </Column>
+                        <Column>
+                            <Text text="Address Type" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{contactName}" />
+                                <Text text="{companyName}" />
+                                <Text text="{addressLine1}" />
+                                <Text text="{addressLine2}" />
+                                <Text text="{addressLine3}" />
+                                <Text text="{city}" />
+                                <Text text="{state}" />
+                                <Text text="{zipcode}" />
+                                <Text text="{country}" />
+                                <Text text="{phone}" />
+                                <Text text="{email}" />
+                                <Text text="{addressType}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </ScrollContainer>
         </content>
+
+        <!-- Footer with Table Navigation -->
+        <footer>
+            <Toolbar class="scan-ship-table_footer_toolbar">
+                <ToolbarSpacer/>
+                <Button text="First" enabled="false"/>
+                <Button text="Previous" enabled="false"/>
+                <Text text="1-50 of 74"/>
+                <Button text="Next"/>
+                <Button text="Last"/>
+            </Toolbar>
+        </footer>
 
         <!-- Footer with Actions -->
         <footer>

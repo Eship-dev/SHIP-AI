@@ -5184,7 +5184,6 @@ sap.ui.define([
      ShipToPickAnAddressPopoverPress: function (oEvent) {
         var oButton = oEvent.getSource(),
             oView = this.getView();
-        // create popover
         if (!this._AddPickPopover) {
             this._AddPickPopover = Fragment.load({
                 id: oView.getId(),
@@ -5302,11 +5301,10 @@ sap.ui.define([
             },
 
 
-             // add onAddAdressBookIconPress popover changes start
+             // add onAddUserIconPress popover changes start
              onAddUserIconPress: function (oEvent) {
                 var oButton = oEvent.getSource(),
                     oView = this.getView();
-                // create popover
                 if (!this._AddLocPopover) {
                     this._AddLocPopover = Fragment.load({
                         id: oView.getId(),
@@ -5324,25 +5322,50 @@ sap.ui.define([
             AddAddressBookClosePress: function () {
                 var oPopover = this.byId("idAddUserPopover");
                 if (oPopover) {
-                    oPopover.close(); // Close the popover
+                    oPopover.close(); 
                 }
             },
             AddAddressBookCancelPopover: function () {
                 var oPopover = this.byId("idAddUserPopover");
                 if (oPopover) {
-                    oPopover.close(); // Close the popover
+                    oPopover.close(); 
                 }
             },
             
             AddAddressBookSelectPopover: function () {
                 var oPopover = this.byId("idAddUserPopover");
                 if (oPopover) {
-                    oPopover.close(); // Close the popover
+                    oPopover.close(); 
+                }
+            },
+
+            onShipNowSearchDialog: function () {
+                var oView = this.getView();
+                if (!this.byId("openDialog")) {
+                    Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.shipNowSearchIcon",
+                        controller: this // Pass the controller for binding
+                    }).then(function (oDialog) {
+                        oView.addDependent(oDialog); 
+                        oDialog.open(); 
+                    });
+                } else {
+                    this.byId("openDialog").open(); // Open existing dialog
+                }
+            },
+            CancelDialog: function () {
+                var oDialog = this.byId("openDialog");
+                if (oDialog) {
+                    oDialog.close();
+                }
+            },
+            UpdateDialog: function () {
+                var oDialog = this.byId("openDialog");
+                if (oDialog) {
+                    oDialog.close(); // Close the dialog
                 }
             },
             
-
-
-
     });
 });
