@@ -4,7 +4,7 @@
 	    <Toolbar >
 			<Text text="Batch Shipping" ></Text>
             <ToolbarSpacer ></ToolbarSpacer>
-                <Button text="Create Batch" type="Success" activeIcon="false" ></Button>
+                <Button text="Create Batch" type="Success" activeIcon="false" press="onCreateBatchShipPress" ></Button>
 		</Toolbar>
 		<Toolbar height="15%" >
 			<HBox width="100%">
@@ -47,8 +47,8 @@
 								items="{}">
 								<core:Item key="{key}" text="{text}" />
 							</ComboBox>
-							<Button text="Ship Batch Now" type="Ghost" width="12rem" class="sapUiSmallMarginEnd" ></Button>
-							<Button text="Viod Batch Now" type="Success" width="12rem" ></Button>
+							<Button text="Ship Batch Now" type="Success" width="12rem" class="sapUiSmallMarginEnd" ></Button>
+							<Button text="Viod Batch Now" type="Ghost" width="12rem" ></Button>
 						<ToolbarSpacer />
                         <ToolbarSpacer />
                             <Button icon="sap-icon://action"></Button>

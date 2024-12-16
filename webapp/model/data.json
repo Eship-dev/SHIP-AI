@@ -20,6 +20,12 @@
             "sortKey": "B"
         },
         {
+            "title": "Batch Ship",
+            "icon": "sap-icon://batch-payments",
+            "key": "BatchShip",
+            "sortKey": "E"
+        },
+        {
             "title": "Ship Request/Label",
             "icon": "sap-icon://add-product",
             "key": "ShipRequestLabel",
@@ -59,12 +65,6 @@
             "title": "Scan & Ship",
             "icon": "sap-icon://bar-code",
             "key": "ScanShip",
-            "sortKey": "E"
-        },
-        {
-            "title": "Batch Ship",
-            "icon": "sap-icon://batch-payments",
-            "key": "BatchShip",
             "sortKey": "E"
         },
         {
@@ -286,32 +286,32 @@
 			{
 				"name": "shipMethod",
 				"label": "Shipment Method",
-				"visible": false
+				"visible": true
 			},
 			{
 				"name": "ServiceName",
 				"label": "Service Name",
-				"visible": false
+				"visible": true
 			},
 			{
 				"name": "TrackingNumber",
 				"label": "Tracking Number",
-				"visible": false
+				"visible": true
 			},
 			{
 				"name": "status",
 				"label": "Status",
-				"visible": false
+				"visible": true
 			},
 			{
 				"name": "ShipToContact",
 				"label": "Ship To Contact",
-				"visible": false
+				"visible": true
 			},
 			{
 				"name": "ShipToCompany",
 				"label": "Ship To Company",
-				"visible": false
+				"visible": true
 			},
 			{
 				"name": "ShipToAddressLine1",

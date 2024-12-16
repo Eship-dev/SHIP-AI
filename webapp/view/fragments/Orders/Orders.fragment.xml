@@ -27,8 +27,8 @@
                                 </customData>
 							</Button>										
 						</OverflowToolbar>
-					</ui:extension>									
-					<ui:footer>
+					</ui:extension>
+		</ui:Table>
 					<Toolbar >
 						<ToolbarSpacer/>
 						<Button  text="First" enabled="false" />
@@ -37,6 +37,4 @@
 						<Button  text="Next" />
 						<Button  text="Last" />
 					</Toolbar>
-				</ui:footer>
-		</ui:Table>
 </core:FragmentDefinition>

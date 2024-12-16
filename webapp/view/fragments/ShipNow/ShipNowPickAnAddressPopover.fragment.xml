@@ -1,0 +1,129 @@
+<core:FragmentDefinition 
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    height="100%"
+    xmlns:ui="sap.ui.table"    	
+    xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" >
+
+    <Popover id="idShipNowPickAnAddressPopover"  
+            placement="Right" 
+            contentWidth="60%"
+            showHeader="true"
+            class="sapUiResponsivePadding--header sapUiResponsivePadding--footer">
+        
+        <!-- Custom Header -->
+        <customHeader>
+            <Toolbar>
+                <Title text="Pick An Address" />
+                <ToolbarSpacer />
+                <Button 
+                    icon="sap-icon://decline" 
+                    press="ShipFromPopoverClose" 
+                    type="Transparent" />
+            </Toolbar>
+        </customHeader>
+
+        <content>
+            <ui:Table id="idShipAddressTable"
+                class="sapUiTinyMarginTop"
+                selectionMode="Single"
+                rows="{/addresses}"
+				visibleRowCount="12">
+                    <ui:columns>
+					<ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Contact Name" />
+						<ui:template>
+							<Text text="{contactName}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Company Name" />
+						<ui:template>
+							<Text text="{companyName}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Address Line 1" />
+						<ui:template>
+							<Text text="{addressLine1}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Address Line 2" />
+						<ui:template>
+							<Text text="{addressLine2}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Address Line 3" />
+						<ui:template>
+							<Text text="{addressLine3}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="City" />
+						<ui:template>
+							<Text text="{city}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="State" />
+						<ui:template>
+							<Text text="{state}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Zipcode" />
+						<ui:template>
+							<Text text="{zipcode}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Country" />
+						<ui:template>
+							<Text text="{country}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Phone" />
+						<ui:template>
+							<Text text="{phone}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Email" />
+						<ui:template>
+							<Text text="{email}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Address Type" />
+						<ui:template>
+							<Text text="{addressType}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+		</ui:Table>
+            <Toolbar >
+                        <ToolbarSpacer ></ToolbarSpacer>
+                            <Button  text="First" enabled="false" />
+                            <Button  text="Previous" enabled="false"/>
+                            <Text    text="1-50 of 74"/>
+                            <Button  text="Next" />
+                            <Button  text="Last" />
+                    </Toolbar>
+
+        </content>
+
+        <footer>
+            <OverflowToolbar>
+                <Toolbar >
+                    <Button text="Cancel"   press="ShipFromCancelPopover" />
+                    <ToolbarSpacer />
+                    <Button type="Emphasized" text="Select" press="SelectPopover" />
+                </Toolbar>
+            </OverflowToolbar>
+        </footer>
+    </Popover>
+</core:FragmentDefinition>
