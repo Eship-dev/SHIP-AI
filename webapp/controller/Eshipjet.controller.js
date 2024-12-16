@@ -5613,23 +5613,13 @@ sap.ui.define([
                 });
             },
             AddEUCountriesClosePress: function () {
-                var oPopover = this.byId("idAddEUCountriesPopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
+                this.byId("idAddEUCountriesPopover").close();  
             },
             AddEUCountriesCancelPopover: function () {
-                var oPopover = this.byId("idAddEUCountriesPopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
-            },
-            
+                this.byId("idAddEUCountriesPopover").close();  
+            }, 
             AddEUCountriesSelectPopover: function () {
-                var oPopover = this.byId("idAddEUCountriesPopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
+                this.byId("idAddEUCountriesPopover").close();  
             },
 
                // add AddEUCountriesPopover popover changes start
@@ -5651,23 +5641,14 @@ sap.ui.define([
                 });
             },
             AddCountriesClosePress: function () {
-                var oPopover = this.byId("idAddCountriesPopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
+                this.byId("idAddCountriesPopover").close();  
             },
             AddCountriesCancelPopover: function () {
-                var oPopover = this.byId("idAddCountriesPopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
+                this.byId("idAddCountriesPopover").close();  
             },
             
             AddCountriesSelectPopover: function () {
-                var oPopover = this.byId("idAddCountriesPopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
+                this.byId("idAddCountriesPopover").close();  
             },
 
             
@@ -5690,23 +5671,14 @@ sap.ui.define([
                 });
             },
             AddERPClosePress: function () {
-                var oPopover = this.byId("idAddERPPopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
+                this.byId("idAddERPPopover").close();
             },
             AddERPCancelPopover: function () {
-                var oPopover = this.byId("idAddERPPopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
+                this.byId("idAddERPPopover").close();
             },
             
             AddERPSelectPopover: function () {
-                var oPopover = this.byId("idAddERPPopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
+                this.byId("idAddERPPopover").close();
             },
 
 
@@ -5729,23 +5701,14 @@ sap.ui.define([
                 });
             },
             AddPaymentTypesClosePress: function () {
-                var oPopover = this.byId("idAddPaymentTypesPopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
+                this.byId("idAddPaymentTypesPopover").close();
             },
             AddPaymentTypesCancelPopover: function () {
-                var oPopover = this.byId("idAddPaymentTypesPopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
+                this.byId("idAddPaymentTypesPopover").close();
             },
             
             AddPaymentTypesSelectPopover: function () {
-                var oPopover = this.byId("idAddPaymentTypesPopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
+                this.byId("idAddPaymentTypesPopover").close();
             },
             
 
@@ -5768,23 +5731,13 @@ sap.ui.define([
                 });
             },
             AddRoleClosePress: function () {
-                var oPopover = this.byId("idAddRolePopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
+                this.byId("idAddRolePopover").close();
             },
             AddRoleCancelPopover: function () {
-                var oPopover = this.byId("idAddRolePopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
+                this.byId("idAddRolePopover").close();
             },
-            
             AddRoleSelectPopover: function () {
-                var oPopover = this.byId("idAddRolePopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
+                this.byId("idAddRolePopover").close(); 
             },
             onCreateBatchShipPress:function(oEvent){
                 var oButton = oEvent.getSource(),
@@ -5828,23 +5781,13 @@ sap.ui.define([
                         });
                     },
                     AddProductClosePress: function () {
-                        var oPopover = this.byId("idAddProductPopover");
-                        if (oPopover) {
-                            oPopover.close(); 
-                        }
+                        this.byId("idAddProductPopover").close();  
                     },
                     AddProductCancelPopover: function () {
-                        var oPopover = this.byId("idAddProductPopover");
-                        if (oPopover) {
-                            oPopover.close(); 
-                        }
+                        this.byId("idAddProductPopover").close();
                     },
-                    
                     AddProductSelectPopover: function () {
-                        var oPopover = this.byId("idAddProductPopover");
-                        if (oPopover) {
-                            oPopover.close(); 
-                        }
+                        this.byId("idAddProductPopover").close();
                     },
 
             // add onAddAddPackageType popover changes start
@@ -5866,23 +5809,13 @@ sap.ui.define([
                 });
             },
             AddPackageTypeClosePress: function () {
-                var oPopover = this.byId("idAddPackageTypePopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
+                this.byId("idAddPackageTypePopover").close();
             },
             AddPackageTypeCancelPopover: function () {
-                var oPopover = this.byId("idAddPackageTypePopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
+                this.byId("idAddPackageTypePopover").close();
             },
-            
             AddPackageTypeSelectPopover: function () {
-                var oPopover = this.byId("idAddPackageTypePopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
+               this.byId("idAddPackageTypePopover").close();
             },
 
              // add onAddAddPackageType popover changes start
@@ -5904,24 +5837,98 @@ sap.ui.define([
                 });
             },
             AddCostCenterClosePress: function () {
-                var oPopover = this.byId("idAddCostCenterPopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
+                this.byId("idAddCostCenterPopover").close();  
             },
             AddCostCenterCancelPopover: function () {
-                var oPopover = this.byId("idAddCostCenterPopover");
-                if (oPopover) {
-                    oPopover.close(); 
-                }
+                this.byId("idAddCostCenterPopover").close();  
             },
-            
             AddCostCenterSelectPopover: function () {
-                var oPopover = this.byId("idAddCostCenterPopover");
-                if (oPopover) {
-                    oPopover.close(); 
+                this.byId("idAddCostCenterPopover").close();   
+            },
+        
+
+                   // add onAddAddPackageType popover changes start
+             OnAddCostCenterPress: function (oEvent) {
+                var oButton = oEvent.getSource(),
+                    oView = this.getView();
+                if (!this._AddCostPopover) {
+                    this._AddCostPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.AddCostCenterPopover",
+                        controller: this
+                    }).then(function (oAddCostPopover) {
+                        oView.addDependent(oAddCostPopover);
+                        return oAddCostPopover;
+                    });
                 }
+                this._AddCostPopover.then(function (oAddCostPopover) {
+                    oAddCostPopover.openBy(oButton);
+                });
+            },
+            AddCostCenterClosePress: function () {
+                this.byId("idAddCostCenterPopover").close();  
+            },
+            AddCostCenterCancelPopover: function () {
+                this.byId("idAddCostCenterPopover").close();  
+            },
+            AddCostCenterSelectPopover: function () {
+                this.byId("idAddCostCenterPopover").close();   
             },
 
+               // add onAddAddPackageType popover changes start
+               onAddStatusPress: function (oEvent) {
+                var oButton = oEvent.getSource(),
+                    oView = this.getView();
+                if (!this._AddStatusPopover) {
+                    this._AddStatusPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.AddStatusPopover",
+                        controller: this
+                    }).then(function (oAddStatusPopover) {
+                        oView.addDependent(oAddStatusPopover);
+                        return oAddStatusPopover;
+                    });
+                }
+                this._AddStatusPopover.then(function (oAddStatusPopover) {
+                    oAddStatusPopover.openBy(oButton);
+                });
+            },
+            AddStatusClosePress: function () {
+                this.byId("idAddStatusPopover").close();  
+            },
+            AddStatusCancelpress: function () {
+                this.byId("idAddStatusPopover").close();  
+            },
+            AddStatusSelectpress: function () {
+                this.byId("idAddStatusPopover").close();   
+            },
+
+             // add onAdd Third Party popover changes start
+             onAddThirdPartyPress: function (oEvent) {
+                var oButton = oEvent.getSource(),
+                    oView = this.getView();
+                if (!this._AddThirdPopover) {
+                    this._AddThirdPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.AddThirdPartyPopover",
+                        controller: this
+                    }).then(function (oAddThirdPopover) {
+                        oView.addDependent(oAddThirdPopover);
+                        return oAddThirdPopover;
+                    });
+                }
+                this._AddThirdPopover.then(function (oAddThirdPopover) {
+                    oAddThirdPopover.openBy(oButton);
+                });
+            },
+            AddThirdPartyClosePress: function () {
+                this.byId("idAddThirdPartyPopover1").close();  
+            },
+            AddThirdPartyCancelPress: function () {
+                this.byId("idAddThirdPartyPopover1").close();  
+            },
+            AddThirdPartySelectpress: function () {
+                this.byId("idAddThirdPartyPopover1").close();   
+            },
     });
 });

@@ -1,0 +1,78 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    height="100%"
+>
+    <Popover
+        id="idAddThirdPartyPopover"
+        placement="Left"
+        contentWidth="45%"
+        contentHeight="80%"
+        showHeader="true"
+        class="sapUiResponsivePadding sapUiResponsivePadding "
+    >
+        <!-- Custom Header -->
+        <customHeader>
+            <Toolbar>
+                <!-- Title -->
+                <Title text="Add Third Party" />
+
+                <!-- Spacer to push close button to the right -->
+                <ToolbarSpacer />
+
+                <!-- Close Button -->
+                <Button
+                    icon="sap-icon://decline"
+                    press="AddThirdPartyClosePress"
+                    type="Transparent"
+                />
+            </Toolbar>
+        </customHeader>
+        <footer>
+            <OverflowToolbar>
+                <Button
+                    text="Cancel"
+                    press="AddThirdPartyCancelpress"
+                />
+                <ToolbarSpacer />
+                <Button
+                    type="Emphasized"
+                    text="Save"
+                    press="AddThirdPartySelectpress"
+                />
+            </OverflowToolbar>
+        </footer>
+
+        <content>
+            <f:SimpleForm
+                editable="true"
+                class="customSimpleFormShadow"
+                width="auto"
+                layout="ColumnLayout"
+                columnsM="2"
+                columnsL="2"
+                columnsXL="2"
+            >
+                <f:content>
+                    <Label text="Location Name" />
+                    <Input />
+                    <Label text="Description" />
+                    <Input />
+                    <Label text="Status" />
+                        <Switch state="true" >
+				            <layoutData>
+					            <FlexItemData growFactor="1" />
+				            </layoutData>
+			            </Switch>  
+                    <Label text="Code" />
+                    <Input />
+                    <Label text="Color Picker" />
+                    <Input />
+                   
+                </f:content>
+            </f:SimpleForm>
+        </content>
+    </Popover>
+</core:FragmentDefinition>

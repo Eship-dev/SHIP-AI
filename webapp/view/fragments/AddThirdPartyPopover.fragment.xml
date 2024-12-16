@@ -1,0 +1,91 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    height="100%"
+>
+    <Popover
+        id="idAddThirdPartyPopover1"
+        placement="Left"
+        contentWidth="45%"
+        contentHeight="80%"
+        showHeader="true"
+        class="sapUiResponsivePadding sapUiResponsivePadding addLocationPopoverSpace"
+    >
+        <!-- Custom Header -->
+        <customHeader>
+            <Toolbar>
+                <!-- Title -->
+                <Title text="Add Third Party" />
+
+                <!-- Spacer to push close button to the right -->
+                <ToolbarSpacer />
+
+                <!-- Close Button -->
+                <Button
+                    icon="sap-icon://decline"
+                    press="AddThirdPartyClosePress"
+                    type="Transparent"
+                />
+            </Toolbar>
+        </customHeader>
+        <footer>
+            <OverflowToolbar>
+                <Button
+                    text="Cancel"
+                    press="AddThirdPartyCancelPress"
+                />
+                <ToolbarSpacer />
+                <Button
+                    type="Emphasized"
+                    text="Save"
+                    press="AddThirdPartySelectpress"
+                />
+            </OverflowToolbar>
+        </footer>
+
+        <content>
+            <f:SimpleForm
+                editable="true"
+                class="customSimpleFormShadow"
+                width="auto"
+                layout="ColumnLayout"
+                columnsM="2"
+                columnsL="2"
+                columnsXL="2"
+            >
+                <f:content>
+                    <Label text="Location Name" />
+                    <ComboBox  placeholder="Select">
+                        </ComboBox>
+                    <Label text="Contact Name" />
+                    <Input />
+                    <Label text="Address Line 1" />
+                    <Input />
+                    <Label text="City" />
+                    <Input />
+                    <Label text="Zip / Postal Code" />
+                    <Input />
+                    <Label text="Status" />
+                        <Switch state="true" >
+				            <layoutData>
+					            <FlexItemData growFactor="1" />
+				            </layoutData>
+			            </Switch>
+                    <Label text="Account #" />
+                    <Input />
+                    <Label text="Company Name" />
+                    <Input />
+                    <Label text="Address Line 2" />
+                    <Input />
+                    <Label text="State / Province" />
+                    <Input />
+                    <Label text="Country" />
+                    <ComboBox  placeholder="Select">
+                        </ComboBox>
+                </f:content>
+            </f:SimpleForm> 
+        </content>
+    </Popover>
+</core:FragmentDefinition>

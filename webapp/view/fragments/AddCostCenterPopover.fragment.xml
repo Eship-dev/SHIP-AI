@@ -52,6 +52,10 @@
 							  columnsL="2"
 							  columnsXL="2">
 					<f:content>
+                        <Toolbar ariaLabelledBy="idShipFrom">
+                            <Button icon="sap-icon://customer-briefing" press="handleAddLocPress"/>
+								<Title id="idAddCostFrom3" text="Cost Center"/>
+						</Toolbar>
                         <Label text="Location ID" />
                         <ComboBox  placeholder="Select">
                         </ComboBox>
