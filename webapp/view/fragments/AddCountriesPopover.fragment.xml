@@ -1,0 +1,77 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    height="100%"
+>
+    <Popover
+        id="idAddCountriesPopover"
+        placement="Left"
+        contentWidth="45%"
+        contentHeight="80%"
+        showHeader="true"
+        class="sapUiResponsivePadding sapUiResponsivePadding "
+    >
+        <!-- Custom Header -->
+        <customHeader>
+            <Toolbar>
+                <!-- Title -->
+                <Title text="Add Countries" />
+
+                <!-- Spacer to push close button to the right -->
+                <ToolbarSpacer />
+
+                <!-- Close Button -->
+                <Button
+                    icon="sap-icon://decline"
+                    press="AddCountriesClosePress"
+                    type="Transparent"
+                />
+            </Toolbar>
+        </customHeader>
+        <footer>
+            <OverflowToolbar>
+                <Button
+                    text="Cancel"
+                    press="AddCountriesCancelPopover"
+                />
+                <ToolbarSpacer />
+                <Button
+                    type="Emphasized"
+                    text="Save"
+                    press="AddCountriesSelectPopover"
+                />
+            </OverflowToolbar>
+        </footer>
+
+        <content>
+           	<f:SimpleForm editable="true"
+                            class="customSimpleFormShadow"
+                            width="auto"
+							  layout="ColumnLayout"
+							  columnsM="2"
+							  columnsL="2"
+							  columnsXL="2">
+					<f:content>
+						 <Label text="Country Code" />  
+			             <Input ></Input>
+                         <Label text="Region" />
+                         <ComboBox id="idLocationType1111" placeholder="Select">
+                         </ComboBox>
+                          <Label text="Status" />
+                        <Switch state="true" >
+				            <layoutData>
+					            <FlexItemData growFactor="1" />
+				            </layoutData>
+			            </Switch>
+                        <Label text="Country Description" />
+                        <Input />
+                        <Label text="Currency" />
+                        <Input />
+                       
+					</f:content>
+				</f:SimpleForm>
+        </content>
+    </Popover>
+</core:FragmentDefinition>

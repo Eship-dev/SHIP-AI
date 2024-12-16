@@ -11,13 +11,13 @@
         contentWidth="45%"
         contentHeight="80%"
         showHeader="true"
-        class="sapUiResponsivePadding sapUiResponsivePadding addLocationPopoverSpace"
+        class="sapUiResponsivePadding sapUiResponsivePadding "
     >
         <!-- Custom Header -->
         <customHeader>
             <Toolbar>
                 <!-- Title -->
-                <Title text="Add Address Book" />
+                <Title text="Add User" />
 
                 <!-- Spacer to push close button to the right -->
                 <ToolbarSpacer />
@@ -25,7 +25,7 @@
                 <!-- Close Button -->
                 <Button
                     icon="sap-icon://decline"
-                    press="AddAddressBookClosePress"
+                    press="AddUserClosePress"
                     type="Transparent"
                 />
             </Toolbar>
@@ -44,7 +44,6 @@
                 />
             </OverflowToolbar>
         </footer>
-
         <content>
             <f:SimpleForm
                 editable="true"
@@ -53,96 +52,72 @@
                 layout="ColumnLayout"
                 columnsM="2"
                 columnsL="2"
-                columnsXL="2"
-            >
-                <f:content>
-                    <Toolbar ariaLabelledBy="idShipFrom">
-                        <Button
-                            icon="sap-icon://customer-briefing"
-                            press="handleAddLocPress"
-                        />
-                        <Title
-                            id="idAddAddressBookFrom1"
-                            text="Name and Contact"
-                        />
-                    </Toolbar>
-                    <Label text="Contact Name" />
+                columnsXL="2">
+                <f:content> 
+                    <Label text="User ID" />
+                    <Input />
+                    <Label text="First Name" />
+                    <Input />
+                    <Label text="Location Name" />
+                    <Input />
+                    <Label text="Address Line 1" />
+                    <Input />
+                    <Label text="City" />
+                    <Input />
+                    <Label text="Zip / Postal Code" />
                     <Input />
                     <Label text="Phone No" />
                     <Input />
+                    <Label text="Password" />
+                    <Input />
                     <Label text="Company Name" />
                     <Input />
-                    <Label text="Email" />
-                    <Input />
-                </f:content>
-            </f:SimpleForm>
-
-            <f:SimpleForm
-                editable="true"
-                class="customSimpleFormShadow"
-                width="auto"
-                layout="ColumnLayout"
-                columnsM="2"
-                columnsL="2"
-                columnsXL="2"
-            >
-                <f:content>
-                    <Toolbar ariaLabelledBy="idShipFrom">
-                        <Button
-                            icon="sap-icon://customer-briefing"
-                            press="handleAddLocPress"
-                        />
-                        <Title
-                            id="idAddUserAdd"
-                            text="Address Info"
-                        />
-                    </Toolbar>
-                    <Label text="Address Line 1" />
-                    <Input />
-                    <Label text="Address Line 3" />
+                    <Label text="Last Name" />
                     <Input />
                     <Label text="State / Province" />
                     <Input />
+                    <Label text="Address Line 2" />
+                    <Input /> 
                     <Label text="Country" />
                     <Input />
-                    <Label text="Address Type" />
+                    <Label text="Email" />
                     <Input />
-                    <Label text="Locker No" />
-                    <Input />
-                    <Label text="Locker Access Code" />
-                    <Input />
-                    <Label text="Floor No" />
+                    <Label text="Role Assignment" />
                     <Input />
                     <Label text="Status" />
                         <Switch state="true" >
 				            <layoutData>
 					            <FlexItemData growFactor="1" />
 				            </layoutData>
-			            </Switch>
-                    <Label text="Address Line 2" />
-                    <Input />
-                    <Label text="City" />
-                    <Input />
-                    <Label text="Zip / Postal Code" />
-                    <Input />
-                    <Label text="Address Category" />
-                    <Input />
-                    <Label text="Cost Center" />
-                    <Input />
-                    <Label text="Locker Location" />
-                    <Input />
-                    <Label text="Building No" />
-                    <Input />
-                    <Label text="Mail Stop" />
-                    <Input />
-                    <Label text="RFID"></Label>
-                    <CheckBox ></CheckBox>
+			            </Switch>   
                 </f:content>
             </f:SimpleForm>
 
-            
-
-            
+            	<f:SimpleForm editable="true"
+                            class="customSimpleFormShadow"
+                            width="auto"
+							  layout="ResponsiveGridLayout"
+							  columnsM="2"
+							  columnsL="2"
+							  columnsXL="2">
+					<f:content>
+                    <Toolbar ariaLabelledBy="idShipFrom">
+							<Title id="iduserFrom3" text="ERP"/>
+					</Toolbar>
+                          <Label text="Status" />
+                        <CheckBox ></CheckBox>
+                          <Label text="Status" />
+                        <CheckBox ></CheckBox>
+                         <Label text="Status" />
+                        <CheckBox ></CheckBox>
+                         <Label text="Status" />
+                        <CheckBox ></CheckBox>
+                          <Label text="Status" />
+                        <CheckBox ></CheckBox>
+                         <Label text="Status" />
+                        <CheckBox ></CheckBox>
+					</f:content>
+				</f:SimpleForm>
         </content>
     </Popover>
 </core:FragmentDefinition>

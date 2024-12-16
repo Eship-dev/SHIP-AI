@@ -5357,20 +5357,20 @@ sap.ui.define([
                     oAddLocPopover.openBy(oButton);
                 });
             },
-            AddAddressBookClosePress: function () {
+            AddUserClosePress: function () {
                 var oPopover = this.byId("idAddUserPopover");
                 if (oPopover) {
                     oPopover.close(); 
                 }
             },
-            AddAddressBookCancelPopover: function () {
+            AddUserCancelPopover: function () {
                 var oPopover = this.byId("idAddUserPopover");
                 if (oPopover) {
                     oPopover.close(); 
                 }
             },
             
-            AddAddressBookSelectPopover: function () {
+            AddUserSelectPopover: function () {
                 var oPopover = this.byId("idAddUserPopover");
                 if (oPopover) {
                     oPopover.close(); 
@@ -5594,6 +5594,196 @@ sap.ui.define([
             onConsolidationFilterPopoverApplyPress: function () {
                 this.byId("idShipNowConsolidationFilterPopover").close();
             },
+             // add AddEUCountriesPopover popover changes start
+             onAddEUCountriesPress: function (oEvent) {
+                var oButton = oEvent.getSource(),
+                    oView = this.getView();
+                if (!this._AddPopover) {
+                    this._AddPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.AddEUCountriesPopover",
+                        controller: this
+                    }).then(function (oAddPopover) {
+                        oView.addDependent(oAddPopover);
+                        return oAddPopover;
+                    });
+                }
+                this._AddPopover.then(function (oAddPopover) {
+                    oAddPopover.openBy(oButton);
+                });
+            },
+            AddEUCountriesClosePress: function () {
+                var oPopover = this.byId("idAddEUCountriesPopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
+            AddEUCountriesCancelPopover: function () {
+                var oPopover = this.byId("idAddEUCountriesPopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
             
+            AddEUCountriesSelectPopover: function () {
+                var oPopover = this.byId("idAddEUCountriesPopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
+
+               // add AddEUCountriesPopover popover changes start
+               onAddCountriesPress: function (oEvent) {
+                var oButton = oEvent.getSource(),
+                    oView = this.getView();
+                if (!this._AddPopover) {
+                    this._AddPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.AddCountriesPopover",
+                        controller: this
+                    }).then(function (oAddPopover) {
+                        oView.addDependent(oAddPopover);
+                        return oAddPopover;
+                    });
+                }
+                this._AddPopover.then(function (oAddPopover) {
+                    oAddPopover.openBy(oButton);
+                });
+            },
+            AddCountriesClosePress: function () {
+                var oPopover = this.byId("idAddCountriesPopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
+            AddCountriesCancelPopover: function () {
+                var oPopover = this.byId("idAddCountriesPopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
+            
+            AddCountriesSelectPopover: function () {
+                var oPopover = this.byId("idAddCountriesPopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
+
+            
+               // add onAddERP popover changes start
+               onAddERPPress: function (oEvent) {
+                var oButton = oEvent.getSource(),
+                    oView = this.getView();
+                if (!this._AddPopover) {
+                    this._AddPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.AddERPPopover",
+                        controller: this
+                    }).then(function (oAddPopover) {
+                        oView.addDependent(oAddPopover);
+                        return oAddPopover;
+                    });
+                }
+                this._AddPopover.then(function (oAddPopover) {
+                    oAddPopover.openBy(oButton);
+                });
+            },
+            AddERPClosePress: function () {
+                var oPopover = this.byId("idAddERPPopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
+            AddERPCancelPopover: function () {
+                var oPopover = this.byId("idAddERPPopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
+            
+            AddERPSelectPopover: function () {
+                var oPopover = this.byId("idAddERPPopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
+
+
+            // add onAddAddPaymentTypes popover changes start
+            onAddAddPaymentTypesPress: function (oEvent) {
+                var oButton = oEvent.getSource(),
+                    oView = this.getView();
+                if (!this._AddPopover) {
+                    this._AddPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.AddPaymentTypesPopover",
+                        controller: this
+                    }).then(function (oAddPopover) {
+                        oView.addDependent(oAddPopover);
+                        return oAddPopover;
+                    });
+                }
+                this._AddPopover.then(function (oAddPopover) {
+                    oAddPopover.openBy(oButton);
+                });
+            },
+            AddERPClosePress: function () {
+                var oPopover = this.byId("idAddERPPopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
+            AddERPCancelPopover: function () {
+                var oPopover = this.byId("idAddERPPopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
+            
+            AddERPSelectPopover: function () {
+                var oPopover = this.byId("idAddERPPopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
+
+             // add onAddRolePress popover changes start
+             onAddRolePress: function (oEvent) {
+                var oButton = oEvent.getSource(),
+                    oView = this.getView();
+                if (!this._AddPopover) {
+                    this._AddPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.AddRolePopover",
+                        controller: this
+                    }).then(function (oAddPopover) {
+                        oView.addDependent(oAddPopover);
+                        return oAddPopover;
+                    });
+                }
+                this._AddPopover.then(function (oAddPopover) {
+                    oAddPopover.openBy(oButton);
+                });
+            },
+            AddRoleClosePress: function () {
+                var oPopover = this.byId("idAddRolePopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
+            AddRoleCancelPopover: function () {
+                var oPopover = this.byId("idAddRolePopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
+            
+            AddRoleSelectPopover: function () {
+                var oPopover = this.byId("idAddRolePopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
     });
 });

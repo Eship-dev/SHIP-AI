@@ -4,7 +4,7 @@
 			<Text text="EU Countries" class="textBold" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button type="Success" text="Add EU Countries"></Button>
+                    <Button type="Success" text="Add EU Countries" press="onAddEUCountriesPress"></Button>
                     <Button type="Success" icon="sap-icon://navigation-down-arrow"></Button>
                 </HBox>
 		</Toolbar>

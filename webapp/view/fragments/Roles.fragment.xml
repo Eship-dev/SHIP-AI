@@ -4,7 +4,7 @@
 			<Text text="Roles" class="textBold" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button type="Success" text="Add Role"></Button>
+                    <Button type="Success" text="Add Role" press="onAddRolePress"></Button>
                     <Button type="Success" icon="sap-icon://navigation-down-arrow"></Button>
                 </HBox>
 		</Toolbar>
