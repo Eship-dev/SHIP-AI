@@ -5304,18 +5304,18 @@ sap.ui.define([
                 var oButton = oEvent.getSource(),
                     oView = this.getView();
                 // create popover
-                if (!this._AddLocPopover) {
-                    this._AddLocPopover = Fragment.load({
+                if (!this._AddAdressBookPopover) {
+                    this._AddAdressBookPopover = Fragment.load({
                         id: oView.getId(),
                         name: "com.eshipjet.zeshipjet.view.fragments.AddAddressBookPopover",
                         controller: this
-                    }).then(function (oAddLocPopover) {
-                        oView.addDependent(oAddLocPopover);
-                        return oAddLocPopover;
+                    }).then(function (oAddAdressBookPopover) {
+                        oView.addDependent(oAddAdressBookPopover);
+                        return oAddAdressBookPopover;
                     });
                 }
-                this._AddLocPopover.then(function (oAddLocPopover) {
-                    oAddLocPopover.openBy(oButton);
+                this._AddAdressBookPopover.then(function (oAddAdressBookPopover) {
+                    oAddAdressBookPopover.openBy(oButton);
                 });
             },
             AddAddressBookClosePress: function () {
@@ -5343,18 +5343,18 @@ sap.ui.define([
              onAddUserIconPress: function (oEvent) {
                 var oButton = oEvent.getSource(),
                     oView = this.getView();
-                if (!this._AddLocPopover) {
-                    this._AddLocPopover = Fragment.load({
+                if (!this._AddUserPopover) {
+                    this._AddUserPopover = Fragment.load({
                         id: oView.getId(),
                         name: "com.eshipjet.zeshipjet.view.fragments.AddUserPopOver",
                         controller: this
-                    }).then(function (oAddLocPopover) {
-                        oView.addDependent(oAddLocPopover);
-                        return oAddLocPopover;
+                    }).then(function (oAddUserPopover) {
+                        oView.addDependent(oAddUserPopover);
+                        return oAddUserPopover;
                     });
                 }
-                this._AddLocPopover.then(function (oAddLocPopover) {
-                    oAddLocPopover.openBy(oButton);
+                this._AddUserPopover.then(function (oAddUserPopover) {
+                    oAddUserPopover.openBy(oButton);
                 });
             },
             AddUserClosePress: function () {
@@ -5598,18 +5598,18 @@ sap.ui.define([
              onAddEUCountriesPress: function (oEvent) {
                 var oButton = oEvent.getSource(),
                     oView = this.getView();
-                if (!this._AddPopover) {
-                    this._AddPopover = Fragment.load({
+                if (!this._AddEUPopover) {
+                    this._AddEUPopover = Fragment.load({
                         id: oView.getId(),
                         name: "com.eshipjet.zeshipjet.view.fragments.AddEUCountriesPopover",
                         controller: this
-                    }).then(function (oAddPopover) {
-                        oView.addDependent(oAddPopover);
-                        return oAddPopover;
+                    }).then(function (oAddEUPopover) {
+                        oView.addDependent(oAddEUPopover);
+                        return oAddEUPopover;
                     });
                 }
-                this._AddPopover.then(function (oAddPopover) {
-                    oAddPopover.openBy(oButton);
+                this._AddEUPopover.then(function (oAddEUPopover) {
+                    oAddEUPopover.openBy(oButton);
                 });
             },
             AddEUCountriesClosePress: function () {
@@ -5636,18 +5636,18 @@ sap.ui.define([
                onAddCountriesPress: function (oEvent) {
                 var oButton = oEvent.getSource(),
                     oView = this.getView();
-                if (!this._AddPopover) {
-                    this._AddPopover = Fragment.load({
+                if (!this._AddCountriesPopover) {
+                    this._AddCountriesPopover = Fragment.load({
                         id: oView.getId(),
                         name: "com.eshipjet.zeshipjet.view.fragments.AddCountriesPopover",
                         controller: this
-                    }).then(function (oAddPopover) {
-                        oView.addDependent(oAddPopover);
-                        return oAddPopover;
+                    }).then(function (oAddCountriesPopover) {
+                        oView.addDependent(oAddCountriesPopover);
+                        return oAddCountriesPopover;
                     });
                 }
-                this._AddPopover.then(function (oAddPopover) {
-                    oAddPopover.openBy(oButton);
+                this._AddCountriesPopover.then(function (oAddCountriesPopover) {
+                    oAddCountriesPopover.openBy(oButton);
                 });
             },
             AddCountriesClosePress: function () {
@@ -5675,18 +5675,18 @@ sap.ui.define([
                onAddERPPress: function (oEvent) {
                 var oButton = oEvent.getSource(),
                     oView = this.getView();
-                if (!this._AddPopover) {
-                    this._AddPopover = Fragment.load({
+                if (!this._AddERPPopover) {
+                    this._AddERPPopover = Fragment.load({
                         id: oView.getId(),
                         name: "com.eshipjet.zeshipjet.view.fragments.AddERPPopover",
                         controller: this
-                    }).then(function (oAddPopover) {
-                        oView.addDependent(oAddPopover);
-                        return oAddPopover;
+                    }).then(function (oAddERPPopover) {
+                        oView.addDependent(oAddERPPopover);
+                        return oAddERPPopover;
                     });
                 }
-                this._AddPopover.then(function (oAddPopover) {
-                    oAddPopover.openBy(oButton);
+                this._AddERPPopover.then(function (oAddERPPopover) {
+                    oAddERPPopover.openBy(oButton);
                 });
             },
             AddERPClosePress: function () {
@@ -5714,56 +5714,57 @@ sap.ui.define([
             onAddAddPaymentTypesPress: function (oEvent) {
                 var oButton = oEvent.getSource(),
                     oView = this.getView();
-                if (!this._AddPopover) {
-                    this._AddPopover = Fragment.load({
+                if (!this._AddPayPopover) {
+                    this._AddPayPopover = Fragment.load({
                         id: oView.getId(),
                         name: "com.eshipjet.zeshipjet.view.fragments.AddPaymentTypesPopover",
                         controller: this
-                    }).then(function (oAddPopover) {
-                        oView.addDependent(oAddPopover);
-                        return oAddPopover;
+                    }).then(function (oAddPayPopover) {
+                        oView.addDependent(oAddPayPopover);
+                        return oAddPayPopover;
                     });
                 }
-                this._AddPopover.then(function (oAddPopover) {
-                    oAddPopover.openBy(oButton);
+                this._AddPayPopover.then(function (oAddPayPopover) {
+                    oAddPayPopover.openBy(oButton);
                 });
             },
-            AddERPClosePress: function () {
-                var oPopover = this.byId("idAddERPPopover");
+            AddPaymentTypesClosePress: function () {
+                var oPopover = this.byId("idAddPaymentTypesPopover");
                 if (oPopover) {
                     oPopover.close(); 
                 }
             },
-            AddERPCancelPopover: function () {
-                var oPopover = this.byId("idAddERPPopover");
+            AddPaymentTypesCancelPopover: function () {
+                var oPopover = this.byId("idAddPaymentTypesPopover");
                 if (oPopover) {
                     oPopover.close(); 
                 }
             },
             
-            AddERPSelectPopover: function () {
-                var oPopover = this.byId("idAddERPPopover");
+            AddPaymentTypesSelectPopover: function () {
+                var oPopover = this.byId("idAddPaymentTypesPopover");
                 if (oPopover) {
                     oPopover.close(); 
                 }
             },
+            
 
              // add onAddRolePress popover changes start
              onAddRolePress: function (oEvent) {
                 var oButton = oEvent.getSource(),
                     oView = this.getView();
-                if (!this._AddPopover) {
-                    this._AddPopover = Fragment.load({
+                if (!this._AddRolePopover) {
+                    this._AddRolePopover = Fragment.load({
                         id: oView.getId(),
                         name: "com.eshipjet.zeshipjet.view.fragments.AddRolePopover",
                         controller: this
-                    }).then(function (oAddPopover) {
-                        oView.addDependent(oAddPopover);
-                        return oAddPopover;
+                    }).then(function (oAddRolePopover) {
+                        oView.addDependent(oAddRolePopover);
+                        return oAddRolePopover;
                     });
                 }
-                this._AddPopover.then(function (oAddPopover) {
-                    oAddPopover.openBy(oButton);
+                this._AddRolePopover.then(function (oAddRolePopover) {
+                    oAddRolePopover.openBy(oButton);
                 });
             },
             AddRoleClosePress: function () {
@@ -5805,6 +5806,122 @@ sap.ui.define([
             },
             onCreateBatchShipClosePress:function(){
                 this.byId("idCreateBatchShipPopover").close();
-            }
+            },
+
+            
+                    // add onAddProductPress popover changes start
+                    onAddProductPress: function (oEvent) {
+                        var oButton = oEvent.getSource(),
+                            oView = this.getView();
+                        if (!this._AddPrdPopover) {
+                            this._AddPrdPopover = Fragment.load({
+                                id: oView.getId(),
+                                name: "com.eshipjet.zeshipjet.view.fragments.AddProductPopover",
+                                controller: this
+                            }).then(function (oAddPrdPopover) {
+                                oView.addDependent(oAddPrdPopover);
+                                return oAddPrdPopover;
+                            });
+                        }
+                        this._AddPrdPopover.then(function (oAddPrdPopover) {
+                            oAddPrdPopover.openBy(oButton);
+                        });
+                    },
+                    AddProductClosePress: function () {
+                        var oPopover = this.byId("idAddProductPopover");
+                        if (oPopover) {
+                            oPopover.close(); 
+                        }
+                    },
+                    AddProductCancelPopover: function () {
+                        var oPopover = this.byId("idAddProductPopover");
+                        if (oPopover) {
+                            oPopover.close(); 
+                        }
+                    },
+                    
+                    AddProductSelectPopover: function () {
+                        var oPopover = this.byId("idAddProductPopover");
+                        if (oPopover) {
+                            oPopover.close(); 
+                        }
+                    },
+
+            // add onAddAddPackageType popover changes start
+            onAddAddPackageTypePress: function (oEvent) {
+                var oButton = oEvent.getSource(),
+                    oView = this.getView();
+                if (!this._AddPackPopover) {
+                    this._AddPackPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.AddPackageTypePopover",
+                        controller: this
+                    }).then(function (oAddPackPopover) {
+                        oView.addDependent(oAddPackPopover);
+                        return oAddPackPopover;
+                    });
+                }
+                this._AddPackPopover.then(function (oAddPackPopover) {
+                    oAddPackPopover.openBy(oButton);
+                });
+            },
+            AddPackageTypeClosePress: function () {
+                var oPopover = this.byId("idAddPackageTypePopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
+            AddPackageTypeCancelPopover: function () {
+                var oPopover = this.byId("idAddPackageTypePopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
+            
+            AddPackageTypeSelectPopover: function () {
+                var oPopover = this.byId("idAddPackageTypePopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
+
+             // add onAddAddPackageType popover changes start
+             OnAddCostCenterPress: function (oEvent) {
+                var oButton = oEvent.getSource(),
+                    oView = this.getView();
+                if (!this._AddCostPopover) {
+                    this._AddCostPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.AddCostCenterPopover",
+                        controller: this
+                    }).then(function (oAddCostPopover) {
+                        oView.addDependent(oAddCostPopover);
+                        return oAddCostPopover;
+                    });
+                }
+                this._AddCostPopover.then(function (oAddCostPopover) {
+                    oAddCostPopover.openBy(oButton);
+                });
+            },
+            AddCostCenterClosePress: function () {
+                var oPopover = this.byId("idAddCostCenterPopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
+            AddCostCenterCancelPopover: function () {
+                var oPopover = this.byId("idAddCostCenterPopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
+            
+            AddCostCenterSelectPopover: function () {
+                var oPopover = this.byId("idAddCostCenterPopover");
+                if (oPopover) {
+                    oPopover.close(); 
+                }
+            },
+
     });
 });

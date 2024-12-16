@@ -4,7 +4,7 @@
 			<Text text="Products" class="textBold" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button type="Success" text="Add Product"></Button>
+                    <Button type="Success" text="Add Product" press="onAddProductPress"></Button>
                     <Button type="Success" icon="sap-icon://navigation-down-arrow"></Button>
                 </HBox>
 		</Toolbar>

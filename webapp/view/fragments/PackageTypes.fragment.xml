@@ -4,7 +4,7 @@
 			<Text text="Package Types" class="textBold" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button type="Success" text="Add Package Type"></Button>
+                    <Button type="Success" text="Add Package Type" press="onAddAddPackageTypePress"></Button>
                     <Button type="Success" icon="sap-icon://navigation-down-arrow"></Button>
                 </HBox>
 		</Toolbar>
