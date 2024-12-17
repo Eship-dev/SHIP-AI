@@ -6,18 +6,17 @@
     height="100%"
 >
     <Popover
-        id="idAddERPPopover"
+        id="idAddIncotermPopover"
         placement="Bottom"
         contentWidth="40%"
         contentHeight="75%"
         showHeader="true"
-        class="sapUiResponsivePadding sapUiResponsivePadding "
-    >
+        class="sapUiResponsivePadding sapUiResponsivePadding ">
         <!-- Custom Header -->
         <customHeader>
             <Toolbar>
                 <!-- Title -->
-                <Title text="Add Countries" />
+                <Title text="Add Incoterm" />
 
                 <!-- Spacer to push close button to the right -->
                 <ToolbarSpacer />
@@ -25,7 +24,7 @@
                 <!-- Close Button -->
                 <Button
                     icon="sap-icon://decline"
-                    press="AddERPClosePress"
+                    press="AddIncotermClosePress"
                     type="Transparent"
                 />
             </Toolbar>
@@ -34,17 +33,16 @@
             <OverflowToolbar>
                 <Button
                     text="Cancel"
-                    press="AddERPCancelPopover"
+                    press="AddIncotermCancelPopover"
                 />
                 <ToolbarSpacer />
                 <Button
                     type="Emphasized"
                     text="Save"
-                    press="AddERPSelectPopover"
+                    press="AddIncotermSelectPopover"
                 />
             </OverflowToolbar>
         </footer>
-
         <content>
            	<f:SimpleForm editable="true"
                             class="customSimpleFormShadow"
@@ -54,27 +52,19 @@
 							  columnsL="2"
 							  columnsXL="2">
 					<f:content>
-                    <Toolbar ariaLabelledBy="idShipFrom">
-                            <Button icon="sap-icon://customer-briefing" press="handleAddLocPress"/>
-								<Title id="idAddERPFrom3" text="ERP"/>
-						</Toolbar>
-						
-                         <Label text="Location ID" />
-                         <ComboBox  placeholder="Select">
-                         </ComboBox>
-                          <Label text="ERP Code" />  
-			             <Input ></Input>
-                         <Label text="ERP Name" />
-                        <Input /> 
-                          <Label text="Status" />
+                        <Label text="Incoterm" />
+                        <ComboBox  placeholder="Select">
+                        </ComboBox>
+                       
+                        <Label text="Status" />
                         <Switch state="true" >
 				            <layoutData>
 					            <FlexItemData growFactor="1" />
 				            </layoutData>
 			            </Switch>
+                         <Label text="Description" />  
+			            <Input ></Input>
                         
-                        
-                       
 					</f:content>
 				</f:SimpleForm>
         </content>

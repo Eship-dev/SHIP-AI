@@ -8,7 +8,7 @@
     <Popover
         id="idAddCountriesPopover"
         placement="Bottom"
-        contentWidth="45%"
+        contentWidth="40%"
         contentHeight="75%"
         showHeader="true"
         class="sapUiResponsivePadding sapUiResponsivePadding "

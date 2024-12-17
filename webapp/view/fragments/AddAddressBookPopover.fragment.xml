@@ -8,7 +8,7 @@
     <Popover
         id="idAddAddressBookPopover"
         placement="Bottom"
-        contentWidth="43%"
+        contentWidth="40%"
         contentHeight="75%"
         showHeader="true"
         class="sapUiResponsivePadding sapUiResponsivePadding addLocationPopoverSpace"

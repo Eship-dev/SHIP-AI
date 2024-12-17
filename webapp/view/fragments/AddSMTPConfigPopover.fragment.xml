@@ -5,7 +5,7 @@
     xmlns:f="sap.ui.layout.form"
     height="100%">
 
-    <Popover id="idAddProductPopover" 
+    <Popover id="idAddSMTPConfigPopover" 
             placement="Bottom" 
             contentWidth="40%"
             contentHeight="75%" 
@@ -16,7 +16,7 @@
     <customHeader>
         <Toolbar>
             <!-- Title -->
-            <Title text="Add Product" />
+            <Title text="Add SMTP Config" />
             
             <!-- Spacer to push close button to the right -->
             <ToolbarSpacer />
@@ -24,15 +24,15 @@
             <!-- Close Button -->
             <Button 
                 icon="sap-icon://decline" 
-                press="AddProductClosePress" 
+                press="AddSMTPConfigClosePress" 
                 type="Transparent" />
         </Toolbar>
     </customHeader>
 		 <footer>
             <OverflowToolbar>
-                <Button text="Cancel" press="AddProductCancelPopover" />
+                <Button text="Cancel" press="AddSMTPConfigCancelPopover" />
                 <ToolbarSpacer/>
-                <Button type="Emphasized" text="Save" press="AddProductSelectPopover" />
+                <Button type="Emphasized" text="Save" press="AddSMTPConfigSelectPopover" />
             </OverflowToolbar>
         </footer>
 
@@ -52,21 +52,22 @@
                    
                     <Label text="Location ID" />
                     <ComboBox  placeholder="Select"></ComboBox>
-                    <Label text="Product No" />
+                    <Label text="Port No" />
                     <Input />
-                    <Label text="Quantity" />
+                    <Label text="User ID" />
+                    <ComboBox  placeholder="Select"></ComboBox>
+                    <Label text="Email Priority" />
                     <Input />
-                    <Label text="Unit Weight" />
+                    <Label text="SSL"></Label>
+                    <CheckBox ></CheckBox>
+                    
+                    <Label text="SMTP Server Name" />
                     <Input />
-                    <Label text="Harmonized Code" />
+                    <Label text="Email" />
                     <Input />
-                    <Label text="UN No" />
+                    <Label text="Password" />
                     <Input />
-                    <Label text="NMFC" />
-                    <Input />
-                    <Label text="EPC-RFID No" />
-                    <Input />
-                     <Label text="License No" />
+                    <Label text="User Email" />
                     <Input />
                     <Label text="Status" />
                         <Switch state="true" >
@@ -74,24 +75,6 @@
 					            <FlexItemData growFactor="1" />
 				            </layoutData>
 			            </Switch>
-                    <Label text="Item No" />
-                    <Input />
-                    <Label text="Description" />
-                    <Input />
-                    <Label text="Unit Cost" />
-                    <Input />
-                    <Label text="Dimensions (Length X Width X Height)" />
-                    <Input />
-                    <Label text="ECCN" />
-                    <Input />
-                    <Label text="Class" />
-                    <Input />
-                    <Label text="Country of MFR" />
-                    <ComboBox  placeholder="Select"></ComboBox>
-                    <Label text="Currency" />
-                    <Input />
-                    <Label text="UOM" />
-                    <Input />
                 </f:content>
             </f:SimpleForm>
                	

@@ -1872,7 +1872,7 @@ sap.ui.define([
           },
           OpenDefaultConfigDialog: function () {
             var oView = this.getView();
-            if (!this.byId("openDialog")) {
+            if (!this.byId("DefaultconfopenDialog")) {
                 Fragment.load({
                     id: oView.getId(),
                     name: "com.eshipjet.zeshipjet.view.fragments.DefaultConfigDialog",
@@ -1882,20 +1882,17 @@ sap.ui.define([
                     oDialog.open(); 
                 });
             } else {
-                this.byId("openDialog").open(); // Open existing dialog
+                this.byId("DefaultconfopenDialog").open(); // Open existing dialog
             }
         },
-        CancelDialog: function () {
-            var oDialog = this.byId("openDialog");
-            if (oDialog) {
-                oDialog.close();
-            }
+        DefaultCancelDialog: function () {
+           this.byId("DefaultconfopenDialog").close();
         },
-        UpdateDialog: function () {
-            var oDialog = this.byId("openDialog");
-            if (oDialog) {
-                oDialog.close(); // Close the dialog
-            }
+        DefaultSaveDialog: function () {
+            this.byId("DefaultconfopenDialog").close();
+        },
+        onDefaultConfigurationClosePress: function () {
+            this.byId("DefaultconfopenDialog").close();
         },
         
 
@@ -5990,18 +5987,18 @@ sap.ui.define([
          AddModeOfTransportPress: function (oEvent) {
             var oButton = oEvent.getSource(),
                 oView = this.getView();
-            if (!this._AddNMFCPopover) {
-                this._AddNMFCPopover = Fragment.load({
+            if (!this._AddModeOfTransPopover) {
+                this._AddModeOfTransPopover = Fragment.load({
                     id: oView.getId(),
                     name: "com.eshipjet.zeshipjet.view.fragments.AddModeOfTransportPopover",
                     controller: this
-                }).then(function (oAddNMFCPopover) {
-                    oView.addDependent(oAddNMFCPopover);
-                    return oAddNMFCPopover;
+                }).then(function (oAddModeOfTransPopover) {
+                    oView.addDependent(oAddModeOfTransPopover);
+                    return oAddModeOfTransPopover;
                 });
             }
-            this._AddNMFCPopover.then(function (oAddNMFCPopover) {
-                oAddNMFCPopover.openBy(oButton);
+            this._AddModeOfTransPopover.then(function (oAddModeOfTransPopover) {
+                oAddModeOfTransPopover.openBy(oButton);
             });
         },
         AddModeOfTransportClosePress: function () {
@@ -6013,5 +6010,164 @@ sap.ui.define([
         AddModeOfTransportSelectPopover: function () {
             this.byId("idAddModeOfTransportPopover").close();   
         },
+
+
+        // add on Add Order Type  popover changes start
+          AddOrderTypePress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._AddModeOfTransPopover) {
+                this._AddModeOfTransPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.AddOrderTypePopover",
+                    controller: this
+                }).then(function (oAddModeOfTransPopover) {
+                    oView.addDependent(oAddModeOfTransPopover);
+                    return oAddModeOfTransPopover;
+                });
+            }
+            this._AddModeOfTransPopover.then(function (oAddModeOfTransPopover) {
+                oAddModeOfTransPopover.openBy(oButton);
+            });
+        },
+        AddOrderTypeClosePress: function () {
+            this.byId("idAddOrderTypePopover").close();  
+        },
+        AddOrderTypeCancelPopover: function () {
+            this.byId("idAddOrderTypePopover").close();  
+        },
+        AddOrderTypeSelectPopover: function () {
+            this.byId("idAddOrderTypePopover").close();   
+        },
+
+        // add on Add Order Type  popover changes start
+        AddIncotermPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._AddAddIncotermPopover) {
+                this._AddAddIncotermPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.AddIncotermPopover",
+                    controller: this
+                }).then(function (oAddAddIncotermPopover) {
+                    oView.addDependent(oAddAddIncotermPopover);
+                    return oAddAddIncotermPopover;
+                });
+            }
+            this._AddAddIncotermPopover.then(function (oAddAddIncotermPopover) {
+                oAddAddIncotermPopover.openBy(oButton);
+            });
+        },
+        AddIncotermClosePress: function () {
+            this.byId("idAddIncotermPopover").close();  
+        },
+        AddIncotermCancelPopover: function () {
+            this.byId("idAddIncotermPopover").close();  
+        },
+        AddIncotermSelectPopover: function () {
+            this.byId("idAddIncotermPopover").close();   
+        },
+
+         // add on Add Dimensions popover changes start
+        AddDimensionsPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._AddAddDimensionsPopover) {
+                this._AddAddDimensionsPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.AddDimensionsPopover",
+                    controller: this
+                }).then(function (oAddAddDimensionsPopover) {
+                    oView.addDependent(oAddAddDimensionsPopover);
+                    return oAddAddDimensionsPopover;
+                });
+            }
+            this._AddAddDimensionsPopover.then(function (oAddAddDimensionsPopover) {
+                oAddAddDimensionsPopover.openBy(oButton);
+            });
+        },
+        AddDimensionsClosePress: function () {
+            this.byId("idAddDimensionsPopover").close();  
+        },
+        AddDimensionsCancelPopover: function () {
+            this.byId("idAddDimensionsPopover").close();  
+        },
+        AddDimensionsSelectPopover: function () {
+            this.byId("idAddDimensionsPopover").close();   
+        },
+
+          // add on Add Dimensions popover changes start
+          AddSMTPConfigPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._AddAddSMTPConfigPopover) {
+                this._AddAddSMTPConfigPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.AddSMTPConfigPopover",
+                    controller: this
+                }).then(function (oAddAddSMTPConfigPopover) {
+                    oView.addDependent(oAddAddSMTPConfigPopover);
+                    return oAddAddSMTPConfigPopover;
+                });
+            }
+            this._AddAddSMTPConfigPopover.then(function (oAddAddSMTPConfigPopover) {
+                oAddAddSMTPConfigPopover.openBy(oButton);
+            });
+        },
+        AddSMTPConfigClosePress: function () {
+            this.byId("idAddSMTPConfigPopover").close();  
+        },
+        AddSMTPConfigCancelPopover: function () {
+            this.byId("idAddSMTPConfigPopover").close();  
+        },
+        AddSMTPConfigSelectPopover: function () {
+            this.byId("idAddSMTPConfigPopover").close();   
+        },
+
+        AddCarrierDialog: function () {
+            var oView = this.getView();
+            if (!this.byId("idAddCarrierDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.AddCarrierDialog",
+                    controller: this // Pass the controller for binding
+                }).then(function (oAddCarrierDialog) {
+                    oView.addDependent(oAddCarrierDialog); 
+                    oAddCarrierDialog.open(); 
+                });
+            } else {
+                this.byId("idAddCarrierDialog").open(); // Open existing dialog
+            }
+        },
+        AddCarrierCancelDialog: function () {
+            this.byId("idAddCarrierDialog").close(); 
+        },
+        AddCarrierUpdateDialog: function () {
+            this.byId("idAddCarrierDialog").close(); 
+        },
+        
+
+        AddCarrierConfigurationDialogPress: function () {
+            var oView = this.getView();
+            if (!this.byId("idAddCarrierConfigurationDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.AddCarrierConfigurationDialog",
+                    controller: this // Pass the controller for binding
+                }).then(function (oAddCarrierConfigurationDialog) {
+                    oView.addDependent(oAddCarrierConfigurationDialog); 
+                    oAddCarrierConfigurationDialog.open(); 
+                });
+            } else {
+                this.byId("idAddCarrierConfigurationDialog").open(); // Open existing dialog
+            }
+        },
+        AddCarrierConfigurationCancelDialog: function () {
+            this.byId("idAddCarrierConfigurationDialog").close(); 
+        },
+        AddCarrierConfigurationUpdateDialog: function () {
+            this.byId("idAddCarrierConfigurationDialog").close(); 
+        },
+        
     });
 });

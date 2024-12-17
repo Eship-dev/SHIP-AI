@@ -4,9 +4,25 @@
     xmlns:f="sap.ui.layout.form"
     xmlns:core="sap.ui.core">
     <Dialog
-        id="openDialog"
-        title="Default Configuration"
+        id="DefaultconfopenDialog"
+        contentWidth="30%"
+        contentHeight="26%" 
     >
+     <customHeader>
+        <Toolbar>
+            <!-- Title -->
+            <Title text="Default Configuration" />
+            
+            <!-- Spacer to push close button to the right -->
+            <ToolbarSpacer />
+
+            <!-- Close Button -->
+            <Button 
+                icon="sap-icon://decline" 
+                press="onDefaultConfigurationClosePress" 
+                type="Transparent" />
+        </Toolbar>
+    </customHeader>
         <f:SimpleForm id="SimpleFormChange480_12120Dual"
             editable="true"
             layout="ResponsiveGridLayout"
@@ -33,10 +49,12 @@
             </f:content>
         </f:SimpleForm>
 
-        <Toolbar>
-            <ToolbarSpacer />
-            <Button text="Cancel" press=".CancelDialog" type="Negative" />
-            <Button text="Update" press=".UpdateDialog" type="Success" />
-        </Toolbar>
+        <footer>
+            <OverflowToolbar>
+                <Button text="Cancel" press="DefaultCancelDialog" />
+                <ToolbarSpacer/>
+                <Button type="Emphasized" text="Save" press="DefaultSaveDialog" />
+            </OverflowToolbar>
+        </footer>
     </Dialog>
 </core:FragmentDefinition>

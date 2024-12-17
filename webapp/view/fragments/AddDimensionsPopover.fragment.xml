@@ -6,18 +6,17 @@
     height="100%"
 >
     <Popover
-        id="idAddERPPopover"
+        id="idAddDimensionsPopover"
         placement="Bottom"
         contentWidth="40%"
         contentHeight="75%"
         showHeader="true"
-        class="sapUiResponsivePadding sapUiResponsivePadding "
-    >
+        class="sapUiResponsivePadding sapUiResponsivePadding ">
         <!-- Custom Header -->
         <customHeader>
             <Toolbar>
                 <!-- Title -->
-                <Title text="Add Countries" />
+                <Title text="Add Dimensions" />
 
                 <!-- Spacer to push close button to the right -->
                 <ToolbarSpacer />
@@ -25,7 +24,7 @@
                 <!-- Close Button -->
                 <Button
                     icon="sap-icon://decline"
-                    press="AddERPClosePress"
+                    press="AddDimensionsClosePress"
                     type="Transparent"
                 />
             </Toolbar>
@@ -34,17 +33,16 @@
             <OverflowToolbar>
                 <Button
                     text="Cancel"
-                    press="AddERPCancelPopover"
+                    press="AddDimensionsCancelPopover"
                 />
                 <ToolbarSpacer />
                 <Button
                     type="Emphasized"
                     text="Save"
-                    press="AddERPSelectPopover"
+                    press="AddDimensionsSelectPopover"
                 />
             </OverflowToolbar>
         </footer>
-
         <content>
            	<f:SimpleForm editable="true"
                             class="customSimpleFormShadow"
@@ -54,19 +52,22 @@
 							  columnsL="2"
 							  columnsXL="2">
 					<f:content>
-                    <Toolbar ariaLabelledBy="idShipFrom">
-                            <Button icon="sap-icon://customer-briefing" press="handleAddLocPress"/>
-								<Title id="idAddERPFrom3" text="ERP"/>
-						</Toolbar>
-						
-                         <Label text="Location ID" />
-                         <ComboBox  placeholder="Select">
-                         </ComboBox>
-                          <Label text="ERP Code" />  
-			             <Input ></Input>
-                         <Label text="ERP Name" />
-                        <Input /> 
-                          <Label text="Status" />
+                        <Label text="Location Name" />
+                        <ComboBox  placeholder="Select">
+                        </ComboBox>
+                        <Label text="Length (inch/cm)" />  
+			            <StepInput  min="0" max="100" step="1"  width="100%"  valueState="None" />
+                        <Label text="Height (inch/cm)" />
+                         <StepInput  min="0" max="100" step="1"  width="100%"  valueState="None" />
+                        <Label text="Material Weight" />  
+			            <StepInput  min="0" max="100" step="1"  width="100%"  valueState="None" />
+                        <Label text="Name" />  
+			            <Input ></Input>
+                        <Label text="Width (inch/cm)" />  
+			             <StepInput  min="0" max="100" step="1"  width="100%"  valueState="None" />
+                        <Label text="Maximum Weight" />  
+			             <StepInput  min="0" max="100" step="1"  width="100%"  valueState="None" />
+                        <Label text="Status" />
                         <Switch state="true" >
 				            <layoutData>
 					            <FlexItemData growFactor="1" />
@@ -74,7 +75,6 @@
 			            </Switch>
                         
                         
-                       
 					</f:content>
 				</f:SimpleForm>
         </content>
