@@ -1841,6 +1841,9 @@ sap.ui.define([
             } else if (oCurrObj && oCurrObj.name === "Default Configuration") {
 
                this.OpenDefaultConfigDialog();
+            } else if (oCurrObj && oCurrObj.name === "Company Settings") {
+
+                this.OpenCompanySettingsDialog();
 
             }else if(oCurrObj && oCurrObj.name === "Countries"){
 
@@ -6190,6 +6193,33 @@ sap.ui.define([
         },
         AddCarrierConfigurationUpdateDialog: function () {
             this.byId("idAddCarrierConfigurationDialog").close(); 
+        },
+
+        OpenCompanySettingsDialog: function () {
+            var oView = this.getView();
+            if (!this.byId("CompanySettingsopenDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    title: "Draggable (only on Desktop) - Register",
+                    draggable: true,
+                    name: "com.eshipjet.zeshipjet.view.fragments.CompanySettingsDialog",
+                    controller: this // Pass the controller for binding
+                }).then(function (oDialog) {
+                    oView.addDependent(oDialog); 
+                    oDialog.open(); 
+                });
+            } else {
+                this.byId("CompanySettingsopenDialog").open(); // Open existing dialog
+            }
+        },
+        CompanySettingsCancelDialog: function () {
+           this.byId("CompanySettingsopenDialog").close();
+        },
+        CompanySettingsSaveDialog: function () {
+            this.byId("CompanySettingsopenDialog").close();
+        },
+        CompanySettingsClosePress: function () {
+            this.byId("CompanySettingsopenDialog").close();
         },
         
     });

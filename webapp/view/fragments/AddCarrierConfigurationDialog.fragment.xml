@@ -3,86 +3,125 @@
     xmlns:l="sap.ui.layout"
     xmlns:form="sap.ui.layout.form"
     xmlns:core="sap.ui.core"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:f="sap.f"
-	xmlns:fb="sap.ui.comp.filterbar"
-	xmlns:svm="sap.ui.comp.smartvariants"
-    xmlns:ui="sap.ui.table"
-	xmlns:u="sap.ui.unified"
-	xmlns:c="sap.ui.core" 
-    >
+    xmlns:table="sap.ui.table"
+    xmlns:f="sap.f"
+    xmlns:u="sap.ui.unified">
     <Dialog
         id="idAddCarrierConfigurationDialog"
-        showHeader="false"
         contentWidth="80%"
-        contentHeight="70%" >
-        <Toolbar >
+        contentHeight="70%"
+        stretchOnPhone="true">
+         <Toolbar >
             <Title text="Add Carrier Configuration"></Title>
             <ToolbarSpacer ></ToolbarSpacer>
-            <Button icon="sap-icon://decline" press="onAddCarrierConfigurationClosePress"></Button>
+                <Button icon="sap-icon://decline" press="onConsolidationClosePress"></Button>
         </Toolbar>
-
-        <!-- Add SimpleForm inside the dialog -->
         <content>
-          	
-											<f:SimpleForm id="AddivftionalInfo" editable="true" layout="ColumnLayout" columnsM="3" columnsL="4" columnsXL="4">
-												<f:content>
-													<Label text="PO No" />
-													<Input value="{}"></Input>
-													<Label text="Prefix" />
-													<Input value="{}"></Input>
-													<Label text="Refer" />
-													<ComboBox items="{}">
-														<core:Item key="{}" text="{}" />
-													</ComboBox>
-													<Label text="Description" />
-													<Input value="{}" />
+            <form:SimpleForm
+               	editable="true"
+			layout="ColumnLayout"
+			columnsM="2"
+			columnsL="3"
+			columnsXL="6">
+                <form:content>
+                    <!-- Row 1 -->
+                    <Label text="Location Name" />
+                    <Select id="locationName" />
+                    
+                    <Label text="Ship From Country" />
+                    <Select id="shipFromCountry" />
+                    <Label text="Ship To Country" />
+                    <Select id="shipToCountry" />
 
-													<Label text="Invoice No" />
-													<Input value="{}" />
-													<Label text="Transportation Mode" />
-													<ComboBox items="{}">
-														<core:Item key="{}" text="{}" />
-													</ComboBox>
-													<Label text="Insurance Amount" />
-													<Input value="{}" />
-													<Label text="IncoTerm" />
-													<ComboBox items="{}">
-														<core:Item key="{}" text="{}" />
-													</ComboBox>
+                    <!-- Row 2 -->
+                    <Label text="Cost Center" />
+                    <Select id="costCenter" />
+                    <Label text="Ship Method" />
+                    <Input id="shipMethod" />
+                    <Label text="Ship Method" />
+                    <Select id="idShipMethod">
+                        <core:Item key="Test" text="Test" />
+                        <core:Item key="Production" text="Production" />
+                    </Select>
+                    <Label text="Ship Method Type" />
+                    <Select id="shipMethodType" />
 
-													<Label text="SO No" />
-													<Input value="{}" />
-													<Label text="Move Code" />
-													<ComboBox items="{}">
-														<core:Item key="{}" text="{}" />
-													</ComboBox>
-													<Label text="Insurance Currency" />
-													<Input value="{}" />
-													<Label text="IncoTerm Location" />
-													<Input value="{}" />
+                    <!-- Row 3 -->
+                    <Label text="Connection Type" />
+                    <Select id="connectionType" />
+                    <Label text="Account No" />
+                    <Input id="accountNo" />
+                    <Label text="User ID" />
+                    <Input id="userId" />
+                    <Label text="Ship From Country" />
+                    <Input id="password" type="Password" />
 
-													<Label text="References" />
-													<ComboBox items="{}">
-														<core:Item key="{}" text="{}" />
-													</ComboBox>
-													<Label text="Shipment Method" />
-													<ComboBox items="{}">
-														<core:Item key="{}" text="{}" />
-													</ComboBox>
-													<Label text="Currency" />
-													<Input value="{}" />
-												</f:content>
-											</f:SimpleForm>
-                                        
+                    <!-- Row 4 -->
+                    <Label text="Access Key" />
+                    <Input id="accessKey" />
+                    <Label text="Meter ID" />
+                    <Input id="meterId" />
+                    <Label text="Hub ID" />
+                    <Input id="hubId" />
+
+                    <!-- Row 5 -->
+                    <Label text="Fuel Charges" />
+                    <Input id="fuelCharges" />
+                    <Label text="Ship To Country" />
+                    <Select id="labelType" />
+                    <Label text="ERP Carrier ID" />
+                    <Input id="erpCarrierId" />
+                    <Label text="Ship URL" />
+                    <Input id="shipUrl" />
+
+                    <!-- Row 6 -->
+                    <Label text="Void URL" />
+                    <Input id="voidUrl" />
+                    <Label text="Rate URL" />
+                    <Input id="rateUrl" />
+                    
+
+                    <!-- Row 7 -->
+                    <Label text="Service Name" />
+                    <Input id="serviceName" />
+                    <Label text="ERP Service ID" />
+                    
+                    <Input id="serviceCode" />
+                    <Label text="Service Coverage" />
+                    <Select id="serviceCoverage">
+                        <core:Item key="Domestic" text="Domestic" />
+                        <core:Item key="International" text="International" />
+                    </Select>
+
+                     <!-- Row 8 -->
+                    <Label text="Service Name" />
+                    <Input id="serviceNam1e1" />
+                    
+
+           
+                    
+                    
+
+                   
+
+                    <!-- Row 8
+                    <Label text="Rate Shop" />
+                    <CheckBox id="rateShop" />
+                    <Label text="EDOC" />
+                    <CheckBox id="edoc" />
+                    <Label text="Manual Rates" />
+                    <CheckBox id="manualRates" />
+                    <Label text="Status" />
+                    <Switch id="status" state="true" /> -->
+                </form:content>
+            </form:SimpleForm>
         </content>
-
-        <footer>
-            <Toolbar >
-                <Button text="Cancel" press="AddCarrierConfigurationCancelDialog" />
-                <ToolbarSpacer />
-                <Button text="Save" type="Success" press="AddCarrierConfigurationUpdateDialog" />
-            </Toolbar>
-        </footer>
+        <footer >
+                    <Toolbar >
+                        <Button  text="Cancel" press="AddCarrierCancelDialog" />
+                        <ToolbarSpacer/>
+                        <Button  text="Save" type="Success" press="AddCarrierUpdateDialog" />
+                    </Toolbar>
+            </footer>
     </Dialog>
 </core:FragmentDefinition>

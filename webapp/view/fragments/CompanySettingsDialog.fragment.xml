@@ -1,0 +1,61 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <Dialog
+        id="CompanySettingsopenDialog"
+        contentWidth="40%"
+        contentHeight="35%" 
+    >
+     <customHeader>
+        <Toolbar>
+            <!-- Title -->
+            <Title text="Register" />
+            
+            <!-- Spacer to push close button to the right -->
+            <ToolbarSpacer />
+
+            <!-- Close Button -->
+            <Button 
+                icon="sap-icon://decline" 
+                press="CompanySettingsClosePress" 
+                type="Transparent" />
+        </Toolbar>
+    </customHeader>
+         <content>
+           	<f:SimpleForm editable="true"
+                            class="customSimpleFormShadow"
+                            width="auto"
+							  layout="ColumnLayout"
+							  columnsM="2"
+							  columnsL="2"
+							  columnsXL="2">
+					<f:content>
+                        <Label text="Company Name" />
+                        <ComboBox  placeholder="Select">
+                        </ComboBox>
+                        <Label text="Last Name" />  
+			            <Input ></Input>
+                         <Label text="E-mail" />  
+			            <Input ></Input>
+                         <Label text="Phone Number" />  
+			            <Input ></Input>
+                        <Label text="Job Title" />  
+			            <Input ></Input>
+                         <Label text="Description" />  
+			            <Input ></Input>
+                         <Label text="Description" />  
+			            <Input ></Input>
+                        
+					</f:content>
+				</f:SimpleForm>
+        </content>
+
+        <footer>
+            <OverflowToolbar>
+               
+            </OverflowToolbar>
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>
