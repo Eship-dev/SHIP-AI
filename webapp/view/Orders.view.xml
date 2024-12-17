@@ -1,6 +1,6 @@
-<core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
+<mvc:View	controllerName="com.eshipjet.zeshipjet.controller.Orders" xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
-
+    <Page>
 	    <Toolbar height="20%" width="100%" >
 			<VBox width="100%" >
 				<Text text="Order" class="sapUiSmallMargin textBold" ></Text>
@@ -10,7 +10,7 @@
 			</VBox>
 		</Toolbar>
 
-        <ui:Table id="idOrdersTable1"
+        <ui:Table id="idOrdersTable"
                 class="sapUiTinyMarginTop"
 				selectionMode="None"
 				visibleRowCount="12">
@@ -37,4 +37,5 @@
 						<Button  text="Next" />
 						<Button  text="Last" />
 					</Toolbar>
-</core:FragmentDefinition>
+        </Page>
+</mvc:View>

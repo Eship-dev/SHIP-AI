@@ -30,7 +30,7 @@
 												<f:content>
 													<Toolbar ariaLabelledBy="idShipFrom">
 														<Title id="idShipFrom" text="Ship From"/>
-														<Button icon="sap-icon://customer-briefing" press="ShipNowPickAnAddressPopoverPress"/>
+														<Button icon="sap-icon://customer-briefing" press="ShipNowPickAnAddressPopoverPress" id="idShipFromAddressBtn" />
 													</Toolbar>
 													<Label text="Contact Name" />
 													<Input value="{ShipNowDataModel>/ShipFromCONTACT}" />
@@ -73,7 +73,7 @@
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox selectedKey="{ShipNowDataModel>/ShipFromSTATE}" items="{eshipjetModel>/addressType}" placeholder="Address Type">
+													<ComboBox selectedKey="{ShipNowDataModel>/ShipFromAddressType}" items="{eshipjetModel>/addressType}" placeholder="Address Type">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
@@ -81,7 +81,7 @@
 													</ComboBox>
 													<Toolbar ariaLabelledBy="idShipTo">
 														<Title id="idShipTo" text="Ship To"/>
-														<Button icon="sap-icon://customer-briefing" press="ShipToPickAnAddressPopoverPress" />
+														<Button icon="sap-icon://customer-briefing" press="ShipNowPickAnAddressPopoverPress" id="idShipToAddressBtn" />
 														<Button icon="sap-icon://add" press="onShipNowAddIconPress"></Button>
 														<ToolbarSpacer ></ToolbarSpacer>
 														<Button text="Validate Address" class="scan-ship-toolbar__button" type="Ghost" width="25%" />
@@ -113,8 +113,8 @@
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox selectedKey="{ShipNowDataModel>/ShipToCOUNTRY}" items="{eshipjetModel>/countriesList}" placeholder="Country">
-														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													<ComboBox selectedKey="{ShipNowDataModel>/ShipToCOUNTRY}" items="{eshipjetModel>/shipNowCountriesList}" placeholder="Country">
+														<core:Item key="{eshipjetModel>country}" text="{eshipjetModel>/country}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
@@ -125,8 +125,8 @@
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox selectedKey="{ShipNowDataModel/ShipToSTATE}" items="{eshipjetModel>/addressType}" placeholder="Address Type">
-														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													<ComboBox selectedKey="{ShipNowDataModel>/ShipToAddressType}" items="{eshipjetModel>/shipNowAddressType}" placeholder="Address Type">
+														<core:Item key="{eshipjetModel/addressType}" text="{eshipjetModel>addressType}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>

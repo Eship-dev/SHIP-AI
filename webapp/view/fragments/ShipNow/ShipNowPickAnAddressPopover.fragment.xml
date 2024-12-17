@@ -19,13 +19,13 @@
                 <ToolbarSpacer />
                 <Button 
                     icon="sap-icon://decline" 
-                    press="ShipFromPopoverClose" 
+                    press="onShipNowPickAnAddressCancelPress" 
                     type="Transparent" />
             </Toolbar>
         </customHeader>
 
         <content>
-            <ui:Table id="idShipAddressTable"
+            <ui:Table id="idShipNowPickAnAddressTable"
                 class="sapUiTinyMarginTop"
                 selectionMode="Single"
                 rows="{/addresses}"
@@ -119,9 +119,9 @@
         <footer>
             <OverflowToolbar>
                 <Toolbar >
-                    <Button text="Cancel"   press="ShipFromCancelPopover" />
+                    <Button text="Cancel"   press="onShipNowPickAnAddressCancelPress" />
                     <ToolbarSpacer />
-                    <Button type="Emphasized" text="Select" press="SelectPopover" />
+                    <Button type="Emphasized" text="Select" press="onShipNowPickAnAddressSelectPress" />
                 </Toolbar>
             </OverflowToolbar>
         </footer>

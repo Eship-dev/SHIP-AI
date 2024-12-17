@@ -6,6 +6,14 @@
     "selectedKey": "page2",
     "image": "css/images/image.png",
     "SideNavigation": true,
+    "shipNowCountriesList":[
+        {"country": "GB"},
+        {"country": "US"},
+        {"country": "FR"}
+    ],
+    "shipNowAddressType":[
+        {"addressType": "Commercial"}
+    ],
     "navigation": [
         {
             "title": "SAP ShipperCopilot",
