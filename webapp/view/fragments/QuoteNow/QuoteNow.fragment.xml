@@ -3,7 +3,7 @@
 
 	    <Toolbar height="8rem" >
             <HBox width="100%" >
-                <Text text="Quote Now" class="sapUiSmallMargin quoteNowText" ></Text>
+                <Text text="Quote Now" class="sapUiSmallMargin sapUiMediumMarginTop" ></Text>
                 <TextArea width="20rem" rows="1" class="sapUiSmallMargin customInput" placeholder="Scan or Enter Shipment Order"  ></TextArea>
                 <Button id="idQuoteNow" text="Quote Now" type="Accept" class="sapUiSmallMarginBegin sapUiSmallMarginTop" ></Button>
             </HBox>

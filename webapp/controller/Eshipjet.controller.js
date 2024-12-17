@@ -420,8 +420,8 @@ sap.ui.define([
                 columnName = oContext.getObject().name;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
-                if(count>14){
-                    var minWidth = "120px";
+                if(count>12){
+                    var minWidth = "140px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -442,24 +442,35 @@ sap.ui.define([
                         sortProperty: columnName
                     });
                 } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
-                    var DateTxt = new sap.m.Text({
+                    var template = new sap.m.Text({
                         text: {
-                            path: 'ScanShipTableDataModel>ShipDate',
-                            formatter: formatter.formatDate  // Attach the formatter dynamically
-                        },
-                        wrapping: false
+                            path: columnName, 
+                            formatter: function (date) {
+                                if (date) {
+                                    var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({ pattern: "MM/dd/yyyy" });
+                                    return oDateFormat.format(new Date(date));
+                                }
+                                return "";
+                            }
+                        }
                     });
+
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
-                        template: columnName,
+                        template: template,
                         visible: oContext.getObject().visible,
                         width: minWidth,
                         sortProperty: columnName
                     });
                 } else {
+                    var template = new sap.m.Text({
+                        text: {
+                            path: columnName
+                        }
+                    });
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
-                        template: columnName,
+                        template: template,
                         visible: oContext.getObject().visible,
                         width: minWidth,
                         sortProperty: columnName
@@ -806,7 +817,7 @@ sap.ui.define([
                 label = oContext.getObject().label;
                 var minWidth = "100%";
                 if(count>10){
-                    var minWidth = "250px";
+                    var minWidth = "120px";
                 }
                 
 
@@ -862,7 +873,7 @@ sap.ui.define([
             if (!this._pOrderPopover) {
                 this._pOrderPopover = Fragment.load({
                     id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.OrderTableColumns",
+                    name: "com.eshipjet.zeshipjet.view.fragments.Orders.OrderTableColumns",
                     controller: this
                 }).then(function (oPopover) {
                     oView.addDependent(oPopover);
@@ -939,7 +950,7 @@ sap.ui.define([
             if (!this._orderPopover) {
                 this._orderPopover = Fragment.load({
                     id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.OrderFilterPopover",
+                    name: "com.eshipjet.zeshipjet.view.fragments.Orders.OrderFilterPopover",
                     controller: this
                 }).then(function (orderPopover) {
                     oView.addDependent(orderPopover);

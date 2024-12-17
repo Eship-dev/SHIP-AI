@@ -11,7 +11,7 @@
 		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
 		placement="Left"
 		initialFocus="email">
-		<Toolbar >
+		<Toolbar height="3.1rem" >
             <Text text="Create New Batch" ></Text>
 			<ToolbarSpacer ></ToolbarSpacer>
 				<Button icon="sap-icon://decline" press="onCreateBatchShipClosePress" ></Button>

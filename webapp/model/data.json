@@ -160,9 +160,14 @@
 	"scanShipTableData":{
 		"columns": [
 			{
+				"name": "actions",
+				"label": "Actions",
+				"visible": true
+			},
+			{
 				"name": "sapShipmentID",
 				"label": "SAP Shipment ID",
-				"visible": false
+				"visible": true
 			},
 			{
 				"name": "CreatedDate",
@@ -258,11 +263,6 @@
 				"name": "connectedTo",
 				"label": "Connected To",
 				"visible": false
-			},
-			{
-				"name": "actions",
-				"label": "Actions",
-				"visible": true
 			}
 		],
 		"rows": [],

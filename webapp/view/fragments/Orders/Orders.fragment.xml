@@ -10,7 +10,7 @@
 			</VBox>
 		</Toolbar>
 
-        <ui:Table id="idOrdersTable1"
+        <ui:Table id="idOrdersTable"
                 class="sapUiTinyMarginTop"
 				selectionMode="None"
 				visibleRowCount="12">
