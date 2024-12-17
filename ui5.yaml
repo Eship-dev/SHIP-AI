@@ -15,6 +15,12 @@ server:
             - /resources
             - /test-resources
           url: https://ui5.sap.com
+        backend:
+          - path: /sap
+            url: https://sapdemo.eshipjet.com:44300
+            client: '200'
+            destination: Eshipjet-ESJ
+            authenticationType: BasicAuthentication
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
