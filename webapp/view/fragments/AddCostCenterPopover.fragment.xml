@@ -7,9 +7,9 @@
 >
     <Popover
         id="idAddCostCenterPopover"
-        placement="Left"
+        placement="Bottom"
         contentWidth="45%"
-        contentHeight="80%"
+        contentHeight="75%"
         showHeader="true"
         class="sapUiResponsivePadding sapUiResponsivePadding ">
         <!-- Custom Header -->

@@ -6,9 +6,9 @@
     height="100%">
 
     <Popover id="idAddProductPopover" 
-            placement="Left" 
+            placement="Bottom" 
             contentWidth="45%"
-            contentHeight="80%" 
+            contentHeight="75%" 
             showHeader="true"
 			class="sapUiResponsivePadding sapUiResponsivePadding"
             >

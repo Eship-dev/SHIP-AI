@@ -6,18 +6,17 @@
     height="100%"
 >
     <Popover
-        id="idAddCountriesPopover"
+        id="idAddNMFCClassPopover"
         placement="Bottom"
         contentWidth="45%"
         contentHeight="75%"
         showHeader="true"
-        class="sapUiResponsivePadding sapUiResponsivePadding "
-    >
+        class="sapUiResponsivePadding sapUiResponsivePadding ">
         <!-- Custom Header -->
         <customHeader>
             <Toolbar>
                 <!-- Title -->
-                <Title text="Add Countries" />
+                <Title text="Add NMFC Class" />
 
                 <!-- Spacer to push close button to the right -->
                 <ToolbarSpacer />
@@ -25,7 +24,7 @@
                 <!-- Close Button -->
                 <Button
                     icon="sap-icon://decline"
-                    press="AddCountriesClosePress"
+                    press="AddNMFCClassClosePress"
                     type="Transparent"
                 />
             </Toolbar>
@@ -34,17 +33,16 @@
             <OverflowToolbar>
                 <Button
                     text="Cancel"
-                    press="AddCountriesCancelPopover"
+                    press="AddNMFCClassCancelPopover"
                 />
                 <ToolbarSpacer />
                 <Button
                     type="Emphasized"
                     text="Save"
-                    press="AddCountriesSelectPopover"
+                    press="AddNMFCClassSelectPopover"
                 />
             </OverflowToolbar>
         </footer>
-
         <content>
            	<f:SimpleForm editable="true"
                             class="customSimpleFormShadow"
@@ -54,22 +52,22 @@
 							  columnsL="2"
 							  columnsXL="2">
 					<f:content>
-						 <Label text="Country Code" />  
-			             <Input ></Input>
-                         <Label text="Region" />
-                         <ComboBox id="idLocationType1111" placeholder="Select">
-                         </ComboBox>
-                          <Label text="Status" />
+                        <Label text="Location Name" />
+                        <ComboBox  placeholder="Select">
+                        </ComboBox>
+                        <Label text="NMFC Description" />  
+			            <Input ></Input>
+                        <Label text="Status" />
                         <Switch state="true" >
 				            <layoutData>
 					            <FlexItemData growFactor="1" />
 				            </layoutData>
 			            </Switch>
-                        <Label text="Country Description" />
-                        <Input />
-                        <Label text="Currency" />
-                        <Input />
-                       
+                        <Label text="NMFC Code" />  
+			            <Input ></Input>
+                        <Label text="Ship Method" />  
+			            <ComboBox  placeholder="Select">
+                        </ComboBox>
 					</f:content>
 				</f:SimpleForm>
         </content>

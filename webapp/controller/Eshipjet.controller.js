@@ -5930,5 +5930,88 @@ sap.ui.define([
             AddThirdPartySelectpress: function () {
                 this.byId("idAddThirdPartyPopover1").close();   
             },
+          // add onAdd Third Party popover changes start
+          onAddLTLClassPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._AddLTLPopover) {
+                this._AddLTLPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.AddLTLClassPopover",
+                    controller: this
+                }).then(function (oAddLTLPopover) {
+                    oView.addDependent(oAddLTLPopover);
+                    return oAddLTLPopover;
+                });
+            }
+            this._AddLTLPopover.then(function (oAddLTLPopover) {
+                oAddLTLPopover.openBy(oButton);
+            });
+        },
+        AddLTLClassClosePress: function () {
+            this.byId("idAddLTLClassPopover1").close();  
+        },
+        AddLTLClassCancelPress: function () {
+            this.byId("idAddLTLClassPopover1").close();  
+        },
+        AddLTLClassSelectpress: function () {
+            this.byId("idAddLTLClassPopover1").close();   
+        },
+
+         // add onAdd Third Party popover changes start
+         onAddNMFCClassPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._AddNMFCPopover) {
+                this._AddNMFCPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.AddNMFCClassPopover",
+                    controller: this
+                }).then(function (oAddNMFCPopover) {
+                    oView.addDependent(oAddNMFCPopover);
+                    return oAddNMFCPopover;
+                });
+            }
+            this._AddNMFCPopover.then(function (oAddNMFCPopover) {
+                oAddNMFCPopover.openBy(oButton);
+            });
+        },
+        AddNMFCClassClosePress: function () {
+            this.byId("idAddNMFCClassPopover").close();  
+        },
+        AddNMFCClassCancelPress: function () {
+            this.byId("idAddNMFCClassPopover").close();  
+        },
+        AddNMFCClassSelectpress: function () {
+            this.byId("idAddNMFCClassPopover").close();   
+        },
+
+         // add onAdd Third Party popover changes start
+         AddModeOfTransportPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._AddNMFCPopover) {
+                this._AddNMFCPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.AddModeOfTransportPopover",
+                    controller: this
+                }).then(function (oAddNMFCPopover) {
+                    oView.addDependent(oAddNMFCPopover);
+                    return oAddNMFCPopover;
+                });
+            }
+            this._AddNMFCPopover.then(function (oAddNMFCPopover) {
+                oAddNMFCPopover.openBy(oButton);
+            });
+        },
+        AddModeOfTransportClosePress: function () {
+            this.byId("idAddModeOfTransportPopover").close();  
+        },
+        AddModeOfTransportCancelPopover: function () {
+            this.byId("idAddModeOfTransportPopover").close();  
+        },
+        AddModeOfTransportSelectPopover: function () {
+            this.byId("idAddModeOfTransportPopover").close();   
+        },
     });
 });

@@ -4,7 +4,7 @@
 			<Text text="Mode Of Transports" class="textBold" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button type="Success" text="Add Mode Of Transport"></Button>
+                    <Button type="Success" text="Add Mode Of Transport" press="AddModeOfTransportPress"></Button>
                     <Button type="Success" icon="sap-icon://navigation-down-arrow"></Button>
                 </HBox>
 		</Toolbar>

@@ -4,11 +4,10 @@
 			<Text text="NMFC Classes" class="textBold" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button type="Success" text="Add NMFC Class"></Button>
+                    <Button type="Success" text="Add NMFC Class" press="onAddNMFCClassPress"></Button>
                     <Button type="Success" icon="sap-icon://navigation-down-arrow"></Button>
                 </HBox>
 		</Toolbar>
-
         <Toolbar height="15%" >
 			<HBox width="100%" >
 				<VBox class="sapUiTinyMargin" width="33%">
