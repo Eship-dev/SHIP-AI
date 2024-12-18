@@ -6390,13 +6390,13 @@ sap.ui.define([
             });
         },
         AddTrackingRangeClosePress: function () {
-            this.byId("idAddTrackingRangePopover").close();  
+            this.byId("idAddTrackingRangePopover1").close();  
         },
         AddTrackingRangeCancelPopover: function () {
-            this.byId("idAddTrackingRangePopover").close();  
+            this.byId("idAddTrackingRangePopover1").close();  
         },
         AddTrackingRangeSelectPopover: function () {
-            this.byId("idAddTrackingRangePopover").close();   
+            this.byId("idAddTrackingRangePopover1").close();   
         },
         
     });

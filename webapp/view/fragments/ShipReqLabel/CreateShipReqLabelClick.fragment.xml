@@ -1,0 +1,47 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    height="100%"
+    xmlns:mvc="sap.ui.core.mvc"
+> 
+	
+       
+                              <Toolbar class="sapUiTinyMarginTop" height="10%" width="100%" >
+                               
+                                <ComboBox width="10%" ></ComboBox>
+								<Label width="5%" text="Order Type"  wrapping="true"  labelFor="SAPDelLabel"/>
+								
+                                <ComboBox width="10%"></ComboBox>
+
+                                <Label width="7%" text="Shipment Type"></Label>
+                                <ComboBox width="7%" ></ComboBox>
+
+                                <Label  text="Category"></Label>
+                                <ComboBox width="7%" ></ComboBox>
+
+                                <Label width="7%" text="Shipment Type"></Label>
+                                <ComboBox width="7%" ></ComboBox>
+
+								<Label width="7%" text="Pickup Date"   />
+								<DatePicker width="7%"  />
+								<Label width="7%" text="Ship Date"  />
+								<DatePicker width="7%"  />
+								
+                                 <Label width="7%" text="Category"></Label>
+                                <ComboBox width="7%" ></ComboBox>
+
+                                <Label width="8%" text="Return Label"></Label>
+                                <CheckBox width="3%" ></CheckBox>
+
+                                <Button width="3%" icon="sap-icon://edit-outside"></Button>
+
+								<ToolbarSpacer />
+
+							</Toolbar>
+                    
+
+
+
+</core:FragmentDefinition>

@@ -6,7 +6,7 @@
     height="100%"
 >
     <Popover
-        id="idAddTrackingRangePopover"
+        id="idAddTrackingRangePopover1"
         placement="Bottom"
         contentWidth="40%"
         contentHeight="75%"
@@ -57,7 +57,6 @@
 			              </ComboBox>
                          <Label text="Range From" />
                          <Input ></Input>
-                        
                           <Label text="Status" />
                         <Switch state="true" >
 				            <layoutData>
