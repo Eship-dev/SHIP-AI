@@ -6343,10 +6343,10 @@ sap.ui.define([
             var sPath = aSplitPath[aSplitPath.length-1];
 
             sap.m.MessageBox.warning("Are you sure you want to delete this record?", {
-				actions: [sap.m.MessageBox.Action.Yes, sap.m.MessageBox.Action.No],
+				actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CANCEL],
 				emphasizedAction: sap.m.MessageBox.Action.OK,
 				onClose: function (sAction) {
-                    if(sAction === "Yes"){
+                    if(sAction === "OK"){
                         addCrrierDialogItems.splice(parseInt(sPath), 1);
                         eshipjetModel.updateBindings(true);
                     }
@@ -6425,13 +6425,13 @@ sap.ui.define([
             });
         },
         AddTrackingRangeClosePress: function () {
-            this.byId("idAddTrackingRangePopover1").close();  
+            this.byId("idAddTrackingRangePopover").close();  
         },
         AddTrackingRangeCancelPopover: function () {
-            this.byId("idAddTrackingRangePopover1").close();  
+            this.byId("idAddTrackingRangePopover").close();  
         },
         AddTrackingRangeSelectPopover: function () {
-            this.byId("idAddTrackingRangePopover1").close();   
+            this.byId("idAddTrackingRangePopover").close();   
         },
         
     });
