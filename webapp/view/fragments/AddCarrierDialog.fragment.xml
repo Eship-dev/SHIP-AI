@@ -13,7 +13,7 @@
     <Dialog
         id="idAddCarrierDialog"
         showHeader="false"
-        contentWidth="70%"
+        contentWidth="90%"
         contentHeight="50%" >
         <Toolbar >
             <Title text="Add Carrier"></Title>
@@ -21,28 +21,83 @@
                 <Button icon="sap-icon://decline" press="AddCarrierCancelDialog"></Button>
         </Toolbar>
        
-
-        <content>
-            <form:SimpleForm
-               	editable="true"
-			layout="ColumnLayout"
-			columnsM="2"
-			columnsL="3"
-			columnsXL="5">
+            <form:SimpleForm editable="true" layout="ColumnLayout" columnsM="3" columnsL="3" columnsXL="5">
                 <form:content>
                     <Label text="Ship Method ID" />
-                    <Select id="locationName1" />
+                    <Input ></Input>
                     <Label text="Ship Method" />
-                    <Select id="shipFromC1ountry" />
+                    <Input ></Input>
                     <Label text="Ship Method Type" />
-                    <Select id="shipToCo1untry" />
+                    <ComboBox items="{}">
+						<core:Item key="{}" text="{}" />
+					</ComboBox>
                     <Label text="Ship Method Coverage" />
-                    <Select id="ShipMethodCoverage" />
+                    <ComboBox items="{}">
+						<core:Item key="{}" text="{}" />
+					</ComboBox>
+                    <Label text="Status" />
+                    <Switch type="AcceptReject" state="true">
+                        <layoutData>
+                            <FlexItemData growFactor="1" />
+                        </layoutData>
+                    </Switch>
                     
                 </form:content>
             </form:SimpleForm>
-        </content>
 
+
+            <Table inset="false"
+                items="{eshipjetModel>/addCrrierDialogItems}">
+		<columns>
+			<Column
+				width="auto">
+				<Text text="Service Name" />
+			</Column>
+			<Column
+				width="auto">
+				<Text text="Service Code" />
+			</Column>
+            <Column
+				width="auto">
+				<Text text="Service Coverage" />
+			</Column>
+            <Column
+				width="auto">
+				<Text text="Connection Type" />
+			</Column>
+            <Column
+				width="auto">
+				<Text text="Status" />
+			</Column>
+            <Column 
+				width="auto">
+                <HBox >
+    				<Text text="Actions" class="sapUiTinyMarginTop" />
+                    <Button icon="sap-icon://add" type="Transparent" press="onAddCarrierDialogPlusPress" ></Button>
+                </HBox>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle">
+				<cells>
+					<Input value="{eshipjetModel>ServiceName}" ></Input>
+					<Input value="{eshipjetModel>ServiceCode}" ></Input>
+					<ComboBox items="{}" selectedKey="{eshipjetModel>ServiceCoverage}">
+						<core:Item key="{}" text="{}" />
+					</ComboBox>
+                    <ComboBox items="{}" selectedKey="{eshipjetModel>ConnectionType}">
+						<core:Item key="{}" text="{}" />
+					</ComboBox>
+                    <Switch type="AcceptReject" state="{eshipjetModel>Status}">
+                        <layoutData>
+                            <FlexItemData growFactor="1" />
+                        </layoutData>
+                    </Switch>
+                    <Button icon="{eshipjetModel>Actions}" type="Negative" press="onAddCrrierDialogDeleteIconPress"></Button>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
                     
         <footer >
                     <Toolbar >

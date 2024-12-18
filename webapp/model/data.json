@@ -4502,7 +4502,11 @@
             }
         ],
         "ShipNowConsolidationRows":[]
-      }
+      },
+
+      "addCrrierDialogItems":[
+        {"ServiceName":"", "ServiceCode":"", "ServiceCoverage":"", "ConnectionType":"", "Status":false, "Actions":"sap-icon://delete"}
+      ]
       
     
 }

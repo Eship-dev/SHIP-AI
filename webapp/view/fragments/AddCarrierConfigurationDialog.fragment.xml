@@ -23,104 +23,142 @@
        
 
         <content>
-            <form:SimpleForm
-               	editable="true"
-			layout="ColumnLayout"
-			columnsM="2"
-			columnsL="3"
-			columnsXL="6">
+            <form:SimpleForm editable="true" layout="ColumnLayout" columnsM="3" columnsL="3" columnsXL="6">
+
                 <form:content>
-                    <!-- Row 1 -->
                     <Label text="Location Name" />
-                    <Select id="locationName" />
-                    
-                    <Label text="Ship From Country" />
-                    <Select id="shipFromCountry" />
-                    <Label text="Ship To Country" />
-                    <Select id="shipToCountry" />
-
-                    <!-- Row 2 -->
-                    <Label text="Cost Center" />
-                    <Select id="costCenter" />
-                    <Label text="Ship Method" />
-                    <Input id="shipMethod" />
-                    <Label text="Ship Method" />
-                    <Select id="idShipMethod">
-                        <core:Item key="Test" text="Test" />
-                        <core:Item key="Production" text="Production" />
-                    </Select>
+                    <ComboBox items="{}">
+						<core:Item key="{}" text="{}" />
+					</ComboBox>
                     <Label text="Ship Method Type" />
-                    <Select id="shipMethodType" />
-
-                    <!-- Row 3 -->
-                    <Label text="Connection Type" />
-                    <Select id="connectionType" />
-                    <Label text="Account No" />
-                    <Input id="accountNo" />
-                    <Label text="User ID" />
-                    <Input id="userId" />
-                    <Label text="Ship From Country" />
-                    <Input id="password" type="Password" />
-
-                    <!-- Row 4 -->
-                    <Label text="Access Key" />
-                    <Input id="accessKey" />
+                    <ComboBox items="{}">
+						<core:Item key="{}" text="{}" />
+					</ComboBox>
                     <Label text="Meter ID" />
-                    <Input id="meterId" />
+                    <Input />
+
+                    <Label text="Ship Method" />
+                    <SearchField />
+                    <Label text="Connection Type" />
+                    <ComboBox items="{}">
+						<core:Item key="{}" text="{}" />
+					</ComboBox>
                     <Label text="Hub ID" />
-                    <Input id="hubId" />
+                    <Input />
 
-                    <!-- Row 5 -->
+                    <Label text="Ship From Country" />
+                    <ComboBox items="{}">
+						<core:Item key="{}" text="{}" />
+					</ComboBox>
+                    <Label text="Account No" />
+                    <Input />
                     <Label text="Fuel Charges" />
-                    <Input id="fuelCharges" />
+                    <Input />
+
                     <Label text="Ship To Country" />
-                    <Select id="labelType" />
+                    <ComboBox items="{}">
+						<core:Item key="{}" text="{}" />
+					</ComboBox>
+                    <Label text="User ID" />
+                    <Input />
+                    <Label text="Label Type" />
+                    <ComboBox items="{}">
+						<core:Item key="{}" text="{}" />
+					</ComboBox>
+
+                    <Label text="Cost Center" />
+                    <ComboBox items="{}">
+						<core:Item key="{}" text="{}" />
+					</ComboBox>
+                    <Label text="Password" />
+                    <Input id="hubId" />
                     <Label text="ERP Carrier ID" />
-                    <Input id="erpCarrierId" />
+                    <ComboBox items="{}">
+						<core:Item key="{}" text="{}" />
+					</ComboBox>
+
+                    <Label text="Environment" />
+                    <ComboBox items="{}">
+						<core:Item key="{}" text="{}" />
+					</ComboBox>
+                    <Label text="Access Key" />
+                    <Input />
                     <Label text="Ship URL" />
-                    <Input id="shipUrl" />
+                    <Input />
 
-                    <!-- Row 6 -->
-                    <Label text="Void URL" />
-                    <Input id="voidUrl" />
-                    <Label text="Rate URL" />
-                    <Input id="rateUrl" />
-                    
-
-                    <!-- Row 7 -->
-                    <Label text="Service Name" />
-                    <Input id="serviceName" />
-                    <Label text="ERP Service ID" />
-                    
-                    <Input id="serviceCode" />
-                    <Label text="Service Coverage" />
-                    <Select id="serviceCoverage">
-                        <core:Item key="Domestic" text="Domestic" />
-                        <core:Item key="International" text="International" />
-                    </Select>
-
-                     <!-- Row 8 -->
-                    <Label text="Service Name" />
-                    <Input id="serviceNam1e1" />
-                    
-
-           
-                    
-                    
-
-                   
-
-                    <!-- Row 8
-                    <Label text="Rate Shop" />
-                    <CheckBox id="rateShop" />
-                    <Label text="EDOC" />
-                    <CheckBox id="edoc" />
-                    <Label text="Manual Rates" />
-                    <CheckBox id="manualRates" />
-                    <Label text="Status" />
-                    <Switch id="status" state="true" /> -->
                 </form:content>
             </form:SimpleForm>
+
+        <HBox width="100%" >
+            <CheckBox text="Rate Shop" class="sapUiSmallMarginTop sapUiSmallMarginEnd" />
+            <CheckBox text="EDOC" class="sapUiSmallMarginTop sapUiSmallMarginEnd" />
+            <CheckBox text="Manual Rates" class="sapUiSmallMarginTop sapUiSmallMarginEnd" />
+            <VBox class="sapUiSmallMarginEnd" >
+                <Label text="Status"></Label>
+                <Switch type="AcceptReject" state="true">
+                    <layoutData>
+                        <FlexItemData growFactor="1" />
+                    </layoutData>
+                </Switch>
+            </VBox>
+
+            <VBox class="sapUiSmallMarginEnd">
+                <Label text="Void URL" />
+                <Input width="20rem" />
+            </VBox>
+            <VBox class="sapUiSmallMarginEnd" >
+                <Label text="Rate URL" />
+                <Input width="20rem" />
+            </VBox>
+            <VBox class="sapUiSmallMarginEnd" >
+                <Label text="Track URL" />
+                <Input width="20rem" />
+            </VBox>
+        </HBox>
+
+            <Table inset="false"
+                items="{eshipjetModel>/addCrrierDialogItems}">
+		<columns>
+			<Column
+				width="auto">
+				<Text text="Service Name" />
+			</Column>
+			<Column
+				width="auto">
+				<Text text="ERP Service ID" />
+			</Column>
+            <Column
+				width="auto">
+				<Text text="Service Code" />
+			</Column>
+            <Column
+				width="auto">
+				<Text text="Service Coverage" />
+			</Column>
+            <Column
+				width="auto">
+				<Text text="Status" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle">
+				<cells>
+					<Input value="{eshipjetModel>ServiceName}" ></Input>
+					<Input value="{eshipjetModel>ServiceCode}" ></Input>
+					<Input value="{eshipjetModel>ServiceName}" ></Input>
+                    <ComboBox items="{}" selectedKey="{eshipjetModel>ConnectionType}">
+						<core:Item key="{}" text="{}" />
+					</ComboBox>
+                    <Switch type="AcceptReject" state="{eshipjetModel>Status}">
+                        <layoutData>
+                            <FlexItemData growFactor="1" />
+                        </layoutData>
+                    </Switch>
+                </cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
         </content>
         <footer >
                     <Toolbar >

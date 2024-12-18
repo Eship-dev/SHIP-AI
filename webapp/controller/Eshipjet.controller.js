@@ -6319,6 +6319,41 @@ sap.ui.define([
         AddCarrierUpdateDialog: function () {
             this.byId("idAddCarrierDialog").close(); 
         },
+
+        onAddCarrierDialogPlusPress:function(){
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            var addCrrierDialogItems = eshipjetModel.getData().addCrrierDialogItems;
+            addCrrierDialogItems.push(
+                {
+                    "ServiceName":"",
+                    "ServiceCode":"", 
+                    "ServiceCoverage":"", 
+                    "ConnectionType":"", 
+                    "Status":false, 
+                    "Actions":"sap-icon://delete"
+
+                });
+            eshipjetModel.updateBindings(true);
+        },
+
+        onAddCrrierDialogDeleteIconPress:function(oEvent){
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            var addCrrierDialogItems = eshipjetModel.getData().addCrrierDialogItems;
+            var aSplitPath = oEvent.getSource().getBindingContext("eshipjetModel").sPath.split("/");
+            var sPath = aSplitPath[aSplitPath.length-1];
+
+            sap.m.MessageBox.warning("Are you sure you want to delete this record?", {
+				actions: [sap.m.MessageBox.Action.Yes, sap.m.MessageBox.Action.No],
+				emphasizedAction: sap.m.MessageBox.Action.OK,
+				onClose: function (sAction) {
+                    if(sAction === "Yes"){
+                        addCrrierDialogItems.splice(parseInt(sPath), 1);
+                        eshipjetModel.updateBindings(true);
+                    }
+				},
+				dependentOn: this.getView()
+			});
+        },
         
 
         AddCarrierConfigurationDialogPress: function () {
