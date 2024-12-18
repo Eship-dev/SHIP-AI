@@ -3,19 +3,25 @@
     xmlns:l="sap.ui.layout"
     xmlns:form="sap.ui.layout.form"
     xmlns:core="sap.ui.core"
-    xmlns:table="sap.ui.table"
-    xmlns:f="sap.f"
-    xmlns:u="sap.ui.unified">
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.f"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:svm="sap.ui.comp.smartvariants"
+    xmlns:ui="sap.ui.table"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core" >
     <Dialog
         id="idAddCarrierConfigurationDialog"
+        showHeader="false"
         contentWidth="80%"
-        contentHeight="70%"
-        stretchOnPhone="true">
-         <Toolbar >
+        contentHeight="70%" >
+        <Toolbar >
             <Title text="Add Carrier Configuration"></Title>
             <ToolbarSpacer ></ToolbarSpacer>
-                <Button icon="sap-icon://decline" press="onConsolidationClosePress"></Button>
+                <Button icon="sap-icon://decline" press="AddCarrierConfigurationCloseDialog"></Button>
         </Toolbar>
+       
+
         <content>
             <form:SimpleForm
                	editable="true"
@@ -118,9 +124,9 @@
         </content>
         <footer >
                     <Toolbar >
-                        <Button  text="Cancel" press="AddCarrierCancelDialog" />
+                        <Button  text="Cancel" press="AddCarrierConfigurationCancelDialog" />
                         <ToolbarSpacer/>
-                        <Button  text="Save" type="Success" press="AddCarrierUpdateDialog" />
+                        <Button  text="Save" type="Success" press="AddCarrierConfigurationUpdateDialog" />
                     </Toolbar>
             </footer>
     </Dialog>

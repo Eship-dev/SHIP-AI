@@ -3589,6 +3589,34 @@
         }
     ],
     "IncoTermsTableRows": [],
+    "TrackingRangeTableColumns": [
+        {
+            "key": "LocationName",
+            "label": "Location Name",
+            "visible": true
+        },
+        {
+            "key": "Carrier",
+            "label": "Carrier",
+            "visible": true
+        },
+        {
+            "key": "RangeFrom",
+            "label": "Range From",
+            "visible": true
+        },
+        {
+            "key": "RangeTo",
+            "label": "Range To",
+            "visible": true
+        },
+        {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+        }
+    ],
+    "TrackingRangeTableRows": [],
     "DimensionsTableColumns": [
         {
             "key": "locationName",

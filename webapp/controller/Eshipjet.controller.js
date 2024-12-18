@@ -1818,6 +1818,11 @@ sap.ui.define([
                 oController._displayTables("_ID_IncotermsTable", "IncoTermsTableColumns", "IncoTermsTableRows", "Incoterms");
                 oPageContainer.to(oView.createId("_ID_Incoterms_TableScrollContainer"));
 
+            } else if (oCurrObj && oCurrObj.name === "Tracking Range") {
+
+                oController._displayTables("_ID_TrackingRangeTable", "TrackingRangeTableColumns", "TrackingRangeTableRows", "Tracking Range");
+                oPageContainer.to(oView.createId("_ID_TrackingRange_TableScrollContainer"));
+
             } else if (oCurrObj && oCurrObj.name === "Dimensions") {
 
                 oController._displayTables("_ID_DimensionTable", "DimensionsTableColumns", "DiemnsionsTableRows", "Dimensions");
@@ -4291,6 +4296,149 @@ sap.ui.define([
 
     // Incoterms Column Names Popover code changes End here
 
+       // Tracking Range Column Names Popover code changes starts here
+
+       openTrackingRangeColNamesPopover: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._pTrackingRangePopover) {
+            this._pTrackingRangePopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.TrackingRangeTableColumns",
+                controller: this
+            }).then(function (oPopover) {
+                oView.addDependent(oPopover);
+                return oPopover;
+            });
+        }
+        this._pTrackingRangePopover.then(function (oPopover) {
+            oController.TrackingRangeColumnsVisiblity();
+            oPopover.openBy(oButton);
+        });
+    },
+
+    TrackingRangeColumnsVisiblity: function () {
+        var oView = oController.getView();
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var aColumns = eshipjetModel.getProperty("/TrackingRangeTableColumns");
+        var oTrackingRangeTable = oView.byId("myTrackingRangeColumnSelectId");
+        var aTableItems = oTrackingRangeTable.getItems();
+
+        aColumns.map(function (oColObj) {
+            aTableItems.map(function (oItem) {
+                if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                    oItem.setSelected(true);
+                }
+            });
+        });
+    },
+
+    onTrackingRangeColNameSearch: function (oEvent) {
+        var aFilters = [];
+        var sQuery = oEvent.getSource().getValue();
+        if (sQuery && sQuery.length > 0) {
+            var filter = new Filter("label", FilterOperator.Contains, sQuery);
+            aFilters.push(filter);
+        }
+        // update list binding
+        var oList = oController.getView().byId("myTrackingRangeColumnSelectId");
+        var oBinding = oList.getBinding("items");
+        oBinding.filter(aFilters, "Application");
+
+    },
+
+    onTrackingRangeColSelectOkPress: function () {
+        var oView = this.getView();
+        var oTrackingRangeTable = oView.byId("myTrackingRangeColumnSelectId");
+        var eshipjetModel = oView.getModel("eshipjetModel");
+        var oTable = oView.byId("_ID_TrackingRangeTable")
+        oTable.setModel(eshipjetModel);
+
+        var oTrackingRangeTblItems = oTrackingRangeTable.getItems();
+        var aColumnsData = eshipjetModel.getProperty("/TrackingRangeTableColumns");
+        oTrackingRangeTblItems.map(function (oTableItems) {
+            aColumnsData.map(function (oColObj) {
+                if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                    if (oTableItems.getSelected()) {
+                        oColObj.visible = true;
+                    } else {
+                        oColObj.visible = false;
+                    }
+                }
+            })
+        });
+        eshipjetModel.updateBindings(true);
+        oTrackingRangeTable.setModel(eshipjetModel);
+        this._handleDisplayTrackingRangeTable();
+        this._pTrackingRangePopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+    onTrackingRangeColSelectClosePress: function () {
+        this._pTrackingRangePopover.then(function (oPopover) {
+            oPopover.close();
+        });
+    },
+
+    _handleDisplayTrackingRangeTable: function () {
+        var that = this;
+        const oView = oController.getView();
+        var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+        var TrackingRangeTableColumns = eshipjetModel.getData().TrackingRangeTableColumns;
+        const oTable = oView.byId("_ID_TrackingRangeTable");
+        oTable.setModel(eshipjetModel);
+        var count = 0;
+        for(var i=0; i<TrackingRangeTableColumns.length; i++){
+            if(TrackingRangeTableColumns[i].visible === true){
+                count += 1
+            }
+        }
+        oTable.bindColumns("/TrackingRangeTableColumns", function (sId, oContext) {
+            columnName = oContext.getObject().key;
+            label = oContext.getObject().label;
+            var minWidth = "100%";
+            if(count>14){
+                var minWidth = "120px";
+            }
+            if (columnName === "actions") {
+                var oHBox = new sap.m.HBox({}); // Create Text instance 
+                var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                var Btn2 = new sap.m.Button({
+                    icon: "sap-icon://megamenu", type: "Transparent",
+                    press: function (oEvent) {
+                        that.handleDownArrowPress(oEvent);
+                    }
+                });
+                oHBox.addItem(Btn1);
+                oHBox.addItem(Btn2);
+                return new sap.ui.table.Column({
+                    label: oResourceBundle.getText(columnName),
+                    template: oHBox,
+                    visible: oContext.getObject().visible,
+                    width: minWidth,
+                    sortProperty: columnName
+                });
+            } else if (columnName === "status") {
+                var oSwitch = new sap.m.Switch({ type:"AcceptReject"});
+                return new sap.ui.table.Column({
+                    label: oResourceBundle.getText(columnName),
+                    template: oSwitch,
+                    visible: oContext.getObject().visible,
+                    width: minWidth,
+                    sortProperty: columnName
+                });
+            } else {
+                return new sap.ui.table.Column({
+                    label: oResourceBundle.getText(columnName),
+                    template: columnName,
+                    visible: oContext.getObject().visible,
+                    width: minWidth,
+                    sortProperty: columnName
+                });
+            }
+        });
+        oTable.bindRows("/TrackingRangeTableRows");
+    },
 
     // Dimensions Column Names Popover code changes starts here
 
@@ -6194,14 +6342,15 @@ sap.ui.define([
         AddCarrierConfigurationUpdateDialog: function () {
             this.byId("idAddCarrierConfigurationDialog").close(); 
         },
+        AddCarrierConfigurationCloseDialog: function () {
+            this.byId("idAddCarrierConfigurationDialog").close(); 
+        },
 
         OpenCompanySettingsDialog: function () {
             var oView = this.getView();
             if (!this.byId("CompanySettingsopenDialog")) {
                 Fragment.load({
                     id: oView.getId(),
-                    title: "Draggable (only on Desktop) - Register",
-                    draggable: true,
                     name: "com.eshipjet.zeshipjet.view.fragments.CompanySettingsDialog",
                     controller: this // Pass the controller for binding
                 }).then(function (oDialog) {
@@ -6220,6 +6369,34 @@ sap.ui.define([
         },
         CompanySettingsClosePress: function () {
             this.byId("CompanySettingsopenDialog").close();
+        },
+
+                // add on Add Order Type  popover changes start
+            AddTrackingRangePress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._AddAddTrackingRangeopover) {
+                this._AddAddTrackingRangePopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.AddTrackingRangePopover",
+                    controller: this
+                }).then(function (oAddAddTrackingRangePopover) {
+                    oView.addDependent(oAddAddTrackingRangePopover);
+                    return oAddAddTrackingRangePopover;
+                });
+            }
+            this._AddAddTrackingRangePopover.then(function (oAddAddTrackingRangePopover) {
+                oAddAddTrackingRangePopover.openBy(oButton);
+            });
+        },
+        AddTrackingRangeClosePress: function () {
+            this.byId("idAddTrackingRangePopover").close();  
+        },
+        AddTrackingRangeCancelPopover: function () {
+            this.byId("idAddTrackingRangePopover").close();  
+        },
+        AddTrackingRangeSelectPopover: function () {
+            this.byId("idAddTrackingRangePopover").close();   
         },
         
     });

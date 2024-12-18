@@ -1,0 +1,77 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    height="100%"
+>
+    <Popover
+        id="idAddTrackingRangePopover"
+        placement="Bottom"
+        contentWidth="40%"
+        contentHeight="75%"
+        showHeader="true"
+        class="sapUiResponsivePadding sapUiResponsivePadding ">
+        <!-- Custom Header -->
+        <customHeader>
+            <Toolbar>
+                <!-- Title -->
+                <Title text="Add TrackingRange" />
+
+                <!-- Spacer to push close button to the right -->
+                <ToolbarSpacer />
+
+                <!-- Close Button -->
+                <Button
+                    icon="sap-icon://decline"
+                    press="AddTrackingRangeClosePress"
+                    type="Transparent"
+                />
+            </Toolbar>
+        </customHeader>
+        <footer>
+            <OverflowToolbar>
+                <Button
+                    text="Cancel"
+                    press="AddTrackingRangeCancelPopover"
+                />
+                <ToolbarSpacer />
+                <Button
+                    type="Emphasized"
+                    text="Save"
+                    press="AddTrackingRangeSelectPopover"
+                />
+            </OverflowToolbar>
+        </footer>
+        <content>
+           	<f:SimpleForm editable="true"
+                            class="customSimpleFormShadow"
+                            width="auto"
+							  layout="ColumnLayout"
+							  columnsM="2"
+							  columnsL="2"
+							  columnsXL="2">
+					<f:content>
+						 <Label text="Location Name" />  
+                         <ComboBox  placeholder="Select">
+			              </ComboBox>
+                         <Label text="Range From" />
+                         <Input ></Input>
+                        
+                          <Label text="Status" />
+                        <Switch state="true" >
+				            <layoutData>
+					            <FlexItemData growFactor="1" />
+				            </layoutData>
+			            </Switch>
+                        <Label text="Carrier" />
+                         <ComboBox  placeholder="Select">
+			              </ComboBox>
+                        <Label text="Range To" />
+                        <Input />
+                       
+					</f:content>
+				</f:SimpleForm>
+        </content>
+    </Popover>
+</core:FragmentDefinition>

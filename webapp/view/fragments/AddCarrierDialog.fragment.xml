@@ -13,34 +13,37 @@
     <Dialog
         id="idAddCarrierDialog"
         showHeader="false"
-        contentWidth="80%"
-        contentHeight="70%" >
+        contentWidth="70%"
+        contentHeight="50%" >
         <Toolbar >
             <Title text="Add Carrier"></Title>
             <ToolbarSpacer ></ToolbarSpacer>
-                <Button icon="sap-icon://decline" press="onConsolidationClosePress"></Button>
+                <Button icon="sap-icon://decline" press="AddCarrierCancelDialog"></Button>
         </Toolbar>
        
 
-        <ui:Table id="idAddCarrierTable"
-                class="sapUiTinyMarginTop customSimpleFormShadow"
-				selectionMode="None"
-				visibleRowCount="7">
-					<ui:extension>
-						<OverflowToolbar>
-							<Button icon="sap-icon://filter" press="onConsolidationFilterPopoverPress"></Button>
-							<ToolbarSpacer ></ToolbarSpacer>
-							<Button icon="sap-icon://action" press="onConsolidationExportToExcel" ></Button>
-                            <Button icon="sap-icon://action-settings" press="openAddCarrierColNamesPopover" >
-                                <customData>
-                                    <core:CustomData key="remember" value="true" />
-                                    <core:CustomData key="showClearButton" value="true" />
-                                    <core:CustomData key="confirmButtonText" value="Ok" />
-                                </customData>
-							</Button>										
-						</OverflowToolbar>
-					</ui:extension>
-		</ui:Table>
+        <content>
+            <form:SimpleForm
+               	editable="true"
+			layout="ColumnLayout"
+			columnsM="2"
+			columnsL="3"
+			columnsXL="5">
+                <form:content>
+                    <Label text="Ship Method ID" />
+                    <Select id="locationName1" />
+                    <Label text="Ship Method" />
+                    <Select id="shipFromC1ountry" />
+                    <Label text="Ship Method Type" />
+                    <Select id="shipToCo1untry" />
+                    <Label text="Ship Method Coverage" />
+                    <Select id="ShipMethodCoverage" />
+                    
+                </form:content>
+            </form:SimpleForm>
+        </content>
+
+                    
         <footer >
                     <Toolbar >
                         <Button  text="Cancel" press="AddCarrierCancelDialog" />

@@ -1,0 +1,55 @@
+<core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
+
+    <Toolbar width="auto">
+			<Text text="Tracking Range" class="textBold" ></Text>
+				<ToolbarSpacer />
+					<HBox>
+                    <Button type="Success" text="Add Tracking Range" press="AddTrackingRangePress"></Button>
+                    <Button type="Success" icon="sap-icon://navigation-down-arrow"></Button>
+                </HBox>
+		</Toolbar>
+
+        <Toolbar height="15%" >
+			<HBox width="100%" >
+				<VBox class="sapUiTinyMargin" width="33%">
+					<Text text="1" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Total TrackingRange" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Emphasized" press="handleManifestFilterBtnPress" icon="false" width="100%"  ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="33%">
+					<Text text="2" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Active" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Critical" press="handleManifestFilterBtnPress" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="33%">
+					<Text text="3" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Inactive" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Success" press="handleManifestFilterBtnPress" icon="false" width="100%" ></Button>
+				</VBox>
+			</HBox>
+		</Toolbar>
+
+
+    <ui:Table	id="_ID_TrackingRangeTable"	width="100%"	class="headerContent sapUiTinyMarginTop"
+             	selectionMode="None"	paste="onPaste" 	ariaLabelledBy="title">
+    <ui:extension>
+        <OverflowToolbar style="Clear">										
+            <ToolbarSpacer />
+                <Button icon="sap-icon://action" ></Button>
+                <Button icon="sap-icon://action-settings" press="openTrackingRangeColNamesPopover"></Button>
+        </OverflowToolbar>
+    </ui:extension>	
+    <ui:footer>
+    <Toolbar>        
+        <ToolbarSpacer/>
+        <Button  text="First"     type="Emphasized"/>
+        <Button  text="Previous"  type="Emphasized"/>
+        <Text    text="1-0 of 0" />
+        <Button  text="Next"       type="Emphasized"/>
+        <Button  text="Last"       type="Emphasized"/>
+    </Toolbar>
+	</ui:footer>							
+    </ui:Table>
+    
+
+</core:FragmentDefinition>

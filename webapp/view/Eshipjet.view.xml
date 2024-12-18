@@ -215,6 +215,10 @@
 
 					<ScrollContainer	id="_ID_Incoterms_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Incoterms" type="XML" />
+					</ScrollContainer>
+
+					<ScrollContainer	id="_ID_TrackingRange_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.TrackingRange" type="XML" />
 					</ScrollContainer> 
 
 					<ScrollContainer	id="_ID_Dimensions_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
