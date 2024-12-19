@@ -4,7 +4,7 @@
 	    <Toolbar width="auto">
 			<Text text="Shipping Manifest" class="textBold" ></Text>
 				<ToolbarSpacer />
-					<Button text="Manifest and Print" icon="sap-icon://down" type="Success" iconFirst="true" ></Button>
+					<Button text="Manifest and Print" icon="sap-icon://down" type="Success" iconFirst="true" press="onManifestPrintPress" ></Button>
 		</Toolbar>
 
 		<Toolbar height="15%" >

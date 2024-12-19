@@ -4628,7 +4628,64 @@
 
       "addCrrierDialogItems":[
         {"ServiceName":"", "ServiceCode":"", "ServiceCoverage":"", "ConnectionType":"", "Status":false, "Actions":"sap-icon://delete"}
-      ]
-      
-    
+      ],
+
+"AddRoleTreeTableItems": {
+      "categories": [
+        {"name": "Modules", "categories": [
+          {"name":"SAP Shipper Copilot", "viewAccess":false, "writeAccess":false, "orderFlow":1 },
+          {"name":"Batch ship", "viewAccess":false, "writeAccess":false, "orderFlow":3 },
+          {"name":"Manifest", "viewAccess":false, "writeAccess": false, "orderFlow":9 },
+          {"name":"Orders", "viewAccess":false, "writeAccess": false, "orderFlow":2 },
+          {"name":"Quick Ship", "viewAccess":false, "writeAccess": false, "orderFlow":4 },
+          {"name":"Quote Now", "viewAccess":false, "writeAccess": false, "orderFlow":7 },
+          {"name":"Reports", "viewAccess":false, "writeAccess": false, "orderFlow":22 },
+          {"name":"Returns", "viewAccess":false, "writeAccess": false, "orderFlow":13 },
+          {"name":"RFID Nexus", "viewAccess":false, "writeAccess": false, "orderFlow":11 },
+          {"name":"Routing Guide", "viewAccess":false, "writeAccess": false, "orderFlow":14 },
+          {"name":"Scan & Ship", "viewAccess":false, "writeAccess": false, "orderFlow":10 },
+          {"name":"Ship Now", "viewAccess":false, "writeAccess": false, "orderFlow":6 },
+          {"name":"Ship Request", "viewAccess":false, "writeAccess": false, "orderFlow":5 },
+          {"name":"Track Now", "viewAccess":false, "writeAccess": false, "orderFlow":8 },
+          {"name":"Ship Now", "categories": [
+            {"name": "Consolidation", "viewAccess":  false, "writeAccess": false, "orderFlow":"" },
+            {"name": "Get Ship Method", "viewAccess": false, "writeAccess": false, "orderFlow":"" },
+            {"name": "International Shipments", "viewAccess": false, "writeAccess": false, "orderFlow":"" },
+            {"name": "", "viewAccess": false, "writeAccess": false, "orderFlow":"" }
+          ]},
+          {"name":"Ship Request", "categories": [
+            {"name": "Get Ship Method", "viewAccess": false, "writeAccess": false, "orderFlow":"" },
+            {"name": "International Shipments", "viewAccess": false, "writeAccess": false, "orderFlow":"" },
+            {"name": "", "viewAccess": false, "writeAccess": false, "orderFlow":"" }
+          ]}
+        ]},
+        {"name": "Masters", "categories": [
+            {"name":"Carrier Catalog", "viewAccess": false, "writeAccess": false, "orderFlow":4 },
+            {"name":"Company Settings", "viewAccess": false, "writeAccess": false, "orderFlow":9 },
+            {"name":"Third Party", "viewAccess": false, "writeAccess": false, "orderFlow":8 },
+            {"name":"Address Book", "viewAccess": false, "writeAccess": false, "orderFlow":2 },
+
+            {"name":"Carrier Accounts", "viewAccess": false, "writeAccess": false, "orderFlow":5 },
+            {"name":"Cost Center", "viewAccess": false, "writeAccess": false, "orderFlow":17 },
+            {"name":"Countries", "viewAccess": false, "writeAccess": false, "orderFlow":12 },
+            {"name":"Default Configuration", "viewAccess": false, "writeAccess": false, "orderFlow":24 },
+            {"name":"Dimensions", "viewAccess": false, "writeAccess": false, "orderFlow":15 },
+            {"name":"ERP Configuration", "viewAccess": false, "writeAccess": false, "orderFlow":11 },
+            {"name":"EU Countries", "viewAccess": false, "writeAccess": false, "orderFlow":13 },
+            {"name":"Incoterms", "viewAccess": false, "writeAccess": false, "orderFlow":19 },
+            {"name":"Locations", "viewAccess": false, "writeAccess": false, "orderFlow":1 },
+            {"name":"LTL Classes", "viewAccess": false, "writeAccess": false, "orderFlow":21 },
+            {"name":"MOT", "viewAccess": false, "writeAccess": false, "orderFlow":23 },
+            {"name":"NMFC", "viewAccess": false, "writeAccess": false, "orderFlow":22 },
+            {"name":"Order Types", "viewAccess": false, "writeAccess": false, "orderFlow":20 },
+            {"name":"Package Types", "viewAccess": false, "writeAccess": false, "orderFlow":7 },
+            {"name":"Payment Types", "viewAccess": false, "writeAccess": false, "orderFlow":16 },
+            {"name":"Products", "viewAccess": false, "writeAccess": false, "orderFlow":6 },
+            {"name":"Shipment Status", "viewAccess": false, "writeAccess": false, "orderFlow":18 },
+            {"name":"SMTP Configuration", "viewAccess": false, "writeAccess": false, "orderFlow":10 },
+            {"name":"Tracking Range", "viewAccess": false, "writeAccess": false, "orderFlow":14 },
+            {"name":"Users", "viewAccess": false, "writeAccess": false, "orderFlow":3 }
+          ]}
+        ]}
+
 }

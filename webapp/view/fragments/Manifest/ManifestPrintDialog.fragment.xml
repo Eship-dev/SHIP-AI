@@ -1,0 +1,77 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Popover
+		contentWidth="45%"
+		showHeader="false"
+		id="idManifestPrintPopover"
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+		placement="Bottom"
+		initialFocus="email">
+		
+        <VBox >
+		<HBox >
+			<VBox class="sapUiSmallMargin" width="30%" >
+			<Label text="Location Name" required="true" width="100%" />
+					<ComboBox
+                        placeholder="Select Location"
+						width="100%"
+						items="{}">
+						<core:Item key="{key}" text="{text}" />
+					</ComboBox>
+			</VBox>
+			<VBox class="sapUiSmallMargin" width="30%" >
+					<Label text="Carrier" width="100%" />
+					<ComboBox
+                        placeholder="Select"
+						width="100%"
+						items="{}">
+						<core:Item key="{key}" text="{text}" />
+					</ComboBox>
+			</VBox>
+			<VBox class="sapUiSmallMargin" width="30%" >
+					<Label text="Account#" width="100%" />
+					<ComboBox
+                        placeholder="Select Account"
+						width="100%"
+						items="{}">
+						<core:Item key="{key}" text="{text}" />
+					</ComboBox>
+			</VBox>
+			
+		</HBox>
+        <HBox>
+        	<VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
+					<Label text="Ship From Date" width="100%" />
+					<DatePicker
+						width="100%"
+						placeholder="Select Date"
+						change="handleChange"
+						class="sapUiSmallMarginBottom"/>
+			</VBox>
+            <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
+					<Label text="Ship Time(HH:MM)" width="100%" />
+					<TimePicker value="{
+                        path: '/time',
+                        type: 'sap.ui.model.type.Time'}" 
+                        placeholder="From Time" />
+			</VBox>
+            <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
+					<Label text="To Time" width="100%" />
+					<TimePicker value="{
+                        path: '/time',
+                        type: 'sap.ui.model.type.Time'}"
+                        placeholder="To Time" />
+			</VBox>
+		</HBox>
+        </VBox>
+
+        <Toolbar >
+            <Button text="Cancel" press="onManifestPrintClosePress" type="Critical" ></Button>
+            <ToolbarSpacer ></ToolbarSpacer>
+                <Button text="Generate Manifest" type="Success" ></Button>
+        </Toolbar>
+	</Popover>
+</core:FragmentDefinition>

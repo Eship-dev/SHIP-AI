@@ -4,6 +4,7 @@
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
     height="100%"
+    xmlns:ui="sap.ui.table"
 >
     <Popover
         id="idAddRolePopover"
@@ -64,6 +65,44 @@
 			             <Input ></Input>
 					</f:content>
 				</f:SimpleForm>
+
+                <ui:TreeTable
+                    id="AddRoleTreeTable"
+                    visibleRowCount="auto"
+                    rows="{path:'eshipjetModel>/AddRoleTreeTableItems', parameters: {arrayNames:['categories']}}"
+                    selectionMode="None"
+                    enableSelectAll="false"
+                    ariaLabelledBy="title"
+                    class="customSimpleFormShadow"
+                    width="auto" >
+                <ui:columns>
+                    <ui:Column >
+                        <Label text="Name"/>
+                        <ui:template>
+                            <Text text="{eshipjetModel>name}" wrapping="false" />
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column >
+                        <Label text="View Access"/>
+                        <ui:template>
+                            <CheckBox selected="{eshipjetModel>viewAccess}" ></CheckBox>
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column >
+                        <Label text="Write Access"/>
+                        <ui:template>
+                            <CheckBox selected="{eshipjetModel>writeAccess}" ></CheckBox>
+                        </ui:template>
+                    </ui:Column>
+                    <ui:Column >
+                        <Label text="Order Flow"/>
+                        <ui:template>
+                            <Input value="{eshipjetModel>orderFlow}"></Input>
+                        </ui:template>
+                    </ui:Column>
+                </ui:columns>
+            </ui:TreeTable>
+
         </content>
     </Popover>
 </core:FragmentDefinition>

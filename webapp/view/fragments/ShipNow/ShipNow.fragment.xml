@@ -31,6 +31,7 @@
 													<Toolbar ariaLabelledBy="idShipFrom">
 														<Title id="idShipFrom" text="Ship From"/>
 														<Button icon="sap-icon://customer-briefing" press="ShipNowPickAnAddressPopoverPress" id="idShipFromAddressBtn" />
+														<Text text=" - Eshipjet Software Inc." ></Text>
 													</Toolbar>
 													<Label text="Contact Name" />
 													<Input value="{ShipNowDataModel>/ShipFromCONTACT}" />
@@ -263,7 +264,12 @@
 													<Label text=""></Label>
 													<CheckBox text="Residential Delivery" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="COD" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="COD" class="sapUiSmallMarginTop">
+														<layoutData>
+															<f:ColumnElementData cellsSmall="10" cellsLarge="10" />
+														</layoutData>
+													</CheckBox>
+													<Button icon="sap-icon://request" type="Transparent" class="sapUiSmallMarginTop" press="onShipNowCodEditPress" ></Button>
 													<Label text=""></Label>
 													<CheckBox text="Ship Alert Email" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="Misc Options" />
@@ -277,7 +283,12 @@
 													<Label text="" visible="false" ></Label>
 													<CheckBox text="Inside Delivery" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Broker Select" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Broker Select" class="sapUiSmallMarginTop">
+														<layoutData>
+															<f:ColumnElementData cellsSmall="10" cellsLarge="10" />
+														</layoutData>
+													</CheckBox>
+													<Button icon="sap-icon://request" type="Transparent" class="sapUiSmallMarginTop" press="onBrokerSelectEditPress" ></Button>
 													<Label text=""></Label>
 													<CheckBox text="Third Party Consignee" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="Indicia" />
@@ -288,12 +299,16 @@
 													<Input value="{eshipjetModel>/handlingCost}" />
 													<Label text="Home Delivery Date" />
 													<DatePicker
-														value="{eshipjetModel>/homeDeliveryDate}"
-														class="sapUiSmallMarginBottom"/>
+														value="{eshipjetModel>/homeDeliveryDate}" />
 													<Label text=""></Label>
 													<CheckBox text="Inside Pickup" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Hold at location" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Hold at location" class="sapUiSmallMarginTop">
+														<layoutData>
+															<f:ColumnElementData cellsSmall="10" cellsLarge="10" />
+														</layoutData>
+													</CheckBox>
+													<Button icon="sap-icon://request" type="Transparent" class="sapUiSmallMarginTop" press="onHoldAtLocationEditPress" ></Button>
 													<Label text=""></Label>
 													<CheckBox text="Fedex One Rate" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="Ancillary Endorsement" />
@@ -307,7 +322,12 @@
 													<Label text=""></Label>
 													<CheckBox text="Alcohol" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Return Label" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Return Label" class="sapUiSmallMarginTop">
+														<layoutData>
+															<f:ColumnElementData cellsSmall="10" cellsLarge="10" />
+														</layoutData>
+													</CheckBox>
+													<Button icon="sap-icon://request" type="Transparent" class="sapUiSmallMarginTop" press="onReturnLabelEditPress" ></Button>
 													<Label text=""></Label>
 													<CheckBox text="Exception Notifications" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="Lithium Batteries" />

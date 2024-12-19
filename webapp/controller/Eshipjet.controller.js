@@ -394,6 +394,85 @@ sap.ui.define([
             });
         },
 
+        onShipNowCodEditPress:function(){
+            var oView = this.getView();
+            if (!this.byId("idCodEditDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.CodEditDialog",
+                    controller: this // Pass the controller for binding
+                }).then(function (oCodEditDialog) {
+                    oView.addDependent(oCodEditDialog); 
+                    oCodEditDialog.open(); 
+                });
+            } else {
+                this.byId("idCodEditDialog").open(); // Open existing dialog
+            }
+        },
+
+        onCodEditDialogCancelPress:function(){
+            this.byId("idCodEditDialog").close();
+        },
+
+        onBrokerSelectEditPress:function(){
+            var oView = this.getView();
+            if (!this.byId("idBrokerSelectEditDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.BrokerSelectEditDialog",
+                    controller: this // Pass the controller for binding
+                }).then(function (oBrokerSelectEditDialog) {
+                    oView.addDependent(oBrokerSelectEditDialog); 
+                    oBrokerSelectEditDialog.open(); 
+                });
+            } else {
+                this.byId("idBrokerSelectEditDialog").open(); // Open existing dialog
+            }
+        },
+
+        onBrokerSelectEditDialogClosePress:function(){
+            this.byId("idBrokerSelectEditDialog").close();
+        },
+
+        onHoldAtLocationEditPress:function(){
+            var oView = this.getView();
+            if (!this.byId("idHoldAtLocationEditDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.HoldAtLocationEditDialog",
+                    controller: this // Pass the controller for binding
+                }).then(function (oHoldAtLocationEditDialog) {
+                    oView.addDependent(oHoldAtLocationEditDialog); 
+                    oHoldAtLocationEditDialog.open(); 
+                });
+            } else {
+                this.byId("idHoldAtLocationEditDialog").open(); // Open existing dialog
+            }
+        },
+
+        onHoldAtLocationEditDialogClosePress:function(){
+            this.byId("idHoldAtLocationEditDialog").close();
+        },
+
+        onReturnLabelEditPress:function(){
+            var oView = this.getView();
+            if (!this.byId("idReturnLabelEditDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.ReturnLabelEditDialog",
+                    controller: this // Pass the controller for binding
+                }).then(function (oReturnLabelEditDialog) {
+                    oView.addDependent(oReturnLabelEditDialog); 
+                    oReturnLabelEditDialog.open(); 
+                });
+            } else {
+                this.byId("idReturnLabelEditDialog").open(); // Open existing dialog
+            }
+        },
+
+        onReturnLabelEditDialogClosePress:function(){
+            this.byId("idReturnLabelEditDialog").close();
+        },
         // Ship Now Changes End here
 
 
@@ -420,8 +499,8 @@ sap.ui.define([
                 columnName = oContext.getObject().name;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
-                if(count>12){
-                    var minWidth = "140px";
+                if(count>=14){
+                    var minWidth = "130px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -816,8 +895,8 @@ sap.ui.define([
                 columnName = oContext.getObject().name;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
-                if(count>10){
-                    var minWidth = "120px";
+                if(count>=14){
+                    var minWidth = "130px";
                 }
                 
 
@@ -996,8 +1075,8 @@ sap.ui.define([
                 columnName = oContext.getObject().name;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
-                if(count>14){
-                    var minWidth = "120px";
+                if(count>=14){
+                    var minWidth = "130px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -1178,8 +1257,8 @@ sap.ui.define([
                 columnName = oContext.getObject().name;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
-                if(count>14){
-                    var minWidth = "120px";
+                if(count>=14){
+                    var minWidth = "130px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -1360,8 +1439,8 @@ sap.ui.define([
                 columnName = oContext.getObject().name;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
-                if(count>14){
-                    var minWidth = "120px";
+                if(count>=14){
+                    var minWidth = "130px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -1487,6 +1566,29 @@ sap.ui.define([
             });
         },
 
+        onManifestPrintPress:function(oEvent){
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pManifestPrintPopover) {
+                this._pManifestPrintPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.Manifest.ManifestPrintDialog",
+                    controller: this
+                }).then(function (oManifestPrintPopover) {
+                    oView.addDependent(oManifestPrintPopover);
+                    // oManifestPrintPopover.bindElement("/ProductCollection/0");
+                    return oManifestPrintPopover;
+                });
+            }
+            this._pManifestPrintPopover.then(function (oManifestPrintPopover) {
+                oManifestPrintPopover.openBy(oButton);
+            })
+        },
+
+        onManifestPrintClosePress: function () {
+            this.byId("idManifestPrintPopover").close();
+        },
+
         // Manifest Changes End here
 
         // Batch Ship Changes Starts
@@ -1512,8 +1614,8 @@ sap.ui.define([
                 columnName = oContext.getObject().name;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
-                if(count>14){
-                    var minWidth = "120px";
+                if(count>=14){
+                    var minWidth = "130px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -2047,8 +2149,8 @@ sap.ui.define([
             columnName = oContext.getObject().key;
             label = oContext.getObject().label;
             var minWidth = "100%";
-            if(count>14){
-                var minWidth = "120px";
+            if(count>=14){
+                var minWidth = "130px";
             }
             if (columnName === "actions") {
                 var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -2195,8 +2297,8 @@ sap.ui.define([
                 columnName = oContext.getObject().key;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
-                if(count>14){
-                    var minWidth = "120px";
+                if(count>=14){
+                    var minWidth = "130px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -2342,8 +2444,8 @@ sap.ui.define([
                 columnName = oContext.getObject().key;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
-                if(count>14){
-                    var minWidth = "120px";
+                if(count>=14){
+                    var minWidth = "130px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -2489,8 +2591,8 @@ sap.ui.define([
                 columnName = oContext.getObject().key;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
-                if(count>14){
-                    var minWidth = "120px";
+                if(count>=14){
+                    var minWidth = "130px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -2636,8 +2738,8 @@ sap.ui.define([
                 columnName = oContext.getObject().key;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
-                if(count>14){
-                    var minWidth = "120px";
+                if(count>=14){
+                    var minWidth = "130px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -2783,8 +2885,8 @@ sap.ui.define([
                 columnName = oContext.getObject().key;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
-                if(count>14){
-                    var minWidth = "120px";
+                if(count>=14){
+                    var minWidth = "130px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -2929,8 +3031,8 @@ sap.ui.define([
                 columnName = oContext.getObject().key;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
-                if(count>14){
-                    var minWidth = "120px";
+                if(count>=14){
+                    var minWidth = "130px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -3076,8 +3178,8 @@ sap.ui.define([
                 columnName = oContext.getObject().key;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
-                if(count>14){
-                    var minWidth = "120px";
+                if(count>=14){
+                    var minWidth = "130px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -3223,8 +3325,8 @@ sap.ui.define([
                 columnName = oContext.getObject().key;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
-                if(count>14){
-                    var minWidth = "120px";
+                if(count>=14){
+                    var minWidth = "130px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -3370,8 +3472,8 @@ sap.ui.define([
                 columnName = oContext.getObject().key;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
-                if(count>14){
-                    var minWidth = "120px";
+                if(count>=14){
+                    var minWidth = "130px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -3517,8 +3619,8 @@ sap.ui.define([
                 columnName = oContext.getObject().key;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
-                if(count>14){
-                    var minWidth = "120px";
+                if(count>=14){
+                    var minWidth = "130px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -3664,8 +3766,8 @@ sap.ui.define([
                 columnName = oContext.getObject().key;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
-                if(count>14){
-                    var minWidth = "120px";
+                if(count>=14){
+                    var minWidth = "130px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -3811,8 +3913,8 @@ sap.ui.define([
                 columnName = oContext.getObject().key;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
-                if(count>14){
-                    var minWidth = "120px";
+                if(count>=14){
+                    var minWidth = "130px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -3958,8 +4060,8 @@ sap.ui.define([
             columnName = oContext.getObject().key;
             label = oContext.getObject().label;
             var minWidth = "100%";
-            if(count>14){
-                var minWidth = "120px";
+            if(count>=14){
+                var minWidth = "130px";
             }
             if (columnName === "actions") {
                 var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -4104,8 +4206,8 @@ sap.ui.define([
             columnName = oContext.getObject().key;
             label = oContext.getObject().label;
             var minWidth = "100%";
-            if(count>14){
-                var minWidth = "120px";
+            if(count>=14){
+                var minWidth = "130px";
             }
             if (columnName === "actions") {
                 var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -4251,8 +4353,8 @@ sap.ui.define([
             columnName = oContext.getObject().key;
             label = oContext.getObject().label;
             var minWidth = "100%";
-            if(count>14){
-                var minWidth = "120px";
+            if(count>=14){
+                var minWidth = "130px";
             }
             if (columnName === "actions") {
                 var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -4397,8 +4499,8 @@ sap.ui.define([
             columnName = oContext.getObject().key;
             label = oContext.getObject().label;
             var minWidth = "100%";
-            if(count>14){
-                var minWidth = "120px";
+            if(count>=14){
+                var minWidth = "130px";
             }
             if (columnName === "actions") {
                 var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -4541,8 +4643,8 @@ sap.ui.define([
             columnName = oContext.getObject().key;
             label = oContext.getObject().label;
             var minWidth = "100%";
-            if(count>14){
-                var minWidth = "120px";
+            if(count>=14){
+                var minWidth = "130px";
             }
             if (columnName === "actions") {
                 var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -4687,8 +4789,8 @@ sap.ui.define([
             columnName = oContext.getObject().key;
             label = oContext.getObject().label;
             var minWidth = "100%";
-            if(count>14){
-                var minWidth = "120px";
+            if(count>=14){
+                var minWidth = "130px";
             }
             if (columnName === "actions") {
                 var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -4833,8 +4935,8 @@ sap.ui.define([
             columnName = oContext.getObject().key;
             label = oContext.getObject().label;
             var minWidth = "100%";
-            if(count>14){
-                var minWidth = "120px";
+            if(count>=14){
+                var minWidth = "130px";
             }
             if (columnName === "actions") {
                 var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -4980,8 +5082,8 @@ sap.ui.define([
             columnName = oContext.getObject().key;
             label = oContext.getObject().label;
             var minWidth = "100%";
-            if(count>14){
-                var minWidth = "120px";
+            if(count>=14){
+                var minWidth = "130px";
             }
             if (columnName === "actions") {
                 var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -5127,8 +5229,8 @@ sap.ui.define([
             columnName = oContext.getObject().key;
             label = oContext.getObject().label;
             var minWidth = "100%";
-            if(count>14){
-                var minWidth = "120px";
+            if(count>=14){
+                var minWidth = "130px";
             }
             if (columnName === "actions") {
                 var oHBox = new sap.m.HBox({}); // Create Text instance 
@@ -5274,8 +5376,8 @@ sap.ui.define([
             columnName = oContext.getObject().key;
             label = oContext.getObject().label;
             var minWidth = "100%";
-            if(count>14){
-                var minWidth = "120px";
+            if(count>=14){
+                var minWidth = "130px";
             }
             if (columnName === "actions") {
                 var oHBox = new sap.m.HBox({}); // Create Text instance 

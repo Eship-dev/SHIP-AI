@@ -1,0 +1,89 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <Dialog
+        id="idReturnLabelEditDialog"
+        contentWidth="40%"
+        contentHeight="70%" >
+     <customHeader>
+    <Toolbar>
+        <Title text="Return Address Information" />
+            <ToolbarSpacer />
+                <Button 
+                    icon="sap-icon://decline" 
+                    press="onReturnLabelEditDialogClosePress" 
+                    type="Transparent" />
+    </Toolbar>
+    </customHeader>
+
+    <f:SimpleForm 
+            class="customSimpleFormShadow"
+            width="auto"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			labelSpanXL="4"
+			labelSpanL="4"
+			labelSpanM="12"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="0"
+			emptySpanL="0"
+			emptySpanM="0"
+			emptySpanS="0"
+			columnsXL="2"
+			columnsL="2"
+			columnsM="2"
+			singleContainerFullSize="false" >
+			<f:content>
+				<core:Title text="Contact Info" icon="sap-icon://customer-briefing" />
+				<Label text="Contact Name" />
+				<Input value="{}" />
+				<Label text="Email" />
+				<Input value="{}" />
+				<core:Title  />
+                <Label text="Company Name" />
+				<Input value="{}" />
+                <Label text="Phone No" />
+				<Input value="{}" />
+			</f:content>
+		</f:SimpleForm>
+
+
+        <f:SimpleForm 
+            class="customSimpleFormShadow"
+            width="auto"
+			editable="true" layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="2" >
+			<f:content>
+				<core:Title text="Address Info" icon="sap-icon://customer-briefing" />
+				<Label text="Address Line 1" />
+				<Input value="{}" />
+				<Label text="City"/>
+				<Input value="{}" >
+					<layoutData>
+						<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+					</layoutData>
+				</Input>
+				<Input value="{}" placeholder="State" />
+
+				<Label text="Address Line 2" />
+				<Input value="{}" />
+				<Label text="Zip / Postal Code" />
+				<Input value="{}" >
+					<layoutData>
+						<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+					</layoutData>
+				</Input>
+				<Input value="{}" placeholder="Country" />
+			</f:content>
+		</f:SimpleForm>
+		<footer>
+			<OverflowToolbar >
+				<Button text="Cancel" type="Ghost" press="onReturnLabelEditDialogClosePress" ></Button>
+				<ToolbarSpacer ></ToolbarSpacer>
+				<Button text="Save" type="Success" ></Button>
+			</OverflowToolbar>
+		</footer>
+    </Dialog>
+</core:FragmentDefinition>
