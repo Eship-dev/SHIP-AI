@@ -116,9 +116,9 @@
             }
         },
         "rootView": {
-            "viewName": "com.eshipjet.zeshipjet.view.App",
+            "viewName": "com.eshipjet.zeshipjet.view.Eshipjet",
             "type": "XML",
-            "id": "App"
+            "id": "app"
         }
     }
 }
