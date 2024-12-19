@@ -3617,6 +3617,128 @@
         }
     ],
     "TrackingRangeTableRows": [],
+    "CreateReqLabelTabelColumns":[
+        {
+            "key": "locationName",
+            "label": "Location Name",
+            "visible": true
+        },
+        {
+            "key": "itemNo",
+            "label": "Item No",
+            "visible": true
+        },
+        {
+            "key": "productNo",
+            "label": "Product No",
+            "visible": true
+        },
+        {
+            "key": "desc",
+            "label": "Description",
+            "visible": true
+        },
+        {
+            "key": "quantity",
+            "label": "Quantity",
+            "visible": true
+        },
+        {
+            "key": "DG",
+            "label": "DG",
+            "visible": true
+        },
+        {
+            "key": "EPC-RFID No",
+            "label": "Unit Weight",
+            "visible": true
+        },
+        {
+            "key": "unitCost",
+            "label": "Unit Cost",
+            "visible": true
+        },
+        {
+            "key": "unitWeight",
+            "label": "Unit Weight",
+            "visible": true
+        },
+        {
+            "key": "dimensions",
+            "label": "Dimensions",
+            "visible": true
+        },
+        {
+            "key": "harmonizedcode",
+            "label": "Harmonized Code",
+            "visible": true
+        },
+        {
+            "key": "eccn",
+            "label": "ECCN",
+            "visible": true
+        },
+        {
+            "key": "unNo",
+            "label": "Un No",
+            "visible": true
+        },
+        {
+            "key": "class",
+            "label": "Class",
+            "visible": true
+        },
+        {
+            "key": "nmfc",
+            "label": "NMFC",
+            "visible": true
+        },
+        {
+            "key": "uom",
+            "label": "UOM",
+            "visible": true
+        },
+        {
+            "key": "Category",
+            "label": "Category",
+            "visible": true
+        },
+        {
+            "key": "Serial",
+            "label": "Serial",
+            "visible": true
+        },
+        {
+            "key": "Batch",
+            "label": "Batch",
+            "visible": true
+        },
+        {
+            "key": "Stackable",
+            "label": "Stackable",
+            "visible": true
+        },
+        {
+            "key": "CountryofMFR",
+            "label": "Country of MFR",
+            "visible": true
+        },
+        {
+            "key": "Currency",
+            "label": "Currency",
+            "visible": true
+        },
+        {
+            "key": "LicenseNo",
+            "label": "License No",
+            "visible": true
+        },
+        {
+            "key": "UOM",
+            "label": "UOM",
+            "visible": true
+        }
+    ],
     "DimensionsTableColumns": [
         {
             "key": "locationName",

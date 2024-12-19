@@ -61,19 +61,18 @@
                     width="1%"
                     icon="sap-icon://edit-outside"
                 />
-
                 <ToolbarSpacer />
             </Toolbar>
-            <HBox width="99%">
+            <HBox width="100%">
             <VBox width="50%">
                 <IconTabBar
                     id="idIconTabBarFiori2"
                     expanded="{device>/isNoPhone}"
                 >
                     <items>
-                        <!-- Ship From / To Tab Starts here -->
+                        <!-- Ship From  Tab Starts here -->
                         <IconTabFilter
-                            text="Ship From / To"
+                            text="Ship From"
                             key="info"
                         >
                             <VBox>
@@ -81,6 +80,7 @@
                                     editable="true"
                                     class="customSimpleFormShadow"
                                     width="auto"
+                                   
                                     layout="ColumnLayout"
                                     columnsM="2"
                                     columnsL="2"
@@ -88,8 +88,7 @@
                                 >
                                     <f:content>
                                         <Label
-                                            text="Contact Name"
-                                           
+                                            text="Contact Name"                                         
                                         />
                                         <Input
                                             value="{ShipNowDataModel>/ShipFromCONTACT}"
@@ -113,7 +112,7 @@
                                         <!-- <Label text="State / Province" /> -->
                                         <Input
                                             value="{ShipNowDataModel>/ShipFromSTATE}"
-                                            placeholder="State"
+                                            placeholder="State/Province"
                                         >
                                             <layoutData>
                                                 <f:ColumnElementData
@@ -122,10 +121,28 @@
                                                 />
                                             </layoutData>
                                         </Input>
-                                        <Label text="Email" />
+                                       <Label text="Phone No" />
                                         <Input
-                                            value="{ShipNowDataModel>/ShipFromEMAIL}"
-                                        />
+                                            value="{ShipNowDataModel>/ShipFromZIPCODE}"
+                                        >
+                                            <layoutData>
+                                                <f:ColumnElementData
+                                                    cellsSmall="6"
+                                                    cellsLarge="6"
+                                                />
+                                            </layoutData>
+                                        </Input>
+                                        <Input
+                                            selectedKey="{ShipNowDataModel>/ShipFromCOUNTRY}"
+                                            placeholder="Email"
+                                        >
+                                            <layoutData>
+                                                <f:ColumnElementData
+                                                    cellsSmall="6"
+                                                    cellsLarge="6"
+                                                />
+                                            </layoutData>
+                                        </Input>
                                         <Label text="Company Name" />
                                         <Input
                                             value="{ShipNowDataModel>/ShipFromCOMPANY}"
@@ -161,9 +178,117 @@
                                                 />
                                             </layoutData>
                                         </ComboBox>
-                                        <Label text="Phone No" />
-                                        <Input
+                                        <Label text="Address Type" />
+                                        <ComboBox
                                             value="{ShipNowDataModel>/ShipFromPHONE}"
+                                        >
+                                        <core:Item
+                                                key="{eshipjetModel>key}"
+                                                text="{eshipjetModel>key}"
+                                            />
+                                            <layoutData>
+                                                <f:ColumnElementData
+                                                    cellsSmall="6"
+                                                    cellsLarge="6"
+                                                />
+                                            </layoutData>
+                                        </ComboBox>
+                                        <CheckBox
+                                         text="RFID"  
+                                        >
+                                            
+                                            <layoutData>
+                                                <f:ColumnElementData
+                                                    cellsSmall="6"
+                                                    cellsLarge="6"
+                                                />
+                                            </layoutData>
+                                        </CheckBox>
+                                    </f:content>
+                                </f:SimpleForm>
+                            </VBox>
+                        </IconTabFilter>
+                        <IconTabFilter
+                            text="Ship To"
+                            key="Ship To"
+                        >
+                            <f:SimpleForm
+                                    editable="true"
+                                    class="customSimpleFormShadow"
+                                    width="auto"
+                                    layout="ColumnLayout"
+                                    columnsM="2"
+                                    columnsL="2"
+                                    columnsXL="2"
+                                >
+                                    <f:content>
+                                        <Label
+                                            text="Contact Name"                                         
+                                        />
+                                        <Input
+                                            value="{ShipNowDataModel>/ShipFromCONTACT}"
+                                        />
+                                        <Label text="Address Line 1" />
+                                        <Input
+                                            value="{ShipNowDataModel>/ShipFromADDRESS_LINE1}"
+                                        />
+                                        <Label text="City" />
+
+                                        <Input
+                                            value="{ShipNowDataModel>/ShipFromCITY}"
+                                        >
+                                            <layoutData>
+                                                <f:ColumnElementData
+                                                    cellsSmall="6"
+                                                    cellsLarge="6"
+                                                />
+                                            </layoutData>
+                                        </Input>
+                                        <!-- <Label text="State / Province" /> -->
+                                        <Input
+                                            value="{ShipNowDataModel>/ShipFromSTATE}"
+                                            placeholder="State/Province"
+                                        >
+                                            <layoutData>
+                                                <f:ColumnElementData
+                                                    cellsSmall="6"
+                                                    cellsLarge="6"
+                                                />
+                                            </layoutData>
+                                        </Input>
+                                       <Label text="Phone No" />
+                                        <Input
+                                            value="{ShipNowDataModel>/ShipFromZIPCODE}"
+                                        >
+                                            <layoutData>
+                                                <f:ColumnElementData
+                                                    cellsSmall="6"
+                                                    cellsLarge="6"
+                                                />
+                                            </layoutData>
+                                        </Input>
+                                        <Input
+                                            selectedKey="{ShipNowDataModel>/ShipFromCOUNTRY}"
+                                            placeholder="Email"
+                                        >
+                                            <layoutData>
+                                                <f:ColumnElementData
+                                                    cellsSmall="6"
+                                                    cellsLarge="6"
+                                                />
+                                            </layoutData>
+                                        </Input>
+                                        <Label text="Company Name" />
+                                        <Input
+                                            value="{ShipNowDataModel>/ShipFromCOMPANY}"
+                                        />
+                                        <Label text="Address Line 2" />
+                                        <Input
+                                            value="{ShipNowDataModel>/ShipFromADDRESS_LINE2}"
+                                        />
+                                        <Label text="Zip / Postal Code" />
+                                        <Input
+                                            value="{ShipNowDataModel>/ShipFromZIPCODE}"
                                         >
                                             <layoutData>
                                                 <f:ColumnElementData
@@ -173,9 +298,9 @@
                                             </layoutData>
                                         </Input>
                                         <ComboBox
-                                            selectedKey="{ShipNowDataModel>/ShipFromAddressType}"
-                                            items="{eshipjetModel>/addressType}"
-                                            placeholder="Address Type"
+                                            items="{eshipjetModel>/countriesList}"
+                                            selectedKey="{ShipNowDataModel>/ShipFromCOUNTRY}"
+                                            placeholder="Country"
                                         >
                                             <core:Item
                                                 key="{eshipjetModel>key}"
@@ -188,126 +313,34 @@
                                                 />
                                             </layoutData>
                                         </ComboBox>
+                                        <Label text="Address Type" />
+                                        <ComboBox
+                                            value="{ShipNowDataModel>/ShipFromPHONE}"
+                                        >
+                                        <core:Item
+                                                key="{eshipjetModel>key}"
+                                                text="{eshipjetModel>key}"
+                                            />
+                                            <layoutData>
+                                                <f:ColumnElementData
+                                                    cellsSmall="6"
+                                                    cellsLarge="6"
+                                                />
+                                            </layoutData>
+                                        </ComboBox>
+                                        <CheckBox
+                                         text="RFID"  
+                                        >    
+                                            <layoutData>
+                                                <f:ColumnElementData
+                                                    cellsSmall="6"
+                                                    cellsLarge="6"
+                                                />
+                                            </layoutData>
+                                        </CheckBox>
                                     </f:content>
                                 </f:SimpleForm>
-                            </VBox>
                         </IconTabFilter>
-                        <IconTabFilter
-                            text="Ship To"
-                            key="Ship To"
-                        >
-                            <f:SimpleForm
-                                editable="true"
-                                class="customSimpleFormShadow"
-                                width="auto"
-                                layout="ColumnLayout"
-                                columnsM="2"
-                                columnsL="2"
-                                columnsXL="2"
-                            >
-                                <f:content>
-                                    <Label text="Contact Name" />
-                                    <Input
-                                        value="{ShipNowDataModel>/ShipToCONTACT}"
-                                    />
-                                    <Label text="Address Line 1" />
-                                    <Input
-                                        value="{ShipNowDataModel>/ShipToADDRESS_LINE1}"
-                                    />
-                                    <Label text="State / Province" />
-                                    <Input
-                                        value="{ShipNowDataModel>/ShipToSTATE}"
-                                    >
-                                        <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
-                                        </layoutData>
-                                    </Input>
-                                    <Input
-                                        value="{ShipNowDataModel>/ShipToCITY}"
-                                        placeholder="City"
-                                    >
-                                        <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
-                                        </layoutData>
-                                    </Input>
-                                    <Label text="Email" />
-                                    <Input
-                                        value="{ShipNowDataModel>/ShipToEMAIL}"
-                                    />
-                                    <Label text="Company Name" />
-                                    <Input
-                                        value="{ShipNowDataModel>/ShipToCOMPANY}"
-                                    />
-                                    <Label text="Address Line 2" />
-                                    <Input
-                                        value="{ShipNowDataModel>/ShipToADDRESS_LINE2}"
-                                    />
-                                    <Label text="Zip / Postal Code" />
-                                    <Input
-                                        value="{ShipNowDataModel>/ShipToZIPCODE}"
-                                    >
-                                        <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
-                                        </layoutData>
-                                    </Input>
-                                    <ComboBox
-                                        selectedKey="{ShipNowDataModel>/ShipToCOUNTRY}"
-                                        items="{eshipjetModel>/shipNowCountriesList}"
-                                        placeholder="Country"
-                                    >
-                                        <core:Item
-                                            key="{eshipjetModel>country}"
-                                            text="{eshipjetModel>/country}"
-                                        />
-                                        <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
-                                        </layoutData>
-                                    </ComboBox>
-                                    <Label text="Phone No" />
-                                    <Input
-                                        value="{ShipNowDataModel>/ShipToPHONE}"
-                                    >
-                                        <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
-                                        </layoutData>
-                                    </Input>
-                                    <ComboBox
-                                        selectedKey="{ShipNowDataModel>/ShipToAddressType}"
-                                        items="{eshipjetModel>/shipNowAddressType}"
-                                        placeholder="Address Type"
-                                    >
-                                        <core:Item
-                                            key="{eshipjetModel/addressType}"
-                                            text="{eshipjetModel>addressType}"
-                                        />
-                                        <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
-                                        </layoutData>
-                                    </ComboBox>
-                                    <Label text="RFID" />
-                                    <CheckBox />
-                                </f:content>
-                            </f:SimpleForm>
-                        </IconTabFilter>
-
                         <IconTabFilter key="add" />
                     </items>
                 </IconTabBar>
@@ -334,21 +367,20 @@
                                 columnsXL="2"
                             >
                                 <f:content>
-                                    <Label text="Contact Name" />
+                                    <Label text="Ship Method" />
+                                   <ComboBox ></ComboBox>
+                                    <Label text="Account No" />
                                     <Input />
-                                    <Label text="Phone No" />
-                                    <Input />
-                                    <Label text="Company Name" />
-                                    <Input />
-                                    <Label text="Email" />
-                                    <Input />
-                                    <Label text="Company Name" />
-                                    <Input />
-                                    <Label text="Email" />
+                                    <Label text="Cost Center" />
+                                    <ComboBox ></ComboBox>
+                                    <Label text="Service Name" />
+                                    <ComboBox ></ComboBox>
+                                    <Label text="Payment Type" />
+                                     <ComboBox ></ComboBox>
+                                    <Label text="PO No" />
                                     <Input />
                                 </f:content>
                             </f:SimpleForm>
-
                             <Toolbar
                                 class="toolbarbottomborder"
                                 height="10%"
@@ -372,5 +404,21 @@
                 </VBox>
             </HBox>
         </content>
+       
+        <Table	id="myTrackingRangeColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/TrackingRangeTableColumns'}" >
+		<ColumnListItem id="_IDGenTrackingRangeColumnListItem1" vAlign="Middle">
+			<cells>				
+				<Text text="{eshipjetModel>label}" />				
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column >
+				<header>
+					<Text text="Select All" />
+				</header>
+			</Column>			
+		</columns>
+        </Table>
+        
     </Page>
 </mvc:View>
