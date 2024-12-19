@@ -1,4 +1,4 @@
-<mvc:View
+<core:FragmentDefinition
     controllerName="eshipjetfp.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
@@ -8,32 +8,23 @@
     xmlns:f="sap.ui.layout.form"
     xmlns:semantic="sap.m.semantic"
     xmlns:ui="sap.ca.ui"
-    height="100%"
->
-    <Page
-        id="idHomePage"
-        title="SAP ShipperCopilot 6.4"
-        showHeader="false"
-    >
-        <content>
+    height="100%" >
+
             <Toolbar
                 class="sapUiTinyMarginTop"
                 height="10%"
-                width="99%"
-            >
+                width="99%" >
                 <ComboBox width="12%" />
                 <Label
                     width="5%"
                     text="Order Type"
                     wrapping="true"
-                    labelFor="SAPDelLabel"
-                />
+                    labelFor="SAPDelLabel" />
 
                 <ComboBox width="12%" />
                 <Label
                     width="7%"
-                    text="Shipment Type"
-                />
+                    text="Shipment Type" />
 
                 <ComboBox width="7%" />
                 <Label text="Category" />
@@ -41,14 +32,12 @@
                 <ComboBox width="7%" />
                 <Label
                     width="7%"
-                    text="Shipment Date"
-                />
+                    text="Shipment Date" />
                 <DatePicker width="7%" />
 
                 <Label
                     width="6%"
-                    text="Requester"
-                />
+                    text="Requester" />
                 <ComboBox width="7%" />
 
                 <Label
@@ -66,15 +55,12 @@
             <HBox width="100%">
             <VBox width="50%">
                 <IconTabBar
-                   
-                    expanded="{device>/isNoPhone}"
-                >
+                    expanded="{device>/isNoPhone}" >
                     <items>
                         <!-- Ship From  Tab Starts here -->
                         <IconTabFilter
                             text="Ship From"
-                            key="info"
-                        >
+                            key="info" >
                             <VBox>
                                 <f:SimpleForm
                                     editable="true"
@@ -403,7 +389,6 @@
                 </IconTabBar>
                 </VBox>
             </HBox>
-        </content>
        
         <Table	id="myShipReqLabelColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/TrackingRangeTableColumns'}" >
 		<ColumnListItem vAlign="Middle">
@@ -420,5 +405,4 @@
 		</columns>
         </Table>
         
-    </Page>
-</mvc:View>
+</core:FragmentDefinition>

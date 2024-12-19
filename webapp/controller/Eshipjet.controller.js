@@ -1231,6 +1231,12 @@ sap.ui.define([
             this.byId("idShipReqFilterPopover").close();
         },
 
+        onCreateReqLabelPress:function(){
+            var oView = this.getView();
+            var oPageContainer = this.byId("pageContainer");
+            oPageContainer.to(oView.createId("_ID_CreateShipReqLabel_TableScrollContainer"));
+        },
+
         // Ship Request/Lable Code Changes ENd
 
 
