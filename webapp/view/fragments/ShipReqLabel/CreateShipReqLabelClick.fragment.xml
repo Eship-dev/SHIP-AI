@@ -66,7 +66,7 @@
             <HBox width="100%">
             <VBox width="50%">
                 <IconTabBar
-                    id="idIconTabBarFiori2"
+                   
                     expanded="{device>/isNoPhone}"
                 >
                     <items>
@@ -347,7 +347,7 @@
 </VBox>
 <VBox width="50%">
                 <IconTabBar
-                    id="idIconTabBarFiori3"
+                   
                     expanded="{device>/isNoPhone}"
                 >
                     <items>
@@ -405,8 +405,8 @@
             </HBox>
         </content>
        
-        <Table	id="myTrackingRangeColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/TrackingRangeTableColumns'}" >
-		<ColumnListItem id="_IDGenTrackingRangeColumnListItem1" vAlign="Middle">
+        <Table	id="myShipReqLabelColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/TrackingRangeTableColumns'}" >
+		<ColumnListItem vAlign="Middle">
 			<cells>				
 				<Text text="{eshipjetModel>label}" />				
 			</cells>
