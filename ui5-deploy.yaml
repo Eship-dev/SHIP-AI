@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: com.eshipjet.zeshipjet
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: Eshipjet-ESJ
+          url: https://sapdemo.eshipjet.com:44300
+          client: '200'
+        app:
+          name: ZESHIPJET
+          package: zeshipjet
+          transport: ESJK900059
+        exclude:
+          - /test/

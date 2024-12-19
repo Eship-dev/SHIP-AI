@@ -1,0 +1,12 @@
+{
+    "base": "./dist",
+    "conn_client": "200",
+    "conn_usestrictssl": false,
+    "conn_server": "https://sapdemo.eshipjet.com:44300",
+    "conn_user": "basis",
+    "conn_password": "Eshipjet123",
+    "abap_package": "zeshipjet",
+    "abap_transport": "ESJK900059",
+    "abap_bsp": "zeshipjet",
+    "abap_bsp_text": "Package for Eshipjet"
+}
