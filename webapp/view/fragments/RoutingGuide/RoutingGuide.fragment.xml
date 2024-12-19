@@ -1,0 +1,40 @@
+<core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
+
+	    <Toolbar height="20%" width="100%" >
+			<VBox width="100%" >
+				<Text text="RoutingGuide" class="sapUiSmallMargin textBold" ></Text>
+				<Text text="25" class="sapUiSmallMarginBegin textBold" ></Text>
+				<Text text="Total" class="sapUiSmallMarginBegin"></Text>
+				<Button type="Emphasized" width="98%" class="sapUiSmallMargin" ></Button>
+			</VBox>
+		</Toolbar>
+
+        <ui:Table id="idRoutingGuideTable"
+                class="sapUiTinyMarginTop"
+				selectionMode="None"
+				visibleRowCount="12">
+					<ui:extension>
+						<OverflowToolbar>
+							<Button icon="sap-icon://filter" press="onRoutingGuideFilterPopoverPress"></Button>
+							<ToolbarSpacer ></ToolbarSpacer>
+							<Button icon="sap-icon://action" press="onRoutingGuideExportToExcel" ></Button>
+                            <Button icon="sap-icon://action-settings" press="openRoutingGuideColNamesPopover" >
+                                <customData>
+                                    <core:CustomData key="remember" value="true" />
+                                    <core:CustomData key="showClearButton" value="true" />
+                                    <core:CustomData key="confirmButtonText" value="Ok" />
+                                </customData>
+							</Button>										
+						</OverflowToolbar>
+					</ui:extension>
+		</ui:Table>
+					<Toolbar >
+						<ToolbarSpacer/>
+						<Button  text="First" enabled="false" />
+						<Button  text="Previous" enabled="false"/>
+						<Text    text="1-50 of 74"/>
+						<Button  text="Next" />
+						<Button  text="Last" />
+					</Toolbar>
+</core:FragmentDefinition>

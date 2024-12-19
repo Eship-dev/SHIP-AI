@@ -1,0 +1,38 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover  contentWidth="20%" placement="Left" contentHeight="40%">
+		<customHeader>
+			<VBox >
+				<Toolbar class="toolbarbottombRoutingGuide">
+					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="Columns"></Title>
+					<ToolbarSpacer ></ToolbarSpacer>					
+					<Button icon="sap-icon://decline" press="onRoutingGuideColSelectClosePress"></Button>
+				</Toolbar>
+				<SearchField placeholder="Search Columns"   liveChange="onRoutingGuideColNameSearch"></SearchField>
+			</VBox>
+		</customHeader>
+		<content>
+        <Table	id="myRoutingGuideColumnSelectId" mode="MultiSelect" items="{path : 'RoutingGuideTableDataModel>/RoutingGuideColumns'}" >
+		<ColumnListItem id="_IDGenRoutingGuideColumnListItem1" vAlign="Middle">
+			<cells>				
+				<Text text="{RoutingGuideTableDataModel>label}" visible="{= ${RoutingGuideTableDataModel>label} === 'Actions' ? false : true }" />				
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column >
+				<header>
+					<Text text="Select All" />
+				</header>
+			</Column>			
+		</columns>
+        </Table>
+        </content>
+        <footer>
+            <Toolbar >
+                <ToolbarSpacer />
+                <Button text="Apply" press="onoRoutingGuideColSelectOkPress" type="Emphasized"></Button>               
+            </Toolbar>
+        </footer>      
+	</Popover>   
+</core:FragmentDefinition>
