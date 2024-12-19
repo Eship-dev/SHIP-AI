@@ -127,15 +127,15 @@
     ],
     "TileCollection": [
         {
-            "image": "css/images/shiprequest.png",
+            "image": "../css/images/shiprequest.png",
             "title": "Ship Request/Label"
         },
         {
-            "image": "css/images/shipnow.png",
+            "image": "../css/images/shipnow.png",
             "title": "Ship Now"
         },
         {
-            "image": "css/images/track.png",
+            "image": "../css/images/track.png",
             "title": "Track Now"
         }
     ],
