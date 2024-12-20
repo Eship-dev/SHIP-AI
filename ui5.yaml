@@ -21,6 +21,11 @@ server:
             client: '200'
             destination: Eshipjet-ESJ
             authenticationType: BasicAuthentication
+          - path: /sap
+            url: https://sapdemo.eshipjet.com:44300
+            client: '200'
+            destination: Eshipjet-ESJ
+            authenticationType: BasicAuthentication
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

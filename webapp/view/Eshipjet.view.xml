@@ -120,6 +120,7 @@
 				<!-- Ship Now Starts here -->
 					<ScrollContainer id="ShipNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ShipNow.ShipNow" type="XML" />
+						<!-- <mvc:XMLView viewName="com.eshipjet.zeshipjet.view.ShipNow"/> -->
 					</ScrollContainer>
 
 				<!-- Quote Now Starts here -->

@@ -327,71 +327,79 @@ sap.ui.define([
         // Ship Now changes starts here
 
         onShipNowGetPress: async function () {
-            var that = this;
-            BusyIndicator.show();
-            const sUserMessage = this.getView().byId("idShipNowSearch").getValue();
-            if (!sUserMessage) {
-                MessageToast.show("Please Enter Request ID.");
-                BusyIndicator.hide();
-                return;
-            }
-            this.getView().byId("idShipNowSearch").setValue("");
-            var obj = {
-                "message": "ship " + sUserMessage // Match DeliveryNo in the message if needed
-            }
-            var sPath = "https://eshipjet-demo-srv-hvacbxf0fqapdpgd.francecentral-01.azurewebsites.net/copilot/v1/bot/process";
+            // var that = this;
+            // BusyIndicator.show();
+            // const sUserMessage = this.getView().byId("idShipNowSearch").getValue();
+            // if (!sUserMessage) {
+            //     MessageToast.show("Please Enter Request ID.");
+            //     BusyIndicator.hide();
+            //     return;
+            // }
+            // this.getView().byId("idShipNowSearch").setValue("");
+            // var obj = {
+            //     "message": "ship " + sUserMessage // Match DeliveryNo in the message if needed
+            // }
+            // var sPath = "https://eshipjet-demo-srv-hvacbxf0fqapdpgd.francecentral-01.azurewebsites.net/copilot/v1/bot/process";
 
-            return new Promise((resolve, reject) => {
-                $.ajax({
-                    url: sPath, // Replace with your API endpoint
-                    method: "POST",
-                    contentType: "application/json", // Set content type to JSON if sending JSON data
-                    data: JSON.stringify(obj),
-                    success: function (response) {
-                        var ShipNowDataModel = that.getView().getModel("ShipNowDataModel");
-                        var obj = {
-                            "sapShipmentID": response.HeaderInfo.DocumentNumber,
-                            "ShipFromCONTACT": response.ShipFrom.CONTACT,
-                            "ShipFromCOMPANY": response.ShipFrom.COMPANY,
-                            "ShipFromPHONE": response.ShipFrom.PHONE,
-                            "ShipFromEMAIL": response.ShipFrom.EMAIL,
-                            "ShipFromCITY": response.ShipFrom.CITY,
-                            "ShipFromSTATE": response.ShipFrom.STATE,
-                            "ShipFromCOUNTRY": response.ShipFrom.COUNTRY,
-                            "ShipFromZIPCODE": response.ShipFrom.ZIPCODE,
-                            "ShipFromADDRESS_LINE1": response.ShipFrom.ADDRESS_LINE1,
-                            "ShipFromADDRESS_LINE2": response.ShipFrom.ADDRESS_LINE2,
-                            "ShipFromADDRESS_LINE3": response.ShipFrom.ADDRESS_LINE3,
+            // return new Promise((resolve, reject) => {
+            //     $.ajax({
+            //         url: sPath, // Replace with your API endpoint
+            //         method: "POST",
+            //         contentType: "application/json", // Set content type to JSON if sending JSON data
+            //         data: JSON.stringify(obj),
+            //         success: function (response) {
+            //             var ShipNowDataModel = that.getView().getModel("ShipNowDataModel");
+            //             var obj = {
+            //                 "sapShipmentID": response.HeaderInfo.DocumentNumber,
+            //                 "ShipFromCONTACT": response.ShipFrom.CONTACT,
+            //                 "ShipFromCOMPANY": response.ShipFrom.COMPANY,
+            //                 "ShipFromPHONE": response.ShipFrom.PHONE,
+            //                 "ShipFromEMAIL": response.ShipFrom.EMAIL,
+            //                 "ShipFromCITY": response.ShipFrom.CITY,
+            //                 "ShipFromSTATE": response.ShipFrom.STATE,
+            //                 "ShipFromCOUNTRY": response.ShipFrom.COUNTRY,
+            //                 "ShipFromZIPCODE": response.ShipFrom.ZIPCODE,
+            //                 "ShipFromADDRESS_LINE1": response.ShipFrom.ADDRESS_LINE1,
+            //                 "ShipFromADDRESS_LINE2": response.ShipFrom.ADDRESS_LINE2,
+            //                 "ShipFromADDRESS_LINE3": response.ShipFrom.ADDRESS_LINE3,
 
-                            "ShipToCONTACT": response.ShipTo.CONTACT,
-                            "ShipToCOMPANY": response.ShipTo.COMPANY,
-                            "ShipToPHONE": response.ShipTo.PHONE,
-                            "ShipToEMAIL": response.ShipFrom.EMAIL,
-                            "ShipToCITY": response.ShipTo.CITY,
-                            "ShipToSTATE": response.ShipTo.STATE,
-                            "ShipToCOUNTRY": response.ShipTo.COUNTRY,
-                            "ShipToZIPCODE": response.ShipTo.ZIPCODE,
-                            "ShipToADDRESS_LINE1": response.ShipTo.ADDRESS_LINE1,
-                            "ShipToADDRESS_LINE2": response.ShipTo.ADDRESS_LINE2,
-                            "ShipToADDRESS_LINE3": response.ShipTo.ADDRESS_LINE3
-                        }
+            //                 "ShipToCONTACT": response.ShipTo.CONTACT,
+            //                 "ShipToCOMPANY": response.ShipTo.COMPANY,
+            //                 "ShipToPHONE": response.ShipTo.PHONE,
+            //                 "ShipToEMAIL": response.ShipFrom.EMAIL,
+            //                 "ShipToCITY": response.ShipTo.CITY,
+            //                 "ShipToSTATE": response.ShipTo.STATE,
+            //                 "ShipToCOUNTRY": response.ShipTo.COUNTRY,
+            //                 "ShipToZIPCODE": response.ShipTo.ZIPCODE,
+            //                 "ShipToADDRESS_LINE1": response.ShipTo.ADDRESS_LINE1,
+            //                 "ShipToADDRESS_LINE2": response.ShipTo.ADDRESS_LINE2,
+            //                 "ShipToADDRESS_LINE3": response.ShipTo.ADDRESS_LINE3
+            //             }
 
-                        ShipNowDataModel.setData(obj);
-                        ShipNowDataModel.updateBindings(true);
-                        // eshipjetModel.setProperty("/scanShipTableData/ScanShipTableLength", rows.length);
-                        // Handle successful response
-                        BusyIndicator.hide();
-                        resolve(response);
-                        console.log("Success:", response);
-                    },
-                    error: function (error) {
-                        // Handle error
-                        BusyIndicator.hide();
-                        reject(error);
-                        console.log("Error:", error);
-                    }
-                });
-            });
+            //             ShipNowDataModel.setData(obj);
+            //             ShipNowDataModel.updateBindings(true);
+            //             BusyIndicator.hide();
+            //             resolve(response);
+            //             console.log("Success:", response);
+            //         },
+            //         error: function (error) {
+            //             // Handle error
+            //             BusyIndicator.hide();
+            //             reject(error);
+            //             console.log("Error:", error);
+            //         }
+            //     });
+            // });
+            var oDeliveryModel = this.getView().getModel("OutBoundDeliveryModel");
+            var sPath = "/A_OutbDeliveryHeader('80000001')";
+            oDeliveryModel.read(sPath,{
+                success:function(oData){
+                    var data = oData;
+                },
+                error: function(oErr){
+                    var err = oErr;
+                }
+            })
         },
 
         onShipNowCodEditPress:function(){

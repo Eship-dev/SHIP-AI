@@ -21,7 +21,16 @@
                 "type": "OData",
                 "settings": {
                     "annotations": [],
-                    "localUri": "localService/metadata.xml",
+                    "localUri": "localService/SHIP_SRV/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "API_OUTBOUND_DELIVERY_SRV": {
+                "uri": "/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/API_OUTBOUND_DELIVERY_SRV/metadata.xml",
                     "odataVersion": "2.0"
                 }
             }
@@ -46,8 +55,8 @@
     "sap.ui5": {
         "flexEnabled": true,
         "config": {
-			"fullWidth": true
-		},
+            "fullWidth": true
+        },
         "dependencies": {
             "minUI5Version": "1.131.0",
             "libs": {
@@ -73,6 +82,18 @@
             "": {
                 "preload": true,
                 "dataSource": "SHIP_SRV",
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "OutBoundDeliveryModel": {
+                "dataSource": "API_OUTBOUND_DELIVERY_SRV",
+                "preload": true,
                 "settings": {
                     "defaultBindingMode": "TwoWay",
                     "defaultCountMode": "Inline",
