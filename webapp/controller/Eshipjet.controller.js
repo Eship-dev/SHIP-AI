@@ -943,7 +943,7 @@ sap.ui.define([
                     });
                 }
             });
-            oTable.bindRows("/rows");
+            oTable.bindRows("/orderRows");
         },
 
         openOrderColNamesPopover: function (oEvent) {
