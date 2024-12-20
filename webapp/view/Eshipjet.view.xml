@@ -263,7 +263,10 @@
 			</NavContainer>
 		</tnt:mainContents>
 	</tnt:ToolPage>
-	    <OverflowToolbar class="eship-footer" visible="{eshipjetModel>/allViewsFooter}">
+	    
+	  </App>
+
+	  <OverflowToolbar class="eship-footer" visible="{eshipjetModel>/allViewsFooter}">
 			<ToolbarSpacer/>
 				<Text text="© copyright 2024 eshipjet.ai, Inc. All rights reserved."/>
 			<ToolbarSpacer/>
@@ -275,5 +278,5 @@
 			<ToolbarSpacer/>
 				<Button text="Ship Now" class="ship-now-footer_ship-now" />
 		</OverflowToolbar>
-	  </App>
+		
 </mvc:View>

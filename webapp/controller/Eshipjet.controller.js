@@ -580,7 +580,7 @@ sap.ui.define([
 
         ScanShipColumnsVisiblity: function () {
             var oView = oController.getView();
-            var oScanTableModel = oView.getModel("eshipjetModel");
+            var oScanTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = oScanTableModel.getProperty("/scanShipTableData/columns");
             var oScanTable = oView.byId("myScanColumnSelectId");
             var aTableItems = oScanTable.getItems();
@@ -967,7 +967,7 @@ sap.ui.define([
 
         OrderColumnsVisiblity: function () {
             var oView = oController.getView();
-            var oOrderTableModel = oView.getModel("eshipjetModel");
+            var oOrderTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = oOrderTableModel.getProperty("/OrderTableData/OrderColumns");
             var oOrderTable = oView.byId("myOrderColumnSelectId");
             var aTableItems = oOrderTable.getItems();
@@ -1148,7 +1148,7 @@ sap.ui.define([
 
         RoutingGuideColumnsVisiblity: function () {
             var oView = oController.getView();
-            var oRoutingGuideTableModel = oView.getModel("eshipjetModel");
+            var oRoutingGuideTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = oRoutingGuideTableModel.getProperty("/RoutingGuideTableData/RoutingGuideColumns");
             var oRoutingGuideTable = oView.byId("myRoutingGuideColumnSelectId");
             var aTableItems = oRoutingGuideTable.getItems();
@@ -1326,7 +1326,7 @@ sap.ui.define([
 
         ShipReqColumnsVisiblity: function () {
             var oView = oController.getView();
-            var oShipReqTableModel = oView.getModel("eshipjetModel");
+            var oShipReqTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = oShipReqTableModel.getProperty("/ShipReqTableData/ShipReqColumns");
             var oShipReqTable = oView.byId("myShipReqColumnSelectId");
             var aTableItems = oShipReqTable.getItems();
@@ -1484,7 +1484,7 @@ sap.ui.define([
 
         CreateShipReqColumnsVisiblity: function () {
             var oView = oController.getView();
-            var oCreateShipReqTableModel = oView.getModel("eshipjetModel");
+            var oCreateShipReqTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = oCreateShipReqTableModel.getProperty("/ShipReqTableData/CreateShipReqColumns");
             var oCreateShipReqTable = oView.byId("myCreateShipReqColumnSelectId");
             var aTableItems = oCreateShipReqTable.getItems();
@@ -1635,7 +1635,7 @@ sap.ui.define([
 
         TrackNowColumnsVisiblity: function () {
             var oView = oController.getView();
-            var oTrackNowTableModel = oView.getModel("eshipjetModel");
+            var oTrackNowTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = oTrackNowTableModel.getProperty("/TrackNowTableData/TrackNowColumns");
             var oTrackNowTable = oView.byId("myTrackNowColumnSelectId");
             var aTableItems = oTrackNowTable.getItems();
@@ -1817,7 +1817,7 @@ sap.ui.define([
 
         ManifestColumnsVisiblity: function () {
             var oView = oController.getView();
-            var oManifestTableModel = oView.getModel("eshipjetModel");
+            var oManifestTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = oManifestTableModel.getProperty("/ManifestTableData/ManifestColumns");
             var oManifestTable = oView.byId("myManifestColumnSelectId");
             var aTableItems = oManifestTable.getItems();
@@ -1992,7 +1992,7 @@ sap.ui.define([
 
         BatchShipColumnsVisiblity: function () {
             var oView = oController.getView();
-            var oBatchShipTableModel = oView.getModel("eshipjetModel");
+            var oBatchShipTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = oBatchShipTableModel.getProperty("/BatchShipTableData/BatchShipColumns");
             var oBatchShipTable = oView.byId("myBatchShipColumnSelectId");
             var aTableItems = oBatchShipTable.getItems();
@@ -2137,7 +2137,7 @@ sap.ui.define([
         handlePopoverListItemPress: function (oEvent) {
             var oSrc = oEvent.getSource();
             var oView = oController.getView();
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             eshipjetModel.setProperty("/allViewsFooter", true);
             eshipjetModel.setProperty("/shipNowViewFooter", false);
             var oCurrObj = oSrc.getBindingContext().getObject();
@@ -2381,7 +2381,7 @@ sap.ui.define([
 
         AddressBookColumnsVisiblity: function () {
             var oView = oController.getView();
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = eshipjetModel.getProperty("/AddressBookTableColumns");
             var oAddressBookTable = oView.byId("myAddressBookColumnSelectId");
             var aTableItems = oAddressBookTable.getItems();
@@ -2412,7 +2412,7 @@ sap.ui.define([
         onAddressBookColSelectOkPress: function () {
             var oView = this.getView();
             var oAddressBookTable = oView.byId("myAddressBookColumnSelectId");
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var oTable = oView.byId("_IDAddressBookTable")
             oTable.setModel(eshipjetModel);
 
@@ -2530,7 +2530,7 @@ sap.ui.define([
 
         UsersColumnsVisiblity: function () {
             var oView = oController.getView();
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = eshipjetModel.getProperty("/UsersTableColumns");
             var oUsersTable = oView.byId("myUsersColumnSelectId");
             var aTableItems = oUsersTable.getItems();
@@ -2561,7 +2561,7 @@ sap.ui.define([
         onUsersColSelectOkPress: function () {
             var oView = this.getView();
             var oUsersTable = oView.byId("myUsersColumnSelectId");
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var oTable = oView.byId("_IDUsersTable")
             oTable.setModel(eshipjetModel);
 
@@ -2678,7 +2678,7 @@ sap.ui.define([
 
         RolesColumnsVisiblity: function () {
             var oView = oController.getView();
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = eshipjetModel.getProperty("/RolesTableColumns");
             var oRolesTable = oView.byId("myRolesColumnSelectId");
             var aTableItems = oRolesTable.getItems();
@@ -2709,7 +2709,7 @@ sap.ui.define([
         onRolesColSelectOkPress: function () {
             var oView = this.getView();
             var oRolesTable = oView.byId("myRolesColumnSelectId");
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var oTable = oView.byId("_IDRolesTable")
             oTable.setModel(eshipjetModel);
 
@@ -2825,7 +2825,7 @@ sap.ui.define([
 
         CarrierCatalogColumnsVisiblity: function () {
             var oView = oController.getView();
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = eshipjetModel.getProperty("/CarrierCatalogTableColumns");
             var oCarrierCatalogTable = oView.byId("myCarrierCatalogColumnSelectId");
             var aTableItems = oCarrierCatalogTable.getItems();
@@ -2856,7 +2856,7 @@ sap.ui.define([
         onCarrierCatalogColSelectOkPress: function () {
             var oView = this.getView();
             var oCarrierCatalogTable = oView.byId("myCarrierCatalogColumnSelectId");
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var oTable = oView.byId("_IDCarriesCatalogTable")
             oTable.setModel(eshipjetModel);
 
@@ -2972,7 +2972,7 @@ sap.ui.define([
 
         CarrierAccountColumnsVisiblity: function () {
             var oView = oController.getView();
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = eshipjetModel.getProperty("/CarrierAccountsTableColumns");
             var oCarrierAccountTable = oView.byId("myCarrierAccountColumnSelectId");
             var aTableItems = oCarrierAccountTable.getItems();
@@ -3003,7 +3003,7 @@ sap.ui.define([
         onCarrierAccountColSelectOkPress: function () {
             var oView = this.getView();
             var oCarrierAccountTable = oView.byId("myCarrierAccountColumnSelectId");
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var oTable = oView.byId("_IDCarriesAccountsTable")
             oTable.setModel(eshipjetModel);
 
@@ -3119,7 +3119,7 @@ sap.ui.define([
 
         CostCenterColumnsVisiblity: function () {
             var oView = oController.getView();
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = eshipjetModel.getProperty("/CostCenterTableColumns");
             var oCostCenterTable = oView.byId("myCostCenterColumnSelectId");
             var aTableItems = oCostCenterTable.getItems();
@@ -3150,7 +3150,7 @@ sap.ui.define([
         onCostCenterColSelectOkPress: function () {
             var oView = this.getView();
             var oCostCenterTable = oView.byId("myCostCenterColumnSelectId");
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var oTable = oView.byId("_IDCostCenterTable")
             oTable.setModel(eshipjetModel);
 
@@ -3265,7 +3265,7 @@ sap.ui.define([
 
         StatusesColumnsVisiblity: function () {
             var oView = oController.getView();
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = eshipjetModel.getProperty("/StatusesTableColumns");
             var oStatusesTable = oView.byId("myStatusesColumnSelectId");
             var aTableItems = oStatusesTable.getItems();
@@ -3296,7 +3296,7 @@ sap.ui.define([
         onStatusesColSelectOkPress: function () {
             var oView = this.getView();
             var oStatusesTable = oView.byId("myStatusesColumnSelectId");
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var oTable = oView.byId("_IDStatusesTable")
             oTable.setModel(eshipjetModel);
 
@@ -3412,7 +3412,7 @@ sap.ui.define([
 
         ProductsColumnsVisiblity: function () {
             var oView = oController.getView();
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = eshipjetModel.getProperty("/ProductsTableColumns");
             var oProductsTable = oView.byId("myProductsColumnSelectId");
             var aTableItems = oProductsTable.getItems();
@@ -3443,7 +3443,7 @@ sap.ui.define([
         onProductsColSelectOkPress: function () {
             var oView = this.getView();
             var oProductsTable = oView.byId("myProductsColumnSelectId");
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var oTable = oView.byId("_IDProductsTable")
             oTable.setModel(eshipjetModel);
 
@@ -3559,7 +3559,7 @@ sap.ui.define([
 
         PackageTypesColumnsVisiblity: function () {
             var oView = oController.getView();
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = eshipjetModel.getProperty("/PackageTypeTableColumns");
             var oPackageTypesTable = oView.byId("myPackageTypesColumnSelectId");
             var aTableItems = oPackageTypesTable.getItems();
@@ -3590,7 +3590,7 @@ sap.ui.define([
         onPackageTypesColSelectOkPress: function () {
             var oView = this.getView();
             var oPackageTypesTable = oView.byId("myPackageTypesColumnSelectId");
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var oTable = oView.byId("_IDPackageTypesTable")
             oTable.setModel(eshipjetModel);
 
@@ -3706,7 +3706,7 @@ sap.ui.define([
 
         ThirdPartiesColumnsVisiblity: function () {
             var oView = oController.getView();
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = eshipjetModel.getProperty("/ThirdPartiesTableColumns");
             var oThirdPartiesTable = oView.byId("myThirdPartiesColumnSelectId");
             var aTableItems = oThirdPartiesTable.getItems();
@@ -3737,7 +3737,7 @@ sap.ui.define([
         onThirdPartiesColSelectOkPress: function () {
             var oView = this.getView();
             var oThirdPartiesTable = oView.byId("myThirdPartiesColumnSelectId");
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var oTable = oView.byId("_IDThirdPartyTable")
             oTable.setModel(eshipjetModel);
 
@@ -3853,7 +3853,7 @@ sap.ui.define([
 
         LTLClassesColumnsVisiblity: function () {
             var oView = oController.getView();
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = eshipjetModel.getProperty("/LtlClassesTableColumns");
             var oLTLClassesTable = oView.byId("myLTLClassesColumnSelectId");
             var aTableItems = oLTLClassesTable.getItems();
@@ -3884,7 +3884,7 @@ sap.ui.define([
         onLTLClassesColSelectOkPress: function () {
             var oView = this.getView();
             var oLTLClassesTable = oView.byId("myLTLClassesColumnSelectId");
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var oTable = oView.byId("_IDLTLClassTable")
             oTable.setModel(eshipjetModel);
 
@@ -4000,7 +4000,7 @@ sap.ui.define([
 
         NMFCColumnsVisiblity: function () {
             var oView = oController.getView();
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = eshipjetModel.getProperty("/NmfcTableColumns");
             var oNMFCTable = oView.byId("myNMFCColumnSelectId");
             var aTableItems = oNMFCTable.getItems();
@@ -4031,7 +4031,7 @@ sap.ui.define([
         onNMFCColSelectOkPress: function () {
             var oView = this.getView();
             var oNMFCTable = oView.byId("myNMFCColumnSelectId");
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var oTable = oView.byId("_IDNMFCTable")
             oTable.setModel(eshipjetModel);
 
@@ -4147,7 +4147,7 @@ sap.ui.define([
 
         MOTColumnsVisiblity: function () {
             var oView = oController.getView();
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = eshipjetModel.getProperty("/MotTableColumns");
             var oMOTTable = oView.byId("myMOTColumnSelectId");
             var aTableItems = oMOTTable.getItems();
@@ -4178,7 +4178,7 @@ sap.ui.define([
         onMOTColSelectOkPress: function () {
             var oView = this.getView();
             var oMOTTable = oView.byId("myMOTColumnSelectId");
-            var eshipjetModel = oView.getModel("eshipjetModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var oTable = oView.byId("_IDModeOfTransportTable")
             oTable.setModel(eshipjetModel);
 
@@ -4293,7 +4293,7 @@ sap.ui.define([
 
     LocationsColumnsVisiblity: function () {
         var oView = oController.getView();
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var aColumns = eshipjetModel.getProperty("/LocationTableColumns");
         var oLocationsTable = oView.byId("myLocationsColumnSelectId");
         var aTableItems = oLocationsTable.getItems();
@@ -4324,7 +4324,7 @@ sap.ui.define([
     onLocationsColSelectOkPress: function () {
         var oView = this.getView();
         var oLocationsTable = oView.byId("myLocationsColumnSelectId");
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var oTable = oView.byId("_IDLocationTable")
         oTable.setModel(eshipjetModel);
 
@@ -4440,7 +4440,7 @@ sap.ui.define([
 
     OrderTypesColumnsVisiblity: function () {
         var oView = oController.getView();
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var aColumns = eshipjetModel.getProperty("/OrderTypesTableColumns");
         var oOrderTypesTable = oView.byId("myOrderTypesColumnSelectId");
         var aTableItems = oOrderTypesTable.getItems();
@@ -4471,7 +4471,7 @@ sap.ui.define([
     onOrderTypesColSelectOkPress: function () {
         var oView = this.getView();
         var oOrderTypesTable = oView.byId("myOrderTypesColumnSelectId");
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var oTable = oView.byId("_IDOrderTypeTable")
         oTable.setModel(eshipjetModel);
 
@@ -4587,7 +4587,7 @@ sap.ui.define([
 
     IncotermsColumnsVisiblity: function () {
         var oView = oController.getView();
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var aColumns = eshipjetModel.getProperty("/IncoTermsTableColumns");
         var oIncotermsTable = oView.byId("myIncotermsColumnSelectId");
         var aTableItems = oIncotermsTable.getItems();
@@ -4618,7 +4618,7 @@ sap.ui.define([
     onIncotermsColSelectOkPress: function () {
         var oView = this.getView();
         var oIncotermsTable = oView.byId("myIncotermsColumnSelectId");
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var oTable = oView.byId("_ID_IncotermsTable")
         oTable.setModel(eshipjetModel);
 
@@ -4733,7 +4733,7 @@ sap.ui.define([
 
     TrackingRangeColumnsVisiblity: function () {
         var oView = oController.getView();
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var aColumns = eshipjetModel.getProperty("/TrackingRangeTableColumns");
         var oTrackingRangeTable = oView.byId("myTrackingRangeColumnSelectId");
         var aTableItems = oTrackingRangeTable.getItems();
@@ -4764,7 +4764,7 @@ sap.ui.define([
     onTrackingRangeColSelectOkPress: function () {
         var oView = this.getView();
         var oTrackingRangeTable = oView.byId("myTrackingRangeColumnSelectId");
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var oTable = oView.byId("_ID_TrackingRangeTable")
         oTable.setModel(eshipjetModel);
 
@@ -4877,7 +4877,7 @@ sap.ui.define([
 
     DimensionsColumnsVisiblity: function () {
         var oView = oController.getView();
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var aColumns = eshipjetModel.getProperty("/DimensionsTableColumns");
         var oDimensionsTable = oView.byId("myDimensionsColumnSelectId");
         var aTableItems = oDimensionsTable.getItems();
@@ -4908,7 +4908,7 @@ sap.ui.define([
     onDimensionsColSelectOkPress: function () {
         var oView = this.getView();
         var oDimensionsTable = oView.byId("myDimensionsColumnSelectId");
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var oTable = oView.byId("_ID_DimensionTable")
         oTable.setModel(eshipjetModel);
 
@@ -5024,7 +5024,7 @@ sap.ui.define([
 
     PaymentTypesColumnsVisiblity: function () {
         var oView = oController.getView();
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var aColumns = eshipjetModel.getProperty("/PaymentTypesTableColumns");
         var oPaymentTypesTable = oView.byId("myPaymentTypesColumnSelectId");
         var aTableItems = oPaymentTypesTable.getItems();
@@ -5055,7 +5055,7 @@ sap.ui.define([
     onPaymentTypesColSelectOkPress: function () {
         var oView = this.getView();
         var oPaymentTypesTable = oView.byId("myPaymentTypesColumnSelectId");
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var oTable = oView.byId("_ID_PaymentTypeTable")
         oTable.setModel(eshipjetModel);
 
@@ -5169,7 +5169,7 @@ sap.ui.define([
 
     SMTPColumnsVisiblity: function () {
         var oView = oController.getView();
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var aColumns = eshipjetModel.getProperty("/SMTPConfigsTableColumns");
         var oSMTPTable = oView.byId("mySMTPColumnSelectId");
         var aTableItems = oSMTPTable.getItems();
@@ -5200,7 +5200,7 @@ sap.ui.define([
     onSMTPColSelectOkPress: function () {
         var oView = this.getView();
         var oSMTPTable = oView.byId("mySMTPColumnSelectId");
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var oTable = oView.byId("_ID_SMTPConfigTable")
         oTable.setModel(eshipjetModel);
 
@@ -5316,7 +5316,7 @@ sap.ui.define([
 
     ERPColumnsVisiblity: function () {
         var oView = oController.getView();
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var aColumns = eshipjetModel.getProperty("/ERPTableColumns");
         var oERPTable = oView.byId("myERPColumnSelectId");
         var aTableItems = oERPTable.getItems();
@@ -5347,7 +5347,7 @@ sap.ui.define([
     onERPColSelectOkPress: function () {
         var oView = this.getView();
         var oERPTable = oView.byId("myERPColumnSelectId");
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var oTable = oView.byId("_ID_ERPTable")
         oTable.setModel(eshipjetModel);
 
@@ -5463,7 +5463,7 @@ sap.ui.define([
 
     CountriesColumnsVisiblity: function () {
         var oView = oController.getView();
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var aColumns = eshipjetModel.getProperty("/CountriesTableColumns");
         var oCountriesTable = oView.byId("myCountriesColumnSelectId");
         var aTableItems = oCountriesTable.getItems();
@@ -5494,7 +5494,7 @@ sap.ui.define([
     onCountriesColSelectOkPress: function () {
         var oView = this.getView();
         var oCountriesTable = oView.byId("myCountriesColumnSelectId");
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var oTable = oView.byId("_ID_CountriesTable")
         oTable.setModel(eshipjetModel);
 
@@ -5610,7 +5610,7 @@ sap.ui.define([
 
     EUCountriesColumnsVisiblity: function () {
         var oView = oController.getView();
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var aColumns = eshipjetModel.getProperty("/EUCountriesTableColumns");
         var oEUCountriesTable = oView.byId("myEUCountriesColumnSelectId");
         var aTableItems = oEUCountriesTable.getItems();
@@ -5641,7 +5641,7 @@ sap.ui.define([
     onEUCountriesColSelectOkPress: function () {
         var oView = this.getView();
         var oEUCountriesTable = oView.byId("myEUCountriesColumnSelectId");
-        var eshipjetModel = oView.getModel("eshipjetModel");
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var oTable = oView.byId("_ID_EUCountriesTable")
         oTable.setModel(eshipjetModel);
 
@@ -6096,7 +6096,7 @@ sap.ui.define([
     
             ShipNowConsolidationColumnsVisiblity: function () {
                 var oView = oController.getView();
-                var oShipNowConsolidationTableModel = oView.getModel("eshipjetModel");
+                var oShipNowConsolidationTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
                 var aColumns = oShipNowConsolidationTableModel.getProperty("/ShipNowConsolidationTableData/ShipNowConsolidationColumns");
                 var oShipNowConsolidationTable = oView.byId("myShipNowConsolidationColumnSelectId");
                 var aTableItems = oShipNowConsolidationTable.getItems();
