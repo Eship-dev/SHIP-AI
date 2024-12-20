@@ -5163,6 +5163,166 @@
             {"name":"Tracking Range", "viewAccess": false, "writeAccess": false, "orderFlow":14 },
             {"name":"Users", "viewAccess": false, "writeAccess": false, "orderFlow":3 }
           ]}
-        ]}
+        ]
+    },
 
+
+
+    "HeaderInfo": {
+        "DocumentNumber": "DHL-SpecialServiceTest1",
+        "ShipDate": "2024-11-26T09:11:32.358Z",
+        "TotalWeight": "020",
+        "InsuranceAmount": "",
+        "InsuranceCurrency": "",
+        "Currency": "USD",
+        "Incoterm": "DDU",
+        "Notes": "Special instructions",
+        "Description": "testing",
+        "IsDutiable": false
+    },
+    "ShipTo": {
+        "COMPANY": "",
+        "CONTACT": "",
+        "ADDRESS_LINE1": "",
+        "ADDRESS_LINE2": "",
+        "ADDRESS_LINE3": null,
+        "CITY": "",
+        "STATE": "",
+        "ZIPCODE": "",
+        "COUNTRY": "",
+        "PHONE": "",
+        "EMAIL": "",
+        "TAXID": null,
+        "VAT": null,
+        "EORI": null,
+        "LocationType": null
+    },
+    "SoldTo": {
+        "COMPANY": "",
+        "CONTACT": "",
+        "ADDRESS_LINE1": "",
+        "ADDRESS_LINE2": "",
+        "ADDRESS_LINE3": "",
+        "CITY": "",
+        "STATE": "",
+        "ZIPCODE": "",
+        "COUNTRY": "",
+        "PHONE": "",
+        "EMAIL": "",
+        "TAXID": null,
+        "VAT": null,
+        "EORI": null,
+        "LocationType": null
+    },
+    "Packages": [
+        {
+            "Quantity": 4,
+            "PackageLevelSpecialServices": {},
+            "Weightunits": "LBS",
+            "DimensionUnits": "IN",
+            "Sno": 1,
+            "HU": 6580,
+            "Weight": 2,
+            "Dimension": "12X12X12"
+        }
+    ],
+    "ShipmentLevelSpecialServices": {
+        "GoGreenPlus": true,
+        "NeutralDelivery": true,
+        "Insurance": true,
+        "PaperlessInvoice": true,
+        "DryIce": true,
+        "DryIce_value": "12",
+        "DryIce_units": "LBS"
+    },
+    "InternationalDetails": {
+        "ItemInfo": [
+            {
+                "ItemNo": "TC89003",
+                "ProductNo": "TC89003",
+                "Description": "ITEM 1 Description",
+                "IsDG": false,
+                "UnitCost": "7",
+                "UnitWeight": "6",
+                "HTSCode": "940400",
+                "ECCN": "EAR99",
+                "id": 1,
+                "Sno": 1,
+                "Quantity": "4",
+                "UOM": "",
+                "Harmonized": "940400",
+                "CountryOfMFR": "US",
+                "Currency": "USD"
+            }
+        ],
+        "TermsofShipment": "DDU",
+        "dutiesAccountnumber": "",
+        "B13AFilingOption": "",
+        "Permitnumber": "",
+        "ITN": "",
+        "iNTDutiesTaxes": "RECIPIENT",
+        "IncoTermLocation": "",
+        "CustomDecValCurrency": "USD",
+        "DutiesAccount": "",
+        "payorCountryCode": "",
+        "bookingConfirmnumber": "",
+        "ReasonforExport": "SOLD",
+        "CustomDecVal": "0.000",
+        "InvoiceNumber": "DHL-SpecialServiceTest1"
+    },
+    "CarrierDetails": {
+        "Carrier": "DHL",
+        "CarrierType": "Parcel",
+        "ServiceName": "N",
+        "PaymentType": "Sender",
+        "ShippingAccount": "965278629",
+        "BillingAccount": "",
+        "BillingCountry": "",
+        "BillingZipCode": "",
+        "Reference1": "test",
+        "Reference2": "test",
+        "UserId": "apT2vB7mV1qR1b",
+        "Password": "U#3mO^1vY!5mT@0j",
+        "AccessKey": "",
+        "ShipURL": "",
+        "TrackURL": "",
+        "RateURL": "",
+        "VoidURL": "",
+        "ShipfromCountry": "",
+        "ShipToCountry": ""
+    },
+    "ShipFrom": {
+        "COMPANY": "Eshipjet Software Inc.",
+        "CONTACT": "Steve Marsh",
+        "ADDRESS_LINE1": "5717 Legacy",
+        "ADDRESS_LINE2": "Suite 250",
+        "ADDRESS_LINE3": null,
+        "CITY": "Plano",
+        "STATE": "TX",
+        "ZIPCODE": "75024",
+        "COUNTRY": "US",
+        "PHONE": "(888) 464 2360",
+        "EMAIL": "info@eshipjet.ai",
+        "TAXID": null,
+        "VAT": null,
+        "EORI": null,
+        "LocationType": null
+    },
+    "Shipper": {
+        "COMPANY": "Eshipjet Software Inc.",
+        "CONTACT": "Steve Marsh",
+        "ADDRESS_LINE1": "5717 Legacy",
+        "ADDRESS_LINE2": "Suite 250",
+        "ADDRESS_LINE3": null,
+        "CITY": "Plano",
+        "STATE": "TX",
+        "ZIPCODE": "75024",
+        "COUNTRY": "US",
+        "PHONE": "(888) 464 2360",
+        "EMAIL": "info@eshipjet.ai",
+        "TAXID": null,
+        "VAT": null,
+        "EORI": null,
+        "LocationType": null
+    }
 }

@@ -15,7 +15,7 @@
 								<Label text="Pickup Date"   wrapping="true" labelFor="DP1" width="7%"/>
 								<DatePicker id="DP1" width="15%"   valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
 								<Label text="Ship Date" labelFor="DP2"  wrapping="true" width="7%"/>
-								<DatePicker id="DP2" width="15%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/shipDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
+								<DatePicker id="DP2" width="15%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/HeaderInfo/ShipDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
 								<Button text="New" class="scan-ship-toolbar__button" type="Ghost" width="11%" ></Button>
 								<ToolbarSpacer />
 							</Toolbar>
@@ -80,6 +80,7 @@
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</ComboBox>
+
 													<Toolbar ariaLabelledBy="idShipTo">
 														<Title id="idShipTo" text="Ship To"/>
 														<Button icon="sap-icon://customer-briefing" press="ShipNowPickAnAddressPopoverPress" id="idShipToAddressBtn" />
@@ -90,7 +91,7 @@
 													<Label text="Contact Name" />
 													<Input value="{ShipNowDataModel>/ShipToAddress/BusinessPartnerName1}" />
 													<Label text="Address Line 1" />
-													<Input value="{ShipNowDataModel>/ShipToADDRESS_LINE1}"></Input>
+													<Input value="{eshipjetModel>/ShipTo/ADDRESS_LINE1}"></Input>
 													<Label text="State / Province" />
 													<Input value="{ShipNowDataModel>/ShipToAddress/Region}" >
 														<layoutData>
@@ -103,11 +104,11 @@
 														</layoutData>									
 													</Input>
 													<Label text="Email" />
-													<Input value="{ShipNowDataModel>/ShipToEMAIL}" />
+													<Input value="{eshipjetModel>/ShipTo/EMAIL}" />
 													<Label text="Company Name" />
-													<Input value="{ShipNowDataModel>/ShipToCOMPANY}" />
+													<Input value="{eshipjetModel>/ShipTo/COMPANY}" />
 													<Label text="Address Line 2" />
-													<Input value="{ShipNowDataModel>/ShipToADDRESS_LINE2}" />
+													<Input value="{eshipjetModel>/ShipTo/ADDRESS_LINE2}" />
 													<Label text="Zip / Postal Code" />
 													<Input value="{ShipNowDataModel>/ShipToAddress/PostalCode}" >
 														<layoutData>
@@ -126,7 +127,7 @@
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox selectedKey="{ShipNowDataModel>/ShipToAddressType}" items="{eshipjetModel>/shipNowAddressType}" placeholder="Address Type">
+													<ComboBox selectedKey="{eshipjetModel>/ShipTo/LocationType}" items="{eshipjetModel>/shipNowAddressType}" placeholder="Address Type">
 														<core:Item key="{eshipjetModel/addressType}" text="{eshipjetModel>addressType}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
@@ -423,7 +424,7 @@
 															<Input value="{}"></Input>
 
 															<Label text="Quantity" class="sapUiTinyMargin"/>
-															<StepInput id="quantityInput" value="" min="0" max="100" step="1" width="8%" valueState="None" />
+															<StepInput id="quantityInput" value="{eshipjetModel>/Packages/Quantity}" min="0" max="100" step="1" width="8%" valueState="None" />
 
 															<Label text="Package Type" class="sapUiTinyMargin" />
 															<ComboBox items="{}" >
@@ -431,15 +432,15 @@
 															</ComboBox>
 
 															<Label text="Dimensions" class="sapUiTinyMargin" />
-															<ComboBox items="{eshipjetModel>/packDimensions}" selectedKey="{dimensionModel>/dimension}">
+															<ComboBox items="{eshipjetModel>/packDimensions}" selectedKey="{eshipjetModel>/Packages/Dimension}">
 																<core:Item key="{eshipjetModel>dimension}" text="{eshipjetModel>dimension}" />
 															</ComboBox>
 															<Button icon="sap-icon://add" press="handleDimensionAddPress" class="sapUiSmallMarginEnd"></Button>
 
 															<Label text="Total Pkgs/Weight"  class="sapUiTinyMargin"/>
-															<StepInput id="stepDownInput" value="{dimensionModel>/weightStepDown}" min="0" max="100" step="1"  width="6rem"  valueState="None" />
+															<StepInput id="stepDownInput" value="{eshipjetModel>/Packages/Weight}" min="0" max="100" step="1"  width="6rem"  valueState="None" />
 															<Text text="/" width="10%" class="sapUiTinyMarginTop" ></Text>
-															<StepInput id="stepUpInput" value="{dimensionModel>/weightStepUp}" min="0" max="100" step="1" width="6rem" valueState="None" />
+															<StepInput id="stepUpInput" value="{eshipjetModel>/Packages/Weight}" min="0" max="100" step="1" width="6rem" valueState="None" />
 															<Button text="Auto Pack" press="handleAutoPackPress" ></Button>
 														</HBox>
 													</content>
@@ -596,7 +597,7 @@
 											<f:SimpleForm id="InternationalDetails" editable="true" layout="ColumnLayout" columnsM="3" columnsL="3" columnsXL="6">
 												<f:content>
 													<Label text="INT Duties/Taxes" />
-													<ComboBox items="{eshipjetModel>/intDutiesTaxes}">
+													<ComboBox items="{eshipjetModel>/Packages/Weight}">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Payor Country Code" />

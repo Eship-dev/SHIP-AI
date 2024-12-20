@@ -277,7 +277,7 @@
 			<ToolbarSpacer/>
 				<Button text="Get Shipping Rates" class="ship-now-footer_ship-rates"/>
 			<ToolbarSpacer/>
-				<Button text="Ship Now" class="ship-now-footer_ship-now" />
+				<Button text="Ship Now" press="onShipNowPress" class="ship-now-footer_ship-now" />
 		</OverflowToolbar>
-		
+
 </mvc:View>

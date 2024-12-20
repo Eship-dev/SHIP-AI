@@ -315,6 +315,227 @@ sap.ui.define([
 
         // Ship Now changes starts here
 
+        onShipNowPress:function(){
+            var that = this;
+            BusyIndicator.show();
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            var DocumentNumber = eshipjetModel.getData().HeaderInfo.DocumentNumber;
+            var ShipDate = eshipjetModel.getData().HeaderInfo.ShipDate;
+            var ShipFromCONTACT = eshipjetModel.getData().ShipFrom.CONTACT;
+            var ShipFromADDRESS_LINE1 = eshipjetModel.getData().ShipFrom.ADDRESS_LINE1;
+            var ShipFromCITY = eshipjetModel.getData().ShipFrom.CITY;
+            var ShipFromSTATE = eshipjetModel.getData().ShipFrom.STATE;
+            var ShipFromEMAIL = eshipjetModel.getData().ShipFrom.EMAIL;
+            var ShipFromCOMPANY = eshipjetModel.getData().ShipFrom.COMPANY;
+            var ShipFromADDRESS_LINE2 = eshipjetModel.getData().ShipFrom.ADDRESS_LINE2;
+            var ShipFromZIPCODE = eshipjetModel.getData().ShipFrom.ZIPCODE;
+            var ShipFromCOUNTRY = eshipjetModel.getData().ShipFrom.COUNTRY;
+            var ShipFromPHONE = eshipjetModel.getData().ShipFrom.PHONE;
+            var ShipFromLocationType = eshipjetModel.getData().ShipFrom.LocationType;
+
+            var ShipToCONTACT = eshipjetModel.getData().ShipTo.CONTACT;
+            var ShipToADDRESS_LINE1 = eshipjetModel.getData().ShipTo.ADDRESS_LINE1;
+            var ShipToCITY = eshipjetModel.getData().ShipTo.CITY;
+            var ShipToSTATE = eshipjetModel.getData().ShipTo.STATE;
+            var ShipToEMAIL = eshipjetModel.getData().ShipTo.EMAIL;
+            var ShipToCOMPANY = eshipjetModel.getData().ShipTo.COMPANY;
+            var ShipToADDRESS_LINE2 = eshipjetModel.getData().ShipTo.ADDRESS_LINE2;
+            var ShipToZIPCODE = eshipjetModel.getData().ShipTo.ZIPCODE;
+            var ShipToCOUNTRY = eshipjetModel.getData().ShipTo.COUNTRY;
+            var ShipToPHONE = eshipjetModel.getData().ShipTo.PHONE;
+            var ShipToLocationType = eshipjetModel.getData().ShipTo.LocationType;
+
+            var PackagesQuantity = eshipjetModel.getData().Packages.Quantity;
+            var Dimension = eshipjetModel.getData().Packages.Dimension;
+            var Weight = eshipjetModel.getData().Packages.Weight;
+            var ShipToLocationType = eshipjetModel.getData().Packages.LocationType;
+            var ShipToLocationType = eshipjetModel.getData().Packages.LocationType;
+
+
+
+
+            var obj = {
+                "HeaderInfo": {
+                    "DocumentNumber": "DHL-SpecialServiceTest1",
+                    "ShipDate": "2024-11-26T09:11:32.358Z",
+                    "TotalWeight": "020",
+                    "InsuranceAmount": "",
+                    "InsuranceCurrency": "",
+                    "Currency": "USD",
+                    "Incoterm": "DDU",
+                    "Notes": "Special instructions",
+                    "Description": "testing",
+                    "IsDutiable": false
+                },
+                "ShipTo": {
+                    "COMPANY": "ATT1",
+                    "CONTACT": "John Williams",
+                    "ADDRESS_LINE1": "2600 N Cernter Express pkwy",
+                    "ADDRESS_LINE2": "Suit 300",
+                    "ADDRESS_LINE3": null,
+                    "CITY": "Richardson",
+                    "STATE": "TX",
+                    "ZIPCODE": "75090",
+                    "COUNTRY": "US",
+                    "PHONE": "8888888889",
+                    "EMAIL": "att@gmail.com",
+                    "TAXID": null,
+                    "VAT": null,
+                    "EORI": null,
+                    "LocationType": null
+                },
+                "SoldTo": {
+                    "COMPANY": "",
+                    "CONTACT": "",
+                    "ADDRESS_LINE1": "",
+                    "ADDRESS_LINE2": "",
+                    "ADDRESS_LINE3": "",
+                    "CITY": "",
+                    "STATE": "",
+                    "ZIPCODE": "",
+                    "COUNTRY": "",
+                    "PHONE": "",
+                    "EMAIL": "",
+                    "TAXID": null,
+                    "VAT": null,
+                    "EORI": null,
+                    "LocationType": null
+                },
+                "Packages": [
+                    {
+                        "Quantity": 4,
+                        "PackageLevelSpecialServices": {},
+                        "Weightunits": "LBS",
+                        "DimensionUnits": "IN",
+                        "Sno": 1,
+                        "HU": 6580,
+                        "Weight": 2,
+                        "Dimension": "12X12X12"
+                    }
+                ],
+                "ShipmentLevelSpecialServices": {
+                    "GoGreenPlus": true,
+                    "NeutralDelivery": true,
+                    "Insurance": true,
+                    "PaperlessInvoice": true,
+                    "DryIce": true,
+                    "DryIce_value": "12",
+                    "DryIce_units": "LBS"
+                },
+                "InternationalDetails": {
+                    "ItemInfo": [
+                        {
+                            "ItemNo": "TC89003",
+                            "ProductNo": "TC89003",
+                            "Description": "ITEM 1 Description",
+                            "IsDG": false,
+                            "UnitCost": "7",
+                            "UnitWeight": "6",
+                            "HTSCode": "940400",
+                            "ECCN": "EAR99",
+                            "id": 1,
+                            "Sno": 1,
+                            "Quantity": "4",
+                            "UOM": "",
+                            "Harmonized": "940400",
+                            "CountryOfMFR": "US",
+                            "Currency": "USD"
+                        }
+                    ],
+                    "TermsofShipment": "DDU",
+                    "dutiesAccountnumber": "",
+                    "B13AFilingOption": "",
+                    "Permitnumber": "",
+                    "ITN": "",
+                    "iNTDutiesTaxes": "RECIPIENT",
+                    "IncoTermLocation": "",
+                    "CustomDecValCurrency": "USD",
+                    "DutiesAccount": "",
+                    "payorCountryCode": "",
+                    "bookingConfirmnumber": "",
+                    "ReasonforExport": "SOLD",
+                    "CustomDecVal": "0.000",
+                    "InvoiceNumber": "DHL-SpecialServiceTest1"
+                },
+                "CarrierDetails": {
+                    "Carrier": "DHL",
+                    "CarrierType": "Parcel",
+                    "ServiceName": "N",
+                    "PaymentType": "Sender",
+                    "ShippingAccount": "965278629",
+                    "BillingAccount": "",
+                    "BillingCountry": "",
+                    "BillingZipCode": "",
+                    "Reference1": "test",
+                    "Reference2": "test",
+                    "UserId": "apT2vB7mV1qR1b",
+                    "Password": "U#3mO^1vY!5mT@0j",
+                    "AccessKey": "",
+                    "ShipURL": "",
+                    "TrackURL": "",
+                    "RateURL": "",
+                    "VoidURL": "",
+                    "ShipfromCountry": "",
+                    "ShipToCountry": ""
+                },
+                "ShipFrom": {
+                    "COMPANY": "Eshipjet Software Inc.",
+                    "CONTACT": "Steve Marsh",
+                    "ADDRESS_LINE1": "5717 Legacy",
+                    "ADDRESS_LINE2": "Suite 250",
+                    "ADDRESS_LINE3": null,
+                    "CITY": "Plano",
+                    "STATE": "TX",
+                    "ZIPCODE": "75024",
+                    "COUNTRY": "US",
+                    "PHONE": "(888) 464 2360",
+                    "EMAIL": "info@eshipjet.ai",
+                    "TAXID": null,
+                    "VAT": null,
+                    "EORI": null,
+                    "LocationType": null
+                },
+                "Shipper": {
+                    "COMPANY": "Eshipjet Software Inc.",
+                    "CONTACT": "Steve Marsh",
+                    "ADDRESS_LINE1": "5717 Legacy",
+                    "ADDRESS_LINE2": "Suite 250",
+                    "ADDRESS_LINE3": null,
+                    "CITY": "Plano",
+                    "STATE": "TX",
+                    "ZIPCODE": "75024",
+                    "COUNTRY": "US",
+                    "PHONE": "(888) 464 2360",
+                    "EMAIL": "info@eshipjet.ai",
+                    "TAXID": null,
+                    "VAT": null,
+                    "EORI": null,
+                    "LocationType": null
+                }
+            };
+
+            var sPath = "https://eshipjet-demo-srv-hvacbxf0fqapdpgd.francecentral-01.azurewebsites.net/copilot/v1/bot/process";
+
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: sPath,
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(obj),
+                    success: function (response) {
+                        resolve(response);
+                        console.log("Success:", response);
+                        BusyIndicator.hide();
+                    },
+                    error: function (error) {
+                        reject(error);
+                        console.log("Error:", error);
+                        BusyIndicator.hide();
+                    }
+                });
+            });
+        },
+
         onShipNowGetPress: async function () {
             oController.oBusyDialog = new sap.m.BusyDialog({});
             var oDeliveryModel = this.getView().getModel("OutBoundDeliveryModel");
