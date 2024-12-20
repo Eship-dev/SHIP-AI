@@ -106,6 +106,12 @@
 						<!-- <mvc:XMLView viewName="com.eshipjet.zeshipjet.view.Orders"/> -->
 					</ScrollContainer>
 
+					<!-- Routing Guide Starts here -->
+					<ScrollContainer id="RoutingGuide" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.RoutingGuide.RoutingGuide" type="XML" />
+						<!-- <mvc:XMLView viewName="com.eshipjet.zeshipjet.view.RoutingGuide"/> -->
+					</ScrollContainer>
+
 				<!-- Ship Request Label Starts here -->
 					<ScrollContainer id="ShipRequestLabel" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
 							<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.ShipRequestLabel" type="XML" />
@@ -212,6 +218,10 @@
 
 					<ScrollContainer	id="_ID_OrderTypes_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.OrderTypes" type="XML" />
+					</ScrollContainer>
+
+					<ScrollContainer	id="_ID_RoutingGuide_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.RoutingGuide.RoutingGuideTableColumns" type="XML" />
 					</ScrollContainer>
 
 					<ScrollContainer	id="_ID_Incoterms_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">

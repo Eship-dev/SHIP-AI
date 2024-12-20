@@ -26,7 +26,7 @@
 					</ComboBox>
 			</VBox>
 			<VBox class="sapUiSmallMargin" width="30%" >
-					<Label text="Ship From Date" width="100%" />
+					<Label text="Cost Center" width="100%" />
 					<DatePicker
 						width="100%"
 						placeholder="Enter Date"
@@ -34,7 +34,7 @@
 						class="sapUiSmallMarginBottom"/>
 			</VBox>
 			<VBox class="sapUiSmallMargin" width="30%" >
-					<Label text="Ship To" width="100%" />
+					<Label text="Carrier" width="100%" />
 					<DatePicker
 						width="100%"
 						placeholder="Enter Date"
@@ -45,7 +45,7 @@
 		</HBox>
         <HBox>
         	<VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
-					<Label text="Connect To" width="100%" />
+					<Label text="User" width="100%" />
 					<ComboBox
 						width="100%"
 						items="{}">
@@ -53,7 +53,7 @@
 					</ComboBox>
 			</VBox>
             <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
-					<Label text="RoutingGuide Type" width="100%" />
+					<Label text="Ship From Date" width="100%" />
 					<ComboBox
 						width="100%"
 						items="{}">
@@ -61,7 +61,7 @@
 					</ComboBox>
 			</VBox>
             <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
-					<Label text="Delivery No" width="100%" />
+					<Label text="Status" width="100%" />
 					<Input value="{}" width="100%"></Input>
 			</VBox>
 		</HBox>

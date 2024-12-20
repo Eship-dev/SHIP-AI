@@ -1052,6 +1052,187 @@ sap.ui.define([
         },
         // Order Changes End
 
+        
+        // RoutingGuide Changes Starts
+
+        _handleDisplayRoutingGuideTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var RoutingGuideTableData = eshipjetModel.getData().RoutingGuideTableData;
+            var RoutingGuideTableDataModel = new JSONModel(RoutingGuideTableData);
+            this.getView().setModel(RoutingGuideTableDataModel, "RoutingGuideTableDataModel");
+            const oTable = oView.byId("idRoutingGuideTable1");
+            oTable.setModel(RoutingGuideTableDataModel);
+            var RoutingGuideTableDataModel = this.getView().getModel("RoutingGuideTableDataModel");
+            var RoutingGuideColumns = RoutingGuideTableDataModel.getData().RoutingGuideColumns;
+            var count = 0;
+            for(var i=0; i<RoutingGuideColumns.length; i++){
+                if(RoutingGuideolumns[i].visible === true){
+                    count += 1
+                }
+            }
+            oTable.bindColumns("/RoutingGuideColumns", function (sId, oContext) {
+                columnName = oContext.getObject().name;
+                label = oContext.getObject().label;
+                var minWidth = "100%";
+                if(count>=14){
+                    var minWidth = "130px";
+                }
+                
+
+                if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "Edit", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
+                    var DateTxt = new sap.m.Text({
+                        text: {
+                            path: 'RoutingGuideTableDataModel>ShipDate',
+                            formatter: formatter.formatDate
+                        },
+                        wrapping: false
+                    });
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: DateTxt,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/rows");
+        },
+
+        openRoutingGuideColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pRoutingGuidePopover) {
+                this._pRoutingGuidePopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.RoutingGuide.RoutingGuideTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pRoutingGuidePopover.then(function (oPopover) {
+                oController.RoutingGuideColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        RoutingGuideColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var oRoutingGuideTableModel = oView.getModel("eshipjetModel");
+            var aColumns = oRoutingGuideTableModel.getProperty("/RoutingGuideTableData/RoutingGuideColumns");
+            var oRoutingGuideTable = oView.byId("myRoutingGuideColumnSelectId");
+            var aTableItems = oRoutingGuideTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.name === oItem.getBindingContext("RoutingGuideTableDataModel").getObject().name && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+        onRoutingGuideColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myRoutingGuideColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onoRoutingGuideColSelectOkPress: function () {
+            var oView = this.getView()
+            var oRoutingGuideTable = oView.byId("myRoutingGuideColumnSelectId");
+            var RoutingGuideTableDataModel = oView.getModel("RoutingGuideTableDataModel");
+            var oRoutingGuideTblItems = oRoutingGuideTable.getItems();
+            var aColumnsData = RoutingGuideTableDataModel.getProperty("/RoutingGuideColumns");
+            oRoutingGuideTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("RoutingGuideTableDataModel").getObject().name === oColObj.name) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            RoutingGuideTableDataModel.updateBindings(true);
+            this._handleDisplayRoutingGuidesTable();
+            this._pRoutingGuidePopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onRoutingGuideColSelectClosePress: function () {
+            this._pRoutingGuidePopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        onRoutingGuideFilterPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._RoutingGuidePopover) {
+                this._RoutingGuidePopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.RoutingGuide.RoutingGuideFilterPopover",
+                    controller: this
+                }).then(function (RoutingGuidePopover) {
+                    oView.addDependent(RoutingGuidePopover);
+                    // RoutingGuidePopover.bindElement("/ProductCollection/0");
+                    return RoutingGuidePopover;
+                });
+            }
+            this._RoutingGuidePopover.then(function (RoutingGuidePopover) {
+                RoutingGuidePopover.openBy(oButton);
+            });
+        },
+        onRoutingGuideFilterPopoverClosePress: function () {
+            this.byId("idRoutingGuideFilterPopover").close();
+        },
+        onRoutingGuideFilterPopoverResetPress: function () {
+            this.byId("idRoutingGuideFilterPopover").close();
+        },
+        onRoutingGuideFilterPopoverApplyPress: function () {
+            this.byId("idRoutingGuideFilterPopover").close();
+        },
+        // RoutingGuide Changes End
+
         // Ship Request/Lable Code Changes Starts
 
         _handleDisplayShipReqTable: function () {
@@ -1975,8 +2156,12 @@ sap.ui.define([
                 oController._displayTables("_ID_EUCountriesTable", "EUCountriesTableColumns", "EUCountriesTableRows", "EU Countries");
                 oPageContainer.to(oView.createId("_ID_EUCountries_TableScrollContainer"));
 
-            }
-            eshipjetModel.setProperty("/SideNavigation", false);
+            }  else if (oCurrObj && oCurrObj.name === "Routing Guide") {
+
+                oController._displayTables("_IDRoutingGuideTable", "RoutingGuideTableColumns", "RoutingGuideTableRows", "Routing Guide");
+                oPageContainer.to(oView.createId("_ID_RoutingGuide_TableScrollContainer"));
+ 
+             } eshipjetModel.setProperty("/SideNavigation", false);
         },
         _displayTables: function (oTableId, aColumns, aRows, selectedItem) {
             var oView = oController.getView(), columnName, columnLabel;
