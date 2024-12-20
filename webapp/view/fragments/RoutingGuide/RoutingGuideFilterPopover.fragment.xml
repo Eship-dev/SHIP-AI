@@ -14,9 +14,21 @@
 			<ToolbarSpacer ></ToolbarSpacer>
 				<Button icon="sap-icon://decline" press="onRoutingGuideFilterPopoverClosePress" ></Button>
 		</Toolbar>
-		
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+					text="Reset"
+					type="Ghost"
+					press="on RoutingGuideFilterPopoverResetPress" />
+                <Button
+					text="Apply"
+					type="Success"
+					press="on RoutingGuideFilterPopoverApplyPress" />
+			</OverflowToolbar>
+		</footer>
         <VBox >
-		<HBox >
+		<HBox width="100%">
 			<VBox class="sapUiSmallMargin" width="30%" >
 			<Label text="Location Name" width="100%" />
 					<ComboBox
@@ -26,7 +38,7 @@
 					</ComboBox>
 			</VBox>
 			<VBox class="sapUiSmallMargin" width="30%" >
-					<Label text="Cost Center" width="100%" />
+					<Label text="Carrier" width="100%" />
 					<DatePicker
 						width="100%"
 						placeholder="Enter Date"
@@ -34,7 +46,15 @@
 						class="sapUiSmallMarginBottom"/>
 			</VBox>
 			<VBox class="sapUiSmallMargin" width="30%" >
-					<Label text="Carrier" width="100%" />
+					<Label text="Ship From Date" width="100%" />
+					<DatePicker
+						width="100%"
+						placeholder="Enter Date"
+						change="handleChange"
+						class="sapUiSmallMarginBottom"/>
+			</VBox>
+			<VBox class="sapUiSmallMargin" width="30%" >
+					<Label text="Ship To Date" width="100%" />
 					<DatePicker
 						width="100%"
 						placeholder="Enter Date"
@@ -43,27 +63,26 @@
 			</VBox>
 			
 		</HBox>
-        <HBox>
-        	<VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
-					<Label text="User" width="100%" />
+        <HBox width="100%">
+        	
+            <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
+					<Label text="Cost Center" width="80%" />
 					<ComboBox
-						width="100%"
+						width="75%"
 						items="{}">
 						<core:Item key="{key}" text="{text}" />
 					</ComboBox>
 			</VBox>
             <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
-					<Label text="Ship From Date" width="100%" />
-					<ComboBox
-						width="100%"
-						items="{}">
-						<core:Item key="{key}" text="{text}" />
-					</ComboBox>
+					<Label text="User" width="80%" />
+					<SearchField ></SearchField>
 			</VBox>
-            <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
-					<Label text="Status" width="100%" />
-					<Input value="{}" width="100%"></Input>
+			
+			<VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
+					<Label text="Status" width="90%" />
+					<Input value="{}" width="90%"></Input>
 			</VBox>
+			
 		</HBox>
         </VBox>
 	</Popover>
