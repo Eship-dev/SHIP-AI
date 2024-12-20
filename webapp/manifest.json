@@ -121,7 +121,7 @@
         "rootView": {
             "viewName": "com.eshipjet.zeshipjet.view.Eshipjet",
             "type": "XML",
-            "id": "app"
+            "id": "Eshipjet"
         }
     }
 }

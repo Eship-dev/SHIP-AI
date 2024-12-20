@@ -4,7 +4,7 @@
 	    <Toolbar width="auto" >
 			<Text text="Ship Requests / Labels" class="textBold sapUiTinyMarginBegin" ></Text>
 				<ToolbarSpacer />
-					<Button text="Create Ship Request/Label" type="Success" activeIcon="false" icon="false" press="onCreateReqLabelPress" ></Button>
+					<Button text="Create Ship Request/Label" type="Success" activeIcon="false" icon="false" press="onCreateShipReqLabelPress" ></Button>
 		</Toolbar>
 		<Toolbar height="15%" >
 			<HBox width="100%">

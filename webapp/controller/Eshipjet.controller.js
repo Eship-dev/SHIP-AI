@@ -481,7 +481,7 @@ sap.ui.define([
         _handleDisplayScanShipTable: function () {
             var that = this;
             const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var scanShipTableData = eshipjetModel.getData().scanShipTableData;
             var ScanShipTableDataModel = new JSONModel(scanShipTableData);
             this.getView().setModel(ScanShipTableDataModel, "ScanShipTableDataModel");
@@ -877,7 +877,7 @@ sap.ui.define([
         _handleDisplayOrdersTable: function () {
             var that = this;
             const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var OrderTableData = eshipjetModel.getData().OrderTableData;
             var OrderTableDataModel = new JSONModel(OrderTableData);
             this.getView().setModel(OrderTableDataModel, "OrderTableDataModel");
@@ -1058,7 +1058,7 @@ sap.ui.define([
         _handleDisplayRoutingGuideTable: function () {
             var that = this;
             const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var RoutingGuideTableData = eshipjetModel.getData().RoutingGuideTableData;
             var RoutingGuideTableDataModel = new JSONModel(RoutingGuideTableData);
             this.getView().setModel(RoutingGuideTableDataModel, "RoutingGuideTableDataModel");
@@ -1238,7 +1238,7 @@ sap.ui.define([
         _handleDisplayShipReqTable: function () {
             var that = this;
             const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var ShipReqTableData = eshipjetModel.getData().ShipReqTableData;
             var ShipReqTableDataModel = new JSONModel(ShipReqTableData);
             this.getView().setModel(ShipReqTableDataModel, "ShipReqTableDataModel");
@@ -1412,7 +1412,7 @@ sap.ui.define([
             this.byId("idShipReqFilterPopover").close();
         },
 
-        onCreateReqLabelPress:function(){
+        onCreateShipReqLabelPress:function(){
             var oView = this.getView();
             var oToolPage = this.byId("toolPage");
             oToolPage.setSideExpanded(false);
@@ -1423,8 +1423,122 @@ sap.ui.define([
             }
             var oPageContainer = this.byId("pageContainer");
             oPageContainer.to(oView.createId("_ID_CreateShipReqLabel_TableScrollContainer"));
+            this._handleDisplayCreateShipReqTable();
         },
 
+        _handleDisplayCreateShipReqTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var ShipReqTableData = eshipjetModel.getData().ShipReqTableData;
+            var ShipReqTableDataModel = new JSONModel(ShipReqTableData);
+            this.getView().setModel(ShipReqTableDataModel, "ShipReqTableDataModel");
+            const oTable = oView.byId("idCreateShipReqTable");
+            oTable.setModel(ShipReqTableDataModel);
+            var ShipReqTableDataModel = this.getView().getModel("ShipReqTableDataModel");
+            var CreateShipReqColumnsData = ShipReqTableDataModel.getData().CreateShipReqColumns;
+            var count = 0;
+            for(var i=0; i<CreateShipReqColumnsData.length; i++){
+                if(CreateShipReqColumnsData[i].visible === true){
+                    count += 1
+                }
+            }
+            oTable.bindColumns("/CreateShipReqColumns", function (sId, oContext) {
+                columnName = oContext.getObject().name;
+                label = oContext.getObject().label;
+                var minWidth = "100%";
+                if(count>=14){
+                    var minWidth = "130px";
+                }
+                if(columnName) {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/CreateShipReqRows");
+        },
+
+        openCreateShipReqColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pCreateShipReqPopover) {
+                this._pCreateShipReqPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.CreateShipReqTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pCreateShipReqPopover.then(function (oPopover) {
+                oController.CreateShipReqColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        CreateShipReqColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var oCreateShipReqTableModel = oView.getModel("eshipjetModel");
+            var aColumns = oCreateShipReqTableModel.getProperty("/ShipReqTableData/CreateShipReqColumns");
+            var oCreateShipReqTable = oView.byId("myCreateShipReqColumnSelectId");
+            var aTableItems = oCreateShipReqTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.name === oItem.getBindingContext("ShipReqTableDataModel").getObject().name && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+        onCreateShipReqColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myCreateShipReqColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onoCreateShipReqColSelectOkPress: function () {
+            var oView = this.getView()
+            var oCreateShipReqTable = oView.byId("myCreateShipReqColumnSelectId");
+            var ShipReqTableDataModel = oView.getModel("ShipReqTableDataModel");
+            var oCreateShipReqTblItems = oCreateShipReqTable.getItems();
+            var aColumnsData = ShipReqTableDataModel.getProperty("/CreateShipReqColumns");
+            oCreateShipReqTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("ShipReqTableDataModel").getObject().name === oColObj.name) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            ShipReqTableDataModel.updateBindings(true);
+            this._handleDisplayCreateShipReqTable();
+            this._pCreateShipReqPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onCreateShipReqColSelectClosePress: function () {
+            this._pCreateShipReqPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
         // Ship Request/Lable Code Changes ENd
 
 
@@ -1433,7 +1547,7 @@ sap.ui.define([
         _handleDisplayTrackNowTable: function () {
             var that = this;
             const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var TrackNowTableData = eshipjetModel.getData().TrackNowTableData;
             var TrackNowTableDataModel = new JSONModel(TrackNowTableData);
             this.getView().setModel(TrackNowTableDataModel, "TrackNowTableDataModel");
@@ -1615,7 +1729,7 @@ sap.ui.define([
         _handleDisplayManifestTable: function () {
             var that = this;
             const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var ManifestTableData = eshipjetModel.getData().ManifestTableData;
             var ManifestTableDataModel = new JSONModel(ManifestTableData);
             this.getView().setModel(ManifestTableDataModel, "ManifestTableDataModel");
@@ -1790,7 +1904,7 @@ sap.ui.define([
         _handleDisplayBatchShipTable: function () {
             var that = this;
             const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var BatchShipTableData = eshipjetModel.getData().BatchShipTableData;
             var BatchShipTableDataModel = new JSONModel(BatchShipTableData);
             this.getView().setModel(BatchShipTableDataModel, "BatchShipTableDataModel");
@@ -2333,7 +2447,7 @@ sap.ui.define([
     _handleDisplayAddressBookTable: function () {
         var that = this;
         const oView = oController.getView();
-        var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
         var AddressBookTableColumns = eshipjetModel.getData().AddressBookTableColumns;
         const oTable = oView.byId("_IDAddressBookTable");
         oTable.setModel(eshipjetModel);
@@ -2481,7 +2595,7 @@ sap.ui.define([
         _handleDisplayUsersTable: function () {
             var that = this;
             const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var UsersTableColumns = eshipjetModel.getData().UsersTableColumns;
             const oTable = oView.byId("_IDUsersTable");
             oTable.setModel(eshipjetModel);
@@ -2628,7 +2742,7 @@ sap.ui.define([
         _handleDisplayRolesTable: function () {
             var that = this;
             const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var RolesTableColumns = eshipjetModel.getData().RolesTableColumns;
             const oTable = oView.byId("_IDLocationTable");
             oTable.setModel(eshipjetModel);
@@ -2775,7 +2889,7 @@ sap.ui.define([
         _handleDisplayCarrierCatalogTable: function () {
             var that = this;
             const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var CarrierCatalogTableColumns = eshipjetModel.getData().CarrierCatalogTableColumns;
             const oTable = oView.byId("_IDCarriesCatalogTable");
             oTable.setModel(eshipjetModel);
@@ -2922,7 +3036,7 @@ sap.ui.define([
         _handleDisplayCarrierAccountTable: function () {
             var that = this;
             const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var CarrierAccountsTableColumns = eshipjetModel.getData().CarrierAccountsTableColumns;
             const oTable = oView.byId("_IDCarriesAccountsTable");
             oTable.setModel(eshipjetModel);
@@ -3069,7 +3183,7 @@ sap.ui.define([
         _handleDisplayCostCenterTable: function () {
             var that = this;
             const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var CostCenterTableColumns = eshipjetModel.getData().CostCenterTableColumns;
             const oTable = oView.byId("_IDCostCenterTable");
             oTable.setModel(eshipjetModel);
@@ -3215,7 +3329,7 @@ sap.ui.define([
         _handleDisplayStatusesTable: function () {
             var that = this;
             const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var StatusesTableColumns = eshipjetModel.getData().StatusesTableColumns;
             const oTable = oView.byId("_IDStatusesTable");
             oTable.setModel(eshipjetModel);
@@ -3362,7 +3476,7 @@ sap.ui.define([
         _handleDisplayProductsTable: function () {
             var that = this;
             const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var ProductsTableColumns = eshipjetModel.getData().ProductsTableColumns;
             const oTable = oView.byId("_IDProductsTable");
             oTable.setModel(eshipjetModel);
@@ -3509,7 +3623,7 @@ sap.ui.define([
         _handleDisplayPackageTypesTable: function () {
             var that = this;
             const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var PackageTypeTableColumns = eshipjetModel.getData().PackageTypeTableColumns;
             const oTable = oView.byId("_IDPackageTypesTable");
             oTable.setModel(eshipjetModel);
@@ -3656,7 +3770,7 @@ sap.ui.define([
         _handleDisplayThirdPartiesTable: function () {
             var that = this;
             const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var ThirdPartiesTableColumns = eshipjetModel.getData().ThirdPartiesTableColumns;
             const oTable = oView.byId("_IDThirdPartyTable");
             oTable.setModel(eshipjetModel);
@@ -3803,7 +3917,7 @@ sap.ui.define([
         _handleDisplayLTLClassesTable: function () {
             var that = this;
             const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var LtlClassesTableColumns = eshipjetModel.getData().LtlClassesTableColumns;
             const oTable = oView.byId("_IDLTLClassTable");
             oTable.setModel(eshipjetModel);
@@ -3950,7 +4064,7 @@ sap.ui.define([
         _handleDisplayNMFCTable: function () {
             var that = this;
             const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var NmfcTableColumns = eshipjetModel.getData().NmfcTableColumns;
             const oTable = oView.byId("_IDNMFCTable");
             oTable.setModel(eshipjetModel);
@@ -4097,7 +4211,7 @@ sap.ui.define([
         _handleDisplayMOTTable: function () {
             var that = this;
             const oView = oController.getView();
-            var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var MotTableColumns = eshipjetModel.getData().MotTableColumns;
             const oTable = oView.byId("_IDModeOfTransportTable");
             oTable.setModel(eshipjetModel);
@@ -4244,7 +4358,7 @@ sap.ui.define([
     _handleDisplayLocationTable: function () {
         var that = this;
         const oView = oController.getView();
-        var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
         var LocationTableColumns = eshipjetModel.getData().LocationTableColumns;
         const oTable = oView.byId("_IDLocationTable");
         oTable.setModel(eshipjetModel);
@@ -4390,7 +4504,7 @@ sap.ui.define([
     _handleDisplayOrderTypesTable: function () {
         var that = this;
         const oView = oController.getView();
-        var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
         var OrderTypesTableColumns = eshipjetModel.getData().OrderTypesTableColumns;
         const oTable = oView.byId("_IDOrderTypeTable");
         oTable.setModel(eshipjetModel);
@@ -4537,7 +4651,7 @@ sap.ui.define([
     _handleDisplayIncotermsTable: function () {
         var that = this;
         const oView = oController.getView();
-        var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
         var IncoTermsTableColumns = eshipjetModel.getData().IncoTermsTableColumns;
         const oTable = oView.byId("_ID_IncotermsTable");
         oTable.setModel(eshipjetModel);
@@ -4683,7 +4797,7 @@ sap.ui.define([
     _handleDisplayTrackingRangeTable: function () {
         var that = this;
         const oView = oController.getView();
-        var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
         var TrackingRangeTableColumns = eshipjetModel.getData().TrackingRangeTableColumns;
         const oTable = oView.byId("_ID_TrackingRangeTable");
         oTable.setModel(eshipjetModel);
@@ -4827,7 +4941,7 @@ sap.ui.define([
     _handleDisplayDimensionsTable: function () {
         var that = this;
         const oView = oController.getView();
-        var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
         var DimensionsTableColumns = eshipjetModel.getData().DimensionsTableColumns;
         const oTable = oView.byId("_ID_DimensionTable");
         oTable.setModel(eshipjetModel);
@@ -4973,7 +5087,7 @@ sap.ui.define([
     _handleDisplayPaymentTypesTable: function () {
         var that = this;
         const oView = oController.getView();
-        var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
         var PaymentTypesTableColumns = eshipjetModel.getData().PaymentTypesTableColumns;
         const oTable = oView.byId("_ID_PaymentTypeTable");
         oTable.setModel(eshipjetModel);
@@ -5119,7 +5233,7 @@ sap.ui.define([
     _handleDisplaySMTPTable: function () {
         var that = this;
         const oView = oController.getView();
-        var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
         var SMTPConfigsTableColumns = eshipjetModel.getData().SMTPConfigsTableColumns;
         const oTable = oView.byId("_ID_SMTPConfigTable");
         oTable.setModel(eshipjetModel);
@@ -5266,7 +5380,7 @@ sap.ui.define([
     _handleDisplayERPTable: function () {
         var that = this;
         const oView = oController.getView();
-        var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
         var ERPTableColumns = eshipjetModel.getData().ERPTableColumns;
         const oTable = oView.byId("_ID_ERPTable");
         oTable.setModel(eshipjetModel);
@@ -5413,7 +5527,7 @@ sap.ui.define([
     _handleDisplayCountriesTable: function () {
         var that = this;
         const oView = oController.getView();
-        var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
         var CountriesTableColumns = eshipjetModel.getData().CountriesTableColumns;
         const oTable = oView.byId("_ID_CountriesTable");
         oTable.setModel(eshipjetModel);
@@ -5560,7 +5674,7 @@ sap.ui.define([
     _handleDisplayEUCountriesTable: function () {
         var that = this;
         const oView = oController.getView();
-        var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
         var EUCountriesTableColumns = eshipjetModel.getData().EUCountriesTableColumns;
         const oTable = oView.byId("_ID_EUCountriesTable");
         oTable.setModel(eshipjetModel);
@@ -5893,7 +6007,7 @@ sap.ui.define([
             _handleDisplayShipNowConsolidationTable: function () {
                 var that = this;
                 const oView = oController.getView();
-                var eshipjetModel = oController.getView().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+                var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
                 var ShipNowConsolidationTableData = eshipjetModel.getData().ShipNowConsolidationTableData;
                 var ShipNowConsolidationTableDataModel = new JSONModel(ShipNowConsolidationTableData);
                 this.getView().setModel(ShipNowConsolidationTableDataModel, "ShipNowConsolidationTableDataModel");

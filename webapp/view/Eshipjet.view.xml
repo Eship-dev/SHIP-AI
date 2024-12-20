@@ -1,6 +1,6 @@
 <mvc:View	controllerName="com.eshipjet.zeshipjet.controller.Eshipjet" xmlns="sap.m"	xmlns:core="sap.ui.core"	xmlns:mvc="sap.ui.core.mvc"	 xmlns:tnt="sap.tnt" 	xmlns:ui="sap.ui.table"
 	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	height="100%">
-	<!-- <App id="app"> -->
+	<App id="app">
 	<tnt:ToolPage id="toolPage">
 		<tnt:header>
 			<tnt:ToolHeader>
@@ -275,5 +275,5 @@
 			<ToolbarSpacer/>
 				<Button text="Ship Now" class="ship-now-footer_ship-now" />
 		</OverflowToolbar>
-	  <!-- </App> -->
+	  </App>
 </mvc:View>

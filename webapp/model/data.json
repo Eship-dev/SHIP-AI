@@ -1102,7 +1102,120 @@
                 "shipToPhone": "+91 915 492 735",
                 "shipToEmail": "info@eshipjet.ai"
               }
-        ]
+        ],
+        "CreateShipReqColumns":[
+            {
+				"name": "#",
+				"label": "#",
+				"visible": true
+			},
+            {
+				"name": "ItemNo",
+				"label": "Item No",
+				"visible": false
+			},
+			{
+				"name": "ProductCode",
+				"label": "Product Code",
+				"visible": true
+			},{
+				"name": "Description",
+				"label": "Description",
+				"visible": true
+			},
+			{
+				"name": "Qty",
+				"label": "Qty",
+				"visible": true
+			},{
+				"name": "DG",
+				"label": "DG",
+				"visible": false
+			},
+			{
+				"name": "EPCRFIDNo",
+				"label": "EPC-RFID No",
+				"visible": true
+			},{
+				"name": "UnitCost",
+				"label": "Unit Cost",
+				"visible": false
+			},
+			{
+				"name": "UnitWeight",
+				"label": "Unit Weight",
+				"visible": true
+			},{
+				"name": "Dimensions",
+				"label": "Dimensions",
+				"visible": true
+			},
+			{
+				"name": "HarmonizedCode",
+				"label": "Harmonized Code",
+				"visible": false
+			},{
+				"name": "ECCN",
+				"label": "ECCN",
+				"visible": false
+			},
+			{
+				"name": "UnNo",
+				"label": "UN No",
+				"visible": false
+			},{
+				"name": "Class",
+				"label": "Class",
+				"visible": false
+			},
+			{
+				"name": "NMFC",
+				"label": "NMFC",
+				"visible": false
+			},{
+				"name": "Category",
+				"label": "Category",
+				"visible": false
+			},
+			{
+				"name": "Serial",
+				"label": "Serial",
+				"visible": false
+			},{
+				"name": "Batch",
+				"label": "Batch",
+				"visible": false
+			},
+			{
+				"name": "Stackable",
+				"label": "Stackable",
+				"visible": false
+			},{
+				"name": "CountryOfMFR",
+				"label": "Country of MFR",
+				"visible": false
+			},
+			{
+				"name": "Currency",
+				"label": "Currency",
+				"visible": false
+			},{
+				"name": "LicenseNo",
+				"label": "License No",
+				"visible": false
+			},
+			{
+				"name": "UOM",
+				"label": "UOM",
+				"visible": false
+			},
+            {
+				"name": "actions",
+				"label": "Action",
+				"visible": true
+			}
+        ],
+        "CreateShipReqRows":[]
 	},
 
     "TrackNowTableData":{

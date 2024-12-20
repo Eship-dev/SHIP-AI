@@ -6,7 +6,7 @@
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
     xmlns:semantic="sap.m.semantic"
-    xmlns:ui="sap.ca.ui" height="100%">
+    xmlns:ui="sap.ui.table" height="100%" >
 
             <Toolbar
                 class="sapUiTinyMarginTop"
@@ -19,27 +19,27 @@
                     wrapping="true"
                     labelFor="SAPDelLabel" />
 
-        <ComboBox width="12%" />
-        <Label width="7%" text="Shipment Type" />
+                <ComboBox width="12%" />
+                <Label width="7%" text="Shipment Type" />
 
-        <ComboBox width="7%" />
-        <Label text="Category" />
+                <ComboBox width="7%" />
+                <Label text="Category" />
 
-        <ComboBox width="7%" />
-        <Label width="7%" text="Shipment Date" />
-        <DatePicker width="7%" />
+                <ComboBox width="7%" />
+                <Label width="7%" text="Shipment Date" />
+                <DatePicker width="7%" />
 
-        <Label width="6%" text="Requester" />
-        <ComboBox width="7%" />
+                <Label width="6%" text="Requester" />
+                <ComboBox width="7%" />
 
-        <Label width="8%" text="Return Label" />
-        <CheckBox width="1%" />
+                <Label width="8%" text="Return Label" />
+                <CheckBox width="1%" />
 
-        <Button width="1%" icon="sap-icon://edit-outside" />
-        <ToolbarSpacer />
-    </Toolbar>
-    <HBox width="100%">
-        <VBox width="50%">
+                <Button width="1%" icon="sap-icon://edit-outside" />
+                <ToolbarSpacer />
+            </Toolbar>
+    <HBox width="100%" >
+        <VBox width="50%" >
             <IconTabBar expanded="{device>/isNoPhone}">
                 <items>
                     <!-- Ship From  Tab Starts here -->
@@ -202,19 +202,27 @@
         </VBox>
     </HBox>
 
-    <!-- <Table id="myShipReqLabelColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/TrackingRangeTableColumns'}">
-        <ColumnListItem vAlign="Middle">
-            <cells>
-                <Text text="{eshipjetModel>label}" />
-            </cells>
-        </ColumnListItem>
-        <columns>
-            <Column >
-                <header>
-                    <Text text="Select All" />
-                </header>
-            </Column>
-        </columns>
-    </Table> -->
+    <ui:Table id="idCreateShipReqTable"
+                class="sapUiTinyMarginTop"
+				selectionMode="None"
+				visibleRowCount="5" >
+					<ui:extension>
+						<OverflowToolbar>
+							<ToolbarSpacer ></ToolbarSpacer>
+                            <Button icon="sap-icon://action-settings" press="openCreateShipReqColNamesPopover" >
+                                <customData>
+                                    <core:CustomData key="remember" value="true" />
+                                    <core:CustomData key="showClearButton" value="true" />
+                                    <core:CustomData key="confirmButtonText" value="Ok" />
+                                </customData>
+							</Button>										
+						</OverflowToolbar>
+					</ui:extension>
+					<ui:footer>
+                <Toolbar>
+                    <Button  text="Add Product" type="Ghost"/>
+				</Toolbar>
+		    </ui:footer>
+		</ui:Table>
 
 </core:FragmentDefinition>
