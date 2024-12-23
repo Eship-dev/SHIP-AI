@@ -34,7 +34,7 @@
 														<Text text=" - Eshipjet Software Inc." ></Text>
 													</Toolbar>
 													<Label text="Contact Name" />
-													<Input value="{ShipNowDataModel>/ShipFromCONTACT}" />
+													<Input value="{shipFromDataModel>/ContactName}" />
 													<Label text="Address Line 1" />
 													<Input value="{ShipNowDataModel>/ShipFromADDRESS_LINE1}"></Input>
 													<Label text="City" />

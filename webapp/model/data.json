@@ -4814,6 +4814,7 @@
             "ContactName": "Plant 1710 as Business Partner",
             "shipMethod":"UPS"
         }],
+        "shipNowDeliveryNum":"",
         "ShipNowIconTabs":[{
             "tabName":"Ship From / To",
             "tabKey" :"ShipFrom_to"
