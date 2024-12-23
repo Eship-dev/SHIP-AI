@@ -30,13 +30,13 @@
             text="Role Name"
             width="5%"
         />
-        <Input width="9%" />
+        <Input width="10%" />
 
         <Label
             text="Applicable Days"
-            width="6%"
+            width="7%"
         />
-        <ComboBox width="9%" />
+        <ComboBox width="10%" />
 
         <Label
             text="Priority"
@@ -45,13 +45,13 @@
         <Input width="9%" />
 
         <Label
-            width="6%"
+            width="4%"
             text="Status"
         />
-        <CheckBox width="3%" />
+        <ComboBox width="9%"></ComboBox>
 
         <Label
-            width="5%"
+            width="6%"
             text="Active From"
         />
         <DatePicker width="9%" />
@@ -118,14 +118,14 @@
                         value=""
                     />
                     <Label text="From Country" />
-                    <Input
-                        id="FromCountry1"
-                        value=""
-                    />
+                    <ComboBox ></ComboBox>
                 </f:content>
             </f:SimpleForm>
         </VBox>
-        <VBox width="25%" height="50%" >
+        <VBox
+            width="25%"
+            height="50%"
+        >
             <f:SimpleForm
                 id="SimpleFormChange354"
                 editable="true"
@@ -173,180 +173,258 @@
                         value=""
                     />
                     <Label text="To Country" />
-                    <Input
-                        id="ToCountry"
-                        value=""
-                    />
+                    <ComboBox ></ComboBox>
                 </f:content>
             </f:SimpleForm>
         </VBox>
-        <VBox width="50%" >
-               <f:SimpleForm  editable="true" class="customSimpleFormShadow" width="auto" layout="ColumnLayout" title="Ship Criteria" columnsM="2" columnsL="2" columnsXL="2">
-                                <f:content>
-                                    <Label text="Shipping Point" />
-                                    <SearchField width="100%" search=".onSearch" />
-                                    <Label text="Ship to Plant ID" />
-                                    <Input value="{}" />
-                                    <Label text="Service Name" />
-                                    <Input value="{}"></Input>
-                            
-                                    <Label text="Min/Max Weight" />
-                                    <Input value="{}" class="sapUiMediumMarginBottom" >
-                                        <layoutData>
-                                            <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
-                                        </layoutData>
-                                    </Input>
-                                    <Input selectedKey="{}" >
-                                        <layoutData>
-                                            <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
-                                        </layoutData>
-                                    </Input>
+        <VBox width="50%">
+            <f:SimpleForm
+                editable="true"
+                class="customSimpleFormShadow"
+                width="auto"
+                layout="ColumnLayout"
+                title="Ship Criteria"
+                columnsM="2"
+                columnsL="2"
+                columnsXL="2"
+            >
+                <f:content>
+                    <Label text="Shipping Point" />
+                    <Input ></Input>
+                    <Label text="Ship to Plant ID" />
+                    <Input value="{}" />
+                    <Label text="Service Name" />
+                    <Input value="{}" />
 
-                                    <Label text="Min/Max Width" />
-                                    <Input value="{}" class="sapUiMediumMarginBottom" >
-                                        <layoutData>
-                                            <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
-                                        </layoutData>
-                                    </Input>
-                                    <Input selectedKey="{}" >
-                                        <layoutData>
-                                            <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
-                                        </layoutData>
-                                    </Input>
+                    <Label text="Min/Max Weight" />
+                    <Input value="{}">
+                        <layoutData>
+                            <f:ColumnElementData
+                                cellsSmall="6"
+                                cellsLarge="6"
+                            />
+                        </layoutData>
+                    </Input>
+                    <Input selectedKey="{}">
+                        <layoutData>
+                            <f:ColumnElementData
+                                cellsSmall="6"
+                                cellsLarge="6"
+                            />
+                        </layoutData>
+                    </Input>
 
-                                    <Label text="Min/Max Girth Length" />
-                                    <Input value="{}" class="sapUiMediumMarginBottom" >
-                                        <layoutData>
-                                            <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
-                                        </layoutData>
-                                    </Input>
-                                    <Input selectedKey="{}" >
-                                        <layoutData>
-                                            <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
-                                        </layoutData>
-                                    </Input>
- 
-                                    <Label text="Inco Terms" />
-                                    <Input value="{}" />
-                                    <Label text="Vendor ID" />
-                                    <Input value="{}" /> 
-                                    <Label text="Customer ID" />
-                                    <Input value="{}"  width="100%"/>
-                                     <CheckBox text="Hazmat Flag"></CheckBox>
-                                     
-                                     <CheckBox text="Hazmat Flag"></CheckBox>
-                                    <Label text="Min/Max Weight" />
-                                    <Input value="{}" class="sapUiMediumMarginBottom" >
-                                        <layoutData>
-                                            <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
-                                        </layoutData>
-                                    </Input>
-                                    <Input selectedKey="{}" >
-                                        <layoutData>
-                                            <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
-                                        </layoutData>
-                                    </Input>
+                    <Label text="Min/Max Width" />
+                    <Input value="{}">
+                        <layoutData>
+                            <f:ColumnElementData
+                                cellsSmall="6"
+                                cellsLarge="6"
+                            />
+                        </layoutData>
+                    </Input>
+                    <Input selectedKey="{}">
+                        <layoutData>
+                            <f:ColumnElementData
+                                cellsSmall="6"
+                                cellsLarge="6"
+                            />
+                        </layoutData>
+                    </Input>
 
-                                    <Label text="Min/Max Width" />
-                                    <Input value="{}" class="sapUiMediumMarginBottom" >
-                                        <layoutData>
-                                            <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
-                                        </layoutData>
-                                    </Input>
-                                    <Input selectedKey="{}" >
-                                        <layoutData>
-                                            <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
-                                        </layoutData>
-                                    </Input>
+                    <Label text="Min/Max Girth Length" />
+                    <Input value="{}">
+                        <layoutData>
+                            <f:ColumnElementData
+                                cellsSmall="6"
+                                cellsLarge="6"
+                            />
+                        </layoutData>
+                    </Input>
+                    <Input selectedKey="{}">
+                        <layoutData>
+                            <f:ColumnElementData
+                                cellsSmall="6"
+                                cellsLarge="6"
+                            />
+                        </layoutData>
+                    </Input>
 
-                                    <Label text="Min/Max Girth Length" />
-                                    <Input value="{}" class="sapUiMediumMarginBottom" >
-                                        <layoutData>
-                                            <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
-                                        </layoutData>
-                                    </Input>
-                                    <Input selectedKey="{}" >
-                                        <layoutData>
-                                            <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
-                                        </layoutData>
-                                    </Input>
-                                    <Label text="Order Types" />
-                                    <Input value="{}" />
+                    <!-- <Label text="Inco Terms" />
+                                    <Input value="{}" /> -->
+                    <Label text="Vendor ID" />
+                    <Input value="{}" />
+                    <Label text="Customer ID" />
+                    <Input
+                        value="{}"
+                        width="100%"
+                    />
+                    <CheckBox text="Hazmat Flag" />
 
-                                </f:content>
-                            </f:SimpleForm>
+                    <CheckBox text="Hazmat Flag" />
+                    <Label text="Min/Max Weight" />
+                    <Input value="{}">
+                        <layoutData>
+                            <f:ColumnElementData
+                                cellsSmall="6"
+                                cellsLarge="6"
+                            />
+                        </layoutData>
+                    </Input>
+                    <Input selectedKey="{}">
+                        <layoutData>
+                            <f:ColumnElementData
+                                cellsSmall="6"
+                                cellsLarge="6"
+                            />
+                        </layoutData>
+                    </Input>
+
+                    <Label text="Min/Max Width" />
+                    <Input value="{}">
+                        <layoutData>
+                            <f:ColumnElementData
+                                cellsSmall="6"
+                                cellsLarge="6"
+                            />
+                        </layoutData>
+                    </Input>
+                    <Input selectedKey="{}">
+                        <layoutData>
+                            <f:ColumnElementData
+                                cellsSmall="6"
+                                cellsLarge="6"
+                            />
+                        </layoutData>
+                    </Input>
+
+                    <Label text="Min/Max Girth Length" />
+                    <Input value="{}">
+                        <layoutData>
+                            <f:ColumnElementData
+                                cellsSmall="6"
+                                cellsLarge="6"
+                            />
+                        </layoutData>
+                    </Input>
+                    <Input selectedKey="{}">
+                        <layoutData>
+                            <f:ColumnElementData
+                                cellsSmall="6"
+                                cellsLarge="6"
+                            />
+                        </layoutData>
+                    </Input>
+                    <Label text="Inco Terms" />
+                    <Input value="{}">
+                        <layoutData>
+                            <f:ColumnElementData
+                                cellsSmall="6"
+                                cellsLarge="6"
+                            />
+                        </layoutData>
+                    </Input>
+                    <Input selectedKey="{}" placeholder="Order Types">
+                        <layoutData>
+                            <f:ColumnElementData
+                                cellsSmall="6"
+                                cellsLarge="6"
+                            />
+                        </layoutData>
+                    </Input>
+
+                </f:content>
+            </f:SimpleForm>
         </VBox>
     </HBox>
-        <HBox width="100%">
-        <VBox width="100%">
-          <f:SimpleForm
-                id="SimpleForm1Change354"
+    <HBox width="100%">
+        <VBox>
+            <f:SimpleForm
                 editable="true"
-                layout="ResponsiveGridLayout"
-                title="Ship To"
-                labelSpanXL="3"
-                labelSpanL="3"
-                labelSpanM="3"
-                labelSpanS="12"
-                adjustLabelSpan="false"
+                layout="ColumnLayout"
+                title="Shipment Method Details"
+                columnsM="3"
+                columnsL="4"
+                columnsXL="4"
                 class="customSimpleFormShadow"
-                emptySpanXL="4"
-                emptySpanL="4"
-                emptySpanM="4"
-                emptySpanS="0"
-                columnsXL="1"
-                columnsL="1"
-                columnsM="1"
                 singleContainerFullSize="false"
             >
                 <f:content>
-                    <Label text="To City" />
-                    <Input
-                        id="ToC1ity"
-                        value=""
-                    />
-                    <Label text="To Region" />
-                    <Input
-                        id="ToReg1ion"
-                        value=""
-                    />
-                    <Label text="To State" />
-                    <Input
-                        id="ToSt1ate"
-                        value=""
-                    />
-                    <Label text="TO Min Zip" />
-                    <Input
-                        id="TOMin1Zip"
-                        value=""
-                    />
-                    <Label text="To Max Zip" />
-                    <Input
-                        id="ToMaxZip11"
-                        value=""
-                    />
-                    <Label text="To Country" />
-                    <Input
-                        id="ToCountry1"
-                        value=""
-                    />
+                    <Label text="Primary Carrier" />
+                    <ComboBox />
+                    <Label text="First Leg Carrier" />
+                    <ComboBox />
+                    <Label text="Export Broker" />
+                    <ComboBox />
+                    <Label text="Import Broker" />
+                    <ComboBox />
+                    <Label text="Last Leg Carrier" />
+                    <ComboBox />
+                    <Label text="Primary Service Name" />
+                    <ComboBox />
+                    <Label text="First Leg Service Name" />
+                    <ComboBox />
+                    <Label text="Export Broker Service" />
+                    <ComboBox />
+                    <Label text="Import Broker Service Name" />
+                    <ComboBox />
+                    <Label text="Last Leg Service Name" />
+                    <ComboBox />
+                    <Label text="Primary Transit Time" />
+                    <ComboBox />
+                    <Label text="First Leg Transit Time" />
+                    <ComboBox />
+                    <Label text="Export Broker Transit Time" />
+                    <Input />
+                    <Label text="Import Broker Transit Time" />
+                    <Input />
+                    <Label text="Last Leg Carrier Transit Time" />
+                    <Input />
+                    <Label text="Payment Type" />
+                    <ComboBox />
+                    <Label text="Freight Acc Num" />
+                    <ComboBox />
+                    <Label text="Primary MOT" />
+                    <Input />
+                    <Label text="Primary Dimfactory" />
+                    <Input />
                 </f:content>
             </f:SimpleForm>
-
         </VBox>
-        </HBox>
-    <!-- <Table id="myShipReqLabelColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/TrackingRangeTableColumns'}">
-        <ColumnListItem vAlign="Middle">
-            <cells>
-                <Text text="{eshipjetModel>label}" />
-            </cells>
-        </ColumnListItem>
-        <columns>
-            <Column >
-                <header>
-                    <Text text="Select All" />
-                </header>
-            </Column>
-        </columns>
-    </Table> -->
+    </HBox>
+    <HBox width="100%">
+        <VBox>
+            <f:SimpleForm
+                editable="true"
+                layout="ColumnLayout"
+                columnsM="3"
+                columnsL="3"
+                columnsXL="5"
+                class="customSimpleFormShadow"
+                singleContainerFullSize="false"
+            >
+                <f:content>
+                    <Label text="Bill To Contact" />
+                    <Input />
+                    <Label text="Bill To State" />
+                    <Input />
+                    <Label text="Bill To Company" />
+                    <Input />
+                    <Label text="Bill To Address1" />
+                    <Input />
+                    <Label text="Bill To Country" />
+                    <ComboBox />
+                    <Label text="Bill To Address2" />
+                    <Input />
+                    <Label text="Bill To Zip" />
+                    <Input />
+                    <Label text="Bill To City" />
+                    <Input />
+                    <Label text="Bill To Phone" />
+                    <Input />
+                </f:content>
+            </f:SimpleForm>
+        </VBox>
+    </HBox>
+    
 </core:FragmentDefinition>
