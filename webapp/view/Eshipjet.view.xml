@@ -222,7 +222,7 @@
 					</ScrollContainer>
 
 					<ScrollContainer	id="_ID_RoutingGuide_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
-						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.RoutingGuide.RoutingGuideTableColumns" type="XML" />
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.RoutingGuide.CreateRoutingRuleClick" type="XML" />
 					</ScrollContainer>
 
 					<ScrollContainer	id="_ID_Incoterms_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">

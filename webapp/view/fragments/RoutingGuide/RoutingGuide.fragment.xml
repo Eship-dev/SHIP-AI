@@ -4,7 +4,7 @@
 			<Text text="Routing Guide" class="textBold" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button type="Success" text="Routing Guide"  press="onAddRoutingGuidPeress"></Button>
+                    <Button type="Success" text="Routing Guide"  press="onRoutingGuidePress"></Button>
                     <!-- <Button type="Success" icon="sap-icon://navigation-down-arrow" ></Button> -->
                 </HBox>
 		</Toolbar>

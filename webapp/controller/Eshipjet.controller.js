@@ -1239,6 +1239,20 @@ sap.ui.define([
         onRoutingGuideFilterPopoverApplyPress: function () {
             this.byId("idRoutingGuideFilterPopover").close();
         },
+
+
+        onRoutingGuidePress:function(){
+            var oView = this.getView();
+            var oToolPage = this.byId("toolPage");
+            oToolPage.setSideExpanded(false);
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            var SideNavigation = eshipjetModel.getProperty("/SideNavigation");
+            if (SideNavigation === true) {
+                eshipjetModel.setProperty("/SideNavigation", false);
+            }
+            var oPageContainer = this.byId("pageContainer");
+            oPageContainer.to(oView.createId("_ID_RoutingGuide_TableScrollContainer"));
+        },
         // RoutingGuide Changes End
 
         // Ship Request/Lable Code Changes Starts

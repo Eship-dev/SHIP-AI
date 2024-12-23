@@ -544,8 +544,8 @@
     "RoutingGuideTableData":{
 		"RoutingGuideColumns": [
 			{
-				"name": "orderID",
-				"label": "Order ID",
+				"name": "Routing Rule Name",
+				"label": "RoutingRuleName",
 				"visible": true
 			},
 			{
@@ -554,32 +554,37 @@
 				"visible": true
 			},
 			{
-				"name": "ShipDate",
-				"label": "Ship Date",
+				"name": "Applicable Days",
+				"label": "ApplicableDays",
 				"visible": true
 			},
 			{
-				"name": "ShipmentType",
-				"label": "Shipment Type",
+				"name": "Active From Date",
+				"label": "ActiveFromDate",
 				"visible": false
 			},
 			{
-				"name": "shipMethod",
-				"label": "Shipment Method",
+				"name": "Active To Date",
+				"label": "ActiveToDate",
 				"visible": true
 			},
 			{
-				"name": "ServiceName",
-				"label": "Service Name",
+				"name": "Carrier Name",
+				"label": "CarrierName",
 				"visible": true
 			},
 			{
-				"name": "TrackingNumber",
-				"label": "Tracking Number",
+				"name": "Service Name",
+				"label": "ServiceName",
 				"visible": true
 			},
 			{
-				"name": "status",
+				"name": "Priority",
+				"label": "Priority",
+				"visible": true
+			},
+            {
+				"name": "Status",
 				"label": "Status",
 				"visible": true
 			},
@@ -642,169 +647,10 @@
 				"name": "orderType",
 				"label": "Order Type",
 				"visible": false
-			},
-			{
-				"name": "priorityLevel",
-				"label": "Priority Level",
-				"visible": false
-			},
-			{
-				"name": "actions",
-				"label": "Actions"
 			}
 		],
 		"RoutingGuideRows": [
-            {
-                "orderID": "DN000001358",
-                "CreatedDate": "12/10/2024",
-                "ShipDate": "12/10/2024",
-                "ShipmentType": "Business",
-                "shipMethod": "FedEx Freight",
-                "ServiceName": "FEDEX_FREIGHT_ECONOMY",
-                "TrackingNumber": "Open",
-                "status": "Open",
-                "ShipToContact": "Walter Brown",
-                "ShipToCompany": "Brown Exports",
-                "ShipToAddressLine1": "49 Featherstone Dr",
-                "shipToCity": "London",
-                "shipToState": "GB",
-                "shipToCountry": "GB",
-                "shipToZipcode": "06320",
-                "shipToPhone": "4088380699",
-                "shipToEmail": "walter.brown@brownexports.com"
-              },
-              {
-                "orderID": "DN000001347",
-                "CreatedDate": "12/09/2024",
-                "ShipDate": "12/09/2024",
-                "ShipmentType": "Business",
-                "shipMethod": "UPS",
-                "ServiceName": "03",
-                "TrackingNumber": "Open",
-                "status": "Open",
-                "ShipToContact": "Stephen Byers",
-                "ShipToCompany": "JPMorgan Chase & Co",
-                "ShipToAddressLine1": "270 Park Avenue",
-                "shipToCity": "New York",
-                "shipToState": "NY",
-                "shipToCountry": "US",
-                "shipToZipcode": "10017",
-                "shipToPhone": "(574) 631-5380",
-                "shipToEmail": "info@google.com"
-              },{
-                "orderID": "DN000001358",
-                "CreatedDate": "12/10/2024",
-                "ShipDate": "12/10/2024",
-                "ShipmentType": "Business",
-                "shipMethod": "FedEx Freight",
-                "ServiceName": "FEDEX_FREIGHT_ECONOMY",
-                "TrackingNumber": "Open",
-                "status": "Open",
-                "ShipToContact": "Walter Brown",
-                "ShipToCompany": "Brown Exports",
-                "ShipToAddressLine1": "49 Featherstone Dr",
-                "shipToCity": "London",
-                "shipToState": "GB",
-                "shipToCountry": "GB",
-                "shipToZipcode": "06320",
-                "shipToPhone": "4088380699",
-                "shipToEmail": "walter.brown@brownexports.com"
-              },
-              {
-                "orderID": "DN000001347",
-                "CreatedDate": "12/09/2024",
-                "ShipDate": "12/09/2024",
-                "ShipmentType": "Business",
-                "shipMethod": "UPS",
-                "ServiceName": "03",
-                "TrackingNumber": "Open",
-                "status": "Open",
-                "ShipToContact": "Stephen Byers",
-                "ShipToCompany": "JPMorgan Chase & Co",
-                "ShipToAddressLine1": "270 Park Avenue",
-                "shipToCity": "New York",
-                "shipToState": "NY",
-                "shipToCountry": "US",
-                "shipToZipcode": "10017",
-                "shipToPhone": "(574) 631-5380",
-                "shipToEmail": "info@google.com"
-              },
-              {
-                "orderID": "DN000001347",
-                "CreatedDate": "12/09/2024",
-                "ShipDate": "12/09/2024",
-                "ShipmentType": "Business",
-                "shipMethod": "UPS",
-                "ServiceName": "03",
-                "TrackingNumber": "Open",
-                "status": "Open",
-                "ShipToContact": "Stephen Byers",
-                "ShipToCompany": "JPMorgan Chase & Co",
-                "ShipToAddressLine1": "270 Park Avenue",
-                "shipToCity": "New York",
-                "shipToState": "NY",
-                "shipToCountry": "US",
-                "shipToZipcode": "10017",
-                "shipToPhone": "(574) 631-5380",
-                "shipToEmail": "info@google.com"
-              },
-              {
-                "orderID": "DN000001347",
-                "CreatedDate": "12/09/2024",
-                "ShipDate": "12/09/2024",
-                "ShipmentType": "Business",
-                "shipMethod": "UPS",
-                "ServiceName": "03",
-                "TrackingNumber": "Open",
-                "status": "Open",
-                "ShipToContact": "Stephen Byers",
-                "ShipToCompany": "JPMorgan Chase & Co",
-                "ShipToAddressLine1": "270 Park Avenue",
-                "shipToCity": "New York",
-                "shipToState": "NY",
-                "shipToCountry": "US",
-                "shipToZipcode": "10017",
-                "shipToPhone": "(574) 631-5380",
-                "shipToEmail": "info@google.com"
-              },
-              {
-                "orderID": "DN000001347",
-                "CreatedDate": "12/09/2024",
-                "ShipDate": "12/09/2024",
-                "ShipmentType": "Business",
-                "shipMethod": "UPS",
-                "ServiceName": "03",
-                "TrackingNumber": "Open",
-                "status": "Open",
-                "ShipToContact": "Stephen Byers",
-                "ShipToCompany": "JPMorgan Chase & Co",
-                "ShipToAddressLine1": "270 Park Avenue",
-                "shipToCity": "New York",
-                "shipToState": "NY",
-                "shipToCountry": "US",
-                "shipToZipcode": "10017",
-                "shipToPhone": "(574) 631-5380",
-                "shipToEmail": "info@google.com"
-              },
-              {
-                "orderID": "DN000001347",
-                "CreatedDate": "12/09/2024",
-                "ShipDate": "12/09/2024",
-                "ShipmentType": "Business",
-                "shipMethod": "UPS",
-                "ServiceName": "03",
-                "TrackingNumber": "Open",
-                "status": "Open",
-                "ShipToContact": "Stephen Byers",
-                "ShipToCompany": "JPMorgan Chase & Co",
-                "ShipToAddressLine1": "270 Park Avenue",
-                "shipToCity": "New York",
-                "shipToState": "NY",
-                "shipToCountry": "US",
-                "shipToZipcode": "10017",
-                "shipToPhone": "(574) 631-5380",
-                "shipToEmail": "info@google.com"
-              }
+           
         ]
 	},
 
