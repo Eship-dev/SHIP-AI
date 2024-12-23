@@ -628,6 +628,8 @@ sap.ui.define([
             } else {
                 this.byId("idCodEditDialog").open(); // Open existing dialog
             }
+
+            
         },
 
         onCodEditDialogCancelPress: function () {
