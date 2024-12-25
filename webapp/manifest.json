@@ -26,11 +26,20 @@
                 }
             },
             "API_OUTBOUND_DELIVERY_SRV": {
-                "uri": "/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV",
+                "uri": "/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV;v=2/",
                 "type": "OData",
                 "settings": {
                     "annotations": [],
-                    "localUri": "localService/API_OUTBOUND_DELIVERY_SRV/metadata.xml",
+                    "localUri": "localService/API_OUTBOUND_DELIVERY_SRV;v=2/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "API_HANDLING_UNIT": {
+                "uri": "/sap/opu/odata/sap/API_HANDLING_UNIT",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/API_HANDLING_UNIT/metadata.xml",
                     "odataVersion": "2.0"
                 }
             }
@@ -93,6 +102,18 @@
             },
             "OutBoundDeliveryModel": {
                 "dataSource": "API_OUTBOUND_DELIVERY_SRV",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "HandlingUnitModel":{
+                "dataSource": "API_HANDLING_UNIT",
                 "preload": true,
                 "settings": {
                     "defaultBindingMode": "TwoWay",

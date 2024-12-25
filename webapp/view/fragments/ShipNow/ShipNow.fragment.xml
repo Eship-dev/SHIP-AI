@@ -9,7 +9,7 @@
 							</Toolbar>
 							<Toolbar class="sapUiTinyMarginBottom" height="10%">
 								<Label text="SAP Delivery Number"  wrapping="true" width="11%" labelFor="SAPDelLabel"/>
-								<SearchField class="sapUiSmallMargin" id="idShipNowSearch" search="onShipNowSearchDialog"  width="11%" />
+								<SearchField class="sapUiSmallMargin" id="idShipNowSearch"   value="{eshipjetModel>/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="11%" />
 								<Button text="Get" type="Ghost" class="scan-ship-toolbar__button" press="onShipNowGetPress" width="11%"></Button>
 								<Button text="Consolidation" class="scan-ship-toolbar__button" type="Ghost" press="handleConsolidationPress" width="11%"></Button>
 								<Label text="Pickup Date"   wrapping="true" labelFor="DP1" width="7%"/>
@@ -34,47 +34,47 @@
 														<Text text=" - Eshipjet Software Inc." ></Text>
 													</Toolbar>
 													<Label text="Contact Name" />
-													<Input value="{ShipNowDataModel>/ShipFromCONTACT}" />
+													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromCONTACT}" />
 													<Label text="Address Line 1" />
-													<Input value="{ShipNowDataModel>/ShipFromADDRESS_LINE1}"></Input>
+													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE1}"></Input>
 													<Label text="City" />
 													
-													<Input value="{ShipNowDataModel>/ShipFromCITY}" >
+													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromCITY}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
 													<!-- <Label text="State / Province" /> -->
-													<Input value="{ShipNowDataModel>/ShipFromSTATE}" placeholder="State" >
+													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromSTATE}" placeholder="State" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
 													<Label text="Email" />
-													<Input value="{ShipNowDataModel>/ShipFromEMAIL}" />
+													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromEMAIL}" />
 													<Label text="Company Name" />
-													<Input value="{ShipNowDataModel>/ShipFromCOMPANY}" />
+													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromCOMPANY}" />
 													<Label text="Address Line 2" />
-													<Input value="{ShipNowDataModel>/ShipFromADDRESS_LINE2}" />
+													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE2}" />
 													<Label text="Zip / Postal Code" />
-													<Input value="{ShipNowDataModel>/ShipFromZIPCODE}" >
+													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromZIPCODE}" >
 													<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipFromCOUNTRY}" placeholder="Country">
-														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													<ComboBox items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipFromAddress/ShipFromCOUNTRY}" placeholder="Country">
+														<core:Item key="{eshipjetModel>code}" text="{eshipjetModel>name}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>													
 													</ComboBox>
 													<Label text="Phone No" />
-													<Input value="{ShipNowDataModel>/ShipFromPHONE}" >
+													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromPHONE}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox selectedKey="{ShipNowDataModel>/ShipFromAddressType}" items="{eshipjetModel>/addressType}" placeholder="Address Type">
+													<ComboBox selectedKey="{ShipNowDataModel>/ShipFromAddressType}" items="{eshipjetModel>/ShipFromAddress/addressType}" placeholder="Address Type">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
@@ -88,16 +88,16 @@
 														<Button text="Validate Address" class="scan-ship-toolbar__button" type="Ghost" width="25%" />
 													</Toolbar>
 													<Label text="Contact Name" />
-													<Input value="{ShipNowDataModel>/ShipToCONTACT}" />
+													<Input value="{ShipNowDataModel>/ShipToAddress/BusinessPartnerName1}" />
 													<Label text="Address Line 1" />
 													<Input value="{ShipNowDataModel>/ShipToADDRESS_LINE1}"></Input>
 													<Label text="State / Province" />
-													<Input value="{ShipNowDataModel>/ShipToSTATE}" >
+													<Input value="{ShipNowDataModel>/ShipToAddress/Region}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<Input value="{ShipNowDataModel>/ShipToCITY}" placeholder="City" >
+													<Input value="{ShipNowDataModel>/ShipToAddress/CityName}" placeholder="City" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>									
@@ -109,19 +109,19 @@
 													<Label text="Address Line 2" />
 													<Input value="{ShipNowDataModel>/ShipToADDRESS_LINE2}" />
 													<Label text="Zip / Postal Code" />
-													<Input value="{ShipNowDataModel>/ShipToZIPCODE}" >
+													<Input value="{ShipNowDataModel>/ShipToAddress/PostalCode}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox selectedKey="{ShipNowDataModel>/ShipToCOUNTRY}" items="{eshipjetModel>/shipNowCountriesList}" placeholder="Country">
-														<core:Item key="{eshipjetModel>country}" text="{eshipjetModel>/country}" />
+													<ComboBox selectedKey="{ShipNowDataModel>/ShipToAddress/Country}" items="{eshipjetModel>/countriesList}" placeholder="Country">
+														<core:Item key="{eshipjetModel>code}" text="{eshipjetModel>name}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</ComboBox>
 													<Label text="Phone No" />
-													<Input value="{ShipNowDataModel>/ShipToPHONE}" >
+													<Input value="{ShipNowDataModel>/ShipToAddress/PhoneNumber}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
@@ -186,15 +186,15 @@
 														<cells>
 															<Button icon="sap-icon://search" type="Transparent" press="handleSearchPickAnAddressPress"></Button>
 															<Input value="{eshipjetModel>PartnerType}" />
-															<Input value="{eshipjetModel>contactName}" />
+															<Input value="{eshipjetModel>FullName}" />
 															<Input value="{eshipjetModel>companyName}" />
 															<Input value="{eshipjetModel>AddressLine1}" />
 															<Input value="{eshipjetModel>AddressLine2}" />
 															<Input value="{eshipjetModel>state}" />
-															<Input value="{eshipjetModel>city}" />
-															<Input value="{eshipjetModel>zipCode}" />
-															<Input value="{eshipjetModel>country}" />
-															<Input value="{eshipjetModel>phone}" />
+															<Input value="{eshipjetModel>CityName}" />
+															<Input value="{eshipjetModel>PostalCode}" />
+															<Input value="{eshipjetModel>Country}" />
+															<Input value="{eshipjetModel>PhoneNumber}" />
 															<Input value="{eshipjetModel>email}" />
 														</cells>
 													</ColumnListItem>
@@ -517,7 +517,7 @@
 										</Table>
 										
 
-										<Table id="Pack2" inset="false" class="sapUiSmallMarginTop" items="{eshipjetModel>/packTable2}">
+										<Table id="Pack2" inset="false" class="sapUiSmallMarginTop" items="{eshipjetModel>/HandlingUnits}">
 											<headerToolbar >
 												<OverflowToolbar class="sapUiSmallMarginBottom">
 													<Label text="Scan Handling Unit" class="sapUiTinyMargin"></Label>
@@ -571,19 +571,18 @@
 												<ColumnListItem vAlign="Middle">
 													<cells>
 														<Text text="{eshipjetModel>#}" />
-														<Link text="{eshipjetModel>HU}" press="handleHULinkPress"></Link>
+														<Link text="{eshipjetModel>HandlingUnitExternalID}" press="handleHULinkPress"></Link>
 														<Text text="{eshipjetModel>erpHandlingUnit}" />
-														<Text text="{eshipjetModel>Weight}" />
+														<Text text="{eshipjetModel>GrossWeight}" />
 														<core:Icon src="{eshipjetModel>shipmentIcon}" press="handlePackTable2ShipmentPress" tooltip="Shipment">
 														</core:Icon>
-														<Text text="{eshipjetModel>WeightUnits}" />
+														<Text text="{eshipjetModel>WeightUnit}" />
 														<Text text="{eshipjetModel>Dimensions}" />
 														<Text text="{eshipjetModel>DimensionUnits}" />
 														<Text text="{eshipjetModel>Class}" />
 														<Text text="{eshipjetModel>Tracking}" />
-														<!-- <core:Icon src="{eshipjetModel>deleteIcon}" press="handlePackTable2DeletePress" tooltip="Delete" color="red">
-										</core:Icon> -->
-														<Button icon="{eshipjetModel>deleteIcon}" press="handlePackTable2DeletePress" tooltip="Delete" type="Reject"></Button>
+														<core:Icon src="sap-icon://delete" press="handlePackTable2DeletePress"  tooltip="Delete All" color="red">
+														</core:Icon>														
 													</cells>
 												</ColumnListItem>
 											</items>
