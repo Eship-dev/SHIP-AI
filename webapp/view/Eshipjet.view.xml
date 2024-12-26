@@ -280,4 +280,11 @@
 				<Button text="Ship Now" press="onShipNowPress" class="ship-now-footer_ship-now" />
 		</OverflowToolbar>
 
+		<OverflowToolbar class="eship-footer ship-now-footer" visible="{eshipjetModel>/routingGuidFooter}">
+			<ToolbarSpacer/>
+				<HBox >
+					<Button text="Save" press="onRoutingGuidSavePress" class="ship-now-footer_ship-now" />
+					<Button icon="sap-icon://slim-arrow-down" press="onRoutingGuidSaveOptionsPress" class="ship-now-footer_ship-now" ></Button>
+				</HBox>
+		</OverflowToolbar>
 </mvc:View>

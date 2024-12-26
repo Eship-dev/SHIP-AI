@@ -1,0 +1,20 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Popover
+		showHeader="false"
+		id="idRoutingGuidSaveBtnOptionsPopover"
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+		placement="Top"
+		initialFocus="email">
+		<List
+            items="{eshipjetModel>/RoutingGuidSaveBtnOptions}" >
+            <StandardListItem
+                type="Active"
+                press="onRoutingGuideSaveListItemPress"
+	    		title="{eshipjetModel>saveOption}"/>
+    	</List>
+	</Popover>
+</core:FragmentDefinition>

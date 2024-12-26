@@ -77,12 +77,14 @@ sap.ui.define([
                 this.getView().setModel(oShipperCopilotModel, "ShipperCopilotModel");
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/routingGuidFooter", false);
                 eshipjetModel.setProperty("/showDarkThemeSwitch", true);
                 eshipjetModel.setProperty("/darkTheme", true);
                 document.body.classList.remove("dark-theme");
             } else if (sKey === "ScanShip") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/routingGuidFooter", false);
                 eshipjetModel.setProperty("/showDarkThemeSwitch", true);
                 eshipjetModel.setProperty("/darkTheme", true);
                 document.body.classList.remove("dark-theme");
@@ -90,6 +92,7 @@ sap.ui.define([
             } else if (sKey === "Orders") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/routingGuidFooter", false);
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
@@ -97,6 +100,7 @@ sap.ui.define([
             } else if (sKey === "ShipRequestLabel") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/routingGuidFooter", false);
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
@@ -104,18 +108,21 @@ sap.ui.define([
             } else if (sKey === "ShipNow") {
                 eshipjetModel.setProperty("/allViewsFooter", false);
                 eshipjetModel.setProperty("/shipNowViewFooter", true);
+                eshipjetModel.setProperty("/routingGuidFooter", false);
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
             } else if (sKey === "QuoteNow") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/routingGuidFooter", false);
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
             } else if (sKey === "TrackNow") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/routingGuidFooter", false);
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
@@ -123,6 +130,7 @@ sap.ui.define([
             } else if (sKey === "Manifest") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/routingGuidFooter", false);
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
@@ -130,28 +138,40 @@ sap.ui.define([
             } else if (sKey === "AESDirect") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/routingGuidFooter", false);
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
             } else if (sKey === "Dashboard") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/routingGuidFooter", false);
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
             } else if (sKey === "Reports") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/routingGuidFooter", false);
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
             } else if (sKey === "BatchShip") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/routingGuidFooter", false);
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
                 this._handleDisplayBatchShipTable();
+            } else if (sKey === "RoutingGuide") {
+                eshipjetModel.setProperty("/allViewsFooter", true);
+                eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/routingGuidFooter", false);
+                eshipjetModel.setProperty("/showDarkThemeSwitch", false);
+                eshipjetModel.setProperty("/darkTheme", false);
+                document.body.classList.remove("dark-theme");
+                // this._handleDisplayRoutingGuideTable();
             }
 
 
@@ -1460,12 +1480,32 @@ sap.ui.define([
             var oToolPage = this.byId("toolPage");
             oToolPage.setSideExpanded(false);
             var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/routingGuidFooter", true);
             var SideNavigation = eshipjetModel.getProperty("/SideNavigation");
             if (SideNavigation === true) {
                 eshipjetModel.setProperty("/SideNavigation", false);
             }
             var oPageContainer = this.byId("pageContainer");
             oPageContainer.to(oView.createId("_ID_RoutingGuide_TableScrollContainer"));
+        },
+
+        onRoutingGuidSaveOptionsPress:function(oEvent){
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._RoutingGuideSaveOptionsPopover) {
+                this._RoutingGuideSaveOptionsPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.RoutingGuide.RoutingGuideSaveOptions",
+                    controller: this
+                }).then(function (RoutingGuideSaveOptionsPopover) {
+                    oView.addDependent(RoutingGuideSaveOptionsPopover);
+                    // RoutingGuideSaveOptionsPopover.bindElement("/ProductCollection/0");
+                    return RoutingGuideSaveOptionsPopover;
+                });
+            }
+            this._RoutingGuideSaveOptionsPopover.then(function (RoutingGuideSaveOptionsPopover) {
+                RoutingGuideSaveOptionsPopover.openBy(oButton);
+            });
         },
         // RoutingGuide Changes End
 
@@ -2376,6 +2416,7 @@ sap.ui.define([
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             eshipjetModel.setProperty("/allViewsFooter", true);
             eshipjetModel.setProperty("/shipNowViewFooter", false);
+            eshipjetModel.setProperty("/routingGuidFooter", false);
             var oCurrObj = oSrc.getBindingContext().getObject();
             var oToolPage = this.byId("toolPage");
             var oPageContainer = this.byId("pageContainer");

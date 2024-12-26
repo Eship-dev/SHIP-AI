@@ -1,6 +1,7 @@
 {
     "allViewsFooter": true,
     "shipNowViewFooter": false,
+    "routingGuidFooter": false,
     "showDarkThemeSwitch": false,
     "darkTheme": true,
     "selectedKey": "page2",
@@ -899,6 +900,10 @@
            
         ]
 	},
+    "RoutingGuidSaveBtnOptions":[
+        {"saveOption": "Save and New"},
+        {"saveOption": "Save and Close"}
+    ],
 
     "ShipReqTableData":{
 		"ShipReqColumns": [
