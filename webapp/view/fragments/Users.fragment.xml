@@ -3,11 +3,11 @@
     <Toolbar width="auto">
 			<Text text="Users" class="textBold" ></Text>
 				<ToolbarSpacer />
-					<HBox>
+				<HBox>
                     <Button type="Success" text="Add User" press="onAddUserIconPress"></Button>
                     <Button type="Success" icon="sap-icon://navigation-down-arrow"></Button>
                 </HBox>
-		</Toolbar>
+	</Toolbar>
 
         <Toolbar height="15%" >
 			<HBox width="100%" >
