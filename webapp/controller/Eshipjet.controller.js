@@ -534,8 +534,8 @@ sap.ui.define([
                 }
             };
 
-            var sPath = "https://eshipjet-demo-srv-hvacbxf0fqapdpgd.francecentral-01.azurewebsites.net/copilot/v1/bot/process";
-
+            //var sPath = "https://eshipjet-demo-srv-hvacbxf0fqapdpgd.francecentral-01.azurewebsites.net/copilot/v1/bot/process";
+            var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/dhl";
             return new Promise((resolve, reject) => {
                 $.ajax({
                     url: sPath,
@@ -560,28 +560,96 @@ sap.ui.define([
             oController.oBusyDialog = new sap.m.BusyDialog({});
             var oDeliveryModel = this.getView().getModel("OutBoundDeliveryModel");
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+           
             var oHandlingUnitModel = this.getView().getModel("HandlingUnitModel");
             var sDeveliveryNumber = this.getOwnerComponent().getModel("eshipjetModel").getProperty("/sapDeliveryNumber");
             var sPath = "/A_OutbDeliveryHeader('"+ sDeveliveryNumber +"')/to_DeliveryDocumentPartner";
-            oController.oBusyDialog.open();
-            oDeliveryModel.read(sPath,{
+            if(sDeveliveryNumber && sDeveliveryNumber.length >= 8){
+                oController.oBusyDialog.open();
+                oDeliveryModel.read(sPath,{
+                    success:function(oData){
+                        if(oData && oData.results && oData.results.length > 0){                      
+                            oController._getShipToAddress(oData.results, sDeveliveryNumber);
+                        }
+                    },
+                    error: function(oErr){
+                        var err = oErr;
+                    }
+                });
+                var oFilter, aHandlingUnits = [];
+                oFilter = [];
+                oFilter.push(new Filter("HandlingUnitReferenceDocument", "EQ", sDeveliveryNumber));
+                oHandlingUnitModel.read("/HandlingUnit",{
+                    filters: oFilter,
+                    success:function(oData){
+                        if(oData && oData.results && oData.results.length > 0){
+                            for(var i = 0; i < oData.results.length; i++){
+                                oData.results[i]["SerialNumber"] = i + 1;
+                                aHandlingUnits.push(oData.results[i]);
+                            }
+                            eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
+                            oController.getHandlingUnit(aHandlingUnits);
+                        }
+                    },
+                    error: function(oErr){
+                        var err = oErr;
+                        oController.oBusyDialog.close();
+                    }
+                });
+                var aOutBoundDelveryFilter = [], aProductTable = [];
+                aOutBoundDelveryFilter.push(new Filter("DeliveryDocument", "EQ", sDeveliveryNumber));
+                oDeliveryModel.read("/A_OutbDeliveryItem",{
+                    filters: aOutBoundDelveryFilter,
+                    success:function(oData){
+                        if(oData && oData.results && oData.results.length > 0){
+                            for(var i = 0; i < oData.results.length; i++){
+                                oData.results[i]["SerialNumber"] = i+1;
+                                aProductTable.push(oData.results[i]);
+                            }
+                            eshipjetModel.setProperty("/pickAddProductTable",aProductTable);
+                            oController.getSalesOrder(aProductTable);
+                        }
+                    },
+                    error: function(oErr){
+                        var err = oErr;
+                        oController.oBusyDialog.close();
+                    }
+                });            
+            }
+        },
+        getHandlingUnit:function(aHanlingUnits){
+            var oHandlingUnitModel = this.getView().getModel("HandlingUnitModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var sPath = "", aFilters = [] ;
+            for (var i = 0; i < aHanlingUnits.length; i++) {               
+                aFilters.push(new Filter("HandlingUnitReferenceDocument", "EQ", aHanlingUnits[i].HandlingUnitReferenceDocument));              
+            }
+            oHandlingUnitModel.read("/HandlingUnitItem",{
+                filters: aFilters,
                 success:function(oData){
-                    if(oData && oData.results && oData.results.length > 0){                      
-                        oController._getShipToAddress(oData.results, sDeveliveryNumber);
+                    if(oData && oData.results && oData.results.length > 0){
+                        eshipjetModel.setProperty("/HandlingUnitItems",oData.results);
                     }
                 },
                 error: function(oErr){
                     var err = oErr;
+                    oController.oBusyDialog.close();
                 }
             });
-            var oFilter;
-            oFilter = [];
-            oFilter.push(new Filter("HandlingUnitReferenceDocument", "EQ", "80000014"));
-            oHandlingUnitModel.read("/HandlingUnit",{
-                filters: oFilter,
+
+        },
+        getSalesOrder:function(aProductTable){
+            var oSalesOrderModel = oController.getOwnerComponent().getModel("SalesOrderModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var sPath = "", aFilters = [] ;
+            for (var i = 0; i < aProductTable.length; i++) {               
+                aFilters.push(new Filter("SalesOrder", "EQ", aProductTable[i].ReferenceSDDocument));              
+            }
+            oSalesOrderModel.read("/A_SalesOrderItem",{
+                filters: aFilters,
                 success:function(oData){
                     if(oData && oData.results && oData.results.length > 0){
-                        eshipjetModel.setProperty("/HandlingUnits", oData.results);
+                        eshipjetModel.setProperty("/SalesOrderItems",oData.results);
                     }
                 },
                 error: function(oErr){
@@ -609,10 +677,14 @@ sap.ui.define([
                     oController.oBusyDialog.close();
                     if(oData &&  oData.__batchResponses &&  oData.__batchResponses.length > 0){
                         oData.__batchResponses.map(function(currentValue, index, arr){
-                            aBusinessPartnerTable.push(currentValue.data);
-                           
+                            if(index == 0){
+                                currentValue.data["PartnerType"]  = "ShipFrom";
+                            }else if(index == 1){
+                                currentValue.data["PartnerType"]  = "Shipper";
+                            }
+                            aBusinessPartnerTable.push(currentValue.data);                           
                         });
-                        oShipNowModel.setProperty("/ShipToAddress",aBusinessPartnerTable[0]);                        
+                                                
                         var  Obj = {
                             "ShipFromCONTACT": "Steve Marsh",
                             "ShipFromCOMPANY": "Eshipjet Software Inc.",
@@ -627,7 +699,10 @@ sap.ui.define([
                             "ShipFromADDRESS_LINE3": ""
                         };
                         oShipNowModel.setProperty("/ShipFromAddress",Obj);
+                        oShipNowModel.setProperty("/ShipToAddress",aBusinessPartnerTable[1]);
                         eshipjetModel.setProperty("/BusinessPartners",aBusinessPartnerTable);
+                        eshipjetModel.setProperty("/InternationalDetails/shipFromTaxNo",aBusinessPartnerTable[0].TaxJurisdiction);
+
                     }                    
             }, error: function(oErr){
                 oController.oBusyDialog.close();

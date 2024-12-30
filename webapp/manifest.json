@@ -42,6 +42,15 @@
                     "localUri": "localService/API_HANDLING_UNIT/metadata.xml",
                     "odataVersion": "2.0"
                 }
+            },
+            "API_SALES_ORDER_SRV":{
+                "uri": "/sap/opu/odata/sap/API_SALES_ORDER_SRV",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/API_SALES_ORDER_SRV/metadata.xml",
+                    "odataVersion": "2.0"
+                }
             }
         }
     },
@@ -114,6 +123,18 @@
             },
             "HandlingUnitModel":{
                 "dataSource": "API_HANDLING_UNIT",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "SalesOrderModel":{
+                "dataSource": "API_SALES_ORDER_SRV",
                 "preload": true,
                 "settings": {
                     "defaultBindingMode": "TwoWay",

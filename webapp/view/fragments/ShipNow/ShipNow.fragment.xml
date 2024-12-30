@@ -22,7 +22,6 @@
 							<!-- Icon Tab Bar Starts here -->			
 							<IconTabBar id="idIconTabBarFiori2" expanded="{device>/isNoPhone}" >
 								<items >
-
 									<!-- Ship From / To Tab Starts here -->
 									<IconTabFilter text="Ship From / To" key="info" >
 										<VBox>
@@ -37,8 +36,7 @@
 													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromCONTACT}" />
 													<Label text="Address Line 1" />
 													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE1}"></Input>
-													<Label text="City" />
-													
+													<Label text="City" />													
 													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromCITY}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
@@ -89,9 +87,9 @@
 														<Button text="Validate Address" class="scan-ship-toolbar__button" type="Ghost" width="25%" />
 													</Toolbar>
 													<Label text="Contact Name" />
-													<Input value="{ShipNowDataModel>/ShipToAddress/BusinessPartnerName1}" />
+													<Input value="{ShipNowDataModel>/ShipToAddress/FullName}" />
 													<Label text="Address Line 1" />
-													<Input value="{eshipjetModel>/ShipTo/ADDRESS_LINE1}"></Input>
+													<Input value="{ShipNowDataModel>/ShipToAddress/StreetName}"></Input>
 													<Label text="State / Province" />
 													<Input value="{ShipNowDataModel>/ShipToAddress/Region}" >
 														<layoutData>
@@ -106,9 +104,9 @@
 													<Label text="Email" />
 													<Input value="{eshipjetModel>/ShipTo/EMAIL}" />
 													<Label text="Company Name" />
-													<Input value="{eshipjetModel>/ShipTo/COMPANY}" />
+													<Input value="{ShipNowDataModel>/ShipToAddress/BusinessPartnerName1}" />
 													<Label text="Address Line 2" />
-													<Input value="{eshipjetModel>/ShipTo/ADDRESS_LINE2}" />
+													<Input value="{ShipNowDataModel>/ShipToAddress/HouseNumber}" />
 													<Label text="Zip / Postal Code" />
 													<Input value="{ShipNowDataModel>/ShipToAddress/PostalCode}" >
 														<layoutData>
@@ -188,10 +186,10 @@
 															<Button icon="sap-icon://search" type="Transparent" press="handleSearchPickAnAddressPress"></Button>
 															<Input value="{eshipjetModel>PartnerType}" />
 															<Input value="{eshipjetModel>FullName}" />
-															<Input value="{eshipjetModel>companyName}" />
-															<Input value="{eshipjetModel>AddressLine1}" />
-															<Input value="{eshipjetModel>AddressLine2}" />
-															<Input value="{eshipjetModel>state}" />
+															<Input value="{eshipjetModel>BusinessPartnerName1}" />
+															<Input value="{eshipjetModel>StreetName}" />
+															<Input value="{eshipjetModel>HouseNumber}" />
+															<Input value="{eshipjetModel>Region}" />
 															<Input value="{eshipjetModel>CityName}" />
 															<Input value="{eshipjetModel>PostalCode}" />
 															<Input value="{eshipjetModel>Country}" />
@@ -204,8 +202,6 @@
 
 										</VBox>
 									</IconTabFilter>
-
-
 									<!-- Routing and Billing Details Tab Starts here -->
 
 									<IconTabFilter text="Routing and Billing Details" key="Routing and Billing Details">
@@ -349,8 +345,6 @@
 											</f:SimpleForm>
 										</VBox>
 									</IconTabFilter>
-
-
 									<!-- Additional Info Tab Starts here -->
 									<IconTabFilter text="Additional Info" key="Additional Info">
 										<VBox class="sapUiSmallMargin">
@@ -497,21 +491,19 @@
 											<items>
 												<ColumnListItem vAlign="Middle">
 													<cells>
-														<Text text="{eshipjetModel>#}" />
-														<Text text="{eshipjetModel>productCode}" />
-														<Text text="{eshipjetModel>description}" />
+														<Text text="{eshipjetModel>SerialNumber}" />
+														<Text text="{eshipjetModel>Material}" />
+														<Text text="{eshipjetModel>Material}" />
 														<Text text="{eshipjetModel>epcRfidNo}" />
-														<Text text="{eshipjetModel>dimensions}" />
-														<Text text="{eshipjetModel>totalQty}" />
-														<Text text="{eshipjetModel>balanceQty}" />
-														<Text text="{eshipjetModel>partialQty}" />
+														<Text text="{eshipjetModel>ItemWeightUnit}" />
+														<Text text="{eshipjetModel>ItemGrossWeight}" />
+														<Text text="{eshipjetModel>ItemNetWeight}" />
+														<Input value="{eshipjetModel>partialQty}" />
 														<!-- <Text text="{eshipjetModel>isSerial}" />
 										<Text text="{eshipjetModel>isDG}" /> -->
 														<CheckBox ></CheckBox>
 														<CheckBox ></CheckBox>
-														<!-- <core:Icon src="{eshipjetModel>deleteIcon}" press="handlePackTable2DeletePress" tooltip="Delete" color="red">
-										</core:Icon> -->
-														<Button icon="{eshipjetModel>deleteIcon}" press="handlePackProductTableDeletePress" tooltip="Delete" type="Reject"></Button>
+														<core:Icon src="sap-icon://delete" press="handlePackTable2DeletePress"  tooltip="Delete All" color="red" />
 													</cells>
 												</ColumnListItem>
 											</items>
@@ -571,16 +563,23 @@
 											<items>
 												<ColumnListItem vAlign="Middle">
 													<cells>
-														<Text text="{eshipjetModel>#}" />
+														<Text text="{eshipjetModel>SerialNumber}" />
 														<Link text="{eshipjetModel>HandlingUnitExternalID}" press="handleHULinkPress"></Link>
 														<Text text="{eshipjetModel>erpHandlingUnit}" />
-														<Text text="{eshipjetModel>GrossWeight}" />
+														<Input value="{eshipjetModel>GrossWeight}" />
 														<core:Icon src="{eshipjetModel>shipmentIcon}" press="handlePackTable2ShipmentPress" tooltip="Shipment">
 														</core:Icon>
-														<Text text="{eshipjetModel>WeightUnit}" />
-														<Text text="{eshipjetModel>Dimensions}" />
-														<Text text="{eshipjetModel>DimensionUnits}" />
-														<Text text="{eshipjetModel>Class}" />
+														<Input value="{eshipjetModel>WeightUnit}" />
+														<Input value="{eshipjetModel>HandlingUnitLength} X {eshipjetModel>HandlingUnitWidth} X {eshipjetModel>HandlingUnitHeight}" />
+														<Input value="{eshipjetModel>UnitOfMeasureDimension}" />
+														<!-- <Text text="{eshipjetModel>Class}" /> -->
+														<ComboBox  selectedKey="{eshipjetModel>Class}" >
+															<core:Item  text="50" key="50" > </core:Item>
+															<core:Item  text="100" key="100" > </core:Item>
+															<core:Item  text="150" key="150" > </core:Item>
+															<core:Item  text="200" key="200" > </core:Item>
+															<core:Item  text="250" key="250" > </core:Item>
+														</ComboBox>
 														<Text text="{eshipjetModel>Tracking}" />
 														<core:Icon src="sap-icon://delete" press="handlePackTable2DeletePress"  tooltip="Delete All" color="red">
 														</core:Icon>														
@@ -608,7 +607,7 @@
 													<Label text="Payor Zip Code" />
 													<Input value="{eshipjetModel>/payorZipCode}" />
 													<Label text="Ship From Tax No" />
-													<Input value="{eshipjetModel>/shipFromTaxNo}" />
+													<Input value="{eshipjetModel>/InternationalDetails/shipFromTaxNo}" />
 													<Label text="B13A Filing Option" />
 													<ComboBox items="{eshipjetModel>/B13AFillingOption}">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
@@ -624,7 +623,7 @@
 													<Label text="ATLAS MRN No" />
 													<Input value="{eshipjetModel>/atlasMRNNo}"></Input>
 													<Label text="Ship To Tax No" />
-													<Input value="{eshipjetModel>/shipToTaxNo}" />
+													<Input value="{eshipjetModel>/InternationalDetails/shipFromTaxNo}" />
 													<Label text="Currency" />
 													<Input value="{eshipjetModel>/Currency}"></Input>
 
@@ -647,7 +646,7 @@
 												</f:content>
 											</f:SimpleForm>
 
-											<Table inset="false" items="{}">
+											<Table inset="false" items="{eshipjetModel>/HandlingUnitItems}">
 												<columns>
 													<Column width="auto">
 														<Text text="H.U." />
@@ -689,18 +688,18 @@
 												<items>
 													<ColumnListItem vAlign="Middle">
 														<cells>
+															<Text text="{eshipjetModel>HandlingUnitExternalID}" />
+															<Text text="{eshipjetModel>Material}" />
+															<Text text="{}" />
+															<Text text="{}" />
+															<Text text="{eshipjetModel>Material}" />
+															<Text text="{eshipjetModel>HandlingUnitAltUnitOfMeasure}" />
 															<Text text="{}" />
 															<Text text="{}" />
 															<Text text="{}" />
 															<Text text="{}" />
-															<Text text="{}" />
-															<Text text="{}" />
-															<Text text="{}" />
-															<Text text="{}" />
-															<Text text="{}" />
-															<Text text="{}" />
-															<Text text="{}" />
-															<Text text="{}" />
+															<Text text="{eshipjetModel>HandlingUnitQuantity}" />
+															<Text text="{eshipjetModel>HandlingUnitQuantityUnit}" />
 														</cells>
 													</ColumnListItem>
 												</items>
