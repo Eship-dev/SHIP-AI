@@ -568,11 +568,13 @@ sap.ui.define([
                 oController.oBusyDialog.open();
                 oDeliveryModel.read(sPath,{
                     success:function(oData){
+                        oController.oBusyDialog.close();
                         if(oData && oData.results && oData.results.length > 0){                      
                             oController._getShipToAddress(oData.results, sDeveliveryNumber);
                         }
                     },
                     error: function(oErr){
+                        oController.oBusyDialog.close();
                         var err = oErr;
                     }
                 });
@@ -582,6 +584,7 @@ sap.ui.define([
                 oHandlingUnitModel.read("/HandlingUnit",{
                     filters: oFilter,
                     success:function(oData){
+                        oController.oBusyDialog.close();
                         if(oData && oData.results && oData.results.length > 0){
                             for(var i = 0; i < oData.results.length; i++){
                                 oData.results[i]["SerialNumber"] = i + 1;
@@ -601,6 +604,7 @@ sap.ui.define([
                 oDeliveryModel.read("/A_OutbDeliveryItem",{
                     filters: aOutBoundDelveryFilter,
                     success:function(oData){
+                        oController.oBusyDialog.close();
                         if(oData && oData.results && oData.results.length > 0){
                             for(var i = 0; i < oData.results.length; i++){
                                 oData.results[i]["SerialNumber"] = i+1;
@@ -627,6 +631,7 @@ sap.ui.define([
             oHandlingUnitModel.read("/HandlingUnitItem",{
                 filters: aFilters,
                 success:function(oData){
+                    oController.oBusyDialog.close();
                     if(oData && oData.results && oData.results.length > 0){
                         eshipjetModel.setProperty("/HandlingUnitItems",oData.results);
                     }
@@ -648,6 +653,7 @@ sap.ui.define([
             oSalesOrderModel.read("/A_SalesOrderItem",{
                 filters: aFilters,
                 success:function(oData){
+                    oController.oBusyDialog.close();
                     if(oData && oData.results && oData.results.length > 0){
                         eshipjetModel.setProperty("/SalesOrderItems",oData.results);
                     }
