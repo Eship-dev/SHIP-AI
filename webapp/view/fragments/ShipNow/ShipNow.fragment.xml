@@ -25,7 +25,7 @@
 									<!-- Ship From / To Tab Starts here -->
 									<IconTabFilter text="Ship From / To" key="info" >
 										<VBox>
-											<f:SimpleForm id="SimpleFormChangeColumn_threeGroups346" editable="true" layout="ColumnLayout" columnsM="3" columnsL="4" columnsXL="4">
+											<f:SimpleForm id="SimpleFormChangeColumn_threeGroups346" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
 												<f:content>
 													<Toolbar ariaLabelledBy="idShipFrom">
 														<Title id="idShipFrom" text="Ship From"/>
@@ -206,7 +206,7 @@
 
 									<IconTabFilter text="Routing and Billing Details" key="Routing and Billing Details">
 										<VBox>
-											<f:SimpleForm id="RoutingandBillingDetails" editable="true" layout="ColumnLayout" columnsM="3" columnsL="4" columnsXL="4" >
+											<f:SimpleForm id="RoutingandBillingDetails" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4" >
 												<f:content>
 													<Label text="Ship Method" />
 													<ComboBox items="{eshipjetModel>/shipMethod}" >
@@ -248,7 +248,7 @@
 												</VBox>
 											</Toolbar>		
 											<VBox height="1rem" />				
-											<f:SimpleForm id="RoutingandBillingDetails2" editable="true" layout="ColumnLayout" columnsM="3" columnsL="4" columnsXL="5">
+											<f:SimpleForm id="RoutingandBillingDetails2" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
 												<f:content>
 													<Label text="Signature Option" />
 													<ComboBox items="{eshipjetModel>/signatureOption}">
@@ -348,7 +348,7 @@
 									<!-- Additional Info Tab Starts here -->
 									<IconTabFilter text="Additional Info" key="Additional Info">
 										<VBox class="sapUiSmallMargin">
-											<f:SimpleForm id="AdditionalInfo" editable="true" layout="ColumnLayout" columnsM="3" columnsL="4" columnsXL="4">
+											<f:SimpleForm id="AdditionalInfo" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
 												<f:content>
 													<Label text="PO No" />
 													<Input value="{}"></Input>
@@ -593,7 +593,7 @@
 									<!-- International Details Tab Starts here -->
 									<IconTabFilter text="International Details" key="International Details">
 										<VBox>
-											<f:SimpleForm id="InternationalDetails" editable="true" layout="ColumnLayout" columnsM="3" columnsL="3" columnsXL="6">
+											<f:SimpleForm id="InternationalDetails" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="6">
 												<f:content>
 													<Label text="INT Duties/Taxes" />
 													<ComboBox items="{eshipjetModel>/Packages/Weight}">
