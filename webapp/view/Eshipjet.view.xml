@@ -6,8 +6,8 @@
 			<tnt:ToolHeader>
 				<!-- <Button		id="sideNavigationToggleButton"		icon="{value:'com/eshipjet/zeshipjet/css/images/menu.png', formatter:'sap.ui.require.toUrl'}"
 					type="Transparent"		press=".onSideNavButtonPress"> -->
-					<Button		id="sideNavigationToggleButton"		icon="sap-icon://screen-split-one"
-					type="Transparent"		press=".onSideNavButtonPress">
+				<Button id="sideNavigationToggleButton"  icon="sap-icon://screen-split-one"
+					type="Transparent" press=".onSideNavButtonPress">
 					<layoutData>
 						<OverflowToolbarLayoutData priority="NeverOverflow" />
 					</layoutData>
@@ -26,9 +26,13 @@
 		<tnt:sideContent >
 			<tnt:SideNavigation	 	visible="{eshipjetModel>/SideNavigation}"	expanded="true"		selectedKey="{eshipjetModel>/selectedKey}"	itemSelect=".onItemSelect">
 				<tnt:NavigationList items="{path: 'eshipjetModel>/navigation'}">
-					<tnt:NavigationListItem		class="textBold"	text="{eshipjetModel>title}"	icon="{eshipjetModel>icon}" 	key="{eshipjetModel>key}">
+					<tnt:NavigationListItem text="{eshipjetModel>title}" icon="{eshipjetModel>icon}" key="{eshipjetModel>key}">
 					</tnt:NavigationListItem>
 				</tnt:NavigationList>
+				<!-- <tnt:NavigationList>
+					<tnt:NavigationListItem text="Orders" icon="{value: 'com/eshipjet/zeshipjet/css/images/shiprequest.png',formatter: 'sap.ui.require.toUrl'}" key="Orders">
+					</tnt:NavigationListItem>
+				</tnt:NavigationList> -->
 			</tnt:SideNavigation>
 		</tnt:sideContent>
 		<tnt:mainContents>
@@ -43,12 +47,23 @@
 						<FlexBox justifyContent="Center" alignItems="Center" height="100%">	
 							<l:HorizontalLayout id="TileContainerExpanded"
 				                    allowWrapping="true"
-				                    content="{eshipjetModel>/TileCollection}"
 				                    class="sapUiTinyMargin ship-tile-container">
 									<GenericTile press="onTilePress" class="ship-tile"
-										headerImage="{eshipjetModel>image}">
+										headerImage="{value: 'com/eshipjet/zeshipjet/css/images/shiprequest.png',formatter: 'sap.ui.require.toUrl'}">
 										<TileContent class="ship-tile-content">
-											<Button class="ship-tile-button" text="{eshipjetModel>title}"/>
+											<Button class="ship-tile-button" text="Ship Request/Label"/>
+										</TileContent>
+									</GenericTile>
+									<GenericTile press="onTilePress" class="ship-tile"
+										headerImage="{value: 'com/eshipjet/zeshipjet/css/images/shipnow.png',formatter: 'sap.ui.require.toUrl'}">
+										<TileContent class="ship-tile-content">
+											<Button class="ship-tile-button" text="Ship Now"/>
+										</TileContent>
+									</GenericTile>
+									<GenericTile press="onTilePress" class="ship-tile"
+										headerImage="{value: 'com/eshipjet/zeshipjet/css/images/track.png',formatter: 'sap.ui.require.toUrl'}">
+										<TileContent class="ship-tile-content">
+											<Button class="ship-tile-button" text="Track Now"/>
 										</TileContent>
 									</GenericTile>
 							</l:HorizontalLayout>
@@ -118,7 +133,7 @@
 					</ScrollContainer>
 
 				<!-- Ship Now Starts here -->
-					<ScrollContainer id="ShipNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+					<ScrollContainer id="ShipNow" horizontal="false" vertical="true" height="calc(100% - 50px)" class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ShipNow.ShipNow" type="XML" />
 						<!-- <mvc:XMLView viewName="com.eshipjet.zeshipjet.view.ShipNow"/> -->
 					</ScrollContainer>

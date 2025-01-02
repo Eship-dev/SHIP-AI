@@ -380,7 +380,7 @@
     ],
     "TileCollection": [
         {
-            "image": "../css/images/shiprequest.png",
+            "image": "com/eshipjet/zeshipjet/css/images/shiprequest.png",
             "title": "Ship Request/Label"
         },
         {

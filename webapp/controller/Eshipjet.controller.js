@@ -56,6 +56,28 @@ sap.ui.define([
             };
             var ShipNowDataModel = new JSONModel(ShipNowDataModel);
             this.getOwnerComponent().setModel(ShipNowDataModel, "ShipNowDataModel");
+
+            this.getOwnerComponent().getRouter().getRoute("RouteEshipjet").attachPatternMatched(this._handleRouteMatched, this);
+        },
+
+        _handleRouteMatched:function(){
+            var oEshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            // var aNavigations = oEshipjetModel.getProperty("/navigation");
+            // aNavigations.forEach(function(obj){
+            //     // Example image path
+            //     var imagePath = obj.icon;
+
+            //     // Encode the image path to ensure it complies with RFC 3986
+            //     var encodedImagePath = encodeURIComponent(imagePath);
+
+            //     // Construct the final URI
+            //     var imageUri =  window.location.origin + encodedImagePath;
+
+            //     obj.icon = imageUri;
+
+            // })
+
+            // oEshipjetModel.updateBindings(true);
         },
 
         onItemSelect: function (oEvent) {
