@@ -55,7 +55,7 @@ sap.ui.define([
                 "ShipToADDRESS_LINE3": ""
             };
             var ShipNowDataModel = new JSONModel(ShipNowDataModel);
-            this.getView().setModel(ShipNowDataModel, "ShipNowDataModel");
+            this.getOwnerComponent().setModel(ShipNowDataModel, "ShipNowDataModel");
         },
 
         onItemSelect: function (oEvent) {
@@ -708,7 +708,8 @@ sap.ui.define([
                         oShipNowModel.setProperty("/ShipToAddress",aBusinessPartnerTable[1]);
                         eshipjetModel.setProperty("/BusinessPartners",aBusinessPartnerTable);
                         eshipjetModel.setProperty("/InternationalDetails/shipFromTaxNo",aBusinessPartnerTable[0].TaxJurisdiction);
-
+                        oShipNowModel.updateBindings(true);
+                        eshipjetModel.updateBindings(true);
                     }                    
             }, error: function(oErr){
                 oController.oBusyDialog.close();
