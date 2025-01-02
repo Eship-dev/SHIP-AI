@@ -410,6 +410,106 @@
         }
     ],
 
+
+	"ShipNowTableColumns": [
+			{
+				"name": "#",
+				"label": "#",
+				"visible": true
+			},
+			{
+				"name": "ProductCode",
+				"label": "Product Code",
+				"visible": true
+			},
+			{
+				"name": "Description",
+				"label": "Description",
+				"visible": true
+			},
+			{
+				"name": "EPCRFIDNo",
+				"label": "EPC-RFID No",
+				"visible": true
+			},
+			{
+				"name": "Dimensions",
+				"label": "Dimensions",
+				"visible": true
+			},
+			{
+				"name": "TotalQty",
+				"label": "Total Qty",
+				"visible": true
+			},
+			{
+				"name": "BalanceQty",
+				"label": "Balance Qty",
+				"visible": true
+			},
+			{
+				"name": "PartialQty",
+				"label": "Partial Qty",
+				"visible": true
+			},
+			{
+				"name": "IsSerial",
+				"label": "Is Serial",
+				"visible": true
+			},
+			{
+				"name": "IsDG",
+				"label": "Is DG",
+				"visible": true
+			},
+			{
+				"name": "UnitWeight",
+				"label": "Unit Weight",
+				"visible": true
+			},
+			{
+				"name": "UnitCost",
+				"label": "Unit Cost",
+				"visible": true
+			},
+			{
+				"name": "HarmonizedCode",
+				"label": "Harmonized Code",
+				"visible": true
+			},
+			{
+				"name": "CountryOfMFR",
+				"label": "Country of MFR",
+				"visible": true
+			},
+			{
+				"name": "UOM",
+				"label": "UOM",
+				"visible": true
+			},
+			{
+				"name": "Currency",
+				"label": "Currency",
+				"visible": true
+			},
+			{
+				"name": "LicenseNo",
+				"label": "License No",
+				"visible": true
+			},
+			{
+				"name": "ECCN",
+				"label": "ECCN",
+				"visible": true
+			},
+			{
+				"name": "DeleteIcon",
+				"label": "Delete Icon",
+				"visible": true
+			}
+		],
+        "pickAddProductTable":[],
+        
 	"scanShipTableData":{
 		"columns": [
 			{

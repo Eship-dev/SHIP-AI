@@ -134,6 +134,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
+                this._handleDisplayShipNowProductsTable();
             } else if (sKey === "QuoteNow") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
@@ -823,6 +824,63 @@ sap.ui.define([
 
 
         // Scan & Ship Code Changes Start
+
+        _handleDisplayShipNowProductsTable:function(){
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            const oTable = oView.byId("idShipNowProductTable");
+            oTable.setModel(eshipjetModel);
+            var ShipNowTableColumns = eshipjetModel.getData().ShipNowTableColumns;
+            var count = 0;
+            for (var i = 0; i < ShipNowTableColumns.length; i++) {
+                if (ShipNowTableColumns[i].visible === true) {
+                    count += 1
+                }
+            }
+            oTable.bindColumns("/ShipNowTableColumns", function (sId, oContext) {
+                columnName = oContext.getObject().name;
+                label = oContext.getObject().label;
+                var minWidth = "100%";
+                if (count >= 14) {
+                    var minWidth = "130px";
+                }
+                if (columnName === "deleteIcon") {
+                    var Btn1 = new sap.m.Button({ icon: "sap-icon://delete", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://delete", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    return new sap.ui.table.Column({
+                        label: Btn2,
+                        template: Btn1,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else {
+                    var template = new sap.m.Text({
+                        text: {
+                            path: columnName
+                        }
+                    });
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: template,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/pickAddProductTable");
+        },
 
         _handleDisplayScanShipTable: function () {
             var that = this;

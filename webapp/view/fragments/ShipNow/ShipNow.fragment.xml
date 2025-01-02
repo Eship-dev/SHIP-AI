@@ -20,7 +20,7 @@
 								<ToolbarSpacer />
 							</Toolbar>
 							<!-- Icon Tab Bar Starts here -->			
-							<IconTabBar id="idIconTabBarFiori2" expanded="{device>/isNoPhone}" >
+							<IconTabBar id="idIconTabBarFiori2" expanded="{device>/isNoPhone}" class="sapUiLargeMarginBottom" >
 								<items >
 									<!-- Ship From / To Tab Starts here -->
 									<IconTabFilter text="Ship From / To" key="info" >
@@ -409,16 +409,14 @@
 
 									<!-- Pack Tab Starts here -->
 									<IconTabFilter text="Pack" key="Pack">
-										<Table id="Pack" inset="false"  width="100%" class="sapUiTinyMarginTop" items="{eshipjetModel>/pickAddProductTable}">
-											<headerToolbar >
-												<OverflowToolbar height="15%" class="sapUiSmallMarginBottom">
-													<content >
-														<HBox width="100%" >
+
+										<Toolbar >
+											<HBox width="100%" >
 															<Label text="Scan Product" class="sapUiTinyMargin" />
 															<Input value="{}"></Input>
 
 															<Label text="Quantity" class="sapUiTinyMargin"/>
-															<StepInput id="quantityInput" value="{eshipjetModel>/Packages/Quantity}" min="0" max="100" step="1" width="8%" valueState="None" />
+															<StepInput id="quantityInput1" value="{eshipjetModel>/Packages/Quantity}" min="0" max="100" step="1" width="8%" valueState="None" />
 
 															<Label text="Package Type" class="sapUiTinyMargin" />
 															<ComboBox items="{}" >
@@ -432,14 +430,30 @@
 															<Button icon="sap-icon://add" press="handleDimensionAddPress" class="sapUiSmallMarginEnd"></Button>
 
 															<Label text="Total Pkgs/Weight"  class="sapUiTinyMargin"/>
-															<StepInput id="stepDownInput" value="{eshipjetModel>/Packages/Weight}" min="0" max="100" step="1"  width="6rem"  valueState="None" />
+															<StepInput id="stepDownInput1" value="{eshipjetModel>/Packages/Weight}" min="0" max="100" step="1"  width="6rem"  valueState="None" />
 															<Text text="/" width="10%" class="sapUiTinyMarginTop" ></Text>
-															<StepInput id="stepUpInput" value="{eshipjetModel>/Packages/Weight}" min="0" max="100" step="1" width="6rem" valueState="None" />
+															<StepInput id="stepUpInput1" value="{eshipjetModel>/Packages/Weight}" min="0" max="100" step="1" width="6rem" valueState="None" />
 															<Button text="Auto Pack" press="handleAutoPackPress" ></Button>
 														</HBox>
-													</content>
-												</OverflowToolbar>
-											</headerToolbar>
+										</Toolbar>
+
+				<ui:Table class="sapUiTinyMargin scan-ship-table" rowActionCount="0"	id="idShipNowProductTable"
+					selectionMode="None"	paste="onPaste"		ariaLabelledBy="title" visibleRowCount="auto" >
+					<ui:extension>
+						<OverflowToolbar class="scan-ship-table__toolbar">
+							<ToolbarSpacer ></ToolbarSpacer>
+                            <Button icon="sap-icon://action-settings" press="openScanShipColNamesPopover" >
+                                <customData>
+                                    <core:CustomData key="remember" value="true" />
+                                    <core:CustomData key="showClearButton" value="true" />
+                                    <core:CustomData key="confirmButtonText" value="Ok" />
+                                </customData>
+							</Button>										
+						</OverflowToolbar>
+					</ui:extension>
+				</ui:Table>
+
+										<!-- <Table id="Pack" inset="false"  width="100%" class="sapUiTinyMarginTop" items="{eshipjetModel>/pickAddProductTable}">
 											<infoToolbar>
 												<Toolbar >
 													<Title text="Product"></Title>
@@ -484,8 +498,7 @@
 													<Text text="Is DG" />
 												</Column>
 												<Column >
-													<core:Icon src="sap-icon://delete" press="handleDeleteAllPickAddProductTable" tooltip="Delete All" color="red">
-													</core:Icon>
+													<Button icon="sap-icon://delete" type="Critical" tooltip="Delete All" press="handleDeleteAllPickAddProductTable" ></Button>
 												</Column>
 											</columns>
 											<items>
@@ -499,15 +512,13 @@
 														<Text text="{eshipjetModel>ItemGrossWeight}" />
 														<Text text="{eshipjetModel>ItemNetWeight}" />
 														<Input value="{eshipjetModel>partialQty}" />
-														<!-- <Text text="{eshipjetModel>isSerial}" />
-										<Text text="{eshipjetModel>isDG}" /> -->
 														<CheckBox ></CheckBox>
 														<CheckBox ></CheckBox>
-														<core:Icon src="sap-icon://delete" press="handlePackTable2DeletePress"  tooltip="Delete All" color="red" />
+														<Button icon="sap-icon://delete" type="Critical" tooltip="Delete" press="handlePackTable2DeletePress" ></Button>
 													</cells>
 												</ColumnListItem>
 											</items>
-										</Table>
+										</Table> -->
 										
 
 										<Table id="Pack2" inset="false" class="sapUiSmallMarginTop" items="{eshipjetModel>/HandlingUnits}">
@@ -520,8 +531,7 @@
 													<Button text="Pack All" class="scan-ship-toolbar__button" type="Ghost" width="8%" ></Button>
 													<Button text="Multi Level Pack" class="scan-ship-toolbar__button" type="Ghost" width="12%" ></Button>
 													<ToolbarSpacer />												
-													<core:Icon src="sap-icon://action-settings">
-													</core:Icon>
+													<Button icon="sap-icon://action-settings" ></Button>
 												</OverflowToolbar>
 											</headerToolbar>
 											<columns >
