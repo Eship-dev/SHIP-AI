@@ -437,8 +437,8 @@
 														</HBox>
 										</Toolbar>
 
-				<ui:Table class="sapUiTinyMargin scan-ship-table" rowActionCount="0"	id="idShipNowProductTable"
-					selectionMode="None"	paste="onPaste"		ariaLabelledBy="title" visibleRowCount="5" >
+				<!-- <ui:Table class="sapUiTinyMargin scan-ship-table" rowActionCount="0"	id="idShipNowProductTable"
+					selectionMode="None"	paste="onPaste"		ariaLabelledBy="title" visibleRowCount="5" rows="{/pickAddProductTable}" >
 					<ui:extension>
 						<OverflowToolbar class="scan-ship-table__toolbar">
 							<ToolbarSpacer ></ToolbarSpacer>
@@ -451,9 +451,9 @@
 							</Button>										
 						</OverflowToolbar>
 					</ui:extension>
-				</ui:Table>
+				</ui:Table> -->
 
-										<!-- <Table id="Pack" inset="false"  width="100%" class="sapUiTinyMarginTop" items="{eshipjetModel>/pickAddProductTable}">
+										<Table id="Pack" inset="false" mode="MultiSelect" width="100%" class="sapUiTinyMarginTop" items="{eshipjetModel>/pickAddProductTable}">
 											<infoToolbar>
 												<Toolbar >
 													<Title text="Product"></Title>
@@ -464,11 +464,6 @@
 											<columns>
 												<Column >
 													<Text text="#" />
-													<footer>
-														<Toolbar class="toolbarbottomborder">															
-															<Button text="Add Product" press="handleAddProductPress" type="Ghost" ></Button>																
-														</Toolbar>														
-													</footer>
 												</Column>
 												<Column >
 													<Text text="Product Code" />
@@ -498,7 +493,7 @@
 													<Text text="Is DG" />
 												</Column>
 												<Column >
-													<Button icon="sap-icon://delete" type="Critical" tooltip="Delete All" press="handleDeleteAllPickAddProductTable" ></Button>
+													<Button icon="sap-icon://delete" type="Attention" tooltip="Delete All" press="handleDeleteAllPickAddProductTable" ></Button>
 												</Column>
 											</columns>
 											<items>
@@ -514,14 +509,13 @@
 														<Input value="{eshipjetModel>partialQty}" />
 														<CheckBox ></CheckBox>
 														<CheckBox ></CheckBox>
-														<Button icon="sap-icon://delete" type="Critical" tooltip="Delete" press="handlePackTable2DeletePress" ></Button>
+														<Button icon="sap-icon://delete" type="Attention" tooltip="Delete" press="handlePackTable2DeletePress" ></Button>
 													</cells>
 												</ColumnListItem>
 											</items>
-										</Table> -->
+										</Table>
 										
-
-				<ui:Table class="sapUiTinyMargin scan-ship-table" rowActionCount="0"	id="idShipNowHandlingUnitTable"
+<!--			<ui:Table class="sapUiTinyMargin scan-ship-table" rowActionCount="0"	id="idShipNowHandlingUnitTable"
 					selectionMode="None"	paste="onPaste" ariaLabelledBy="title" visibleRowCount="5" >
 					<ui:extension>
 						<Button text="Add Product" ></Button>
@@ -545,8 +539,12 @@
 							</Button>										
 						</OverflowToolbar>
 					</ui:extension>
-				</ui:Table>
-										<!-- <Table id="Pack2" inset="false" class="sapUiSmallMarginTop" items="{eshipjetModel>/HandlingUnits}">
+				</ui:Table> -->
+								<Toolbar class="toolbarbottomborder">															
+									<Button text="Add Product" press="handleAddProductPress" class="scan-ship-toolbar__button" width="8%" type="Ghost" ></Button>																
+								</Toolbar>
+
+										<Table id="Pack2" inset="false" mode="MultiSelect" class="sapUiSmallMarginTop" items="{eshipjetModel>/HandlingUnits}">
 											<headerToolbar >
 												<OverflowToolbar class="sapUiSmallMarginBottom">
 													<Label text="Scan Handling Unit" class="sapUiTinyMargin"></Label>
@@ -591,8 +589,7 @@
 													<Text text="Tracking#" />
 												</Column>
 												<Column >
-													<core:Icon src="sap-icon://delete" press="handleDeleteAll" tooltip="Delete All" color="red">
-													</core:Icon>
+													<Button icon="sap-icon://delete" type="Attention" tooltip="Delete All" press="handleDeleteAll" ></Button>
 												</Column>
 											</columns>
 											<items>
@@ -615,12 +612,11 @@
 															<core:Item  text="250" key="250" > </core:Item>
 														</ComboBox>
 														<Text text="{eshipjetModel>Tracking}" />
-														<core:Icon src="sap-icon://delete" press="handlePackTable2DeletePress"  tooltip="Delete All" color="red">
-														</core:Icon>														
+														<Button icon="sap-icon://delete" type="Attention" tooltip="Delete" press="handlePackTable2DeletePress" ></Button>												
 													</cells>
 												</ColumnListItem>
 											</items>
-										</Table> -->
+										</Table>
 									</IconTabFilter>
 
 

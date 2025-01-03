@@ -413,42 +413,42 @@
 
 	"ShipNowProductsTableColumns": [
 			{
-				"name": "#",
+				"name": "SerialNumber",
 				"label": "#",
 				"visible": true
 			},
 			{
-				"name": "ProductCode",
+				"name": "Material",
 				"label": "Product Code",
 				"visible": true
 			},
 			{
-				"name": "Description",
+				"name": "Material",
 				"label": "Description",
 				"visible": true
 			},
 			{
-				"name": "EPCRFIDNo",
-				"label": "EPC-RFID No",
+				"name": "epcRfidNo",
+				"label": "EPCRFIDNo",
 				"visible": true
 			},
 			{
-				"name": "Dimensions",
+				"name": "ItemWeightUnit",
 				"label": "Dimensions",
 				"visible": true
 			},
 			{
-				"name": "TotalQty",
+				"name": "ItemGrossWeight",
 				"label": "Total Qty",
 				"visible": true
 			},
 			{
-				"name": "BalanceQty",
+				"name": "ItemNetWeight",
 				"label": "Balance Qty",
 				"visible": true
 			},
 			{
-				"name": "PartialQty",
+				"name": "partialQty",
 				"label": "Partial Qty",
 				"visible": true
 			},
@@ -512,32 +512,32 @@
 
         "ShipNowHandlingUnitTableColumns": [
 			{
-				"name": "#",
+				"name": "SerialNumber",
 				"label": "#",
 				"visible": true
 			},
             {
-				"name": "HU",
+				"name": "HandlingUnitExternalID",
 				"label": "H.U.",
 				"visible": true
 			},
 			{
-				"name": "ERPHandlingUnit",
+				"name": "erpHandlingUnit",
 				"label": "ERP Handling Unit",
 				"visible": true
 			},
 			{
-				"name": "Weight",
+				"name": "GrossWeight",
 				"label": "Weight",
 				"visible": true
 			},
 			{
-				"name": "WeightUnits",
+				"name": "WeightUnit",
 				"label": "Weight Units",
 				"visible": true
 			},
 			{
-				"name": "Dimensions",
+				"name": "UnitOfMeasureDimension",
 				"label": "Dimensions",
 				"visible": false
 			},
@@ -552,7 +552,7 @@
 				"visible": false
 			},
 			{
-				"name": "Tracking#",
+				"name": "Tracking",
 				"label": "Tracking#",
 				"visible": true
 			},

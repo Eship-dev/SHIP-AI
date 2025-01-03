@@ -134,8 +134,8 @@ sap.ui.define([
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
-                this._handleDisplayShipNowProductsTable();
-                this._handleDisplayShipNowHandlingUnitTable();
+                // this._handleDisplayShipNowProductsTable();
+                // this._handleDisplayShipNowHandlingUnitTable();
             } else if (sKey === "QuoteNow") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
@@ -638,9 +638,6 @@ sap.ui.define([
                             }
                             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
                             eshipjetModel.setProperty("/pickAddProductTable",aProductTable);
-                            var oShipNowProductTable = oView.byId("idShipNowProductTable");
-                            oShipNowProductTable.setModel(eshipjetModel);
-                            oShipNowProductTable.bindRows("/pickAddProductTable");
                             oController.getSalesOrder(aProductTable);
                         }
                     },
