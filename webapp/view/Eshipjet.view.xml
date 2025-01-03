@@ -6,7 +6,7 @@
 			<tnt:ToolHeader>
 				<!-- <Button		id="sideNavigationToggleButton"		icon="{value:'com/eshipjet/zeshipjet/css/images/menu.png', formatter:'sap.ui.require.toUrl'}"
 					type="Transparent"		press=".onSideNavButtonPress"> -->
-				<Button id="sideNavigationToggleButton"  icon="sap-icon://screen-split-one"
+				<Button id="sideNavigationToggleButton"  icon="sap-icon://customfont/menuIcon"
 					type="Transparent" press=".onSideNavButtonPress">
 					<layoutData>
 						<OverflowToolbarLayoutData priority="NeverOverflow" />
@@ -25,9 +25,34 @@
 		</tnt:header>
 		<tnt:sideContent >
 			<tnt:SideNavigation	 	visible="{eshipjetModel>/SideNavigation}"	expanded="true"		selectedKey="{eshipjetModel>/selectedKey}"	itemSelect=".onItemSelect">
-				<tnt:NavigationList items="{path: 'eshipjetModel>/navigation'}">
-					<tnt:NavigationListItem text="{eshipjetModel>title}" icon="{eshipjetModel>icon}" key="{eshipjetModel>key}">
+				<tnt:NavigationList>
+					<tnt:NavigationListItem text="SAP ShipperCopilot" icon="sap-icon://customfont/ShipperCopilate" key="ShipperCopilot">
 					</tnt:NavigationListItem>
+					<tnt:NavigationListItem text="Orders" icon="sap-icon://customfont/order_icon" key="Orders">
+					</tnt:NavigationListItem>
+					<tnt:NavigationListItem text="Batch Ship" icon="sap-icon://customfont/batchship_icon" key="BatchShip">
+					</tnt:NavigationListItem>
+					<tnt:NavigationListItem text="Ship Request/Label" icon="sap-icon://customfont/shiprequest_icon" key="ShipRequestLabel">
+					</tnt:NavigationListItem>
+					<tnt:NavigationListItem text="Ship Now" icon="sap-icon://customfont/shipnow_icon" key="ShipNow">
+					</tnt:NavigationListItem>
+					<tnt:NavigationListItem text="Quote Now" icon="sap-icon://customfont/quotenow" key="QuoteNow">
+					</tnt:NavigationListItem>
+					<tnt:NavigationListItem text="Track Now" icon="sap-icon://customfont/track_icon" key="TrackNow">
+					</tnt:NavigationListItem>
+					<tnt:NavigationListItem text="Manifest" icon="sap-icon://customfont/track_icon" key="Manifest">
+					</tnt:NavigationListItem>
+					<tnt:NavigationListItem text="Scan Ship" icon="sap-icon://customfont/quickship_icon" key="ScanShip">
+					</tnt:NavigationListItem>
+					<tnt:NavigationListItem text="Dashboard" icon="sap-icon://customfont/dashboard_icon" key="Dashboard">
+					</tnt:NavigationListItem>
+					<tnt:NavigationListItem text="Reports" icon="sap-icon://customfont/dashboard_icon" key="Reports">
+					</tnt:NavigationListItem>
+					<tnt:NavigationListItem text="Returns" icon="sap-icon://customfont/returns_icon" key="Returns">
+					</tnt:NavigationListItem>
+					<tnt:NavigationListItem text="Routing Guide" icon="sap-icon://customfont/returns_icon" key="RoutingGuide">
+					</tnt:NavigationListItem>
+					
 				</tnt:NavigationList>
 				<!-- <tnt:NavigationList>
 					<tnt:NavigationListItem text="Orders" icon="{value: 'com/eshipjet/zeshipjet/css/images/shiprequest.png',formatter: 'sap.ui.require.toUrl'}" key="Orders">

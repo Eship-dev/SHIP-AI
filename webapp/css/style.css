@@ -680,3 +680,169 @@ span.sapMBtnInner.sapMBtnReject {
 .sapTntNLIFirstLevel .sapTntNLIText {
   font-weight: normal !important;
 }
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?fjlxh8');
+  src:  url('fonts/icomoon.eot?fjlxh8#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?fjlxh8') format('truetype'),
+    url('fonts/icomoon.woff?fjlxh8') format('woff'),
+    url('fonts/icomoon.svg?fjlxh8#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-dashboard_icon .path1:before {
+  content: "\e900";
+  color: rgb(244, 244, 244);
+}
+.icon-dashboard_icon .path2:before {
+  content: "\e901";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-dashboard_icon .path3:before {
+  content: "\e902";
+  margin-left: -1em;
+  color: rgb(246, 246, 246);
+}
+.icon-dashboard_icon .path4:before {
+  content: "\e903";
+  margin-left: -1em;
+  color: rgb(76, 76, 76);
+}
+.icon-dashboard_icon .path5:before {
+  content: "\e904";
+  margin-left: -1em;
+  color: rgb(53, 53, 53);
+}
+.icon-dashboard_icon .path6:before {
+  content: "\e905";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-dashboard_icon .path7:before {
+  content: "\e906";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-menuIcon:before {
+  content: "\e907";
+  color: #7c7c7c;
+}
+.icon-order_icon .path1:before {
+  content: "\e908";
+  color: rgb(240, 240, 240);
+}
+.icon-order_icon .path2:before {
+  content: "\e909";
+  margin-left: -1em;
+  color: rgb(9, 9, 9);
+}
+.icon-order_icon .path3:before {
+  content: "\e90a";
+  margin-left: -1em;
+  color: rgb(17, 17, 17);
+}
+.icon-order_icon .path4:before {
+  content: "\e90b";
+  margin-left: -1em;
+  color: rgb(8, 8, 8);
+}
+.icon-order_icon .path5:before {
+  content: "\e90c";
+  margin-left: -1em;
+  color: rgb(7, 7, 7);
+}
+.icon-order_icon .path6:before {
+  content: "\e90d";
+  margin-left: -1em;
+  color: rgb(89, 89, 89);
+}
+.icon-order_icon .path7:before {
+  content: "\e90e";
+  margin-left: -1em;
+  color: rgb(7, 7, 7);
+}
+.icon-quickship_icon:before {
+  content: "\e90f";
+}
+.icon-quotenow:before {
+  content: "\e910";
+}
+.icon-returns_icon:before {
+  content: "\e911";
+}
+.icon-shipnow_icon:before {
+  content: "\e912";
+}
+.icon-ShipperCopilate .path1:before {
+  content: "\e913";
+  color: rgb(30, 30, 30);
+}
+.icon-ShipperCopilate .path2:before {
+  content: "\e914";
+  margin-left: -1em;
+  color: rgb(253, 253, 253);
+}
+.icon-ShipperCopilate .path3:before {
+  content: "\e915";
+  margin-left: -1em;
+  color: rgb(253, 253, 253);
+}
+.icon-ShipperCopilate .path4:before {
+  content: "\e916";
+  margin-left: -1em;
+  color: rgb(253, 253, 253);
+}
+.icon-ShipperCopilate .path5:before {
+  content: "\e917";
+  margin-left: -1em;
+  color: rgb(246, 246, 246);
+}
+.icon-ShipperCopilate .path6:before {
+  content: "\e918";
+  margin-left: -1em;
+  color: rgb(35, 35, 35);
+}
+.icon-ShipperCopilate .path7:before {
+  content: "\e919";
+  margin-left: -1em;
+  color: rgb(35, 35, 35);
+}
+.icon-ShipperCopilate .path8:before {
+  content: "\e91a";
+  margin-left: -1em;
+  color: rgb(34, 34, 34);
+}
+.icon-ShipperCopilate .path9:before {
+  content: "\e91b";
+  margin-left: -1em;
+  color: rgb(35, 35, 35);
+}
+.icon-shiprequest_icon:before {
+  content: "\e91c";
+}
+.icon-track_icon:before {
+  content: "\e91d";
+}
+.icon-batchship_icon:before {
+  content: "\e91e";
+}
+

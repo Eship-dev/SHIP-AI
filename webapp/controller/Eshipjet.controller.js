@@ -62,22 +62,8 @@ sap.ui.define([
 
         _handleRouteMatched:function(){
             var oEshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
-            // var aNavigations = oEshipjetModel.getProperty("/navigation");
-            // aNavigations.forEach(function(obj){
-            //     // Example image path
-            //     var imagePath = obj.icon;
-
-            //     // Encode the image path to ensure it complies with RFC 3986
-            //     var encodedImagePath = encodeURIComponent(imagePath);
-
-            //     // Construct the final URI
-            //     var imageUri =  window.location.origin + encodedImagePath;
-
-            //     obj.icon = imageUri;
-
-            // })
-
-            // oEshipjetModel.updateBindings(true);
+            // first parameter is font name, second parameter is collection name, third parameter is font-family and the last parameter is the code point in Unicode
+            
         },
 
         onItemSelect: function (oEvent) {
@@ -398,168 +384,356 @@ sap.ui.define([
 
 
 
+            // var obj = {
+            //     "HeaderInfo": {
+            //         "DocumentNumber": "DHL-SpecialServiceTest1",
+            //         "ShipDate": "2024-11-26T09:11:32.358Z",
+            //         "TotalWeight": "020",
+            //         "InsuranceAmount": "",
+            //         "InsuranceCurrency": "",
+            //         "Currency": "USD",
+            //         "Incoterm": "DDU",
+            //         "Notes": "Special instructions",
+            //         "Description": "testing",
+            //         "IsDutiable": false
+            //     },
+            //     "ShipTo": {
+            //         "COMPANY": "ATT1",
+            //         "CONTACT": "John Williams",
+            //         "ADDRESS_LINE1": "2600 N Cernter Express pkwy",
+            //         "ADDRESS_LINE2": "Suit 300",
+            //         "ADDRESS_LINE3": null,
+            //         "CITY": "Richardson",
+            //         "STATE": "TX",
+            //         "ZIPCODE": "75090",
+            //         "COUNTRY": "US",
+            //         "PHONE": "8888888889",
+            //         "EMAIL": "att@gmail.com",
+            //         "TAXID": null,
+            //         "VAT": null,
+            //         "EORI": null,
+            //         "LocationType": null
+            //     },
+            //     "SoldTo": {
+            //         "COMPANY": "",
+            //         "CONTACT": "",
+            //         "ADDRESS_LINE1": "",
+            //         "ADDRESS_LINE2": "",
+            //         "ADDRESS_LINE3": "",
+            //         "CITY": "",
+            //         "STATE": "",
+            //         "ZIPCODE": "",
+            //         "COUNTRY": "",
+            //         "PHONE": "",
+            //         "EMAIL": "",
+            //         "TAXID": null,
+            //         "VAT": null,
+            //         "EORI": null,
+            //         "LocationType": null
+            //     },
+            //     "Packages": [
+            //         {
+            //             "Quantity": 4,
+            //             "PackageLevelSpecialServices": {},
+            //             "Weightunits": "LBS",
+            //             "DimensionUnits": "IN",
+            //             "Sno": 1,
+            //             "HU": 6580,
+            //             "Weight": 2,
+            //             "Dimension": "12X12X12"
+            //         }
+            //     ],
+            //     "ShipmentLevelSpecialServices": {
+            //         "GoGreenPlus": true,
+            //         "NeutralDelivery": true,
+            //         "Insurance": true,
+            //         "PaperlessInvoice": true,
+            //         "DryIce": true,
+            //         "DryIce_value": "12",
+            //         "DryIce_units": "LBS"
+            //     },
+            //     "InternationalDetails": {
+            //         "ItemInfo": [
+            //             {
+            //                 "ItemNo": "TC89003",
+            //                 "ProductNo": "TC89003",
+            //                 "Description": "ITEM 1 Description",
+            //                 "IsDG": false,
+            //                 "UnitCost": "7",
+            //                 "UnitWeight": "6",
+            //                 "HTSCode": "940400",
+            //                 "ECCN": "EAR99",
+            //                 "id": 1,
+            //                 "Sno": 1,
+            //                 "Quantity": "4",
+            //                 "UOM": "",
+            //                 "Harmonized": "940400",
+            //                 "CountryOfMFR": "US",
+            //                 "Currency": "USD"
+            //             }
+            //         ],
+            //         "TermsofShipment": "DDU",
+            //         "dutiesAccountnumber": "",
+            //         "B13AFilingOption": "",
+            //         "Permitnumber": "",
+            //         "ITN": "",
+            //         "iNTDutiesTaxes": "RECIPIENT",
+            //         "IncoTermLocation": "",
+            //         "CustomDecValCurrency": "USD",
+            //         "DutiesAccount": "",
+            //         "payorCountryCode": "",
+            //         "bookingConfirmnumber": "",
+            //         "ReasonforExport": "SOLD",
+            //         "CustomDecVal": "0.000",
+            //         "InvoiceNumber": "DHL-SpecialServiceTest1"
+            //     },
+            //     "CarrierDetails": {
+            //         "Carrier": "DHL",
+            //         "CarrierType": "Parcel",
+            //         "ServiceName": "N",
+            //         "PaymentType": "Sender",
+            //         "ShippingAccount": "965278629",
+            //         "BillingAccount": "",
+            //         "BillingCountry": "",
+            //         "BillingZipCode": "",
+            //         "Reference1": "test",
+            //         "Reference2": "test",
+            //         "UserId": "apT2vB7mV1qR1b",
+            //         "Password": "U#3mO^1vY!5mT@0j",
+            //         "AccessKey": "",
+            //         "ShipURL": "",
+            //         "TrackURL": "",
+            //         "RateURL": "",
+            //         "VoidURL": "",
+            //         "ShipfromCountry": "",
+            //         "ShipToCountry": ""
+            //     },
+            //     "ShipFrom": {
+            //         "COMPANY": "Eshipjet Software Inc.",
+            //         "CONTACT": "Steve Marsh",
+            //         "ADDRESS_LINE1": "5717 Legacy",
+            //         "ADDRESS_LINE2": "Suite 250",
+            //         "ADDRESS_LINE3": null,
+            //         "CITY": "Plano",
+            //         "STATE": "TX",
+            //         "ZIPCODE": "75024",
+            //         "COUNTRY": "US",
+            //         "PHONE": "(888) 464 2360",
+            //         "EMAIL": "info@eshipjet.ai",
+            //         "TAXID": null,
+            //         "VAT": null,
+            //         "EORI": null,
+            //         "LocationType": null
+            //     },
+            //     "Shipper": {
+            //         "COMPANY": "Eshipjet Software Inc.",
+            //         "CONTACT": "Steve Marsh",
+            //         "ADDRESS_LINE1": "5717 Legacy",
+            //         "ADDRESS_LINE2": "Suite 250",
+            //         "ADDRESS_LINE3": null,
+            //         "CITY": "Plano",
+            //         "STATE": "TX",
+            //         "ZIPCODE": "75024",
+            //         "COUNTRY": "US",
+            //         "PHONE": "(888) 464 2360",
+            //         "EMAIL": "info@eshipjet.ai",
+            //         "TAXID": null,
+            //         "VAT": null,
+            //         "EORI": null,
+            //         "LocationType": null
+            //     }
+            // };
+
             var obj = {
                 "HeaderInfo": {
-                    "DocumentNumber": "DHL-SpecialServiceTest1",
-                    "ShipDate": "2024-11-26T09:11:32.358Z",
-                    "TotalWeight": "020",
+                    "FeederSystem": "Ship Request / Label",
+                    "DocumentType": "Delivery Number",
+                    "ShipDate": "2025-01-03T11:41:20.053Z",
+                    "CreatedDate": "2025-01-03T11:40:30.619Z",
+                    "DocumentNumber": "DN000004115",
+                    "Location": "1001",
+                    "ShipmentType": "Business",
+                    "Status": "Open",
+                    "requester": "",
+                    "category": "P1",
+                    "Requester": "Myself",
+                    "IsDutiable": false,
+                    "CreatedUser": "info@eshipjet.ai",
                     "InsuranceAmount": "",
                     "InsuranceCurrency": "",
-                    "Currency": "USD",
+                    "Currency": "",
+                    "Description": "",
                     "Incoterm": "DDU",
-                    "Notes": "Special instructions",
-                    "Description": "testing",
-                    "IsDutiable": false
-                },
-                "ShipTo": {
-                    "COMPANY": "ATT1",
-                    "CONTACT": "John Williams",
-                    "ADDRESS_LINE1": "2600 N Cernter Express pkwy",
-                    "ADDRESS_LINE2": "Suit 300",
-                    "ADDRESS_LINE3": null,
-                    "CITY": "Richardson",
-                    "STATE": "TX",
-                    "ZIPCODE": "75090",
-                    "COUNTRY": "US",
-                    "PHONE": "8888888889",
-                    "EMAIL": "att@gmail.com",
-                    "TAXID": null,
-                    "VAT": null,
-                    "EORI": null,
-                    "LocationType": null
-                },
-                "SoldTo": {
-                    "COMPANY": "",
-                    "CONTACT": "",
-                    "ADDRESS_LINE1": "",
-                    "ADDRESS_LINE2": "",
-                    "ADDRESS_LINE3": "",
-                    "CITY": "",
-                    "STATE": "",
-                    "ZIPCODE": "",
-                    "COUNTRY": "",
-                    "PHONE": "",
-                    "EMAIL": "",
-                    "TAXID": null,
-                    "VAT": null,
-                    "EORI": null,
-                    "LocationType": null
-                },
-                "Packages": [
-                    {
-                        "Quantity": 4,
-                        "PackageLevelSpecialServices": {},
-                        "Weightunits": "LBS",
-                        "DimensionUnits": "IN",
-                        "Sno": 1,
-                        "HU": 6580,
-                        "Weight": 2,
-                        "Dimension": "12X12X12"
-                    }
-                ],
-                "ShipmentLevelSpecialServices": {
-                    "GoGreenPlus": true,
-                    "NeutralDelivery": true,
-                    "Insurance": true,
-                    "PaperlessInvoice": true,
-                    "DryIce": true,
-                    "DryIce_value": "12",
-                    "DryIce_units": "LBS"
-                },
-                "InternationalDetails": {
-                    "ItemInfo": [
-                        {
-                            "ItemNo": "TC89003",
-                            "ProductNo": "TC89003",
-                            "Description": "ITEM 1 Description",
-                            "IsDG": false,
-                            "UnitCost": "7",
-                            "UnitWeight": "6",
-                            "HTSCode": "940400",
-                            "ECCN": "EAR99",
-                            "id": 1,
-                            "Sno": 1,
-                            "Quantity": "4",
-                            "UOM": "",
-                            "Harmonized": "940400",
-                            "CountryOfMFR": "US",
-                            "Currency": "USD"
-                        }
-                    ],
-                    "TermsofShipment": "DDU",
-                    "dutiesAccountnumber": "",
-                    "B13AFilingOption": "",
-                    "Permitnumber": "",
-                    "ITN": "",
-                    "iNTDutiesTaxes": "RECIPIENT",
-                    "IncoTermLocation": "",
-                    "CustomDecValCurrency": "USD",
-                    "DutiesAccount": "",
-                    "payorCountryCode": "",
-                    "bookingConfirmnumber": "",
-                    "ReasonforExport": "SOLD",
-                    "CustomDecVal": "0.000",
-                    "InvoiceNumber": "DHL-SpecialServiceTest1"
+                    "Notes": "",
+                    "InvoiceNumber": "",
+                    "SONumber": "",
+                    "PONumber": ""
                 },
                 "CarrierDetails": {
-                    "Carrier": "DHL",
-                    "CarrierType": "Parcel",
-                    "ServiceName": "N",
+                    "Carrier": "FedEx",
+                    "ShippingAccount": "740561073",
                     "PaymentType": "Sender",
-                    "ShippingAccount": "965278629",
                     "BillingAccount": "",
                     "BillingCountry": "",
                     "BillingZipCode": "",
-                    "Reference1": "test",
-                    "Reference2": "test",
-                    "UserId": "apT2vB7mV1qR1b",
-                    "Password": "U#3mO^1vY!5mT@0j",
+                    "Note": "",
+                    "Reference1": "",
+                    "Reference2": "",
+                    "Reference3": "",
+                    "Reference4": "",
+                    "ServiceName": "FEDEX_2_DAY",
+                    "costCenter": "",
+                    "PoNo": "",
+                    "InvoiceNo": "",
+                    "CarrierType": "Parcel",
+                    "UserId": "l70c717f3eaf284dc9af42169e93874b6e",
+                    "Password": "7f271bf486084e8f8073945bb7e6a020",
                     "AccessKey": "",
+                    "ConnectionType": "API",
+                    "CostCenterName": "Cost Center 2",
                     "ShipURL": "",
                     "TrackURL": "",
                     "RateURL": "",
+                    "ShipToCountry": "",
                     "VoidURL": "",
                     "ShipfromCountry": "",
-                    "ShipToCountry": ""
+                    "ERPCarrierID": "FedEx",
+                    "LocationId": "1001",
+                    "MeterId": ""
                 },
                 "ShipFrom": {
-                    "COMPANY": "Eshipjet Software Inc.",
+                    "COMPANY": "eshipJet Software Inc.",
                     "CONTACT": "Steve Marsh",
                     "ADDRESS_LINE1": "5717 Legacy",
                     "ADDRESS_LINE2": "Suite 250",
-                    "ADDRESS_LINE3": null,
+                    "ADDRESS_LINE3": "",
                     "CITY": "Plano",
                     "STATE": "TX",
                     "ZIPCODE": "75024",
                     "COUNTRY": "US",
                     "PHONE": "(888) 464 2360",
                     "EMAIL": "info@eshipjet.ai",
-                    "TAXID": null,
-                    "VAT": null,
-                    "EORI": null,
-                    "LocationType": null
+                    "AddressType": "",
+                    "TAXID": "",
+                    "VAT": "",
+                    "EORI": "",
+                    "LocationType": ""
                 },
+                "ShipTo": {
+                    "CreatedUser": "info@eshipjet.ai",
+                    "UpdatedUser": "info@eshipjet.ai",
+                    "CreatedDate": "2024-11-26T00:14:05.385Z",
+                    "UpdatedDate": "2024-11-26T00:14:05.385Z",
+                    "emailPriority": "Low",
+                    "IsActive": true,
+                    "RFIDTag": false,
+                    "CONTACT": "Steve",
+                    "COMPANY": "Nvidia",
+                    "PHONE": "9999999999",
+                    "EMAIL": "steve@nvidia.com",
+                    "ADDRESS_LINE1": "6621 Betlam St",
+                    "ADDRESS_LINE2": "Betlam",
+                    "CITY": "Fremont",
+                    "STATE": "CA",
+                    "ZIPCODE": "94538",
+                    "COUNTRY": "US",
+                    "AddressCategory": "Shipping Address",
+                    "AddressType": "Residential",
+                    "id": 87,
+                    "TAXID": "",
+                    "VAT": "",
+                    "EORI": "",
+                    "LocationType": ""
+                },
+                "InternationalDetails": {
+                },
+                "Packages": [
+                    {
+                        "ItemsInfo": [
+                            {
+                                "ItemNo": "P8001",
+                                "ProductNo": "P8001",
+                                "Description": "Calculators",
+                                "IsDG": false,
+                                "UnitCost": "13.5",
+                                "UnitWeight": "12.3",
+                                "Dimension": "5X3X2",
+                                "HTSCode": "980012",
+                                "ECCN": "ECCN",
+                                "UN": "",
+                                "Class": "50",
+                                "NMFC": "",
+                                "Category": "",
+                                "IsSerial": null,
+                                "IsBatch": null,
+                                "IsStackable": null,
+                                "IsActive": true,
+                                "LocationId": "",
+                                "id": 17,
+                                "Sno": 1,
+                                "Quantity": "4",
+                                "Partial": "4",
+                                "Balance": 0,
+                                "CountryofMFR": "US",
+                                "Currency": "USD",
+                                "LicenseNo": "12345",
+                                "UOM": "LB"
+                            }
+                        ],
+                        "SpecialServices": {
+                        },
+                        "Weightunits": "LB",
+                        "DimensionUnits": "",
+                        "Sno": 1,
+                        "HU": 12357,
+                        "Weight": "49.20",
+                        "Dimension": "5X3X2",
+                        "PackageSpecialServiceTyeps": [
+                        ]
+                    }
+                ],
                 "Shipper": {
-                    "COMPANY": "Eshipjet Software Inc.",
+                    "COMPANY": "eshipJet Software Inc.",
                     "CONTACT": "Steve Marsh",
                     "ADDRESS_LINE1": "5717 Legacy",
                     "ADDRESS_LINE2": "Suite 250",
-                    "ADDRESS_LINE3": null,
+                    "ADDRESS_LINE3": "",
                     "CITY": "Plano",
                     "STATE": "TX",
                     "ZIPCODE": "75024",
                     "COUNTRY": "US",
                     "PHONE": "(888) 464 2360",
                     "EMAIL": "info@eshipjet.ai",
-                    "TAXID": null,
-                    "VAT": null,
-                    "EORI": null,
-                    "LocationType": null
-                }
+                    "TAXID": "",
+                    "VAT": "",
+                    "EORI": "",
+                    "LocationType": ""
+                },
+                "SoldTo": {
+                    "COMPANY": "Nvidia",
+                    "CONTACT": "Steve",
+                    "ADDRESS_LINE1": "6621 Betlam St",
+                    "ADDRESS_LINE2": "Betlam",
+                    "CITY": "Fremont",
+                    "STATE": "CA",
+                    "ZIPCODE": "94538",
+                    "COUNTRY": "US",
+                    "PHONE": "9999999999",
+                    "EMAIL": "steve@nvidia.com",
+                    "TAXID": "",
+                    "VAT": "",
+                    "EORI": "",
+                    "LocationType": ""
+                },
+                "ShipmentLevelServices": {
+                },
+                "CompanyId": "CP000000001",
+                "id": 4115
             };
 
             //var sPath = "https://eshipjet-demo-srv-hvacbxf0fqapdpgd.francecentral-01.azurewebsites.net/copilot/v1/bot/process";
-            var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/dhl";
+            //var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/dhl";
+            var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/FedEx";
             return new Promise((resolve, reject) => {
                 $.ajax({
                     url: sPath,

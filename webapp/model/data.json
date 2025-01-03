@@ -264,87 +264,83 @@
     "navigation": [
         {
             "title": "SAP ShipperCopilot",
-            "icon": "sap-icon://overlay",
+            "icon": "sap-icon://customfont/ShipperCopilate",
             "key": "ShipperCopilot",
             "sortKey": "A"
         },
         {
             "title": "Orders",
-            "icon": "sap-icon://cart",
+            "icon": "sap-icon://customfont/order_icon",
             "key": "Orders",
             "sortKey": "B"
         },
         {
             "title": "Batch Ship",
-            "icon": "sap-icon://batch-payments",
+            "icon": "sap-icon://customfont/batchship_icon",
             "key": "BatchShip",
             "sortKey": "E"
         },
         {
             "title": "Ship Request/Label",
-            "icon": "sap-icon://add-product",
+            "icon": "sap-icon://customfont/shiprequest_icon",
             "key": "ShipRequestLabel",
             "sortKey": "B"
         },
         {
             "title": "Ship Now",
-            "icon": "sap-icon://shipping-status",
+            "icon": "sap-icon://customfont/shipnow_icon",
             "key": "ShipNow",
             "sortKey": "C"
         },
         {
             "title": "Quote Now",
-            "icon": "sap-icon://my-sales-order",
+            "icon": "sap-icon://customfont/quotenow",
             "key": "QuoteNow",
             "sortKey": "C"
         },
         {
             "title": "Track Now",
-            "icon": "sap-icon://clinical-task-tracker",
+            "icon": "sap-icon://customfont/track_icon",
             "key": "TrackNow",
             "sortKey": "C"
         },
         {
             "title": "Manifest",
-            "icon": "sap-icon://browse-folder",
+            "icon": "sap-icon://customfont/track_icon",
             "key": "Manifest",
             "sortKey": "D"
         },
-        {
-            "title": "AES Direct",
-            "icon": "sap-icon://browse-folder",
-            "key": "AESDirect",
-            "sortKey": "D"
-        },
+        
         {
             "title": "Scan & Ship",
-            "icon": "sap-icon://bar-code",
+            "icon": "sap-icon://customfont/quickship_icon",
             "key": "ScanShip",
             "sortKey": "E"
         },
-        {
-            "title": "RFID Nexus",
-            "icon": "sap-icon://badge",
-            "key": "RFIDNexus",
-            "sortKey": "F"
-        },
+        
         {
             "title": "Dashboard",
-            "icon": "sap-icon://bbyd-dashboard",
+            "icon": "sap-icon://customfont/dashboard_icon",
             "key": "Dashboard",
-            "sortKey": "G"
+            "sortKey": "D"
         },
         {
             "title": "Reports",
-            "icon": "sap-icon://expense-report",
+            "icon": "sap-icon://customfont/dashboard_icon",
             "key": "Reports",
-            "sortKey": "G"
+            "sortKey": "R"
+        },
+        {
+            "title": "Returns",
+            "icon": "sap-icon://customfont/returns_icon",
+            "key": "Returns",
+            "sortKey": "RE"
         },
         {
             "title": "Routing Guide",
-            "icon": "sap-icon://browse-folder",
+            "icon": "sap-icon://customfont/returns_icon",
             "key": "RoutingGuide",
-            "sortKey": "G"
+            "sortKey": "RG"
         }
     ],
     "fixedNavigation": [
