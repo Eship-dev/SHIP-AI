@@ -135,6 +135,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
                 this._handleDisplayShipNowProductsTable();
+                this._handleDisplayShipNowHandlingUnitTable();
             } else if (sKey === "QuoteNow") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
@@ -580,6 +581,8 @@ sap.ui.define([
         },
 
         onShipNowGetPress: async function () {
+            var that = this;
+            var oView = oController.getView();
             oController.oBusyDialog = new sap.m.BusyDialog({});
             var oDeliveryModel = this.getView().getModel("OutBoundDeliveryModel");
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
@@ -633,7 +636,11 @@ sap.ui.define([
                                 oData.results[i]["SerialNumber"] = i+1;
                                 aProductTable.push(oData.results[i]);
                             }
+                            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
                             eshipjetModel.setProperty("/pickAddProductTable",aProductTable);
+                            var oShipNowProductTable = oView.byId("idShipNowProductTable");
+                            oShipNowProductTable.setModel(eshipjetModel);
+                            oShipNowProductTable.bindRows("/pickAddProductTable");
                             oController.getSalesOrder(aProductTable);
                         }
                     },
@@ -645,6 +652,8 @@ sap.ui.define([
             }
         },
         getHandlingUnit:function(aHanlingUnits){
+            var that = this;
+            var oView = oController.getView();
             var oHandlingUnitModel = this.getView().getModel("HandlingUnitModel");
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var sPath = "", aFilters = [] ;
@@ -656,7 +665,11 @@ sap.ui.define([
                 success:function(oData){
                     oController.oBusyDialog.close();
                     if(oData && oData.results && oData.results.length > 0){
+                        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
                         eshipjetModel.setProperty("/HandlingUnitItems",oData.results);
+                        var oShipNowHandlingUnitTable = oView.byId("idShipNowHandlingUnitTable");
+                        oShipNowHandlingUnitTable.setModel(eshipjetModel);
+                        oShipNowHandlingUnitTable.bindRows("/HandlingUnitItems");
                     }
                 },
                 error: function(oErr){
@@ -831,14 +844,14 @@ sap.ui.define([
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             const oTable = oView.byId("idShipNowProductTable");
             oTable.setModel(eshipjetModel);
-            var ShipNowTableColumns = eshipjetModel.getData().ShipNowTableColumns;
+            var ShipNowProductsTableColumns = eshipjetModel.getData().ShipNowProductsTableColumns;
             var count = 0;
-            for (var i = 0; i < ShipNowTableColumns.length; i++) {
-                if (ShipNowTableColumns[i].visible === true) {
+            for (var i = 0; i < ShipNowProductsTableColumns.length; i++) {
+                if (ShipNowProductsTableColumns[i].visible === true) {
                     count += 1
                 }
             }
-            oTable.bindColumns("/ShipNowTableColumns", function (sId, oContext) {
+            oTable.bindColumns("/ShipNowProductsTableColumns", function (sId, oContext) {
                 columnName = oContext.getObject().name;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
@@ -880,6 +893,261 @@ sap.ui.define([
                 }
             });
             oTable.bindRows("/pickAddProductTable");
+        },
+
+        openShipNowProductsColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pShipNowProductsPopover) {
+                this._pShipNowProductsPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.ShipNowProductsTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pShipNowProductsPopover.then(function (oPopover) {
+                oController.ShipNowProductsColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        ShipNowProductsColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/ShipNowProductsTableColumns");
+            var oShipNowProductsTable = oView.byId("myShipNowProductsColumnSelectId");
+            var aTableItems = oShipNowProductsTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.name === oItem.getBindingContext("eshipjetModel").getObject().name && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onShipNowProductsColSelectOkPress: function () {
+            var oView = this.getView()
+            var oShipNowProductsTable = oView.byId("myShipNowProductsColumnSelectId");
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var oShipNowProductsTblItems = oShipNowProductsTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/ShipNowProductsTableColumns");
+            oShipNowProductsTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().name === oColObj.name) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            this._handleDisplayShipNowProductsTable();
+            this._pShipNowProductsPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onShipNowProductsColSelectClosePress: function () {
+            this._pShipNowProductsPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onShipNowProductsColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myShipNowProductsColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        
+
+        _handleDisplayShipNowHandlingUnitTable:function(){
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            const oTable = oView.byId("idShipNowHandlingUnitTable");
+            oTable.setModel(eshipjetModel);
+            var ShipNowHandlingUnitTableColumns = eshipjetModel.getData().ShipNowHandlingUnitTableColumns;
+            var count = 0;
+            for (var i = 0; i < ShipNowHandlingUnitTableColumns.length; i++) {
+                if (ShipNowHandlingUnitTableColumns[i].visible === true) {
+                    count += 1
+                }
+            }
+            oTable.bindColumns("/ShipNowHandlingUnitTableColumns", function (sId, oContext) {
+                columnName = oContext.getObject().name;
+                label = oContext.getObject().label;
+                var minWidth = "100%";
+                if (count >= 14) {
+                    var minWidth = "130px";
+                }
+                if (columnName === "DeleteIcon") {
+                    var Btn1 = new sap.m.Button({ icon: "sap-icon://delete", type: "Critical" });
+                    return new sap.ui.table.Column({
+                        label: Btn1,
+                        template: Btn1,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: Btn1
+                    });
+                } else if (columnName === "H.U."){
+                    var template = new sap.m.Link({
+                        text: {
+                            path: columnName
+                        }
+                    });
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: template,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "Weight"){
+                    var template = new sap.m.Input({
+                        value: {
+                            path: columnName
+                        }
+                    });
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: template,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "WeightUnits"){
+                    var template = new sap.m.Input({
+                        value: {
+                            path: columnName
+                        }
+                    });
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: template,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "Dimensions"){
+                    var template = new sap.m.Input({
+                        value: {
+                            path: columnName
+                        }
+                    });
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: template,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else {
+                    var template = new sap.m.Text({
+                        text: {
+                            path: columnName
+                        }
+                    });
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: template,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/HandlingUnits");
+        },
+
+        openShipNowHandlingUnitColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pShipNowHandlingUnitPopover) {
+                this._pShipNowHandlingUnitPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.ShipNowHandlingUnitTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pShipNowHandlingUnitPopover.then(function (oPopover) {
+                oController.ShipNowHandlingUnitColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        ShipNowHandlingUnitColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/ShipNowHandlingUnitTableColumns");
+            var oShipNowHandlingUnitTable = oView.byId("myShipNowHandlingUnitColumnSelectId");
+            var aTableItems = oShipNowHandlingUnitTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.name === oItem.getBindingContext("eshipjetModel").getObject().name && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onShipNowHandlingUnitColSelectOkPress: function () {
+            var oView = this.getView()
+            var oShipNowHandlingUnitTable = oView.byId("myShipNowHandlingUnitColumnSelectId");
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var oShipNowHandlingUnitTblItems = oShipNowHandlingUnitTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/ShipNowHandlingUnitTableColumns");
+            oShipNowHandlingUnitTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().name === oColObj.name) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            this._handleDisplayShipNowHandlingUnitTable();
+            this._pShipNowHandlingUnitPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onShipNowHandlingUnitColSelectClosePress: function () {
+            this._pShipNowHandlingUnitPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onShipNowHandlingUnitColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myShipNowHandlingUnitColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
         },
 
         _handleDisplayScanShipTable: function () {

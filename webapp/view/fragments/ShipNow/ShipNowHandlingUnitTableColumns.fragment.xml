@@ -1,0 +1,38 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover	id="myShipNowHandlingUnitPopover"  contentWidth="20%"	 placement="Left" contentHeight="40%">
+		<customHeader>
+			<VBox id="_IDGenShipNowHandlingUnitVBox">
+				<Toolbar id="_IDGenShipNowHandlingUnitHBox" class="toolbarbottomborder">
+					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" id="_IDGenShipNowHandlingUnitTitle" text="Columns"></Title>
+					<ToolbarSpacer id="_IDGenShipNowHandlingUnitToolbarSpacer1" ></ToolbarSpacer>					
+					<Button id="_IDShipNowHandlingUnitCloseIconPopover" icon="sap-icon://decline" press="onShipNowHandlingUnitColSelectClosePress"></Button>
+				</Toolbar>
+				<SearchField id="_IDGenShipNowHandlingUnitSearchField" placeholder="Search Columns"   liveChange="onShipNowHandlingUnitColNameSearch"></SearchField>
+			</VBox>
+		</customHeader>
+		<content>
+        <Table	id="myShipNowHandlingUnitColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/ShipNowHandlingUnitTableColumns'}" >
+		<ColumnListItem id="_IDGenShipNowHandlingUnitColumnListItem1" vAlign="Middle">
+			<cells>				
+				<Text id="_IDGenShipNowHandlingUnitText" text="{eshipjetModel>label}" />				
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column id="_IDGenShipNowHandlingUnitColumn">
+				<header>
+					<Text id="_IDGenShipNowHandlingUnitText1" text="Select All" />
+				</header>
+			</Column>			
+		</columns>
+        </Table>
+        </content>
+        <footer>
+            <Toolbar id="_IDGenShipNowHandlingUnitToolbar" >
+                <ToolbarSpacer id="_IDGenShipNowHandlingUnitToolbarSpacer"/>
+                <Button id="_IDGenShipNowHandlingUnitButton" text="Apply" press="onShipNowHandlingUnitColSelectOkPress" type="Emphasized"></Button>               
+            </Toolbar>
+        </footer>      
+	</Popover>   
+</core:FragmentDefinition>

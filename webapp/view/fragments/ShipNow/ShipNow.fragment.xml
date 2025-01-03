@@ -438,11 +438,11 @@
 										</Toolbar>
 
 				<ui:Table class="sapUiTinyMargin scan-ship-table" rowActionCount="0"	id="idShipNowProductTable"
-					selectionMode="None"	paste="onPaste"		ariaLabelledBy="title" visibleRowCount="auto" >
+					selectionMode="None"	paste="onPaste"		ariaLabelledBy="title" visibleRowCount="5" >
 					<ui:extension>
 						<OverflowToolbar class="scan-ship-table__toolbar">
 							<ToolbarSpacer ></ToolbarSpacer>
-                            <Button icon="sap-icon://action-settings" press="openScanShipColNamesPopover" >
+                            <Button icon="sap-icon://action-settings" press="openShipNowProductsColNamesPopover" >
                                 <customData>
                                     <core:CustomData key="remember" value="true" />
                                     <core:CustomData key="showClearButton" value="true" />
@@ -521,7 +521,32 @@
 										</Table> -->
 										
 
-										<Table id="Pack2" inset="false" class="sapUiSmallMarginTop" items="{eshipjetModel>/HandlingUnits}">
+				<ui:Table class="sapUiTinyMargin scan-ship-table" rowActionCount="0"	id="idShipNowHandlingUnitTable"
+					selectionMode="None"	paste="onPaste" ariaLabelledBy="title" visibleRowCount="5" >
+					<ui:extension>
+						<Button text="Add Product" ></Button>
+						<Toolbar >
+							<Label text="Scan Handling Unit" ></Label>
+							<Input value="" width="10%" ></Input>
+							<ToolbarSpacer />
+								<Button text="Pack" ></Button>
+								<Button text="Pack All" ></Button>
+								<Button text="Multi Level Pack" ></Button>
+							<ToolbarSpacer />
+						</Toolbar>
+						<OverflowToolbar class="scan-ship-table__toolbar">
+							<ToolbarSpacer ></ToolbarSpacer>
+                            <Button icon="sap-icon://action-settings" press="openShipNowHandlingUnitColNamesPopover" >
+                                <customData>
+                                    <core:CustomData key="remember" value="true" />
+                                    <core:CustomData key="showClearButton" value="true" />
+                                    <core:CustomData key="confirmButtonText" value="Ok" />
+                                </customData>
+							</Button>										
+						</OverflowToolbar>
+					</ui:extension>
+				</ui:Table>
+										<!-- <Table id="Pack2" inset="false" class="sapUiSmallMarginTop" items="{eshipjetModel>/HandlingUnits}">
 											<headerToolbar >
 												<OverflowToolbar class="sapUiSmallMarginBottom">
 													<Label text="Scan Handling Unit" class="sapUiTinyMargin"></Label>
@@ -582,7 +607,6 @@
 														<Input value="{eshipjetModel>WeightUnit}" />
 														<Input value="{eshipjetModel>HandlingUnitLength} X {eshipjetModel>HandlingUnitWidth} X {eshipjetModel>HandlingUnitHeight}" />
 														<Input value="{eshipjetModel>UnitOfMeasureDimension}" />
-														<!-- <Text text="{eshipjetModel>Class}" /> -->
 														<ComboBox  selectedKey="{eshipjetModel>Class}" >
 															<core:Item  text="50" key="50" > </core:Item>
 															<core:Item  text="100" key="100" > </core:Item>
@@ -596,7 +620,7 @@
 													</cells>
 												</ColumnListItem>
 											</items>
-										</Table>
+										</Table> -->
 									</IconTabFilter>
 
 

@@ -411,7 +411,7 @@
     ],
 
 
-	"ShipNowTableColumns": [
+	"ShipNowProductsTableColumns": [
 			{
 				"name": "#",
 				"label": "#",
@@ -465,42 +465,42 @@
 			{
 				"name": "UnitWeight",
 				"label": "Unit Weight",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "UnitCost",
 				"label": "Unit Cost",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "HarmonizedCode",
 				"label": "Harmonized Code",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "CountryOfMFR",
 				"label": "Country of MFR",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "UOM",
 				"label": "UOM",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "Currency",
 				"label": "Currency",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "LicenseNo",
 				"label": "License No",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "ECCN",
 				"label": "ECCN",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "DeleteIcon",
@@ -509,7 +509,61 @@
 			}
 		],
         "pickAddProductTable":[],
-        
+
+        "ShipNowHandlingUnitTableColumns": [
+			{
+				"name": "#",
+				"label": "#",
+				"visible": true
+			},
+            {
+				"name": "HU",
+				"label": "H.U.",
+				"visible": true
+			},
+			{
+				"name": "ERPHandlingUnit",
+				"label": "ERP Handling Unit",
+				"visible": true
+			},
+			{
+				"name": "Weight",
+				"label": "Weight",
+				"visible": true
+			},
+			{
+				"name": "WeightUnits",
+				"label": "Weight Units",
+				"visible": true
+			},
+			{
+				"name": "Dimensions",
+				"label": "Dimensions",
+				"visible": false
+			},
+			{
+				"name": "DimensionUnits",
+				"label": "Dimension Units",
+				"visible": true
+			},
+			{
+				"name": "Class",
+				"label": "Class",
+				"visible": false
+			},
+			{
+				"name": "Tracking#",
+				"label": "Tracking#",
+				"visible": true
+			},
+			{
+				"name": "DeleteIcon",
+				"label": "Delete Icon",
+				"visible": true
+			}
+		],
+        "HandlingUnitItems":[],
+
 	"scanShipTableData":{
 		"columns": [
 			{

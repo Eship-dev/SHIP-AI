@@ -1,0 +1,38 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover	id="myShipNowProductsPopover"  contentWidth="20%"	 placement="Left" contentHeight="40%">
+		<customHeader>
+			<VBox id="_IDGenShipNowProductsVBox">
+				<Toolbar id="_IDGenShipNowProductsHBox" class="toolbarbottomborder">
+					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" id="_IDGenShipNowProductsTitle" text="Columns"></Title>
+					<ToolbarSpacer id="_IDGenShipNowProductsToolbarSpacer1" ></ToolbarSpacer>					
+					<Button id="_IDShipNowProductsCloseIconPopover" icon="sap-icon://decline" press="onShipNowProductsColSelectClosePress"></Button>
+				</Toolbar>
+				<SearchField id="_IDGenShipNowProductsSearchField" placeholder="Search Columns"   liveChange="onShipNowProductsColNameSearch"></SearchField>
+			</VBox>
+		</customHeader>
+		<content>
+        <Table	id="myShipNowProductsColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/ShipNowProductsTableColumns'}" >
+		<ColumnListItem id="_IDGenShipNowProductsColumnListItem1" vAlign="Middle">
+			<cells>				
+				<Text id="_IDGenShipNowProductsText" text="{eshipjetModel>label}" />				
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column id="_IDGenShipNowProductsColumn">
+				<header>
+					<Text id="_IDGenShipNowProductsText1" text="Select All" />
+				</header>
+			</Column>			
+		</columns>
+        </Table>
+        </content>
+        <footer>
+            <Toolbar id="_IDGenShipNowProductsToolbar" >
+                <ToolbarSpacer id="_IDGenShipNowProductsToolbarSpacer"/>
+                <Button id="_IDGenShipNowProductsButton" text="Apply" press="onShipNowProductsColSelectOkPress" type="Emphasized"></Button>               
+            </Toolbar>
+        </footer>      
+	</Popover>   
+</core:FragmentDefinition>
