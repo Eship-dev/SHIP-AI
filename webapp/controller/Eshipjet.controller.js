@@ -7210,7 +7210,7 @@ sap.ui.define([
                 oAddThirdPopover.openBy(oButton);
             });
         },
-        AddThirdPartyClosePress: function () {
+        AddThirdPartyClosePress1: function () {
             this.byId("idAddThirdPartyPopover1").close();
         },
         AddThirdPartyCancelPress: function () {

@@ -9,7 +9,7 @@
         id="idAddUserPopover"
         placement="Bottom"
         contentWidth="45%"
-        contentHeight="75%"
+        contentHeight="69%"
         showHeader="true"
         class="sapUiResponsivePadding sapUiResponsivePadding "
     >

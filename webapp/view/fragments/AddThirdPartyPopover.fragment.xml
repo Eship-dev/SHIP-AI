@@ -9,7 +9,7 @@
         id="idAddThirdPartyPopover1"
         placement="Bottom"
         contentWidth="45%"
-        contentHeight="75%"
+        contentHeight="69%"
         showHeader="true"
         class="sapUiResponsivePadding sapUiResponsivePadding addLocationPopoverSpace"
     >
@@ -25,7 +25,7 @@
                 <!-- Close Button -->
                 <Button
                     icon="sap-icon://decline"
-                    press="AddThirdPartyClosePress"
+                    press="AddThirdPartyClosePress1"
                     type="Transparent"
                 />
             </Toolbar>

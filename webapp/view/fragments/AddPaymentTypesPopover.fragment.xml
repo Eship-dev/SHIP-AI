@@ -9,7 +9,7 @@
         id="idAddPaymentTypesPopover"
         placement="Bottom"
         contentWidth="40%"
-        contentHeight="75%"
+        contentHeight="69%"
         showHeader="true"
         class="sapUiResponsivePadding sapUiResponsivePadding "
     >
