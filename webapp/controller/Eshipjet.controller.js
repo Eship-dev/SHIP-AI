@@ -56,7 +56,7 @@ sap.ui.define([
             };
             var ShipNowDataModel = new JSONModel(ShipNowDataModel);
             this.getOwnerComponent().setModel(ShipNowDataModel, "ShipNowDataModel");
-
+            oController.oBusyDialog = new sap.m.BusyDialog({});
             this.getOwnerComponent().getRouter().getRoute("RouteEshipjet").attachPatternMatched(this._handleRouteMatched, this);
         },
 
@@ -340,20 +340,19 @@ sap.ui.define([
             // Open the dialog
             this._oDialog.open();
         },
-
         // Shipper Copilot Changes end
 
         // Ship Now changes starts here
-
         onShipNowPress: function () {
             var that = this;
             BusyIndicator.show();
             var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
-            var DocumentNumber = eshipjetModel.getData().HeaderInfo.DocumentNumber;
-            var ShipDate = eshipjetModel.getData().HeaderInfo.ShipDate;
-            var ShipFromCONTACT = eshipjetModel.getData().ShipFrom.CONTACT;
-            var ShipFromADDRESS_LINE1 = eshipjetModel.getData().ShipFrom.ADDRESS_LINE1;
-            var ShipFromCITY = eshipjetModel.getData().ShipFrom.CITY;
+            var oShipNowDataModel = this.getOwnerComponent().getModel("ShipNowDataModel");
+            var DocumentNumber = eshipjetModel.getProperty("/HeaderInfo/DocumentNumber");
+            var ShipDate =  eshipjetModel.getProperty("/HeaderInfo/ShipDate");
+            var ShipFromCONTACT = eshipjetModel.getProperty("/ShipFrom/CONTACT");
+            var ShipFromADDRESS_LINE1 = eshipjetModel.getProperty("/ShipFrom/ADDRESS_LINE1");
+            var ShipFromCITY = eshipjetModel.getProperty("/ShipFrom/CITY");
             var ShipFromSTATE = eshipjetModel.getData().ShipFrom.STATE;
             var ShipFromEMAIL = eshipjetModel.getData().ShipFrom.EMAIL;
             var ShipFromCOMPANY = eshipjetModel.getData().ShipFrom.COMPANY;
@@ -543,7 +542,7 @@ sap.ui.define([
             //         "LocationType": null
             //     }
             // };
-
+            
             var obj = {
                 "HeaderInfo": {
                     "FeederSystem": "Ship Request / Label",
@@ -602,17 +601,17 @@ sap.ui.define([
                     "MeterId": ""
                 },
                 "ShipFrom": {
-                    "COMPANY": "eshipJet Software Inc.",
-                    "CONTACT": "Steve Marsh",
-                    "ADDRESS_LINE1": "5717 Legacy",
-                    "ADDRESS_LINE2": "Suite 250",
-                    "ADDRESS_LINE3": "",
-                    "CITY": "Plano",
-                    "STATE": "TX",
-                    "ZIPCODE": "75024",
-                    "COUNTRY": "US",
-                    "PHONE": "(888) 464 2360",
-                    "EMAIL": "info@eshipjet.ai",
+                    "COMPANY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOMPANY"),
+                    "CONTACT": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCONTACT"),
+                    "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE1"),
+                    "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE2"),
+                    "ADDRESS_LINE3": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE3"),
+                    "CITY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCITY"),
+                    "STATE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromSTATE"),
+                    "ZIPCODE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromZIPCODE"),
+                    "COUNTRY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOUNTRY"),
+                    "PHONE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromPHONE"),
+                    "EMAIL":  oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromEMAIL"),
                     "AddressType": "",
                     "TAXID": "",
                     "VAT": "",
@@ -627,16 +626,16 @@ sap.ui.define([
                     "emailPriority": "Low",
                     "IsActive": true,
                     "RFIDTag": false,
-                    "CONTACT": "Steve",
-                    "COMPANY": "Nvidia",
-                    "PHONE": "9999999999",
+                    "CONTACT": oShipNowDataModel.getProperty("/ShipToAddress/FullName"),
+                    "COMPANY": oShipNowDataModel.getProperty("/ShipToAddress/BusinessPartnerName1"),
+                    "PHONE": oShipNowDataModel.getProperty("/ShipToAddress/PhoneNumber"),
                     "EMAIL": "steve@nvidia.com",
-                    "ADDRESS_LINE1": "6621 Betlam St",
-                    "ADDRESS_LINE2": "Betlam",
-                    "CITY": "Fremont",
-                    "STATE": "CA",
-                    "ZIPCODE": "94538",
-                    "COUNTRY": "US",
+                    "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipToAddress/StreetName"),
+                    "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipToAddress/HouseNumber"),
+                    "CITY": oShipNowDataModel.getProperty("/ShipToAddress/CityName"),
+                    "STATE": oShipNowDataModel.getProperty("/ShipToAddress/Region"),
+                    "ZIPCODE":  oShipNowDataModel.getProperty("/ShipToAddress/PostalCode"),
+                    "COUNTRY": oShipNowDataModel.getProperty("/ShipToAddress/Country"),
                     "AddressCategory": "Shipping Address",
                     "AddressType": "Residential",
                     "id": 87,
@@ -732,7 +731,7 @@ sap.ui.define([
             };
 
             //var sPath = "https://eshipjet-demo-srv-hvacbxf0fqapdpgd.francecentral-01.azurewebsites.net/copilot/v1/bot/process";
-            //var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/dhl";
+           // var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/dhl";
             var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/FedEx";
             return new Promise((resolve, reject) => {
                 $.ajax({
@@ -757,12 +756,15 @@ sap.ui.define([
         onShipNowGetPress: async function () {
             var that = this;
             var oView = oController.getView();
-            oController.oBusyDialog = new sap.m.BusyDialog({});
-            var oDeliveryModel = this.getView().getModel("OutBoundDeliveryModel");
-            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-           
-            var oHandlingUnitModel = this.getView().getModel("HandlingUnitModel");
-            var sDeveliveryNumber = this.getOwnerComponent().getModel("eshipjetModel").getProperty("/sapDeliveryNumber");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"); 
+            var sDeveliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
+            oController.oBusyDialog = new sap.m.BusyDialog({});          
+            oController.shipNowData(sDeveliveryNumber, "ShipNow");
+        },
+        shipNowData:function(sDeveliveryNumber ,sFromMenu){
+            var oDeliveryModel = oController.getView().getModel("OutBoundDeliveryModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");           
+            var oHandlingUnitModel = oController.getView().getModel("HandlingUnitModel");           
             var sPath = "/A_OutbDeliveryHeader('"+ sDeveliveryNumber +"')/to_DeliveryDocumentPartner";
             if(sDeveliveryNumber && sDeveliveryNumber.length >= 8){
                 oController.oBusyDialog.open();
@@ -770,7 +772,7 @@ sap.ui.define([
                     success:function(oData){
                         oController.oBusyDialog.close();
                         if(oData && oData.results && oData.results.length > 0){                      
-                            oController._getShipToAddress(oData.results, sDeveliveryNumber);
+                            oController._getShipToAddress(oData.results, sDeveliveryNumber, sFromMenu);
                         }
                     },
                     error: function(oErr){
@@ -839,8 +841,10 @@ sap.ui.define([
                         var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
                         eshipjetModel.setProperty("/HandlingUnitItems",oData.results);
                         var oShipNowHandlingUnitTable = oView.byId("idShipNowHandlingUnitTable");
-                        oShipNowHandlingUnitTable.setModel(eshipjetModel);
-                        oShipNowHandlingUnitTable.bindRows("/HandlingUnitItems");
+                        if(oShipNowHandlingUnitTable){
+                            oShipNowHandlingUnitTable.setModel(eshipjetModel);
+                            oShipNowHandlingUnitTable.bindRows("/HandlingUnitItems");
+                        }
                     }
                 },
                 error: function(oErr){
@@ -848,7 +852,6 @@ sap.ui.define([
                     oController.oBusyDialog.close();
                 }
             });
-
         },
         getSalesOrder:function(aProductTable){
             var oSalesOrderModel = oController.getOwnerComponent().getModel("SalesOrderModel");
@@ -872,56 +875,65 @@ sap.ui.define([
             });
 
         },
-        _getShipToAddress:function(aResults, sDocNumber){
+        _getShipToAddress:function(aResults, sDocNumber, sFromMenu){
             var oDeliveryModel = oController.getView().getModel("OutBoundDeliveryModel");
             var oShipNowModel = oController.getView().getModel("ShipNowDataModel");
             oDeliveryModel.setDeferredGroups(["addressDefferedgroupID"]);
             oDeliveryModel.setUseBatch(true);
-            var batchChanges = [], aBusinessPartnerTable = [];           
+            var batchChanges = [], aBusinessPartnerTable = [], promise1;           
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var sPath = "";
-            for (var i = 0; i < aResults.length; i++) {               
-                sPath = "/A_OutbDeliveryHeader('"+ sDocNumber +"')/to_DeliveryDocumentPartner(PartnerFunction='"+ aResults[i].PartnerFunction + "',SDDocument='"+ sDocNumber +"')/to_Address";
-                oDeliveryModel.read(sPath,{ "groupId":"addressDefferedgroupID", "merge":false});                               
-            }
-            oDeliveryModel.submitChanges({
-                "groupId":"addressDefferedgroupID",
-                success: function(oData){
+            promise1 = new Promise((resolve, reject) => {                
+                for (var i = 0; i < aResults.length; i++) {               
+                    sPath = "/A_OutbDeliveryHeader('"+ sDocNumber +"')/to_DeliveryDocumentPartner(PartnerFunction='"+ aResults[i].PartnerFunction + "',SDDocument='"+ sDocNumber +"')/to_Address";
+                    oDeliveryModel.read(sPath,{ "groupId":"addressDefferedgroupID", "merge":false});                               
+                }
+                oDeliveryModel.submitChanges({
+                    "groupId":"addressDefferedgroupID",
+                    success: function(oData){
+                        oController.oBusyDialog.close();
+                        if(oData &&  oData.__batchResponses &&  oData.__batchResponses.length > 0){
+                            oData.__batchResponses.map(function(currentValue, index, arr){
+                                if(index == 0){
+                                    currentValue.data["PartnerType"]  = "ShipFrom";
+                                }else if(index == 1){
+                                    currentValue.data["PartnerType"]  = "Shipper";
+                                }
+                                aBusinessPartnerTable.push(currentValue.data);                           
+                            });
+                                                    
+                            var  Obj = {
+                                "ShipFromCONTACT": "Steve Marsh",
+                                "ShipFromCOMPANY": "Eshipjet Software Inc.",
+                                "ShipFromPHONE": "(888) 464-2360",
+                                "ShipFromEMAIL": "info@eshipjet.ai",
+                                "ShipFromCITY": "Plano",
+                                "ShipFromSTATE": "TX",
+                                "ShipFromCOUNTRY": "United States",
+                                "ShipFromZIPCODE": "75024",
+                                "ShipFromADDRESS_LINE1": "5717 Legacy",
+                                "ShipFromADDRESS_LINE2": "Suite 250",
+                                "ShipFromADDRESS_LINE3": ""
+                            };
+                            oShipNowModel.setProperty("/ShipFromAddress",Obj);
+                            oShipNowModel.setProperty("/ShipToAddress",aBusinessPartnerTable[1]);
+                            eshipjetModel.setProperty("/BusinessPartners",aBusinessPartnerTable);
+                            eshipjetModel.setProperty("/InternationalDetails/shipFromTaxNo",aBusinessPartnerTable[0].TaxJurisdiction);
+                            oShipNowModel.updateBindings(true);
+                            eshipjetModel.updateBindings(true);
+                        }
+                    resolve();             
+                }, error: function(oErr){
+                    resolve();
                     oController.oBusyDialog.close();
-                    if(oData &&  oData.__batchResponses &&  oData.__batchResponses.length > 0){
-                        oData.__batchResponses.map(function(currentValue, index, arr){
-                            if(index == 0){
-                                currentValue.data["PartnerType"]  = "ShipFrom";
-                            }else if(index == 1){
-                                currentValue.data["PartnerType"]  = "Shipper";
-                            }
-                            aBusinessPartnerTable.push(currentValue.data);                           
-                        });
-                                                
-                        var  Obj = {
-                            "ShipFromCONTACT": "Steve Marsh",
-                            "ShipFromCOMPANY": "Eshipjet Software Inc.",
-                            "ShipFromPHONE": "(888) 464-2360",
-                            "ShipFromEMAIL": "info@eshipjet.ai",
-                            "ShipFromCITY": "Plano",
-                            "ShipFromSTATE": "TX",
-                            "ShipFromCOUNTRY": "United States",
-                            "ShipFromZIPCODE": "75024",
-                            "ShipFromADDRESS_LINE1": "5717 Legacy",
-                            "ShipFromADDRESS_LINE2": "Suite 250",
-                            "ShipFromADDRESS_LINE3": ""
-                        };
-                        oShipNowModel.setProperty("/ShipFromAddress",Obj);
-                        oShipNowModel.setProperty("/ShipToAddress",aBusinessPartnerTable[1]);
-                        eshipjetModel.setProperty("/BusinessPartners",aBusinessPartnerTable);
-                        eshipjetModel.setProperty("/InternationalDetails/shipFromTaxNo",aBusinessPartnerTable[0].TaxJurisdiction);
-                        oShipNowModel.updateBindings(true);
-                        eshipjetModel.updateBindings(true);
-                    }                    
-            }, error: function(oErr){
-                oController.oBusyDialog.close();
-                console.log(oErr);
-            }});
+                    console.log(oErr);
+                }});                
+            });  
+            Promise.all([promise1]).then((values) => {
+                if(sFromMenu === "ScanAndShip"){
+                    oController.onShipNowPress();
+                }    
+            });            
         },
         onShipNowCodEditPress:function(){
             var oView = this.getView();
@@ -1481,20 +1493,20 @@ sap.ui.define([
         },
 
         onScanShipSearchPress: async function () {
-            var that = this;
             BusyIndicator.show();
-            const sUserMessage = this.getView().byId("userscanShipInput").getValue();
+            var eShipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            const sUserMessage = eShipjetModel.getProperty("/sShipAndScan");
             if (!sUserMessage) {
                 MessageToast.show("Please Enter Request ID.");
                 BusyIndicator.hide();
                 return;
             }
-            this.getView().byId("userscanShipInput").setValue("");
+            oController.shipNowData(sUserMessage, "ShipNow");
+            eShipjetModel.setProperty("/sShipAndScan","");
             var obj = {
                 "message": "ship " + sUserMessage // Match DeliveryNo in the message if needed
-            }
+            };
             var sPath = "https://eshipjet-demo-srv-hvacbxf0fqapdpgd.francecentral-01.azurewebsites.net/copilot/v1/bot/process";
-
             return new Promise((resolve, reject) => {
                 $.ajax({
                     url: sPath, // Replace with your API endpoint
@@ -1502,8 +1514,7 @@ sap.ui.define([
                     contentType: "application/json", // Set content type to JSON if sending JSON data
                     data: JSON.stringify(obj),
                     success: function (response) {
-                        var ScanShipTableDataModel = that.getView().getModel("ScanShipTableDataModel");
-
+                        var ScanShipTableDataModel = oController.getView().getModel("ScanShipTableDataModel");
                         var obj = {
                             "sapShipmentID": response.HeaderInfo.DocumentNumber,
                             "CreatedDate": response.HeaderInfo.CreatedDate,
@@ -6842,7 +6853,8 @@ sap.ui.define([
 
         onShipNowSearchDialog: function () {
             var oView = this.getView();
-            if (!this.byId("idShipNowSearchDialog")) {
+            oController.ShipNowSearchDlg = oController.byId("idShipNowSearchDialog");
+            if (!oController.ShipNowSearchDlg) {
                 Fragment.load({
                     id: oView.getId(),
                     name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.shipNowSearchIcon",
@@ -6852,11 +6864,11 @@ sap.ui.define([
                     oShipNowSearchDialog.open();
                 });
             } else {
-                this.byId("idShipNowSearchDialog").open();
+                oController.ShipNowSearchDlg.open();
             }
         },
         onShipNowSearchDialogClosePress: function () {
-            this.byId("idShipNowSearchDialog").close();
+            oController.ShipNowSearchDlg.close();
         },
 
         handleConsolidationPress: function () {

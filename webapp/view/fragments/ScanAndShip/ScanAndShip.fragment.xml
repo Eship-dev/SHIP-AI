@@ -3,7 +3,7 @@
     <VBox class="scan-ship-page">
 	<Toolbar class="sapUiTinyMargin scan-ship-toolbar">
         <Title text="Scan and Ship" class="scan-ship-toolbar__title"/>
-        <Input class="scan-ship-toolbar__input" id="userscanShipInput" placeholder="Enter SAP DN, Handing Unit or ODO" ></Input>
+        <Input class="scan-ship-toolbar__input" id="userscanShipInput"  value="{eshipjetModel>/sShipAndScan}"   placeholder="Enter SAP DN, Handing Unit or ODO" ></Input>
         <!-- <TextArea width="20rem" rows="2" id="userInput" placeholder="Enter SAP DN, Handing Unit or ODO" ></TextArea> -->
         <Button  class="scan-ship-toolbar__button" text="Ship Now" type="Accept" press="onScanShipSearchPress"  ></Button>
         <ToolbarSpacer />
@@ -11,7 +11,7 @@
 	</Toolbar>
 
         <ui:Table class="sapUiTinyMargin scan-ship-table" fixedColumnCount="1"  	rowActionCount="0"	id="idScanAndShipTable"
-					selectionMode="None"	paste="onPaste"		ariaLabelledBy="title" visibleRowCount="12">
+					selectionMode="None"	paste="onPaste"		ariaLabelledBy="title"   visibleRowCount="12">
 					<ui:extension>
 						<OverflowToolbar class="scan-ship-table__toolbar">
 							<Button icon="sap-icon://filter" press="scanShipFilterPopoverPress"></Button>
