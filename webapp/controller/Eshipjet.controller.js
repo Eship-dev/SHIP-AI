@@ -15,7 +15,8 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/ui/core/library",
-], function (Device, Controller, JSONModel, Popover, Button, library, MessageToast, BusyIndicator, Dialog, DateFormat, Fragment, Spreadsheet, formatter, Filter, FilterOperator, CoreLibrary) {
+    "sap/m/MessageBox"
+], function (Device, Controller, JSONModel, Popover, Button, library, MessageToast, BusyIndicator, Dialog, DateFormat, Fragment, Spreadsheet, formatter, Filter, FilterOperator, CoreLibrary, MessageBox) {
     "use strict";
 
     var ButtonType = library.ButtonType,
@@ -269,8 +270,10 @@ sap.ui.define([
                 var aLabel = aShippinDocs.filter((obj) => obj.contentType === "Label");
                 var sLabel;
                 if (aLabel.length !== 0 && aLabel !== undefined) {
-                    sLabel = aLabel[0].encodedLabel;
-                    var dataUrl = "data:image/png;base64," + sLabel;
+                    // sLabel = aLabel[0].encodedLabel;
+                    // var dataUrl = "data:image/png;base64," + sLabel;
+                    sLabel = aLabel[0].docName;
+                    var dataUrl = "https://eshipjetsatge.blob.core.windows.net/shipping-labels/" + sLabel
                     aMessages.push({ sender: "Bot", text: dataUrl });
                     oShipperCopilotModel.setProperty("/messages", aMessages);
                     BusyIndicator.hide();
@@ -295,11 +298,13 @@ sap.ui.define([
 
         // Simulate bot response for testing purposes
         _simulateBotResponse: function (sMessage) {
+            var that = this;
             var obj = {
                 "message": sMessage // Match DeliveryNo in the message if needed
             }
             var sPath = "https://eshipjet-demo-srv-hvacbxf0fqapdpgd.francecentral-01.azurewebsites.net/copilot/v1/bot/process";
 
+            const oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
             return new Promise((resolve, reject) => {
                 $.ajax({
                     url: sPath, // Replace with your API endpoint
@@ -1428,8 +1433,22 @@ sap.ui.define([
                             contentType: "application/json", // Set content type to JSON if sending JSON data
                             data: JSON.stringify(obj),
                             success: function (response) {
+                                if(response.Errors !== undefined){
+                                    sap.m.MessageBox.error(response.Errors[0]);
+                                }else{
                                 var ScanShipTableDataModel = oController.getView().getModel("ScanShipTableDataModel");
-                                var sEncodedLabel   = response.shippingDocuments && response.shippingDocuments.length > 0 ? response.shippingDocuments[0].encodedLabel:"";
+                                // var sEncodedLabel   = response.shippingDocuments && response.shippingDocuments.length > 0 ? response.shippingDocuments[0].encodedLabel:"";
+                                var aShippinDocs = response.shippingDocuments;
+                                var aLabel = aShippinDocs.filter((obj) => obj.contentType === "Label");
+
+                                var dataUrl;
+                                if (aLabel.length !== 0 && aLabel !== undefined) {
+                                    // sLabel = aLabel[0].encodedLabel;
+                                    // var dataUrl = "data:image/png;base64," + sLabel;
+                                    var sLabel = aLabel[0].docName;
+                                    dataUrl = "https://eshipjetsatge.blob.core.windows.net/shipping-labels/" + sLabel;
+                                }
+
                                 var obj = {
                                     "sapShipmentID": response.HeaderInfo.DocumentNumber,
                                     "CreatedDate": response.HeaderInfo.CreatedDate,
@@ -1453,7 +1472,8 @@ sap.ui.define([
                                     "orderType": response.HeaderInfo.DocumentType,
                                     "actions": "Ship Now",
                                     "downArrow": "sap-icon://megamenu",
-                                    "encodedLabel": "data:image/png;base64," + sEncodedLabel
+                                    // "encodedLabel": "data:image/png;base64," + sEncodedLabel
+                                    "encodedLabel": dataUrl
                                 }
 
                                 // that.encodedLabel = obj.encodedLabel;
@@ -1467,6 +1487,7 @@ sap.ui.define([
                                 BusyIndicator.hide();
                                 resolve(response);
                                 console.log("Success:", response);
+                            }
                             },
                             error: function (error) {
                                 // Handle error
