@@ -741,12 +741,70 @@
 
 									<!-- Charges Tab Starts here -->
 									<IconTabFilter text="Charges" key="Charges">
-										<Text text="Charges go here ..." />
+											<Table items="{eshipjetModel>/shippingCharges}">
+									<columns>
+										<Column>
+											<Text text="Desctiption" />
+										</Column>
+										<Column	 minScreenWidth="Tablet"	demandPopin="true">
+											<Text text="Amount" />
+										</Column>
+										<Column	 minScreenWidth="Desktop"  demandPopin="true">
+											<Text text="Currency" />
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text  text="{eshipjetModel>description}" />
+												<Text  text="{eshipjetModel>amount}" />
+												<Text  text="{eshipjetModel>currency}" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
 									</IconTabFilter>
 
 									<!-- Documents Tab Starts here -->
 									<IconTabFilter text="Documents" key="Documents">
-										<Text text="Documents go here ..." />
+									<Table items="{eshipjetModel>/shippingDocuments}">
+										<columns>
+											<Column>
+												<Text text="Provider" />
+											</Column>
+											<Column
+												minScreenWidth="Tablet"
+												demandPopin="true">
+												<Text text="Content Type" />
+											</Column>
+											<Column
+												minScreenWidth="Desktop"
+												demandPopin="true"
+												>
+												<Text text="Copies To Print" />
+											</Column>
+											<Column
+												minScreenWidth="Desktop"
+												demandPopin="true"
+												>
+												<Text text="Document Name" />
+											</Column>
+											<Column		minScreenWidth="Desktop"	demandPopin="true">
+												<Text text="Document Type" />
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem vAlign="Middle">
+												<cells>
+													<Text  text="{eshipjetModel>docProvider}" />
+													<Text  text="{eshipjetModel>contentType}" />
+													<Text  text="{eshipjetModel>copiesToPrint}" />
+													<Text  text="{eshipjetModel>docName}" />
+													<Text  text="{eshipjetModel>docType}" />
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
 									</IconTabFilter>
 
 									<!-- Track Tab Starts here -->

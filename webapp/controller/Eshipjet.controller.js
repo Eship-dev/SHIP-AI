@@ -351,198 +351,16 @@ sap.ui.define([
             var DocumentNumber = eshipjetModel.getProperty("/HeaderInfo/DocumentNumber");
             var ShipDate =  eshipjetModel.getProperty("/HeaderInfo/ShipDate");
             var ShipFromCONTACT = eshipjetModel.getProperty("/ShipFrom/CONTACT");
-            var ShipFromADDRESS_LINE1 = eshipjetModel.getProperty("/ShipFrom/ADDRESS_LINE1");
-            var ShipFromCITY = eshipjetModel.getProperty("/ShipFrom/CITY");
-            var ShipFromSTATE = eshipjetModel.getData().ShipFrom.STATE;
-            var ShipFromEMAIL = eshipjetModel.getData().ShipFrom.EMAIL;
-            var ShipFromCOMPANY = eshipjetModel.getData().ShipFrom.COMPANY;
-            var ShipFromADDRESS_LINE2 = eshipjetModel.getData().ShipFrom.ADDRESS_LINE2;
-            var ShipFromZIPCODE = eshipjetModel.getData().ShipFrom.ZIPCODE;
-            var ShipFromCOUNTRY = eshipjetModel.getData().ShipFrom.COUNTRY;
-            var ShipFromPHONE = eshipjetModel.getData().ShipFrom.PHONE;
+            var ShipFromADDRESS_LINE1 = eshipjetModel.getProperty("/ShipFrom/ADDRESS_LINE1");            
+           
             var ShipFromLocationType = eshipjetModel.getData().ShipFrom.LocationType;
-
-            var ShipToCONTACT = eshipjetModel.getData().ShipTo.CONTACT;
-            var ShipToADDRESS_LINE1 = eshipjetModel.getData().ShipTo.ADDRESS_LINE1;
-            var ShipToCITY = eshipjetModel.getData().ShipTo.CITY;
-            var ShipToSTATE = eshipjetModel.getData().ShipTo.STATE;
-            var ShipToEMAIL = eshipjetModel.getData().ShipTo.EMAIL;
-            var ShipToCOMPANY = eshipjetModel.getData().ShipTo.COMPANY;
-            var ShipToADDRESS_LINE2 = eshipjetModel.getData().ShipTo.ADDRESS_LINE2;
-            var ShipToZIPCODE = eshipjetModel.getData().ShipTo.ZIPCODE;
-            var ShipToCOUNTRY = eshipjetModel.getData().ShipTo.COUNTRY;
-            var ShipToPHONE = eshipjetModel.getData().ShipTo.PHONE;
+          
             var ShipToLocationType = eshipjetModel.getData().ShipTo.LocationType;
-
             var PackagesQuantity = eshipjetModel.getData().Packages.Quantity;
             var Dimension = eshipjetModel.getData().Packages.Dimension;
             var Weight = eshipjetModel.getData().Packages.Weight;
             var ShipToLocationType = eshipjetModel.getData().Packages.LocationType;
-            var ShipToLocationType = eshipjetModel.getData().Packages.LocationType;
-
-
-
-
-            // var obj = {
-            //     "HeaderInfo": {
-            //         "DocumentNumber": "DHL-SpecialServiceTest1",
-            //         "ShipDate": "2024-11-26T09:11:32.358Z",
-            //         "TotalWeight": "020",
-            //         "InsuranceAmount": "",
-            //         "InsuranceCurrency": "",
-            //         "Currency": "USD",
-            //         "Incoterm": "DDU",
-            //         "Notes": "Special instructions",
-            //         "Description": "testing",
-            //         "IsDutiable": false
-            //     },
-            //     "ShipTo": {
-            //         "COMPANY": "ATT1",
-            //         "CONTACT": "John Williams",
-            //         "ADDRESS_LINE1": "2600 N Cernter Express pkwy",
-            //         "ADDRESS_LINE2": "Suit 300",
-            //         "ADDRESS_LINE3": null,
-            //         "CITY": "Richardson",
-            //         "STATE": "TX",
-            //         "ZIPCODE": "75090",
-            //         "COUNTRY": "US",
-            //         "PHONE": "8888888889",
-            //         "EMAIL": "att@gmail.com",
-            //         "TAXID": null,
-            //         "VAT": null,
-            //         "EORI": null,
-            //         "LocationType": null
-            //     },
-            //     "SoldTo": {
-            //         "COMPANY": "",
-            //         "CONTACT": "",
-            //         "ADDRESS_LINE1": "",
-            //         "ADDRESS_LINE2": "",
-            //         "ADDRESS_LINE3": "",
-            //         "CITY": "",
-            //         "STATE": "",
-            //         "ZIPCODE": "",
-            //         "COUNTRY": "",
-            //         "PHONE": "",
-            //         "EMAIL": "",
-            //         "TAXID": null,
-            //         "VAT": null,
-            //         "EORI": null,
-            //         "LocationType": null
-            //     },
-            //     "Packages": [
-            //         {
-            //             "Quantity": 4,
-            //             "PackageLevelSpecialServices": {},
-            //             "Weightunits": "LBS",
-            //             "DimensionUnits": "IN",
-            //             "Sno": 1,
-            //             "HU": 6580,
-            //             "Weight": 2,
-            //             "Dimension": "12X12X12"
-            //         }
-            //     ],
-            //     "ShipmentLevelSpecialServices": {
-            //         "GoGreenPlus": true,
-            //         "NeutralDelivery": true,
-            //         "Insurance": true,
-            //         "PaperlessInvoice": true,
-            //         "DryIce": true,
-            //         "DryIce_value": "12",
-            //         "DryIce_units": "LBS"
-            //     },
-            //     "InternationalDetails": {
-            //         "ItemInfo": [
-            //             {
-            //                 "ItemNo": "TC89003",
-            //                 "ProductNo": "TC89003",
-            //                 "Description": "ITEM 1 Description",
-            //                 "IsDG": false,
-            //                 "UnitCost": "7",
-            //                 "UnitWeight": "6",
-            //                 "HTSCode": "940400",
-            //                 "ECCN": "EAR99",
-            //                 "id": 1,
-            //                 "Sno": 1,
-            //                 "Quantity": "4",
-            //                 "UOM": "",
-            //                 "Harmonized": "940400",
-            //                 "CountryOfMFR": "US",
-            //                 "Currency": "USD"
-            //             }
-            //         ],
-            //         "TermsofShipment": "DDU",
-            //         "dutiesAccountnumber": "",
-            //         "B13AFilingOption": "",
-            //         "Permitnumber": "",
-            //         "ITN": "",
-            //         "iNTDutiesTaxes": "RECIPIENT",
-            //         "IncoTermLocation": "",
-            //         "CustomDecValCurrency": "USD",
-            //         "DutiesAccount": "",
-            //         "payorCountryCode": "",
-            //         "bookingConfirmnumber": "",
-            //         "ReasonforExport": "SOLD",
-            //         "CustomDecVal": "0.000",
-            //         "InvoiceNumber": "DHL-SpecialServiceTest1"
-            //     },
-            //     "CarrierDetails": {
-            //         "Carrier": "DHL",
-            //         "CarrierType": "Parcel",
-            //         "ServiceName": "N",
-            //         "PaymentType": "Sender",
-            //         "ShippingAccount": "965278629",
-            //         "BillingAccount": "",
-            //         "BillingCountry": "",
-            //         "BillingZipCode": "",
-            //         "Reference1": "test",
-            //         "Reference2": "test",
-            //         "UserId": "apT2vB7mV1qR1b",
-            //         "Password": "U#3mO^1vY!5mT@0j",
-            //         "AccessKey": "",
-            //         "ShipURL": "",
-            //         "TrackURL": "",
-            //         "RateURL": "",
-            //         "VoidURL": "",
-            //         "ShipfromCountry": "",
-            //         "ShipToCountry": ""
-            //     },
-            //     "ShipFrom": {
-            //         "COMPANY": "Eshipjet Software Inc.",
-            //         "CONTACT": "Steve Marsh",
-            //         "ADDRESS_LINE1": "5717 Legacy",
-            //         "ADDRESS_LINE2": "Suite 250",
-            //         "ADDRESS_LINE3": null,
-            //         "CITY": "Plano",
-            //         "STATE": "TX",
-            //         "ZIPCODE": "75024",
-            //         "COUNTRY": "US",
-            //         "PHONE": "(888) 464 2360",
-            //         "EMAIL": "info@eshipjet.ai",
-            //         "TAXID": null,
-            //         "VAT": null,
-            //         "EORI": null,
-            //         "LocationType": null
-            //     },
-            //     "Shipper": {
-            //         "COMPANY": "Eshipjet Software Inc.",
-            //         "CONTACT": "Steve Marsh",
-            //         "ADDRESS_LINE1": "5717 Legacy",
-            //         "ADDRESS_LINE2": "Suite 250",
-            //         "ADDRESS_LINE3": null,
-            //         "CITY": "Plano",
-            //         "STATE": "TX",
-            //         "ZIPCODE": "75024",
-            //         "COUNTRY": "US",
-            //         "PHONE": "(888) 464 2360",
-            //         "EMAIL": "info@eshipjet.ai",
-            //         "TAXID": null,
-            //         "VAT": null,
-            //         "EORI": null,
-            //         "LocationType": null
-            //     }
-            // };
-            
+                        
             var obj = {
                 "HeaderInfo": {
                     "FeederSystem": "Ship Request / Label",
@@ -609,7 +427,7 @@ sap.ui.define([
                     "CITY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCITY"),
                     "STATE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromSTATE"),
                     "ZIPCODE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromZIPCODE"),
-                    "COUNTRY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOUNTRY"),
+                    "COUNTRY": "US",//oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOUNTRY"),
                     "PHONE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromPHONE"),
                     "EMAIL":  oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromEMAIL"),
                     "AddressType": "",
@@ -645,6 +463,61 @@ sap.ui.define([
                     "LocationType": ""
                 },
                 "InternationalDetails": {
+                    "ItemInfo": [
+                        {
+                            "HU": 12813,
+                            "ItemNo": "P8001",
+                            "ProductNo": "P8001",
+                            "Description": "Calculators",
+                            "IsDG": "",
+                            "UnitCost": "13.5",
+                            "UnitWeight": "12.3",
+                            "HTSCode": "980012",
+                            "ECCN": "ECCN",
+                            "UN": "",
+                            "Class": "50",
+                            "NMFC": "",
+                            "Category": "",
+                            "IsSerial": "",
+                            "IsBatch": "",
+                            "IsStackable": "",
+                            "IsActive": true,
+                            "LocationId": "",
+                            "id": 1,
+                            "Sno": 1,
+                            "Quantity": "4",
+                            "Partial": 4,
+                            "Balance": "",
+                            "UOM": "LB",
+                            "Harmonized": "980012",
+                            "LicenseNo": "12345",
+                            "CountryofMFR": "US",
+                            "Currency": "USD"
+                        }
+                    ],
+                    "TermsofShipment": "DDU",
+                    "dutiesAccountnumber": "",
+                    "B13AFilingOption": "",
+                    "Permitnumber": "",
+                    "ITN": "",
+                    "iNTDutiesTaxes": "RECIPIENT",
+                    "PayorZipCode": "",
+                    "ITNXTNSEDEEI": "",
+                    "ATLASMRN": "",
+                    "IncoTermLocation": "",
+                    "CustomDecValCurrency": "",
+                    "DutiesAccount": "",
+                    "payorCountryCode": "",
+                    "ShipFromTax": "",
+                    "bookingConfirmnumber": "",
+                    "ShipToTax": "",
+                    "ReasonforExport": "SOLD",
+                    "FreightForwarderTax": "",
+                    "Permit": "",
+                    "CustomDecVal": "54.000",
+                    "compliStatement": "",
+                    "documentsContentType": "",
+                    "InvoiceNumber": "DN000004303"
                 },
                 "Packages": [
                     {
@@ -692,17 +565,17 @@ sap.ui.define([
                     }
                 ],
                 "Shipper": {
-                    "COMPANY": "eshipJet Software Inc.",
-                    "CONTACT": "Steve Marsh",
-                    "ADDRESS_LINE1": "5717 Legacy",
-                    "ADDRESS_LINE2": "Suite 250",
-                    "ADDRESS_LINE3": "",
-                    "CITY": "Plano",
-                    "STATE": "TX",
-                    "ZIPCODE": "75024",
-                    "COUNTRY": "US",
-                    "PHONE": "(888) 464 2360",
-                    "EMAIL": "info@eshipjet.ai",
+                    "COMPANY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOMPANY"),
+                    "CONTACT": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCONTACT"),
+                    "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE1"),
+                    "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE2"),
+                    "ADDRESS_LINE3": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE3"),
+                    "CITY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCITY"),
+                    "STATE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromSTATE"),
+                    "ZIPCODE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromZIPCODE"),
+                    "COUNTRY": "US",//oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOUNTRY"),
+                    "PHONE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromPHONE"),
+                    "EMAIL":  oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromEMAIL"),
                     "TAXID": "",
                     "VAT": "",
                     "EORI": "",
@@ -742,6 +615,24 @@ sap.ui.define([
                     success: function (response) {
                         resolve(response);
                         console.log("Success:", response);
+                        if(response && response.status === "Success"){
+                            sap.m.MessageBox.success("Shipment processed successfully");
+                            if(response && response.shippingCharges && response.shippingCharges.length > 0 ){
+                                eshipjetModel.setProperty("/shippingCharges", response.shippingCharges);
+                            }
+                            if(response && response.shippingDocuments && response.shippingDocuments.length > 0 ){
+                                eshipjetModel.setProperty("/shippingDocuments", response.shippingDocuments);
+                            }
+                            //post to manifest service
+                        }else if(response && response.status === "Error"){
+                            var sError = "Shipment process failed reasons:\n";
+                            if(response && response.Errors && response.Errors.length > 0){
+                                response.Errors.forEach(function(item){
+                                    sError = sError + item+"\n";
+                                });                               
+                            }
+                            sap.m.MessageBox.error(sError);
+                        }                       
                         BusyIndicator.hide();
                     },
                     error: function (error) {
@@ -758,10 +649,20 @@ sap.ui.define([
             var oView = oController.getView();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"); 
             var sDeveliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
-            oController.oBusyDialog = new sap.m.BusyDialog({});          
-            oController.shipNowData(sDeveliveryNumber, "ShipNow");
+            oController.oBusyDialog = new sap.m.BusyDialog({});     
+            let myPromise = new Promise(function(myResolve, myReject) {
+                oController.shipNowData(sDeveliveryNumber, "ShipNow", myResolve);                                                    
+            });           
+            myPromise.then(
+                function(value) {
+                    //resolved
+                },
+                function(error) {
+                   // myDisplayer(error);
+                }
+            );
         },
-        shipNowData:function(sDeveliveryNumber ,sFromMenu){
+        shipNowData:function(sDeveliveryNumber ,sFromMenu, myResolve){
             var oDeliveryModel = oController.getView().getModel("OutBoundDeliveryModel");
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");           
             var oHandlingUnitModel = oController.getView().getModel("HandlingUnitModel");           
@@ -770,6 +671,7 @@ sap.ui.define([
                 oController.oBusyDialog.open();
                 oDeliveryModel.read(sPath,{
                     success:function(oData){
+                        myResolve();
                         oController.oBusyDialog.close();
                         if(oData && oData.results && oData.results.length > 0){                      
                             oController._getShipToAddress(oData.results, sDeveliveryNumber, sFromMenu);
@@ -778,6 +680,7 @@ sap.ui.define([
                     error: function(oErr){
                         oController.oBusyDialog.close();
                         var err = oErr;
+                        myResolve();
                     }
                 });
                 var oFilter, aHandlingUnits = [];
@@ -1501,64 +1404,74 @@ sap.ui.define([
                 BusyIndicator.hide();
                 return;
             }
-            oController.shipNowData(sUserMessage, "ShipNow");
-            eShipjetModel.setProperty("/sShipAndScan","");
-            var obj = {
-                "message": "ship " + sUserMessage // Match DeliveryNo in the message if needed
-            };
-            var sPath = "https://eshipjet-demo-srv-hvacbxf0fqapdpgd.francecentral-01.azurewebsites.net/copilot/v1/bot/process";
-            return new Promise((resolve, reject) => {
-                $.ajax({
-                    url: sPath, // Replace with your API endpoint
-                    method: "POST",
-                    contentType: "application/json", // Set content type to JSON if sending JSON data
-                    data: JSON.stringify(obj),
-                    success: function (response) {
-                        var ScanShipTableDataModel = oController.getView().getModel("ScanShipTableDataModel");
-                        var obj = {
-                            "sapShipmentID": response.HeaderInfo.DocumentNumber,
-                            "CreatedDate": response.HeaderInfo.CreatedDate,
-                            "ShipDate": response.HeaderInfo.ShipDate,
-                            "ShipmentType": response.HeaderInfo.ShipmentType,
-                            "shipMethod": response.CarrierDetails.Carrier,
-                            "ServiceName": response.CarrierDetails.ServiceName,
-                            "TrackingNumber": response.Packages[0].TrackingNumber,
-                            "status": response.status,
-                            "ShipToContact": response.ShipTo.CONTACT,
-                            "ShipToCompany": response.ShipTo.COMPANY,
-                            "ShipToAddressLine1": response.ShipTo.ADDRESS_LINE1,
-                            "shipToCity": response.ShipTo.CITY,
-                            "shipToState": response.ShipTo.STATE,
-                            "shipToCountry": response.ShipTo.COUNTRY,
-                            "shipToZipcode": response.ShipTo.ZIPCODE,
-                            "shipToPhone": response.ShipTo.PHONE,
-                            "shipToEmail": response.ShipTo.EMAIL,
-                            "requesterName": response.ShipFrom.EMAIL,
-                            "connectedTo": "Ship Request / Label",
-                            "orderType": response.HeaderInfo.DocumentType,
-                            "actions": "Ship Now",
-                            "downArrow": "sap-icon://megamenu",
-                            "encodedLabel": "data:image/png;base64," + response.shippingDocuments[0].encodedLabel
-                        }
+             let myPromise = new Promise(function(myResolve, myReject) {
+                // "Producing Code" (May take some time)
+                oController.shipNowData(sUserMessage, "ScanAndShip", myResolve);                                     
+                });                
+                // "Consuming Code" (Must wait for a fulfilled Promise)
+                myPromise.then(
+                  function(value) { 
+                    eShipjetModel.setProperty("/sShipAndScan","");
+                    var obj = {
+                        "message": "ship " + sUserMessage // Match DeliveryNo in the message if needed
+                    };
+                    var sPath = "https://eshipjet-demo-srv-hvacbxf0fqapdpgd.francecentral-01.azurewebsites.net/copilot/v1/bot/process";
+                    return new Promise((resolve, reject) => {
+                        $.ajax({
+                            url: sPath, // Replace with your API endpoint
+                            method: "POST",
+                            contentType: "application/json", // Set content type to JSON if sending JSON data
+                            data: JSON.stringify(obj),
+                            success: function (response) {
+                                var ScanShipTableDataModel = oController.getView().getModel("ScanShipTableDataModel");
+                                var sEncodedLabel   = response.shippingDocuments && response.shippingDocuments.length > 0 ? response.shippingDocuments[0].encodedLabel:"";
+                                var obj = {
+                                    "sapShipmentID": response.HeaderInfo.DocumentNumber,
+                                    "CreatedDate": response.HeaderInfo.CreatedDate,
+                                    "ShipDate": response.HeaderInfo.ShipDate,
+                                    "ShipmentType": response.HeaderInfo.ShipmentType,
+                                    "shipMethod": response.CarrierDetails.Carrier,
+                                    "ServiceName": response.CarrierDetails.ServiceName,
+                                    "TrackingNumber": response.Packages[0].TrackingNumber,
+                                    "status": response.status,
+                                    "ShipToContact": response.ShipTo.CONTACT,
+                                    "ShipToCompany": response.ShipTo.COMPANY,
+                                    "ShipToAddressLine1": response.ShipTo.ADDRESS_LINE1,
+                                    "shipToCity": response.ShipTo.CITY,
+                                    "shipToState": response.ShipTo.STATE,
+                                    "shipToCountry": response.ShipTo.COUNTRY,
+                                    "shipToZipcode": response.ShipTo.ZIPCODE,
+                                    "shipToPhone": response.ShipTo.PHONE,
+                                    "shipToEmail": response.ShipTo.EMAIL,
+                                    "requesterName": response.ShipFrom.EMAIL,
+                                    "connectedTo": "Ship Request / Label",
+                                    "orderType": response.HeaderInfo.DocumentType,
+                                    "actions": "Ship Now",
+                                    "downArrow": "sap-icon://megamenu",
+                                    "encodedLabel": "data:image/png;base64," + sEncodedLabel
+                                }
 
-                        // that.encodedLabel = obj.encodedLabel;
-                        var rows = ScanShipTableDataModel.getData().rows;
-                        rows.push(obj);
-                        ScanShipTableDataModel.updateBindings(true);
-                        ScanShipTableDataModel.setProperty("/ScanShipTableLength", rows.length);
-                        // Handle successful response
-                        BusyIndicator.hide();
-                        resolve(response);
-                        console.log("Success:", response);
-                    },
-                    error: function (error) {
-                        // Handle error
-                        BusyIndicator.hide();
-                        reject(error);
-                        console.log("Error:", error);
-                    }
-                });
-            });
+                                // that.encodedLabel = obj.encodedLabel;
+                                var rows = ScanShipTableDataModel.getData().rows;
+                                rows.push(obj);
+                                ScanShipTableDataModel.updateBindings(true);
+                                ScanShipTableDataModel.setProperty("/ScanShipTableLength", rows.length);
+                                // Handle successful response
+                                BusyIndicator.hide();
+                                resolve(response);
+                                console.log("Success:", response);
+                            },
+                            error: function (error) {
+                                // Handle error
+                                BusyIndicator.hide();
+                                reject(error);
+                                console.log("Error:", error);
+                            }
+                        });
+                    });
+                   }
+                );            
+            
         },
 
         scanShipFilterPopoverPress: function (oEvent) {
@@ -6671,7 +6584,6 @@ sap.ui.define([
             var oButton = oEvent.getSource(),
                 oView = this.getView();
             var ShipNowDataModel = this.getView().getModel("ShipNowDataModel");
-
             var sPath = oEvent.getSource().getId().split("--");
             var btnId = sPath[sPath.length - 1];
             ShipNowDataModel.setProperty("/shipNowBtnId", btnId);
