@@ -8,7 +8,17 @@
     "selectedKey": "page2",
     "image": "css/images/image.png",
     "SideNavigation": true,
-    "countriesList":[ 
+    "shipMethodTypes":[{
+        "key":"FedEx",
+        "text":"FedEx"
+    },{
+        "key":"UPS",
+        "text":"UPS"
+    },{
+        "key":"DHL",
+        "text":"DHL"
+    }],
+     "countriesList":[ 
         {"name": "United Kingdom", "code": "GB"}, 
         {"name": "United States", "code": "US"}, 
         {"name": "India", "code": "IN"}, 

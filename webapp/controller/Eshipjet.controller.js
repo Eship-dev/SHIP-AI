@@ -39,7 +39,7 @@ sap.ui.define([
             this.getView().setModel(oShipperCopilotModel, "ShipperCopilotModel");
             oResourceBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
             this._setToggleButtonTooltip(!Device.system.desktop);
-
+            
             var ShipNowDataModel = {
                 "sapShipmentID": "",
                 "ShipToCONTACT": "",
@@ -62,6 +62,7 @@ sap.ui.define([
 
         _handleRouteMatched:function(){
             var oEshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            oEshipjetModel.setProperty("/pickupDate", new Date());
             // first parameter is font name, second parameter is collection name, third parameter is font-family and the last parameter is the code point in Unicode
             
         },
@@ -71,10 +72,14 @@ sap.ui.define([
             var sKey = oItem.getKey();
             var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
             eshipjetModel.setSizeLimit(9999999);
-            eshipjetModel.setProperty("/sapDeliveryNumber","80000001");
+            eshipjetModel.setProperty("/sapDeliveryNumber",""); //80000001
             var oToolPage = this.byId("toolPage");
             oToolPage.setSideExpanded(false);
-
+            eshipjetModel.setProperty("/shippingCharges",[]);
+            eshipjetModel.setProperty("/shippingDocuments",[]);
+            eshipjetModel.setProperty("/HandlingUnitItems",[]);
+            eshipjetModel.setProperty("/HandlingUnits",[]);
+            eshipjetModel.setProperty("/shippingDocuments",[]);
             if (sKey === "ShipperCopilot") {
                 var obj = {
                     "messages": [],
@@ -1452,8 +1457,10 @@ sap.ui.define([
                                 }
 
                                 // that.encodedLabel = obj.encodedLabel;
-                                var rows = ScanShipTableDataModel.getData().rows;
-                                rows.push(obj);
+                                var rows = ScanShipTableDataModel.getProperty("/rows");
+                                if(rows){
+                                    rows.push(obj);
+                                }
                                 ScanShipTableDataModel.updateBindings(true);
                                 ScanShipTableDataModel.setProperty("/ScanShipTableLength", rows.length);
                                 // Handle successful response
