@@ -433,7 +433,7 @@
 															<StepInput id="stepDownInput1" value="{eshipjetModel>/Packages/Weight}" min="0" max="100" step="1"  width="6rem"  valueState="None" />
 															<Text text="/" width="10%" class="sapUiTinyMarginTop" ></Text>
 															<StepInput id="stepUpInput1" value="{eshipjetModel>/Packages/Weight}" min="0" max="100" step="1" width="6rem" valueState="None" />
-															<Button text="Auto Pack" press="handleAutoPackPress" class="scan-ship-toolbar__button" type="Ghost" ></Button>
+															<Button text="Auto Pack" press="handleAutoPackPress" type="Ghost" ></Button>
 														</HBox>
 										</Toolbar>
 
