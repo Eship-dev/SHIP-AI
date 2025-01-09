@@ -1252,10 +1252,11 @@ sap.ui.define([
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var scanShipTableData = eshipjetModel.getData().scanShipTableData;
             var ScanShipTableDataModel = new JSONModel(scanShipTableData);
-            this.getView().setModel(ScanShipTableDataModel, "ScanShipTableDataModel");
-            const oTable = oView.byId("idScanAndShipTable");
+            oController.getOwnerComponent().setModel(ScanShipTableDataModel, "ScanShipTableDataModel");
+            var oTable = oView.byId("idScanAndShipTable");
+            
+            var ScanShipTableDataModel = oController.getOwnerComponent().getModel("ScanShipTableDataModel");
             oTable.setModel(ScanShipTableDataModel);
-            var ScanShipTableDataModel = this.getView().getModel("ScanShipTableDataModel");
             var columns = ScanShipTableDataModel.getData().columns;
             var count = 0;
             for (var i = 0; i < columns.length; i++) {
@@ -1325,6 +1326,7 @@ sap.ui.define([
                 }
             });
             oTable.bindRows("/rows");
+            oTable.updateBindings(true);
         },
 
         openScanShipColNamesPopover: function (oEvent) {
@@ -1436,7 +1438,7 @@ sap.ui.define([
                                 if(response.Errors !== undefined){
                                     sap.m.MessageBox.error(response.Errors[0]);
                                 }else{
-                                var ScanShipTableDataModel = oController.getView().getModel("ScanShipTableDataModel");
+                                var ScanShipTableDataModel = oController.getOwnerComponent().getModel("ScanShipTableDataModel");
                                 // var sEncodedLabel   = response.shippingDocuments && response.shippingDocuments.length > 0 ? response.shippingDocuments[0].encodedLabel:"";
                                 var aShippinDocs = response.shippingDocuments;
                                 var aLabel = aShippinDocs.filter((obj) => obj.contentType === "Label");
