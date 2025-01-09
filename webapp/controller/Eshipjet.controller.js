@@ -929,6 +929,32 @@ sap.ui.define([
         onReturnLabelEditDialogClosePress: function () {
             this.byId("idReturnLabelEditDialog").close();
         },
+
+        onShipNowDocPress:function(oEvent){
+            var sLabel = oEvent.getSource().mProperties.text;
+            var dataUrl = "https://eshipjetsatge.blob.core.windows.net/shipping-labels/" + sLabel;
+
+            if (!oController._shipNowDocDialog) {
+                oController._shipNowDocDialog = new Dialog({
+                    title: "Ship Now Document",
+                    contentWidth: "30%", // Adjust width as needed
+                    contentHeight: "70%", // Adjust height as needed
+                    content: new sap.m.Image({
+                        class: "sapUiSmallMargin",
+                        src: dataUrl,
+                        width: "100%", // Full width of dialog content
+                        height: "100%"
+                    }),
+                    endButton: new sap.m.Button({
+                        text: "Close",
+                        press: function () {
+                            oController._shipNowDocDialog.close();
+                        }.bind(oController)
+                    })
+                });
+            }
+            oController._shipNowDocDialog.open();
+        },
         // Ship Now Changes End here
 
 

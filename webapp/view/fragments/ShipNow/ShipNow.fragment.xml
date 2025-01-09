@@ -799,7 +799,10 @@
 													<Text  text="{eshipjetModel>docProvider}" />
 													<Text  text="{eshipjetModel>contentType}" />
 													<Text  text="{eshipjetModel>copiesToPrint}" />
-													<Text  text="{eshipjetModel>docName}" />
+													<!-- <Text  text="{eshipjetModel>docName}" /> -->
+													<Link
+														text="{eshipjetModel>docName}"
+														press="onShipNowDocPress" />
 													<Text  text="{eshipjetModel>docType}" />
 												</cells>
 											</ColumnListItem>
