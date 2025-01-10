@@ -6836,7 +6836,7 @@ sap.ui.define([
             }
         },
         onShipNowSearchDialogClosePress: function () {
-            oController.ShipNowSearchDlg.close();
+            oController.byId("idShipNowSearchDialog").close();
         },
 
         handleConsolidationPress: function () {
