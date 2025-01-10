@@ -43,12 +43,21 @@
                     "odataVersion": "2.0"
                 }
             },
-            "API_SALES_ORDER_SRV":{
+            "API_SALES_ORDER_SRV": {
                 "uri": "/sap/opu/odata/sap/API_SALES_ORDER_SRV",
                 "type": "OData",
                 "settings": {
                     "annotations": [],
                     "localUri": "localService/API_SALES_ORDER_SRV/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "MANFEST_SRV1": {
+                "uri": "/sap/opu/odata/ESHIPJET/MANFEST_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/MANFEST_SRV1/metadata.xml",
                     "odataVersion": "2.0"
                 }
             }
@@ -121,7 +130,7 @@
                     }
                 }
             },
-            "HandlingUnitModel":{
+            "HandlingUnitModel": {
                 "dataSource": "API_HANDLING_UNIT",
                 "preload": true,
                 "settings": {
@@ -133,8 +142,20 @@
                     }
                 }
             },
-            "SalesOrderModel":{
+            "SalesOrderModel": {
                 "dataSource": "API_SALES_ORDER_SRV",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "ManifestSrvModel": {
+                "dataSource": "MANFEST_SRV1",
                 "preload": true,
                 "settings": {
                     "defaultBindingMode": "TwoWay",

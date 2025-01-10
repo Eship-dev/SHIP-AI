@@ -316,10 +316,22 @@
 		<OverflowToolbar class="eship-footer ship-now-footer" visible="{eshipjetModel>/shipNowViewFooter}">
 			<ToolbarSpacer/>
 				<!-- <Button text="Get Shipping Rates" class="ship-now-footer_ship-rates"/> -->
-				<Button text="Get Shipping Rates"  type="Emphasized"/>
+				<Button text="Get Shipping Rates"  class="ship-now-footer_ship-rates" />
 			<ToolbarSpacer/>
 				<!-- <Button text="Ship Now" press="onShipNowPress" class="ship-now-footer_ship-now" /> -->
-				<Button text="Ship Now" press="onShipNowPress"  type="Success" />
+				<Button text="Ship Now" press="onShipNowPress"  class="ship-now-footer_ship-now" />
+		</OverflowToolbar>
+
+		<OverflowToolbar class="eship-footer ship-now-footer" visible="{eshipjetModel>/createShipReqViewFooter}">
+				<Button text="Clear"  class="ship-now-footer_ship-rates" />
+			<ToolbarSpacer/>
+				<Button text="Get Shipping Rates"  class="ship-now-footer_ship-rates" />
+			<ToolbarSpacer/>
+				<HBox >
+					<Button text="Save" class="ship-now-footer_ship-now" />
+					<Button icon="sap-icon://slim-arrow-down" class="ship-now-footer_ship-now" ></Button>
+				</HBox>
+				<Button text="Ship Now" press="onShipNowPress" class="ship-now-footer_ship-now" />
 		</OverflowToolbar>
 
 		<OverflowToolbar class="eship-footer ship-now-footer" visible="{eshipjetModel>/routingGuidFooter}">

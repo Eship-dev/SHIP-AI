@@ -430,9 +430,9 @@
 															<Button icon="sap-icon://add" press="handleDimensionAddPress" class="sapUiSmallMarginEnd"></Button>
 
 															<Label text="Total Pkgs/Weight"  class="sapUiTinyMargin"/>
-															<StepInput id="stepDownInput1" value="{eshipjetModel>/Packages/Weight}" min="0" max="100" step="1"  width="6rem"  valueState="None" />
+															<StepInput id="stepDownInput1" value="{eshipjetModel>/Packages/Weight1}" min="0" max="100" step="1"  width="6rem"  valueState="None" />
 															<Text text="/" width="10%" class="sapUiTinyMarginTop" ></Text>
-															<StepInput id="stepUpInput1" value="{eshipjetModel>/Packages/Weight}" min="0" max="100" step="1" width="6rem" valueState="None" />
+															<StepInput id="stepUpInput1" value="{eshipjetModel>/Packages/Weight2}" min="0" max="100" step="1" width="6rem" valueState="None" />
 															<Button text="Auto Pack" press="handleAutoPackPress" type="Ghost" ></Button>
 														</HBox>
 										</Toolbar>

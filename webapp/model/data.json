@@ -1,6 +1,7 @@
 {
     "allViewsFooter": true,
     "shipNowViewFooter": false,
+    "createShipReqViewFooter": false,
     "routingGuidFooter": false,
     "showDarkThemeSwitch": false,
     "darkTheme": true,
@@ -5389,7 +5390,8 @@
             "DimensionUnits": "IN",
             "Sno": 1,
             "HU": 6580,
-            "Weight": 2,
+            "Weight1": 0,
+            "Weight2": 0,
             "Dimension": "12X12X12"
         }
     ],
