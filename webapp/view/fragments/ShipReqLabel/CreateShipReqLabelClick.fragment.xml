@@ -48,7 +48,7 @@
                             <f:SimpleForm  editable="true" class="customSimpleFormShadow" width="auto" layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="2">
                                 <f:content>
                                     <Label text="Contact Name" />
-                                    <SearchField width="100%" search=".onSearch" />
+                                    <SearchField width="100%" search="onSearch" />
                                     <Label text="Address Line 1" />
                                     <Input value="{}" />
                                     <Label text="City" />
@@ -76,7 +76,7 @@
                                         </layoutData>
                                     </Input>
                                     <Label text="Company Name" />
-                                    <SearchField width="100%" search=".onSearch" />
+                                    <SearchField width="100%" search="onSearch" />
                                     <Label text="Address Line 2" />
                                     <Input value="{}" />
                                     <Label text="Zip / Postal Code" />
@@ -110,8 +110,8 @@
                     <IconTabFilter text="Ship To" key="Ship To">
                         <f:SimpleForm editable="true" class="customSimpleFormShadow" width="auto" layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="2">
                             <f:content>
-                                <Label text="Contact Name" />
-                                <Input value="{}" />
+                                <Label text="Contact Name"  />
+                                <SearchField width="100%" search="onSearch" />
                                 <Label text="Address Line 1" />
                                 <Input value="{}" />
                                 <Label text="City" />
@@ -139,7 +139,7 @@
                                     </layoutData>
                                 </Input>
                                 <Label text="Company Name" />
-                                <Input value="{}" />
+                                <SearchField width="100%" search="onSearch" />
                                 <Label text="Address Line 2" />
                                 <Input value="{}" />
                                 <Label text="Zip / Postal Code" />
@@ -220,7 +220,7 @@
 					</ui:extension>
 					<ui:footer>
                 <Toolbar>
-                    <Button  text="Add Product" type="Ghost"/>
+                    <Button  text="Add Product" type="Ghost" press="onPressAddProduct"/>
 				</Toolbar>
 		    </ui:footer>
 		</ui:Table>

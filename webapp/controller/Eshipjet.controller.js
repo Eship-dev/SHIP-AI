@@ -7706,5 +7706,51 @@ sap.ui.define([
             this.byId("idAddTrackingRangePopover").close();
         },
 
+        onPressAddProduct: function () {
+            var oView = this.getView();
+            if (!this.byId("idAddProductDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.AddProductsDialog",
+                    controller: this // Pass the controller for binding
+                }).then(function (oAddProductDialog) {
+                    oView.addDependent(oAddProductDialog);
+                    oAddProductDialog.open();
+                });
+            } else {
+                this.byId("idAddProductDialog").open(); // Open existing dialog
+            }
+        },
+        AddProductCancelDialog: function () {
+            this.byId("idAddProductDialog").close();
+        },
+
+        
+         // add Ship Req onSearchPickAnAddressPopover changes start
+         onSearch: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            var ShipNowDataModel = this.getView().getModel("ShipNowDataModel");
+            var sPath = oEvent.getSource().getId().split("--");
+            var btnId = sPath[sPath.length - 1];
+            ShipNowDataModel.setProperty("/shipNowBtnId", btnId);
+            if (!this._onSearchPopover) {
+                this._onSearchPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.ShipNowPickAnAddressPopover",
+                    controller: this
+                }).then(function (oonSearchPopover) {
+                    oView.addDependent(oonSearchPopover);
+                    return oonSearchPopover;
+                });
+            }
+            this._onSearchPopover.then(function (oonSearchPopover) {
+                oonSearchPopover.openBy(oButton);
+            });
+        },
+        onShipNowPickAnAddressCancelPress: function () {
+            this.byId("idShipNowPickAnAddressPopover").close();
+        }
+        
     });
 });

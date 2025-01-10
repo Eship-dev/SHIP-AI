@@ -43,7 +43,7 @@
 														</layoutData>
 													</Input>
 													<!-- <Label text="State / Province" /> -->
-													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromSTATE}" placeholder="State" >
+													<Input maxLength="3" value="{ShipNowDataModel>/ShipFromAddress/ShipFromSTATE}" placeholder="State" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
@@ -91,7 +91,7 @@
 													<Label text="Address Line 1" />
 													<Input value="{ShipNowDataModel>/ShipToAddress/StreetName}"></Input>
 													<Label text="State / Province" />
-													<Input value="{ShipNowDataModel>/ShipToAddress/Region}" >
+													<Input  maxLength="3" value="{ShipNowDataModel>/ShipToAddress/Region}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>

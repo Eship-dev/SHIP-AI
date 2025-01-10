@@ -1,0 +1,197 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.f"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:svm="sap.ui.comp.smartvariants"
+    xmlns:ui="sap.ui.table"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core" >
+    <Dialog
+        id="idAddProductDialog"
+        showHeader="false"
+        contentWidth="90%"
+        contentHeight="50%" >
+        <customHeader>
+        <Toolbar >
+            <Title text="Products Information"></Title>
+            <ToolbarSpacer ></ToolbarSpacer>
+                <Button icon="sap-icon://decline" press="AddProductCancelDialog"></Button>
+        </Toolbar>
+        </customHeader>
+            <form:SimpleForm editable="true" layout="ColumnLayout" columnsM="3" columnsL="3" columnsXL="5">
+                <form:content>
+                    	<Toolbar>
+                    <SearchField width="50%" ></SearchField>
+                    	</Toolbar>
+                    
+                </form:content>
+            </form:SimpleForm>
+
+
+           <content>
+            <ui:Table id="idShipNowPickAnAddressTable"
+                class="sapUiTinyMarginTop"
+                selectionMode="Single"
+                
+                rows="{/AddProductRows}"
+				visibleRowCount="8">
+                    <ui:columns>
+					<ui:Column width="120px" sortProperty="contactName" >
+						<Label text="item No" />
+						<ui:template>
+							<Text text="{itemNo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Company Name" />
+						<ui:template>
+							<Text text="{productNo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Address Line 1" />
+						<ui:template>
+							<Text text="{desc}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Address Line 2" />
+						<ui:template>
+							<Text text="{quantity}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Address Line 3" />
+						<ui:template>
+							<Text text="{DG}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="City" />
+						<ui:template>
+							<Text text="{EPC-RFID No}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="State" />
+						<ui:template>
+							<Text text="{unitCost}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Zipcode" />
+						<ui:template>
+							<Text text="{unitWeight}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Country" />
+						<ui:template>
+							<Text text="{dimensions}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Phone" />
+						<ui:template>
+							<Text text="{harmonizedcode}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="eccn" />
+						<ui:template>
+							<Text text="{eccn}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Address Type" />
+						<ui:template>
+							<Text text="{unNo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="item No" />
+						<ui:template>
+							<Text text="{class}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Company Name" />
+						<ui:template>
+							<Text text="{nmfc}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Address Line 1" />
+						<ui:template>
+							<Text text="{uom}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Address Line 2" />
+						<ui:template>
+							<Text text="{Category}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Address Line 3" />
+						<ui:template>
+							<Text text="{Serial}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="City" />
+						<ui:template>
+							<Text text="{Batch}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="State" />
+						<ui:template>
+							<Text text="{Stackable}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Zipcode" />
+						<ui:template>
+							<Text text="{CountryofMFR}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Country" />
+						<ui:template>
+							<Text text="{Currency}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="Phone" />
+						<ui:template>
+							<Text text="{LicenseNo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="contactName" >
+						<Label text="eccn" />
+						<ui:template>
+							<Text text="{UOM}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					
+				</ui:columns>
+		</ui:Table>
+            <Toolbar >
+                        <ToolbarSpacer ></ToolbarSpacer>
+                            <Button  text="First" enabled="false" />
+                            <Button  text="Previous" enabled="false"/>
+                            <Text    text="1-50 of 74"/>
+                            <Button  text="Next" />
+                            <Button  text="Last" />
+                    </Toolbar>
+
+        </content>
+                    
+        
+    </Dialog>
+</core:FragmentDefinition>
