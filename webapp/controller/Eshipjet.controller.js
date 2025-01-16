@@ -1827,7 +1827,7 @@ sap.ui.define([
             var OrderTableData = eshipjetModel.getData().OrderTableData;
             var OrderTableDataModel = new JSONModel(OrderTableData);
             this.getView().setModel(OrderTableDataModel, "OrderTableDataModel");
-            const oTable = oView.byId("idOrdersTable");
+            const oTable = oController.byId("idOrdersTable");
             oTable.setModel(OrderTableDataModel);
             var OrderTableDataModel = this.getView().getModel("OrderTableDataModel");
             var OrderColumns = OrderTableDataModel.getData().OrderColumns;
