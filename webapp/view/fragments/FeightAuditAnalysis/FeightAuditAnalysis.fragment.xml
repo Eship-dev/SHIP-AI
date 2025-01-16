@@ -1,0 +1,57 @@
+<core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
+
+	    <Toolbar >
+			<Text text="Invoice Auditing" ></Text>
+           		</Toolbar>
+		<Toolbar height="15%" >
+			<HBox width="100%">
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="$ 582" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Total Invoice" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Emphasized" press="handleTrackNowFilterBtnPress" id="idFeightAuditAnalysisTotalBtn" icon="false" width="100%"  ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="$ 533.71" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Total TMS Shipment Cost" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Critical" press="handleTrackNowFilterBtnPress" id="idFeightAuditAnalysisOpenBtn" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="3" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Total Invoices" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Success" press="handleTrackNowFilterBtnPress" id="idFeightAuditAnalysisShippedBtn" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="$ 48.38" class="sapUiTinyMarginBottom"></Text>
+					<Text text="Difference Amount" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Negative" press="handleTrackNowFilterBtnPress" id="idFeightAuditAnalysisCancelledBtn" icon="false" width="100%" ></Button>
+				</VBox>
+			</HBox>
+		</Toolbar>
+    		<ui:Table
+                id="idFeightAuditAnalysisTable"
+				rows="{eshipjetModel>/TrackNowItems}"
+				class="sapUiSmallMarginTop"
+				selectionMode="None"
+				visibleRowCount="12">
+				<ui:extension>
+					<OverflowToolbar style="Clear">
+                        <Button icon="sap-icon://filter" press="onFeightAuditAnalysisFilterPress"></Button>
+						
+                        <ToolbarSpacer />
+                            <Button icon="sap-icon://action"></Button>
+                            <Button icon="sap-icon://action-settings" press="openFeightAuditAnalysisColNamesPopover"></Button>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:footer>
+					<Toolbar >
+						<ToolbarSpacer/>
+						<Button  text="First" enabled="false" />
+						<Button  text="Previous" enabled="false"/>
+						<Text    text="1-50 of 74"/>
+						<Button  text="Next" />
+						<Button  text="Last" />
+					</Toolbar>
+				</ui:footer>
+		</ui:Table>
+</core:FragmentDefinition>

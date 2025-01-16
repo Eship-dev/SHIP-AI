@@ -201,6 +201,15 @@ sap.ui.define([
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
                 // this._handleDisplayRoutingGuideTable();
+            } else if (sKey === "FeightAuditAnalysis") {
+                eshipjetModel.setProperty("/allViewsFooter", true);
+                eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/createShipReqViewFooter", false);
+                eshipjetModel.setProperty("/routingGuidFooter", false);
+                eshipjetModel.setProperty("/showDarkThemeSwitch", false);
+                eshipjetModel.setProperty("/darkTheme", false);
+                document.body.classList.remove("dark-theme");
+                // this._handleDisplayRoutingGuideTable();
             }
 
 
@@ -3135,6 +3144,35 @@ sap.ui.define([
                 oPopover.openBy(oButton);
             });
 
+        },
+
+
+        onFeightAuditAnalysisFilterPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._FeightAuditAnalysisPopover) {
+                this._FeightAuditAnalysisPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.FeightAuditAnalysis.FeightAuditAnalysisFilterPopover",
+                    controller: this
+                }).then(function (FeightAuditAnalysisPopover) {
+                    oView.addDependent(FeightAuditAnalysisPopover);
+                    // FeightAuditAnalysisPopover.bindElement("/ProductCollection/0");
+                    return FeightAuditAnalysisPopover;
+                });
+            }
+            this._FeightAuditAnalysisPopover.then(function (FeightAuditAnalysisPopover) {
+                FeightAuditAnalysisPopover.openBy(oButton);
+            });
+        },
+        onFeightAuditAnalysisFilterPopoverClosePress: function () {
+            this.byId("idFeightAuditAnalysisFilterPopover").close();
+        },
+        onFeightAuditAnalysisFilterPopoverResetPress: function () {
+            this.byId("idFeightAuditAnalysisFilterPopover").close();
+        },
+        onFeightAuditAnalysisFilterPopoverApplyPress: function () {
+            this.byId("idFeightAuditAnalysisFilterPopover").close();
         },
         handlePopoverListItemPress: function (oEvent) {
             var oSrc = oEvent.getSource();

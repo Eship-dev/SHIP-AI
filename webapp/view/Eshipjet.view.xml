@@ -53,6 +53,8 @@
 					</tnt:NavigationListItem>
 					<tnt:NavigationListItem text="Routing Guide" icon="sap-icon://customfont/returns_icon" key="RoutingGuide">
 					</tnt:NavigationListItem>
+					<tnt:NavigationListItem text="Feight Audit  Analysis" icon="sap-icon://customfont/returns_icon" key="FeightAuditAnalysis">
+					</tnt:NavigationListItem>
 					
 				</tnt:NavigationList>
 				<!-- <tnt:NavigationList>
@@ -197,6 +199,11 @@
 				<!-- Batch Reports Starts here -->
 					<ScrollContainer	id="Reports"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Reports.Reports" type="XML" />
+					</ScrollContainer>
+
+				<!-- Feight Audit Analysis Ship Starts here -->
+					<ScrollContainer	id="FeightAuditAnalysis"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.FeightAuditAnalysis.FeightAuditAnalysis" type="XML" />
 					</ScrollContainer>
 
 

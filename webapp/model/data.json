@@ -353,6 +353,12 @@
             "icon": "sap-icon://customfont/returns_icon",
             "key": "RoutingGuide",
             "sortKey": "RG"
+        },
+        {
+            "title": "Feight Audit Analysis",
+            "icon": "sap-icon://customfont/returns_icon",
+            "key": "FeightAuditAnalysis",
+            "sortKey": "FAA"
         }
     ],
     "fixedNavigation": [
