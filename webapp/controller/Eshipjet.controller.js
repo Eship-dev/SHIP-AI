@@ -2417,7 +2417,7 @@ sap.ui.define([
             var ShipReqTableData = eshipjetModel.getData().ShipReqTableData;
             var ShipReqTableDataModel = new JSONModel(ShipReqTableData);
             this.getView().setModel(ShipReqTableDataModel, "ShipReqTableDataModel");
-            const oTable = oView.byId("idCreateShipReqTable");
+            var oTable = oView.byId("idCreateShipReqTable");
             oTable.setModel(ShipReqTableDataModel);
             var ShipReqTableDataModel = this.getView().getModel("ShipReqTableDataModel");
             var CreateShipReqColumnsData = ShipReqTableDataModel.getData().CreateShipReqColumns;
@@ -2438,6 +2438,24 @@ sap.ui.define([
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
                         template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }else if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ icon: "sap-icon://delete", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    // oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
                         visible: oContext.getObject().visible,
                         width: minWidth,
                         sortProperty: columnName
@@ -7839,7 +7857,7 @@ sap.ui.define([
             if (!this.byId("idAddProductDialog")) {
                 Fragment.load({
                     id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.AddProductsDialog",
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.AddProductsDialog",
                     controller: this // Pass the controller for binding
                 }).then(function (oAddProductDialog) {
                     oView.addDependent(oAddProductDialog);
@@ -7850,6 +7868,20 @@ sap.ui.define([
             }
         },
         AddProductCancelDialog: function () {
+            this.byId("idAddProductDialog").close();
+        },
+
+
+        handleAddProductRowPress:function(oEvent){
+            var oSelectedObj = oEvent.getSource().getBindingContext().getObject();
+            var ShipReqTableDataModel = this.getView().getModel("ShipReqTableDataModel");
+            var CreateShipReqRowsData = ShipReqTableDataModel.getData().CreateShipReqRows;
+            CreateShipReqRowsData.push(oSelectedObj);
+            ShipReqTableDataModel.updateBindings(true);
+            for(var i=0; i<CreateShipReqRowsData.length; i++){
+                CreateShipReqRowsData[i]["#"] = i+1;
+                ShipReqTableDataModel.updateBindings(true);
+            }
             this.byId("idAddProductDialog").close();
         },
 

@@ -27,6 +27,7 @@
 			<tnt:SideNavigation	 	visible="{eshipjetModel>/SideNavigation}"	expanded="true"		selectedKey="{eshipjetModel>/selectedKey}"	itemSelect=".onItemSelect">
 				<tnt:NavigationList>
 					<tnt:NavigationListItem text="SAP ShipperCopilot" icon="sap-icon://customfont/ShipperCopilate" key="ShipperCopilot">
+					
 					</tnt:NavigationListItem>
 					<tnt:NavigationListItem text="Orders" icon="sap-icon://customfont/order_icon" key="Orders">
 					</tnt:NavigationListItem>

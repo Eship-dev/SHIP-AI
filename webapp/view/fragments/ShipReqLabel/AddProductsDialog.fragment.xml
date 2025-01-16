@@ -1,0 +1,297 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.f"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:svm="sap.ui.comp.smartvariants"
+    xmlns:ui="sap.ui.table"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core" >
+    <Dialog
+        id="idAddProductDialog"
+        showHeader="false"
+        contentWidth="90%"
+        contentHeight="50%" >
+        <customHeader>
+        <Toolbar >
+            <Title text="Products Information"></Title>
+            <ToolbarSpacer ></ToolbarSpacer>
+                <Button icon="sap-icon://decline" press="AddProductCancelDialog"></Button>
+        </Toolbar>
+        </customHeader>
+            <Toolbar>
+                <SearchField width="50%" ></SearchField>
+        	</Toolbar>
+           
+		   <content>
+	<Table
+		mode="None"
+		items="{/AddProductRows}"
+		growing="true" growingThreshold="10">
+		<columns>
+			<Column width="12em">
+				<Text text="Item No" />
+			</Column>
+			<Column width="12em">
+				<Text text="Product Code" />
+			</Column>
+			<Column width="12em">
+				<Text text="Description" />
+			</Column>
+			<Column width="12em">
+				<Text text="Qty" />
+			</Column>
+			<Column width="12em">
+				<Text text="DG" />
+			</Column>
+			<Column width="12em">
+				<Text text="Epc-Rfid No" />
+			</Column>
+			<Column width="12em">
+				<Text text="Unit Cost" />
+			</Column>
+			<Column width="12em">
+				<Text text="Unit Weight" />
+			</Column>
+			<Column width="12em">
+				<Text text="Dimensions" />
+			</Column>
+			<Column width="12em">
+				<Text text="Harmonized Code" />
+			</Column>
+			<Column width="12em">
+				<Text text="Eccn" />
+			</Column>
+			<Column width="12em">
+				<Text text="Un No" />
+			</Column>
+			<Column width="12em">
+				<Text text="Class" />
+			</Column>
+			<Column width="12em">
+				<Text text="Nmfc" />
+			</Column>
+			<Column width="12em">
+				<Text text="Category" />
+			</Column>
+			<Column width="12em">
+				<Text text="Serial" />
+			</Column>
+			<Column width="12em">
+				<Text text="Batch" />
+			</Column>
+			<Column width="12em">
+				<Text text="Stackable" />
+			</Column>
+			<Column width="12em">
+				<Text text="Country Of Mfr" />
+			</Column>
+			<Column width="12em">
+				<Text text="Currency" />
+			</Column>
+			<Column width="12em">
+				<Text text="License No" />
+			</Column>
+			<Column width="12em">
+				<Text text="Uom" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle" type="Active" press="handleAddProductRowPress" >
+				<cells>
+					<Text text="{itemNo}" wrapping="false" />
+					<Text text="{productNo}" wrapping="false" />
+					<Text text="{desc}" wrapping="false" />
+					<Text text="{quantity}" wrapping="false" />
+					<Text text="{DG}" wrapping="false" />
+					<Text text="{EPC-RFID No}" wrapping="false" />
+					<Text text="{unitCost}" wrapping="false" />
+					<Text text="{unitWeight}" wrapping="false" />
+					<Text text="{dimensions}" wrapping="false" />
+					<Text text="{harmonizedcode}" wrapping="false" />
+					<Text text="{eccn}" wrapping="false" />
+					<Text text="{unNo}" wrapping="false" />
+					<Text text="{class}" wrapping="false" />
+					<Text text="{nmfc}" wrapping="false" />
+					<Text text="{Category}" wrapping="false" />
+					<Text text="{Serial}" wrapping="false" />
+					<Text text="{Batch}" wrapping="false" />
+					<Text text="{Stackable}" wrapping="false" />
+					<Text text="{CountryofMFR}" wrapping="false" />
+					<Text text="{Currency}" wrapping="false" />
+					<Text text="{LicenseNo}" wrapping="false" />
+					<Text text="{UOM}" wrapping="false" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+
+            <!-- <ui:Table 
+                class="sapUiTinyMarginTop"
+                selectionMode="Single"
+                rowSelectionChange="handleAddProductSelect"
+                rows="{/AddProductRows}"
+				visibleRowCount="8">
+                    <ui:columns >
+					<ui:Column width="120px" sortProperty="itemNo" >
+						<Label text="item No" />
+						<ui:template>
+							<Text text="{itemNo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="productNo" >
+						<Label text="Product Code" />
+						<ui:template>
+							<Text text="{productNo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="Description" >
+						<Label text="Description" />
+						<ui:template>
+							<Text text="{desc}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="Qty" >
+						<Label text="Qty" />
+						<ui:template>
+							<Text text="{quantity}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="DG" >
+						<Label text="DG" />
+						<ui:template>
+							<Text text="{DG}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="EPC-RFID No" >
+						<Label text="Epc-Rfid No" />
+						<ui:template>
+							<Text text="{EPC-RFID No}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="unitCost" >
+						<Label text="Unit Cost" />
+						<ui:template>
+							<Text text="{unitCost}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="unitWeight" >
+						<Label text="Unit Weight" />
+						<ui:template>
+							<Text text="{unitWeight}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="dimensions" >
+						<Label text="Dimensions" />
+						<ui:template>
+							<Text text="{dimensions}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="harmonizedcode" >
+						<Label text="Harmonized Code" />
+						<ui:template>
+							<Text text="{harmonizedcode}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="eccn" >
+						<Label text="Eccn" />
+						<ui:template>
+							<Text text="{eccn}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="120px" sortProperty="unNo" >
+						<Label text="Un No" />
+						<ui:template>
+							<Text text="{unNo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="class" >
+						<Label text="Class" />
+						<ui:template>
+							<Text text="{class}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="nmfc" >
+						<Label text="Nmfc" />
+						<ui:template>
+							<Text text="{nmfc}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="Category" >
+						<Label text="Category" />
+						<ui:template>
+							<Text text="{Category}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="Serial" >
+						<Label text="Serial" />
+						<ui:template>
+							<Text text="{Serial}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="Batch" >
+						<Label text="Batch" />
+						<ui:template>
+							<Text text="{Batch}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="Stackable" >
+						<Label text="Stackable" />
+						<ui:template>
+							<Text text="{Stackable}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="CountryofMFR" >
+						<Label text="Country Of Mfr" />
+						<ui:template>
+							<Text text="{CountryofMFR}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="Currency" >
+						<Label text="Currency" />
+						<ui:template>
+							<Text text="{Currency}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="LicenseNo" >
+						<Label text="License No" />
+						<ui:template>
+							<Text text="{LicenseNo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+                    <ui:Column width="120px" sortProperty="UOM" >
+						<Label text="Uom" />
+						<ui:template>
+							<Text text="{UOM}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					
+				</ui:columns>
+		</ui:Table>
+            <Toolbar >
+                        <ToolbarSpacer ></ToolbarSpacer>
+                            <Button  text="First" enabled="false" />
+                            <Button  text="Previous" enabled="false"/>
+                            <Text    text="1-50 of 74"/>
+                            <Button  text="Next" />
+                            <Button  text="Last" />
+                    </Toolbar> -->
+
+        </content>
+                    
+        <footer>
+			<Toolbar >
+                        <ToolbarSpacer ></ToolbarSpacer>
+                            <Button  text="First" enabled="false" />
+                            <Button  text="Previous" enabled="false"/>
+                            <Text    text="1-50 of 74"/>
+                            <Button  text="Next" />
+                            <Button  text="Last" />
+                    </Toolbar>
+		</footer>
+    </Dialog>
+</core:FragmentDefinition>

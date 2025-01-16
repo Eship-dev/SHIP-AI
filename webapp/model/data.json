@@ -1369,21 +1369,21 @@
 				"visible": true
 			},
             {
-				"name": "ItemNo",
+				"name": "itemNo",
 				"label": "Item No",
 				"visible": false
 			},
 			{
-				"name": "ProductCode",
+				"name": "productNo",
 				"label": "Product Code",
 				"visible": true
 			},{
-				"name": "Description",
+				"name": "desc",
 				"label": "Description",
 				"visible": true
 			},
 			{
-				"name": "Qty",
+				"name": "quantity",
 				"label": "Qty",
 				"visible": true
 			},{
@@ -1392,43 +1392,43 @@
 				"visible": false
 			},
 			{
-				"name": "EPCRFIDNo",
+				"name": "EPC-RFID No",
 				"label": "EPC-RFID No",
 				"visible": true
 			},{
-				"name": "UnitCost",
+				"name": "unitCost",
 				"label": "Unit Cost",
 				"visible": false
 			},
 			{
-				"name": "UnitWeight",
+				"name": "unitWeight",
 				"label": "Unit Weight",
 				"visible": true
 			},{
-				"name": "Dimensions",
+				"name": "dimensions",
 				"label": "Dimensions",
 				"visible": true
 			},
 			{
-				"name": "HarmonizedCode",
+				"name": "harmonizedcode",
 				"label": "Harmonized Code",
 				"visible": false
 			},{
-				"name": "ECCN",
+				"name": "eccn",
 				"label": "ECCN",
 				"visible": false
 			},
 			{
-				"name": "UnNo",
+				"name": "unNo",
 				"label": "UN No",
 				"visible": false
 			},{
-				"name": "Class",
+				"name": "class",
 				"label": "Class",
 				"visible": false
 			},
 			{
-				"name": "NMFC",
+				"name": "nmfc",
 				"label": "NMFC",
 				"visible": false
 			},{
@@ -1450,7 +1450,7 @@
 				"label": "Stackable",
 				"visible": false
 			},{
-				"name": "CountryOfMFR",
+				"name": "CountryofMFR",
 				"label": "Country of MFR",
 				"visible": false
 			},
@@ -5496,6 +5496,7 @@
     },
     "AddProductRows":[
         {
+            "serialNo": "",
             "itemNo": "ADE-009",
             "productNo": "ADE-009",
             "desc": "ATM Deposit Envelopes",
@@ -5518,7 +5519,8 @@
             "CountryofMFR": "",
             "Currency": "",
             "LicenseNo": "",
-            "UOM": ""
+            "UOM": "",
+            "actions":"sap-icon://delete"
         },
         {
             "itemNo": "ATM-008",
@@ -5543,7 +5545,8 @@
             "CountryofMFR": "",
             "Currency": "",
             "LicenseNo": "",
-            "UOM": ""
+            "UOM": "",
+            "actions":"sap-icon://delete"
         },
         {
             "itemNo": "BSB-010",
