@@ -1,5 +1,13 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
-	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
+	xmlns:f="sap.ui.layout.form"	
+	xmlns:core="sap.ui.core"
+	xmlns:plugins="sap.m.plugins"
+	xmlns:columnmenu="sap.m.table.columnmenu"
+    xmlns:sap.ui.fl="sap.ui.fl"
+    xmlns:sap.ui.dt="sap.ui.dt"
+    xmlns:vm="sap.ui.fl.variants"
+    xmlns:dnd="sap.ui.core.dnd"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" >
 
 	    <Toolbar width="auto" height="15%" >
 			<Text text="Ship Requests / Labels" class="textBold sapUiTinyMarginBegin pageTitle" ></Text>
@@ -31,7 +39,7 @@
 			</HBox>
 		</Toolbar>
 
-        <ui:Table id="idShipReqsTable"
+        <!-- <ui:Table id="idShipReqsTable"
                 class="sapUiTinyMarginTop"
 				rows="{eshipjetModel>/Orderitems}"
 				selectionMode="None"
@@ -60,5 +68,188 @@
 						<Button  text="Last" />
 					</Toolbar>
 				</ui:footer>
-		</ui:Table>
+		</ui:Table> -->
+
+
+
+	<Table id="idShipReqsTable"
+		inset="false"
+		sticky="ColumnHeaders,HeaderToolbar"
+		growing="true"
+
+		ariaLabelledBy="title" fixedLayout="Strict"
+		autoPopinMode="true" popinLayout="GridSmall"
+		growingThreshold="20"
+		items="{ path: 'eshipjetModel>/ShipReqTableData/ShipReqRows' }" >
+		<headerToolbar>
+                <OverflowToolbar >
+                    <Button icon="sap-icon://filter" press="onShipReqFilterPopoverPress"></Button>
+						<ToolbarSpacer ></ToolbarSpacer>
+							<Button icon="sap-icon://action" press="onShipReqExportToExcel"></Button>
+                            <Button icon="sap-icon://action-settings" press="openShipReqColNamesPopover" >
+                                <customData>
+                                    <core:CustomData key="remember" value="true" />
+                                    <core:CustomData key="showClearButton" value="true" />
+                                    <core:CustomData key="confirmButtonText" value="Ok" />
+                                </customData>
+							</Button>
+                </OverflowToolbar>
+            </headerToolbar>
+            <dependents>
+                <plugins:ColumnResizer columnResize="onColumnResize"/>
+                <columnmenu:Menu id="menu" beforeOpen="beforeOpenColumnMenu">
+                    <columnmenu:QuickSort change="onSort">
+                        <columnmenu:items>
+                            <columnmenu:QuickSortItem></columnmenu:QuickSortItem>
+                        </columnmenu:items>
+                    </columnmenu:QuickSort>
+                    <columnmenu:QuickGroup change="onGroup">
+                        <columnmenu:items>
+                            <columnmenu:QuickGroupItem></columnmenu:QuickGroupItem>
+                        </columnmenu:items>
+                    </columnmenu:QuickGroup>
+                    <columnmenu:items>
+                        <columnmenu:ActionItem icon="sap-icon://sort" label="Sort" press="onColumnHeaderItemPress"/>
+                        <!-- <columnmenu:ActionItem icon="sap-icon://group-2" label="Group" press="onColumnHeaderItemPress"/>
+                        <columnmenu:ActionItem icon="sap-icon://filter" label="Filter" press="onColumnHeaderItemPress"/>
+                        <columnmenu:ActionItem icon="sap-icon://table-column" label="Columns" press="onColumnHeaderItemPress"/> -->
+                    </columnmenu:items>
+                </columnmenu:Menu>
+            </dependents>
+
+            <dragDropConfig>
+                <dnd:DragDropInfo sourceAggregation="columns" targetAggregation="columns" dropPosition="Between" drop="onColumnMove"/>
+            </dragDropConfig>
+
+            <noData>
+                <IllustratedMessage/>
+            </noData>
+		<columns>
+
+			<Column app:p13nKey="locationName" headerMenu="menu">
+                    <header>
+                        <Text text="Location Name"/>
+                    </header>
+            </Column>
+			<Column app:p13nKey="Consolidation ID" headerMenu="menu" visible="false">
+                    <header>
+                        <Text text="Consolidation ID"/>
+                    </header>
+            </Column>
+			<Column app:p13nKey="requestIdLabelId" headerMenu="menu" visible="true" >
+				<header>
+                    <Text text="Request ID/Label ID"/>
+                </header>
+			</Column>
+                <Column app:p13nKey="CreatedDate" hAlign="End" visible="true" headerMenu="menu">
+					<header>
+						<Text text="Created Date"/>
+					</header>
+				</Column>
+				<Column app:p13nKey="ShipDate" hAlign="End" visible="true" headerMenu="menu">
+                    <Text text="Ship Date"/>
+                </Column>
+				<Column app:p13nKey="ShipType" hAlign="End" visible="false" headerMenu="menu">
+                    <Text text="Ship Type"/>
+                </Column>
+				<Column app:p13nKey="shipMethod" hAlign="End" visible="true" headerMenu="menu">
+                    <Text text="Ship Method"/>
+                </Column>
+				<Column app:p13nKey="ServiceName" hAlign="End" visible="true" headerMenu="menu">
+                    <Text text="Service Name"/>
+                </Column>
+				<Column app:p13nKey="TrackingNumber" hAlign="End" visible="true" headerMenu="menu">
+                    <Text text="Tracking Number"/>
+                </Column>
+				<Column app:p13nKey="status" hAlign="End" visible="true" headerMenu="menu">
+                    <Text text="Status"/>
+                </Column>
+				<Column app:p13nKey="ShipToContact" hAlign="End" visible="true" headerMenu="menu">
+                    <Text text="Ship To Contact"/>
+                </Column>
+				<Column app:p13nKey="ShipToCompany" hAlign="End" visible="true" headerMenu="menu">
+                    <Text text="Ship To Company"/>
+                </Column>
+				<Column app:p13nKey="ShipToAddressLine1" hAlign="End" visible="false" headerMenu="menu">
+                    <Text text="Ship To Address Line 1"/>
+                </Column>
+				<Column app:p13nKey="shipToStateProvince" hAlign="End" visible="false" headerMenu="menu">
+                    <Text text="Ship To State/Province"/>
+                </Column>
+				<Column app:p13nKey="shipToCity" hAlign="End" visible="false" headerMenu="menu">
+                    <Text text="Ship To City"/>
+                </Column>
+				<Column app:p13nKey="shipToZipPostalCode" hAlign="End" visible="false" headerMenu="menu">
+                    <Text text="Ship To Zip/Postal Code"/>
+                </Column>
+				<Column app:p13nKey="shipToCountry" hAlign="End" visible="false" headerMenu="menu">
+                    <Text text="Ship To Country"/>
+                </Column>
+				<Column app:p13nKey="shipToPhone" hAlign="End" visible="false" headerMenu="menu">
+                    <Text text="Ship To Phone No"/>
+                </Column>
+				<Column app:p13nKey="shipToEmail" hAlign="End" visible="false" headerMenu="menu">
+                    <Text text="Ship To Email"/>
+                </Column>
+				<Column app:p13nKey="RequesterName" hAlign="End" visible="false" headerMenu="menu">
+                    <Text text="Requester Name"/>
+                </Column>
+				<Column app:p13nKey="ConnectedTo" hAlign="End" visible="false" headerMenu="menu">
+                    <Text text="Connected To"/>
+                </Column>
+				<Column app:p13nKey="OrderType" hAlign="End" visible="false" headerMenu="menu">
+                    <Text text="Order Type"/>
+                </Column>
+				<Column app:p13nKey="RFID" hAlign="End" visible="false" headerMenu="menu">
+                    <Text text="RFID"/>
+                </Column>
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle">
+				<cells>
+					<ObjectIdentifier
+						text="{eshipjetModel>locationName}"/>
+					<Text text="{}" />
+					<Text text="{eshipjetModel>requestIdLabelId}" />
+					<Text text="{eshipjetModel>CreatedDate}" />
+					<Text text="{eshipjetModel>ShipDate}" />
+					<Text text="{}" />
+					<Text text="{eshipjetModel>shipMethod}" />
+					<Text text="{eshipjetModel>ServiceName}" />
+					<Text text="{eshipjetModel>TrackingNumber}" />
+					<!-- <Text text="{eshipjetModel>status}" class="{path: 'eshipjetModel>status', formatter: '.formatStatusClass'}" /> -->
+
+					<ObjectNumber number="{eshipjetModel>status}"
+							state= "{${eshipjetModel>status} === 'Open' ? 'Success' : 'Error'}" />
+
+					<!-- <ObjectIdentifier
+						text="{eshipjetModel>status}" /> -->
+
+					<Text text="{eshipjetModel>ShipToContact}" />
+					<Text text="{eshipjetModel>ShipToCompany}" />
+					<Text text="{eshipjetModel>shipToCity}" />
+					<Text text="{eshipjetModel>shipToStateProvince}" />
+					<Text text="{eshipjetModel>shipToZipPostalCode}" />
+					<Text text="{eshipjetModel>shipToCountry}" />
+					<Text text="{eshipjetModel>shipToPhone}" />
+					<Text text="{eshipjetModel>shipToEmail}" />
+					<Text text="{}" />
+					<Text text="{}" />
+					<Text text="{}" />
+					<Text text="{}" />
+					<Text text="{}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+		<Toolbar >
+			<ToolbarSpacer/>
+				<Button  text="First" enabled="false" />
+				<Button  text="Previous" enabled="false"/>
+				<Text    text="1-50 of 74"/>
+				<Button  text="Next" />
+				<Button  text="Last" />
+		</Toolbar>
+
+
 </core:FragmentDefinition>

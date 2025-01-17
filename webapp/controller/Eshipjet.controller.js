@@ -122,7 +122,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
-                this._handleDisplayShipReqTable();
+                // this._handleDisplayShipReqTable();
             } else if (sKey === "ShipNow") {
                 eshipjetModel.setProperty("/allViewsFooter", false);
                 eshipjetModel.setProperty("/shipNowViewFooter", true);
@@ -1798,7 +1798,7 @@ sap.ui.define([
             var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
             var tileTitle = oEvent.getParameters().domRef.innerText;
             if (tileTitle === "Ship Request/Label") {
-                this._handleDisplayShipReqTable();
+                // this._handleDisplayShipReqTable();
                 var sKey = "ShipRequestLabel";
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
@@ -2412,7 +2412,7 @@ sap.ui.define([
             }
             var oPageContainer = this.byId("pageContainer");
             oPageContainer.to(oView.createId("_ID_CreateShipReqLabel_TableScrollContainer"));
-            this._handleDisplayCreateShipReqTable();
+            // this._handleDisplayCreateShipReqTable();
             eshipjetModel.setProperty("/allViewsFooter", false);
             eshipjetModel.setProperty("/shipNowViewFooter", false);
             eshipjetModel.setProperty("/routingGuidFooter", false);

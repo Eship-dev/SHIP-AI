@@ -9,16 +9,83 @@
     "selectedKey": "page2",
     "image": "css/images/image.png",
     "SideNavigation": true,
-    "shipMethodTypes":[{
-        "key":"FedEx",
-        "text":"FedEx"
-    },{
-        "key":"UPS",
-        "text":"UPS"
-    },{
-        "key":"DHL",
-        "text":"DHL"
-    }],
+    "shipMethodTypes":[
+        {
+            "key":"Gander & White",
+            "text":"Gander & White"
+        },
+        {
+            "key":"ABF",
+            "text":"ABF"
+        },
+        {
+            "key":"ARTEX Fine Art Services",
+            "text":"ARTEX Fine Art Services"
+        },
+        {
+            "key":"ATLAS Fine Art",
+            "text":"ATLAS Fine Art"
+        },
+        {
+            "key":"Brinks Fine Art",
+            "text":"Brinks Fine Art"
+        },
+        {
+            "key":"Crown Fine Art",
+            "text":"Crown Fine Art"
+        },
+        {
+            "key":"DHL",
+            "text":"DHL"
+        },
+        {
+            "key":"DTDC",
+            "text":"DTDC"
+        },
+        {
+            "key":"FedEx",
+            "text":"FedEx"
+        },
+        {
+            "key":"FedEx Freight",
+            "text":"FedEx Freight"
+        },
+        {
+            "key":"Fine Art Shippers",
+            "text":"Fine Art Shippers"
+        },
+        {
+            "key":"JPMorgan Chase Internal",
+            "text":"JPMorgan Chase Internal"
+        },
+        {
+            "key":"Malca-Amit",
+            "text":"Malca-Amit"
+        },
+        {
+            "key":"Movi Group",
+            "text":"Movi Group"
+        },
+        {
+            "key":"Other",
+            "text":"Other"
+        },
+        {
+            "key":"RL",
+            "text":"RL"
+        },
+        {
+            "key":"The Armory",
+            "text":"The Armory"
+        },
+        {
+            "key":"UPS",
+            "text":"UPS"
+        },{
+            "key":"USPS",
+            "text":"USPS"
+        }
+    ],
      "countriesList":[ 
         {"name": "United Kingdom", "code": "GB"}, 
         {"name": "United States", "code": "US"}, 
@@ -1232,6 +1299,7 @@
 		],
 		"ShipReqRows": [
             {
+                "locationName": "eshipJet Software Inc.",
                 "requestIdLabelId": "DN000001385",
                 "CreatedDate": "12/10/2024",
                 "ShipDate": "12/10/2024",
@@ -1249,13 +1317,14 @@
                 "shipToEmail": "jenny@imayl.com"
               },
               {
+                "locationName": "eshipJet Software Inc.",
                 "requestIdLabelId": "DN000001384",
                 "CreatedDate": "12/10/2024",
                 "ShipDate": "12/10/2024",
                 "shipMethod": "DHL",
                 "ServiceName": "Economy Select - ESI",
                 "TrackingNumber": null,
-                "status": "Open",
+                "status": "Shipped",
                 "ShipToContact": "Tomas Pineda",
                 "ShipToCompany": "Ingram Micro, Inc",
                 "shipToCity": "Carrollton",
@@ -1266,6 +1335,7 @@
                 "shipToEmail": "info@google.com"
               },
               {
+                "locationName": "eshipJet Software Inc.",
                 "requestIdLabelId": "DN000001383",
                 "CreatedDate": "12/10/2024",
                 "ShipDate": "12/10/2024",
@@ -1283,6 +1353,7 @@
                 "shipToEmail": "info@eshipjet.ai"
               },
               {
+                "locationName": "eshipJet Software Inc.",
                 "requestIdLabelId": "DN000001385",
                 "CreatedDate": "12/10/2024",
                 "ShipDate": "12/10/2024",
@@ -1300,6 +1371,7 @@
                 "shipToEmail": "jenny@imayl.com"
               },
               {
+                "locationName": "eshipJet Software Inc.",
                 "requestIdLabelId": "DN000001384",
                 "CreatedDate": "12/10/2024",
                 "ShipDate": "12/10/2024",
@@ -1317,6 +1389,7 @@
                 "shipToEmail": "info@google.com"
               },
               {
+                "locationName": "eshipJet Software Inc.",
                 "requestIdLabelId": "DN000001383",
                 "CreatedDate": "12/10/2024",
                 "ShipDate": "12/10/2024",
@@ -1334,6 +1407,7 @@
                 "shipToEmail": "info@eshipjet.ai"
               },
               {
+                "locationName": "eshipJet Software Inc.",
                 "requestIdLabelId": "DN000001384",
                 "CreatedDate": "12/10/2024",
                 "ShipDate": "12/10/2024",
@@ -1351,6 +1425,7 @@
                 "shipToEmail": "info@google.com"
               },
               {
+                "locationName": "eshipJet Software Inc.",
                 "requestIdLabelId": "DN000001383",
                 "CreatedDate": "12/10/2024",
                 "ShipDate": "12/10/2024",
@@ -1368,6 +1443,7 @@
                 "shipToEmail": "info@eshipjet.ai"
               },
               {
+                "locationName": "eshipJet Software Inc.",
                 "requestIdLabelId": "DN000001384",
                 "CreatedDate": "12/10/2024",
                 "ShipDate": "12/10/2024",
@@ -1385,6 +1461,7 @@
                 "shipToEmail": "info@google.com"
               },
               {
+                "locationName": "eshipJet Software Inc.",
                 "requestIdLabelId": "DN000001383",
                 "CreatedDate": "12/10/2024",
                 "ShipDate": "12/10/2024",
@@ -1400,6 +1477,96 @@
                 "shipToCountry": "IN",
                 "shipToPhone": "+91 915 492 735",
                 "shipToEmail": "info@eshipjet.ai"
+              },
+              {
+                "locationName": "eshipJet Software Inc.",
+                "requestIdLabelId": "DN000001385",
+                "CreatedDate": "12/10/2024",
+                "ShipDate": "12/10/2024",
+                "shipMethod": "FedEx",
+                "ServiceName": "FedEx 2Day",
+                "TrackingNumber": null,
+                "status": "Open",
+                "ShipToContact": "Jenny",
+                "ShipToCompany": "eshipjet",
+                "shipToCity": "Fremont",
+                "shipToStateProvince": "CA",
+                "shipToZipPostalCode": "94538",
+                "shipToCountry": "US",
+                "shipToPhone": "9908836717",
+                "shipToEmail": "jenny@imayl.com"
+              },
+              {
+                "locationName": "eshipJet Software Inc.",
+                "requestIdLabelId": "DN000001384",
+                "CreatedDate": "12/10/2024",
+                "ShipDate": "12/10/2024",
+                "shipMethod": "DHL",
+                "ServiceName": "Economy Select - ESI",
+                "TrackingNumber": null,
+                "status": "Open",
+                "ShipToContact": "Tomas Pineda",
+                "ShipToCompany": "Ingram Micro, Inc",
+                "shipToCity": "Carrollton",
+                "shipToStateProvince": "TX",
+                "shipToZipPostalCode": "75007",
+                "shipToCountry": "US",
+                "shipToPhone": "(972) 512-2700",
+                "shipToEmail": "info@google.com"
+              },
+              {
+                "locationName": "eshipJet Software Inc.",
+                "requestIdLabelId": "DN000001383",
+                "CreatedDate": "12/10/2024",
+                "ShipDate": "12/10/2024",
+                "shipMethod": "Delhivery",
+                "ServiceName": "Express Parcel",
+                "TrackingNumber": null,
+                "status": "Open",
+                "ShipToContact": "Shruti Joshi",
+                "ShipToCompany": "eshipJet Software private limited.",
+                "shipToCity": "New Delhi",
+                "shipToStateProvince": "DL",
+                "shipToZipPostalCode": "110044",
+                "shipToCountry": "IN",
+                "shipToPhone": "+91 915 492 735",
+                "shipToEmail": "info@eshipjet.ai"
+              },
+              {
+                "locationName": "eshipJet Software Inc.",
+                "requestIdLabelId": "DN000001385",
+                "CreatedDate": "12/10/2024",
+                "ShipDate": "12/10/2024",
+                "shipMethod": "FedEx",
+                "ServiceName": "FedEx 2Day",
+                "TrackingNumber": null,
+                "status": "Open",
+                "ShipToContact": "Jenny",
+                "ShipToCompany": "eshipjet",
+                "shipToCity": "Fremont",
+                "shipToStateProvince": "CA",
+                "shipToZipPostalCode": "94538",
+                "shipToCountry": "US",
+                "shipToPhone": "9908836717",
+                "shipToEmail": "jenny@imayl.com"
+              },
+              {
+                "locationName": "eshipJet Software Inc.",
+                "requestIdLabelId": "DN000001384",
+                "CreatedDate": "12/10/2024",
+                "ShipDate": "12/10/2024",
+                "shipMethod": "DHL",
+                "ServiceName": "Economy Select - ESI",
+                "TrackingNumber": null,
+                "status": "Open",
+                "ShipToContact": "Tomas Pineda",
+                "ShipToCompany": "Ingram Micro, Inc",
+                "shipToCity": "Carrollton",
+                "shipToStateProvince": "TX",
+                "shipToZipPostalCode": "75007",
+                "shipToCountry": "US",
+                "shipToPhone": "(972) 512-2700",
+                "shipToEmail": "info@google.com"
               }
         ],
         "CreateShipReqColumns":[

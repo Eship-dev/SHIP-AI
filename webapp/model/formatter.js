@@ -9,6 +9,16 @@ sap.ui.define([
 
             var oDateFormat = DateFormat.getInstance({ pattern: "dd MMM yyyy" });
             return oDateFormat.format(new Date(sDate));
+        },
+
+        formatStatusClass: function (status) {
+            if (status === "Open") {
+                return "textSuccess";
+            } else if (status === "Shipped") {
+                return "textWarning";
+            } else {
+                return "textError";
+            }
         }
 	};
 });

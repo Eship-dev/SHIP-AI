@@ -13,7 +13,7 @@
 			</VBox>
 		</customHeader>
 		<content>
-        <Table	id="myShipReqColumnSelectId" mode="MultiSelect"  items="{path : 'ShipReqTableDataModel>/ShipReqColumns'}" >
+        <!-- <Table	id="myShipReqColumnSelectId" mode="MultiSelect"  items="{path : 'ShipReqTableDataModel>/ShipReqColumns'}" >
 		<ColumnListItem id="_IDGenShipReqColumnListItem1" vAlign="Middle">
 			<cells>				
 				<Text text="{ShipReqTableDataModel>label}" />				
@@ -26,7 +26,7 @@
 				</header>
 			</Column>			
 		</columns>
-        </Table>
+        </Table> -->
         </content>
         <footer>
             <Toolbar >
