@@ -26,14 +26,14 @@
 		<tnt:sideContent >
 			<tnt:SideNavigation	 	visible="{eshipjetModel>/SideNavigation}"	expanded="true"		selectedKey="{eshipjetModel>/selectedKey}"	itemSelect=".onItemSelect">
 				<tnt:NavigationList>
-					<tnt:NavigationListItem text="SAP ShipperCopilot" icon="sap-icon://customfont/ShipperCopilate" key="ShipperCopilot">
+					<tnt:NavigationListItem text="SAP ShipperCopilot" icon="sap-icon://customfont/ShipperCopilate" key="ShipperCopilot" class="copilot-cls links menu-items-css">
 					
 					</tnt:NavigationListItem>
 					<tnt:NavigationListItem text="Orders" icon="sap-icon://customfont/order_icon" key="Orders">
 					</tnt:NavigationListItem>
 					<tnt:NavigationListItem text="Batch Ship" icon="sap-icon://customfont/batchship_icon" key="BatchShip">
 					</tnt:NavigationListItem>
-					<tnt:NavigationListItem text="Ship Request/Label" icon="sap-icon://customfont/shiprequest_icon" key="ShipRequestLabel">
+					<tnt:NavigationListItem text="Ship Request/Label" icon="sap-icon://customfont/shiprequest_icon" key="ShipRequestLabel" class="copilot-cls" >
 					</tnt:NavigationListItem>
 					<tnt:NavigationListItem text="Ship Now" icon="sap-icon://customfont/shipnow_icon" key="ShipNow">
 					</tnt:NavigationListItem>
@@ -76,19 +76,19 @@
 							<l:HorizontalLayout id="TileContainerExpanded"
 				                    allowWrapping="true"
 				                    class="sapUiTinyMargin ship-tile-container">
-									<GenericTile press="onTilePress" class="ship-tile"
+									<GenericTile press="onTilePress" class="ship-tile shipping-card"
 										headerImage="{value: 'com/eshipjet/zeshipjet/css/images/shiprequest.png',formatter: 'sap.ui.require.toUrl'}">
 										<TileContent class="ship-tile-content">
 											<Button class="ship-tile-button" text="Ship Request/Label"/>
 										</TileContent>
 									</GenericTile>
-									<GenericTile press="onTilePress" class="ship-tile"
-										headerImage="{value: 'com/eshipjet/zeshipjet/css/images/shipnow.png',formatter: 'sap.ui.require.toUrl'}">
+									<GenericTile press="onTilePress" class="ship-tile active-shipping-card shipping-card bg_col"
+										headerImage="{value: 'com/eshipjet/zeshipjet/css/images/ShipNow1.png',formatter: 'sap.ui.require.toUrl'}">
 										<TileContent class="ship-tile-content">
 											<Button class="ship-tile-button" text="Ship Now"/>
 										</TileContent>
 									</GenericTile>
-									<GenericTile press="onTilePress" class="ship-tile"
+									<GenericTile press="onTilePress" class="ship-tile shipping-card"
 										headerImage="{value: 'com/eshipjet/zeshipjet/css/images/track.png',formatter: 'sap.ui.require.toUrl'}">
 										<TileContent class="ship-tile-content">
 											<Button class="ship-tile-button" text="Track Now"/>
