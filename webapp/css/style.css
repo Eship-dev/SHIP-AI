@@ -307,14 +307,14 @@ body.dark-theme .ship-copilot-page {
 }
 
 .ship-tile {
-  display: flex;
+  display: flex !important;
   width: 230px !important;
   height: 180px !important;
   row-gap: 0px !important;
-  margin: -5px !important;
+  margin: 3px !important;
   border-radius: 0% !important;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: column !important;
+  justify-content: center !important;
   &:hover {
     /* background: #fff !important; */
     .ship-tile-button {

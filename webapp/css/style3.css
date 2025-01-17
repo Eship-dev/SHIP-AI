@@ -109,8 +109,8 @@
   }
   .active-shipping-card {
     background-color: #030E4C;
-    transform: scale(1.09);
-    transition: 1s;
+    transform: scale(1.05);
+    transition: 0.5s;
     padding-bottom: 0px;
     cursor: pointer;
     &:hover {
