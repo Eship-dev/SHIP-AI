@@ -109,10 +109,17 @@
   }
   .active-shipping-card {
     background-color: #030E4C;
-    transform: scale(1.05);
-    transition: 0.5s;
+    transform: scale(1.09);
+    transition: 1s;
     padding-bottom: 0px;
     cursor: pointer;
+    &:hover {
+      background: #030E4C !important;
+      .ship-tile-button {
+        transform: scale(1.05);
+        transition: 0.5s;
+      }
+    }
   }
   /* // .shipping-card {
   //   &:hover {
@@ -132,10 +139,10 @@
   .active-shipping-card .dev_img_sec img {
     filter: invert(1);
   }
-  .active-shipping-card .btn_common_Css {
+  /* .active-shipping-card .btn_common_Css {
     background-color: #FFFFFF !important;
     cursor: pointer;
-  }
+  } */
   .btn_Edit {
     border: none;
     padding: 10px 10px;

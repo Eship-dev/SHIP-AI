@@ -310,11 +310,13 @@ body.dark-theme .ship-copilot-page {
   display: flex;
   width: 230px !important;
   height: 180px !important;
-  row-gap: 10px;
+  row-gap: 0px !important;
+  margin: -5px !important;
+  border-radius: 0% !important;
   flex-direction: column;
   justify-content: center;
   &:hover {
-    background: #fff !important;
+    /* background: #fff !important; */
     .ship-tile-button {
       transform: scale(1.05);
       transition: 0.5s;
@@ -875,3 +877,21 @@ span.sapMBtnInner.sapMBtnReject {
 
 
 
+.shipping-card[_ngcontent-ng-c929619375] {
+  background-color: #ffffff;
+  width: 230px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0px;
+}
+
+.active-shipping-card[_ngcontent-ng-c929619375] {
+  background-color: #030e4c;
+  transform: scale(1.05);
+  transition: 0.5s;
+  padding-bottom: 0px;
+  cursor: pointer;
+}

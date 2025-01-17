@@ -81,7 +81,7 @@
 											<Button class="ship-tile-button" text="Ship Request/Label"/>
 										</TileContent>
 									</GenericTile>
-									<GenericTile press="onTilePress" class="ship-tile active-shipping-card shipping-card bg_col"
+									<GenericTile press="onTilePress" class="ship-tile active-shipping-card"
 										headerImage="{value: 'com/eshipjet/zeshipjet/css/images/ShipNow1.png',formatter: 'sap.ui.require.toUrl'}">
 										<TileContent class="ship-tile-content">
 											<Button class="ship-tile-button" text="Ship Now"/>
