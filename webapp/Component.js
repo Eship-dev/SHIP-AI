@@ -1,7 +1,8 @@
 sap.ui.define([
     "sap/ui/core/UIComponent",
-    "com/eshipjet/zeshipjet/model/models"
-], (UIComponent, models) => {
+    "com/eshipjet/zeshipjet/model/models",
+    "sap/ui/core/IconPool"
+], (UIComponent, models, IconPool) => {
     "use strict";
 
     return UIComponent.extend("com.eshipjet.zeshipjet.Component", {
@@ -19,6 +20,8 @@ sap.ui.define([
             // set the device model
             this.setModel(models.createDeviceModel(), "device");
 
+            // first parameter is font name, second parameter is collection name, third parameter is font-family and the last parameter is the code point in Unicode
+            
             sap.ui.core.IconPool.addIcon('dashboard_icon', 'customfont', 'icomoon', 'e900');
             sap.ui.core.IconPool.addIcon('menuIcon', 'customfont', 'icomoon', 'e907');
             sap.ui.core.IconPool.addIcon('order_icon', 'customfont', 'icomoon', 'e908');
