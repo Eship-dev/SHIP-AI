@@ -424,6 +424,40 @@
         }
     ],
 
+    "shipRequests": [
+        { "key": "d365fo", "text": "Microsoft Dynamics 365 Finance & Operations" },
+        { "key": "netsuite", "text": "NetSuite ERP" },
+        { "key": "oracle", "text": "Oracle Fusion Cloud ERP" },
+        { "key": "sage", "text": "Sage X3" },
+        { "key": "salesforce", "text": "Salesforce" },
+        { "key": "sap_ecc", "text": "SAP ECC 6.0" },
+        { "key": "sap_s4h_cloud_private", "text": "SAP S/4HANA Cloud (Private Edition)" },
+        { "key": "sap_s4h_cloud_public", "text": "SAP S/4HANA Cloud (Public Edition)" }
+    ],
+
+    "orderTypes": [
+        { "key": "back_order", "text": "Back Order" },
+        { "key": "consignment_order", "text": "Consignment Order" },
+        { "key": "delivery_number", "text": "Delivery Number" },
+        { "key": "employee_order", "text": "Employee Order" },
+        { "key": "freight_quote", "text": "Freight Quote Order" },
+        { "key": "handling_unit", "text": "Handling Unit" },
+        { "key": "production_order", "text": "Production Order" },
+        { "key": "purchase_order", "text": "Purchase Order" },
+        { "key": "return_order", "text": "Return Order" },
+        { "key": "sap_delivery_no", "text": "SAP Delivery No" },
+        { "key": "sap_outbound", "text": "SAP Outbound Delivery" },
+        { "key": "service_order", "text": "Service Order" },
+        { "key": "transfer_order", "text": "Transfer Order" }
+    ],
+
+    "categories": [
+        { "key": "p1", "text": "P1 - Urgent (Same/Next Day)" },
+        { "key": "p2", "text": "P2 - 2 Day Service" },
+        { "key": "p3", "text": "P3 - 3 Day Service" },
+        { "key": "p4", "text": "P4 - Ground (4-5 Days)" }
+    ],
+
 
 	"ShipNowProductsTableColumns": [
 			{

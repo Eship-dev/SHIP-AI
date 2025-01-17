@@ -12,20 +12,35 @@
                 class="sapUiTinyMarginTop"
                 height="10%"
                 width="100%" >
-                <ComboBox width="12%" />
+               <ComboBox
+            width="12%"
+            items="{/shipRequests}">
+            <core:Item key="{key}" text="{text}" />
+        </ComboBox>
                 <Label
-                    width="5%"
-                    text="Order Type"
-                    wrapping="true"
-                    labelFor="SAPDelLabel" />
-
-                <ComboBox width="12%" />
+            width="5%"
+            text="Order Type"
+            wrapping="true"
+            labelFor="OrderTypeComboBox" />
+        <ComboBox
+            id="OrderTypeComboBox"
+            width="12%"
+            items="{/orderTypes}">
+            <core:Item key="{key}" text="{text}" />
+        </ComboBox>
                 <Label width="7%" text="Shipment Type" />
 
-                <ComboBox width="7%" />
-                <Label text="Category" />
-
-                <ComboBox width="7%" />
+                 <ComboBox width="7%">
+                    <core:Item key="business" text="Business" />
+                    <core:Item key="personal" text="Personal" />
+                    <core:Item key="interbranch" text="Inter Branch" />
+                </ComboBox>
+                 <Label text="Category" />
+                <ComboBox
+                    width="7%"
+                    items="{/categories}">
+                    <core:Item key="{key}" text="{text}" />
+                </ComboBox>
                 <Label width="7%" text="Shipment Date" />
                 <DatePicker width="7%" />
 

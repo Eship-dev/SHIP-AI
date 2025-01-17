@@ -1,30 +1,30 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
-	    <Toolbar width="auto" >
-			<Text text="Ship Requests / Labels" class="textBold sapUiTinyMarginBegin" ></Text>
+	    <Toolbar width="auto" height="15%" >
+			<Text text="Ship Requests / Labels" class="textBold sapUiTinyMarginBegin pageTitle" ></Text>
 				<ToolbarSpacer />
-					<Button text="Create Ship Request/Label" type="Success" activeIcon="false" icon="false" press="onCreateShipReqLabelPress" ></Button>
+					<Button text="Create Ship Request/Label" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd"  activeIcon="false" icon="false" press="onCreateShipReqLabelPress" ></Button>
 		</Toolbar>
-		<Toolbar height="15%" >
+		<Toolbar height="55%" >
 			<HBox width="100%">
-				<VBox class="sapUiTinyMargin" width="25%" >
-					<Text text="34" class="textBold"></Text>
+				<VBox class="sapUiTinyMargin" width="27%" >
+					<Text text="18" class="textBold  NumberSizeTitle1"></Text>
 					<Text text="Total" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Emphasized" press="handleTrackNowFilterBtnPress" id="idShipRequestTotalBtn" icon="false" width="100%"  ></Button>
+					<Button type="Emphasized" press="handleTrackNowFilterBtnPress" id="idShipRequestTotalBtn" class="thumbtitle" icon="false" width="100%"   ></Button>
 				</VBox>
-				<VBox class="sapUiTinyMargin" width="25%">
-					<Text text="24" class="textBold"></Text>
+				<VBox class="sapUiTinyMargin" width="27%">
+					<Text text="9" class="textBold  NumberSizeTitle1"></Text>
 					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Success" press="handleTrackNowFilterBtnPress" id="idShipRequestShippedBtn" icon="false" width="100%" ></Button>
 				</VBox>
-				<VBox class="sapUiTinyMargin" width="25%">
-					<Text text="3" class="textBold"></Text>
+				<VBox class="sapUiTinyMargin" width="27%">
+					<Text text="8" class="textBold  NumberSizeTitle1"></Text>
 					<Text text="Open" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Critical" press="handleTrackNowFilterBtnPress" id="idShipRequestOpenBtn" icon="false" width="100%" ></Button>
 				</VBox>
-				<VBox class="sapUiTinyMargin" width="25%">
-					<Text text="3" class="textBold"></Text>
+				<VBox class="sapUiTinyMargin" width="27%">
+					<Text text="1" class="textBold  NumberSizeTitle1"></Text>
 					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Negative" press="handleTrackNowFilterBtnPress" id="idShipRequestCancelledBtn" icon="false" width="100%" ></Button>
 				</VBox>
