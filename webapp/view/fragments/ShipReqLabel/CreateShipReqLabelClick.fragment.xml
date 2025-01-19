@@ -19,6 +19,7 @@
         </ComboBox>
                 <Label
             width="5%"
+            class="sapUiSmallMargin"
             text="Order Type"
             wrapping="true"
             labelFor="OrderTypeComboBox" />
@@ -28,26 +29,30 @@
             items="{/orderTypes}">
             <core:Item key="{key}" text="{text}" />
         </ComboBox>
-                <Label width="7%" text="Shipment Type" />
-
-                 <ComboBox width="7%">
-                    <core:Item key="business" text="Business" />
-                    <core:Item key="personal" text="Personal" />
-                    <core:Item key="interbranch" text="Inter Branch" />
+                <Label width="7%" text="Shipment Type" class="sapUiSmallMargin" />
+                <ComboBox 
+                    selectedKey="{eshipjetModel>/shipmentTypeSelectedKey}"
+                    selectionChange="onShipmentChange"
+                    id="shipmentTypeComboBox"
+                    width="7%"
+                    items="{
+                        path: '/ShipmentTypes'
+                    }">
+                    <core:Item key="{key}" text="{text}" />
                 </ComboBox>
-                 <Label text="Category" />
+                 <Label text="Category" width="7%" class="sapUiSmallMargin"/>
                 <ComboBox
                     width="7%"
                     items="{/categories}">
                     <core:Item key="{key}" text="{text}" />
                 </ComboBox>
-                <Label width="7%" text="Shipment Date" />
+                <Label width="6%" text="Shipment Date" class="sapUiSmallMargin" />
                 <DatePicker width="7%" />
 
-                <Label width="6%" text="Requester" />
+                <Label width="6%" text="Requester" class="sapUiSmallMargin" />
                 <ComboBox width="7%" />
 
-                <Label width="8%" text="Return Label" />
+                <Label width="8%" text="Return Label" class="sapUiSmallMargin"/>
                 <CheckBox width="1%" />
 
                 <Button width="1%" icon="sap-icon://edit-outside" />
@@ -195,18 +200,45 @@
                     <IconTabFilter text="Routing and Billing Details" key="Routing and Billing Details">
                         <f:SimpleForm editable="true" class="customSimpleFormShadow" width="auto" layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="2">
                             <f:content>
-                                <Label text="Ship Method" />
-                                <ComboBox ></ComboBox>
+                                 <Label text="Ship Method" />
+                                <ComboBox 
+                                    selectedKey="{eshipjetModel>/shipMethodKey}"
+                                    id="comboBox" 
+                                    items="{
+                                        path: '/ShipMethods'
+                                    }">
+                                    <core:Item key="{key}" text="{text}" />
+                                </ComboBox>
                                 <Label text="Account No" />
                                 <Input />
                                 <Label text="Cost Center" />
-                                <ComboBox ></ComboBox>
+                                <ComboBox 
+                                    id="costCenterComboBox" 
+                                    items="{
+                                        path: '/CostCenters'
+                                    }">
+                                    <core:Item key="{key}" text="{text}" />
+                                </ComboBox>
                                 <Label text="Special Instructions" class="sapUiTinyMarginBegin" />
                                 <TextArea value="" />
-                                <Label text="Service Name" />
-                                <ComboBox ></ComboBox>
-                                <Label text="Payment Type" />
-                                <ComboBox ></ComboBox>
+                                 <Label text="Service Name" />
+                                    <ComboBox 
+                                        selectedKey="{eshipjetModel>/ServiceNameSelectedKeys}"
+                                        id="serviceNameComboBox"
+                                        items="{
+                                            path: '/ServiceNames'
+                                        }">
+                                        <core:Item key="{key}" text="{text}" />
+                                    </ComboBox>
+                                 <Label text="Payment Type"  />
+                                <ComboBox 
+                                    id="paymentTypeComboBox" 
+                                    placeholder="Sender"
+                                    items="{
+                                        path: '/PaymentTypes'
+                                    }">
+                                    <core:Item key="{key}" text="{text}" />
+                                </ComboBox>
                                 <Label text="PO No" />
                                 <Input />
                             </f:content>

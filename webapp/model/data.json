@@ -525,6 +525,64 @@
         { "key": "p4", "text": "P4 - Ground (4-5 Days)" }
     ],
 
+    "ShipMethods": [
+        { "key": "ABF", "text": "ABF" },
+        { "key": "BlueDart", "text": "Blue Dart" },
+        { "key": "Delhivery", "text": "Delhivery" },
+        { "key": "DeliverIt", "text": "Deliver-it" },
+        { "key": "DHL", "text": "DHL" },
+        { "key": "FedEx", "text": "FedEx" },
+        { "key": "FedExFreight", "text": "FedEx Freight" },
+        { "key": "FineArtShippers", "text": "Fine Art Shippers" },
+        { "key": "Gati", "text": "Gati" },
+        { "key": "GenericCarrier", "text": "Generic Carrier" },
+        { "key": "JPMC", "text": "JPMorgan Chase Internal" },
+        { "key": "MalcaAmit", "text": "Malca-Amit" },
+        { "key": "Other", "text": "Other" },
+        { "key": "RL", "text": "RL" },
+        { "key": "UPS", "text": "UPS" },
+        { "key": "USPS", "text": "USPS" }
+    ],
+    "shipMethodKey": "",
+    
+    "PaymentTypes": [
+        { "key": "Collect", "text": "Collect" },
+        { "key": "Recipient", "text": "Recipient" },
+        { "key": "Sender", "text": "Sender" },
+        { "key": "ThirdParty", "text": "Third Party" }
+    ],
+    "CostCenters": [
+        { "key": "AdminCC", "text": "Administrative Cost Center" },
+        { "key": "FinanceCC", "text": "Finance & Accounting Cost Center" },
+        { "key": "HRCC", "text": "Human Resources Cost Center" },
+        { "key": "ITCC", "text": "IT Cost Center" },
+        { "key": "MarketingCC", "text": "Marketing Cost Center" },
+        { "key": "ProductionCC", "text": "Production Cost Center" }
+    ],
+    "ShipmentTypes": [
+        {
+            "key": "business",
+            "text": "Business"
+        },
+        {
+            "key": "personal",
+            "text": "Personal"
+        },
+        {
+            "key": "interbranch",
+            "text": "Inter Branch"
+        }
+    ],
+    "shipmentTypeSelectedKey":"",
+
+    "ServiceNames": [
+        {
+            "key": "intraExpress",
+            "text": "Intra Express Service"
+        }
+    ],
+    "ServiceNameSelectedKeys":"",
+
 
 	"ShipNowProductsTableColumns": [
 			{

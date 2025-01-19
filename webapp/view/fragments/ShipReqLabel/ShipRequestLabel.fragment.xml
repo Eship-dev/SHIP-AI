@@ -12,9 +12,9 @@
 	    <Toolbar width="auto" height="15%" >
 			<Text text="Ship Requests / Labels" class="textBold sapUiTinyMarginBegin pageTitle" ></Text>
 				<ToolbarSpacer />
-					<Button text="Create Ship Request/Label" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd"  activeIcon="false" icon="false" press="onCreateShipReqLabelPress" ></Button>
+					<Button text="Create Ship Request/Label" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin"  activeIcon="false" icon="false" press="onCreateShipReqLabelPress" ></Button>
 		</Toolbar>
-		<Toolbar height="55%" >
+		<Toolbar height="55%" class="sapUiTinyMarginBottom">
 			<HBox width="100%">
 				<VBox class="sapUiTinyMargin" width="27%" >
 					<Text text="18" class="textBold  NumberSizeTitle1"></Text>
@@ -70,7 +70,7 @@
 				</ui:footer>
 		</ui:Table> -->
 
-
+ 
 
 	<Table id="idShipReqsTable"
 		inset="false"

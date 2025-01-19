@@ -7948,6 +7948,23 @@ sap.ui.define([
         },
         onShipNowPickAnAddressCancelPress: function () {
             this.byId("idShipNowPickAnAddressPopover").close();
+        },
+
+        onShipmentChange : function(oEvent){
+
+            var eshipjetModel =  this.getOwnerComponent().getModel("eshipjetModel");
+            var shipmentTypeSelectedKey =  eshipjetModel.getData().shipmentTypeSelectedKey;
+             if (shipmentTypeSelectedKey === "business"){
+
+             }else if(shipmentTypeSelectedKey === "personal"){
+
+             }else if(shipmentTypeSelectedKey === "interbranch"){
+                eshipjetModel.setProperty("/shipMethodKey", "JPMC" );
+                eshipjetModel.setProperty("/ServiceNameSelectedKeys", "intraExpress" );
+                
+
+             }
+
         }
         
     });
