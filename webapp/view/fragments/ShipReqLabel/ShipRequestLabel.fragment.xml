@@ -73,7 +73,6 @@
  
 
 	<Table id="idShipReqsTable"
-		class="sapUiTinyMarginTop"
 		inset="false"
 		sticky="ColumnHeaders,HeaderToolbar"
 		growing="true"
