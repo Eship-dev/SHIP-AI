@@ -19,22 +19,22 @@
 				<VBox class="sapUiTinyMargin" width="27%" >
 					<Text text="18" class="textBold  NumberSizeTitle1"></Text>
 					<Text text="Total" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Emphasized" press="handleTrackNowFilterBtnPress" id="idShipRequestTotalBtn" class="thumbtitle" icon="false" width="100%"   ></Button>
+					<Button type="Emphasized" press="handleTrackNowFilterBtnPress" id="idShipRequestTotalBtn" class="thumbtitle openButton" icon="false" width="100%"   ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="27%">
 					<Text text="9" class="textBold  NumberSizeTitle1"></Text>
 					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Success" press="handleTrackNowFilterBtnPress" id="idShipRequestShippedBtn" icon="false" width="100%" ></Button>
+					<Button type="Success" press="handleTrackNowFilterBtnPress" id="idShipRequestShippedBtn" class="thumbtitle openButton" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="27%">
 					<Text text="8" class="textBold  NumberSizeTitle1"></Text>
 					<Text text="Open" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Critical" press="handleTrackNowFilterBtnPress" id="idShipRequestOpenBtn" icon="false" width="100%" ></Button>
+					<Button type="Critical" press="handleTrackNowFilterBtnPress" id="idShipRequestOpenBtn" class="thumbtitle openButton" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="27%">
 					<Text text="1" class="textBold  NumberSizeTitle1"></Text>
 					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Negative" press="handleTrackNowFilterBtnPress" id="idShipRequestCancelledBtn" icon="false" width="100%" ></Button>
+					<Button type="Negative" press="handleTrackNowFilterBtnPress" id="idShipRequestCancelledBtn" class="thumbtitle openButton" icon="false" width="100%" ></Button>
 				</VBox>
 			</HBox>
 		</Toolbar>
@@ -73,6 +73,7 @@
  
 
 	<Table id="idShipReqsTable"
+		class="sapUiTinyMarginTop"
 		inset="false"
 		sticky="ColumnHeaders,HeaderToolbar"
 		growing="true"
@@ -220,7 +221,14 @@
 					<!-- <Text text="{eshipjetModel>status}" class="{path: 'eshipjetModel>status', formatter: '.formatStatusClass'}" /> -->
 
 					<ObjectNumber number="{eshipjetModel>status}"
-							state= "{${eshipjetModel>status} === 'Open' ? 'Success' : 'Error'}" />
+							state= "{= ${eshipjetModel>status} === 'Open' ? 'Error' : 'Success' }" />
+
+					<!-- <ObjectNumber
+						number="{eshipjetModel>status}"
+						state="{
+							path: 'eshipjetModel>status',
+							formatter: '.formatter.weightState'
+						}" /> -->
 
 					<!-- <ObjectIdentifier
 						text="{eshipjetModel>status}" /> -->
@@ -242,7 +250,7 @@
 			</ColumnListItem>
 		</items>
 	</Table>
-		<Toolbar >
+		<Toolbar class="sapUiLargeMarginBottom" >
 			<ToolbarSpacer/>
 				<Button  text="First" enabled="false" />
 				<Button  text="Previous" enabled="false"/>

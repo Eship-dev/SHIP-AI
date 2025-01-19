@@ -11,14 +11,19 @@ sap.ui.define([
             return oDateFormat.format(new Date(sDate));
         },
 
-        formatStatusClass: function (status) {
-            if (status === "Open") {
-                return "textSuccess";
-            } else if (status === "Shipped") {
-                return "textWarning";
-            } else {
-                return "textError";
-            }
-        }
+        weightState(fValue) {
+			try {
+				fValue = parseFloat(fValue);
+				if (fValue === "") {
+					return None;
+				} else if (fValue === "Open") {
+					return Success;
+				} else if (fValue === "Shipped") {
+					return Error;
+				}
+			} catch (err) {
+				return None;
+			}
+		}
 	};
 });

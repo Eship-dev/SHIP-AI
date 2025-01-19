@@ -495,4 +495,13 @@ label {
 
 
 
+.openButton:hover,
+.openButton:active {
+    border-bottom: 10px solid var(--openProgress-border-color) !important;
+    transform: translateY(-6px); /* 'translate' in CSS is part of 'transform' */
+    transition: 0.3s;
+    height: 32px;
+}
+
+
 
