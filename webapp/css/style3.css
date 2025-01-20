@@ -235,13 +235,16 @@
 .pageTitle {
   font-size: 22px;
   line-height: 32.78px;
-  font-weight: bold;
   text-align: left;
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
   width: 100%;
   color: #030927;
+}
+
+.ShipReqLinePadding {
+   padding-bottom: 2px;
 }
 
 .pageStatus {
@@ -269,15 +272,6 @@
   font-weight: 700;
   color: #000;
   padding: 0.25rem;
-}
-
-.thumbtitle {
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 21.86px;
-  text-align: left;
-  color: #030927;
-  margin-bottom: 1rem;
 }
 
 .totalActive-cls,
@@ -501,6 +495,24 @@ label {
     transform: translateY(-6px); /* 'translate' in CSS is part of 'transform' */
     transition: 0.3s;
     height: 32px;
+}
+
+/* ShipReqbtn  */
+.thumbtitle {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 21.86px;
+  text-align: left;
+  color: #030927;
+  margin-bottom: 1rem;
+}
+
+.totalProgressbar {
+  height: 25px;
+  width: 100%;
+  padding: 0px;
+  border-radius: 4px 4px 4px 4px;
+ 
 }
 
 

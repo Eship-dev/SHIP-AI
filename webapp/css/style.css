@@ -912,13 +912,13 @@ span.sapMBtnInner.sapMBtnReject {
   height: 40px !important;
   padding: 8px;
   text-align: center;
-  
+  width: 200PX;
 }
 
 .NumberSizeTitle1 {
   font-size: 22px;
   line-height: 32.78px;
-  font-weight: bold;
+  
   text-align: left;
   display: flex;
   justify-content: space-between;

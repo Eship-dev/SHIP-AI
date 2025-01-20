@@ -9,17 +9,18 @@
     xmlns:dnd="sap.ui.core.dnd"
 	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" >
 
-	    <Toolbar width="auto" height="15%" >
-			<Text text="Ship Requests / Labels" class="textBold sapUiTinyMarginBegin pageTitle" ></Text>
+	    
+		<Toolbar width="auto" height="15%" class="toolbarbottomborder">
+			<Text text="Ship Requests / Labels" class=" sapUiTinyMarginBegin pageTitle" ></Text>
 				<ToolbarSpacer />
-					<Button text="Create Ship Request/Label" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin"  activeIcon="false" icon="false" press="onCreateShipReqLabelPress" ></Button>
+					<Button text="Create Ship Request/Label" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin" press="onCreateShipReqLabelPress" ></Button>
 		</Toolbar>
 		<Toolbar height="55%" class="sapUiTinyMarginBottom">
 			<HBox width="100%">
 				<VBox class="sapUiTinyMargin" width="27%" >
 					<Text text="18" class="textBold  NumberSizeTitle1"></Text>
 					<Text text="Total" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Emphasized" press="handleTrackNowFilterBtnPress" id="idShipRequestTotalBtn" class="thumbtitle openButton" icon="false" width="100%"   ></Button>
+					<Button type="Emphasized" press="handleTrackNowFilterBtnPress" id="idShipRequestTotalBtn" class="thumbtitle openButton " icon="false" width="100%"   ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="27%">
 					<Text text="9" class="textBold  NumberSizeTitle1"></Text>
@@ -141,66 +142,66 @@
                     <Text text="Request ID/Label ID"/>
                 </header>
 			</Column>
-                <Column app:p13nKey="CreatedDate" hAlign="End" visible="true" headerMenu="menu">
+                <Column app:p13nKey="CreatedDate" hAlign="Left" visible="true" headerMenu="menu">
 					<header>
 						<Text text="Created Date"/>
 					</header>
 				</Column>
-				<Column app:p13nKey="ShipDate" hAlign="End" visible="true" headerMenu="menu">
+				<Column app:p13nKey="ShipDate" hAlign="Left" visible="true" headerMenu="menu">
                     <Text text="Ship Date"/>
                 </Column>
-				<Column app:p13nKey="ShipType" hAlign="End" visible="false" headerMenu="menu">
+				<Column app:p13nKey="ShipType" hAlign="Left" visible="false" headerMenu="menu">
                     <Text text="Ship Type"/>
                 </Column>
-				<Column app:p13nKey="shipMethod" hAlign="End" visible="true" headerMenu="menu">
+				<Column app:p13nKey="shipMethod" hAlign="Left" visible="true" headerMenu="menu">
                     <Text text="Ship Method"/>
                 </Column>
-				<Column app:p13nKey="ServiceName" hAlign="End" visible="true" headerMenu="menu">
+				<Column app:p13nKey="ServiceName" hAlign="Left" visible="true" headerMenu="menu">
                     <Text text="Service Name"/>
                 </Column>
-				<Column app:p13nKey="TrackingNumber" hAlign="End" visible="true" headerMenu="menu">
+				<Column app:p13nKey="TrackingNumber" hAlign="Left" visible="true" headerMenu="menu">
                     <Text text="Tracking Number"/>
                 </Column>
-				<Column app:p13nKey="status" hAlign="End" visible="true" headerMenu="menu">
+				<Column app:p13nKey="status" hAlign="Left" visible="true" headerMenu="menu">
                     <Text text="Status"/>
                 </Column>
-				<Column app:p13nKey="ShipToContact" hAlign="End" visible="true" headerMenu="menu">
+				<Column app:p13nKey="ShipToContact" hAlign="Left" visible="true" headerMenu="menu">
                     <Text text="Ship To Contact"/>
                 </Column>
-				<Column app:p13nKey="ShipToCompany" hAlign="End" visible="true" headerMenu="menu">
+				<Column app:p13nKey="ShipToCompany" hAlign="Left" visible="true" headerMenu="menu">
                     <Text text="Ship To Company"/>
                 </Column>
-				<Column app:p13nKey="ShipToAddressLine1" hAlign="End" visible="false" headerMenu="menu">
+				<Column app:p13nKey="ShipToAddressLine1" hAlign="Left" visible="false" headerMenu="menu">
                     <Text text="Ship To Address Line 1"/>
                 </Column>
-				<Column app:p13nKey="shipToStateProvince" hAlign="End" visible="false" headerMenu="menu">
+				<Column app:p13nKey="shipToStateProvince" hAlign="Left" visible="false" headerMenu="menu">
                     <Text text="Ship To State/Province"/>
                 </Column>
-				<Column app:p13nKey="shipToCity" hAlign="End" visible="false" headerMenu="menu">
+				<Column app:p13nKey="shipToCity" hAlign="Left" visible="false" headerMenu="menu">
                     <Text text="Ship To City"/>
                 </Column>
-				<Column app:p13nKey="shipToZipPostalCode" hAlign="End" visible="false" headerMenu="menu">
+				<Column app:p13nKey="shipToZipPostalCode" hAlign="Left" visible="false" headerMenu="menu">
                     <Text text="Ship To Zip/Postal Code"/>
                 </Column>
-				<Column app:p13nKey="shipToCountry" hAlign="End" visible="false" headerMenu="menu">
+				<Column app:p13nKey="shipToCountry" hAlign="Left" visible="false" headerMenu="menu">
                     <Text text="Ship To Country"/>
                 </Column>
-				<Column app:p13nKey="shipToPhone" hAlign="End" visible="false" headerMenu="menu">
+				<Column app:p13nKey="shipToPhone" hAlign="Left" visible="false" headerMenu="menu">
                     <Text text="Ship To Phone No"/>
                 </Column>
-				<Column app:p13nKey="shipToEmail" hAlign="End" visible="false" headerMenu="menu">
+				<Column app:p13nKey="shipToEmail" hAlign="Left" visible="false" headerMenu="menu">
                     <Text text="Ship To Email"/>
                 </Column>
-				<Column app:p13nKey="RequesterName" hAlign="End" visible="false" headerMenu="menu">
+				<Column app:p13nKey="RequesterName" hAlign="Left" visible="false" headerMenu="menu">
                     <Text text="Requester Name"/>
                 </Column>
-				<Column app:p13nKey="ConnectedTo" hAlign="End" visible="false" headerMenu="menu">
+				<Column app:p13nKey="ConnectedTo" hAlign="Left" visible="false" headerMenu="menu">
                     <Text text="Connected To"/>
                 </Column>
-				<Column app:p13nKey="OrderType" hAlign="End" visible="false" headerMenu="menu">
+				<Column app:p13nKey="OrderType" hAlign="Left" visible="false" headerMenu="menu">
                     <Text text="Order Type"/>
                 </Column>
-				<Column app:p13nKey="RFID" hAlign="End" visible="false" headerMenu="menu">
+				<Column app:p13nKey="RFID" hAlign="Left" visible="false" headerMenu="menu">
                     <Text text="RFID"/>
                 </Column>
 		</columns>
