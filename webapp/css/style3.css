@@ -489,13 +489,31 @@ label {
 
 
 
-.openButton:hover,
-.openButton:active {
-    border-bottom: 10px solid var(--openProgress-border-color) !important;
-    transform: translateY(-6px); /* 'translate' in CSS is part of 'transform' */
-    transition: 0.3s;
-    height: 32px;
+/* Base styles for buttons */
+.openButton {
+  position: relative; /* Ensure the shadow is positioned relative to the button */
+  transition: all 0.3s ease; /* Smooth transition for all effects */
 }
+
+/* Hover effect */
+.openButton:hover {
+  transform: translateY(-6px);
+  transition: all 0.3s ease;
+}
+
+/* Active (pressed) effect: Add shadow */
+.openButton.active {
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.7); /* Dark shadow on the active button */
+  transform: translateY(-6px); /* Keep the button in the lifted position */
+  transition: all 0.2s ease;
+}
+
+/* Normal button state (non-active) */
+.openButton {
+  box-shadow: none;
+  transform: translateY(0); /* Keep it normal */
+}
+
 
 /* ShipReqbtn  */
 .thumbtitle {
@@ -517,3 +535,892 @@ label {
 
 
 
+
+:host :ng-deep .p-datatable-sm {
+  position: relative;
+  height: 64vh !important;
+  overflow: auto !important;
+}
+/* // ::ng-deep .p-sortable-column:not(.p-highlight):hover {
+//   background: none !important;
+//   color: #fff !important;
+// } */
+
+::ng-deep .p-datatable-thead>tr>th {
+  padding: 7px 7px !important;
+  background-color: #030e4c !important;
+}
+
+::ng-deep .timeLineImg:hover {
+  background-color: #e9ecef !important;
+  line-height: 1 !important;
+}
+
+::ng-deep .p-datatable-tbody>tr>td {
+  padding: 6px 6px !important;
+  border-width: 1px 0px 1px 0px !important;
+}
+::ng-deep .p-focus {
+  outline: 0 none !important;
+  outline-offset: 0 !important;
+  /* // border-color: #030e4c !important; */
+}
+:host::ng-deep .action-body {
+  text-align: center !important;
+}
+:host::ng-deep .action-head {
+  text-align: center !important;
+}
+:host::ng-deep .p-button .p-button-label {
+  font-size: 14px !important;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  .search-icon {
+    position: absolute;
+    right: 0.5rem;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  input {
+    padding-right: 2rem;
+  }
+}
+
+:host ::ng-deep .p-button .p-button-label {
+  font-size: 12px !important;
+}
+::ng-deep .actionDropdown{
+  transition:none !important;
+}
+::ng-deep .actionDropdown:hover{
+  color: #1554a1 !important;
+  transition:none !important;
+  font-weight: bold !important;
+}
+:host ::ng-deep .p-button.p-button-text:enabled:hover{
+  border-right: 1px solid #3276cb !important;
+}
+:host ::ng-deep .p-splitbutton-menubutton.p-button:enabled:hover{
+  border:none !important;
+}
+
+
+:host ::ng-deep .p-ripple .footer-apply {
+  color: #ffffff !important;
+  display: block;
+}
+
+/* // Filter Popup Css Start */
+
+::ng-deep .footer-apply .p-button .p-button-label {
+  float: right;
+  background: #4ea732;
+  border-radius: 20px;
+  color: #ffffff !important;
+  width: 90px;
+  height: 35px !important;
+  padding: 6px;
+  outline-color: transparent;
+  box-shadow: none !important;
+  font-size: 14px !important;
+  font-family: AvenirNextCyrMedium !important;
+  font-weight: normal !important;
+}
+::ng-deep .footer-apply .p-button .p-button-label:active {
+  box-shadow: none !important;
+  outline: none !important;
+}
+::ng-deep .footer-apply .p-button .p-button-label:hover{
+  background-color: #258f1d !important;
+  color: #fff !important;
+  border-color: 1px solid #258f1d !important;
+}
+::ng-deep .p-icon{
+  width: 1.3rem !important;
+  height: 1.3rem !important;
+}
+/* // ::ng-deep .close-icon-container { 
+//   padding: 26px !important;
+// } */
+::ng-deep .p-sortable-column:not(.p-highlight):hover {
+  background: #f8f9fa !important;
+  color: #767676 !important;
+}
+:host ::ng-deep .custom-paginator > .p-button {
+  color: #030927 !important;
+}
+::ng-deep .footer-reset .p-button .p-button-label {
+  float: right;
+  background: #ffffff;
+  border-radius: 20px;
+  color: #8d8d8d !important;
+  width: 90px;
+  height: 35px !important;
+  line-height: 20px !important;
+  padding: 6px;
+  outline-color: transparent;
+  box-shadow: none !important;
+  font-size: 14px !important;
+  border: 2px solid #ccc;
+  font-family: AvenirNextCyrMedium !important;
+}
+::ng-deep .footer-reset .p-button .p-button-label:hover{
+  background-color: #258f1d !important;
+  color: #fff !important;
+  border: 2px solid #258f1d !important;
+}
+::ng-deep .p-overlaypanel .p-overlaypanel-close {
+  right: 5px !important;
+  top: 5px !important;
+  color: #79788A !important;
+  font-weight: 700 !important;
+}
+::ng-deep .dropDownCss > .p-dropdown{
+  height: 40px !important;
+  line-height: 28px !important;
+  border: 1px solid #8e9096 !important;
+}
+::ng-deep .calendarCss .p-inputtext{
+  height: 40px !important;
+  line-height: 28px !important;
+  color: #514f4f !important;
+  border: 1px solid #8e9096 !important;
+}
+::ng-deep .inputTextCss {
+  height: 40px !important;
+  line-height: 28px !important;
+}
+label{
+  font-size: 16px !important;
+  font-family: AvenirNextCyrMedium !important;
+  color: #8d8d8d !important;
+}
+::ng-deep .p-inputtext {
+  color: #514f4f !important;
+  font-size: 15px !important;
+  height: 40px !important;
+  border: 1px solid #8e9096 !important;
+  border-radius: 4px !important;
+  font-weight: 400 !important;
+  line-height: 25px !important;
+  text-align: left !important;
+  font-family: AvenirNextCyrMedium !important;
+}
+
+/* // Filter Popup Css End */
+
+::ng-deep .p-button {
+  padding: 0px;
+  outline: 0;
+  border: none;
+}
+
+::ng-deep .serch-div {
+  color: #030E4C !important;
+}
+
+.apply-div {
+  display: flex;
+  justify-content: flex-end;
+}
+
+::ng-deep .p-button-label:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
+
+::ng-deep .p-ink {
+  box-shadow: none !important;
+
+}
+
+::ng-deep .p-datatable>.p-datatable-wrapper {
+  margin-top: 6px;
+}
+
+::ng-deep .action-head {
+  background-color: green !important;
+}
+
+::ng-deep .ui-paginator-bottom {
+  position: fixed;
+  bottom: 0;
+}
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* Adjust as needed */
+  padding-top: 15px;
+  height:10%;
+  flex-direction: row;
+}
+
+.overlay-cancel,
+.overlay-apply {
+  flex: 0 0 auto; 
+}
+.column-config-cls {
+  display: none;
+  width: 300px;
+  border: 1px solid lightgrey;
+  position: fixed;
+  background-color: #fff;
+  padding: 1%;
+  height: 50%;
+  top: 20%;
+  right: 10%;
+}
+ .col-con-header{
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.col-con-content{
+  height:70%;
+  overflow-y: scroll;
+}
+.actions-column{
+  padding-right: 10px;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: flex-end; 
+  align-items: center;
+ }
+
+ .main-container {
+  margin-left: 15px;
+  border-radius: 4px 4px 4px 4px;
+  margin-right: 17px !important;
+  background: #ffffff !important;
+  height: 200px;
+}
+
+
+/* Ensure the table header is sticky */
+.sticky-action {
+  position: sticky;
+  right: 0;
+  background-color: white; /* Prevent overlapping text */
+  z-index: 100; /* Ensure it stays on top */
+  text-align: right;
+}
+
+/* Ensure the parent table allows scrolling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* For the table body cells (if needed) */
+td.sticky-action {
+  position: sticky;
+  right: 0;
+  background-color: white;
+  z-index: 1;
+  text-align: right;
+}
+
+/* Ensure the table container allows overflow scrolling */
+.table-container {
+  overflow-x: auto;
+  width: 100%;
+  display: block;
+}
+
+:host ::ng-deep .p-datatable-wrapper{
+  height: 58vh;
+}
+
+:host ::ng-deep .p-overlaypanel .p-overlaypanel-content {
+  padding-top: 0.75rem !important;
+}
+
+::ng-deep .gridCommonCss {
+  border-radius: 4px !important;
+  margin-top: 6px !important;
+  padding-top: 0px !important;
+  height: 69vh !important;
+  margin-left: 13px !important;
+  margin-right: 13px !important;
+}
+
+::ng-deep .card {
+  border-radius: 4px !important;
+}
+@media screen and (min-width: 1200px) and (max-height: 800px) {
+  /* // .transform {
+  //   transform: scale(0.8);
+  //   transform-origin: top left;
+  //   width: 125%;
+  //   height: 100vh;
+  // } */
+  :host ::ng-deep .p-datatable-wrapper{
+    height: 51vh;
+  }
+  ::ng-deep .gridCommonCss {
+    border-radius: 4px !important;
+    margin-top: 6px !important;
+    padding-top: 0px !important;
+    height: 64.5vh !important;
+  }
+}
+
+:host ::ng-deep  .table>:not(caption)>*>* {
+   padding: 0 !important; 
+}
+
+::ng-deep .p-sidebar-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  background-color: white;
+  padding: 2px !important;
+  border-bottom: 1px solid #eee !important;
+  box-shadow: 0px 5px rgba(0, 0, 0, 0.2)
+}
+/* ::ng-deep .p-component-overlay{
+  // width: 45%;
+} */
+
+.tracking-container {
+  width: 100%;
+  margin-top: 15px;
+  padding: 20px;
+  border-radius: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.shipmentDetailsDev{
+  background: #fff !important;
+  border-radius: 4px !important;
+  padding-left: 15px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding-top: 10px;
+  padding-bottom: 0px;
+}
+.load-track-table-data{
+    float: right;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.shipmentTravelHistroyDev{
+  background: #fff !important;
+  border-radius: 4px !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 350px;
+  overflow-y: auto;
+}
+
+
+
+.timeline-bar {
+  position: relative;
+  width: 40px;
+  text-align: center !important;
+}
+.timeline-icon {
+  font-size: 10px;
+  /* // padding-left: 2px; */
+  background-color: black;
+  border-radius: 10px;
+  color: black;
+}
+
+.timeline-check-circle {
+  font-size: 13px;
+  color: black;
+}
+.timeline-check-circle {
+  font-size: 13px;
+  color: black;
+  text-align: center !important;
+}
+.timeline-line {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background-color:black;
+  top: 0;
+  left: 48%;
+}
+
+.timeline-line-top {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background-color:black;
+  left: 48%;
+  top: 20px;
+}
+.timeline-line-bottom {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background-color:black;
+  left: 48%;
+  bottom: 16px;
+}
+.timeline-line-bottom-check-circle {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background-color:black;
+  left: 48%;
+  bottom: 27px;
+}
+
+.tracking-progress {
+  text-align: center; 
+}
+
+.tracking-progress img {
+  display: block; 
+  margin: 0 auto; 
+}
+
+.tracking-progress span {
+  display: block; 
+  margin: 5px 20px 10px 0px;
+  font-weight: bolder;
+  color: #008300;  
+  font-family: AvenirNextCyrMedium !important;
+}
+
+.track-table th, .track-table td {
+  padding: 8px; 
+  text-align: left;
+  word-wrap: break-word; 
+  overflow-wrap: break-word; 
+  white-space: normal; 
+  font-size: 12px !important;
+}
+
+td[rowspan] {
+  vertical-align: top;
+  padding-top: 10px;
+}
+
+.tracking-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: AvenirNextCyrMedium !important;
+}
+
+.tracking-table thead th {
+  background-color: black;
+  color: white;
+  /* // border: none; */
+}
+
+.tracking-table tbody td {
+  border: none;
+}
+
+
+.shipment-details {
+  display: grid;
+  grid-template-columns: 1fr 2fr; 
+  gap: 0;
+  font-family: AvenirNextCyrMedium !important;
+}
+.grid-row {
+  display: contents; 
+}
+
+.grid-label, .grid-value {
+  padding: 10px;
+  background-color: #ffffff;
+  font-size: 12px !important;
+}
+
+.grid-row:nth-child(odd) .grid-label,
+.grid-row:nth-child(odd) .grid-value {
+  background-color: #f9f9f9; 
+}
+
+.grid-row:nth-child(even) .grid-label,
+.grid-row:nth-child(even) .grid-value {
+  background-color: #ffffff; 
+}
+
+.close-icon {
+  padding: 4px;
+  border-radius: 22px;
+  display: inline-block;
+  height: 28px;
+  margin-top: -5px;
+}
+
+  ::ng-deep .p-sidebar-header {
+    background-color: white;
+    padding: 10px !important;
+    border-bottom: 1px solid #eee !important;
+  }
+  
+  :host ::ng-deep .p-sidebar-header { 
+    padding: 10px !important;
+  /* //  background-color: #F5F5F5 !important; */
+    font-family: AvenirNextCyrMedium !important;
+    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.2);
+    height: 68px !important;
+  }
+
+  ::ng-deep .return-info-card .p-card .p-card-body {
+    background: #fff !important;
+    border-radius: 4px !important;
+    height: 775px;
+    padding: 0.5rem !important;
+    padding-left: 15px !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+::ng-deep .carrier-info-card .p-card .p-card-body {
+  background: #fff !important;
+  border-radius: 4px !important;
+  height: 775px;
+  padding: 0.5rem !important;
+  padding-left: 15px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+::ng-deep .p-card.p-component {
+  background: #fff;
+  padding: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  box-shadow: none !important;
+}
+/* // .custom-close-btn:hover {
+// background-color: #2F4169;
+// }
+
+// .custom-close-btn:hover {
+//   color: #ffffff !important;
+//   height: 62px;
+//   width: 56px;
+//   padding-right: 0px !important;
+// }
+
+// .custom-close-btn {
+//   color: #ffffff !important;
+//   height: 62px;
+//   width: 56px;
+//   padding-right: 0px !important;
+// } */
+
+.btncancel {
+  border: 1px solid #6D6E73 !important;
+  background-color: #fff !important;
+  color: #6D6E73 !important;
+  padding: 5px 15px !important;
+  border-radius: 4px !important;
+  font-family: AvenirNextCyrMedium !important;
+  transition: 0.4s important;
+  font-size: 15px !important;
+  width: 80px;
+    height: 38px !important;
+}
+
+.btncancel:hover {
+  background-color: #f1f1f1 !important;
+  border: 1px solid #6D6E73 !important;
+  color: #6D6E73 !important;
+}
+
+::ng-deep .p-sidebar-footer {
+  border-top: 1px solid #ccc !important;
+  display: flex;
+  /* // justify-content: flex-end; */
+  padding: 0.5rem 1.5rem 0.6rem 2rem !important;
+  margin: 0px !important;
+}
+
+.close-icon-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 22px;
+  border-left: 1px solid gray;
+  background-color: transparent;
+  transition: background-color 0.3s;
+}
+
+.close-icon-container:hover {
+  background-color: #DA4345;
+}
+
+.close-icon-container:hover .close-icon-tag {
+  filter: brightness(0) invert(1);
+}
+
+.close-icon-tag {
+  background-color: transparent !important;
+  display: inline-block;
+  height: 24px; 
+  width: 24px;
+}
+
+::ng-deep .frieghtCancelBtn {
+  color: #030e4c !important;
+  background-color: #fff !important;
+  font-family: AvenirNextCyrMedium !important;
+  border-radius: 4px !important;
+  border: 1px solid #030E4C !important;
+  font-size: 16px !important;
+  padding: 7px 30px;
+}
+::ng-deep .frieghtCancelBtn:focus{
+  border:1px solid #DA4345 !important;
+}
+::ng-deep .frieghtCancelBtn:hover{
+  color: #fff !important;
+  background-color:#DA4345 !important;
+  border: 1px solid #DA4345!important;
+}
+
+::ng-deep .p-sidebar-header {
+  /* // background-color: #f5f5f5 !important; */
+  font-family: AvenirNextCyrMedium !important;
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+::ng-deep .siderbar-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 6.5px;
+}
+
+::ng-deep .returnlabel-img {
+  height: 80vh;
+  width: 100%;
+}
+
+::ng-deep .carrierlabel-img {
+  height: 80vh;
+  width: 100%;
+}
+
+.labeldiv {
+  padding-top: 15px !important;
+  padding-bottom: 13px !important;
+}
+
+@media screen and (min-width: 1200px) and (max-height: 800px) {
+  .returnlabel-img {
+    height: 750px;
+    width: 507px;
+  }
+  ::ng-deep .return-info-card .p-card .p-card-body {
+    width: 535px;
+  }
+  .carrierlabel-img {
+    height: 750px;
+    width: 507px;
+  }
+  ::ng-deep .carrier-info-card .p-card .p-card-body {
+    width: 535px;
+  }
+}
+  
+.shipped:hover,.shipped.active{
+  border-bottom: 10px solid  var(--shippedProgress-border-color) !important;
+  translate: 0 -6px;
+  transition: 0.3s;
+  height:32px;
+}
+.tracking:hover,.tracking.active{
+  border-bottom: 10px solid  var(--inTransit-border-color) !important;
+  translate: 0 -6px;
+  transition: 0.3s;
+  height:32px;
+}
+.delivered:hover,.delivered.active{
+  border-bottom: 10px solid  var(--deliveredProgress-border-color) !important;
+  translate: 0 -6px;
+  transition: 0.3s;
+  height:32px;
+}
+.cancelled:hover,.cancelled.active{
+  border-bottom: 10px solid  var(--cancelProgress-border-color) !important;
+  translate: 0 -6px;
+  transition: 0.3s;
+  height:32px;
+}
+.open:hover,.open.active{
+  border-bottom: 10px solid  var(--openProgress-border-color) !important;
+  translate: 0 -6px;
+  transition: 0.3s;
+  height:32px;
+}
+.total:hover,.total.active{
+  border-bottom: 10px solid  var(--totalProgress-border-color) !important;
+  translate: 0 -6px;
+  transition: 0.3s;
+  height:32px;
+}
+
+.pagedetails-header {
+  background-color: #f1f1f1;
+  padding-top: 0px !important;
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 0px;
+  padding-left: 18px !important;
+}
+
+.pageTitle {
+  font-size: 22px;
+  line-height: 32.78px;
+  font-weight: bold;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10px;
+  padding-top: 0px;
+  width: 100%;
+  color: #030927;
+}
+
+.count {
+
+  font-size: 25px !important;
+  font-weight: 700 !important;
+  color: #000 !important;
+}
+
+.thumbtitle {
+  font-size: 17px;
+  font-weight: 400 !important;
+  line-height: 21.86px;
+  text-align: left !important;
+  color: #030927;
+  margin-bottom: 1rem;
+}
+
+.totalProgressbar {
+  height: 25px;
+  width: 100%;
+  padding: 0px;
+  border-radius: 4px 4px 4px 4px;
+  /* // opacity: 0.7; */
+}
+
+.buttonTitle {
+  justify-content: space-between;
+  border-radius: 4px 4px 4px 4px !important;
+  border: 1px solid #4EA732ff !important;
+  background-color: #4EA732ff !important;
+  color: #fff !important;
+  font-size: 16px !important;
+  height: 40px !important;
+  font-family: AvenirNextCyrMedium !important;
+  padding: 10px;
+  text-align: center;
+  line-height: 0px !important;
+  margin-top: 10px !important;
+  cursor: pointer !important;
+  width: 275px;
+}
+.buttonTitle:hover{
+  background-color: #258f1d !important;
+  color:  #fff !important;
+  border-color:1px solid #258f1d !important;
+}
+.main-container1 {
+  padding-left: 18px !important;
+  }
+
+  ::ng-deep .labeldialog {
+    height: 100vh !important;
+    margin-top: -5rem !important;
+  }
+
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar-header h3 {
+    margin: 15px;
+    font-size: 22px;
+    color: #444444;
+    font-weight:  700;
+  }
+
+  .custom-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 125%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+
+  .iconsdiv {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+  }
+
+  .filter-icon:hover {
+    background-color: #e9ecef;
+    border-radius: 22px !important;
+    padding: 4px !important;
+}
+
+.download-icon{
+  padding: 4px !important;
+}
+
+.download-icon:hover{
+  border-radius: 22px !important;
+  padding: 4px !important;
+}
+.refreshIcon{
+  border-radius: 22px !important;
+  width: 100%;height: 25px;margin-right: 5px;
+}
+.refreshIcon:hover{
+  background-color: #e9ecef;
+}
+
+.customButton {
+  transition: all 0.3s ease !important; /* Smooth transition */
+}
+
+.customButton:active {
+  height: 50px !important; /* Adjust the height as needed */
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5) !important; /* Black shadow at the bottom */
+  transform: translateY(2px) !important; /* Simulate a pressed effect */
+}

@@ -2316,13 +2316,13 @@ sap.ui.define([
         ShipReqColumnsVisiblity: function () {
             var oView = oController.getView();
             var oShipReqTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var aColumns = oShipReqTableModel.getProperty("/ShipReqTableData/ShipReqColumns");
+            var aColumns = oShipReqTableModel.getProperty("/ShipReqColumns");
             var oShipReqTable = oView.byId("myShipReqColumnSelectId");
             var aTableItems = oShipReqTable.getItems();
 
             aColumns.map(function (oColObj) {
                 aTableItems.map(function (oItem) {
-                    if (oColObj.name === oItem.getBindingContext("ShipReqTableDataModel").getObject().name && oColObj.visible) {
+                    if (oColObj.name === oItem.getBindingContext("eshipjetModel").getObject().name && oColObj.visible) {
                         oItem.setSelected(true);
                     }
                 });
@@ -2346,12 +2346,13 @@ sap.ui.define([
         onoShipReqColSelectOkPress: function () {
             var oView = this.getView()
             var oShipReqTable = oView.byId("myShipReqColumnSelectId");
-            var ShipReqTableDataModel = oView.getModel("ShipReqTableDataModel");
+            var eshipjetModel = oView.getModel("eshipjetModel");
             var oShipReqTblItems = oShipReqTable.getItems();
-            var aColumnsData = ShipReqTableDataModel.getProperty("/ShipReqColumns");
+            // var aColumnsData = ShipReqTableDataModel.getProperty("/ShipReqColumns");
+            var aColumnsData = eshipjetModel.getData().ShipReqColumns;
             oShipReqTblItems.map(function (oTableItems) {
                 aColumnsData.map(function (oColObj) {
-                    if (oTableItems.getBindingContext("ShipReqTableDataModel").getObject().name === oColObj.name) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().name === oColObj.name) {
                         if (oTableItems.getSelected()) {
                             oColObj.visible = true;
                         } else {
@@ -2360,8 +2361,8 @@ sap.ui.define([
                     }
                 })
             });
-            ShipReqTableDataModel.updateBindings(true);
-            this._handleDisplayShipReqTable();
+            eshipjetModel.updateBindings(true);
+            // this._handleDisplayShipReqTable();
             this._pShipReqPopover.then(function (oPopover) {
                 oPopover.close();
             });
