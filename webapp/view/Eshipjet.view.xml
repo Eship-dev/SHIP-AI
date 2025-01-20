@@ -329,10 +329,11 @@
 				<Button text="Ship Now" press="onShipNowPress"  class="ship-now-footer_ship-now" />
 		</OverflowToolbar>
 
+		<Toolbar class="sapUiLargeMarginBottom eship-req-footer" visible="{eshipjetModel>/createShipReqViewFooter}" >
+			<Button text="Next" ></Button>
+		</Toolbar>
 		<OverflowToolbar class="eship-footer ship-now-footer" visible="{eshipjetModel>/createShipReqViewFooter}">
-				<Toolbar height="50%" >
-					<Button text="Next" ></Button>
-				</Toolbar>
+			
 				<Button text="Clear"  class="ship-now-footer_ship-rates" />
 			<ToolbarSpacer/>
 				<Button text="Get Shipping Rates"  class="ship-now-footer_ship-rates" />
