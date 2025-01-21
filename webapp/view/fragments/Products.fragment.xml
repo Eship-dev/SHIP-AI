@@ -1,29 +1,29 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
-    <Toolbar width="auto">
-			<Text text="Products" class="textBold" ></Text>
+    <Toolbar width="auto" height="15%" class="toolbarbottomborder fixedLayout">
+			<Text text="Products" class="toolBarHeader sapUiTinyMarginBegin pageTitle" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button type="Success" text="Add Product" press="onAddProductPress"></Button>
-                    <Button type="Success" icon="sap-icon://navigation-down-arrow"></Button>
+                    <Button  text="Add Product" press="onAddProductPress" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"></Button>
+                    <Button type="Success" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"></Button>
                 </HBox>
 		</Toolbar>
 
         <Toolbar height="15%" >
 			<HBox width="100%" >
 				<VBox class="sapUiTinyMargin" width="33%">
-					<Text text="1" class="sapUiTinyMarginBottom"></Text>
-					<Text text="Total Products" class="sapUiTinyMarginBottom"></Text>
+					<Text text="1" class="NumberSizeTitle1"></Text>
+					<Text text="Total Products" class="NumberSizeTitle2"></Text>
 					<Button type="Emphasized" press="handleManifestFilterBtnPress" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="33%">
-					<Text text="2" class="sapUiTinyMarginBottom"></Text>
-					<Text text="Active" class="sapUiTinyMarginBottom"></Text>
+					<Text text="2" class="NumberSizeTitle1"></Text>
+					<Text text="Active" class="NumberSizeTitle2"></Text>
 					<Button type="Critical" press="handleManifestFilterBtnPress" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="33%">
-					<Text text="3" class="sapUiTinyMarginBottom"></Text>
-					<Text text="Inactive" class="sapUiTinyMarginBottom"></Text>
+					<Text text="3" class="NumberSizeTitle1"></Text>
+					<Text text="Inactive" class="NumberSizeTitle2"></Text>
 					<Button type="Success" press="handleManifestFilterBtnPress" icon="false" width="100%" ></Button>
 				</VBox>
 			</HBox>
