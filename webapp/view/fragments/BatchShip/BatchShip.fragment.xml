@@ -47,8 +47,8 @@
 								items="{}">
 								<core:Item key="{key}" text="{text}" />
 							</ComboBox>
-							<Button text="Ship Batch Now" type="Success" width="12rem" class="sapUiSmallMarginEnd" ></Button>
-							<Button text="Viod Batch Now" type="Ghost" width="12rem" ></Button>
+							<Button text="Ship Batch Now" width="12rem" class="ship-now-footer_ship-now" ></Button>
+							<Button text="Viod Batch Now" type="Ghost" width="12rem" class="sapUiSmallMarginBegin scan-ship-toolbar__button" ></Button>
 						<ToolbarSpacer />
                         <ToolbarSpacer />
                             <Button icon="sap-icon://action"></Button>
