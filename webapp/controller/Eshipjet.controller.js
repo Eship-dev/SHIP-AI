@@ -7997,10 +7997,6 @@ sap.ui.define([
                 ADDLocImpPopover.openBy(oButton);
             });
         },
-        onADDLocImpClosePress: function () {
-            this.byId("idADDLocImpPopover").close();
-        },
-
 
          // add location popover down arrow 
          AddIMportRolesPress: function (oEvent) {
@@ -8024,6 +8020,52 @@ sap.ui.define([
         onAddIMportRolesClosePress: function () {
             this.byId("idAddIMportRolesPopover").close();
         },
+
+       // add location popover down arrow 
+       onAddAdressBookArrowPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._oAddAdressBookArrowPopover) {
+            this._oAddAdressBookArrowPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.AddAddressImportArrowPopover",
+                controller: this
+            }).then(function (AddAdressBookArrowPopover) {
+                oView.addDependent(AddAdressBookArrowPopover);
+                // AddAdressBookArrowPopover.bindElement("/ProductCollection/0");
+                return AddAdressBookArrowPopover;
+            });
+        }
+        this._oAddAdressBookArrowPopover.then(function (AddAdressBookArrowPopover) {
+            AddAdressBookArrowPopover.openBy(oButton);
+        });
+    },  
+
+
+      // add AddImportAddressBookPress popover down arrow 
+      AddImportAddressBookPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._oAddImportAddressBookPopover) {
+            this._oAddImportAddressBookPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.AddAddressImportPopover1",
+                controller: this
+            }).then(function (AddImportAddressBookPopover) {
+                oView.addDependent(AddImportAddressBookPopover);
+                // AddImportAddressBookPopover.bindElement("/ProductCollection/0");
+                return AddImportAddressBookPopover;
+            });
+        }
+        this._oAddImportAddressBookPopover.then(function (AddImportAddressBookPopover) {
+            AddImportAddressBookPopover.openBy(oButton);
+        });
+    },
+    onAddImportAddressBookClosePress: function () {
+        this.byId("idAddImportAddressBookPopover").close();
+    },
+
+        
         
     });
 });

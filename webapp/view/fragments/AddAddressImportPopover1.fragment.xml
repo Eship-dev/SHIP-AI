@@ -7,14 +7,14 @@
 		contentWidth="40%"
         contentHeight="60%"
 		showHeader="false"
-		id="idAddIMportRolesPopover"
+		id="idAddAddressBookImportPopover"
 		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
 		placement="Bottom"
 		initialFocus="email">
-		<Toolbar height="3.1rem" >
-            <Text text="Import Locations" class="pageTitle"></Text>
+		<Toolbar  width="auto" height="15%" class="toolbarbottomborder fixedLayout" >
+            <Text text="Import Address Book" class="pageTitle"></Text>
 			<ToolbarSpacer ></ToolbarSpacer>
-				<Button icon="sap-icon://decline" press="onAddIMportRolesClosePress" ></Button>
+				<Button icon="sap-icon://decline" press="onAddImportAddressBookClosePress" ></Button>
 		</Toolbar>
 		<footer>
 			<OverflowToolbar>
@@ -29,12 +29,13 @@
 		<HBox  class="customSimpleFormShadow">
 			<Label text="User ID" class="sapUiSmallMargin" />
 			<Input value="" class="sapUiTinyMargin" ></Input>
+            
 			<Label text="Description" class="sapUiSmallMargin sapUiMediumMarginBegin" />
 			<Input value="" class="sapUiTinyMargin" ></Input>
 		</HBox>
 
         <UploadCollection
-			id="UploadCollection11"
+			id="UploadCollection112"
 			class="customSimpleFormShadow"
 			maximumFilenameLength="55"
 			maximumFileSize="10"

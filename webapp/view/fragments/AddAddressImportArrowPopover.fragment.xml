@@ -2,12 +2,12 @@
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     height="100%">
-    <Popover id="addLocationPopover1111" 
+    <Popover id="addAddressArrowPopover1111" 
              placement="Bottom" 
              contentWidth="6%" 
              contentHeight="4%">
         <content>
-            <Button text="Import Roles" press="AddIMportRolesPress"/>
+            <Button text="Import Address Book" press="AddImportAddressBookPress"/>
         </content>
     </Popover>
 </core:FragmentDefinition>

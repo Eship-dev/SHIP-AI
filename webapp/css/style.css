@@ -944,6 +944,18 @@ span.sapMBtnInner.sapMBtnReject {
   color: #030927;
 }
 
+.NumberSizeTitle2 {
+  font-size: 22px;
+  line-height: 32.78px;
+  padding: 3px 0;
+  padding-top: 1%;
+  
+}
+
+.TopMarginpadding{
+  padding-top: 3px  !important;
+}
+
 .fixed-header {
   position: sticky; /* Ensures the header sticks to the top */
   top: 0;           /* Aligns it to the top of the page */
