@@ -8065,7 +8065,131 @@ sap.ui.define([
         this.byId("idAddImportAddressBookPopover").close();
     },
 
-        
-        
+         // add User Arrow click popover down arrow 
+       onUserArrowPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._oAddUserArrowPopover) {
+            this._oAddUserArrowPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.UserArrowPressPopover",
+                controller: this
+            }).then(function (AddUserArrowPopover) {
+                oView.addDependent(AddUserArrowPopover);
+                // AddUserArrowPopover.bindElement("/ProductCollection/0");
+                return AddUserArrowPopover;
+            });
+        }
+        this._oAddUserArrowPopover.then(function (AddUserArrowPopover) {
+            AddUserArrowPopover.openBy(oButton);
+        });
+    },  
+       
+
+         // add AddUserPress popover down arrow 
+         AddImportUserPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._oAddUserImportPopover) {
+            this._oAddUserImportPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.UserImportPopover",
+                controller: this
+            }).then(function (AddUserImportPopover) {
+                oView.addDependent(AddUserImportPopover);
+                // AddUserImportPopover.bindElement("/ProductCollection/0");
+                return AddUserImportPopover;
+            });
+        }
+        this._oAddUserImportPopover.then(function (AddUserImportPopover) {
+            AddUserImportPopover.openBy(oButton);
+        });
+    },
+    onAddUserImportClosePress: function () {
+        this.byId("idAddUserImportPopover").close();
+    },
+
+           // add Third Party Arrow click popover down arrow 
+           onThirdPartyArrowPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._oAddThirdPartyArrowPopover) {
+            this._oAddThirdPartyArrowPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.ThirdPartyArrowPopover",
+                controller: this
+            }).then(function (AddThirdPartyArrowPopover) {
+                oView.addDependent(AddThirdPartyArrowPopover);
+                // AddThirdPartyArrowPopover.bindElement("/ProductCollection/0");
+                return AddThirdPartyArrowPopover;
+            });
+        }
+        this._oAddThirdPartyArrowPopover.then(function (AddThirdPartyArrowPopover) {
+            AddThirdPartyArrowPopover.openBy(oButton);
+        });
+    },  
+
+         // add AddThirdPartyPress popover down arrow 
+         AddImportThirdPartyPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._oAddThirdPartyImportPopover) {
+            this._oAddThirdPartyImportPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.ThirdPartyImportPopover",
+                controller: this
+            }).then(function (AddThirdPartyImportPopover) {
+                oView.addDependent(AddThirdPartyImportPopover);
+                // AddThirdPartyImportPopover.bindElement("/ProductCollection/0");
+                return AddThirdPartyImportPopover;
+            });
+        }
+        this._oAddThirdPartyImportPopover.then(function (AddThirdPartyImportPopover) {
+            AddThirdPartyImportPopover.openBy(oButton);
+        });
+    },
+
+
+
+     // add Third Party Arrow click popover down arrow 
+     onRolesArrowPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._oAddRolesArrowPopover) {
+            this._oAddRolesArrowPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.RolesArrowPopover",
+                controller: this
+            }).then(function (AddRolesArrowPopover) {
+                oView.addDependent(AddRolesArrowPopover);
+                // AddRolesArrowPopover.bindElement("/ProductCollection/0");
+                return AddRolesArrowPopover;
+            });
+        }
+        this._oAddRolesArrowPopover.then(function (AddRolesArrowPopover) {
+            AddRolesArrowPopover.openBy(oButton);
+        });
+    },  
+
+         // add AddRolesPress popover down arrow 
+         AddImportRolesPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._oAddRolesImportPopover) {
+            this._oAddRolesImportPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.RolesImportPopover",
+                controller: this
+            }).then(function (AddRolesImportPopover) {
+                oView.addDependent(AddRolesImportPopover);
+                // AddRolesImportPopover.bindElement("/ProductCollection/0");
+                return AddRolesImportPopover;
+            });
+        }
+        this._oAddRolesImportPopover.then(function (AddRolesImportPopover) {
+            AddRolesImportPopover.openBy(oButton);
+        });
+    },
+
     });
 });
