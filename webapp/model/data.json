@@ -2,6 +2,8 @@
     "allViewsFooter": true,
     "shipNowViewFooter": false,
     "createShipReqViewFooter": false,
+    "createShipReqBusinessSelect": true,
+    "createShipReqPersonalSelect": false,
     "routingGuidFooter": false,
     "showDarkThemeSwitch": false,
     "darkTheme": true,
@@ -543,7 +545,7 @@
         { "key": "UPS", "text": "UPS" },
         { "key": "USPS", "text": "USPS" }
     ],
-    "shipMethodKey": "",
+    "shipMethodKey": "FedEx",
     
     "PaymentTypes": [
         { "key": "Collect", "text": "Collect" },
@@ -573,7 +575,7 @@
             "text": "Inter Branch"
         }
     ],
-    "shipmentTypeSelectedKey":"",
+    "shipmentTypeSelectedKey": "business",
 
     "ServiceNames": [
         {

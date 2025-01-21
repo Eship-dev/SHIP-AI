@@ -16,12 +16,12 @@
 			<ToolbarSpacer ></ToolbarSpacer>
 				<Button icon="sap-icon://decline" press="onCreateBatchShipClosePress" ></Button>
 		</Toolbar>
-		<footer>
-			<OverflowToolbar>
+		<footer >
+			<OverflowToolbar height="4rem" >
 				<ToolbarSpacer/>
 				<Button
 					text="Finish Importing"
-					type="Success"
+					class="batch-ship-table__button"
 					press="onCreateBatchShipFinishImportingPress" />
 			</OverflowToolbar>
 		</footer>
@@ -48,7 +48,7 @@
 			typeMissmatch="onTypeMissmatch"
 			uploadComplete="onUploadComplete"
 			beforeUploadStarts="onBeforeUploadStarts" />
-        <Button text="Download Sample" type="Ghost" class="sapUiSmallMargin" ></Button>
+        <Button text="Download Sample" type="Ghost" width="20%" class="scan-ship-toolbar__button sapUiSmallMargin" ></Button>
 
         </VBox>
 	</Popover>

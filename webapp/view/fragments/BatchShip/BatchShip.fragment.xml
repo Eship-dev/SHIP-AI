@@ -2,9 +2,9 @@
 	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
 	    <Toolbar width="auto" height="15%" class="toolbarbottomborder" >
-			<Text text="Batch Shipping" class=" sapUiTinyMarginBegin pageTitle" ></Text>
+			<Text text="Batch Shipping" class="sapUiTinyMarginBegin sapUiTinyMarginTop toolBarHeader" ></Text>
             <ToolbarSpacer ></ToolbarSpacer>
-                <Button text="Create Batch" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin"   press="onCreateBatchShipPress" ></Button>
+                <Button text="Create Batch" class="ship-req-toolbar__button sapUiTinyMargin" press="onCreateBatchShipPress" ></Button>
 		</Toolbar>
 		<Toolbar height="25%" >
 			<HBox width="100%">
@@ -37,7 +37,7 @@
 				selectionMode="None"
 				visibleRowCount="12">
 				<ui:extension>
-					<OverflowToolbar style="Clear">
+					<OverflowToolbar style="Clear" height="3rem" >
                         <Button icon="sap-icon://filter" press="onBatchShipFilterPress"></Button>
 						<ToolbarSpacer />
 							<Label text="Batch Number" class="sapUiLargeMarginEnd"></Label>
@@ -47,8 +47,8 @@
 								items="{}">
 								<core:Item key="{key}" text="{text}" />
 							</ComboBox>
-							<Button text="Ship Batch Now" width="12rem" class="ship-now-footer_ship-now" ></Button>
-							<Button text="Viod Batch Now" type="Ghost" width="12rem" class="sapUiSmallMarginBegin scan-ship-toolbar__button" ></Button>
+							<Button text="Ship Batch Now" width="12rem" class="batch-ship-table__button" ></Button>
+							<Button text="Viod Batch Now" type="Ghost" width="12rem" class="sapUiSmallMarginBegin batch-ship-void__button" ></Button>
 						<ToolbarSpacer />
                         <ToolbarSpacer />
                             <Button icon="sap-icon://action"></Button>

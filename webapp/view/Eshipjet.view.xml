@@ -336,7 +336,8 @@
 			
 				<Button text="Clear"  class="ship-now-footer_ship-rates" />
 			<ToolbarSpacer/>
-				<Button text="Get Shipping Rates"  class="ship-now-footer_ship-rates" />
+				<Button text="Get Shipping Rates"  class="ship-now-footer_ship-rates" visible="{eshipjetModel>/createShipReqBusinessSelect}" />
+				<Button text="Buy Shipping Label"  class="ship-now-footer_ship-rates" visible="{eshipjetModel>/createShipReqPersonalSelect}" />
 			<ToolbarSpacer/>
 				<HBox >
 					<Button text="Save" class="ship-now-footer_ship-now" />

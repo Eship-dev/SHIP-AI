@@ -2413,7 +2413,7 @@ sap.ui.define([
             }
             var oPageContainer = this.byId("pageContainer");
             oPageContainer.to(oView.createId("_ID_CreateShipReqLabel_TableScrollContainer"));
-            // this._handleDisplayCreateShipReqTable();
+            this._handleDisplayCreateShipReqTable();
             eshipjetModel.setProperty("/allViewsFooter", false);
             eshipjetModel.setProperty("/shipNowViewFooter", false);
             eshipjetModel.setProperty("/routingGuidFooter", false);
@@ -2456,12 +2456,12 @@ sap.ui.define([
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
                     var Btn1 = new sap.m.Button({ icon: "sap-icon://delete", type: "Transparent" });
                     var Btn2 = new sap.m.Button({
-                        icon: "sap-icon://megamenu", type: "Transparent",
+                        icon: "sap-icon://delete", type: "Transparent",
                         press: function (oEvent) {
                             that.handleDownArrowPress(oEvent);
                         }
                     });
-                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
                     // oHBox.addItem(Btn2);
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
@@ -7921,6 +7921,7 @@ sap.ui.define([
                 CreateShipReqRowsData[i]["#"] = i+1;
                 ShipReqTableDataModel.updateBindings(true);
             }
+            oController._handleDisplayCreateShipReqTable();
             this.byId("idAddProductDialog").close();
         },
 
@@ -7955,15 +7956,24 @@ sap.ui.define([
 
             var eshipjetModel =  this.getOwnerComponent().getModel("eshipjetModel");
             var shipmentTypeSelectedKey =  eshipjetModel.getData().shipmentTypeSelectedKey;
-             if (shipmentTypeSelectedKey === "business"){
+            if (shipmentTypeSelectedKey === "business"){
+                eshipjetModel.setProperty("/shipMethodKey", "" );
+                eshipjetModel.setProperty("/ServiceNameSelectedKeys", "" );
 
-             }else if(shipmentTypeSelectedKey === "personal"){
+                eshipjetModel.setProperty("/createShipReqBusinessSelect", true );
+                eshipjetModel.setProperty("/createShipReqPersonalSelect", false );
+            }else if(shipmentTypeSelectedKey === "personal"){
+                eshipjetModel.setProperty("/shipMethodKey", "" );
+                eshipjetModel.setProperty("/ServiceNameSelectedKeys", "" );
 
-             }else if(shipmentTypeSelectedKey === "interbranch"){
+                eshipjetModel.setProperty("/createShipReqBusinessSelect", true );
+                eshipjetModel.setProperty("/createShipReqPersonalSelect", true );
+            }else if(shipmentTypeSelectedKey === "interbranch"){
                 eshipjetModel.setProperty("/shipMethodKey", "JPMC" );
                 eshipjetModel.setProperty("/ServiceNameSelectedKeys", "intraExpress" );
-                
 
+                eshipjetModel.setProperty("/createShipReqBusinessSelect", false );
+                eshipjetModel.setProperty("/createShipReqPersonalSelect", false );
              }
 
         },
