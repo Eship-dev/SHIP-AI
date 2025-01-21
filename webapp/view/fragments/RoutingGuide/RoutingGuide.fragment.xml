@@ -1,26 +1,26 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
-        <Toolbar width="auto">
+        <Toolbar  width="auto" height="15%" class="toolbarbottomborder fixedLayout" >
 			<Text text="Routing Guide" class="textBold" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button type="Success" text="Routing Guide"  press="onRoutingGuidePress"></Button>
+                    <Button text="Routing Guide"  press="onRoutingGuidePress" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin"></Button>
                     <!-- <Button type="Success" icon="sap-icon://navigation-down-arrow" ></Button> -->
                 </HBox>
 		</Toolbar>
 	    <Toolbar height="30%" width="100%" >
 			<VBox class="sapUiTinyMargin" width="33%">
-					<Text text="0" class="sapUiTinyMarginBottom"></Text>
+					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Total Routing Rules" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Emphasized" press="handlRoutingGuideFilterBtnPress" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="33%">
-					<Text text="0" class="sapUiTinyMarginBottom"></Text>
+					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Active" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Critical" press="handleRoutingGuideFilterBtnPress" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="33%">
-					<Text text="0" class="sapUiTinyMarginBottom"></Text>
+					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Inactive" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Success" press="handleRoutingGuideFilterBtnPress" icon="false" width="100%" ></Button>
 				</VBox>

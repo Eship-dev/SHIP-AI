@@ -912,8 +912,24 @@ span.sapMBtnInner.sapMBtnReject {
   height: 40px !important;
   padding: 8px;
   text-align: center;
-  width: 200PX;
+ 
 }
+
+
+.footer_change__button > span {
+  background-color: #4E9C2D !important;
+  color: #fff !important;
+  border: 1px solid #4E9C2D !important;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+  justify-content: space-between;
+  border-radius: 4px 4px 4px 4px !important;
+  height: 34px !important;
+  padding: 8px;
+  text-align: center;
+ 
+}
+
 
 .NumberSizeTitle1 {
   font-size: 22px;
@@ -923,7 +939,15 @@ span.sapMBtnInner.sapMBtnReject {
   display: flex;
   justify-content: space-between;
   padding: 5px 0;
-  padding-top: 5%;
+  padding-top: 1%;
   width: 100%;
   color: #030927;
 }
+
+.fixed-header {
+  position: sticky; /* Ensures the header sticks to the top */
+  top: 0;           /* Aligns it to the top of the page */
+  z-index: 1000;    /* Keeps it above other elements */
+  background-color: white; /* Ensures visibility */
+}
+

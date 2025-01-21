@@ -10,30 +10,30 @@
 	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" >
 
 	    
-		<Toolbar width="auto" height="15%" class="toolbarbottomborder">
-			<Text text="Ship Requests / Labels" class=" sapUiTinyMarginBegin pageTitle" ></Text>
+		<Toolbar width="auto" height="15%" class="toolbarbottomborder fixedLayout" >
+			<Text text="Ship Requests / Labels" class="sapUiTinyMarginBegin pageTitle" ></Text>
 				<ToolbarSpacer />
-					<Button text="Create Ship Request/Label" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin" press="onCreateShipReqLabelPress" ></Button>
+					<Button text="Create Ship Request/Label" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin" width="200px" press="onCreateShipReqLabelPress" ></Button>
 		</Toolbar>
-		<Toolbar height="55%" class="sapUiTinyMarginBottom">
+		<Toolbar height="25%" class="sapUiTinyMarginBottom">
 			<HBox width="100%">
 				<VBox class="sapUiTinyMargin" width="27%" >
-					<Text text="18" class="textBold  NumberSizeTitle1"></Text>
+					<Text text="18" class="NumberSizeTitle1"></Text>
 					<Text text="Total" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Emphasized" press="handleButtonPress" id="idShipRequestTotalBtn" class="thumbtitle openButton" icon="false" width="100%"   ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="27%">
-					<Text text="9" class="textBold  NumberSizeTitle1"></Text>
+					<Text text="9" class="NumberSizeTitle1"></Text>
 					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Success" press="handleButtonPress" id="idShipRequestShippedBtn" class="thumbtitle openButton" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="27%">
-					<Text text="8" class="textBold  NumberSizeTitle1"></Text>
+					<Text text="8" class="NumberSizeTitle1"></Text>
 					<Text text="Open" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Critical" press="handleButtonPress" id="idShipRequestOpenBtn" class="thumbtitle openButton" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="27%">
-					<Text text="1" class="textBold  NumberSizeTitle1"></Text>
+					<Text text="1" class="NumberSizeTitle1"></Text>
 					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Negative" press="handleButtonPress" id="idShipRequestCancelledBtn" class="thumbtitle openButton" icon="false" width="100%" ></Button>
 				</VBox>

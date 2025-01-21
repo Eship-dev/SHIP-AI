@@ -7966,7 +7966,54 @@ sap.ui.define([
 
              }
 
-        }
+        },
+
+        // add location popover down arrow 
+        onADDLocImpPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._oADDLocImpPopover) {
+                this._oADDLocImpPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ImportPopover",
+                    controller: this
+                }).then(function (ADDLocImpPopover) {
+                    oView.addDependent(ADDLocImpPopover);
+                    // ADDLocImpPopover.bindElement("/ProductCollection/0");
+                    return ADDLocImpPopover;
+                });
+            }
+            this._oADDLocImpPopover.then(function (ADDLocImpPopover) {
+                ADDLocImpPopover.openBy(oButton);
+            });
+        },
+        onADDLocImpClosePress: function () {
+            this.byId("idADDLocImpPopover").close();
+        },
+
+
+         // add location popover down arrow 
+         AddIMportRolesPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._oAddIMportRolesPopover) {
+                this._oAddIMportRolesPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ImportRolesLocPopover",
+                    controller: this
+                }).then(function (AddIMportRolesPopover) {
+                    oView.addDependent(AddIMportRolesPopover);
+                    // AddIMportRolesPopover.bindElement("/ProductCollection/0");
+                    return AddIMportRolesPopover;
+                });
+            }
+            this._oAddIMportRolesPopover.then(function (AddIMportRolesPopover) {
+                AddIMportRolesPopover.openBy(oButton);
+            });
+        },
+        onAddIMportRolesClosePress: function () {
+            this.byId("idAddIMportRolesPopover").close();
+        },
         
     });
 });

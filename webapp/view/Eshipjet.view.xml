@@ -340,7 +340,9 @@
 			<ToolbarSpacer/>
 				<HBox >
 					<Button text="Save" class="ship-now-footer_ship-now" />
-					<Button text="^" class="ship-now-footer_ship-now" ></Button>
+					<!-- <Button icon="sap-icon://slim-arrow-down" class="ship-now-footer_ship-now"  type="Success" ></Button> -->
+					<Button icon="sap-icon://slim-arrow-down" class="footer_change__button sapUiTinyMarginEnd" type="Success" iconFirst="true" press="onManifestPrintPress" ></Button>
+
 				</HBox>
 				<Button text="Ship Now" press="onShipNowPress" class="ship-now-footer_ship-now" />
 		</OverflowToolbar>
