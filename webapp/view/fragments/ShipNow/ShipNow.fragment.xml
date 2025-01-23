@@ -347,7 +347,7 @@
 									</IconTabFilter>
 									<!-- Additional Info Tab Starts here -->
 									<IconTabFilter text="Additional Info" key="Additional Info">
-										<VBox class="sapUiSmallMargin">
+										<VBox >
 											<f:SimpleForm id="AdditionalInfo" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
 												<f:content>
 													<Label text="PO No" />
