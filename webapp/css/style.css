@@ -389,6 +389,33 @@ button.ship-tile-button span {
   height: 52px;
 }
 
+.create-ship-req_tollbar_input {
+  width: 400px !important;
+  height: auto !important;
+}
+
+.create-ship-req_tollbar_input > div {
+  height: auto !important;
+
+}
+
+.create-ship-req_tollbar_input input {
+  height: 35px !important;
+}
+
+.create-ship-req_input {
+  height: auto !important;
+}
+
+.create-ship-req_input > div {
+  height: auto !important;
+
+}
+
+.create-ship-req_input input {
+  height: 35px !important;
+}
+
 @keyframes animateBtn {
   0% {
     box-shadow: 0px 0px 5px rgba(0, 188, 212, 0.4);

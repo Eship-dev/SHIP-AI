@@ -1591,42 +1591,6 @@
                 "shipToCountry": "IN",
                 "shipToPhone": "+91 915 492 735",
                 "shipToEmail": "info@eshipjet.ai"
-              },
-              {
-                "locationName": "eshipJet Software Inc.",
-                "requestIdLabelId": "DN000001385",
-                "CreatedDate": "12/10/2024",
-                "ShipDate": "12/10/2024",
-                "shipMethod": "FedEx",
-                "ServiceName": "FedEx 2Day",
-                "TrackingNumber": null,
-                "status": "Shipped",
-                "ShipToContact": "Jenny",
-                "ShipToCompany": "eshipjet",
-                "shipToCity": "Fremont",
-                "shipToStateProvince": "CA",
-                "shipToZipPostalCode": "94538",
-                "shipToCountry": "US",
-                "shipToPhone": "9908836717",
-                "shipToEmail": "jenny@imayl.com"
-              },
-              {
-                "locationName": "eshipJet Software Inc.",
-                "requestIdLabelId": "DN000001384",
-                "CreatedDate": "12/10/2024",
-                "ShipDate": "12/10/2024",
-                "shipMethod": "DHL",
-                "ServiceName": "Economy Select - ESI",
-                "TrackingNumber": null,
-                "status": "Open",
-                "ShipToContact": "Tomas Pineda",
-                "ShipToCompany": "Ingram Micro, Inc",
-                "shipToCity": "Carrollton",
-                "shipToStateProvince": "TX",
-                "shipToZipPostalCode": "75007",
-                "shipToCountry": "US",
-                "shipToPhone": "(972) 512-2700",
-                "shipToEmail": "info@google.com"
               }
         ],
         "CreateShipReqColumns":[

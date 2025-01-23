@@ -20,7 +20,7 @@
 				<VBox class="sapUiTinyMargin" width="27%" >
 					<Text text="18" class="NumberSizeTitle1"></Text>
 					<Text text="Total" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Emphasized" press="handleButtonPress" id="idShipRequestTotalBtn" class="thumbtitle openButton" icon="false" width="100%"   ></Button>
+					<Button type="Emphasized" press="handleButtonPress" id="idShipRequestTotalBtn" class="total" icon="false" width="100%"   ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="27%">
 					<Text text="9" class="NumberSizeTitle1"></Text>
@@ -250,7 +250,7 @@
 			</ColumnListItem>
 		</items>
 	</Table>
-		<Toolbar class="sapUiLargeMarginBottom" >
+		<Toolbar >
 			<ToolbarSpacer/>
 				<Button  text="First" enabled="false" />
 				<Button  text="Previous" enabled="false"/>

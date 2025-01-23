@@ -1458,3 +1458,32 @@ td[rowspan] {
   text-align: center;
  
 }
+
+
+.total:hover,
+.total.active {
+  border-bottom: 10px solid var(--totalProgress-border-color) !important;
+  transform: translate(0, -6px); /* 'translate' should be 'transform' */
+  transition: transform 0.3s, box-shadow 0.3s; /* Ensure transitions apply */
+  height: 32px;
+  background-color: white;
+  box-shadow: 0px 5px rgba(0, 0, 0, 0.2); /* Box shadow should work */
+}
+
+.total.active {
+  border-bottom: 10px solid var(--totalProgress-border-color) !important;
+  transform: translate(0, -6px) !important;
+  box-shadow: 0px 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+.customCheckboxSize .sapMCbBg {
+  width: 24px !important; /* Adjust width */
+  height: 24px !important; /* Adjust height */
+}
+
+/* Adjust the checkbox tick (checkmark) */
+.customCheckboxSize .sapMCbMark {
+  width: 24px !important; /* Adjust tick width */
+  height: 24px !important; /* Adjust tick height */
+  /* background-size: 24px 24px !important; */
+}

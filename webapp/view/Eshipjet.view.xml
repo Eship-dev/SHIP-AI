@@ -24,7 +24,7 @@
 			</tnt:ToolHeader>
 		</tnt:header>
 		<tnt:sideContent >
-			<tnt:SideNavigation	 	visible="{eshipjetModel>/SideNavigation}"	expanded="true" selectedKey="{eshipjetModel>/selectedKey}"	itemSelect=".onItemSelect">
+			<tnt:SideNavigation visible="{eshipjetModel>/SideNavigation}"	expanded="true" selectedKey="{eshipjetModel>/selectedKey}"	itemSelect=".onItemSelect">
 				<tnt:NavigationList class="side-navigation">
 					<tnt:NavigationListItem  text="SAP ShipperCopilot" icon="sap-icon://customfont/ShipperCopilate" key="ShipperCopilot">
 					</tnt:NavigationListItem>
@@ -71,7 +71,7 @@
 						vertical="true"
 						height="100%"
 						class="sapUiContentPadding ship-tiles-page">
-						<FlexBox justifyContent="Center" alignItems="Center" height="100%">	
+						<FlexBox justifyContent="Center" alignItems="Center" height="calc(100% - 50px)">	
 							<l:HorizontalLayout id="TileContainerExpanded"
 				                    allowWrapping="true"
 				                    class="sapUiTinyMargin ship-tile-container">
@@ -143,19 +143,19 @@
 
 					
 					<!-- Orders Starts here -->
-					<ScrollContainer id="Orders" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+					<ScrollContainer id="Orders" horizontal="false" vertical="true" height="calc(100% - 50px)" class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Orders.Orders" type="XML" />
 						<!-- <mvc:XMLView viewName="com.eshipjet.zeshipjet.view.Orders"/> -->
 					</ScrollContainer>
 
 					<!-- Routing Guide Starts here -->
-					<ScrollContainer id="RoutingGuide" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+					<ScrollContainer id="RoutingGuide" horizontal="false" vertical="true" height="calc(100% - 50px)" class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.RoutingGuide.RoutingGuide" type="XML" />
 						<!-- <mvc:XMLView viewName="com.eshipjet.zeshipjet.view.RoutingGuide"/> -->
 					</ScrollContainer>
 
 				<!-- Ship Request Label Starts here -->
-					<ScrollContainer id="ShipRequestLabel" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+					<ScrollContainer id="ShipRequestLabel" horizontal="false" vertical="true" height="calc(100% - 50px)" class="sapUiContentPadding">
 							<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.ShipRequestLabel" type="XML" />
 					</ScrollContainer>
 
@@ -166,145 +166,145 @@
 					</ScrollContainer>
 
 				<!-- Quote Now Starts here -->
-					<ScrollContainer	id="QuoteNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+					<ScrollContainer	id="QuoteNow" horizontal="false" vertical="true" height="calc(100% - 50px)" class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.QuoteNow.QuoteNow" type="XML" />
 					</ScrollContainer>
 
 				<!-- Track Now Starts here -->
-					<ScrollContainer	id="TrackNow" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+					<ScrollContainer	id="TrackNow" horizontal="false" vertical="true" height="calc(100% - 50px)" class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.TrackNow.TrackNow" type="XML" />
 					</ScrollContainer>
 
 				<!-- Manifest Starts here -->
-					<ScrollContainer	id="Manifest" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+					<ScrollContainer	id="Manifest" horizontal="false" vertical="true" height="calc(100% - 50px)" class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Manifest.Manifest" type="XML" />
 					</ScrollContainer>
 
 				<!-- AES Direct Starts here -->
-					<ScrollContainer	id="AESDirect" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+					<ScrollContainer	id="AESDirect" horizontal="false" vertical="true" height="calc(100% - 50px)" class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.AESDirect" type="XML" />
 					</ScrollContainer>
 
 				<!-- Scan And Ship Starts here -->
-					<ScrollContainer	id="ScanShip"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="ScanShip"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ScanAndShip.ScanAndShip" type="XML"/>
 					</ScrollContainer>
 
 				<!-- Batch Ship Starts here -->
-					<ScrollContainer	id="BatchShip"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="BatchShip"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.BatchShip.BatchShip" type="XML" />
 					</ScrollContainer>
 
 				<!-- Batch Reports Starts here -->
-					<ScrollContainer	id="Reports"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="Reports"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Reports.Reports" type="XML" />
 					</ScrollContainer>
 
 				<!-- Feight Audit Analysis Ship Starts here -->
-					<ScrollContainer	id="FeightAuditAnalysis"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="FeightAuditAnalysis"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.FeightAuditAnalysis.FeightAuditAnalysis" type="XML" />
 					</ScrollContainer>
 
 
 <!-- Settings Button Icon Functionality changes starts here -->
 
-					<ScrollContainer	id="_ID_Location_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_Location_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Locations" type="XML" />
 					</ScrollContainer> 
 
-					<ScrollContainer	id="_ID_AddressBook_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_AddressBook_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.AddressBook" type="XML" />
 					</ScrollContainer> 
 
-					<ScrollContainer	id="_ID_Users_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_Users_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Users" type="XML" />
 					</ScrollContainer>
 
-					<ScrollContainer	id="_ID_Roles_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_Roles_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Roles" type="XML" />
 					</ScrollContainer>
 
-					<ScrollContainer	id="_ID_CarrierCatalog_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_CarrierCatalog_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.CarrierCatalog" type="XML" />
 					</ScrollContainer> 
 
-					<ScrollContainer	id="_ID_CarrierAccounts_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_CarrierAccounts_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.CarrierAccounts" type="XML" />
 					</ScrollContainer>
 
-					<ScrollContainer	id="_ID_CostCenters_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_CostCenters_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.CostCenters" type="XML" />
 					</ScrollContainer>
 
-					<ScrollContainer	id="_ID_Statuses_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_Statuses_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Statuses" type="XML" />
 					</ScrollContainer> 
 
-					<ScrollContainer	id="_ID_Products_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_Products_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Products" type="XML" />
 					</ScrollContainer>
 
-					<ScrollContainer	id="_ID_PackageTypes_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_PackageTypes_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.PackageTypes" type="XML" />
 					</ScrollContainer> 
 
-					<ScrollContainer	id="_ID_ThirdParties_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_ThirdParties_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ThirdParty" type="XML" />
 					</ScrollContainer> 
 
-					<ScrollContainer	id="_ID_LTLClasses_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_LTLClasses_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.LTLClasses" type="XML" />
 					</ScrollContainer> 
 
-					<ScrollContainer	id="_ID_NMFC_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_NMFC_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.NMFCTable" type="XML" />
 					</ScrollContainer> 
 					
-					<ScrollContainer	id="_ID_MOT_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_MOT_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ModeOfTransport" type="XML" />
 					</ScrollContainer>
 
-					<ScrollContainer	id="_ID_OrderTypes_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_OrderTypes_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.OrderTypes" type="XML" />
 					</ScrollContainer>
 
-					<ScrollContainer	id="_ID_RoutingGuide_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_RoutingGuide_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.RoutingGuide.CreateRoutingRuleClick" type="XML" />
 					</ScrollContainer>
 
-					<ScrollContainer	id="_ID_Incoterms_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_Incoterms_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Incoterms" type="XML" />
 					</ScrollContainer>
 
-					<ScrollContainer	id="_ID_TrackingRange_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_TrackingRange_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.TrackingRange" type="XML" />
 					</ScrollContainer> 
 
-					<ScrollContainer	id="_ID_Dimensions_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_Dimensions_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.DimensionsTable" type="XML" />
 					</ScrollContainer> 
 
-					<ScrollContainer	id="_ID_PaymentTypes_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_PaymentTypes_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.PaymentTypes" type="XML" />
 					</ScrollContainer> 
 
-					<ScrollContainer	id="_ID_SMTPConfig_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_SMTPConfig_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.SMTPTable" type="XML" />
 					</ScrollContainer> 
 
-					<ScrollContainer	id="_ID_ERP_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_ERP_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ERPTable" type="XML" />
 					</ScrollContainer> 
 
-					<ScrollContainer	id="_ID_Countries_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_Countries_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.CountriesTable" type="XML" />
 					</ScrollContainer> 
 
-					<ScrollContainer	id="_ID_EUCountries_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_EUCountries_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.EUCountries" type="XML" />
 					</ScrollContainer>
 
-					<ScrollContainer	id="_ID_CreateShipReqLabel_TableScrollContainer"	horizontal="false"	vertical="true"	height="100%"	class="sapUiContentPadding">
+					<ScrollContainer	id="_ID_CreateShipReqLabel_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.CreateShipReqLabelClick" type="XML" />
 					</ScrollContainer> 
 				</pages>

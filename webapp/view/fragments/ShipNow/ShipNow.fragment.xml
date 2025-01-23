@@ -20,10 +20,10 @@
 								<ToolbarSpacer />
 							</Toolbar>
 							<!-- Icon Tab Bar Starts here -->			
-							<IconTabBar id="idIconTabBarFiori2" expanded="{device>/isNoPhone}" class="sapUiLargeMarginBottom" >
+							<IconTabBar id="idIconTabBarFiori2" >
 								<items >
 									<!-- Ship From / To Tab Starts here -->
-									<IconTabFilter text="Ship From / To" key="info" >
+									<IconTabFilter text="Ship From / To" key="ShipFromTo" >
 										<VBox>
 											<f:SimpleForm id="SimpleFormChangeColumn_threeGroups346" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
 												<f:content>

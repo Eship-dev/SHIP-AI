@@ -5,7 +5,7 @@
             <HBox width="100%" >
                 <Text text="Quote Now" class="sapUiSmallMargin sapUiMediumMarginTop toolBarHeader" ></Text>
                 <TextArea width="20rem" rows="1" class="sapUiSmallMargin customInput" placeholder="Scan or Enter Shipment Order"  ></TextArea>
-                <Button id="idQuoteNow" text="Quote Now" type="Accept" class="sapUiSmallMarginBegin sapUiSmallMarginTop" ></Button>
+                <Button id="idQuoteNow" text="Quote Now" type="Accept" class="sapUiSmallMarginBegin sapUiSmallMarginTop scan-ship-toolbar__button" ></Button>
             </HBox>
             <ToolbarSpacer ></ToolbarSpacer>
                 <Button text="Clear" class="sapUiSmallMarginEnd sapUiSmallMarginBottom" type="Reject" ></Button>
