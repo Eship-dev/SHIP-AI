@@ -897,7 +897,9 @@ span.sapMBtnInner.sapMBtnReject {
 }
 
 
-
+.bg_colorHeaderShipReq{
+  background-color: #ededed;
+}
 
 /* ship request button  */
 
@@ -924,9 +926,10 @@ span.sapMBtnInner.sapMBtnReject {
   transition: all 0.3s ease;
   justify-content: space-between;
   border-radius: 4px 4px 4px 4px !important;
-  height: 34px !important;
+  height: 33px !important;
   padding: 8px;
   text-align: center;
+ 
  
 }
 
@@ -963,3 +966,9 @@ span.sapMBtnInner.sapMBtnReject {
   background-color: white; /* Ensures visibility */
 }
 
+
+.sapMInputBaseIcon1{
+  width: 2rem;
+  height: 3.5625rem;
+  line-height: 1.625rem;
+}

@@ -5,7 +5,7 @@
 				<ToolbarSpacer />
 					<HBox>
                     <Button  text="Add Cost Center" press="OnAddCostCenterPress" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"></Button>
-                    <Button type="Success" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"></Button>
+                    <Button type="Success" icon="sap-icon://navigation-down-arrow" press="onCostCenterArrowPress" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"></Button>
                 </HBox>
 		</Toolbar>
 

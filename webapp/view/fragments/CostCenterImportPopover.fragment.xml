@@ -1,0 +1,57 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Popover
+		contentWidth="40%"
+        contentHeight="60%"
+		showHeader="false"
+		id="idCostCenterImportPopover"
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+		placement="Bottom"
+		initialFocus="email">
+		<Toolbar  width="auto" height="15%" class="toolbarbottomborder fixedLayout" >
+            <Text text="import users" class="pageTitle"></Text>
+			<ToolbarSpacer ></ToolbarSpacer>
+				<Button icon="sap-icon://decline" press="onAddImportAddressBookClosePress" ></Button>
+		</Toolbar>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+					text="Finish Importing"
+					type="Success"
+					press="onCreateBatchShipFinishImportingPress" />
+			</OverflowToolbar>
+		</footer>
+        <VBox >
+		<HBox  class="customSimpleFormShadow">
+			<Label text="User ID" class="sapUiSmallMargin" />
+			<Input value="" class="sapUiTinyMargin" ></Input>
+            
+			<Label text="Description" class="sapUiSmallMargin sapUiMediumMarginBegin" />
+			<Input value="" class="sapUiTinyMargin" ></Input>
+		</HBox>
+
+        <UploadCollection
+			id="UploadCollection112345"
+			class="customSimpleFormShadow"
+			maximumFilenameLength="55"
+			maximumFileSize="10"
+			multiple="true"
+			sameFilenameAllowed="true"
+			instantUpload="false"
+			noDataDescription="Please drag and drop your CSV or Excel file here or use the &quot;Add&quot; button to upload Files, and I'll take care of the rest!"
+			change="onChange"
+			fileDeleted="onFileDeleted"
+			filenameLengthExceed="onFilenameLengthExceed"
+			fileSizeExceed="onFileSizeExceed"
+			typeMissmatch="onTypeMissmatch"
+			uploadComplete="onUploadComplete"
+			beforeUploadStarts="onBeforeUploadStarts" />
+        <Button text="Download Sample" type="Ghost" class="sapUiSmallMargin" ></Button>
+
+        </VBox>
+	</Popover>
+</core:FragmentDefinition>

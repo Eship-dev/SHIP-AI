@@ -39,7 +39,7 @@
 		</Toolbar>
 
         <ui:Table id="idOrdersTable"
-                class=""
+                class="sapUiTinyMarginTop"
 				selectionMode="None"
 				visibleRowCount="12">
 					<ui:extension>

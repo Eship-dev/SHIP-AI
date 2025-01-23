@@ -8191,5 +8191,47 @@ sap.ui.define([
         });
     },
 
+
+    
+     // add Third Party Arrow click popover down arrow 
+     onCostCenterArrowPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._oAddCostCenterArrowPopover) {
+            this._oAddCostCenterArrowPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.CostCenterArrowPopover",
+                controller: this
+            }).then(function (AddCostCenterArrowPopover) {
+                oView.addDependent(AddCostCenterArrowPopover);
+                // AddCostCenterArrowPopover.bindElement("/ProductCollection/0");
+                return AddCostCenterArrowPopover;
+            });
+        }
+        this._oAddCostCenterArrowPopover.then(function (AddCostCenterArrowPopover) {
+            AddCostCenterArrowPopover.openBy(oButton);
+        });
+    },  
+
+         // add AddCostCenterPress popover down arrow 
+         AddImportCostCenterPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._oAddCostCenterImportPopover) {
+            this._oAddCostCenterImportPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.CostCenterImportPopover",
+                controller: this
+            }).then(function (AddCostCenterImportPopover) {
+                oView.addDependent(AddCostCenterImportPopover);
+                // AddCostCenterImportPopover.bindElement("/ProductCollection/0");
+                return AddCostCenterImportPopover;
+            });
+        }
+        this._oAddCostCenterImportPopover.then(function (AddCostCenterImportPopover) {
+            AddCostCenterImportPopover.openBy(oButton);
+        });
+    },
+
     });
 });

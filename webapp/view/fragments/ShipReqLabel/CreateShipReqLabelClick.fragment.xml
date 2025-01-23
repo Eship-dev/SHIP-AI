@@ -8,78 +8,72 @@
     xmlns:semantic="sap.m.semantic"
     xmlns:ui="sap.ui.table" height="100%" >
 
-            <Toolbar
-                class="sapUiTinyMarginTop"
-                height="10%"
-                width="100%" >
-               <ComboBox
-            width="12%"
-            items="{/shipRequests}">
+       
+            <Toolbar class="sapUiTinyMarginBottom " height="10%">
+								<Button icon="sap-icon://past"  press="onOpenRecentShipmentPopover"/>
+								<Text text="Ship Request / Label"/>
+								<ToolbarSpacer/>
+								<Button  icon="sap-icon://decline" press="onPressCloseShipNow"/>
+	        </Toolbar>
+       
+         <VBox class="scan-ship-page">
+            <Toolbar class=" bg_colorHeaderShipReq scan-ship-toolbar" height="10%" >
+            <ComboBox width="13%" items="{/shipRequests}" class="scan-ship-toolbar__input sapMInputBaseIcon1">
+                 <core:Item key="{key}" text="{text}" />
+            </ComboBox>
+            <Label width="5%"  class="sapUiSmallMargin " text="Order Type" labelFor="OrderTypeComboBox" />
+            <ComboBox id="OrderTypeComboBox" width="12%" items="{/orderTypes}" class="scan-ship-toolbar__input">
             <core:Item key="{key}" text="{text}" />
-        </ComboBox>
-                <Label
-            width="5%"
-            class="sapUiSmallMargin"
-            text="Order Type"
-            wrapping="true"
-            labelFor="OrderTypeComboBox" />
-        <ComboBox
-            id="OrderTypeComboBox"
-            width="12%"
-            items="{/orderTypes}">
-            <core:Item key="{key}" text="{text}" />
-        </ComboBox>
-                <Label width="7%" text="Shipment Type" class="sapUiSmallMargin" />
-                <ComboBox 
-                    selectedKey="{eshipjetModel>/shipmentTypeSelectedKey}"
-                    selectionChange="onShipmentChange"
-                    id="shipmentTypeComboBox"
-                    width="7%"
-                    items="{
-                        path: '/ShipmentTypes'
+             </ComboBox>
+            <Label width="7%" text="Shipment Type" class="sapUiSmallMargin" />
+                <ComboBox  selectedKey="{eshipjetModel>/shipmentTypeSelectedKey}" class="scan-ship-toolbar__input" selectionChange="onShipmentChange" 
+                id="shipmentTypeComboBox" width="7%" items="{     path: '/ShipmentTypes'
                     }">
-                    <core:Item key="{key}" text="{text}" />
+            <core:Item key="{key}" text="{text}" />
                 </ComboBox>
-                 <Label text="Category" width="7%" class="sapUiSmallMargin"/>
+                 <Label text="Category" width="6%" class="sapUiSmallMargin"/>
                 <ComboBox
-                    width="7%"
+                    width="12%"
+                    class="scan-ship-toolbar__input"
                     items="{/categories}">
                     <core:Item key="{key}" text="{text}" />
                 </ComboBox>
                 <Label width="6%" text="Shipment Date" class="sapUiSmallMargin" />
-                <DatePicker width="7%" />
+                <DatePicker width="7%"  class="scan-ship-toolbar__input" />
 
                 <Label width="6%" text="Requester" class="sapUiSmallMargin" />
-                <ComboBox width="7%" />
+                <ComboBox width="12%"  class="scan-ship-toolbar__input" />
 
                 <Label width="5%" text="Return Label" class="sapUiSmallMargin" />
-                <CheckBox width="1%" />
+                <CheckBox width="1%"  />
 
                 <Button width="1%" icon="sap-icon://edit-outside" />
                 <ToolbarSpacer />
+                 
             </Toolbar>
+             </VBox>
     <HBox width="100%" >
-        <VBox width="50%" >
+        <VBox width="60%"  >
             <IconTabBar expanded="{device>/isNoPhone}">
                 <items>
                     <!-- Ship From  Tab Starts here -->
-                    <IconTabFilter text="Ship From" key="info">
+                    <IconTabFilter text="Ship From" key="info" >
                         <VBox >
                             <f:SimpleForm  editable="true" class="customSimpleFormShadow" width="auto" layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="2">
                                 <f:content>
-                                    <Label text="Contact Name" />
-                                    <SearchField width="100%" search="onSearch" />
+                                    <Label text="Contact Name"  />
+                                    <SearchField width="100%" search="onSearch" class="sapUiSmallMarginBottom " />
                                     <Label text="Address Line 1" />
-                                    <Input value="{}" />
+                                    <Input value="{}" class="sapUiSmallMarginBottom"/>
                                     <Label text="City" />
 
-                                    <Input value="{}">
+                                    <Input value="{}" class="sapUiSmallMarginBottom">
                                         <layoutData>
                                             <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                         </layoutData>
                                     </Input>
                                     <!-- <Label text="State / Province" /> -->
-                                    <Input value="{}" placeholder="State/Province">
+                                    <Input value="{}" placeholder="State/Province" class="sapUiSmallMarginBottom">
                                         <layoutData>
                                             <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                         </layoutData>
@@ -90,17 +84,17 @@
                                             <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                         </layoutData>
                                     </Input>
-                                    <Input selectedKey="{}" placeholder="Email">
+                                    <Input selectedKey="{}" placeholder="Email" class="sapUiSmallMarginBottom">
                                         <layoutData>
                                             <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                         </layoutData>
                                     </Input>
                                     <Label text="Company Name" />
-                                    <SearchField width="100%" search="onSearch" />
+                                    <SearchField width="100%" search="onSearch" class="sapUiSmallMarginBottom" />
                                     <Label text="Address Line 2" />
-                                    <Input value="{}" />
+                                    <Input value="{}" class="sapUiSmallMarginBottom"/>
                                     <Label text="Zip / Postal Code" />
-                                    <Input value="{}">
+                                    <Input value="{}" class="sapUiSmallMarginBottom">
                                         <layoutData>
                                             <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                         </layoutData>
@@ -128,42 +122,43 @@
                         </VBox>
                     </IconTabFilter>
                     <IconTabFilter text="Ship To" key="Ship To">
+                       <VBox height="60%" width="100%">
                         <f:SimpleForm editable="true" class="customSimpleFormShadow" width="auto" layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="2">
                             <f:content>
                                 <Label text="Contact Name"  />
-                                <SearchField width="100%" search="onSearch" />
+                                <SearchField width="100%" search="onSearch" class="sapUiSmallMarginBottom" />
                                 <Label text="Address Line 1" />
-                                <Input value="{}" />
+                                <Input value="{}" class="sapUiSmallMarginBottom"/>
                                 <Label text="City" />
 
-                                <Input value="{}">
+                                <Input value="{}" class="sapUiSmallMarginBottom">
                                     <layoutData>
                                         <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                     </layoutData>
                                 </Input>
                                 <!-- <Label text="State / Province" /> -->
-                                <Input value="{}" placeholder="State/Province">
+                                <Input value="{}" placeholder="State/Province" class="sapUiSmallMarginBottom">
                                     <layoutData>
                                         <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                     </layoutData>
                                 </Input>
                                 <Label text="Phone No" />
-                                <Input value="{}" class="sapUiMediumMarginBottom" >
+                                <Input value="{}" class="sapUiMediumMarginBottom"  >
                                     <layoutData>
                                         <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                     </layoutData>
                                 </Input>
-                                <Input selectedKey="{}" placeholder="Email">
+                                <Input selectedKey="{}" placeholder="Email" class="sapUiSmallMarginBottom">
                                     <layoutData>
                                         <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                     </layoutData>
                                 </Input>
                                 <Label text="Company Name" />
-                                <SearchField width="100%" search="onSearch" />
+                                <SearchField width="100%" search="onSearch" class="sapUiSmallMarginBottom"/>
                                 <Label text="Address Line 2" />
-                                <Input value="{}" />
+                                <Input value="{}" class="sapUiSmallMarginBottom"/>
                                 <Label text="Zip / Postal Code" />
-                                <Input value="{}">
+                                <Input value="{}" class="sapUiSmallMarginBottom">
                                     <layoutData>
                                         <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                     </layoutData>
@@ -188,12 +183,14 @@
                                 </CheckBox>
                             </f:content>
                         </f:SimpleForm>
+                        </VBox>
                     </IconTabFilter>
                     <IconTabFilter key="add" />
                 </items>
             </IconTabBar>
+            
         </VBox>
-        <VBox width="50%">
+        <VBox width="60%" height="60%">
             <IconTabBar expanded="{device>/isNoPhone}">
                 <items>
                     <!-- Routing and Billing Details Tab Starts here -->
@@ -204,16 +201,18 @@
                                 <ComboBox 
                                     selectedKey="{eshipjetModel>/shipMethodKey}"
                                     id="comboBox" 
+                                    class="sapUiSmallMarginBottom"
                                     items="{
                                         path: '/ShipMethods'
                                     }">
                                     <core:Item key="{key}" text="{text}" />
                                 </ComboBox>
                                 <Label text="Account No" />
-                                <Input />
+                                <Input  class="sapUiSmallMarginBottom"/>
                                 <Label text="Cost Center" />
                                 <ComboBox 
                                     id="costCenterComboBox" 
+                                    class="sapUiSmallMarginBottom"
                                     items="{
                                         path: '/CostCenters'
                                     }">
@@ -225,6 +224,7 @@
                                     <ComboBox 
                                         selectedKey="{eshipjetModel>/ServiceNameSelectedKeys}"
                                         id="serviceNameComboBox"
+                                        class="sapUiSmallMarginBottom"
                                         items="{
                                             path: '/ServiceNames'
                                         }">
@@ -233,6 +233,7 @@
                                  <Label text="Payment Type"  />
                                 <ComboBox 
                                     id="paymentTypeComboBox" 
+                                    class="sapUiSmallMarginBottom"
                                     placeholder="Sender"
                                     items="{
                                         path: '/PaymentTypes'
@@ -240,7 +241,7 @@
                                     <core:Item key="{key}" text="{text}" />
                                 </ComboBox>
                                 <Label text="PO No" />
-                                <Input />
+                                <Input class="sapUiSmallMarginBottom" />
                             </f:content>
                         </f:SimpleForm>
                     </IconTabFilter>
