@@ -335,7 +335,7 @@
 		<OverflowToolbar class="eship-footer ship-now-footer" visible="{eshipjetModel>/createShipReqViewFooter}">
 			
 				<Button text="Clear"  class="ship-now-footer_ship-rates" />
-			<ToolbarSpacer/>
+			<ToolbarSpacer />
 				<Button text="Get Shipping Rates"  class="ship-now-footer_ship-rates" visible="{eshipjetModel>/createShipReqBusinessSelect}" />
 				<Button text="Buy Shipping Label"  class="ship-now-footer_ship-rates" visible="{eshipjetModel>/createShipReqPersonalSelect}" />
 			<ToolbarSpacer/>

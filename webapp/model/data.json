@@ -1602,24 +1602,6 @@
                 "shipToCountry": "US",
                 "shipToPhone": "(972) 512-2700",
                 "shipToEmail": "info@google.com"
-              },
-              {
-                "locationName": "eshipJet Software Inc.",
-                "requestIdLabelId": "DN000001383",
-                "CreatedDate": "12/10/2024",
-                "ShipDate": "12/10/2024",
-                "shipMethod": "Delhivery",
-                "ServiceName": "Express Parcel",
-                "TrackingNumber": null,
-                "status": "Open",
-                "ShipToContact": "Shruti Joshi",
-                "ShipToCompany": "eshipJet Software private limited.",
-                "shipToCity": "New Delhi",
-                "shipToStateProvince": "DL",
-                "shipToZipPostalCode": "110044",
-                "shipToCountry": "IN",
-                "shipToPhone": "+91 915 492 735",
-                "shipToEmail": "info@eshipjet.ai"
               }
         ],
         "CreateShipReqColumns":[
@@ -5952,6 +5934,23 @@
 				"label": "RFID",
 				"visible": false
 			}
-		]
-  
+		],
+        
+    "shipReqActionPopoverItems": [
+        {
+            "text": "View"
+        },
+        {
+            "text": "Edit"
+        },
+        {
+            "text": "Copy"
+        },
+        {
+            "text": "Delete"
+        },
+        {
+            "text": "Ship Request"
+        }
+    ]
 }

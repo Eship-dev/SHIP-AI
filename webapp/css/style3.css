@@ -1459,6 +1459,32 @@ td[rowspan] {
  
 }
 
+.shipNow-IconTabBar-Width{
+  min-width: 10rem !important;
+}
+
+/* ShipNow Icon Tab Bar Width adjustment */
+.sapMITBInLine.sapMITBTextOnly .sapMITBHead .sapMITBVertical.sapMITBFilter {
+  height: 2.75rem;
+  width: auto !important;
+  min-width: 10rem !important;
+  max-width: 18rem !important;
+  /* display: flex !important; */
+  /* align-items: stretch !important; */
+  /* justify-content: center !important; */
+}
+
+/* Create Ship Request Label Combobox Icon Adjustment*/
+/* .sapUiIcon {
+  cursor: default;
+  text-align: center;
+  display: inline-block;
+  vertical-align: baseline;
+  line-height: 1;
+  position: relative;
+  margin-top: 5px !important;
+} */
+
 
 .total:hover,
 .total.active {

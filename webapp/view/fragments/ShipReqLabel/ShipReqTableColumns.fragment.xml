@@ -9,11 +9,11 @@
 					<ToolbarSpacer ></ToolbarSpacer>					
 					<Button icon="sap-icon://decline" press="onShipReqColSelectClosePress"></Button>
 				</Toolbar>
-				<SearchField placeholder="Search Columns"   liveChange="onShipReqColNameSearch"></SearchField>
+				<SearchField class="sapUiSmallMarginEnd" width="100%" placeholder="Search Columns"   liveChange="onShipReqColNameSearch"></SearchField>
 			</VBox>
 		</customHeader>
 		<content>
-        <Table	id="myShipReqColumnSelectId" mode="MultiSelect"  items="{path : 'eshipjetModel>/ShipReqColumns'}" >
+        <Table id="myShipReqColumnSelectId" mode="MultiSelect"  items="{path : 'eshipjetModel>/ShipReqColumns'}" >
 		<ColumnListItem id="_IDGenShipReqColumnListItem1" vAlign="Middle">
 			<cells>				
 				<Text text="{eshipjetModel>label}" />				

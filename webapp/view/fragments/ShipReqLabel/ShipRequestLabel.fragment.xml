@@ -13,7 +13,7 @@
 		<Toolbar width="auto" height="15%" class="toolbarbottomborder fixedLayout" >
 			<Text text="Ship Requests / Labels" class="sapUiTinyMarginBegin sapUiTinyMarginTop toolBarHeader" ></Text>
 				<ToolbarSpacer />
-					<Button text="Create Ship Request/Label" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin" width="200px" press="onCreateShipReqLabelPress" ></Button>
+					<Button text="Create Ship Request/Label" class="ship-req-toolbar__button sapUiTinyMargin" width="200px" press="onCreateShipReqLabelPress" ></Button>
 		</Toolbar>
 		<Toolbar height="25%" class="sapUiTinyMarginBottom">
 			<HBox width="100%">
@@ -85,6 +85,7 @@
                 <OverflowToolbar >
                     <Button icon="sap-icon://filter" press="onShipReqFilterPopoverPress"></Button>
 						<ToolbarSpacer ></ToolbarSpacer>
+							<Button icon="sap-icon://synchronize" press="onShipReqRefreshPress"></Button>
 							<Button icon="sap-icon://action" press="onShipReqExportToExcel"></Button>
                             <Button icon="sap-icon://action-settings" press="openShipReqColNamesPopover" >
                                 <customData>
@@ -243,8 +244,8 @@
 					<Text text="{}" />
 					<Text text="{}" />
 					<HBox alignContent="End" >
-						<Button text="View Now" type="Transparent" ></Button>
-						<Button icon="sap-icon://megamenu" type="Transparent" ></Button>
+						<Button text="Ship Now" type="Transparent" ></Button>
+						<Button icon="sap-icon://megamenu" type="Transparent" press="ShipReqActDownArrowPress" ></Button>
 					</HBox>
 				</cells>
 			</ColumnListItem>

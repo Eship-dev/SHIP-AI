@@ -2250,7 +2250,7 @@ sap.ui.define([
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
-                    var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                    var Btn1 = new sap.m.Button({ text: "Ship Now", type: "Transparent" });
                     var Btn2 = new sap.m.Button({
                         icon: "sap-icon://megamenu", type: "Transparent",
                         press: function (oEvent) {
@@ -2549,6 +2549,27 @@ sap.ui.define([
         onCreateShipReqColSelectClosePress: function () {
             this._pCreateShipReqPopover.then(function (oPopover) {
                 oPopover.close();
+            });
+        },
+
+        ShipReqActDownArrowPress: function (oEvent) {
+            // var aPath = oEvent.getSource().getBindingContext().sPath.split("/");
+            // var eshipjetModel = this.getView().getModel("eshipjetModel");
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._addPopover) {
+                this._addPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.ShipReqActPopover",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    // oPopover.bindElement("/ProductCollection/0");
+                    return oPopover;
+                });
+            }
+            this._addPopover.then(function (oPopover) {
+                oPopover.openBy(oButton);
             });
         },
         // Ship Request/Lable Code Changes ENd

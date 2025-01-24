@@ -21,30 +21,30 @@
             <ComboBox width="10%" items="{/shipRequests}" class="create-ship-req_tollbar_input">
                  <core:Item key="{key}" text="{text}" />
             </ComboBox>
-            <Label width="10%" class="sapUiTinyMargin sapUiMediumMarginBegin" text="Order Type" />
+            <Label text="Order Type" width="10%" class="sapUiTinyMargin sapUiMediumMarginBegin" wrapping="true" />
             <ComboBox width="10%" id="OrderTypeComboBox" items="{/orderTypes}" class="create-ship-req_tollbar_input">
                 <core:Item key="{key}" text="{text}" />
              </ComboBox>
-            <Label width="13%" text="Shipment Type" class="sapUiTinyMargin sapUiMediumMarginBegin" />
+            <Label width="13%" text="Shipment Type" class="sapUiTinyMargin sapUiMediumMarginBegin" wrapping="true" />
                 <ComboBox width="10%" selectedKey="{eshipjetModel>/shipmentTypeSelectedKey}" class="create-ship-req_tollbar_input" selectionChange="onShipmentChange" 
                 id="shipmentTypeComboBox" items="{     path: '/ShipmentTypes'
                     }">
             <core:Item key="{key}" text="{text}" />
                 </ComboBox>
-                 <Label width="8%" text="Category" class="sapUiTinyMargin sapUiMediumMarginBegin" />
+                 <Label width="8%" text="Category" class="sapUiTinyMargin sapUiMediumMarginBegin" wrapping="true" />
                 <ComboBox
                      width="10%"
                     class="create-ship-req_tollbar_input"
                     items="{/categories}" >
                     <core:Item key="{key}" text="{text}" />
                 </ComboBox>
-                <Label width="13%" text="Shipment Date" class="sapUiTinyMargin sapUiMediumMarginBegin" />
+                <Label width="13%" text="Shipment Date" class="sapUiTinyMargin sapUiMediumMarginBegin" wrapping="true" />
                 <DatePicker width="10%"  class="create-ship-req_tollbar_input" />
 
-                <Label width="10%" text="Requester" class="sapUiTinyMargin sapUiMediumMarginBegin" />
+                <Label width="10%" text="Requester" class="sapUiTinyMargin sapUiMediumMarginBegin" wrapping="true" />
                 <ComboBox width="10%" class="create-ship-req_tollbar_input" />
 
-                <Label width="13%" text="Return Label" class="sapUiTinyMargin sapUiMediumMarginBegin" />
+                <Label width="13%" text="Return Label" class="sapUiTinyMargin sapUiMediumMarginBegin" wrapping="true" />
                 <CheckBox width="1%"  />
 
                 <Button width="1%" icon="sap-icon://edit-outside" />
@@ -54,7 +54,7 @@
              </VBox>
     <HBox width="100%" >
         <VBox  width="100%" height="60%" >
-            <IconTabBar expanded="{device>/isNoPhone}">
+            <IconTabBar expanded="{device>/isNoPhone}" expandable="false" >
                 <items>
                     <!-- Ship From  Tab Starts here -->
                     <IconTabFilter text="Ship From" key="ShipFrom" >
@@ -62,7 +62,7 @@
                             <f:SimpleForm  editable="true" width="auto" layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="2">
                                 <f:content>
                                     <Label text="Contact Name"  />
-                                    <SearchField width="100%" search="onSearch" class="sapUiSmallMarginBottom" />
+                                    <SearchField width="100%" search="onSearch" class="sapUiSmallMarginBottom" placeholder=" " />
                                     <Label text="Address Line 1" />
                                     <Input value="" class="sapUiSmallMarginBottom create-ship-req_input"/>
                                     <Label text="City" />
@@ -89,7 +89,7 @@
                                         </layoutData>
                                     </Input>
                                     <Label text="Company Name" />
-                                    <SearchField width="100%" search="onSearch" class="sapUiSmallMarginBottom" />
+                                    <SearchField width="100%" search="onSearch" class="sapUiSmallMarginBottom" placeholder=" " />
                                     <Label text="Address Line 2" />
                                     <Input value="" class="sapUiSmallMarginBottom create-ship-req_input"/>
                                     <Label text="Zip / Postal Code" />
@@ -191,7 +191,7 @@
         </VBox>
 
         <VBox width="100%" height="100%" >
-            <IconTabBar expanded="{device>/isNoPhone}">
+            <IconTabBar expanded="{device>/isNoPhone}" expandable="false" >
                 <items>
                     <!-- Routing and Billing Details Tab Starts here -->
                     <IconTabFilter text="Routing and Billing Details" key="Routing and Billing Details">
@@ -253,7 +253,7 @@
     <ui:Table id="idCreateShipReqTable"
                 class="sapUiTinyMarginTop"
 				selectionMode="None"
-				visibleRowCount="5" >
+				visibleRowCount="3" >
 					<ui:extension>
 						<OverflowToolbar>
 							<ToolbarSpacer ></ToolbarSpacer>
