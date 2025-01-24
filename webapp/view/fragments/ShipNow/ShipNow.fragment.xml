@@ -20,7 +20,7 @@
 								<ToolbarSpacer />
 							</Toolbar>
 							<!-- Icon Tab Bar Starts here -->			
-							<IconTabBar id="idIconTabBarFiori2" >
+							<IconTabBar id="idIconTabBarFiori2" expandable="false" >
 								<items >
 									<!-- Ship From / To Tab Starts here -->
 									<IconTabFilter text="Ship From / To" key="ShipFromTo" >

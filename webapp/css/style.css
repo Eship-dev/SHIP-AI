@@ -698,6 +698,56 @@ span.sapMBtnInner.sapMBtnReject {
   }
 }
 
+/* background-color: #4E9C2D !important;
+  color: #fff !important;
+  border: 1px solid #4E9C2D !important;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+  justify-content: space-between;
+  border-radius: 4px 4px 4px 4px !important;
+  height: 33px !important;
+  padding: 8px;
+  text-align: center; */
+
+.create-ship-req-footer {
+
+  background-color: #4E9C2D !important;
+  color: #fff !important;
+  border: 1px solid #4E9C2D !important;
+  /* transform: scale(1.05);
+  transition: all 0.3s ease; */
+  justify-content: space-between;
+  border-radius: 1px 1px 1px 1px !important;
+  height: 33px !important;
+  padding: 8px;
+  text-align: center;
+  bdi {
+    color: #fff;
+  }
+
+  /* background-color: #4ea732;
+  border: 1px solid #4ea732;
+  font-size: 16px !important;
+  margin-top: 0 7px 0 0 !important;
+  border-radius: 2px;
+  padding: 4px 10px;
+  color: white !important;
+  span:before {
+    display: none !important;
+  }
+  bdi {
+    color: #fff;
+  } */
+}
+.create-ship-req-footer:hover{ 
+  background-color: #258f1d;
+  border: 1px solid #258f1d;
+  color: #fff !important;
+  bdi {
+    color: #fff !important;
+  }
+}
+
 .customSimpleFormShadow {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
