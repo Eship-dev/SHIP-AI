@@ -12,7 +12,7 @@
 		placement="Bottom"
 		initialFocus="email">
 		<Toolbar  width="auto" height="15%" class="toolbarbottomborder fixedLayout" >
-            <Text text="import users" class="pageTitle"></Text>
+            <Text text="Import users" class="pageTitle"></Text>
 			<ToolbarSpacer ></ToolbarSpacer>
 				<Button icon="sap-icon://decline" press="onAddUserImportClosePress" ></Button>
 		</Toolbar>
@@ -22,16 +22,17 @@
 				<Button
 					text="Finish Importing"
 					type="Success"
-					press="onCreateBatchShipFinishImportingPress" />
+					id="UserFinishImporting"
+					press="onUserCloseFinishImportingPress" />
 			</OverflowToolbar>
 		</footer>
         <VBox >
-		<HBox  class="customSimpleFormShadow">
+		<HBox  class="">
 			<Label text="User ID" class="sapUiSmallMargin" />
-			<Input value="" class="sapUiTinyMargin" ></Input>
+			<Input value="" class="sapUiTinyMargin create-ship-req_input"  ></Input>
             
 			<Label text="Description" class="sapUiSmallMargin sapUiMediumMarginBegin" />
-			<Input value="" class="sapUiTinyMargin" ></Input>
+			<Input value="" class="sapUiTinyMargin create-ship-req_input" ></Input>
 		</HBox>
 
         <UploadCollection

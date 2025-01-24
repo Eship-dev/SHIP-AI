@@ -8109,6 +8109,300 @@ sap.ui.define([
                 eshipjetModel.setProperty("/shipNowTheArmorySelect", false );
                 eshipjetModel.setProperty("/shipNowUPSSelect", false );
                 eshipjetModel.setProperty("/shipNowUSPSSelect", true );
+             }else if(ShipNowShipMethodSelectedKey === "Gander & White"){
+                
+                eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
+                eshipjetModel.setProperty("/shipNowABFSelect", false );
+                eshipjetModel.setProperty("/shipNowARTEXFineArtSrvSelect", false );
+                eshipjetModel.setProperty("/shipNowATLASFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowBrinksFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowCrownFineArtSelect", false ); 
+                eshipjetModel.setProperty("/shipNowDHLSelect", false );
+                eshipjetModel.setProperty("/shipNowDTDCSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExSelect", false );
+                eshipjetModel.setProperty("/shipNowFastFarwarderSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExFreightSelect", false );
+                eshipjetModel.setProperty("/shipNowJPMorganChaseInternalSelect", false );
+                eshipjetModel.setProperty("/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/shipNowMoviGroupSelect", false );
+                eshipjetModel.setProperty("/shipNowOtherSelect", false );
+                eshipjetModel.setProperty("/shipNowRLSelect", false );
+                eshipjetModel.setProperty("/shipNowTheArmorySelect", false );
+                eshipjetModel.setProperty("/shipNowUPSSelect", false );
+                eshipjetModel.setProperty("/shipNowUSPSSelect", false );
+             }else if(ShipNowShipMethodSelectedKey === "ABF"){
+                
+                eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
+                eshipjetModel.setProperty("/shipNowABFSelect", false );
+                eshipjetModel.setProperty("/shipNowARTEXFineArtSrvSelect", false );
+                eshipjetModel.setProperty("/shipNowATLASFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowBrinksFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowCrownFineArtSelect", false ); 
+                eshipjetModel.setProperty("/shipNowDHLSelect", false );
+                eshipjetModel.setProperty("/shipNowDTDCSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExSelect", false );
+                eshipjetModel.setProperty("/shipNowFastFarwarderSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExFreightSelect", false );
+                eshipjetModel.setProperty("/shipNowJPMorganChaseInternalSelect", false );
+                eshipjetModel.setProperty("/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/shipNowMoviGroupSelect", false );
+                eshipjetModel.setProperty("/shipNowOtherSelect", false );
+                eshipjetModel.setProperty("/shipNowRLSelect", false );
+                eshipjetModel.setProperty("/shipNowTheArmorySelect", false );
+                eshipjetModel.setProperty("/shipNowUPSSelect", false );
+                eshipjetModel.setProperty("/shipNowUSPSSelect", false  );
+             }else if(ShipNowShipMethodSelectedKey === "ARTEX Fine Art Services"){
+                
+                eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
+                eshipjetModel.setProperty("/shipNowABFSelect", false );
+                eshipjetModel.setProperty("/shipNowARTEXFineArtSrvSelect", false );
+                eshipjetModel.setProperty("/shipNowATLASFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowBrinksFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowCrownFineArtSelect", false ); 
+                eshipjetModel.setProperty("/shipNowDHLSelect", false );
+                eshipjetModel.setProperty("/shipNowDTDCSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExSelect", false );
+                eshipjetModel.setProperty("/shipNowFastFarwarderSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExFreightSelect", false );
+                eshipjetModel.setProperty("/shipNowJPMorganChaseInternalSelect", false );
+                eshipjetModel.setProperty("/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/shipNowMoviGroupSelect", false );
+                eshipjetModel.setProperty("/shipNowOtherSelect", false );
+                eshipjetModel.setProperty("/shipNowRLSelect", false );
+                eshipjetModel.setProperty("/shipNowTheArmorySelect", false );
+                eshipjetModel.setProperty("/shipNowUPSSelect", false );
+                eshipjetModel.setProperty("/shipNowUSPSSelect", false );
+             }else if(ShipNowShipMethodSelectedKey === "ATLAS Fine Art"){
+                
+                eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
+                eshipjetModel.setProperty("/shipNowABFSelect", false );
+                eshipjetModel.setProperty("/shipNowARTEXFineArtSrvSelect", false );
+                eshipjetModel.setProperty("/shipNowATLASFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowBrinksFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowCrownFineArtSelect", false ); 
+                eshipjetModel.setProperty("/shipNowDHLSelect", false );
+                eshipjetModel.setProperty("/shipNowDTDCSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExSelect", false );
+                eshipjetModel.setProperty("/shipNowFastFarwarderSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExFreightSelect", false );
+                eshipjetModel.setProperty("/shipNowJPMorganChaseInternalSelect", false );
+                eshipjetModel.setProperty("/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/shipNowMoviGroupSelect", false );
+                eshipjetModel.setProperty("/shipNowOtherSelect", false );
+                eshipjetModel.setProperty("/shipNowRLSelect", false );
+                eshipjetModel.setProperty("/shipNowTheArmorySelect", false );
+                eshipjetModel.setProperty("/shipNowUPSSelect", false );
+                eshipjetModel.setProperty("/shipNowUSPSSelect", false );
+             }else if(ShipNowShipMethodSelectedKey === "Brinks Fine Art"){
+                
+                eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
+                eshipjetModel.setProperty("/shipNowABFSelect", false );
+                eshipjetModel.setProperty("/shipNowARTEXFineArtSrvSelect", false );
+                eshipjetModel.setProperty("/shipNowATLASFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowBrinksFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowCrownFineArtSelect", false ); 
+                eshipjetModel.setProperty("/shipNowDHLSelect", false );
+                eshipjetModel.setProperty("/shipNowDTDCSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExSelect", false );
+                eshipjetModel.setProperty("/shipNowFastFarwarderSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExFreightSelect", false );
+                eshipjetModel.setProperty("/shipNowJPMorganChaseInternalSelect", false );
+                eshipjetModel.setProperty("/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/shipNowMoviGroupSelect", false );
+                eshipjetModel.setProperty("/shipNowOtherSelect", false );
+                eshipjetModel.setProperty("/shipNowRLSelect", false );
+                eshipjetModel.setProperty("/shipNowTheArmorySelect", false );
+                eshipjetModel.setProperty("/shipNowUPSSelect", false );
+                eshipjetModel.setProperty("/shipNowUSPSSelect", false );
+             }else if(ShipNowShipMethodSelectedKey === "Crown Fine Art"){
+                
+                eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
+                eshipjetModel.setProperty("/shipNowABFSelect", false );
+                eshipjetModel.setProperty("/shipNowARTEXFineArtSrvSelect", false );
+                eshipjetModel.setProperty("/shipNowATLASFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowBrinksFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowCrownFineArtSelect", false ); 
+                eshipjetModel.setProperty("/shipNowDHLSelect", false );
+                eshipjetModel.setProperty("/shipNowDTDCSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExSelect", false );
+                eshipjetModel.setProperty("/shipNowFastFarwarderSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExFreightSelect", false );
+                eshipjetModel.setProperty("/shipNowJPMorganChaseInternalSelect", false );
+                eshipjetModel.setProperty("/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/shipNowMoviGroupSelect", false );
+                eshipjetModel.setProperty("/shipNowOtherSelect", false );
+                eshipjetModel.setProperty("/shipNowRLSelect", false );
+                eshipjetModel.setProperty("/shipNowTheArmorySelect", false );
+                eshipjetModel.setProperty("/shipNowUPSSelect", false );
+                eshipjetModel.setProperty("/shipNowUSPSSelect", false );
+             }else if(ShipNowShipMethodSelectedKey === "DTDC"){
+                
+                eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
+                eshipjetModel.setProperty("/shipNowABFSelect", false );
+                eshipjetModel.setProperty("/shipNowARTEXFineArtSrvSelect", false );
+                eshipjetModel.setProperty("/shipNowATLASFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowBrinksFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowCrownFineArtSelect", false ); 
+                eshipjetModel.setProperty("/shipNowDHLSelect", false );
+                eshipjetModel.setProperty("/shipNowDTDCSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExSelect", false );
+                eshipjetModel.setProperty("/shipNowFastFarwarderSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExFreightSelect", false );
+                eshipjetModel.setProperty("/shipNowJPMorganChaseInternalSelect", false );
+                eshipjetModel.setProperty("/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/shipNowMoviGroupSelect", false );
+                eshipjetModel.setProperty("/shipNowOtherSelect", false );
+                eshipjetModel.setProperty("/shipNowRLSelect", false );
+                eshipjetModel.setProperty("/shipNowTheArmorySelect", false );
+                eshipjetModel.setProperty("/shipNowUPSSelect", false );
+                eshipjetModel.setProperty("/shipNowUSPSSelect", false );
+             }else if(ShipNowShipMethodSelectedKey === "FedEx Freight"){
+                
+                eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
+                eshipjetModel.setProperty("/shipNowABFSelect", false );
+                eshipjetModel.setProperty("/shipNowARTEXFineArtSrvSelect", false );
+                eshipjetModel.setProperty("/shipNowATLASFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowBrinksFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowCrownFineArtSelect", false ); 
+                eshipjetModel.setProperty("/shipNowDHLSelect", false );
+                eshipjetModel.setProperty("/shipNowDTDCSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExSelect", false );
+                eshipjetModel.setProperty("/shipNowFastFarwarderSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExFreightSelect", false );
+                eshipjetModel.setProperty("/shipNowJPMorganChaseInternalSelect", false );
+                eshipjetModel.setProperty("/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/shipNowMoviGroupSelect", false );
+                eshipjetModel.setProperty("/shipNowOtherSelect", false );
+                eshipjetModel.setProperty("/shipNowRLSelect", false );
+                eshipjetModel.setProperty("/shipNowTheArmorySelect", false );
+                eshipjetModel.setProperty("/shipNowUPSSelect", false );
+                eshipjetModel.setProperty("/shipNowUSPSSelect", false );
+             }else if(ShipNowShipMethodSelectedKey === "Fine Art Shippers"){
+                
+                eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
+                eshipjetModel.setProperty("/shipNowABFSelect", false );
+                eshipjetModel.setProperty("/shipNowARTEXFineArtSrvSelect", false );
+                eshipjetModel.setProperty("/shipNowATLASFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowBrinksFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowCrownFineArtSelect", false ); 
+                eshipjetModel.setProperty("/shipNowDHLSelect", false );
+                eshipjetModel.setProperty("/shipNowDTDCSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExSelect", false );
+                eshipjetModel.setProperty("/shipNowFastFarwarderSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExFreightSelect", false );
+                eshipjetModel.setProperty("/shipNowJPMorganChaseInternalSelect", false );
+                eshipjetModel.setProperty("/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/shipNowMoviGroupSelect", false );
+                eshipjetModel.setProperty("/shipNowOtherSelect", false );
+                eshipjetModel.setProperty("/shipNowRLSelect", false );
+                eshipjetModel.setProperty("/shipNowTheArmorySelect", false );
+                eshipjetModel.setProperty("/shipNowUPSSelect", false );
+                eshipjetModel.setProperty("/shipNowUSPSSelect", false );
+             }else if(ShipNowShipMethodSelectedKey === "JPMorgan Chase Internal"){
+                
+                eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
+                eshipjetModel.setProperty("/shipNowABFSelect", false );
+                eshipjetModel.setProperty("/shipNowARTEXFineArtSrvSelect", false );
+                eshipjetModel.setProperty("/shipNowATLASFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowBrinksFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowCrownFineArtSelect", false ); 
+                eshipjetModel.setProperty("/shipNowDHLSelect", false );
+                eshipjetModel.setProperty("/shipNowDTDCSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExSelect", false );
+                eshipjetModel.setProperty("/shipNowFastFarwarderSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExFreightSelect", false );
+                eshipjetModel.setProperty("/shipNowJPMorganChaseInternalSelect", false );
+                eshipjetModel.setProperty("/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/shipNowMoviGroupSelect", false );
+                eshipjetModel.setProperty("/shipNowOtherSelect", false );
+                eshipjetModel.setProperty("/shipNowRLSelect", false );
+                eshipjetModel.setProperty("/shipNowTheArmorySelect", false );
+                eshipjetModel.setProperty("/shipNowUPSSelect", false );
+                eshipjetModel.setProperty("/shipNowUSPSSelect", false );
+             }else if(ShipNowShipMethodSelectedKey === "Malca-Amit"){
+                
+                eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
+                eshipjetModel.setProperty("/shipNowABFSelect", false );
+                eshipjetModel.setProperty("/shipNowARTEXFineArtSrvSelect", false );
+                eshipjetModel.setProperty("/shipNowATLASFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowBrinksFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowCrownFineArtSelect", false ); 
+                eshipjetModel.setProperty("/shipNowDHLSelect", false );
+                eshipjetModel.setProperty("/shipNowDTDCSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExSelect", false );
+                eshipjetModel.setProperty("/shipNowFastFarwarderSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExFreightSelect", false );
+                eshipjetModel.setProperty("/shipNowJPMorganChaseInternalSelect", false );
+                eshipjetModel.setProperty("/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/shipNowMoviGroupSelect", false );
+                eshipjetModel.setProperty("/shipNowOtherSelect", false );
+                eshipjetModel.setProperty("/shipNowRLSelect", false );
+                eshipjetModel.setProperty("/shipNowTheArmorySelect", false );
+                eshipjetModel.setProperty("/shipNowUPSSelect", false );
+                eshipjetModel.setProperty("/shipNowUSPSSelect", false );
+             }else if(ShipNowShipMethodSelectedKey === "Movi Group"){
+                
+                eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
+                eshipjetModel.setProperty("/shipNowABFSelect", false );
+                eshipjetModel.setProperty("/shipNowARTEXFineArtSrvSelect", false );
+                eshipjetModel.setProperty("/shipNowATLASFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowBrinksFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowCrownFineArtSelect", false ); 
+                eshipjetModel.setProperty("/shipNowDHLSelect", false );
+                eshipjetModel.setProperty("/shipNowDTDCSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExSelect", false );
+                eshipjetModel.setProperty("/shipNowFastFarwarderSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExFreightSelect", false );
+                eshipjetModel.setProperty("/shipNowJPMorganChaseInternalSelect", false );
+                eshipjetModel.setProperty("/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/shipNowMoviGroupSelect", false );
+                eshipjetModel.setProperty("/shipNowOtherSelect", false );
+                eshipjetModel.setProperty("/shipNowRLSelect", false );
+                eshipjetModel.setProperty("/shipNowTheArmorySelect", false );
+                eshipjetModel.setProperty("/shipNowUPSSelect", false );
+                eshipjetModel.setProperty("/shipNowUSPSSelect", false );
+             }else if(ShipNowShipMethodSelectedKey === "RL"){
+                
+                eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
+                eshipjetModel.setProperty("/shipNowABFSelect", false );
+                eshipjetModel.setProperty("/shipNowARTEXFineArtSrvSelect", false );
+                eshipjetModel.setProperty("/shipNowATLASFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowBrinksFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowCrownFineArtSelect", false ); 
+                eshipjetModel.setProperty("/shipNowDHLSelect", false );
+                eshipjetModel.setProperty("/shipNowDTDCSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExSelect", false );
+                eshipjetModel.setProperty("/shipNowFastFarwarderSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExFreightSelect", false );
+                eshipjetModel.setProperty("/shipNowJPMorganChaseInternalSelect", false );
+                eshipjetModel.setProperty("/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/shipNowMoviGroupSelect", false );
+                eshipjetModel.setProperty("/shipNowOtherSelect", false );
+                eshipjetModel.setProperty("/shipNowRLSelect", false );
+                eshipjetModel.setProperty("/shipNowTheArmorySelect", false );
+                eshipjetModel.setProperty("/shipNowUPSSelect", false );
+                eshipjetModel.setProperty("/shipNowUSPSSelect", false );
+             }else if(ShipNowShipMethodSelectedKey === "The Armory"){
+                
+                eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
+                eshipjetModel.setProperty("/shipNowABFSelect", false );
+                eshipjetModel.setProperty("/shipNowARTEXFineArtSrvSelect", false );
+                eshipjetModel.setProperty("/shipNowATLASFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowBrinksFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowCrownFineArtSelect", false ); 
+                eshipjetModel.setProperty("/shipNowDHLSelect", false );
+                eshipjetModel.setProperty("/shipNowDTDCSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExSelect", false );
+                eshipjetModel.setProperty("/shipNowFastFarwarderSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExFreightSelect", false );
+                eshipjetModel.setProperty("/shipNowJPMorganChaseInternalSelect", false );
+                eshipjetModel.setProperty("/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/shipNowMoviGroupSelect", false );
+                eshipjetModel.setProperty("/shipNowOtherSelect", false );
+                eshipjetModel.setProperty("/shipNowRLSelect", false );
+                eshipjetModel.setProperty("/shipNowTheArmorySelect", false );
+                eshipjetModel.setProperty("/shipNowUPSSelect", false );
+                eshipjetModel.setProperty("/shipNowUSPSSelect", false );
              }
         },
 
@@ -8119,7 +8413,7 @@ sap.ui.define([
             if (!this._oADDLocImpPopover) {
                 this._oADDLocImpPopover = Fragment.load({
                     id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.ImportPopover",
+                    name: "com.eshipjet.zeshipjet.view.fragments.AddLocImportPopover",
                     controller: this
                 }).then(function (ADDLocImpPopover) {
                     oView.addDependent(ADDLocImpPopover);
@@ -8242,6 +8536,9 @@ sap.ui.define([
     onAddUserImportClosePress: function () {
         this.byId("idUserImportPopover").close();
     },
+    onUserCloseFinishImportingPress: function () {
+        this.byId("idUserImportPopover").close();
+    },
 
            // add Third Party Arrow click popover down arrow 
            onThirdPartyArrowPress: function (oEvent) {
@@ -8281,6 +8578,12 @@ sap.ui.define([
         this._oAddThirdPartyImportPopover.then(function (AddThirdPartyImportPopover) {
             AddThirdPartyImportPopover.openBy(oButton);
         });
+    },
+    onThirdPartyImportClosePress: function () {
+        this.byId("idThirdPartyImportPopover").close();
+    },
+    onThirdPartyCloseFinishImportingPress: function () {
+        this.byId("idThirdPartyImportPopover").close();
     },
 
 
@@ -8365,6 +8668,53 @@ sap.ui.define([
         this._oAddCostCenterImportPopover.then(function (AddCostCenterImportPopover) {
             AddCostCenterImportPopover.openBy(oButton);
         });
+    },
+
+
+     // add LTLClasses  Arrow click popover down arrow 
+     onLTLClassesArrowPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._oAddLTLClassesArrowPopover) {
+            this._oAddLTLClassesArrowPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.LTLClassesArrowPopover",
+                controller: this
+            }).then(function (AddLTLClassesArrowPopover) {
+                oView.addDependent(AddLTLClassesArrowPopover);
+                // AddLTLClassesArrowPopover.bindElement("/ProductCollection/0");
+                return AddLTLClassesArrowPopover;
+            });
+        }
+        this._oAddLTLClassesArrowPopover.then(function (AddLTLClassesArrowPopover) {
+            AddLTLClassesArrowPopover.openBy(oButton);
+        });
+    },  
+
+         // add onLTLClassesArrowPress popover down arrow 
+         onLTLClassesImportPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._oAddLTLClassesImportPopover) {
+            this._oAddLTLClassesImportPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.LTLClassesImportPopover",
+                controller: this
+            }).then(function (AddLTLClassesImportPopover) {
+                oView.addDependent(AddLTLClassesImportPopover);
+                // AddLTLClassesImportPopover.bindElement("/ProductCollection/0");
+                return AddLTLClassesImportPopover;
+            });
+        }
+        this._oAddLTLClassesImportPopover.then(function (AddLTLClassesImportPopover) {
+            AddLTLClassesImportPopover.openBy(oButton);
+        });
+    },
+    onLTLClassesImportClosePress: function () {
+        this.byId("idLTLClassesImportPopover").close();
+    },
+    onLTLClassesCloseFinishImportingPress: function () {
+        this.byId("idLTLClassesImportPopover").close();
     },
 
     });
