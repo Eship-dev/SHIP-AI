@@ -209,7 +209,7 @@
 											<f:SimpleForm id="RoutingandBillingDetails" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4" >
 												<f:content>
 													<Label text="Ship Method" />
-													<ComboBox items="{eshipjetModel>/shipMethodTypes}" selectedKey="{}" selectionChange="onShopNowShipMethodTypeChange" >
+													<ComboBox items="{eshipjetModel>/shipMethodTypes}" selectedKey="{eshipjetModel>/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
 													</ComboBox>
 													<Label text="Payment Type" />
@@ -248,7 +248,7 @@
 												</VBox>
 											</Toolbar>		
 											<VBox height="1rem" />				
-											<f:SimpleForm id="RoutingandBillingDetails2" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
+											<f:SimpleForm visible="{eshipjetModel>/shipNowFedExSelect}"  id="RoutingandBillingDetails2" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
 												<f:content>
 													<Label text="Signature Option" />
 													<ComboBox items="{eshipjetModel>/signatureOption}">
@@ -343,6 +343,226 @@
 													<CheckBox text="Delivery Notifications" class="sapUiSmallMarginTop"></CheckBox>
 												</f:content>
 											</f:SimpleForm>
+
+
+										<f:SimpleForm  visible="{eshipjetModel>/shipNowDHLSelect}"  id="RoutingandBillingDetails2ry" class="sapUiTinyMarginTop" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
+												<f:content>									
+													<Label text=""></Label>
+													<CheckBox text="Go Green Plus" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text=""></Label>
+													<CheckBox text="Residential Delivery" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text=""></Label>
+													<CheckBox text="Neutral Delivery Service" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text="Dry Ice Value" />
+													<ComboBox items="{eshipjetModel>/}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+													<Label text=""></Label>
+													<CheckBox text="Insurance" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text="Dry Ice Units" />
+													<ComboBox items="{eshipjetModel>/}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+													<Label text=""></Label>
+													<CheckBox text="Paperless Invoice" class="sapUiSmallMarginTop"></CheckBox>
+													<Label text="Signature Option Type" />
+													<ComboBox items="{eshipjetModel>/}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+													<Label text=""></Label>
+													<CheckBox text="Dry Ice" class="sapUiSmallMarginTop"></CheckBox>																																																				
+												</f:content>
+											</f:SimpleForm>
+
+										
+										<f:SimpleForm   visible="{eshipjetModel>/shipNowFastFarwarderSelect}" id="RoutingandBillingDetails2ry1" class="sapUiTinyMarginTop" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
+												<f:content>									
+												<Label text="Approve Freight" />
+													<ComboBox items="{eshipjetModel>/}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>	
+												<Label text="Freight Approval Status" />
+													<ComboBox items="{eshipjetModel>/}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+												<Label text="Reason" />
+												<TextArea ></TextArea>																																																	
+												</f:content>
+											</f:SimpleForm>
+
+									    <f:SimpleForm  visible="{eshipjetModel>/shipNowOtherSelect}" id="RoutingandBillingDetails2r2y" class="sapUiTinyMarginTop" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
+												<f:content>									
+												<Label text="Approve Freight" />
+													<ComboBox items="{eshipjetModel>/}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>	
+												<Label text="Freight Approval Status" />
+													<ComboBox items="{eshipjetModel>/}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+												<Label text="Reason" />
+												<TextArea ></TextArea>																																																		
+												</f:content>
+											</f:SimpleForm>
+
+									   <f:SimpleForm  visible="{eshipjetModel>/shipNowUPSSelect}" id="RoutingandBillingDetails2ry32" 
+														class="sapUiTinyMarginTop" 
+														editable="true" 
+														layout="ColumnLayout" 
+														columnsM="2" 
+														columnsL="3" 
+														columnsXL="5">
+												<f:content>
+													<Label text="Discount/Rebate"></Label>
+													<Input></Input>
+
+													<Label text="COD Amount"></Label>
+													<Input></Input>
+
+													<Label text="Endorsement"></Label>
+													<ComboBox items="{eshipjetModel>/}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox>
+
+													<Label text=""></Label>
+													<CheckBox text="Email Notification" class="sapUiSmallMarginTop"></CheckBox>
+
+													<Label text=""></Label>
+													<CheckBox text="Residential Flag" class="sapUiSmallMarginTop"></CheckBox>
+
+													<Label text=""></Label>
+													<CheckBox text="Return Shipment Only" class="sapUiSmallMarginTop"></CheckBox>
+
+													<Label text="Signature Type"></Label>
+													<ComboBox items="{}">
+														<core:Item key="{}" text="{}" />
+													</ComboBox>
+
+													<Label text="Currency"></Label>
+													<ComboBox items="{}">
+														<core:Item key="{}" text="{}" />
+													</ComboBox>
+
+													<Label text="Freight Charge"></Label>
+													<Input ></Input>
+
+													<Label text=""></Label>
+													<CheckBox text="Exception Notification" class="sapUiSmallMarginTop"></CheckBox>
+
+													<Label text=""></Label>
+													<CheckBox text="Large Package Indicator" class="sapUiSmallMarginTop"></CheckBox>
+
+													<Label text=""></Label>
+													<CheckBox text="COD" class="sapUiSmallMarginTop"></CheckBox>
+													<Button icon="sap-icon://request" type="Transparent" class="sapUiSmallMarginTop" press="onShipNowCodEditPress" ></Button>
+
+													<Label text="Declared Amount"></Label>
+													<Input></Input>
+
+													<Label text="Return Shipment Type"></Label>
+													<ComboBox items="{}">
+														<core:Item key="{}" text="{}" />
+													</ComboBox>
+
+													<Label text="Insurance Charge"></Label>
+													<Input ></Input>
+
+													<Label text=""></Label>
+													<CheckBox text="Delivery Notification" class="sapUiSmallMarginTop"></CheckBox>
+
+													<Label text=""></Label>
+													<CheckBox text="Hold at location" class="sapUiSmallMarginTop"></CheckBox>
+
+													<Label text=""></Label>
+													<CheckBox text="Return Label" class="sapUiSmallMarginTop"></CheckBox>
+													<Button icon="sap-icon://request" type="Transparent" class="sapUiSmallMarginTop" press="onShipNowCodEditPress" ></Button>
+
+													<Label text="Currency"></Label>
+													<ComboBox items="{}">
+														<core:Item key="{}" text="{}" />
+													</ComboBox>
+
+													<Label text="Return Service Name"></Label>
+													<ComboBox items="{}">
+														<core:Item key="{}" text="{}" />
+													</ComboBox>
+
+													<Label text="Other Charges"></Label>
+													<Input ></Input>
+
+													<Label text=""></Label>
+													<CheckBox text="Saturday Delivery" class="sapUiSmallMarginTop"></CheckBox>
+
+													<Label text=""></Label>
+													<CheckBox text="Hold For Pickup" class="sapUiSmallMarginTop"></CheckBox>
+
+													
+													<Label text="COD Funds Code"></Label>
+													<ComboBox items="{}">
+														<core:Item key="{}" text="{}" />
+													</ComboBox>
+
+													<Label text="Misc Options"></Label>
+													<ComboBox items="{}">
+														<core:Item key="{}" text="{}" />
+													</ComboBox>
+
+													<Label text="Other Charges Description"></Label>
+													<Input ></Input>
+
+													<Label text=""></Label>
+													<CheckBox text="Saturday Pickup" class="sapUiSmallMarginTop"></CheckBox>
+
+													<Label text=""></Label>
+													<CheckBox text="Neutral Delivery" class="sapUiSmallMarginTop"></CheckBox>
+
+													
+												</f:content>
+											</f:SimpleForm>
+
+                                              
+											<f:SimpleForm visible="{eshipjetModel>/shipNowUSPSSelect}" id="RoutingandBillingDetails2r2y33" class="sapUiTinyMarginTop" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
+												<f:content>									
+												<Label text="COD Amount" />
+													<Input ></Input>
+												<Label text="Open and Distri. Mail Class Other" />
+													<Input ></Input>
+												<Label text=""></Label>
+													<CheckBox text="Electronic Return Receipt" class="sapUiSmallMarginTop"></CheckBox>
+												<Label text="Insured Amount" />
+													<Input ></Input>
+												<Label text=""></Label>
+													<CheckBox text="No Weekend Delivery" class="sapUiSmallMarginTop"></CheckBox>
+												<Label text=""></Label>
+													<CheckBox text="Signature Confirmation" class="sapUiSmallMarginTop"></CheckBox>																																															
+												<Label text="Package Type" />
+													<ComboBox items="{}">
+														<core:Item key="{}" text="{}" />
+													</ComboBox>
+												<Label text=""></Label>
+													<CheckBox text="Holiday Delivery" class="sapUiSmallMarginTop"></CheckBox>
+												<Label text=""></Label>
+													<CheckBox text="Open and Distribute" class="sapUiSmallMarginTop"></CheckBox>	
+												<Label text="Open and Distri. Faci. Type" />
+													<ComboBox items="{}">
+														<core:Item key="{}" text="{}" />
+													</ComboBox>
+												<Label text=""></Label>
+													<CheckBox text="Signature Waiver" class="sapUiSmallMarginTop"></CheckBox>
+												<Label text=""></Label>
+													<CheckBox text="Email Notification" class="sapUiSmallMarginTop"></CheckBox>	
+												<Label text="Open and Distri. Mail Class Enclo" />
+													<ComboBox items="{}">
+														<core:Item key="{}" text="{}" />
+													</ComboBox>
+												<Label text=""></Label>
+													<CheckBox text="certifiedMail" class="sapUiSmallMarginTop"></CheckBox>		
+												<Label text="" ></Label>
+													<CheckBox text="certifiedMail" class="sapUiSmallMarginTop" ></CheckBox>																																															
+												</f:content>
+											</f:SimpleForm>
+
+
 										</VBox>
 									</IconTabFilter>
 									<!-- Additional Info Tab Starts here -->
