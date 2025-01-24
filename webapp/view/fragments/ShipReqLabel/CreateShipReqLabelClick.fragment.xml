@@ -1,5 +1,4 @@
-<core:FragmentDefinition
-    controllerName="eshipjetfp.controller.View1"
+<core:FragmentDefinition controllerName="eshipjetfp.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:tnt="sap.tnt"
@@ -7,498 +6,239 @@
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
     xmlns:semantic="sap.m.semantic"
-    xmlns:ui="sap.ui.table"
-    height="100%"
->
-    <Toolbar
-        class="sapUiTinyMarginBottom "
-        height="10%"
-    >
-        <Button
-            icon="sap-icon://past"
-            press="onOpenRecentShipmentPopover"
-        />
-        <Text text="Ship Request / Label" />
-        <ToolbarSpacer />
-        <Button
-            icon="sap-icon://decline"
-            press="onPressCloseShipNow"
-        />
-    </Toolbar>
+    xmlns:ui="sap.ui.table" height="100%" >
 
-    <VBox class="scan-ship-page">
-        <Toolbar
-            class=" bg_colorHeaderShipReq scan-ship-toolbar"
-            height="10%"
-        >
-            <ComboBox
-                width="13%"
-                items="{/shipRequests}"
-                class="scan-ship-toolbar__input sapMInputBaseIcon1"
-            >
-                <core:Item
-                    key="{key}"
-                    text="{text}"
-                />
+       
+            <Toolbar height="10%">
+								<Button icon="sap-icon://past"  press="onOpenRecentShipmentPopover"/>
+								<Text text="Ship Request / Label"/>
+								<ToolbarSpacer/>
+								<Button  icon="sap-icon://decline" press="onPressCloseShipNow"/>
+	        </Toolbar>
+       
+         <VBox class="scan-ship-page sapUiTinyMarginBottom" width="100%" >
+            <Toolbar class="scan-ship-toolbar" height="10%" >
+            <ComboBox width="10%" items="{/shipRequests}" class="create-ship-req_tollbar_input">
+                 <core:Item key="{key}" text="{text}" />
             </ComboBox>
-            <Label
-                width="5%"
-                class="sapUiSmallMargin "
-                text="Order Type"
-                labelFor="OrderTypeComboBox"
-            />
-            <ComboBox
-                id="OrderTypeComboBox"
-                width="12%"
-                items="{/orderTypes}"
-                class="scan-ship-toolbar__input"
-            >
-                <core:Item
-                    key="{key}"
-                    text="{text}"
-                />
-            </ComboBox>
-            <Label
-                width="7%"
-                text="Shipment Type"
-                class="sapUiSmallMargin"
-            />
-            <ComboBox
-                selectedKey="{eshipjetModel>/shipmentTypeSelectedKey}"
-                class="scan-ship-toolbar__input"
-                selectionChange="onShipmentChange"
-                id="shipmentTypeComboBox"
-                width="7%"
-                items="{     path: '/ShipmentTypes'
-                    }"
-            >
-                <core:Item
-                    key="{key}"
-                    text="{text}"
-                />
-            </ComboBox>
-            <Label
-                text="Category"
-                width="6%"
-                class="sapUiSmallMargin"
-            />
-            <ComboBox
-                width="12%"
-                class="scan-ship-toolbar__input"
-                items="{/categories}"
-            >
-                <core:Item
-                    key="{key}"
-                    text="{text}"
-                />
-            </ComboBox>
-            <Label
-                width="6%"
-                text="Shipment Date"
-                class="sapUiSmallMargin"
-            />
-            <DatePicker
-                width="7%"
-                class="scan-ship-toolbar__input"
-            />
+            <Label width="10%" class="sapUiTinyMargin sapUiMediumMarginBegin" text="Order Type" />
+            <ComboBox width="10%" id="OrderTypeComboBox" items="{/orderTypes}" class="create-ship-req_tollbar_input">
+                <core:Item key="{key}" text="{text}" />
+             </ComboBox>
+            <Label width="13%" text="Shipment Type" class="sapUiTinyMargin sapUiMediumMarginBegin" />
+                <ComboBox width="10%" selectedKey="{eshipjetModel>/shipmentTypeSelectedKey}" class="create-ship-req_tollbar_input" selectionChange="onShipmentChange" 
+                id="shipmentTypeComboBox" items="{     path: '/ShipmentTypes'
+                    }">
+            <core:Item key="{key}" text="{text}" />
+                </ComboBox>
+                 <Label width="8%" text="Category" class="sapUiTinyMargin sapUiMediumMarginBegin" />
+                <ComboBox
+                     width="10%"
+                    class="create-ship-req_tollbar_input"
+                    items="{/categories}" >
+                    <core:Item key="{key}" text="{text}" />
+                </ComboBox>
+                <Label width="13%" text="Shipment Date" class="sapUiTinyMargin sapUiMediumMarginBegin" />
+                <DatePicker width="10%"  class="create-ship-req_tollbar_input" />
 
-            <Label
-                width="6%"
-                text="Requester"
-                class="sapUiSmallMargin"
-            />
-            <ComboBox
-                width="12%"
-                class="scan-ship-toolbar__input"
-            />
+                <Label width="10%" text="Requester" class="sapUiTinyMargin sapUiMediumMarginBegin" />
+                <ComboBox width="10%" class="create-ship-req_tollbar_input" />
 
-            <Label
-                width="5%"
-                text="Return Label"
-                class="sapUiSmallMargin"
-            />
-            <CheckBox width="1%" />
+                <Label width="13%" text="Return Label" class="sapUiTinyMargin sapUiMediumMarginBegin" />
+                <CheckBox width="1%"  />
 
-            <Button
-                width="1%"
-                icon="sap-icon://edit-outside"
-            />
-            <ToolbarSpacer />
-        </Toolbar>
-    </VBox>
-    <HBox width="100%">
-        <VBox width="60%">
+                <Button width="1%" icon="sap-icon://edit-outside" />
+                <ToolbarSpacer />
+                 
+            </Toolbar>
+             </VBox>
+    <HBox width="100%" >
+        <VBox  width="100%" height="60%" >
             <IconTabBar expanded="{device>/isNoPhone}">
                 <items>
                     <!-- Ship From  Tab Starts here -->
-                    <IconTabFilter
-                        text="Ship From"
-                        key="info"
-                    >
-                        <VBox>
-                            <f:SimpleForm
-                                editable="true"
-                                class="customSimpleFormShadow"
-                                width="auto"
-                                layout="ColumnLayout"
-                                columnsM="2"
-                                columnsL="2"
-                                columnsXL="2"
-                            >
+                    <IconTabFilter text="Ship From" key="ShipFrom" >
+                        <!-- <VBox height="60%" width="100%" > -->
+                            <f:SimpleForm  editable="true" width="auto" layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="2">
                                 <f:content>
-                                    <Label text="Contact Name" />
-                                    <SearchField
-                                        width="100%"
-                                        search="onSearch"
-                                        class="sapUiSmallMarginBottom "
-                                    />
+                                    <Label text="Contact Name"  />
+                                    <SearchField width="100%" search="onSearch" class="sapUiSmallMarginBottom" />
                                     <Label text="Address Line 1" />
-                                    <Input
-                                        value="{}"
-                                        class="sapUiSmallMarginBottom"
-                                    />
+                                    <Input value="" class="sapUiSmallMarginBottom create-ship-req_input"/>
                                     <Label text="City" />
-
-                                    <Input
-                                        value="{}"
-                                        class="sapUiSmallMarginBottom"
-                                    >
+                                    <Input value="" class="sapUiSmallMarginBottom create-ship-req_input" >
                                         <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
+                                            <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                         </layoutData>
                                     </Input>
                                     <!-- <Label text="State / Province" /> -->
-                                    <Input
-                                        value="{}"
-                                        placeholder="State/Province"
-                                        class="sapUiSmallMarginBottom"
-                                    >
+                                    <Input value="" placeholder="State/Province" class="sapUiSmallMarginBottom create-ship-req_input">
                                         <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
+                                            <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                         </layoutData>
                                     </Input>
                                     <Label text="Phone No" />
-                                    <Input
-                                        value="{}"
-                                        class="sapUiMediumMarginBottom"
-                                    >
+                                    <Input value="" class="sapUiMediumMarginBottom create-ship-req_input" >
                                         <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
+                                            <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                         </layoutData>
                                     </Input>
-                                    <Input
-                                        selectedKey="{}"
-                                        placeholder="Email"
-                                        class="sapUiSmallMarginBottom"
-                                    >
+                                    <Input selectedKey="{}" placeholder="Email" class="sapUiSmallMarginBottom create-ship-req_input">
                                         <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
+                                            <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                         </layoutData>
                                     </Input>
                                     <Label text="Company Name" />
-                                    <SearchField
-                                        width="100%"
-                                        search="onSearch"
-                                        class="sapUiSmallMarginBottom"
-                                    />
+                                    <SearchField width="100%" search="onSearch" class="sapUiSmallMarginBottom" />
                                     <Label text="Address Line 2" />
-                                    <Input
-                                        value="{}"
-                                        class="sapUiSmallMarginBottom"
-                                    />
+                                    <Input value="" class="sapUiSmallMarginBottom create-ship-req_input"/>
                                     <Label text="Zip / Postal Code" />
-                                    <Input
-                                        value="{}"
-                                        class="sapUiSmallMarginBottom"
-                                    >
+                                    <Input value="" class="sapUiSmallMarginBottom create-ship-req_input">
                                         <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
+                                            <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                         </layoutData>
                                     </Input>
-                                    <ComboBox
-                                        items="{}"
-                                        selectedKey="{}"
-                                        placeholder="Country"
-                                    >
-                                        <core:Item
-                                            key="{}"
-                                            text="{}"
-                                        />
+                                    <ComboBox items="{}" selectedKey="{}" placeholder="Country" class="create-ship-req_input" >
+                                        <core:Item key="{}" text="{}" />
                                         <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
+                                            <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                         </layoutData>
                                     </ComboBox>
-                                    <Label text="Address Type" />
-                                    <ComboBox value="{}">
-                                        <core:Item
-                                            key="{}"
-                                            text="{}"
-                                        />
-                                        <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
-                                        </layoutData>
-                                    </ComboBox>
-                                    <CheckBox text="RFID">
-                                        <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
-                                        </layoutData>
-                                    </CheckBox>
+                                    <Label text="RFID" ></Label>
+                                <CheckBox class="customCheckboxSize" valueState="Success" >
+                                    <layoutData>
+                                        <f:ColumnElementData cellsSmall="2" cellsLarge="2" />
+                                    </layoutData>
+                                </CheckBox>
+                                <!-- <Label text="Address Type" /> -->
+                                <ComboBox value="" placeholder="Address Type" class="create-ship-req_input">
+                                    <core:Item key="{}" text="{}" />
+                                    <layoutData>
+                                        <f:ColumnElementData cellsSmall="10" cellsLarge="10" />
+                                    </layoutData>
+                                </ComboBox>
                                 </f:content>
                             </f:SimpleForm>
                         <!-- </VBox> -->
                     </IconTabFilter>
-                    <IconTabFilter
-                        text="Ship To"
-                        key="Ship To"
-                    >
-                        <VBox
-                            height="60%"
-                            width="100%"
-                        >
-                            <f:SimpleForm
-                                editable="true"
-                                class="customSimpleFormShadow"
-                                width="auto"
-                                layout="ColumnLayout"
-                                columnsM="2"
-                                columnsL="2"
-                                columnsXL="2"
-                            >
-                                <f:content>
-                                    <Label text="Contact Name" />
-                                    <SearchField
-                                        width="100%"
-                                        search="onSearch"
-                                        class="sapUiSmallMarginBottom"
-                                    />
-                                    <Label text="Address Line 1" />
-                                    <Input
-                                        value="{}"
-                                        class="sapUiSmallMarginBottom"
-                                    />
-                                    <Label text="City" />
+                    <IconTabFilter text="Ship To" key="ShipTo">
+                       <!-- <VBox height="60%" width="100%" > -->
+                        <f:SimpleForm editable="true" width="auto" layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="2">
+                            <f:content>
+                                <Label text="Contact Name"  />
+                                <SearchField width="100%" search="onSearch" class="sapUiSmallMarginBottom" />
+                                <Label text="Address Line 1" />
+                                <Input value="" class="sapUiSmallMarginBottom create-ship-req_input"/>
+                                <Label text="City" />
 
-                                    <Input
-                                        value="{}"
-                                        class="sapUiSmallMarginBottom"
-                                    >
-                                        <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
-                                        </layoutData>
-                                    </Input>
-                                    <!-- <Label text="State / Province" /> -->
-                                    <Input
-                                        value="{}"
-                                        placeholder="State/Province"
-                                        class="sapUiSmallMarginBottom"
-                                    >
-                                        <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
-                                        </layoutData>
-                                    </Input>
-                                    <Label text="Phone No" />
-                                    <Input
-                                        value="{}"
-                                        class="sapUiMediumMarginBottom"
-                                    >
-                                        <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
-                                        </layoutData>
-                                    </Input>
-                                    <Input
-                                        selectedKey="{}"
-                                        placeholder="Email"
-                                        class="sapUiSmallMarginBottom"
-                                    >
-                                        <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
-                                        </layoutData>
-                                    </Input>
-                                    <Label text="Company Name" />
-                                    <SearchField
-                                        width="100%"
-                                        search="onSearch"
-                                        class="sapUiSmallMarginBottom"
-                                    />
-                                    <Label text="Address Line 2" />
-                                    <Input
-                                        value="{}"
-                                        class="sapUiSmallMarginBottom"
-                                    />
-                                    <Label text="Zip / Postal Code" />
-                                    <Input
-                                        value="{}"
-                                        class="sapUiSmallMarginBottom"
-                                    >
-                                        <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
-                                        </layoutData>
-                                    </Input>
-                                    <ComboBox
-                                        items="{}"
-                                        selectedKey="{}"
-                                        placeholder="Country"
-                                    >
-                                        <core:Item
-                                            key="{}"
-                                            text="{}"
-                                        />
-                                        <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
-                                        </layoutData>
-                                    </ComboBox>
-                                    <Label text="Address Type" />
-                                    <ComboBox value="{}">
-                                        <core:Item
-                                            key="{}"
-                                            text="{}"
-                                        />
-                                        <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
-                                        </layoutData>
-                                    </ComboBox>
-                                    <CheckBox text="RFID">
-                                        <layoutData>
-                                            <f:ColumnElementData
-                                                cellsSmall="6"
-                                                cellsLarge="6"
-                                            />
-                                        </layoutData>
-                                    </CheckBox>
-                                </f:content>
-                            </f:SimpleForm>
-                        </VBox>
+                                <Input value="" class="sapUiSmallMarginBottom create-ship-req_input">
+                                    <layoutData>
+                                        <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+                                    </layoutData>
+                                </Input>
+                                <!-- <Label text="State / Province" /> -->
+                                <Input value="" placeholder="State/Province" class="sapUiSmallMarginBottom create-ship-req_input">
+                                    <layoutData>
+                                        <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+                                    </layoutData>
+                                </Input>
+                                <Label text="Phone No" />
+                                <Input value="" class="sapUiMediumMarginBottom create-ship-req_input"  >
+                                    <layoutData>
+                                        <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+                                    </layoutData>
+                                </Input>
+                                <Input selectedKey="{}" placeholder="Email" class="sapUiSmallMarginBottom create-ship-req_input">
+                                    <layoutData>
+                                        <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+                                    </layoutData>
+                                </Input>
+                                <Label text="Company Name" />
+                                <SearchField width="100%" search="onSearch" class="sapUiSmallMarginBottom"/>
+                                <Label text="Address Line 2" />
+                                <Input value="" class="sapUiSmallMarginBottom create-ship-req_input"/>
+                                <Label text="Zip / Postal Code" />
+                                <Input value="" class="sapUiSmallMarginBottom create-ship-req_input">
+                                    <layoutData>
+                                        <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+                                    </layoutData>
+                                </Input>
+                                <ComboBox items="{}" selectedKey="{}" placeholder="Country" class="create-ship-req_input" >
+                                    <core:Item key="{}" text="{}" />
+                                    <layoutData>
+                                        <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
+                                    </layoutData>
+                                </ComboBox>
+                                <Label text="RFID" ></Label>
+                                <CheckBox class="customCheckboxSize" valueState="Success" >
+                                    <layoutData>
+                                        <f:ColumnElementData cellsSmall="2" cellsLarge="2" />
+                                    </layoutData>
+                                </CheckBox>
+                                <!-- <Label text="Address Type" /> -->
+                                <ComboBox value="" placeholder="Address Type" class="create-ship-req_input">
+                                    <core:Item key="{}" text="{}" />
+                                    <layoutData>
+                                        <f:ColumnElementData cellsSmall="10" cellsLarge="10" />
+                                    </layoutData>
+                                </ComboBox>
+                            </f:content>
+                        </f:SimpleForm>
+                        <!-- </VBox> -->
                     </IconTabFilter>
                 </items>
             </IconTabBar>
         </VBox>
-        <VBox
-            width="60%"
-            height="60%"
-        >
+
+        <VBox width="100%" height="100%" >
             <IconTabBar expanded="{device>/isNoPhone}">
                 <items>
                     <!-- Routing and Billing Details Tab Starts here -->
-                    <IconTabFilter
-                        text="Routing and Billing Details"
-                        key="Routing and Billing Details"
-                    >
-                        <f:SimpleForm
-                            editable="true"
-                            class="customSimpleFormShadow"
-                            width="auto"
-                            layout="ColumnLayout"
-                            columnsM="2"
-                            columnsL="2"
-                            columnsXL="2"
-                        >
+                    <IconTabFilter text="Routing and Billing Details" key="Routing and Billing Details">
+                        <f:SimpleForm editable="true" width="auto" layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="2">
                             <f:content>
-                                <Label text="Ship Method" />
-                                <ComboBox
+                                 <Label text="Ship Method" />
+                                <ComboBox 
                                     selectedKey="{eshipjetModel>/shipMethodKey}"
-                                    id="comboBox"
-                                    class="sapUiSmallMarginBottom"
+                                    id="comboBox" 
+                                    class="sapUiSmallMarginBottom create-ship-req_input"
                                     items="{
                                         path: '/ShipMethods'
-                                    }"
-                                >
-                                    <core:Item
-                                        key="{key}"
-                                        text="{text}"
-                                    />
+                                    }">
+                                    <core:Item key="{key}" text="{text}" />
                                 </ComboBox>
                                 <Label text="Account No" />
-                                <Input class="sapUiSmallMarginBottom" />
+                                <Input  class="sapUiSmallMarginBottom create-ship-req_input"/>
                                 <Label text="Cost Center" />
-                                <ComboBox
-                                    id="costCenterComboBox"
-                                    class="sapUiSmallMarginBottom"
+                                <ComboBox 
+                                    id="costCenterComboBox" 
+                                    class="sapUiSmallMarginBottom create-ship-req_input"
                                     items="{
                                         path: '/CostCenters'
-                                    }"
-                                >
-                                    <core:Item
-                                        key="{key}"
-                                        text="{text}"
-                                    />
+                                    }">
+                                    <core:Item key="{key}" text="{text}" />
                                 </ComboBox>
-                                <Label
-                                    text="Special Instructions"
-                                    class="sapUiTinyMarginBegin"
-                                />
+                                <Label text="Special Instructions" class="sapUiTinyMarginBegin" />
                                 <TextArea value="" />
-                                <Label text="Service Name" />
-                                <ComboBox
-                                    selectedKey="{eshipjetModel>/ServiceNameSelectedKeys}"
-                                    id="serviceNameComboBox"
-                                    class="sapUiSmallMarginBottom"
-                                    items="{
+                                 <Label text="Service Name" />
+                                    <ComboBox 
+                                        selectedKey="{eshipjetModel>/ServiceNameSelectedKeys}"
+                                        id="serviceNameComboBox"
+                                        class="sapUiSmallMarginBottom create-ship-req_input"
+                                        items="{
                                             path: '/ServiceNames'
-                                        }"
-                                >
-                                    <core:Item
-                                        key="{key}"
-                                        text="{text}"
-                                    />
-                                </ComboBox>
-                                <Label text="Payment Type" />
-                                <ComboBox
-                                    id="paymentTypeComboBox"
-                                    class="sapUiSmallMarginBottom"
+                                        }">
+                                        <core:Item key="{key}" text="{text}" />
+                                    </ComboBox>
+                                 <Label text="Payment Type"  />
+                                <ComboBox 
+                                    id="paymentTypeComboBox" 
+                                    class="sapUiSmallMarginBottom create-ship-req_input"
                                     placeholder="Sender"
                                     items="{
                                         path: '/PaymentTypes'
-                                    }"
-                                >
-                                    <core:Item
-                                        key="{key}"
-                                        text="{text}"
-                                    />
+                                    }">
+                                    <core:Item key="{key}" text="{text}" />
                                 </ComboBox>
                                 <Label text="PO No" />
                                 <Input class="sapUiSmallMarginBottom create-ship-req_input" />
@@ -510,44 +250,29 @@
         </VBox>
     </HBox>
 
-    <ui:Table
-        id="idCreateShipReqTable"
-        class="sapUiTinyMarginTop"
-        selectionMode="None"
-        visibleRowCount="5"
-    >
-        <ui:extension>
-            <OverflowToolbar>
-                <ToolbarSpacer />
-                <Button
-                    icon="sap-icon://action-settings"
-                    press="openCreateShipReqColNamesPopover"
-                >
-                    <customData>
-                        <core:CustomData
-                            key="remember"
-                            value="true"
-                        />
-                        <core:CustomData
-                            key="showClearButton"
-                            value="true"
-                        />
-                        <core:CustomData
-                            key="confirmButtonText"
-                            value="Ok"
-                        />
-                    </customData>
-                </Button>
-            </OverflowToolbar>
-        </ui:extension>
-        <ui:footer>
-            <Toolbar>
-                <Button
-                    text="Add Product"
-                    type="Ghost"
-                    press="onPressAddProduct"
-                />
-            </Toolbar>
-        </ui:footer>
-    </ui:Table>
+    <ui:Table id="idCreateShipReqTable"
+                class="sapUiTinyMarginTop"
+				selectionMode="None"
+				visibleRowCount="5" >
+					<ui:extension>
+						<OverflowToolbar>
+							<ToolbarSpacer ></ToolbarSpacer>
+                            <Button icon="sap-icon://action-settings" press="openCreateShipReqColNamesPopover" >
+                                <customData>
+                                    <core:CustomData key="remember" value="true" />
+                                    <core:CustomData key="showClearButton" value="true" />
+                                    <core:CustomData key="confirmButtonText" value="Ok" />
+                                </customData>
+							</Button>										
+						</OverflowToolbar>
+					</ui:extension>
+					<ui:footer>
+                <Toolbar class="toolbarbottomborder" >
+                    <OverflowToolbar class="toolbarbottomborder" >
+                        <Button  text="Add Product" type="Ghost" press="onPressAddProduct"/>
+                    </OverflowToolbar>
+				</Toolbar>
+		    </ui:footer>
+		</ui:Table>
+
 </core:FragmentDefinition>
