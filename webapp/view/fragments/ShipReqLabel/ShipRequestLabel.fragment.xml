@@ -73,6 +73,25 @@
 
  
 
+		<Toolbar >
+			<Button icon="sap-icon://filter" press="onShipReqFilterPopoverPress"></Button>
+				<ToolbarSpacer ></ToolbarSpacer>
+					<Button icon="sap-icon://synchronize" press="onShipReqRefreshPress"></Button>
+					<Button icon="sap-icon://action" press="onShipReqExportToExcel"></Button>
+                    <Button icon="sap-icon://action-settings" press="openShipReqColNamesPopover" >
+                <customData>
+                    <core:CustomData key="remember" value="true" />
+                    <core:CustomData key="showClearButton" value="true" />
+                    <core:CustomData key="confirmButtonText" value="Ok" />
+                </customData>
+			</Button>
+		</Toolbar>
+<ScrollContainer
+                width="100%"
+                height="20%"
+                horizontal="true"
+                vertical="true">
+
 	<Table id="idShipReqsTable"
 		inset="false"
 		sticky="ColumnHeaders,HeaderToolbar"
@@ -81,7 +100,7 @@
 		autoPopinMode="false" popinLayout="GridSmall"
 		growingThreshold="20"
 		items="{ path: 'eshipjetModel>/ShipReqTableData/ShipReqRows' }" >
-		<headerToolbar>
+			<!-- <headerToolbar>
                 <OverflowToolbar >
                     <Button icon="sap-icon://filter" press="onShipReqFilterPopoverPress"></Button>
 						<ToolbarSpacer ></ToolbarSpacer>
@@ -95,7 +114,7 @@
                                 </customData>
 							</Button>
                 </OverflowToolbar>
-            </headerToolbar>
+            </headerToolbar> -->
             <dependents>
                 <plugins:ColumnResizer columnResize="onColumnResize"/>
                 <columnmenu:Menu id="menu" beforeOpen="beforeOpenColumnMenu">
@@ -121,84 +140,87 @@
 
 		<columns>
 
-			<Column app:p13nKey="locationName" headerMenu="menu" visible="{eshipjetModel>/ShipReqColumns/0/visible}">
+			<Column app:p13nKey="locationName" width="10rem" headerMenu="menu" visible="{eshipjetModel>/ShipReqColumns/0/visible}">
                     <header>
                         <Text text="Location Name"/>
                     </header>
             </Column>
-			<Column app:p13nKey="Consolidation ID" headerMenu="menu" visible="{eshipjetModel>/ShipReqColumns/1/visible}">
+			<Column app:p13nKey="Consolidation ID" width="10rem" headerMenu="menu" visible="{eshipjetModel>/ShipReqColumns/1/visible}">
                     <header>
                         <Text text="Consolidation ID"/>
                     </header>
             </Column>
-			<Column app:p13nKey="requestIdLabelId" headerMenu="menu" visible="{eshipjetModel>/ShipReqColumns/2/visible}">
+			<Column app:p13nKey="requestIdLabelId" width="10rem" headerMenu="menu" visible="{eshipjetModel>/ShipReqColumns/2/visible}">
 				<header>
                     <Text text="Request ID/Label ID"/>
                 </header>
 			</Column>
-                <Column app:p13nKey="CreatedDate" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/3/visible}" headerMenu="menu">
+                <Column app:p13nKey="CreatedDate" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/3/visible}" headerMenu="menu">
 					<header>
 						<Text text="Created Date"/>
 					</header>
 				</Column>
-				<Column app:p13nKey="ShipDate" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/4/visible}" headerMenu="menu">
+				<Column app:p13nKey="ShipDate" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/4/visible}" headerMenu="menu">
                     <Text text="Ship Date"/>
                 </Column>
-				<Column app:p13nKey="ShipType" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/5/visible}" headerMenu="menu">
+				<Column app:p13nKey="ShipType" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/5/visible}" headerMenu="menu">
                     <Text text="Ship Type"/>
                 </Column>
-				<Column app:p13nKey="shipMethod" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/6/visible}" headerMenu="menu">
+				<Column app:p13nKey="shipMethod" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/6/visible}" headerMenu="menu">
                     <Text text="Ship Method"/>
                 </Column>
-				<Column app:p13nKey="ServiceName" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/7/visible}" headerMenu="menu">
+				<Column app:p13nKey="ServiceName" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/7/visible}" headerMenu="menu">
                     <Text text="Service Name"/>
                 </Column>
-				<Column app:p13nKey="TrackingNumber" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/8/visible}" headerMenu="menu">
+				<Column app:p13nKey="TrackingNumber" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/8/visible}" headerMenu="menu">
                     <Text text="Tracking Number"/>
                 </Column>
-				<Column app:p13nKey="status" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/9/visible}" headerMenu="menu">
+				<Column app:p13nKey="Status" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/12/visible}" headerMenu="menu">
                     <Text text="Status"/>
                 </Column>
-				<Column app:p13nKey="ShipToContact" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/10/visible}" headerMenu="menu">
+				<Column app:p13nKey="ShipToContact" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/10/visible}" headerMenu="menu">
                     <Text text="Ship To Contact"/>
                 </Column>
-				<Column app:p13nKey="ShipToCompany" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/11/visible}" headerMenu="menu">
+				<Column app:p13nKey="ShipToCompany" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/11/visible}" headerMenu="menu">
                     <Text text="Ship To Company"/>
                 </Column>
-				<Column app:p13nKey="ShipToAddressLine1" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/12/visible}" headerMenu="menu">
+				<Column app:p13nKey="status" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/9/visible}" headerMenu="menu">
+                    <Text text="Quote Status"/>
+                </Column>
+				<Column app:p13nKey="ShipToAddressLine1" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/13/visible}" headerMenu="menu">
                     <Text text="Ship To Address Line 1"/>
                 </Column>
-				<Column app:p13nKey="shipToStateProvince" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/13/visible}" headerMenu="menu">
+				<Column app:p13nKey="shipToStateProvince" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/14/visible}" headerMenu="menu">
                     <Text text="Ship To State/Province"/>
                 </Column>
-				<Column app:p13nKey="shipToCity" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/14/visible}" headerMenu="menu">
+				<Column app:p13nKey="shipToCity" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/15/visible}" headerMenu="menu">
                     <Text text="Ship To City"/>
                 </Column>
-				<Column app:p13nKey="shipToZipPostalCode" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/15/visible}" headerMenu="menu">
+				<Column app:p13nKey="shipToZipPostalCode" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/16/visible}" headerMenu="menu">
                     <Text text="Ship To Zip/Postal Code"/>
                 </Column>
-				<Column app:p13nKey="shipToCountry" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/16/visible}" headerMenu="menu">
+				<Column app:p13nKey="shipToCountry" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/17/visible}" headerMenu="menu">
                     <Text text="Ship To Country"/>
                 </Column>
-				<Column app:p13nKey="shipToPhone" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/17/visible}" headerMenu="menu">
+				<Column app:p13nKey="shipToPhone" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/18/visible}" headerMenu="menu">
                     <Text text="Ship To Phone No"/>
                 </Column>
-				<Column app:p13nKey="shipToEmail" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/18/visible}" headerMenu="menu">
+				<Column app:p13nKey="shipToEmail" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/19/visible}" headerMenu="menu">
                     <Text text="Ship To Email"/>
                 </Column>
-				<Column app:p13nKey="RequesterName" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/19/visible}" headerMenu="menu">
+				<Column app:p13nKey="RequesterName" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/20/visible}" headerMenu="menu">
                     <Text text="Requester Name"/>
                 </Column>
-				<Column app:p13nKey="ConnectedTo" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/20/visible}" headerMenu="menu">
+				<Column app:p13nKey="ConnectedTo" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/21/visible}" headerMenu="menu">
                     <Text text="Connected To"/>
                 </Column>
-				<Column app:p13nKey="OrderType" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/21/visible}" headerMenu="menu">
+				<Column app:p13nKey="OrderType" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/22/visible}" headerMenu="menu">
                     <Text text="Order Type"/>
                 </Column>
-				<Column app:p13nKey="RFID" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/22/visible}" headerMenu="menu">
+				<Column app:p13nKey="RFID" width="10rem"  hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/23/visible}" headerMenu="menu">
                     <Text text="RFID"/>
                 </Column>
-				<Column app:p13nKey="Actions" hAlign="Right" width="auto" visible="true" headerMenu="menu" >
+				<Column app:p13nKey="Actions" width="10rem" hAlign="Right" visible="true" headerMenu="menu" >
                     <Text text="Actions"/>
                 </Column>
 		</columns>
@@ -232,6 +254,8 @@
 
 					<Text text="{eshipjetModel>ShipToContact}" />
 					<Text text="{eshipjetModel>ShipToCompany}" />
+					<ObjectNumber number="{eshipjetModel>quoteStatus}"
+							state= "{= ${eshipjetModel>quoteStatus} === 'Submitted' ? 'Information' : 'Error' }" />
 					<Text text="{eshipjetModel>shipToCity}" />
 					<Text text="{eshipjetModel>shipToStateProvince}" />
 					<Text text="{eshipjetModel>shipToZipPostalCode}" />
@@ -251,6 +275,7 @@
 			</ColumnListItem>
 		</items>
 	</Table>
+</ScrollContainer>
 		<Toolbar >
 			<ToolbarSpacer/>
 				<Button  text="First" enabled="false" />
