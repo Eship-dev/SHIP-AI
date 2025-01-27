@@ -1511,6 +1511,8 @@ td[rowspan] {
 .total.active {
   border-bottom: 10px solid var(--totalProgress-border-color) !important;
   transform: translate(0, -6px) !important;
+  transition: transform 0.3s, box-shadow 0.3s; /* Ensure transitions apply */
+  height: 32px;
   box-shadow: 0px 5px rgba(0, 0, 0, 0.2) !important;
 }
 
@@ -1591,4 +1593,12 @@ td[rowspan] {
 }
 .Special-Services-Maring{
   margin-bottom: 8px !important;
+}
+
+/* Combobox Arrow Icon Placed as middle using margin-top: 5px; */
+.sapUiSizeCompact .sapMInputBase:not(.sapMInputBaseReadonly) .sapMInputBaseIconContainer .sapMInputBaseIcon {
+  width: 2rem;
+  height: 1.5625rem;
+  line-height: 1.625rem;
+  margin-top: 5px;
 }

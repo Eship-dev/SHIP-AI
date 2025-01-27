@@ -72,43 +72,43 @@
                             <f:SimpleForm  editable="true" width="auto" layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="2">
                                 <f:content>
                                     <Label text="Contact Name"  />
-                                    <SearchField width="100%" search="onSearch" class="sapUiSmallMarginBottom" placeholder=" " />
+                                    <SearchField value="{oAddressModel>/contactName}" width="100%" search="onSearch" class="sapUiSmallMarginBottom" placeholder=" " />
                                     <Label text="Address Line 1" />
-                                    <Input value="" class="sapUiSmallMarginBottom create-ship-req_input"/>
+                                    <Input value="{oAddressModel>/addressLine1}" class="sapUiSmallMarginBottom create-ship-req_input"/>
                                     <Label text="City" />
-                                    <Input value="" class="sapUiSmallMarginBottom create-ship-req_input" >
+                                    <Input value="{oAddressModel>/city}" class="sapUiSmallMarginBottom create-ship-req_input" >
                                         <layoutData>
                                             <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                         </layoutData>
                                     </Input>
                                     <!-- <Label text="State / Province" /> -->
-                                    <Input value="" placeholder="State/Province" class="sapUiSmallMarginBottom create-ship-req_input">
+                                    <Input value="{oAddressModel>/state}" placeholder="State/Province" class="sapUiSmallMarginBottom create-ship-req_input">
                                         <layoutData>
                                             <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                         </layoutData>
                                     </Input>
                                     <Label text="Phone No" />
-                                    <Input value="" class="sapUiMediumMarginBottom create-ship-req_input" >
+                                    <Input value="{oAddressModel>/phone}" class="sapUiMediumMarginBottom create-ship-req_input" >
                                         <layoutData>
                                             <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                         </layoutData>
                                     </Input>
-                                    <Input selectedKey="{}" placeholder="Email" class="sapUiSmallMarginBottom create-ship-req_input">
+                                    <Input value="{oAddressModel>/email}" placeholder="Email" class="sapUiSmallMarginBottom create-ship-req_input">
                                         <layoutData>
                                             <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                         </layoutData>
                                     </Input>
                                     <Label text="Company Name" />
-                                    <SearchField width="100%" search="onSearch" class="sapUiSmallMarginBottom" placeholder=" " />
+                                    <SearchField value="{oAddressModel>/companyName}" width="100%" search="onSearch" class="sapUiSmallMarginBottom" placeholder=" " />
                                     <Label text="Address Line 2" />
-                                    <Input value="" class="sapUiSmallMarginBottom create-ship-req_input"/>
+                                    <Input value="{oAddressModel>/addressLine2}" class="sapUiSmallMarginBottom create-ship-req_input"/>
                                     <Label text="Zip / Postal Code" />
-                                    <Input value="" class="sapUiSmallMarginBottom create-ship-req_input">
+                                    <Input value="{oAddressModel>/zipcode}" class="sapUiSmallMarginBottom create-ship-req_input">
                                         <layoutData>
                                             <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
                                         </layoutData>
                                     </Input>
-                                    <ComboBox items="{}" selectedKey="{}" placeholder="Country" class="create-ship-req_input" >
+                                    <ComboBox value="{oAddressModel>/country}" items="{}" selectedKey="{oAddressModel>/country}" placeholder="Country" class="create-ship-req_input" >
                                         <core:Item key="{}" text="{}" />
                                         <layoutData>
                                             <f:ColumnElementData cellsSmall="6" cellsLarge="6" />
@@ -121,7 +121,7 @@
                                     </layoutData>
                                 </CheckBox>
                                 <!-- <Label text="Address Type" /> -->
-                                <ComboBox value="" placeholder="Address Type" class="create-ship-req_input">
+                                <ComboBox value="{oAddressModel>/addressType}" placeholder="Address Type" class="create-ship-req_input">
                                     <core:Item key="{}" text="{}" />
                                     <layoutData>
                                         <f:ColumnElementData cellsSmall="10" cellsLarge="10" />

@@ -209,36 +209,36 @@
 											<f:SimpleForm id="RoutingandBillingDetails" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4" >
 												<f:content>
 													<Label text="Ship Method" />
-													<ComboBox items="{eshipjetModel>/shipMethodTypes}" selectedKey="{eshipjetModel>/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
+													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/shipMethodTypes}" selectedKey="{eshipjetModel>/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
 													</ComboBox>
 													<Label text="Payment Type" />
-													<ComboBox items="{eshipjetModel>/paymentType}">
+													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/paymentType}">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Service Name" />
-													<ComboBox items="{eshipjetModel>/serviceName}">
+													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/serviceName}">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Cost Center" />
-													<ComboBox items="{eshipjetModel>/costCenter}">
+													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/costCenter}">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Ship Method ID" />
-													<Input value="{eshipjetModel>/shipMethodId}" />
+													<Input value="{eshipjetModel>/shipMethodId}" class="create-ship-req_input" />
 													<Label text="PO No" />
-													<Input value="{eshipjetModel>/poNo}" />
+													<Input value="{eshipjetModel>/poNo}" class="create-ship-req_input" />
 													<Label text="Account No" class="LabelPadClass" />
 													<Button text="Get Carrier" class="scan-ship-toolbar__button" type="Ghost" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="4" cellsLarge="4" />
 														</layoutData>
 													</Button>
-													<Input value="{eshipjetModel>/accountNumber}" >
+													<Input value="{eshipjetModel>/accountNumber}" class="create-ship-req_input" >
 														
 													</Input>
 													<Label text="Invoice No" />
-													<Input value="{eshipjetModel>/invoiceNo}" />
+													<Input value="{eshipjetModel>/invoiceNo}" class="create-ship-req_input" />
 												</f:content>
 											</f:SimpleForm>
 											<Toolbar class="toolbarbottomborder" height="10%" width="100%">		
@@ -250,14 +250,14 @@
 											<VBox height="1rem" />				
 											<f:SimpleForm visible="{eshipjetModel>/shipNowFedExSelect}"  id="RoutingandBillingDetails2" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
 												<f:content>
-													<Label text="Signature Option" />
-													<ComboBox items="{eshipjetModel>/signatureOption}">
+													<Label text="Signature Option" class="create-ship-req_input" />
+													<ComboBox items="{eshipjetModel>/signatureOption}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Dry Ice" />
-													<Input value="{eshipjetModel>/dryIce}" />
+													<Input value="{eshipjetModel>/dryIce}" class="create-ship-req_input" />
 													<Label text="Packing Cost" />
-													<Input value="{eshipjetModel>/packingCost}" />
+													<Input value="{eshipjetModel>/packingCost}" class="create-ship-req_input" />
 													<Label text=""></Label>
 													<CheckBox text="Residential Delivery" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
@@ -270,11 +270,11 @@
 													<Label text=""></Label>
 													<CheckBox text="Ship Alert Email" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="Misc Options" />
-													<ComboBox items="{eshipjetModel>/miscOptions}">
+													<ComboBox items="{eshipjetModel>/miscOptions}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Insurance Charge" />
-													<Input value="{eshipjetModel>/insuranceChange}" />
+													<Input value="{eshipjetModel>/insuranceChange}" class="create-ship-req_input" />
 													<Label text="" visible="false"></Label>
 													<CheckBox text="Home Delivery" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="" visible="false" ></Label>
@@ -289,13 +289,14 @@
 													<Label text=""></Label>
 													<CheckBox text="Third Party Consignee" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="Indicia" />
-													<ComboBox items="{eshipjetModel>/indicia}">
+													<ComboBox items="{eshipjetModel>/indicia}" class="create-ship-req_input">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Handling Cost" />
-													<Input value="{eshipjetModel>/handlingCost}" />
+													<Input value="{eshipjetModel>/handlingCost}" class="create-ship-req_input" />
 													<Label text="Home Delivery Date" />
 													<DatePicker
+														 class="create-ship-req_input"
 														value="{eshipjetModel>/homeDeliveryDate}" />
 													<Label text=""></Label>
 													<CheckBox text="Inside Pickup" class="sapUiSmallMarginTop"></CheckBox>
@@ -309,11 +310,11 @@
 													<Label text=""></Label>
 													<CheckBox text="Fedex One Rate" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="Ancillary Endorsement" />
-													<ComboBox items="{eshipjetModel>/ancillaryEndorsement}">
+													<ComboBox items="{eshipjetModel>/ancillaryEndorsement}" class="create-ship-req_input">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Freight Charge" />
-													<Input value="{eshipjetModel>/freightCharge}" />
+													<Input value="{eshipjetModel>/freightCharge}" class="create-ship-req_input" />
 													<Label text=""></Label>
 													<CheckBox text="Saturday Pickup" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
@@ -328,11 +329,11 @@
 													<Label text=""></Label>
 													<CheckBox text="Exception Notifications" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="Lithium Batteries" />
-													<ComboBox items="{eshipjetModel>/lithiumBatteries}">
+													<ComboBox items="{eshipjetModel>/lithiumBatteries}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Taxes or Misc Charges" />
-													<Input value="{eshipjetModel>/taxesOrMiscCharges}" />
+													<Input value="{eshipjetModel>/taxesOrMiscCharges}" class="create-ship-req_input" />
 													<Label text=""></Label>
 													<CheckBox text="Saturday Delivery" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
@@ -354,19 +355,19 @@
 													<Label text=""></Label>
 													<CheckBox text="Neutral Delivery Service" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="Dry Ice Value" />
-													<ComboBox items="{eshipjetModel>/}">
+													<ComboBox items="{eshipjetModel>/}" class="create-ship-req_input">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text=""></Label>
 													<CheckBox text="Insurance" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="Dry Ice Units" />
-													<ComboBox items="{eshipjetModel>/}">
+													<ComboBox items="{eshipjetModel>/}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text=""></Label>
 													<CheckBox text="Paperless Invoice" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="Signature Option Type" />
-													<ComboBox items="{eshipjetModel>/}">
+													<ComboBox items="{eshipjetModel>/}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text=""></Label>
@@ -378,11 +379,11 @@
 										<f:SimpleForm   visible="{eshipjetModel>/shipNowFastFarwarderSelect}" id="RoutingandBillingDetails2ry1" class="sapUiTinyMarginTop" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
 												<f:content>									
 												<Label text="Approve Freight" />
-													<ComboBox items="{eshipjetModel>/}">
+													<ComboBox items="{eshipjetModel>/}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>	
 												<Label text="Freight Approval Status" />
-													<ComboBox items="{eshipjetModel>/}">
+													<ComboBox items="{eshipjetModel>/}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 												<Label text="Reason" />
@@ -393,11 +394,11 @@
 									    <f:SimpleForm  visible="{eshipjetModel>/shipNowOtherSelect}" id="RoutingandBillingDetails2r2y" class="sapUiTinyMarginTop" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
 												<f:content>									
 												<Label text="Approve Freight" />
-													<ComboBox items="{eshipjetModel>/}">
+													<ComboBox items="{eshipjetModel>/}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>	
 												<Label text="Freight Approval Status" />
-													<ComboBox items="{eshipjetModel>/}">
+													<ComboBox items="{eshipjetModel>/}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 												<Label text="Reason" />
@@ -414,13 +415,13 @@
 														columnsXL="5">
 												<f:content>
 													<Label text="Discount/Rebate"></Label>
-													<Input></Input>
+													<Input class="create-ship-req_input" ></Input>
 
 													<Label text="COD Amount"></Label>
-													<Input></Input>
+													<Input class="create-ship-req_input" ></Input>
 
 													<Label text="Endorsement"></Label>
-													<ComboBox items="{eshipjetModel>/}">
+													<ComboBox items="{eshipjetModel>/}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 
@@ -434,17 +435,17 @@
 													<CheckBox text="Return Shipment Only" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text="Signature Type"></Label>
-													<ComboBox items="{}">
+													<ComboBox items="{}" class="create-ship-req_input" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 
 													<Label text="Currency"></Label>
-													<ComboBox items="{}">
+													<ComboBox items="{}" class="create-ship-req_input" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 
 													<Label text="Freight Charge"></Label>
-													<Input ></Input>
+													<Input class="create-ship-req_input" ></Input>
 
 													<Label text=""></Label>
 													<CheckBox text="Exception Notification" class="sapUiSmallMarginTop"></CheckBox>
@@ -457,7 +458,7 @@
 													<Button icon="sap-icon://request" type="Transparent" class="sapUiSmallMarginTop" press="onShipNowCodEditPress" ></Button>
 
 													<Label text="Declared Amount"></Label>
-													<Input></Input>
+													<Input class="create-ship-req_input" ></Input>
 
 													<Label text="Return Shipment Type"></Label>
 													<ComboBox items="{}">
@@ -465,7 +466,7 @@
 													</ComboBox>
 
 													<Label text="Insurance Charge"></Label>
-													<Input ></Input>
+													<Input class="create-ship-req_input" ></Input>
 
 													<Label text=""></Label>
 													<CheckBox text="Delivery Notification" class="sapUiSmallMarginTop"></CheckBox>
@@ -478,17 +479,17 @@
 													<Button icon="sap-icon://request" type="Transparent" class="sapUiSmallMarginTop" press="onShipNowCodEditPress" ></Button>
 
 													<Label text="Currency"></Label>
-													<ComboBox items="{}">
+													<ComboBox items="{}" class="create-ship-req_input" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 
 													<Label text="Return Service Name"></Label>
-													<ComboBox items="{}">
+													<ComboBox items="{}" class="create-ship-req_input" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 
 													<Label text="Other Charges"></Label>
-													<Input ></Input>
+													<Input class="create-ship-req_input" ></Input>
 
 													<Label text=""></Label>
 													<CheckBox text="Saturday Delivery" class="sapUiSmallMarginTop"></CheckBox>
@@ -498,17 +499,17 @@
 
 													
 													<Label text="COD Funds Code"></Label>
-													<ComboBox items="{}">
+													<ComboBox items="{}" class="create-ship-req_input" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 
 													<Label text="Misc Options"></Label>
-													<ComboBox items="{}">
+													<ComboBox items="{}" class="create-ship-req_input" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 
 													<Label text="Other Charges Description"></Label>
-													<Input ></Input>
+													<Input class="create-ship-req_input" ></Input>
 
 													<Label text=""></Label>
 													<CheckBox text="Saturday Pickup" class="sapUiSmallMarginTop"></CheckBox>
@@ -524,19 +525,19 @@
 											<f:SimpleForm visible="{eshipjetModel>/shipNowUSPSSelect}" id="RoutingandBillingDetails2r2y33" class="sapUiTinyMarginTop" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
 												<f:content>									
 												<Label text="COD Amount" />
-													<Input ></Input>
+													<Input class="create-ship-req_input" ></Input>
 												<Label text="Open and Distri. Mail Class Other" />
-													<Input ></Input>
+													<Input class="create-ship-req_input" ></Input>
 												<Label text=""></Label>
 													<CheckBox text="Electronic Return Receipt" class="sapUiSmallMarginTop"></CheckBox>
 												<Label text="Insured Amount" />
-													<Input ></Input>
+													<Input class="create-ship-req_input" ></Input>
 												<Label text=""></Label>
 													<CheckBox text="No Weekend Delivery" class="sapUiSmallMarginTop"></CheckBox>
 												<Label text=""></Label>
 													<CheckBox text="Signature Confirmation" class="sapUiSmallMarginTop"></CheckBox>																																															
 												<Label text="Package Type" />
-													<ComboBox items="{}">
+													<ComboBox class="create-ship-req_input" items="{}">
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 												<Label text=""></Label>
@@ -544,7 +545,7 @@
 												<Label text=""></Label>
 													<CheckBox text="Open and Distribute" class="sapUiSmallMarginTop"></CheckBox>	
 												<Label text="Open and Distri. Faci. Type" />
-													<ComboBox items="{}">
+													<ComboBox class="create-ship-req_input" items="{}">
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 												<Label text=""></Label>
@@ -552,7 +553,7 @@
 												<Label text=""></Label>
 													<CheckBox text="Email Notification" class="sapUiSmallMarginTop"></CheckBox>	
 												<Label text="Open and Distri. Mail Class Enclo" />
-													<ComboBox items="{}">
+													<ComboBox class="create-ship-req_input" items="{}">
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 												<Label text=""></Label>
@@ -571,50 +572,50 @@
 											<f:SimpleForm id="AdditionalInfo" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
 												<f:content>
 													<Label text="PO No" />
-													<Input value="{}"></Input>
+													<Input value="{}" class="create-ship-req_input" ></Input>
 													<Label text="Prefix" />
-													<Input value="{}"></Input>
+													<Input value="{}" class="create-ship-req_input" ></Input>
 													<Label text="Refer" />
-													<ComboBox items="{}">
+													<ComboBox items="{}" class="create-ship-req_input" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 													<Label text="Description" />
-													<Input value="{}" />
+													<Input value="{}" class="create-ship-req_input" />
 
 													<Label text="Invoice No" />
-													<Input value="{}" />
+													<Input value="{}" class="create-ship-req_input" />
 													<Label text="Transportation Mode" />
-													<ComboBox items="{}">
+													<ComboBox items="{}" class="create-ship-req_input" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 													<Label text="Insurance Amount" />
-													<Input value="{}" />
+													<Input value="{}" class="create-ship-req_input" />
 													<Label text="IncoTerm" />
-													<ComboBox items="{}">
+													<ComboBox items="{}" class="create-ship-req_input" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 
 													<Label text="SO No" />
-													<Input value="{}" />
+													<Input value="{}" class="create-ship-req_input"  />
 													<Label text="Move Code" />
-													<ComboBox items="{}">
+													<ComboBox items="{}" class="create-ship-req_input" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 													<Label text="Insurance Currency" />
-													<Input value="{}" />
+													<Input value="{}" class="create-ship-req_input" />
 													<Label text="IncoTerm Location" />
-													<Input value="{}" />
+													<Input value="{}" class="create-ship-req_input" />
 
 													<Label text="References" />
-													<ComboBox items="{}">
+													<ComboBox items="{}" class="create-ship-req_input" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 													<Label text="Shipment Method" />
-													<ComboBox items="{}">
+													<ComboBox items="{}" class="create-ship-req_input" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 													<Label text="Currency" />
-													<Input value="{}" />
+													<Input value="{}" class="create-ship-req_input" />
 												</f:content>
 											</f:SimpleForm>
 											<Toolbar class="toolbarbottomborder" height="10%" width="100%">		
@@ -633,26 +634,26 @@
 										<Toolbar >
 											<HBox width="100%" >
 															<Label text="Scan Product" class="sapUiTinyMargin" />
-															<Input value="{}"></Input>
+															<Input value="{}" class="create-ship-req_input" ></Input>
 
 															<Label text="Quantity" class="sapUiTinyMargin"/>
 															<StepInput id="quantityInput1" value="{eshipjetModel>/Packages/Quantity}" min="0" max="100" step="1" width="8%" valueState="None" />
 
 															<Label text="Package Type" class="sapUiTinyMargin" />
-															<ComboBox items="{}" >
+															<ComboBox items="{}" class="create-ship-req_input" >
 																<core:Item key="{}" text="{}" />
 															</ComboBox>
 
 															<Label text="Dimensions" class="sapUiTinyMargin" />
-															<ComboBox items="{eshipjetModel>/packDimensions}" selectedKey="{eshipjetModel>/Packages/Dimension}">
+															<ComboBox items="{eshipjetModel>/packDimensions}" class="create-ship-req_input" selectedKey="{eshipjetModel>/Packages/Dimension}">
 																<core:Item key="{eshipjetModel>dimension}" text="{eshipjetModel>dimension}" />
 															</ComboBox>
 															<Button icon="sap-icon://add" press="handleDimensionAddPress" class="sapUiSmallMarginEnd"></Button>
 
 															<Label text="Total Pkgs/Weight"  class="sapUiTinyMargin"/>
-															<StepInput id="stepDownInput1" value="{eshipjetModel>/Packages/Weight1}" min="0" max="100" step="1"  width="6rem"  valueState="None" />
+															<StepInput id="stepDownInput1" class="create-ship-req_input" value="{eshipjetModel>/Packages/Weight1}" min="0" max="100" step="1"  width="6rem"  valueState="None" />
 															<Text text="/" width="10%" class="sapUiTinyMarginTop" ></Text>
-															<StepInput id="stepUpInput1" value="{eshipjetModel>/Packages/Weight2}" min="0" max="100" step="1" width="6rem" valueState="None" />
+															<StepInput id="stepUpInput1" class="create-ship-req_input" value="{eshipjetModel>/Packages/Weight2}" min="0" max="100" step="1" width="6rem" valueState="None" />
 															<Button text="Auto Pack" press="handleAutoPackPress" type="Ghost" ></Button>
 														</HBox>
 										</Toolbar>
@@ -768,7 +769,7 @@
 											<headerToolbar >
 												<OverflowToolbar class="sapUiSmallMarginBottom">
 													<Label text="Scan Handling Unit" class="sapUiTinyMargin"></Label>
-													<Input value="{}" width="8rem"></Input>
+													<Input value="{}" class="create-ship-req_input" width="8rem"></Input>
 													<ToolbarSpacer />
 													<Button text="Pack" class="scan-ship-toolbar__button sapUiTinyMarginEnd" type="Ghost" width="4%" ></Button>
 													<Button text="Pack All" class="scan-ship-toolbar__button" type="Ghost" width="5%" ></Button>
@@ -847,52 +848,52 @@
 											<f:SimpleForm id="InternationalDetails" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="6">
 												<f:content>
 													<Label text="INT Duties/Taxes" />
-													<ComboBox items="{eshipjetModel>/Packages/Weight}">
+													<ComboBox items="{eshipjetModel>/Packages/Weight}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Payor Country Code" />
-													<Input value="{eshipjetModel>/payorCountryCode}" />
+													<Input value="{eshipjetModel>/payorCountryCode}" class="create-ship-req_input" />
 													<Label text="Permit No" />
-													<Input value="{eshipjetModel>/permitNo}" />
+													<Input value="{eshipjetModel>/permitNo}" class="create-ship-req_input" />
 
 													<Label text="Payor Zip Code" />
-													<Input value="{eshipjetModel>/payorZipCode}" />
+													<Input value="{eshipjetModel>/payorZipCode}" class="create-ship-req_input" />
 													<Label text="Ship From Tax No" />
-													<Input value="{eshipjetModel>/InternationalDetails/shipFromTaxNo}" />
+													<Input value="{eshipjetModel>/InternationalDetails/shipFromTaxNo}" class="create-ship-req_input" />
 													<Label text="B13A Filing Option" />
-													<ComboBox items="{eshipjetModel>/B13AFillingOption}">
+													<ComboBox items="{eshipjetModel>/B13AFillingOption}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 
 													<Label text="ITN/XTN (SED/EEI)" />
-													<Input value="{eshipjetModel>/itn_xtn}" />
+													<Input value="{eshipjetModel>/itn_xtn}" class="create-ship-req_input" />
 													<Label text="Booking Confirm No" />
-													<Input value="{eshipjetModel>/bookingConfirmNo}" />
+													<Input value="{eshipjetModel>/bookingConfirmNo}" class="create-ship-req_input" />
 													<Label text="Customs Declared Value" />
-													<Input value="{eshipjetModel>/customsDeclaredValue}" />
+													<Input value="{eshipjetModel>/customsDeclaredValue}" class="create-ship-req_input" />
 
 													<Label text="ATLAS MRN No" />
-													<Input value="{eshipjetModel>/atlasMRNNo}"></Input>
+													<Input value="{eshipjetModel>/atlasMRNNo}" class="create-ship-req_input" ></Input>
 													<Label text="Ship To Tax No" />
-													<Input value="{eshipjetModel>/InternationalDetails/shipFromTaxNo}" />
+													<Input value="{eshipjetModel>/InternationalDetails/shipFromTaxNo}" class="create-ship-req_input" />
 													<Label text="Currency" />
-													<Input value="{eshipjetModel>/Currency}"></Input>
+													<Input value="{eshipjetModel>/Currency}" class="create-ship-req_input" ></Input>
 
 													<Label text="Documents Content Type"></Label>
-													<ComboBox items="{eshipjetModel>/documentContentType}">
+													<ComboBox items="{eshipjetModel>/documentContentType}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Reason for Export" />
-													<ComboBox items="{eshipjetModel>/reasonForExport}">
+													<ComboBox items="{eshipjetModel>/reasonForExport}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Compli. Statement" />
-													<Input value="{eshipjetModel>/compilStatement}" />
+													<Input value="{eshipjetModel>/compilStatement}" class="create-ship-req_input" />
 
 													<Label text="Duties Account No" />
-													<Input value="{eshipjetModel>/dutiesAccountNo}"></Input>
+													<Input value="{eshipjetModel>/dutiesAccountNo}" class="create-ship-req_input" ></Input>
 													<Label text="Freight Forwarder Tax No" />
-													<Input value="{eshipjetModel>/freightForwordTaxNo}" />
+													<Input value="{eshipjetModel>/freightForwordTaxNo}" class="create-ship-req_input" />
 													
 												</f:content>
 											</f:SimpleForm>

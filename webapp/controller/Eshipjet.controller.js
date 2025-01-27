@@ -6950,35 +6950,44 @@ sap.ui.define([
             var ShipNowDataModel = this.getView().getModel("ShipNowDataModel");
             var shipNowBtnId = ShipNowDataModel.getProperty("/shipNowBtnId");
             var oTable = this.getView().byId("idShipNowPickAnAddressTable");
-            var idx = oTable.getSelectedIndex();
-            var obj = oTable.getContextByIndex(idx).getObject();
-            if (shipNowBtnId === "idShipFromAddressBtn") {
-                ShipNowDataModel.setProperty("/ShipFromCONTACT", obj.contactName);
-                ShipNowDataModel.setProperty("/ShipFromCOMPANY", obj.companyName);
-                ShipNowDataModel.setProperty("/ShipFromADDRESS_LINE1", obj.addressLine1);
-                ShipNowDataModel.setProperty("/ShipFromADDRESS_LINE2", obj.addressLine2);
-                ShipNowDataModel.setProperty("/ShipFromCITY", obj.city);
-                ShipNowDataModel.setProperty("/ShipFromSTATE", obj.state);
-                ShipNowDataModel.setProperty("/ShipFromZIPCODE", obj.zipcode);
-                ShipNowDataModel.setProperty("/ShipFromCOUNTRY", obj.country);
-                ShipNowDataModel.setProperty("/ShipFromEMAIL", obj.email);
-                ShipNowDataModel.setProperty("/ShipFromPHONE", obj.phone);
-                ShipNowDataModel.setProperty("/ShipFromAddressType", obj.addressType);
-            } else if (shipNowBtnId === "idShipToAddressBtn") {
-                ShipNowDataModel.setProperty("/ShipToCONTACT", obj.contactName);
-                ShipNowDataModel.setProperty("/ShipToCOMPANY", obj.companyName);
-                ShipNowDataModel.setProperty("/ShipToADDRESS_LINE1", obj.addressLine1);
-                ShipNowDataModel.setProperty("/ShipToADDRESS_LINE2", obj.addressLine2);
-                ShipNowDataModel.setProperty("/ShipToCITY", obj.city);
-                ShipNowDataModel.setProperty("/ShipToSTATE", obj.state);
-                ShipNowDataModel.setProperty("/ShipToZIPCODE", obj.zipcode);
-                ShipNowDataModel.setProperty("/ShipToCOUNTRY", obj.country);
-                ShipNowDataModel.setProperty("/ShipToEMAIL", obj.email);
-                ShipNowDataModel.setProperty("/ShipToPHONE", obj.phone);
-                ShipNowDataModel.setProperty("/ShipToAddressType", obj.addressType);
-            }
-            oTable.clearSelection();
-            this.byId("idShipNowPickAnAddressPopover").close();
+            
+
+            var oSelectedItem = oTable.getSelectedItem();
+
+            var oContext = oSelectedItem.getBindingContext();
+            var oSelectedData = oContext.getObject();
+            var oAddressModel = new JSONModel(oSelectedData);
+            this.getView().setModel(oAddressModel, "oAddressModel");
+
+            // var idx = oTable.getSelectedIndex();
+            // var obj = oTable.getContextByIndex(idx).getObject();
+            // if (shipNowBtnId === "idShipFromAddressBtn") {
+            //     ShipNowDataModel.setProperty("/ShipFromCONTACT", obj.contactName);
+            //     ShipNowDataModel.setProperty("/ShipFromCOMPANY", obj.companyName);
+            //     ShipNowDataModel.setProperty("/ShipFromADDRESS_LINE1", obj.addressLine1);
+            //     ShipNowDataModel.setProperty("/ShipFromADDRESS_LINE2", obj.addressLine2);
+            //     ShipNowDataModel.setProperty("/ShipFromCITY", obj.city);
+            //     ShipNowDataModel.setProperty("/ShipFromSTATE", obj.state);
+            //     ShipNowDataModel.setProperty("/ShipFromZIPCODE", obj.zipcode);
+            //     ShipNowDataModel.setProperty("/ShipFromCOUNTRY", obj.country);
+            //     ShipNowDataModel.setProperty("/ShipFromEMAIL", obj.email);
+            //     ShipNowDataModel.setProperty("/ShipFromPHONE", obj.phone);
+            //     ShipNowDataModel.setProperty("/ShipFromAddressType", obj.addressType);
+            // } else if (shipNowBtnId === "idShipToAddressBtn") {
+            //     ShipNowDataModel.setProperty("/ShipToCONTACT", obj.contactName);
+            //     ShipNowDataModel.setProperty("/ShipToCOMPANY", obj.companyName);
+            //     ShipNowDataModel.setProperty("/ShipToADDRESS_LINE1", obj.addressLine1);
+            //     ShipNowDataModel.setProperty("/ShipToADDRESS_LINE2", obj.addressLine2);
+            //     ShipNowDataModel.setProperty("/ShipToCITY", obj.city);
+            //     ShipNowDataModel.setProperty("/ShipToSTATE", obj.state);
+            //     ShipNowDataModel.setProperty("/ShipToZIPCODE", obj.zipcode);
+            //     ShipNowDataModel.setProperty("/ShipToCOUNTRY", obj.country);
+            //     ShipNowDataModel.setProperty("/ShipToEMAIL", obj.email);
+            //     ShipNowDataModel.setProperty("/ShipToPHONE", obj.phone);
+            //     ShipNowDataModel.setProperty("/ShipToAddressType", obj.addressType);
+            // }
+            oTable.removeSelections(true);
+            oController.byId("idShipNowPickAnAddressPopover").close();
         },
 
 

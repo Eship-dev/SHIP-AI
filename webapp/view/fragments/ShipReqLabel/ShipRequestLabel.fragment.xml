@@ -175,7 +175,7 @@
 				<Column app:p13nKey="TrackingNumber" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/8/visible}" headerMenu="menu">
                     <Text text="Tracking Number"/>
                 </Column>
-				<Column app:p13nKey="Status" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/12/visible}" headerMenu="menu">
+				<Column app:p13nKey="Status" width="9rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/12/visible}" headerMenu="menu">
                     <Text text="Status"/>
                 </Column>
 				<Column app:p13nKey="ShipToContact" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/10/visible}" headerMenu="menu">
@@ -220,7 +220,7 @@
 				<Column app:p13nKey="RFID" width="10rem"  hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/23/visible}" headerMenu="menu">
                     <Text text="RFID"/>
                 </Column>
-				<Column app:p13nKey="Actions" width="10rem" hAlign="Right" visible="true" headerMenu="menu" >
+				<Column app:p13nKey="Actions" width="8rem" hAlign="Right" visible="true" headerMenu="menu" >
                     <Text text="Actions"/>
                 </Column>
 		</columns>
@@ -267,7 +267,7 @@
 					<Text text="{}" />
 					<Text text="{}" />
 					<Text text="{}" />
-					<HBox alignContent="End" >
+					<HBox alignContent="End" alignItems="End" >
 						<Button text="Ship Now" type="Transparent" ></Button>
 						<Button icon="sap-icon://megamenu" type="Transparent" press="ShipReqActDownArrowPress" ></Button>
 					</HBox>
