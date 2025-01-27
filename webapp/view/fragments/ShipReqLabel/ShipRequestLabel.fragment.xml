@@ -20,22 +20,22 @@
 				<VBox class="sapUiTinyMargin" width="27%" >
 					<Text text="18" class="NumberSizeTitle1"></Text>
 					<Text text="Total" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Emphasized" press="handleButtonPress" id="idShipRequestTotalBtn" class="total" icon="false" width="100%"   ></Button>
+					<Button type="Emphasized" press="handleButtonPress" id="idShipRequestTotalBtn" class="total-request-button request-button" icon="false" width="100%"   ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="27%">
 					<Text text="9" class="NumberSizeTitle1"></Text>
 					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Success" press="handleButtonPress" id="idShipRequestShippedBtn" class="thumbtitle openButton" icon="false" width="100%" ></Button>
+					<Button type="Success" press="handleButtonPress" id="idShipRequestShippedBtn" class="shipped-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="27%">
 					<Text text="8" class="NumberSizeTitle1"></Text>
 					<Text text="Open" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Critical" press="handleButtonPress" id="idShipRequestOpenBtn" class="thumbtitle openButton" icon="false" width="100%" ></Button>
+					<Button type="Critical" press="handleButtonPress" id="idShipRequestOpenBtn" class="open-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="27%">
 					<Text text="1" class="NumberSizeTitle1"></Text>
 					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Negative" press="handleButtonPress" id="idShipRequestCancelledBtn" class="thumbtitle openButton" icon="false" width="100%" ></Button>
+					<Button type="Negative" press="handleButtonPress" id="idShipRequestCancelledBtn" class="cancelled-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 			</HBox>
 		</Toolbar>

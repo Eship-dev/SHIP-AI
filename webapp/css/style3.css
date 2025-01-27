@@ -418,11 +418,11 @@
   border: 1px solid #8E9096 !important;
 }
 
-label {
+/* label {
   font-size: 16px !important;
   font-family: AvenirNextCyrMedium !important;
   color: #8D8D8D !important;
-}
+} */
 
 ::ng-deep .p-inputtext {
   font-size: 15px !important;
@@ -699,11 +699,11 @@ label {
   height: 40px !important;
   line-height: 28px !important;
 }
-label{
+/* label{
   font-size: 16px !important;
   font-family: AvenirNextCyrMedium !important;
   color: #8d8d8d !important;
-}
+} */
 ::ng-deep .p-inputtext {
   color: #514f4f !important;
   font-size: 15px !important;
@@ -1464,15 +1464,15 @@ td[rowspan] {
 }
 
 /* ShipNow Icon Tab Bar Width adjustment */
-.sapMITBInLine.sapMITBTextOnly .sapMITBHead .sapMITBVertical.sapMITBFilter {
+/* .sapMITBInLine.sapMITBTextOnly .sapMITBHead .sapMITBVertical.sapMITBFilter {
   height: 2.75rem;
   width: auto !important;
   min-width: 10rem !important;
   max-width: 18rem !important;
-  /* display: flex !important; */
-  /* align-items: stretch !important; */
-  /* justify-content: center !important; */
-}
+  display: flex !important; */
+  /* align-items: stretch !important;
+  justify-content: center !important; */
+/* }
 
 /* Create Ship Request Label Combobox Icon Adjustment*/
 /* .sapUiIcon {
@@ -1512,4 +1512,64 @@ td[rowspan] {
   width: 24px !important; /* Adjust tick width */
   height: 24px !important; /* Adjust tick height */
   /* background-size: 24px 24px !important; */
+}
+.shipNow-IconTabBar-Width {
+  .sapMITBInLine  {
+    .sapMITBHead {
+      display: flex;
+      .sapMITBVertical.sapMITBFilter  {
+        min-width: auto !important;
+        flex-grow: 1;
+      }
+    }
+  }
+
+}
+
+.request-button {
+  span {
+    height: 25px !important;
+    border-radius: 6px !important;
+    &::before {
+      content: none !important;
+    }
+    &:hover {
+      translate: 0 -6px;
+      transition: 0.3s;
+      height: 32px !important;
+    }
+  }
+}
+.total-request-button {
+  span{
+    background-color: rgb(31, 152, 222) !important;
+    &:hover { 
+      border-bottom: 10px solid #166a9b !important;
+    }
+  }
+}
+
+.shipped-request-button {
+  span{
+    background-color: rgb(74, 156, 26) !important;
+    &:hover { 
+      border-bottom: 10px solid #346d12 !important;
+    }
+  }
+}
+.open-request-button {
+  span{
+    background-color: rgb(0, 174, 255) !important;
+    &:hover { 
+      border-bottom: 10px solid #007ab3 !important;
+    }
+  }
+}
+.cancelled-request-button {
+  span{
+    background-color: rgb(232, 32, 32) !important;
+    &:hover { 
+      border-bottom: 10px solid #a21616 !important;
+    }
+  }
 }
