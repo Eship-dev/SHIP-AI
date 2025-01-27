@@ -1,0 +1,93 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.f"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:svm="sap.ui.comp.smartvariants"
+    xmlns:ui="sap.ui.table"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core" >
+    <Dialog
+        id="idAddFreightQuotesDialog1"
+        showHeader="false"
+        contentWidth="75%"
+        contentHeight="50%" >
+        <Toolbar >
+            <ToolbarSpacer ></ToolbarSpacer>
+                <Title text="Freight Quotes Submissions"></Title>
+           <ToolbarSpacer ></ToolbarSpacer>
+        </Toolbar>
+       
+            
+<content>
+    <Table id="idShipNowPickAnAddressTable1"
+           class="sapUiTinyMarginTop"
+            mode="MultiSelect"
+           items="{/addresses}">
+        <columns>
+            <Column>
+                <header>
+                    <Label text="Ship Method ID" />
+                </header>
+            </Column>
+            <Column>
+                <header>
+                    <Label text="Ship Method Description" />
+                </header>
+            </Column>
+            <Column>
+                <header>
+                    <Label text="Carrier Email" />
+                </header>
+            </Column>
+            <Column>
+                <header>
+                    <Label text="Carrier Phone" />
+                </header>
+            </Column>
+            <Column>
+                <header>
+                    <Label text="Total Freight Quote" />
+                </header>
+            </Column>
+            <Column>
+                <header>
+                    <Label text="Quote Status" />
+                </header>
+            </Column>
+            
+        </columns>
+        <items>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{contactName}" />
+                    <Text text="{companyName}" />
+                    <Text text="{addressLine1}" />
+                    <Text text="{addressLine2}" />
+                    <Text text="{addressLine3}" />
+                    <Text text="{city}" />
+                    <Text text="{state}" />
+                    <Text text="{zipcode}" />
+                    
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+</content>
+
+
+               
+            <footer >
+                    <Toolbar height="5rem"  class="scan-ship-toolbar" >
+                        <Button  text="Cancel" type="Reject" press="AddFreightQuotesDialogClose" class="scan-ship-toolbar__button scan-ship-toolbar__button_void" />
+                        <Button  text="Submit to Carrier"  class="ship-req-toolbar__button" press="AddCarrierCancelDialog" />
+                        <Button  text="Customer Approval"  class="ship-req-toolbar__button" press="AddCarrierCancelDialog" />
+                        <ToolbarSpacer/>
+                        <Button  text="Shipper Approval"  class="ship-req-toolbar__button" press="AddCarrierUpdateDialog" />
+                    </Toolbar>
+            </footer>
+    </Dialog>
+</core:FragmentDefinition>

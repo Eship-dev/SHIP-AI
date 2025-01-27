@@ -8007,6 +8007,34 @@ sap.ui.define([
             this.byId("CompanySettingsopenDialog").close();
         },
 
+
+        onGetFreightQuotesPress: function () {
+            var oView = this.getView();
+            if (!this.byId("idAddFreightQuotesDialog1")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.GetFreightQuotesDialog",
+                    controller: this // Pass the controller for binding
+                }).then(function (oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("idAddFreightQuotesDialog1").open(); // Open existing dialog
+            }
+        },
+        AddFreightQuotesDialogClose: function () {
+            this.byId("idAddFreightQuotesDialog1").close();
+        },
+        CompanySettingsSaveDialog: function () {
+            this.byId("idAddFreightQuotesDialog1").close();
+        },
+        CompanySettingsClosePress: function () {
+            this.byId("idAddFreightQuotesDialog1").close();
+        },
+
+
+
         // add on Add Order Type  popover changes start
         AddTrackingRangePress: function (oEvent) {
             var oButton = oEvent.getSource(),
