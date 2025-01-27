@@ -2,9 +2,15 @@
 	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
 	    <Toolbar width="auto"  height="15%" class="toolbarbottomborder fixedLayout" >
-			<Text text="Track Shipments: 114 in Last 7 Days" class="sapUiTinyMarginBegin toolBarHeader"></Text>
+				<HBox class="sapUiTinyMarginBegin toolBarHeader">
+					<Text text="Track Shipments: " class="toolBarHeader"/>
+					<Text text=" 99 " class="highlightedText toolBarHeader" />
+					<Text text=" in Last " class="toolBarHeader" />
+					<Text text=" 7 " class="highlightedText toolBarHeader" />
+					<Text text=" Days" class="toolBarHeader"/>
+				</HBox>
 				<ToolbarSpacer />
-					<Text text="11/23/2024 - 11/29/2024" class="toolBarHeader sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin" width="250px"></Text>
+					<Text text="11/23/2024 - 11/29/2024" class="toolBarHeader1 sapUiTinyMarginBottom sapUiTinyMarginEnd " width="270px"></Text>
 		</Toolbar>
 
 		<Toolbar height="15%" >

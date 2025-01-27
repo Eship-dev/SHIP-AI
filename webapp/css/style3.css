@@ -237,6 +237,18 @@
   font-size: x-large !important;
 }
 
+.toolBarHeader1{
+  font-weight: 400 !important;
+  font-size: x-large !important;
+  color: #794227 !important;
+  font-weight: bolder;
+  font-weight: bold !important;
+}
+.highlightedText {
+  color: #794227 !important;
+}
+
+
 .pageTitle {
   font-size: 22px;
   line-height: 32.78px;
