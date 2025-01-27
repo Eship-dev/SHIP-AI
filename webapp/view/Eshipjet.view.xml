@@ -1,7 +1,7 @@
 <mvc:View	controllerName="com.eshipjet.zeshipjet.controller.Eshipjet" xmlns="sap.m"	xmlns:core="sap.ui.core"	xmlns:mvc="sap.ui.core.mvc"	 xmlns:tnt="sap.tnt" 	xmlns:ui="sap.ui.table"
 	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	height="100%">
 	<App id="app">
-	<tnt:ToolPage id="toolPage">
+	<tnt:ToolPage id="toolPage" sideExpanded="false" >
 		<tnt:header>
 			<tnt:ToolHeader>
 				<!-- <Button		id="sideNavigationToggleButton"		icon="{value:'com/eshipjet/zeshipjet/css/images/menu.png', formatter:'sap.ui.require.toUrl'}"
@@ -336,8 +336,9 @@
 			
 				<Button text="Clear"  class="ship-now-footer_ship-rates" />
 			<ToolbarSpacer />
-				<Button text="Get Shipping Rates"  class="ship-now-footer_ship-rates" visible="{eshipjetModel>/createShipReqBusinessSelect}" />
-				<Button text="Buy Shipping Label"  class="ship-now-footer_ship-rates" visible="{eshipjetModel>/createShipReqPersonalSelect}" />
+				<Button text="Get Shipping Rates" class="ship-now-footer_ship-rates" visible="{eshipjetModel>/createShipReqBusinessSelect}" />
+				<Button text="Get Freight Quotes" press="onGetFreightQuotesPress" class="ship-now-footer_ship-rates" visible="{eshipjetModel>/createShipReqSpecialSrvsShow}" />
+				<Button text="Buy Shipping Label" class="ship-now-footer_ship-rates" visible="{eshipjetModel>/createShipReqPersonalSelect}" />
 			<ToolbarSpacer/>
 				<HBox >
 					<Button text="Save" class="create-ship-req-footer" />

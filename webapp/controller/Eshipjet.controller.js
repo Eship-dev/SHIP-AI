@@ -2572,6 +2572,85 @@ sap.ui.define([
                 oPopover.openBy(oButton);
             });
         },
+
+        onShipmentChange : function(oEvent){
+            var eshipjetModel =  this.getOwnerComponent().getModel("eshipjetModel");
+            var shipmentTypeSelectedKey =  eshipjetModel.getData().shipmentTypeSelectedKey;
+            var createShipReqSpecialSrvsShow = eshipjetModel.getProperty("/createShipReqSpecialSrvsShow");
+            if (shipmentTypeSelectedKey === "business" && createShipReqSpecialSrvsShow){
+                eshipjetModel.setProperty("/shipMethodKey", "" );
+                eshipjetModel.setProperty("/ServiceNameSelectedKeys", "" );
+                eshipjetModel.setProperty("/createShipReqBusinessSelect", false );
+                eshipjetModel.setProperty("/createShipReqPersonalSelect", false );
+
+            }else if(shipmentTypeSelectedKey === "personal" && createShipReqSpecialSrvsShow){
+                eshipjetModel.setProperty("/shipMethodKey", "" );
+                eshipjetModel.setProperty("/ServiceNameSelectedKeys", "" );
+                eshipjetModel.setProperty("/createShipReqBusinessSelect", false );
+                eshipjetModel.setProperty("/createShipReqPersonalSelect", true );
+
+            }else if(shipmentTypeSelectedKey === "interbranch" && createShipReqSpecialSrvsShow){
+                eshipjetModel.setProperty("/shipMethodKey", "JPMC" );
+                eshipjetModel.setProperty("/ServiceNameSelectedKeys", "intraExpress" );
+                eshipjetModel.setProperty("/createShipReqBusinessSelect", false );
+                eshipjetModel.setProperty("/createShipReqPersonalSelect", false );
+
+             }else if (shipmentTypeSelectedKey === "business" && createShipReqSpecialSrvsShow != true){
+                eshipjetModel.setProperty("/shipMethodKey", "" );
+                eshipjetModel.setProperty("/ServiceNameSelectedKeys", "" );
+                eshipjetModel.setProperty("/createShipReqBusinessSelect", true );
+                eshipjetModel.setProperty("/createShipReqPersonalSelect", false );
+
+            }else if(shipmentTypeSelectedKey === "personal" && createShipReqSpecialSrvsShow != true){
+                eshipjetModel.setProperty("/shipMethodKey", "" );
+                eshipjetModel.setProperty("/ServiceNameSelectedKeys", "" );
+                eshipjetModel.setProperty("/createShipReqBusinessSelect", true );
+                eshipjetModel.setProperty("/createShipReqPersonalSelect", true );
+                eshipjetModel.setProperty("/createShipReqSpecialSrvsShow", false );
+
+            }else if(shipmentTypeSelectedKey === "interbranch" && createShipReqSpecialSrvsShow != true){
+                eshipjetModel.setProperty("/shipMethodKey", "JPMC" );
+                eshipjetModel.setProperty("/ServiceNameSelectedKeys", "intraExpress" );
+                eshipjetModel.setProperty("/createShipReqBusinessSelect", false );
+                eshipjetModel.setProperty("/createShipReqPersonalSelect", false );
+
+             }
+
+        },
+
+        onCreateShipReqOrderTypeChange:function(oEvent){
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var ShipReqOrderType = eshipjetModel.getProperty("/ShipReqOrderType");
+            var shipmentTypeSelectedKey =  eshipjetModel.getData().shipmentTypeSelectedKey;
+
+            var createShipReqPersonalSelect = eshipjetModel.getProperty("/createShipReqPersonalSelect");
+            if(ShipReqOrderType === "freight_quote" && shipmentTypeSelectedKey === "business"){
+                eshipjetModel.setProperty("/createShipReqSpecialSrvsShow", true);
+                eshipjetModel.setProperty("/createShipReqBusinessSelect", false);
+                eshipjetModel.setProperty("/createShipReqPersonalSelect", false);
+            }else if(ShipReqOrderType === "freight_quote" && shipmentTypeSelectedKey === "personal"){
+                eshipjetModel.setProperty("/createShipReqSpecialSrvsShow", true);
+                eshipjetModel.setProperty("/createShipReqBusinessSelect", false);
+                eshipjetModel.setProperty("/createShipReqPersonalSelect", true);
+            }else if(ShipReqOrderType === "freight_quote" && shipmentTypeSelectedKey === "interbranch"){
+                eshipjetModel.setProperty("/createShipReqSpecialSrvsShow", true);
+                eshipjetModel.setProperty("/createShipReqBusinessSelect", false);
+                eshipjetModel.setProperty("/createShipReqPersonalSelect", false);
+            }else if(ShipReqOrderType !== "freight_quote" && shipmentTypeSelectedKey === "business"){
+                eshipjetModel.setProperty("/createShipReqSpecialSrvsShow", false);
+                eshipjetModel.setProperty("/createShipReqBusinessSelect", true);
+                eshipjetModel.setProperty("/createShipReqPersonalSelect", false);
+            }else if(ShipReqOrderType !== "freight_quote" && shipmentTypeSelectedKey === "personal"){
+                eshipjetModel.setProperty("/createShipReqSpecialSrvsShow", false);
+                eshipjetModel.setProperty("/createShipReqBusinessSelect", true);
+                eshipjetModel.setProperty("/createShipReqPersonalSelect", true);
+            }else if(ShipReqOrderType !== "freight_quote" && shipmentTypeSelectedKey === "interbranch"){
+                eshipjetModel.setProperty("/createShipReqSpecialSrvsShow", false);
+                eshipjetModel.setProperty("/createShipReqBusinessSelect", false);
+                eshipjetModel.setProperty("/createShipReqPersonalSelect", false);
+            }
+        },
+
         // Ship Request/Lable Code Changes ENd
 
 
@@ -8015,32 +8094,6 @@ sap.ui.define([
         },
         onShipNowPickAnAddressCancelPress: function () {
             this.byId("idShipNowPickAnAddressPopover").close();
-        },
-
-        onShipmentChange : function(oEvent){
-
-            var eshipjetModel =  this.getOwnerComponent().getModel("eshipjetModel");
-            var shipmentTypeSelectedKey =  eshipjetModel.getData().shipmentTypeSelectedKey;
-            if (shipmentTypeSelectedKey === "business"){
-                eshipjetModel.setProperty("/shipMethodKey", "" );
-                eshipjetModel.setProperty("/ServiceNameSelectedKeys", "" );
-
-                eshipjetModel.setProperty("/createShipReqBusinessSelect", true );
-                eshipjetModel.setProperty("/createShipReqPersonalSelect", false );
-            }else if(shipmentTypeSelectedKey === "personal"){
-                eshipjetModel.setProperty("/shipMethodKey", "" );
-                eshipjetModel.setProperty("/ServiceNameSelectedKeys", "" );
-
-                eshipjetModel.setProperty("/createShipReqBusinessSelect", true );
-                eshipjetModel.setProperty("/createShipReqPersonalSelect", true );
-            }else if(shipmentTypeSelectedKey === "interbranch"){
-                eshipjetModel.setProperty("/shipMethodKey", "JPMC" );
-                eshipjetModel.setProperty("/ServiceNameSelectedKeys", "intraExpress" );
-
-                eshipjetModel.setProperty("/createShipReqBusinessSelect", false );
-                eshipjetModel.setProperty("/createShipReqPersonalSelect", false );
-             }
-
         },
 
 

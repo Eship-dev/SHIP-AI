@@ -22,8 +22,12 @@
                  <core:Item key="{key}" text="{text}" />
             </ComboBox>
             <Label text="Order Type" width="10%" class="sapUiTinyMargin sapUiMediumMarginBegin" wrapping="true" />
-            <ComboBox width="10%" id="OrderTypeComboBox" items="{/orderTypes}" class="create-ship-req_tollbar_input">
-                <core:Item key="{key}" text="{text}" />
+            <ComboBox width="10%" id="OrderTypeComboBox" 
+                items="{/orderTypes}" 
+                class="create-ship-req_tollbar_input"
+                change="onCreateShipReqOrderTypeChange"
+                selectedKey="{eshipjetModel>/ShipReqOrderType}" >
+                    <core:Item key="{key}" text="{text}" />
              </ComboBox>
             <Label width="13%" text="Shipment Type" class="sapUiTinyMargin sapUiMediumMarginBegin" wrapping="true" />
                 <ComboBox width="10%" selectedKey="{eshipjetModel>/shipmentTypeSelectedKey}" class="create-ship-req_tollbar_input" selectionChange="onShipmentChange" 
@@ -225,7 +229,7 @@
                                     <core:Item key="{key}" text="{text}" />
                                 </ComboBox>
                                 <Label text="Special Instructions" class="sapUiTinyMarginBegin" />
-                                <TextArea value="" />
+                                <TextArea value="" class="routing-Billing-Margin" />
                                  <Label text="Service Name" />
                                     <ComboBox 
                                         selectedKey="{eshipjetModel>/ServiceNameSelectedKeys}"
@@ -248,6 +252,38 @@
                                 </ComboBox>
                                 <Label text="PO No" />
                                 <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                            </f:content>
+                        </f:SimpleForm>
+                    </IconTabFilter>
+
+                    <!-- Special Services Tab Starts here -->
+                    <IconTabFilter text="Special Services" visible="{eshipjetModel>/createShipReqSpecialSrvsShow}" key="SpecialServices" >
+                        <f:SimpleForm id="SimpleFormDisplay354"
+                            editable="false"
+                            layout="ResponsiveGridLayout"
+                            labelSpanXL="12"
+                            labelSpanL="12"
+                            labelSpanM="12"
+                            labelSpanS="12"
+                            adjustLabelSpan="false"
+                            emptySpanXL="0"
+                            emptySpanL="0"
+                            emptySpanM="0"
+                            emptySpanS="0"
+                            columnsXL="1"
+                            columnsL="1"
+                            columnsM="1"
+                            singleContainerFullSize="false" >
+                            <f:content >
+                                <VBox height="auto" >
+                                    <CheckBox class="sapUiSmallMarginBottom" text="Signature Required" />
+                                    <CheckBox text="Fragile" class="sapUiSmallMarginBottom" />
+                                    <CheckBox text="Inside Pickup" class="sapUiSmallMarginBottom" />
+                                    <CheckBox text="Inside Delivery" class="sapUiSmallMarginBottom" />
+                                    <CheckBox text="Luxury Packing/Unboxing" class="sapUiSmallMarginBottom" />
+                                    <CheckBox text="White Glove" class="sapUiSmallMarginBottom" />
+                                    <CheckBox text="Customer Approval" class="Special-Services-Maring" />
+                                </VBox>
                             </f:content>
                         </f:SimpleForm>
                     </IconTabFilter>

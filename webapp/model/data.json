@@ -32,7 +32,7 @@
     "sShipAndScan":"",
     "selectedKey": "page2",
     "image": "css/images/image.png",
-    "SideNavigation": true,
+    "SideNavigation": false,
     "shipMethodTypes":[
         {
             "key":"Gander & White",
@@ -1730,6 +1730,8 @@
         ],
         "CreateShipReqRows":[]
 	},
+    "ShipReqOrderType": "delivery_number",
+    "createShipReqSpecialSrvsShow": false,
 
     "TrackNowTableData":{
 		"TrackNowColumns": [
