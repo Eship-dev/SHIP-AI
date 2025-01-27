@@ -45,10 +45,16 @@
                 <ComboBox width="10%" class="create-ship-req_tollbar_input" />
 
                 <Label width="13%" text="Return Label" class="sapUiTinyMargin sapUiMediumMarginBegin" wrapping="true" />
-                <CheckBox width="1%"  />
+                <CheckBox width="1%" select="onCheckBoxSelect" />
 
-                <Button width="1%" icon="sap-icon://edit-outside" />
+                <Button 
+                    id="btnEditIcon"
+                    width="1%" 
+                    icon="sap-icon://edit-outside" 
+                    press="onPressShipReqLabelEditicon"
+                    enabled="false" /> <!-- Initially disabled -->
                 <ToolbarSpacer />
+
                  
             </Toolbar>
              </VBox>

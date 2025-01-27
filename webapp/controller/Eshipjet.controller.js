@@ -6908,18 +6908,18 @@ sap.ui.define([
             var oButton = oEvent.getSource(),
                 oView = this.getView();
             // create popover
-            if (!this._AddLocPopover) {
-                this._AddLocPopover = Fragment.load({
+            if (!this._AddShioReqLabelAddIconPopover) {
+                this._AddShioReqLabelAddIconPopover = Fragment.load({
                     id: oView.getId(),
                     name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.ShipNowAddIconPopover",
                     controller: this
-                }).then(function (oAddLocPopover) {
-                    oView.addDependent(oAddLocPopover);
-                    return oAddLocPopover;
+                }).then(function (oAddShioReqLabelAddIconPopover) {
+                    oView.addDependent(oAddShioReqLabelAddIconPopover);
+                    return oAddShioReqLabelAddIconPopover;
                 });
             }
-            this._AddLocPopover.then(function (oAddLocPopover) {
-                oAddLocPopover.openBy(oButton);
+            this._AddShioReqLabelAddIconPopover.then(function (oAddShioReqLabelAddIconPopover) {
+                oAddShioReqLabelAddIconPopover.openBy(oButton);
             });
         },
 
@@ -6946,7 +6946,51 @@ sap.ui.define([
             }
         },
 
+      
+      
+        // add ShipNowPlusIcon popover changes start
+      onPressShipReqLabelEditicon: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        // create popover
+        if (!this._AddShioReqLabelEditIconPopover) {
+            this._AddShioReqLabelEditIconPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.ShipReqLabelEditIconPopover",
+                controller: this
+            }).then(function (oAddShioReqLabelEditIconPopover) {
+                oView.addDependent(oAddShioReqLabelEditIconPopover);
+                return oAddShioReqLabelEditIconPopover;
+            });
+        }
+        this._AddShioReqLabelEditIconPopover.then(function (oAddShioReqLabelEditIconPopover) {
+            oAddShioReqLabelEditIconPopover.openBy(oButton);
+        });
+    },
 
+    onShioReqLabelEditIconClosePress: function (oEvent) {
+        this.byId("idShipReqLabelEditIconAddIconPopover").close();
+    },
+    ShioReqLabelEditIconSubmitPress: function () {
+        this.byId("idShipReqLabelEditIconAddIconPopover").close();
+    },
+    ShioReqLabelEditIconIconCancelPopover: function () {
+        this.byId("idShipReqLabelEditIconAddIconPopover").close();
+    },
+
+    onCheckBoxSelect: function (oEvent) {
+        // Get the state of the checkbox (selected or not)
+        var bSelected = oEvent.getParameter("selected");
+    
+        // Get the button control by its ID
+        var oButton = this.byId("btnEditIcon");
+    
+        // Enable or disable the button based on the checkbox state
+        oButton.setEnabled(bSelected);
+    },
+    
+
+    
         // add onAddAdressBookIconPress popover changes start
         onAddAdressBookIconPress: function (oEvent) {
             var oButton = oEvent.getSource(),

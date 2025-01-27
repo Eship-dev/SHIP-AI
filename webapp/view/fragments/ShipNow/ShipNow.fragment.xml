@@ -33,46 +33,46 @@
 														<Text text=" - Eshipjet Software Inc." ></Text>
 													</Toolbar>
 													<Label text="Contact Name" />
-													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromCONTACT}" />
+													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromCONTACT}" class="sapUiSmallMarginBottom create-ship-req_input" />
 													<Label text="Address Line 1" />
-													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE1}"></Input>
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE1}"></Input>
 													<Label text="City" />													
-													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromCITY}" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromCITY}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
 													<!-- <Label text="State / Province" /> -->
-													<Input maxLength="3" value="{ShipNowDataModel>/ShipFromAddress/ShipFromSTATE}" placeholder="State" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" maxLength="3" value="{ShipNowDataModel>/ShipFromAddress/ShipFromSTATE}" placeholder="State" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
 													<Label text="Email" />
-													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromEMAIL}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromEMAIL}" />
 													<Label text="Company Name" />
-													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromCOMPANY}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromCOMPANY}" />
 													<Label text="Address Line 2" />
-													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE2}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE2}" />
 													<Label text="Zip / Postal Code" />
-													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromZIPCODE}" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromZIPCODE}" >
 													<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipFromAddress/ShipFromCOUNTRY}" placeholder="Country" >
+													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipFromAddress/ShipFromCOUNTRY}" placeholder="Country" >
 														<core:Item key="{eshipjetModel>code}" text="{eshipjetModel>name}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>													
 													</ComboBox>
 													<Label text="Phone No" />
-													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromPHONE}" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromPHONE}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox selectedKey="{ShipNowDataModel>/ShipFromAddressType}" items="{eshipjetModel>/ShipFromAddress/addressType}" placeholder="Address Type">
+													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" selectedKey="{ShipNowDataModel>/ShipFromAddressType}" items="{eshipjetModel>/ShipFromAddress/addressType}" placeholder="Address Type">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
@@ -87,45 +87,45 @@
 														<Button text="Validate Address" class="scan-ship-toolbar__button" type="Ghost" width="25%" />
 													</Toolbar>
 													<Label text="Contact Name" />
-													<Input value="{ShipNowDataModel>/ShipToAddress/FullName}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/FullName}" />
 													<Label text="Address Line 1" />
-													<Input value="{ShipNowDataModel>/ShipToAddress/StreetName}"></Input>
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/StreetName}"></Input>
 													<Label text="State / Province" />
-													<Input  maxLength="3" value="{ShipNowDataModel>/ShipToAddress/Region}" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" maxLength="3" value="{ShipNowDataModel>/ShipToAddress/Region}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<Input value="{ShipNowDataModel>/ShipToAddress/CityName}" placeholder="City" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/CityName}" placeholder="City" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>									
 													</Input>
 													<Label text="Email" />
-													<Input value="{eshipjetModel>/ShipTo/EMAIL}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{eshipjetModel>/ShipTo/EMAIL}" />
 													<Label text="Company Name" />
-													<Input value="{ShipNowDataModel>/ShipToAddress/BusinessPartnerName1}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/BusinessPartnerName1}" />
 													<Label text="Address Line 2" />
-													<Input value="{ShipNowDataModel>/ShipToAddress/HouseNumber}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/HouseNumber}" />
 													<Label text="Zip / Postal Code" />
-													<Input value="{ShipNowDataModel>/ShipToAddress/PostalCode}" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/PostalCode}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox selectedKey="{ShipNowDataModel>/ShipToAddress/Country}" items="{eshipjetModel>/countriesList}" placeholder="Country">
+													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" selectedKey="{ShipNowDataModel>/ShipToAddress/Country}" items="{eshipjetModel>/countriesList}" placeholder="Country">
 														<core:Item key="{eshipjetModel>code}" text="{eshipjetModel>name}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</ComboBox>
 													<Label text="Phone No" />
-													<Input value="{ShipNowDataModel>/ShipToAddress/PhoneNumber}" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/PhoneNumber}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox selectedKey="{eshipjetModel>/ShipTo/LocationType}" items="{eshipjetModel>/shipNowAddressType}" placeholder="Address Type">
+													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" selectedKey="{eshipjetModel>/ShipTo/LocationType}" items="{eshipjetModel>/shipNowAddressType}" placeholder="Address Type">
 														<core:Item key="{eshipjetModel/addressType}" text="{eshipjetModel>addressType}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />

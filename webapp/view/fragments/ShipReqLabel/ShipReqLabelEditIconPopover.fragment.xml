@@ -1,0 +1,133 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    height="100%"
+>
+    <Popover
+        id="idShipReqLabelEditIconAddIconPopover"
+        placement="Left"
+        contentWidth="45%"
+        contentHeight="70%"
+        showHeader="true"
+        class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+    >
+        <!-- Custom Header -->
+        <customHeader>
+            <Toolbar>
+                <Title text="Return Address Information" />
+
+                <!-- Spacer to push close button to the right -->
+                <ToolbarSpacer />
+
+                <!-- Close Button -->
+                <Button
+                    icon="sap-icon://decline"
+                    press="onShioReqLabelEditIconClosePress"
+                    type="Transparent"
+                />
+            </Toolbar>
+        </customHeader>
+        <footer >
+            <OverflowToolbar>
+                <Button
+                    text="Cancel"
+                    press="ShioReqLabelEditIconIconCancelPopover"
+                />
+                <ToolbarSpacer />
+                <Button
+                    type="Emphasized"
+                   
+                    text="Submit"
+                    press="ShioReqLabelEditIconSubmitPress"
+                />
+            </OverflowToolbar>
+        </footer>
+         <!-- class="ship-req-toolbar__button " use at line number 41-->
+        <content>
+            <f:SimpleForm
+                editable="true"
+                class="customSimpleFormShadow"
+                width="auto"
+                layout="ColumnLayout"
+                columnsM="2"
+                columnsL="2"
+                columnsXL="2"
+            >
+                <f:content>
+                    <Toolbar ariaLabelledBy="idShipFrom">
+                        <Button
+                            icon="sap-icon://customer-briefing"
+                            press="handleAddLocPress"
+                        />
+                        <Title
+                            id="idAddShipReqLabelFrom"
+                            text="Contact Info"
+                        />
+                    </Toolbar>
+                    <Label text="Contact Name" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <Label text="Phone No" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
+                    <Label text="Company Name" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
+                    <Label text="Email" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
+                </f:content>
+            </f:SimpleForm>
+
+                  <f:SimpleForm
+                editable="true"
+                class="customSimpleFormShadow"
+                width="auto"
+                layout="ColumnLayout"
+                columnsM="2"
+                columnsL="2"
+                columnsXL="2"
+            >
+                <f:content>
+        <!-- Address Info Header -->
+        <Toolbar>
+           <Button
+                icon="sap-icon://customer-briefing"
+                press="handleAddLocPress"/>
+            <Title text="Address Info" />
+        </Toolbar>
+
+        <!-- Address Line 1 -->
+        <Label text="Address Line 1" />
+        <Input placeholder="Enter Address" class="sapUiSmallMarginBottom create-ship-req_input" />
+
+ <!-- City -->
+        <Label text="City" />
+        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
+
+        <!-- Zip / Postal Code -->
+        <Label text="Zip / Postal Code" />
+        <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+
+         <!-- State / Province -->
+        <Label text="State / Province" />
+        <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+
+
+        <!-- Address Line 2 -->
+        <Label text="Address Line 2"  />
+        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
+
+        <!-- Country -->
+        <Label text="Country" />
+        <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+        <!-- Address Type -->
+        <Label text="Address Type" />
+        <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+    </f:content>
+            </f:SimpleForm>
+
+
+        </content>
+    </Popover>
+</core:FragmentDefinition>
+
