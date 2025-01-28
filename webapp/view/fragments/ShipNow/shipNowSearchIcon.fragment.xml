@@ -28,6 +28,7 @@
 								<fb:FilterGroupItem name="LocationName" label="Location Name" groupName="Group1" visibleInFilterBar="true">
 									<fb:control>
 										<ComboBox
+										class="sapUiSmallMarginBottom create-ship-req_input"
 											name="LocationName"
 											items="{}" >
 											<core:Item key="{key}" text="{name}"/>
@@ -38,6 +39,7 @@
                                 <fb:FilterGroupItem name="ShipMethod" label="Ship Method" groupName="Group1" visibleInFilterBar="true">
 									<fb:control>
 										<ComboBox
+										class="sapUiSmallMarginBottom create-ship-req_input"
 											name="ShipMethod"
 											items="{}" >
 											<core:Item key="{key}" text="{name}"/>
@@ -48,6 +50,7 @@
                                 <fb:FilterGroupItem name="FromDate" label="From Date" groupName="Group1" visibleInFilterBar="true">
 									<fb:control>
 										<DatePicker
+										class="sapUiSmallMarginBottom create-ship-req_input"
                                             name="FromDate"
                                             value="{}" />
 									</fb:control>
@@ -56,6 +59,7 @@
                                 <fb:FilterGroupItem name="ToDate" label="To Date" groupName="Group1" visibleInFilterBar="true">
 									<fb:control>
 										<DatePicker
+										class="sapUiSmallMarginBottom create-ship-req_input"
                                             name="ToDate"
                                             value="{}" />
 									</fb:control>
@@ -64,6 +68,7 @@
                                 <fb:FilterGroupItem name="FeederSystem" label="Feeder System" groupName="Group1" visibleInFilterBar="true">
 									<fb:control>
 										<ComboBox
+										class="sapUiSmallMarginBottom create-ship-req_input"
 											name="FeederSystem"
 											items="{}" >
 											<core:Item key="{key}" text="{name}"/>
@@ -73,19 +78,20 @@
 
                                 <fb:FilterGroupItem name="requestIdLabelId" label="Request Id / Label Id" groupName="Group1" visibleInFilterBar="true">
 									<fb:control>
-										<Input name="requestIdLabelId" value=""></Input>
+										<Input class="sapUiSmallMarginBottom create-ship-req_input" name="requestIdLabelId" value=""></Input>
 									</fb:control>
 								</fb:FilterGroupItem>
 
                                 <fb:FilterGroupItem name="ShipToCompanyName" label="Ship To Company Name" groupName="Group1" visibleInFilterBar="true">
 									<fb:control>
-										<Input name="ShipToCompanyName" value=""></Input>
+										<Input class="sapUiSmallMarginBottom create-ship-req_input" name="ShipToCompanyName" value=""></Input>
 									</fb:control>
 								</fb:FilterGroupItem>
 
                                 <fb:FilterGroupItem name="Status" label="Status" groupName="Group1" visibleInFilterBar="true">
 									<fb:control>
 										<ComboBox
+										class="sapUiSmallMarginBottom create-ship-req_input"
 											name="Status"
 											items="{}" >
 											<core:Item key="{key}" text="{name}"/>

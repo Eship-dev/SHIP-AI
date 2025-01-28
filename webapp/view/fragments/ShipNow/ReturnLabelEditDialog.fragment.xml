@@ -39,14 +39,14 @@
 			<f:content>
 				<core:Title text="Contact Info" icon="sap-icon://customer-briefing" />
 				<Label text="Contact Name" />
-				<Input value="{}" />
+				<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{}" />
 				<Label text="Email" />
-				<Input value="{}" />
+				<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{}" />
 				<core:Title  />
                 <Label text="Company Name" />
-				<Input value="{}" />
+				<Inputclass="sapUiSmallMarginBottom create-ship-req_input"  value="{}" />
                 <Label text="Phone No" />
-				<Input value="{}" />
+				<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{}" />
 			</f:content>
 		</f:SimpleForm>
 

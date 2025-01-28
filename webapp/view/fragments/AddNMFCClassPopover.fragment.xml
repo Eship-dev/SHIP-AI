@@ -53,20 +53,20 @@
 							  columnsXL="2">
 					<f:content>
                         <Label text="Location Name" />
-                        <ComboBox  placeholder="Select">
+                        <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
                         </ComboBox>
                         <Label text="NMFC Description" />  
-			            <Input ></Input>
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
                         <Label text="Status" />
-                        <Switch state="true" >
+                        <Switch class="sapUiSmallMarginBottom create-ship-req_input" state="true" >
 				            <layoutData>
 					            <FlexItemData growFactor="1" />
 				            </layoutData>
 			            </Switch>
                         <Label text="NMFC Code" />  
-			            <Input ></Input>
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input" ></Input>
                         <Label text="Ship Method" />  
-			            <ComboBox  placeholder="Select">
+			            <ComboBox class="sapUiSmallMarginBottom create-ship-req_input"  placeholder="Select">
                         </ComboBox>
 					</f:content>
 				</f:SimpleForm>

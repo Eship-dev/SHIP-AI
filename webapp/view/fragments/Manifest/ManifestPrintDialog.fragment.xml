@@ -18,6 +18,7 @@
 					<ComboBox
                         placeholder="Select Location"
 						width="100%"
+						class="sapUiSmallMarginBottom create-ship-req_input"
 						items="{}">
 						<core:Item key="{key}" text="{text}" />
 					</ComboBox>
@@ -27,6 +28,7 @@
 					<ComboBox
                         placeholder="Select"
 						width="100%"
+						class="sapUiSmallMarginBottom create-ship-req_input"
 						items="{}">
 						<core:Item key="{key}" text="{text}" />
 					</ComboBox>
@@ -36,6 +38,7 @@
 					<ComboBox
                         placeholder="Select Account"
 						width="100%"
+						class="sapUiSmallMarginBottom create-ship-req_input"
 						items="{}">
 						<core:Item key="{key}" text="{text}" />
 					</ComboBox>
@@ -49,21 +52,24 @@
 						width="100%"
 						placeholder="Select Date"
 						change="handleChange"
-						class="sapUiSmallMarginBottom"/>
+						class="sapUiSmallMarginBottom create-ship-req_input"/>
 			</VBox>
             <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
 					<Label text="Ship Time(HH:MM)" width="100%" />
 					<TimePicker value="{
                         path: '/time',
+						
                         type: 'sap.ui.model.type.Time'}" 
-                        placeholder="From Time" />
+                        placeholder="From Time" 
+						class="sapUiSmallMarginBottom create-ship-req_input"/>
 			</VBox>
             <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
 					<Label text="To Time" width="100%" />
 					<TimePicker value="{
                         path: '/time',
                         type: 'sap.ui.model.type.Time'}"
-                        placeholder="To Time" />
+                        placeholder="To Time" 
+						class="sapUiSmallMarginBottom create-ship-req_input"/>
 			</VBox>
 		</HBox>
         </VBox>

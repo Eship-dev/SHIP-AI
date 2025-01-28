@@ -57,16 +57,16 @@
             >
                 <f:content>
                     <Label text="Location Name" />
-                    <ComboBox  placeholder="Select">
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input"  placeholder="Select">
                         </ComboBox>
                     <Label text="Contact Name" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Address Line 1" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="City" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Zip / Postal Code" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Status" />
                         <Switch state="true" >
 				            <layoutData>
@@ -74,15 +74,15 @@
 				            </layoutData>
 			            </Switch>
                     <Label text="Account #" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Company Name" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Address Line 2" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="State / Province" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Country" />
-                    <ComboBox  placeholder="Select">
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input"  placeholder="Select">
                         </ComboBox>
                 </f:content>
             </f:SimpleForm> 

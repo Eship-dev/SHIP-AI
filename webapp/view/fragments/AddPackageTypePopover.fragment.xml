@@ -53,17 +53,17 @@
 							  columnsXL="2">
 					<f:content>
                          <Label text="Location Name" />
-                         <ComboBox  placeholder="Select">
+                         <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
                          </ComboBox>
                           <Label text="Package Type" />  
-			             <Input ></Input>
+			             <Input class="sapUiSmallMarginBottom create-ship-req_input" ></Input>
                          <Label text="Dimension Units" />
-                        <ComboBox  placeholder="Select">
+                        <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
                          </ComboBox>
                         <Label text="Package Code" />  
-			             <Input ></Input>
+			             <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
                          <Label text="Ship Method" />
-                        <ComboBox  placeholder="Select">
+                        <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
                          </ComboBox>
                           <Label text="Status" />
                         <Switch state="true" >

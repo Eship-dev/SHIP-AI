@@ -53,10 +53,10 @@
 							  columnsXL="2">
 					<f:content>
 						 <Label text="Location Name" />  
-                         <ComboBox  placeholder="Select">
+                         <ComboBox  class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
 			              </ComboBox>
                          <Label text="Range From" />
-                         <Input ></Input>
+                         <Input  class="sapUiSmallMarginBottom create-ship-req_input"></Input>
                           <Label text="Status" />
                         <Switch state="true" >
 				            <layoutData>
@@ -64,10 +64,10 @@
 				            </layoutData>
 			            </Switch>
                         <Label text="Carrier" />
-                         <ComboBox  placeholder="Select">
+                         <ComboBox  class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
 			              </ComboBox>
                         <Label text="Range To" />
-                        <Input />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                        
 					</f:content>
 				</f:SimpleForm>

@@ -57,25 +57,25 @@
 								<Title id="idAddCostFrom3" text="Cost Center"/>
 						</Toolbar>
                         <Label text="Location ID" />
-                        <ComboBox  placeholder="Select">
+                        <ComboBox class="sapUiSmallMarginBottom create-ship-req_input"  placeholder="Select">
                         </ComboBox>
                         <Label text="Cost Center Name" />  
-			            <Input ></Input>
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
                         <Label text="Manager Email" />  
-			            <Input ></Input>
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
                         <Label text="Cost Center Name" />  
-			            <Input ></Input>
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
                         <Label text="Cost Center Name" />  
-			            <Input ></Input>
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
                         <Label text="Manager Email" />  
-			            <Input ></Input>
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
                         
                         <Label text="Type here"/>
                         <TextArea 
-                        id="TypeHere"/>
+                        id="TypeHere" class="sapUiSmallMarginBottom create-ship-req_input"/>
                         
                         <Label text="Location ID" />
-                        <ComboBox  placeholder="Select">
+                        <ComboBox  class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
                         </ComboBox>
                         <Label text="Status" />
                         <Switch state="true" >

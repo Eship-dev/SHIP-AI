@@ -18,22 +18,22 @@
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="9" class="NumberSizeTitle1"></Text>
 					<Text text="Total" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Emphasized" press="handleTrackNowFilterBtnPress" icon="false" width="100%"  ></Button>
+					<Button type="Emphasized" press="handleTrackNowFilterBtnPress" class="total-request-button request-button" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Success" press="handleTrackNowFilterBtnPress" icon="false" width="100%" ></Button>
+					<Button type="Success" press="handleTrackNowFilterBtnPress" class="shipped-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="9" class="NumberSizeTitle1"></Text>
 					<Text text="Open" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Critical" press="handleTrackNowFilterBtnPress" icon="false" width="100%" ></Button>
+					<Button type="Critical" press="handleTrackNowFilterBtnPress"  class="cancelled-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Negative" press="handleTrackNowFilterBtnPress" icon="false" width="100%" ></Button>
+					<Button type="Negative" press="handleTrackNowFilterBtnPress" class="open-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 			</HBox>
 		</Toolbar>
@@ -45,11 +45,11 @@
 					<ui:extension>
 						<OverflowToolbar width="100%" height="3rem" >
 								<Button icon="sap-icon://filter" press="onOrdersFilterPopoverPress"></Button>
-								<ComboBox width="10%" >
+								<ComboBox width="10%" class=" create-ship-req_input">
 									<core:Item ></core:Item>
 								</ComboBox>
 								<Label text="Delivery Number" class="sapUiMediumMarginBegin" ></Label>
-								<SearchField width="10%" ></SearchField>
+								<SearchField width="10%"  ></SearchField>
 								<Button text="Get" width="3%" type="Ghost" class="scan-ship-toolbar__button" ></Button>
 								
 								<ToolbarSpacer />

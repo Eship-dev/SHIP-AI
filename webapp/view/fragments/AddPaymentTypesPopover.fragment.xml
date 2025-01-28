@@ -55,12 +55,12 @@
 							  columnsXL="2">
 					<f:content>
                          <Label text="Payment Type" />
-                         <ComboBox  placeholder="Select">
+                         <ComboBox  class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
                          </ComboBox>
                           <Label text="Description" />  
-			             <Input ></Input>
+			             <Input class="sapUiSmallMarginBottom create-ship-req_input" ></Input>
                          <Label text="Payment Code" />
-                        <Input /> 
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/> 
                           <Label text="Status" />
                         <Switch state="true" >
 				            <layoutData>

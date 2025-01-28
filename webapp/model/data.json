@@ -1014,8 +1014,8 @@
               },
               {
                 "orderID": "DN000001347",
-                "CreatedDate": "12/09/2024",
-                "ShipDate": "12/09/2024",
+                "CreatedDate": "01-26-2025",
+                "ShipDate": "01-26-2025",
                 "ShipmentType": "Business",
                 "shipMethod": "UPS",
                 "ServiceName": "03",
@@ -1051,8 +1051,8 @@
               },
               {
                 "orderID": "DN000001347",
-                "CreatedDate": "12/09/2024",
-                "ShipDate": "12/09/2024",
+                "CreatedDate": "01-26-2025",
+                "ShipDate": "01-26-2025",
                 "ShipmentType": "Business",
                 "shipMethod": "UPS",
                 "ServiceName": "03",
@@ -1070,8 +1070,8 @@
               },
               {
                 "orderID": "DN000001347",
-                "CreatedDate": "12/09/2024",
-                "ShipDate": "12/09/2024",
+                "CreatedDate": "01-26-2025",
+                "ShipDate": "01-26-2025",
                 "ShipmentType": "Business",
                 "shipMethod": "UPS",
                 "ServiceName": "03",
@@ -1089,8 +1089,8 @@
               },
               {
                 "orderID": "DN000001347",
-                "CreatedDate": "12/09/2024",
-                "ShipDate": "12/09/2024",
+                "CreatedDate": "01-26-2025",
+                "ShipDate": "01-26-2025",
                 "ShipmentType": "Business",
                 "shipMethod": "UPS",
                 "ServiceName": "03",
@@ -1108,8 +1108,8 @@
               },
               {
                 "orderID": "DN000001347",
-                "CreatedDate": "12/09/2024",
-                "ShipDate": "12/09/2024",
+                "CreatedDate": "01-26-2025",
+                "ShipDate": "01-26-2025",
                 "ShipmentType": "Business",
                 "shipMethod": "UPS",
                 "ServiceName": "03",
@@ -1127,8 +1127,8 @@
               },
               {
                 "orderID": "DN000001347",
-                "CreatedDate": "12/09/2024",
-                "ShipDate": "12/09/2024",
+                "CreatedDate": "01-26-2025",
+                "ShipDate": "01-26-2025",
                 "ShipmentType": "Business",
                 "shipMethod": "UPS",
                 "ServiceName": "03",
@@ -2570,8 +2570,8 @@
             {
                 "batchId": "BS0000006",
                 "BatchRequestId": "BS0000006-ORD125",
-                "CreatedDate": "11/20/2024",
-                "ShipDate": "11/20/2024",
+                "CreatedDate": "01-30-2025",
+                "ShipDate": "01-30-2025",
                 "ShipmentType": "Personal",
                 "shipMethod": "FedEx",
                 "ServiceName": "FedEx Ground",
@@ -2595,8 +2595,8 @@
               {
                 "batchId": "BS0000006",
                 "BatchRequestId": "BS0000006-ORD116",
-                "CreatedDate": "11/20/2024",
-                "ShipDate": "11/20/2024",
+                "CreatedDate": "01-30-2025",
+                "ShipDate": "01-30-2025",
                 "ShipmentType": "Business",
                 "shipMethod": "FedEx",
                 "ServiceName": "FedEx Ground",
@@ -2620,8 +2620,8 @@
               {
                 "batchId": "BS0000006",
                 "BatchRequestId": "BS0000006-ORD125",
-                "CreatedDate": "11/20/2024",
-                "ShipDate": "11/20/2024",
+                "CreatedDate": "01-30-2025",
+                "ShipDate": "01-30-2025",
                 "ShipmentType": "Personal",
                 "shipMethod": "FedEx",
                 "ServiceName": "FedEx Ground",
@@ -2645,8 +2645,8 @@
               {
                 "batchId": "BS0000006",
                 "BatchRequestId": "BS0000006-ORD116",
-                "CreatedDate": "11/20/2024",
-                "ShipDate": "11/20/2024",
+                "CreatedDate": "01-30-2025",
+                "ShipDate": "01-30-2025",
                 "ShipmentType": "Business",
                 "shipMethod": "FedEx",
                 "ServiceName": "FedEx Ground",
@@ -2670,8 +2670,8 @@
               {
                 "batchId": "BS0000006",
                 "BatchRequestId": "BS0000006-ORD125",
-                "CreatedDate": "11/20/2024",
-                "ShipDate": "11/20/2024",
+                "CreatedDate": "01-30-2025",
+                "ShipDate": "01-30-2025",
                 "ShipmentType": "Personal",
                 "shipMethod": "FedEx",
                 "ServiceName": "FedEx Ground",
@@ -2695,8 +2695,8 @@
               {
                 "batchId": "BS0000006",
                 "BatchRequestId": "BS0000006-ORD116",
-                "CreatedDate": "11/20/2024",
-                "ShipDate": "11/20/2024",
+                "CreatedDate": "01-30-2025",
+                "ShipDate": "01-30-2025",
                 "ShipmentType": "Business",
                 "shipMethod": "FedEx",
                 "ServiceName": "FedEx Ground",
@@ -2720,8 +2720,8 @@
               {
                 "batchId": "BS0000006",
                 "BatchRequestId": "BS0000006-ORD125",
-                "CreatedDate": "11/20/2024",
-                "ShipDate": "11/20/2024",
+                "CreatedDate": "01-30-2025",
+                "ShipDate": "01-30-2025",
                 "ShipmentType": "Personal",
                 "shipMethod": "FedEx",
                 "ServiceName": "FedEx Ground",
@@ -2745,8 +2745,8 @@
               {
                 "batchId": "BS0000006",
                 "BatchRequestId": "BS0000006-ORD116",
-                "CreatedDate": "11/20/2024",
-                "ShipDate": "11/20/2024",
+                "CreatedDate": "01-30-2025",
+                "ShipDate": "01-30-2025",
                 "ShipmentType": "Business",
                 "shipMethod": "FedEx",
                 "ServiceName": "FedEx Ground",
@@ -5209,31 +5209,67 @@
         ],
         "RecentShipmentSet":[{
             "shipmentNo":"80000022",
-            "date":"12/06/2024",
+            "date":"06-23-2024",
             "ContactName": "Plant 1710 as Business Partner",
             "shipMethod":"UPS"
         },
         {
             "shipmentNo":"80000022",
-            "date":"12/06/2024",
+            "date":"06-23-2024",
             "ContactName": "Plant 1710 as Business Partner",
             "shipMethod":"UPS"
         },
         {
             "shipmentNo":"80000022",
-            "date":"12/06/2024",
+            "date":"06-23-2024",
             "ContactName": "Plant 1710 as Business Partner",
             "shipMethod":"UPS"
         },
         {
             "shipmentNo":"80000022",
-            "date":"12/06/2024",
+            "date":"06-23-2024",
             "ContactName": "Plant 1710 as Business Partner",
             "shipMethod":"UPS"
         },
         {
             "shipmentNo":"80000022",
-            "date":"12/06/2024",
+            "date":"06-23-2024",
+            "ContactName": "Plant 1710 as Business Partner",
+            "shipMethod":"UPS"
+        },
+        {
+            "shipmentNo":"80000023",
+            "date":"06-23-2024",
+            "ContactName": "Plant 1710 as Business Partner",
+            "shipMethod":"UPS"
+        },
+        {
+            "shipmentNo":"80000024",
+            "date":"06-23-2024",
+            "ContactName": "Plant 1710 as Business Partner",
+            "shipMethod":"UPS"
+        },
+        {
+            "shipmentNo":"80000025",
+            "date":"06-23-2024",
+            "ContactName": "Plant 1710 as Business Partner",
+            "shipMethod":"UPS"
+        },
+        {
+            "shipmentNo":"80000026",
+            "date":"06-23-2024",
+            "ContactName": "Plant 1710 as Business Partner",
+            "shipMethod":"UPS"
+        },
+        {
+            "shipmentNo":"80000027",
+            "date":"06-23-2024",
+            "ContactName": "Plant 1710 as Business Partner",
+            "shipMethod":"UPS"
+        },
+        {
+            "shipmentNo":"80000028",
+            "date":"06-23-2024",
             "ContactName": "Plant 1710 as Business Partner",
             "shipMethod":"UPS"
         }],
@@ -5362,7 +5398,7 @@
             "orderRows": [
         {
           "orderID": "DN000001358",
-          "CreatedDate": "10/10/2024",
+          "CreatedDate": "03-20-2024",
           "ShipDate": "01-20-2025",
           "ShipmentType": "Business",
           "shipMethod": "FedEx Freight",
@@ -5381,8 +5417,8 @@
         },
         {
           "orderID": "DN000001347",
-          "CreatedDate": "12/09/2024",
-          "ShipDate": "12/09/2024",
+          "CreatedDate": "01-26-2025",
+          "ShipDate": "01-26-2025",
           "ShipmentType": "Business",
           "shipMethod": "UPS",
           "ServiceName": "03",
@@ -5594,7 +5630,7 @@
 
     "HeaderInfo": {
         "DocumentNumber": "DHL-SpecialServiceTest1",
-        "ShipDate": "2024-11-26T09:11:32.358Z",
+        "ShipDate": "03-20-2024T09:11:32.358Z",
         "TotalWeight": "020",
         "InsuranceAmount": "",
         "InsuranceCurrency": "",

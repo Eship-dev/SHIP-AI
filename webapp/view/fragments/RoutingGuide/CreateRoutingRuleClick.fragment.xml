@@ -25,48 +25,48 @@
             press="onPressCloseRoutingGuide"
         />
     </Toolbar>
-    <Toolbar>
+    <Toolbar height="4rem">
         <Label
             text="Role Name"
             width="5%"
         />
-        <Input width="10%" />
+        <Input class=" create-ship-req_input" width="10%" />
 
         <Label
             text="Applicable Days"
             width="7%"
         />
-        <ComboBox width="10%" />
+        <ComboBox class=" create-ship-req_input" width="10%" />
 
         <Label
             text="Priority"
             width="5%"
         />
-        <Input width="9%" />
+        <Input class=" create-ship-req_input" width="9%" />
 
         <Label
             width="4%"
             text="Status"
         />
-        <ComboBox width="9%"></ComboBox>
+        <ComboBox class=" create-ship-req_input" width="9%"></ComboBox>
 
         <Label
             width="6%"
             text="Active From"
         />
-        <DatePicker width="9%" />
+        <DatePicker class=" create-ship-req_input" width="9%" />
 
         <Label
             width="5%"
             text="Active To"
         />
-        <DatePicker width="9%" />
+        <DatePicker class=" create-ship-req_input" width="9%" />
 
         <Label
             text="Notes"
             width="3%"
         />
-        <Input width="9%" />
+        <Input class=" create-ship-req_input" width="9%" />
         <ToolbarSpacer />
     </Toolbar>
     <HBox width="100%">
@@ -94,31 +94,36 @@
                 <f:content>
                     <Label text="From City" />
                     <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
                         id="FromCity1"
                         value=""
                     />
                     <Label text="From Region" />
                     <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
                         id="FromRegion1"
                         value=""
                     />
                     <Label text="From State" />
                     <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
                         id="FromState1"
                         value=""
                     />
                     <Label text="From Min Zip" />
                     <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
                         id="FromMinZip1"
                         value=""
                     />
                     <Label text="From Max Zip" />
                     <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
                         id="FromMaxZip1"
                         value=""
                     />
                     <Label text="From Country" />
-                    <ComboBox ></ComboBox>
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" ></ComboBox>
                 </f:content>
             </f:SimpleForm>
         </VBox>
@@ -150,30 +155,35 @@
                     <Label text="To City" />
                     <Input
                         id="ToCity"
+                        class="sapUiSmallMarginBottom create-ship-req_input"
                         value=""
                     />
                     <Label text="To Region" />
                     <Input
                         id="ToRegion"
+                        class="sapUiSmallMarginBottom create-ship-req_input"
                         value=""
                     />
                     <Label text="To State" />
                     <Input
                         id="ToState"
+                        class="sapUiSmallMarginBottom create-ship-req_input"
                         value=""
                     />
                     <Label text="TO Min Zip" />
                     <Input
                         id="TOMinZip"
+                        class="sapUiSmallMarginBottom create-ship-req_input"
                         value=""
                     />
                     <Label text="To Max Zip" />
                     <Input
                         id="ToMaxZip"
+                        class="sapUiSmallMarginBottom create-ship-req_input"
                         value=""
                     />
                     <Label text="To Country" />
-                    <ComboBox ></ComboBox>
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" ></ComboBox>
                 </f:content>
             </f:SimpleForm>
         </VBox>
@@ -190,14 +200,14 @@
             >
                 <f:content>
                     <Label text="Shipping Point" />
-                    <Input ></Input>
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
                     <Label text="Ship to Plant ID" />
-                    <Input value="{}" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" value="{}" />
                     <Label text="Service Name" />
-                    <Input value="{}" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" value="{}" />
 
                     <Label text="Min/Max Weight" />
-                    <Input value="{}">
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" value="{}">
                         <layoutData>
                             <f:ColumnElementData
                                 cellsSmall="6"
@@ -205,7 +215,7 @@
                             />
                         </layoutData>
                     </Input>
-                    <Input selectedKey="{}">
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" selectedKey="{}">
                         <layoutData>
                             <f:ColumnElementData
                                 cellsSmall="6"
@@ -215,7 +225,7 @@
                     </Input>
 
                     <Label text="Min/Max Width" />
-                    <Input value="{}">
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" value="{}">
                         <layoutData>
                             <f:ColumnElementData
                                 cellsSmall="6"
@@ -223,7 +233,7 @@
                             />
                         </layoutData>
                     </Input>
-                    <Input selectedKey="{}">
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" selectedKey="{}">
                         <layoutData>
                             <f:ColumnElementData
                                 cellsSmall="6"
@@ -233,7 +243,7 @@
                     </Input>
 
                     <Label text="Min/Max Girth Length" />
-                    <Input value="{}">
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" value="{}">
                         <layoutData>
                             <f:ColumnElementData
                                 cellsSmall="6"
@@ -241,7 +251,7 @@
                             />
                         </layoutData>
                     </Input>
-                    <Input selectedKey="{}">
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" selectedKey="{}">
                         <layoutData>
                             <f:ColumnElementData
                                 cellsSmall="6"
@@ -253,17 +263,18 @@
                     <!-- <Label text="Inco Terms" />
                                     <Input value="{}" /> -->
                     <Label text="Vendor ID" />
-                    <Input value="{}" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" value="{}" />
                     <Label text="Customer ID" />
                     <Input
                         value="{}"
+                        class="sapUiSmallMarginBottom create-ship-req_input"
                         width="100%"
                     />
                     <CheckBox text="Hazmat Flag" />
 
                     <CheckBox text="Hazmat Flag" />
                     <Label text="Min/Max Weight" />
-                    <Input value="{}">
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" value="{}">
                         <layoutData>
                             <f:ColumnElementData
                                 cellsSmall="6"
@@ -271,7 +282,7 @@
                             />
                         </layoutData>
                     </Input>
-                    <Input selectedKey="{}">
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" selectedKey="{}">
                         <layoutData>
                             <f:ColumnElementData
                                 cellsSmall="6"
@@ -281,7 +292,7 @@
                     </Input>
 
                     <Label text="Min/Max Width" />
-                    <Input value="{}">
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" value="{}">
                         <layoutData>
                             <f:ColumnElementData
                                 cellsSmall="6"
@@ -289,7 +300,7 @@
                             />
                         </layoutData>
                     </Input>
-                    <Input selectedKey="{}">
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" selectedKey="{}">
                         <layoutData>
                             <f:ColumnElementData
                                 cellsSmall="6"
@@ -299,7 +310,7 @@
                     </Input>
 
                     <Label text="Min/Max Girth Length" />
-                    <Input value="{}">
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" value="{}">
                         <layoutData>
                             <f:ColumnElementData
                                 cellsSmall="6"
@@ -307,7 +318,7 @@
                             />
                         </layoutData>
                     </Input>
-                    <Input selectedKey="{}">
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" selectedKey="{}">
                         <layoutData>
                             <f:ColumnElementData
                                 cellsSmall="6"
@@ -316,7 +327,7 @@
                         </layoutData>
                     </Input>
                     <Label text="Inco Terms" />
-                    <Input value="{}">
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" value="{}">
                         <layoutData>
                             <f:ColumnElementData
                                 cellsSmall="6"
@@ -324,7 +335,7 @@
                             />
                         </layoutData>
                     </Input>
-                    <Input selectedKey="{}" placeholder="Order Types">
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" selectedKey="{}" placeholder="Order Types">
                         <layoutData>
                             <f:ColumnElementData
                                 cellsSmall="6"
@@ -351,49 +362,49 @@
             >
                 <f:content>
                     <Label text="Primary Carrier" />
-                    <ComboBox />
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="First Leg Carrier" />
-                    <ComboBox />
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Export Broker" />
-                    <ComboBox />
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Import Broker" />
-                    <ComboBox />
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Last Leg Carrier" />
-                    <ComboBox />
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Primary Service Name" />
                     <ComboBox />
                     <Label text="First Leg Service Name" />
-                    <ComboBox />
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Export Broker Service" />
-                    <ComboBox />
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Import Broker Service Name" />
                     <ComboBox />
                     <Label text="Last Leg Service Name" />
-                    <ComboBox />
+                    <ComboBox  class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Primary Transit Time" />
-                    <ComboBox />
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="First Leg Transit Time" />
-                    <ComboBox />
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Export Broker Transit Time" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Import Broker Transit Time" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Last Leg Carrier Transit Time" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Payment Type" />
-                    <ComboBox />
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Freight Acc Num" />
-                    <ComboBox />
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Primary MOT" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Primary Dimfactory" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                 </f:content>
             </f:SimpleForm>
         </VBox>
     </HBox>
     <HBox width="100%">
-        <VBox>
+        <VBox >
             <f:SimpleForm
                 editable="true"
                 layout="ColumnLayout"
@@ -405,23 +416,23 @@
             >
                 <f:content>
                     <Label text="Bill To Contact" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Bill To State" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Bill To Company" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Bill To Address1" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Bill To Country" />
-                    <ComboBox />
+                    <ComboBox  class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Bill To Address2" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Bill To Zip" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Bill To City" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Bill To Phone" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                 </f:content>
             </f:SimpleForm>
         </VBox>

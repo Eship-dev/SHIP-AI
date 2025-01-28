@@ -60,12 +60,12 @@
 						</Toolbar>
 						
                          <Label text="Location ID" />
-                         <ComboBox  placeholder="Select">
+                         <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
                          </ComboBox>
                           <Label text="ERP Code" />  
-			             <Input ></Input>
+			             <Input class="sapUiSmallMarginBottom create-ship-req_input" ></Input>
                          <Label text="ERP Name" />
-                        <Input /> 
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input" /> 
                           <Label text="Status" />
                         <Switch state="true" >
 				            <layoutData>

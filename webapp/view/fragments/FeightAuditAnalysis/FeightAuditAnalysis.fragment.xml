@@ -9,22 +9,22 @@
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="$ 582" class="NumberSizeTitle1"></Text>
 					<Text text="Total Invoice" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Emphasized" press="handleTrackNowFilterBtnPress" id="idFeightAuditAnalysisTotalBtn" icon="false" width="100%"  ></Button>
+					<Button type="Emphasized" class="total-request-button request-button " press="handleTrackNowFilterBtnPress" id="idFeightAuditAnalysisTotalBtn" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="$ 533.71" class="NumberSizeTitle1"></Text>
 					<Text text="Total TMS Shipment Cost" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Critical" press="handleTrackNowFilterBtnPress" id="idFeightAuditAnalysisOpenBtn" icon="false" width="100%" ></Button>
+					<Button type="Critical" class="shipped-request-button request-button" press="handleTrackNowFilterBtnPress" id="idFeightAuditAnalysisOpenBtn" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="3" class="NumberSizeTitle1"></Text>
 					<Text text="Total Invoices" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Success" press="handleTrackNowFilterBtnPress" id="idFeightAuditAnalysisShippedBtn" icon="false" width="100%" ></Button>
+					<Button type="Success" class="open-request-button request-button" press="handleTrackNowFilterBtnPress" id="idFeightAuditAnalysisShippedBtn" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="$ 48.38" class="NumberSizeTitle1"></Text>
 					<Text text="Difference Amount" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Negative" press="handleTrackNowFilterBtnPress" id="idFeightAuditAnalysisCancelledBtn" icon="false" width="100%" ></Button>
+					<Button type="Negative" class="cancelled-request-button request-button" press="handleTrackNowFilterBtnPress" id="idFeightAuditAnalysisCancelledBtn" icon="false" width="100%" ></Button>
 				</VBox>
 			</HBox>
 		</Toolbar>

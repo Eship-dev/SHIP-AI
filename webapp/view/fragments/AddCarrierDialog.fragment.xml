@@ -24,15 +24,15 @@
             <form:SimpleForm editable="true" layout="ColumnLayout" columnsM="3" columnsL="3" columnsXL="5">
                 <form:content>
                     <Label text="Ship Method ID" />
-                    <Input ></Input>
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
                     <Label text="Ship Method" />
-                    <Input ></Input>
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
                     <Label text="Ship Method Type" />
-                    <ComboBox items="{}">
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" items="{}">
 						<core:Item key="{}" text="{}" />
 					</ComboBox>
                     <Label text="Ship Method Coverage" />
-                    <ComboBox items="{}">
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" items="{}">
 						<core:Item key="{}" text="{}" />
 					</ComboBox>
                     <Label text="Status" />
@@ -80,12 +80,12 @@
 		<items>
 			<ColumnListItem vAlign="Middle">
 				<cells>
-					<Input value="{eshipjetModel>ServiceName}" ></Input>
-					<Input value="{eshipjetModel>ServiceCode}" ></Input>
-					<ComboBox items="{}" selectedKey="{eshipjetModel>ServiceCoverage}">
+					<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{eshipjetModel>ServiceName}" ></Input>
+					<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{eshipjetModel>ServiceCode}" ></Input>
+					<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" items="{}" selectedKey="{eshipjetModel>ServiceCoverage}">
 						<core:Item key="{}" text="{}" />
 					</ComboBox>
-                    <ComboBox items="{}" selectedKey="{eshipjetModel>ConnectionType}">
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" items="{}" selectedKey="{eshipjetModel>ConnectionType}">
 						<core:Item key="{}" text="{}" />
 					</ComboBox>
                     <Switch type="AcceptReject" state="{eshipjetModel>Status}">

@@ -1,5 +1,5 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
-    <Popover	id="myPopoverRecentShipment"  contentWidth="30%" placement="Bottom">  
+    <Popover	id="myPopoverRecentShipment"  contentWidth="45%" contentHeight="60%" placement="Bottom">  
 		<customHeader>
 			<VBox id="_IDGenVBoxRecentShipment">
 				<Toolbar id="_IDGenHBoxRecentShipment" class="toolbarbottomborder">
@@ -13,7 +13,7 @@
         <Table	id="rencentShipmentTblId"  items="{path : '/RecentShipmentSet'}" >
 		<ColumnListItem  vAlign="Middle">
 			<cells>				
-			  	<ObjectStatus	text="{shipmentNo}" 	state="Error" />
+			  	<ObjectStatus	text="{shipmentNo}" state="Information"	class="customObjectStatus" />
                 <Text      text="{date}" />	
                 <Text  text="{ContactName}"  wrapping="false" />	
                 <Text  text="{shipMethod}" />				

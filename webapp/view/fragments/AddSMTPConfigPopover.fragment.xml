@@ -51,24 +51,24 @@
                 <f:content>
                    
                     <Label text="Location ID" />
-                    <ComboBox  placeholder="Select"></ComboBox>
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select"></ComboBox>
                     <Label text="Port No" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="User ID" />
-                    <ComboBox  placeholder="Select"></ComboBox>
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select"></ComboBox>
                     <Label text="Email Priority" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="SSL"></Label>
-                    <CheckBox ></CheckBox>
+                    <CheckBox class="sapUiSmallMarginBottom create-ship-req_input"></CheckBox>
                     
                     <Label text="SMTP Server Name" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Email" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Password" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="User Email" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Status" />
                         <Switch state="true" >
 				            <layoutData>

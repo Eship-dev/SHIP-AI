@@ -20,7 +20,7 @@
                         />
                         <ComboBox
                             width="15rem"
-                            class="sapUiSmallMarginEnd"
+                            class="create-ship-req_input"
                         >
                             <core:Item
                                 key="{key}"
@@ -40,7 +40,7 @@
                             displayFormat="MM/dd/yyyy"
                             placeholder="Select Date"
                             change="handleChange"
-                            class="sapUiSmallMarginEnd"
+                            class=" create-ship-req_input"
                         />
                          <!-- To Date and Input -->
                         <Label
@@ -54,7 +54,7 @@
                             displayFormat="MM/dd/yyyy"
                             placeholder="Select Date"
                             change="handleChange"
-                            class="sapUiSmallMarginBegin"
+                            class=" create-ship-req_input"
                         />
                     <!-- Apply Button -->
                     <Button

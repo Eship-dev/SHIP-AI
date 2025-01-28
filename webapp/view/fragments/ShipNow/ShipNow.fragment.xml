@@ -13,9 +13,9 @@
 								<Button text="Get" type="Ghost" class="scan-ship-toolbar__button" press="onShipNowGetPress" width="11%"></Button>
 								<Button text="Consolidation" class="scan-ship-toolbar__button" type="Ghost" press="handleConsolidationPress" width="11%"></Button>
 								<Label text="Pickup Date"   wrapping="true" labelFor="DP1" width="7%"/>
-								<DatePicker id="DP1" width="15%"   valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
+								<DatePicker class="create-ship-req_input" id="DP1" width="15%"   valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
 								<Label text="Ship Date" labelFor="DP2"  wrapping="true" width="7%"/>
-								<DatePicker id="DP2" width="15%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/HeaderInfo/ShipDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
+								<DatePicker class="create-ship-req_input" id="DP2" width="15%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/HeaderInfo/ShipDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
 								<Button text="New" class="scan-ship-toolbar__button" type="Ghost" width="11%" ></Button>
 								<ToolbarSpacer />
 							</Toolbar>
@@ -631,29 +631,29 @@
 									<!-- Pack Tab Starts here -->
 									<IconTabFilter text="Pack" key="Pack">
 
-										<Toolbar >
-											<HBox width="100%" >
+										<Toolbar height="4rem" >
+											<HBox width="100%"  >
 															<Label text="Scan Product" class="sapUiTinyMargin" />
-															<Input value="{}" class="create-ship-req_input" ></Input>
+															<Input class=" create-ship-req_input" value="{}"  ></Input>
 
 															<Label text="Quantity" class="sapUiTinyMargin"/>
-															<StepInput id="quantityInput1" value="{eshipjetModel>/Packages/Quantity}" min="0" max="100" step="1" width="8%" valueState="None" />
+															<StepInput id="quantityInput1" value="{eshipjetModel>/Packages/Quantity}" class=" create-ship-req_input" min="0" max="100" step="1" width="8%" valueState="None" />
 
 															<Label text="Package Type" class="sapUiTinyMargin" />
-															<ComboBox items="{}" class="create-ship-req_input" >
+															<ComboBox items="{}" class=" create-ship-req_input" >
 																<core:Item key="{}" text="{}" />
 															</ComboBox>
 
 															<Label text="Dimensions" class="sapUiTinyMargin" />
-															<ComboBox items="{eshipjetModel>/packDimensions}" class="create-ship-req_input" selectedKey="{eshipjetModel>/Packages/Dimension}">
+															<ComboBox items="{eshipjetModel>/packDimensions}" class=" create-ship-req_input" selectedKey="{eshipjetModel>/Packages/Dimension}">
 																<core:Item key="{eshipjetModel>dimension}" text="{eshipjetModel>dimension}" />
 															</ComboBox>
 															<Button icon="sap-icon://add" press="handleDimensionAddPress" class="sapUiSmallMarginEnd"></Button>
 
 															<Label text="Total Pkgs/Weight"  class="sapUiTinyMargin"/>
-															<StepInput id="stepDownInput1" class="create-ship-req_input" value="{eshipjetModel>/Packages/Weight1}" min="0" max="100" step="1"  width="6rem"  valueState="None" />
+															<StepInput id="stepDownInput1" class=" create-ship-req_input" value="{eshipjetModel>/Packages/Weight1}" min="0" max="100" step="1"  width="6rem"  valueState="None" />
 															<Text text="/" width="10%" class="sapUiTinyMarginTop" ></Text>
-															<StepInput id="stepUpInput1" class="create-ship-req_input" value="{eshipjetModel>/Packages/Weight2}" min="0" max="100" step="1" width="6rem" valueState="None" />
+															<StepInput id="stepUpInput1" class=" create-ship-req_input"  value="{eshipjetModel>/Packages/Weight2}" min="0" max="100" step="1" width="6rem" valueState="None" />
 															<Button text="Auto Pack" press="handleAutoPackPress" type="Ghost" ></Button>
 														</HBox>
 										</Toolbar>

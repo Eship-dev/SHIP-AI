@@ -41,11 +41,11 @@
             singleContainerFullSize="false">
             <f:content>
                 <Label text="Connect To" />
-                <ComboBox width="100%" />
+                <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" width="100%" />
                 <Label text="Order Type" />
-                <ComboBox width="100%" />
+                <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" width="100%" />
                 <Label text="Ship Method" />
-                <ComboBox width="100%" />
+                <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" width="100%" />
             </f:content>
         </f:SimpleForm>
 

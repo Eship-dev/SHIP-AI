@@ -9,7 +9,7 @@
         id="idAddAddressBookPopover"
         placement="Bottom"
         contentWidth="40%"
-        contentHeight="69%"
+        contentHeight="65%"
         showHeader="true"
         class="sapUiResponsivePadding sapUiResponsivePadding addLocationPopoverSpace"
     >
@@ -67,13 +67,13 @@
                         />
                     </Toolbar>
                     <Label text="Contact Name" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Phone No" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Company Name" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Email" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                 </f:content>
             </f:SimpleForm>
 
@@ -98,51 +98,47 @@
                         />
                     </Toolbar>
                     <Label text="Address Line 1" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Address Line 3" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="State / Province" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Country" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Address Type" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Locker No" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Locker Access Code" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Floor No" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Status" />
-                        <Switch state="true" >
-				            <layoutData>
-					            <FlexItemData growFactor="1" />
-				            </layoutData>
-			            </Switch>
+                    <Switch state="true">
+                        <layoutData>
+                            <FlexItemData growFactor="1" />
+                        </layoutData>
+                    </Switch>
                     <Label text="Address Line 2" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="City" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Zip / Postal Code" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Address Category" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Cost Center" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Locker Location" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Building No" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Mail Stop" />
-                    <Input />
-                    <Label text="RFID"></Label>
-                    <CheckBox ></CheckBox>
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <Label text="RFID" />
+                    <CheckBox />
                 </f:content>
             </f:SimpleForm>
-
-            
-
-            
         </content>
     </Popover>
 </core:FragmentDefinition>

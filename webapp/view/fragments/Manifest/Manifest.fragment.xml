@@ -11,18 +11,23 @@
 			<HBox width="100%" >
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="1" class="NumberSizeTitle1"></Text>
-					<Text text="Total Shipments" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Emphasized" press="handleManifestFilterBtnPress" id="idTotalShipmentsBtn" icon="false" width="100%"  ></Button>
+					<Text text="Total" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Emphasized" press="handleManifestFilterBtnPress" id="idTotalShipmentsBtn" class="total-request-button request-button" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="2" class="NumberSizeTitle1"></Text>
-					<Text text="Total No. of Pieces" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Critical" press="handleManifestFilterBtnPress" id="idTotalNoOfPiecesBtn" icon="false" width="100%" ></Button>
+					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Critical" press="handleManifestFilterBtnPress" id="idTotalNoOfPiecesBtn" class="shipped-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="3" class="NumberSizeTitle1"></Text>
-					<Text text="Total Weight" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Success" press="handleManifestFilterBtnPress" id="idTotalWeightBtn" icon="false" width="100%" ></Button>
+					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Success" press="handleManifestFilterBtnPress" id="idTotalWeightBtn" class="cancelled-request-button request-button" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="33%">
+					<Text text="3" class="NumberSizeTitle1"></Text>
+					<Text text="Delivered" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Success" press="handleManifestFilterBtnPress" id="id1TotalWeightBtn" class="shippedProgress-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 			</HBox>
 		</Toolbar>

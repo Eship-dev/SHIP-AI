@@ -57,9 +57,9 @@
             >
                 <f:content>
                     <Label text="Location Name" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Description" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Status" />
                         <Switch state="true" >
 				            <layoutData>
@@ -67,9 +67,9 @@
 				            </layoutData>
 			            </Switch>  
                     <Label text="Code" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Color Picker" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                    
                 </f:content>
             </f:SimpleForm>

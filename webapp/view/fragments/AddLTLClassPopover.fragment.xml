@@ -57,13 +57,13 @@
             >
                 <f:content>
                     <Label text="Location Name" />
-                    <ComboBox  placeholder="Select">
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input"  placeholder="Select">
                         </ComboBox>
                     <Label text="Ship Method" />
-                    <ComboBox  placeholder="Select">
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
                     </ComboBox>
                     <Label text="LTL Class Code" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Status" />
                         <Switch state="true" >
 				            <layoutData>

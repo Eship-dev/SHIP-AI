@@ -34,20 +34,20 @@
 							  columnsXL="2">
 					<f:content>
                         <Label text="Company Name" />
-                        <ComboBox  placeholder="Select">
+                        <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
                         </ComboBox>
                         <Label text="Last Name" />  
-			            <Input ></Input>
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
                          <Label text="E-mail" />  
-			            <Input ></Input>
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input" ></Input>
                          <Label text="Number of Plants/Warehouses/Locations" />  
-			            <Input ></Input>
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input" ></Input>
                         <Label text="Job Title" />  
-			            <Input ></Input>
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input" ></Input>
                          <Label text="First Name" />  
-			            <Input ></Input>
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input" ></Input>
                          <Label text="Phone Number" />  
-			            <Input ></Input>
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input" ></Input>
                         
 					</f:content>
 				</f:SimpleForm>

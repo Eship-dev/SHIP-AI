@@ -55,35 +55,35 @@
                 columnsXL="2">
                 <f:content> 
                     <Label text="User ID" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="First Name" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Location Name" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Address Line 1" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="City" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Zip / Postal Code" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Phone No" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Password" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Company Name" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Last Name" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="State / Province" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Address Line 2" />
-                    <Input /> 
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" /> 
                     <Label text="Country" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Email" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Role Assignment" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Status" />
                         <Switch state="true" >
 				            <layoutData>
@@ -105,17 +105,17 @@
 							<Title id="iduserFrom3" text="ERP"/>
 					</Toolbar>
                           <Label text="Status" />
-                        <CheckBox ></CheckBox>
+                        <CheckBox class="sapUiSmallMarginBottom create-ship-req_input" ></CheckBox>
                           <Label text="Status" />
-                        <CheckBox ></CheckBox>
+                        <CheckBox class="sapUiSmallMarginBottom create-ship-req_input" ></CheckBox>
                          <Label text="Status" />
-                        <CheckBox ></CheckBox>
+                        <CheckBox class="sapUiSmallMarginBottom create-ship-req_input" ></CheckBox>
                          <Label text="Status" />
-                        <CheckBox ></CheckBox>
+                        <CheckBox class="sapUiSmallMarginBottom create-ship-req_input" ></CheckBox>
                           <Label text="Status" />
-                        <CheckBox ></CheckBox>
+                        <CheckBox class="sapUiSmallMarginBottom create-ship-req_input" ></CheckBox>
                          <Label text="Status" />
-                        <CheckBox ></CheckBox>
+                        <CheckBox class="sapUiSmallMarginBottom create-ship-req_input" ></CheckBox>
 					</f:content>
 				</f:SimpleForm>
         </content>

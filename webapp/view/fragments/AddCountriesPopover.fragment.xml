@@ -55,9 +55,9 @@
 							  columnsXL="2">
 					<f:content>
 						 <Label text="Country Code" />  
-			             <Input ></Input>
+			             <Input class="sapUiSmallMarginBottom create-ship-req_input" ></Input>
                          <Label text="Region" />
-                         <ComboBox id="idLocationType1111" placeholder="Select">
+                         <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" id="idLocationType1111" placeholder="Select">
                          </ComboBox>
                           <Label text="Status" />
                         <Switch state="true" >
@@ -66,9 +66,9 @@
 				            </layoutData>
 			            </Switch>
                         <Label text="Country Description" />
-                        <Input />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                         <Label text="Currency" />
-                        <Input />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                        
 					</f:content>
 				</f:SimpleForm>

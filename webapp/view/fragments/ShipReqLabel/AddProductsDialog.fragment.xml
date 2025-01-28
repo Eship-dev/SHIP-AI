@@ -28,7 +28,7 @@
            
 		   <content>
 	<Table
-		mode="None"
+		mode="SingleSelectLeft"
 		items="{/AddProductRows}"
 		growing="true" growingThreshold="10">
 		<columns>

@@ -28,10 +28,10 @@
         <VBox >
 		<HBox  class="customSimpleFormShadow">
 			<Label text="User ID" class="sapUiSmallMargin" />
-			<Input value="" class="sapUiTinyMargin" ></Input>
+			<Input value="" class="sapUiSmallMarginBottom create-ship-req_input" ></Input>
             
 			<Label text="Description" class="sapUiSmallMargin sapUiMediumMarginBegin" />
-			<Input value="" class="sapUiTinyMargin" ></Input>
+			<Input value="" class="sapUiSmallMarginBottom create-ship-req_input" ></Input>
 		</HBox>
 
         <UploadCollection

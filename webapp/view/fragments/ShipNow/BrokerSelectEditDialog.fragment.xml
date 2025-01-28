@@ -38,7 +38,7 @@
 			<f:content>
 				<core:Title text="Contact Info" icon="sap-icon://customer-briefing" />
 				<Label text="ID" />
-				<Input value="{}" width="50%"/>
+				<Input value="{}" width="50%" class="sapUiSmallMarginBottom create-ship-req_input"/>
 			</f:content>
 		</f:SimpleForm>
     </Dialog>

@@ -1064,3 +1064,8 @@ span.sapMBtnInner.sapMBtnReject {
 .FreightQuotesPadding{
   padding-right: 5px;
 }
+
+.customObjectStatus {
+  font-weight: bold;
+  color: rgb(31, 152, 222) !important;
+}

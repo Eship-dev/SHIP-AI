@@ -51,23 +51,23 @@
                 <f:content>
                    
                     <Label text="Location ID" />
-                    <ComboBox  placeholder="Select"></ComboBox>
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select"></ComboBox>
                     <Label text="Product No" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Quantity" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Unit Weight" />
-                    <Input />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Harmonized Code" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="UN No" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="NMFC" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="EPC-RFID No" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                      <Label text="License No" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Status" />
                         <Switch state="true" >
 				            <layoutData>
@@ -75,23 +75,23 @@
 				            </layoutData>
 			            </Switch>
                     <Label text="Item No" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Description" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Unit Cost" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Dimensions (Length X Width X Height)" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="ECCN" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Class" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="Country of MFR" />
-                    <ComboBox  placeholder="Select"></ComboBox>
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select"></ComboBox>
                     <Label text="Currency" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     <Label text="UOM" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                 </f:content>
             </f:SimpleForm>
                	

@@ -54,7 +54,7 @@
 					<f:content>
 						 
                          <Label text="Role ID" />
-                        <Input ></Input>
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
                           <Label text="Status" />
                         <Switch state="true" >
 				            <layoutData>
@@ -62,7 +62,7 @@
 				            </layoutData>
 			            </Switch>
                         <Label text="Role Name" />  
-			             <Input ></Input>
+			             <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
 					</f:content>
 				</f:SimpleForm>
 

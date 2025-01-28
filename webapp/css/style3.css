@@ -1571,6 +1571,14 @@ td[rowspan] {
     }
   }
 }
+.shippedProgress-request-button {
+  span{
+    background-color: rgb(8, 117, 28) !important;
+    &:hover { 
+      border-bottom: 10px solid #346d12 !important;
+    }
+  }
+}
 .open-request-button {
   span{
     background-color: rgb(0, 174, 255) !important;
@@ -1584,6 +1592,32 @@ td[rowspan] {
     background-color: rgb(232, 32, 32) !important;
     &:hover { 
       border-bottom: 10px solid #a21616 !important;
+    }
+  }
+}
+.totalProgress-request-button {
+  span{
+    background-color: rgb(32, 172, 246) !important;
+    &:hover { 
+      border-bottom: 10px solid #166a9b !important;
+    }
+  }
+}
+
+
+.inTransit-request-button {
+  span{
+    background-color: rgb(237, 138, 17) !important;
+    &:hover { 
+      border-bottom: 10px solid #a6610c !important;
+    }
+  }
+}
+.InWhite-request-button {
+  span {
+    background-color: #D2D4DA !important;
+    &:hover { 
+      border-bottom: 10px solid #939A99 !important;
     }
   }
 }

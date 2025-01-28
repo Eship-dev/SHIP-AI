@@ -32,6 +32,7 @@
 			<VBox class="sapUiSmallMargin" width="22%" >
 			<Label text="Location Name" width="100%" required="true" />
 				<ComboBox
+				class="sapUiSmallMarginBottom create-ship-req_input"
 					width="100%"
 					items="{}">
 					<core:Item key="{key}" text="{text}" />
@@ -40,6 +41,7 @@
             <VBox class="sapUiSmallMargin" width="22%" >
 			<Label text="Carrier" width="100%" />
 				<ComboBox
+				class="sapUiSmallMarginBottom create-ship-req_input"
 					width="100%"
 					items="{}">
 					<core:Item key="{key}" text="{text}" />
@@ -51,7 +53,7 @@
 					width="100%"
 					placeholder="Enter Date"
 					change="handleChange"
-					class="sapUiSmallMarginBottom"/>
+					class="sapUiSmallMarginBottom create-ship-req_input"/>
 			</VBox>
 			<VBox class="sapUiSmallMargin" width="22%" >
 				<Label text="To Date" width="100%" />
@@ -59,13 +61,14 @@
 					width="100%"
 			        placeholder="Enter Date"
                     change="handleChange"
-                    class="sapUiSmallMarginBottom"/>
+                    class="sapUiSmallMarginBottom create-ship-req_input"/>
 			</VBox>
 		</HBox>
         <HBox>
         	<VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="22%" >
 				<Label text="Cost Center" width="100%" />
 				<ComboBox
+				class="sapUiSmallMarginBottom create-ship-req_input"
 					width="100%"
 					items="{}">
 					<core:Item key="{key}" text="{text}" />
@@ -78,6 +81,7 @@
             <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="22%" >
 				<Label text="Status" width="100%" />
 				<ComboBox
+				class="sapUiSmallMarginBottom create-ship-req_input"
 					width="100%"
 					items="{}">
 				    <core:Item key="{key}" text="{text}" />

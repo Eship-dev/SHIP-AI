@@ -12,17 +12,17 @@
 			<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Total Routing Rules" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Emphasized" press="handlRoutingGuideFilterBtnPress" icon="false" width="100%"  ></Button>
+					<Button class="totalProgress-request-button request-button" type="Emphasized" press="handlRoutingGuideFilterBtnPress" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Active" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Critical" press="handleRoutingGuideFilterBtnPress" icon="false" width="100%" ></Button>
+					<Button class="inTransit-request-button request-button" type="Critical" press="handleRoutingGuideFilterBtnPress" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Inactive" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Success" press="handleRoutingGuideFilterBtnPress" icon="false" width="100%" ></Button>
+					<Button type="Success" class="InWhite-request-button request-button" press="handleRoutingGuideFilterBtnPress" icon="false" width="100%" ></Button>
 				</VBox>
 		</Toolbar>
 

@@ -67,7 +67,7 @@
                         />
                     </Toolbar>
                     <Label text="Contact Name" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                     
                     <Label text="Status" />
                         <Switch state="true" >
@@ -76,7 +76,7 @@
 				            </layoutData>
 			            </Switch>
                         <Label text="Phone No" />
-                    <Input />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                 </f:content>
             </f:SimpleForm>
         </content>

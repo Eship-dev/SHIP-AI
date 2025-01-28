@@ -53,15 +53,15 @@
 								<Title id="idAddLocaTionFrom11" text="Name and Contact"/>
 						</Toolbar>
 						 <Label text="Location Code" />
-                         <Input />
+                         <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                          <Label text="Contact Name" />
-                         <Input />
+                         <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                         <Label text="Email" />
-                        <Input />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                         <Label text="Location Name" />
-                        <Input />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                         <Label text="Phone No" />
-                        <Input />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
 					</f:content>
 				</f:SimpleForm>
 
@@ -78,19 +78,19 @@
 								<Title id="idAddLocaTionFrom1" text="Address Info"/>
 						</Toolbar>
 						 <Label text="Address Line 1" />
-                         <Input />
+                         <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                          <Label text="City" />
-                         <Input />
+                         <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                         <Label text="Zip / Postal Code" />
-                        <Input />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                         <Label text="Ship From Tax" />
-                        <Input />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                          <Label text="Address Line 2" />
-                        <Input />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                         <Label text="State / Province" />
-                        <Input />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                         <Label text="Country" />
-                        <Input />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
 					</f:content>
 				</f:SimpleForm>
 
@@ -108,11 +108,11 @@
 							<Title id="idAddLocaTionFrom2" text="Mailroom Contact"/>
 						</Toolbar>
 						 <Label text="Contact Name" />
-                         <Input />
+                         <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                          <Label text="Email" />
-                         <Input />
+                         <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                         <Label text="Phone" />
-                        <Input />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
 					</f:content>
 				</f:SimpleForm>
                	
@@ -130,10 +130,10 @@
 								<Title id="idAddLocaTionFrom3" text="Additional Info"/>
 						</Toolbar>
 						 <Label text="Weight Units" />  
-			             <ComboBox id="idLocationType" placeholder="Select">
+			             <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" id="idLocationType" placeholder="Select">
                          </ComboBox>
                          <Label text="Dimension Unit" />
-                         <ComboBox id="idLocationType1" placeholder="Select">
+                         <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" id="idLocationType1" placeholder="Select">
                          </ComboBox>
                           <Label text="Status" />
                         <Switch state="true" >
@@ -142,9 +142,9 @@
 				            </layoutData>
 			            </Switch>
                         <Label text="Currency" />
-                        <Input />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                         <Label text="Time Zone" />
-                        <Input />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
                        
 					</f:content>
 				</f:SimpleForm>

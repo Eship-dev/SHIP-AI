@@ -33,6 +33,7 @@
 			<Label text="Location Name" width="100%" />
 					<ComboBox
 						width="100%"
+						class="sapUiSmallMarginBottom create-ship-req_input"
 						items="{}">
 						<core:Item key="{key}" text="{text}" />
 					</ComboBox>
@@ -43,7 +44,7 @@
 						width="100%"
 						placeholder="Enter Date"
 						change="handleChange"
-						class="sapUiSmallMarginBottom"/>
+						class="sapUiSmallMarginBottom create-ship-req_input"/>
 			</VBox>
 			<VBox class="sapUiSmallMargin" width="30%" >
 					<Label text="Ship From Date" width="100%" />
@@ -51,7 +52,7 @@
 						width="100%"
 						placeholder="Enter Date"
 						change="handleChange"
-						class="sapUiSmallMarginBottom"/>
+						class="sapUiSmallMarginBottom create-ship-req_input"/>
 			</VBox>
 			<VBox class="sapUiSmallMargin" width="30%" >
 					<Label text="Ship To Date" width="100%" />
@@ -59,7 +60,7 @@
 						width="100%"
 						placeholder="Enter Date"
 						change="handleChange"
-						class="sapUiSmallMarginBottom"/>
+						class="sapUiSmallMarginBottom create-ship-req_input"/>
 			</VBox>
 			
 		</HBox>
@@ -68,19 +69,22 @@
             <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
 					<Label text="Cost Center" width="80%" />
 					<ComboBox
+					class="sapUiSmallMarginBottom create-ship-req_input"
 						width="75%"
 						items="{}">
 						<core:Item key="{key}" text="{text}" />
 					</ComboBox>
 			</VBox>
-            <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
-					<Label text="User" width="80%" />
-					<SearchField ></SearchField>
-			</VBox>
+           
 			
 			<VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
 					<Label text="Status" width="90%" />
-					<Input value="{}" width="90%"></Input>
+					<Input value="{}" width="90%" class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+			</VBox>
+
+			 <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
+					<Label text="User" width="80%" />
+					<SearchField ></SearchField>
 			</VBox>
 			
 		</HBox>

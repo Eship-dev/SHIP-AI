@@ -32,6 +32,7 @@
 			<Label text="Location Name" width="auto" />
 					<ComboBox
 						width="auto"
+						class="sapUiSmallMarginBottom create-ship-req_input"
 						items="{}">
 						<core:Item key="{key}" text="{text}" />
 					</ComboBox>
@@ -40,6 +41,7 @@
 					<Label text="Carrier" width="auto" />
 					<ComboBox
 						width="auto"
+						class="sapUiSmallMarginBottom create-ship-req_input"
 						items="{}">
 						<core:Item key="{key}" text="{text}" />
 					</ComboBox>
@@ -48,13 +50,14 @@
 					<Label text="Status" width="auto" />
 					<ComboBox
 						width="auto"
+						class="sapUiSmallMarginBottom create-ship-req_input"
 						items="{}">
 						<core:Item key="{key}" text="{text}" />
 					</ComboBox>
 			</VBox>
 			<VBox class="sapUiSmallMargin" >
 					<Label text="Search" width="auto" />
-					<Input value="{}" width="auto"></Input>
+					<Input value="{}" width="auto" class="sapUiSmallMarginBottom create-ship-req_input"></Input>
 			</VBox>
 		</HBox>
 	</Popover>

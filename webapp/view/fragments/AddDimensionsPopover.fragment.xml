@@ -53,16 +53,16 @@
 							  columnsXL="2">
 					<f:content>
                         <Label text="Location Name" />
-                        <ComboBox  placeholder="Select">
+                        <ComboBox  class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
                         </ComboBox>
                         <Label text="Length (inch/cm)" />  
-			            <StepInput  min="0" max="100" step="1"  width="100%"  valueState="None" />
+			            <StepInput class="sapUiSmallMarginBottom create-ship-req_input" min="0" max="100" step="1"  width="100%"  valueState="None" />
                         <Label text="Height (inch/cm)" />
                          <StepInput  min="0" max="100" step="1"  width="100%"  valueState="None" />
                         <Label text="Material Weight" />  
 			            <StepInput  min="0" max="100" step="1"  width="100%"  valueState="None" />
                         <Label text="Name" />  
-			            <Input ></Input>
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input" ></Input>
                         <Label text="Width (inch/cm)" />  
 			             <StepInput  min="0" max="100" step="1"  width="100%"  valueState="None" />
                         <Label text="Maximum Weight" />  
