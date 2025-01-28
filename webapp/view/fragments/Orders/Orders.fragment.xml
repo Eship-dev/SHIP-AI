@@ -203,6 +203,7 @@
 					<Text text="" />
 					<Text text="" />
 					<Text text="" />
+					<Text text="" />
 					<HBox alignContent="End" alignItems="End" >
 						<Button text="View Now" type="Transparent" ></Button>
 						<Button icon="sap-icon://megamenu" type="Transparent" press="ShipReqActDownArrowPress" ></Button>
