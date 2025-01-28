@@ -22,68 +22,75 @@
                 <Button icon="sap-icon://decline" press="AddProductCancelDialog"></Button>
         </Toolbar>
         </customHeader>
-            <Toolbar>
-                <SearchField width="50%" ></SearchField>
-        	</Toolbar>
+            <!-- <Toolbar height="3rem" width="100%" class="toolbarbottomborder" >
+                <SearchField width="50%" class="sapUiSmallMarginBottom" placeholder="Global Filter" ></SearchField>
+        	</Toolbar> -->
            
 		   <content>
 	<Table
 		mode="SingleSelectLeft"
-		items="{/AddProductRows}"
-		growing="true" growingThreshold="10">
+		sticky="HeaderToolbar,ColumnHeaders"
+		items="{/AddProductRows}" >
+		<headerToolbar>
+            <OverflowToolbar class="toolbarbottomborder sapUiTinyMarginTop" >
+				<Toolbar width="100%" height="4rem" class="toolbarbottomborder" >
+                    <SearchField width="50%" class="sapUiSmallMarginBottom" placeholder="Global Filter" ></SearchField>
+				</Toolbar>
+			</OverflowToolbar>
+        </headerToolbar>
 		<columns>
-			<Column width="12em">
+			<Column width="8em">
 				<Text text="Item No" />
 			</Column>
 			<Column width="12em">
 				<Text text="Product Code" />
 			</Column>
-			<Column width="12em">
+			<Column width="10em">
 				<Text text="Description" />
 			</Column>
-			<Column width="12em">
+			<Column width="4em">
 				<Text text="Qty" />
 			</Column>
-			<Column width="12em">
+			<Column width="4em">
 				<Text text="DG" />
 			</Column>
 			<Column width="12em">
 				<Text text="Epc-Rfid No" />
 			</Column>
-			<Column width="12em">
+			<Column width="8em">
 				<Text text="Unit Cost" />
 			</Column>
-			<Column width="12em">
+			<Column width="10em">
 				<Text text="Unit Weight" />
 			</Column>
-			<Column width="12em">
+			<Column width="10em">
 				<Text text="Dimensions" />
 			</Column>
-			<Column width="12em">
+			<Column width="15em">
 				<Text text="Harmonized Code" />
 			</Column>
-			<Column width="12em">
+			<Column width="8em">
 				<Text text="Eccn" />
 			</Column>
-			<Column width="12em">
+			<Column width="8em">
 				<Text text="Un No" />
 			</Column>
-			<Column width="12em">
+			<Column width="8em">
 				<Text text="Class" />
 			</Column>
-			<Column width="12em">
+			<Column width="8em">
 				<Text text="Nmfc" />
 			</Column>
-			<Column width="12em">
+			<Column width="10em">
 				<Text text="Category" />
 			</Column>
-			<Column width="12em">
+			<Column width="8em">
 				<Text text="Serial" />
 			</Column>
-			<Column width="12em">
+			<Column width="8em">
 				<Text text="Batch" />
 			</Column>
-			<Column width="12em">
+			<Column width="10em">
 				<Text text="Stackable" />
 			</Column>
 			<Column width="12em">
@@ -92,11 +99,14 @@
 			<Column width="12em">
 				<Text text="Currency" />
 			</Column>
-			<Column width="12em">
+			<Column width="10em">
 				<Text text="License No" />
 			</Column>
-			<Column width="12em">
+			<Column width="8em">
 				<Text text="Uom" />
+			</Column>
+			<Column width="12em">
+				<Text text="View Image" />
 			</Column>
 		</columns>
 		<items>
@@ -124,6 +134,7 @@
 					<Text text="{Currency}" wrapping="false" />
 					<Text text="{LicenseNo}" wrapping="false" />
 					<Text text="{UOM}" wrapping="false" />
+					<Text text="{image}" wrapping="false" />
 				</cells>
 			</ColumnListItem>
 		</items>

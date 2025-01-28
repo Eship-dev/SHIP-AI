@@ -1,19 +1,20 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
-
-	    <Toolbar height="8rem" >
-            <HBox width="100%" >
-                <Text text="Quote Now" class="sapUiSmallMargin sapUiMediumMarginTop toolBarHeader" ></Text>
-                <TextArea width="20rem" rows="1" class="sapUiSmallMargin customInput" placeholder="Scan or Enter Shipment Order"  ></TextArea>
-                <Button id="idQuoteNow" text="Quote Now" type="Accept" class="sapUiSmallMarginBegin sapUiSmallMarginTop scan-ship-toolbar__button" ></Button>
-            </HBox>
+    <VBox class="scan-ship-page">
+	    <Toolbar class="scan-ship-toolbar" >
+            
+                <Text text="Quote Now" class="sapUiTinyMargin toolBarHeader scan-ship-toolbar__title" ></Text>
+                <Input class="scan-ship-toolbar__input" value="{eshipjetModel>/sShipAndScan}"   placeholder="Scan or Enter Shipment Order" ></Input>
+                <Button id="idQuoteNow" text="Quote Now" type="Accept" class="scan-ship-toolbar__button" ></Button>
+                
             <ToolbarSpacer ></ToolbarSpacer>
-                <Button text="Clear" class="sapUiSmallMarginEnd sapUiSmallMarginBottom" type="Reject" ></Button>
+                <Button text="Clear" class="scan-ship-toolbar__button scan-ship-toolbar__button_void" type="Reject" ></Button>
         </Toolbar>
 
-        <Toolbar height="32rem" class="sapUiSmallMarginTop" >
+        <!-- <Toolbar height="32rem" class="sapUiSmallMarginTop scan-ship-toolbar" >
             <ToolbarSpacer />
-                <Text text="Enter Shipment Order to get the latest and best quote available."></Text>
+                <Text text="Enter Shipment Order to get the latest and best quote available." class="scan-ship-toolbar__title" ></Text>
             <ToolbarSpacer />
-        </Toolbar>
+        </Toolbar> -->
+    </VBox>
 </core:FragmentDefinition>

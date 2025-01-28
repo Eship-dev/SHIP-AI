@@ -18,8 +18,11 @@
        
          <VBox class="scan-ship-page sapUiTinyMarginBottom" width="100%" >
             <Toolbar class="scan-ship-toolbar" height="10%" >
-            <ComboBox width="10%" items="{/shipRequests}" class="create-ship-req_tollbar_input">
-                 <core:Item key="{key}" text="{text}" />
+            <ComboBox width="15%" 
+                items="{/shipRequests}" 
+                selectedKey="{eshipjetModel>/databeseType}"
+                class="create-ship-req_tollbar_input">
+                <core:Item key="{key}" text="{text}" />
             </ComboBox>
             <Label text="Order Type" width="10%" class="sapUiTinyMargin sapUiMediumMarginBegin" wrapping="true" />
             <ComboBox width="10%" id="OrderTypeComboBox" 
@@ -29,7 +32,7 @@
                 selectedKey="{eshipjetModel>/ShipReqOrderType}" >
                     <core:Item key="{key}" text="{text}" />
              </ComboBox>
-            <Label width="13%" text="Shipment Type" class="sapUiTinyMargin sapUiMediumMarginBegin" wrapping="true" />
+            <Label width="12%" text="Shipment Type" class="sapUiTinyMargin sapUiMediumMarginBegin" wrapping="true" />
                 <ComboBox width="10%" selectedKey="{eshipjetModel>/shipmentTypeSelectedKey}" class="create-ship-req_tollbar_input" selectionChange="onShipmentChange" 
                 id="shipmentTypeComboBox" items="{     path: '/ShipmentTypes'
                     }">
@@ -45,8 +48,8 @@
                 <Label width="13%" text="Shipment Date" class="sapUiTinyMargin sapUiMediumMarginBegin" wrapping="true" />
                 <DatePicker width="10%"  class="create-ship-req_tollbar_input" />
 
-                <Label width="10%" text="Requester" class="sapUiTinyMargin sapUiMediumMarginBegin" wrapping="true" />
-                <ComboBox width="10%" class="create-ship-req_tollbar_input" />
+                <Label width="8%" text="Requester" class="sapUiTinyMargin sapUiMediumMarginBegin" wrapping="true" />
+                <ComboBox width="8%" class="create-ship-req_tollbar_input" />
 
                 <Label width="13%" text="Return Label" class="sapUiTinyMargin sapUiMediumMarginBegin" wrapping="true" />
                 <CheckBox width="1%" select="onCheckBoxSelect" />

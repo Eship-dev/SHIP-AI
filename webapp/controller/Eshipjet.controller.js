@@ -138,8 +138,8 @@ sap.ui.define([
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
                 eshipjetModel.setProperty("/createShipReqViewFooter", false);
                 eshipjetModel.setProperty("/routingGuidFooter", false);
-                eshipjetModel.setProperty("/showDarkThemeSwitch", false);
-                eshipjetModel.setProperty("/darkTheme", false);
+                eshipjetModel.setProperty("/showDarkThemeSwitch", true);
+                eshipjetModel.setProperty("/darkTheme", true);
                 document.body.classList.remove("dark-theme");
             } else if (sKey === "TrackNow") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
@@ -2444,21 +2444,30 @@ sap.ui.define([
                 if (count >= 14) {
                     var minWidth = "130px";
                 }
-                if (columnName) {
+                if (columnName != "actions") {
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
                         template: columnName,
                         visible: oContext.getObject().visible,
                         width: minWidth,
+                        hAlign: "Begin",
                         sortProperty: columnName
                     });
                 }else if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
                     var Btn1 = new sap.m.Button({ icon: "sap-icon://delete", type: "Transparent" });
                     var Btn2 = new sap.m.Button({
-                        icon: "sap-icon://delete", type: "Transparent",
+                        icon: "sap-icon://delete", type: "Attention",
                         press: function (oEvent) {
-                            that.handleDownArrowPress(oEvent);
+                            MessageBox.warning("Are you sure you want to delete this record?", {
+                                actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
+                                emphasizedAction: MessageBox.Action.OK,
+                                onClose: function (sAction) {
+                                    if(sAction === "OK"){
+                                        oController.onCreateShipReqPrdTableDelPress(oEvent);
+                                    }
+                                }
+                            });
                         }
                     });
                     oHBox.addItem(Btn2);
@@ -2467,12 +2476,21 @@ sap.ui.define([
                         label: oResourceBundle.getText(columnName),
                         template: oHBox,
                         visible: oContext.getObject().visible,
-                        width: minWidth,
+                        width: "100px",
+                        hAlign: "Begin",
                         sortProperty: columnName
                     });
                 }
             });
             oTable.bindRows("/CreateShipReqRows");
+        },
+
+        onCreateShipReqPrdTableDelPress:function(oEvent){
+            var sPath = oEvent.getSource().getBindingContext().sPath.split("/");
+            var idx = parseInt(sPath[sPath.length-1]);
+            var ShipReqTableDataModel = oController.getView().getModel("ShipReqTableDataModel");
+            ShipReqTableDataModel.getData().CreateShipReqRows.splice(idx, 1);
+            ShipReqTableDataModel.updateBindings(true);
         },
 
         openCreateShipReqColNamesPopover: function (oEvent) {

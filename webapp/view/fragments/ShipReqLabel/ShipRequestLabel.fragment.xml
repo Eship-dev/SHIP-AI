@@ -88,7 +88,7 @@
 		</Toolbar>
 <ScrollContainer
                 width="100%"
-                height="20%"
+                height="12%"
                 horizontal="true"
                 vertical="true">
 
@@ -235,12 +235,18 @@
 					<Text text="{eshipjetModel>ShipDate}" />
 					<Text text="{}" />
 					<Text text="{eshipjetModel>shipMethod}" />
-					<Text text="{eshipjetModel>ServiceName}" />
+					<Text text="{eshipjetModel>ServiceName}" class="ShipReq-Status-Bold" />
 					<Text text="{eshipjetModel>TrackingNumber}" />
 					<!-- <Text text="{eshipjetModel>status}" class="{path: 'eshipjetModel>status', formatter: '.formatStatusClass'}" /> -->
 
-					<ObjectNumber number="{eshipjetModel>status}"
-							state= "{= ${eshipjetModel>status} === 'Open' ? 'Error' : 'Success' }" />
+				<ObjectStatus
+					text="{eshipjetModel>status}"
+					state="{= ${eshipjetModel>status} === 'Open' ? 'Information' :
+							${eshipjetModel>status} === 'Shipped' ? 'Success' : 'Error' }" />
+				
+				
+					<!-- <ObjectNumber number="{eshipjetModel>status}" class="ShipReq-Status-Bold"
+							state= "{= ${eshipjetModel>status} === 'Open' ? 'Error' : 'Success' }" /> -->
 
 					<!-- <ObjectNumber
 						number="{eshipjetModel>status}"
@@ -254,8 +260,11 @@
 
 					<Text text="{eshipjetModel>ShipToContact}" />
 					<Text text="{eshipjetModel>ShipToCompany}" />
-					<ObjectNumber number="{eshipjetModel>quoteStatus}"
-							state= "{= ${eshipjetModel>quoteStatus} === 'Submitted' ? 'Information' : 'Error' }" />
+					<ObjectStatus
+						text="{eshipjetModel>quoteStatus}"
+						state="{= ${eshipjetModel>quoteStatus} === 'Submitted' ? 'Information' :
+								${eshipjetModel>quoteStatus} === 'Received' ? 'Success' : 
+								${eshipjetModel>quoteStatus} === 'Open' ? 'None' : 'Error' }" />
 					<Text text="{eshipjetModel>shipToCity}" />
 					<Text text="{eshipjetModel>shipToStateProvince}" />
 					<Text text="{eshipjetModel>shipToZipPostalCode}" />
@@ -268,7 +277,7 @@
 					<Text text="{}" />
 					<Text text="{}" />
 					<HBox alignContent="End" alignItems="End" >
-						<Button text="Ship Now" type="Transparent" ></Button>
+						<Button text="View Now" type="Transparent" ></Button>
 						<Button icon="sap-icon://megamenu" type="Transparent" press="ShipReqActDownArrowPress" ></Button>
 					</HBox>
 				</cells>
