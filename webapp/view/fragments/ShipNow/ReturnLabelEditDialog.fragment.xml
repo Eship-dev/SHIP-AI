@@ -44,7 +44,7 @@
 				<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{}" />
 				<core:Title  />
                 <Label text="Company Name" />
-				<Inputclass="sapUiSmallMarginBottom create-ship-req_input"  value="{}" />
+				<Input class="sapUiSmallMarginBottom create-ship-req_input"  value="{}" />
                 <Label text="Phone No" />
 				<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{}" />
 			</f:content>
