@@ -1,5 +1,17 @@
-<core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
-	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
+<core:FragmentDefinition	
+	xmlns="sap.m"    
+	xmlns:ui="sap.ui.table"    	
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"	
+	xmlns:core="sap.ui.core"
+	
+	xmlns:plugins="sap.m.plugins"
+	xmlns:columnmenu="sap.m.table.columnmenu"
+    xmlns:sap.ui.fl="sap.ui.fl"
+    xmlns:sap.ui.dt="sap.ui.dt"
+    xmlns:vm="sap.ui.fl.variants"
+    xmlns:dnd="sap.ui.core.dnd"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
 
 	    <!-- <Toolbar height="20%" width="100%" >
 			<VBox width="100%" >
@@ -38,7 +50,175 @@
 			</HBox>
 		</Toolbar>
 
-        <ui:Table id="idOrdersTable"
+
+	<Toolbar >
+			<Button icon="sap-icon://filter" press="onShipReqFilterPopoverPress"></Button>
+				<ToolbarSpacer ></ToolbarSpacer>
+					<Button icon="sap-icon://synchronize" press="onShipReqRefreshPress"></Button>
+					<Button icon="sap-icon://action" press="onShipReqExportToExcel"></Button>
+                    <Button icon="sap-icon://action-settings" press="openShipReqColNamesPopover" >
+                <customData>
+                    <core:CustomData key="remember" value="true" />
+                    <core:CustomData key="showClearButton" value="true" />
+                    <core:CustomData key="confirmButtonText" value="Ok" />
+                </customData>
+			</Button>
+		</Toolbar>
+		
+
+	<ScrollContainer
+                width="100%"
+                height="12%"
+                horizontal="true"
+                vertical="true">
+
+		<Table id="idOrdersTable"
+		inset="false"
+		sticky="ColumnHeaders,HeaderToolbar"
+		growing="true"
+		ariaLabelledBy="title" fixedLayout="Strict"
+		autoPopinMode="false" popinLayout="GridSmall"
+		growingThreshold="20"
+		items="{ path: 'eshipjetModel>/OrderTableData/orderRows' }" >
+            <dependents>
+                <plugins:ColumnResizer columnResize="onColumnResize"/>
+                <columnmenu:Menu  beforeOpen="beforeOpenColumnMenu">
+                    <columnmenu:QuickSort change="onSort">
+                        <columnmenu:items>
+                            <columnmenu:QuickSortItem></columnmenu:QuickSortItem>
+                        </columnmenu:items>
+                    </columnmenu:QuickSort>
+                    <columnmenu:QuickGroup change="onGroup">
+                        <columnmenu:items>
+                            <columnmenu:QuickGroupItem></columnmenu:QuickGroupItem>
+                        </columnmenu:items>
+                    </columnmenu:QuickGroup>
+                    <columnmenu:items>
+                        <columnmenu:ActionItem icon="sap-icon://sort" label="Sort" press="onColumnHeaderItemPress"/>
+                    </columnmenu:items>
+                </columnmenu:Menu>
+            </dependents>
+
+        <columns>
+
+			<Column app:p13nKey="locationName" width="10rem" headerMenu="menu" visible="{eshipjetModel>/OrderColumns/0/visible}">
+                    <header>
+                        <Text text="{eshipjetModel>/OrderColumns/0/label}"/>
+                    </header>
+            </Column>
+			<Column app:p13nKey="Consolidation ID" width="10rem" headerMenu="menu" visible="{eshipjetModel>/ShipReqColumns/1/visible}">
+                    <header>
+                        <Text text="{eshipjetModel>/OrderColumns/1/label}"/>
+                    </header>
+            </Column>
+			<Column app:p13nKey="requestIdLabelId" width="10rem" headerMenu="menu" visible="{eshipjetModel>/ShipReqColumns/2/visible}">
+				<header>
+                    <Text text="{eshipjetModel>/OrderColumns/2/label}"/>
+                </header>
+			</Column>
+                <Column app:p13nKey="CreatedDate" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/3/visible}" headerMenu="menu">
+					<header>
+						<Text text="{eshipjetModel>/OrderColumns/3/label}"/>
+					</header>
+				</Column>
+				<Column app:p13nKey="ShipDate" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/4/visible}" headerMenu="menu">
+                    <Text text="{eshipjetModel>/OrderColumns/4/label}"/>
+                </Column>
+				<Column app:p13nKey="ShipType" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/5/visible}" headerMenu="menu">
+                    <Text text="{eshipjetModel>/OrderColumns/5/label}"/>
+                </Column>
+				<Column app:p13nKey="shipMethod" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/6/visible}" headerMenu="menu">
+                    <Text text="{eshipjetModel>/OrderColumns/6/label}"/>
+                </Column>
+				<Column app:p13nKey="ServiceName" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/7/visible}" headerMenu="menu">
+                    <Text text="{eshipjetModel>/OrderColumns/7/label}"/>
+                </Column>
+				<Column app:p13nKey="TrackingNumber" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/8/visible}" headerMenu="menu">
+                    <Text text="{eshipjetModel>/OrderColumns/8/label}"/>
+                </Column>
+				<Column app:p13nKey="Status" width="9rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/12/visible}" headerMenu="menu">
+                   <Text text="{eshipjetModel>/OrderColumns/9/label}"/>
+                </Column>
+				<Column app:p13nKey="ShipToContact" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/10/visible}" headerMenu="menu">
+                    <Text text="{eshipjetModel>/OrderColumns/10/label}"/>
+                </Column>
+				<Column app:p13nKey="ShipToCompany" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/11/visible}" headerMenu="menu">
+                    <Text text="{eshipjetModel>/OrderColumns/11/label}"/>
+                </Column>
+				<Column app:p13nKey="status" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/9/visible}" headerMenu="menu">
+                    <Text text="{eshipjetModel>/OrderColumns/12/label}"/>
+                </Column>
+				<Column app:p13nKey="ShipToAddressLine1" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/13/visible}" headerMenu="menu">
+                    <Text text="{eshipjetModel>/OrderColumns/13/label}"/>
+                </Column>
+				<Column app:p13nKey="shipToStateProvince" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/14/visible}" headerMenu="menu">
+                    <Text text="{eshipjetModel>/OrderColumns/14/label}"/>
+                </Column>
+				<Column app:p13nKey="shipToCity" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/15/visible}" headerMenu="menu">
+                    <Text text="{eshipjetModel>/OrderColumns/15/label}"/>
+                </Column>
+				<Column app:p13nKey="shipToZipPostalCode" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/16/visible}" headerMenu="menu">
+                    <Text text="{eshipjetModel>/OrderColumns/16/label}"/>
+                </Column>
+				<Column app:p13nKey="shipToCountry" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/17/visible}" headerMenu="menu">
+                    <Text text="{eshipjetModel>/OrderColumns/17/label}"/>
+                </Column>
+				<Column app:p13nKey="Actions" width="8rem" hAlign="Right"  visible="{eshipjetModel>/ShipReqColumns/18/visible}" headerMenu="menu" >
+                    <Text text="{eshipjetModel>/OrderColumns/18/label}"/>
+                </Column>
+				<Column app:p13nKey="Actions" width="8rem" hAlign="Right" visible="{eshipjetModel>/ShipReqColumns/19/visible}" headerMenu="menu" >
+                    <Text text="{eshipjetModel>/OrderColumns/19/label}"/>
+                </Column>
+				<Column app:p13nKey="Actions" width="8rem" hAlign="Right" visible="{eshipjetModel>/ShipReqColumns/20/visible}" headerMenu="menu" >
+                    <Text text="{eshipjetModel>/OrderColumns/20/label}"/>
+                </Column>
+				<Column app:p13nKey="Actions" width="8rem" hAlign="Right" visible="{eshipjetModel>/ShipReqColumns/21/visible}" headerMenu="menu" >
+                    <Text text="{eshipjetModel>/OrderColumns/21/label}"/>
+                </Column>
+				<Column app:p13nKey="Actions" width="8rem" hAlign="Right" visible="true" headerMenu="menu" >
+                    <Text text="Actions"/>
+                </Column>
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle">
+				<cells>
+					<ObjectIdentifier
+						text="{eshipjetModel>orderID}"/>
+					<Text text="{eshipjetModel>CreatedDate}" />
+					<Text text="{eshipjetModel>ShipDate}" />
+					<Text text="{eshipjetModel>ShipmentType}" />
+					<Text text="{eshipjetModel>shipMethod}" />
+					<Text text="{eshipjetModel>ServiceName}" />
+					<Text text="{eshipjetModel>TrackingNumber}" />
+					<Text text="{eshipjetModel>status}" class="ShipReq-Status-Bold" />
+					<Text text="{eshipjetModel>ShipToContact}" />
+					<Text text="{eshipjetModel>ShipToCompany}" />
+					<Text text="{eshipjetModel>ShipToAddressLine1}" />
+					<Text text="{eshipjetModel>shipToCity}" />
+					<Text text="{eshipjetModel>shipToState}" />
+					<Text text="{eshipjetModel>shipToCountry}" />
+					<Text text="{eshipjetModel>shipToZipcode}" />
+					<Text text="{eshipjetModel>shipToPhone}" />
+					<Text text="{eshipjetModel>shipToEmail}" />
+					<HBox alignContent="End" alignItems="End" >
+						<Button text="View Now" type="Transparent" ></Button>
+						<Button icon="sap-icon://megamenu" type="Transparent" press="ShipReqActDownArrowPress" ></Button>
+					</HBox>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</ScrollContainer>
+		<Toolbar >
+			<ToolbarSpacer/>
+				<Button  text="First" enabled="false" />
+				<Button  text="Previous" enabled="false"/>
+				<Text    text="1-50 of 74"/>
+				<Button  text="Next" />
+				<Button  text="Last" />
+		</Toolbar>
+
+        <!-- <ui:Table id="idOrdersTable"
                 class="sapUiTinyMarginTop"
 				selectionMode="None"
 				visibleRowCount="12">
@@ -71,5 +251,5 @@
 						<Text    text="1-50 of 74"/>
 						<Button  text="Next" />
 						<Button  text="Last" />
-					</Toolbar>
+					</Toolbar> -->
 </core:FragmentDefinition>

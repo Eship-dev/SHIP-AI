@@ -113,7 +113,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
-                this._handleDisplayOrdersTable();
+                // this._handleDisplayOrdersTable();
             } else if (sKey === "ShipRequestLabel") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
@@ -1967,7 +1967,7 @@ sap.ui.define([
                 })
             });
             OrderTableDataModel.updateBindings(true);
-            this._handleDisplayOrdersTable();
+            // this._handleDisplayOrdersTable();
             this._pOrderPopover.then(function (oPopover) {
                 oPopover.close();
             });
