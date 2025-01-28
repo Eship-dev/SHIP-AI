@@ -14,7 +14,7 @@
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="1" class="NumberSizeTitle1"></Text>
 					<Text text="Total Countries" class="NumberSizeTitle2"></Text>
-					<Buttonclass="totalProgress-request-button request-button" press="handleManifestFilterBtnPress" icon="false" width="100%"  ></Button>
+					<Button class="totalProgress-request-button request-button" press="handleManifestFilterBtnPress" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="2" class="NumberSizeTitle1"></Text>
