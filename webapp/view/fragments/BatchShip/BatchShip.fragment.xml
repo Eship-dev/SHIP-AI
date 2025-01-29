@@ -2,9 +2,9 @@
 	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
 	    <Toolbar width="auto" height="15%" class="toolbarbottomborder" >
-			<Text text="Batch Shipping" class="sapUiTinyMarginBegin sapUiTinyMarginTop toolBarHeader" ></Text>
+			<Text text="Batch Shipping"  class="sapUiTinyMarginBegin sapUiMediumMarginBottom sapUiTinyMarginTop pageTitle" ></Text>
             <ToolbarSpacer ></ToolbarSpacer>
-                <Button text="Create Batch" class="ship-req-toolbar__button sapUiTinyMargin" press="onCreateBatchShipPress" ></Button>
+                <Button text="Create Batch" class="ship-req-toolbar__button sapUiMediumMarginBottom sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin" press="onCreateBatchShipPress" ></Button>
 		</Toolbar>
 		<Toolbar height="25%" >
 			<HBox width="100%">

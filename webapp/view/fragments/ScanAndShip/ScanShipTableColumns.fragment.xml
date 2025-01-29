@@ -11,7 +11,7 @@
 				</Toolbar>
 				<SearchField id="_IDGenSearchField" placeholder="Search Columns"   liveChange="onScanShipColNameSearch"></SearchField>
 			</VBox>
-		</customHeader>
+		</customHeader>zz
 		<content>
         <Table	id="myScanColumnSelectId" mode="MultiSelect" items="{path : 'ScanShipTableDataModel>/columns'}" >
 		<ColumnListItem id="_IDGenColumnListItem1" vAlign="Middle">

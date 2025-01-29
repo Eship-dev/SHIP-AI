@@ -22,8 +22,8 @@
 			</VBox>
 		</Toolbar> -->
 
-		<Toolbar width="auto" height="15%" class="toolbarbottomborder" >
-			<Text text="Order" class="sapUiTinyMarginBegin sapUiTinyMarginTop toolBarHeader" ></Text>
+		<Toolbar width="auto" height="10%" class="toolbarbottomborder" >
+			<Text text="Order" class="sapUiTinyMarginBegin sapUiMediumMarginBottom  pageTitle" ></Text>
         </Toolbar>
 		<Toolbar height="25%" >
 			<HBox width="100%">
@@ -55,7 +55,7 @@
 			<Button icon="sap-icon://filter" press="onShipReqFilterPopoverPress"></Button>
 				<ToolbarSpacer ></ToolbarSpacer>
 					<Button icon="sap-icon://synchronize" press="onShipReqRefreshPress"></Button>
-					<Button icon="sap-icon://action" press="onShipReqExportToExcel"></Button>
+					<Button icon="sap-icon://action" press="onOrderExportToExcel"></Button>
                     <Button icon="sap-icon://action-settings" press="openShipReqColNamesPopover" >
                 <customData>
                     <core:CustomData key="remember" value="true" />

@@ -24,7 +24,7 @@
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="3" class="NumberSizeTitle1"></Text>
 					<Text text="Inactive" class="NumberSizeTitle2"></Text>
-					<Button class="InWhite-request-button request-button" type="Success" press="handleManifestFilterBtnPress" icon="false" width="100%" ></Button>
+					<Button class="InWhite-request-button request-button"  type="Success" press="handleManifestFilterBtnPress" icon="false" width="100%" ></Button>
 				</VBox>
 			</HBox>
 		</Toolbar>
