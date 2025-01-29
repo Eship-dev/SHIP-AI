@@ -261,7 +261,34 @@
 
                     <!-- Special Services Tab Starts here -->
                     <IconTabFilter text="Special Services" visible="{eshipjetModel>/createShipReqSpecialSrvsShow}" key="SpecialServices" >
-                        <f:SimpleForm id="SimpleFormDisplay354"
+
+                    <Toolbar height="60%">
+    <HBox>
+        <VBox>
+            <CheckBox text="Signature Required" class="sapUiTinyMarginBottom sapUiSmallMarginTop" />
+            <CheckBox text="Fragile" class="sapUiTinyMarginBottom " />
+            <CheckBox text="Inside Pickup" class="sapUiTinyMarginBottom" />
+            <CheckBox text="Inside Delivery" class="sapUiTinyMarginBottom" />
+            <CheckBox text="Luxury Packing/Unboxing" class="sapUiTinyMarginBottom" />
+            <CheckBox text="White Glove" class="sapUiTinyMarginBottom" />
+            <!-- Line Separator -->
+            <Toolbar>
+                <ToolbarSeparator/>
+            </Toolbar>
+
+            <CheckBox text="Customer Approval" class="sapUiTinyMarginBottom" />
+        </VBox>
+
+        <VBox>
+            <CheckBox class="sapUiSmallMarginBottom sapUiSmallMarginTop" text="Non-Stackable" />
+            <CheckBox text="Guaranteed Service" class="sapUiTinyMarginBottom" />
+            <CheckBox text="Appointment Delivery" class="sapUiTinyMarginBottom" />
+            <CheckBox text="Expedited Shipping" class="sapUiTinyMarginBottom" />
+        </VBox>
+    </HBox>
+</Toolbar>
+
+                        <!-- <f:SimpleForm id="SimpleFormDisplay354"
                             editable="false"
                             layout="ResponsiveGridLayout"
                             labelSpanXL="12"
@@ -273,22 +300,24 @@
                             emptySpanL="0"
                             emptySpanM="0"
                             emptySpanS="0"
-                            columnsXL="1"
-                            columnsL="1"
-                            columnsM="1"
+                            columnsXL="2"
+                            columnsL="2"
+                            columnsM="2"
                             singleContainerFullSize="false" >
                             <f:content >
                                 <VBox height="auto" >
                                     <CheckBox class="sapUiSmallMarginBottom" text="Signature Required" />
-                                    <CheckBox text="Fragile" class="sapUiSmallMarginBottom" />
-                                    <CheckBox text="Inside Pickup" class="sapUiSmallMarginBottom" />
-                                    <CheckBox text="Inside Delivery" class="sapUiSmallMarginBottom" />
-                                    <CheckBox text="Luxury Packing/Unboxing" class="sapUiSmallMarginBottom" />
-                                    <CheckBox text="White Glove" class="sapUiSmallMarginBottom" />
-                                    <CheckBox text="Customer Approval" class="Special-Services-Maring" />
+                                    <CheckBox text="Fragile" class="sapUiTinyMarginBottom" />
+                                    <CheckBox text="Inside Pickup" class="sapUiTinyMarginBottom" />
+                                    <CheckBox text="Inside Delivery" class="sapUiTinyMarginBottom" />
+                                    <CheckBox text="Luxury Packing/Unboxing" class="sapUiTinyMarginBottom" />
+                                    <CheckBox text="White Glove" class="sapUiTinyMarginBottom" />
+                                    
+                                    <Toolbar ></Toolbar>
+                                    <CheckBox text="Customer Approval" class="sapUiTinyMarginBottom" />
                                 </VBox>
                             </f:content>
-                        </f:SimpleForm>
+                        </f:SimpleForm> -->
                     </IconTabFilter>
                 </items>
             </IconTabBar>
