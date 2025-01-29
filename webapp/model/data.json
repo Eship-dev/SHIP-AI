@@ -33,6 +33,66 @@
     "selectedKey": "page2",
     "image": "css/images/image.png",
     "SideNavigation": false,
+    "serviceNameDropdown":[{
+        "serviceCode":"FIRST_OVERNIGHT",
+        "serviceName":"FedEx First Overnight®"
+    },
+    {
+        "serviceCode":"STANDARD_OVERNIGHT",
+        "serviceName":"FedEx Standard Overnight®"
+    },
+    {
+        "serviceCode":"FEDEX_2_DAY_AM",
+        "serviceName":"FedEx 2Day® AM"
+    },
+    {
+        "serviceCode":"FEDEX_GROUND",
+        "serviceName":"FedEx Ground®"
+    },
+    {
+        "serviceCode":"STD",
+        "serviceName":"Standard Service"
+    },
+    {
+        "serviceCode":"GSDS",
+        "serviceName":"Guaranteed Service"
+    },
+    {
+        "serviceCode":"GSHW",
+        "serviceName":"Guaranteed HW Service"
+    },
+    {
+        "serviceCode":"STND",
+        "serviceName":"Standard"
+    },
+    {
+        "serviceCode":"GTD_NOON",
+        "serviceName":"Time Critical by noon"
+    },
+    {
+        "serviceCode":"GTD_PM",
+        "serviceName":"Time Critical by 5pm"
+    },
+    {
+        "serviceCode":"Priority",
+        "serviceName":"Priority Mail Cubic"
+    },
+    {
+        "serviceCode":"PriorityExpress",
+        "serviceName":"Priority Mail Express"
+    },
+    {
+        "serviceCode":"LibraryMail",
+        "serviceName":"Library Mail"
+    },
+    {
+        "serviceCode":"MediaMail",
+        "serviceName":"Media Mail"
+    },
+    {
+        "serviceCode":"N",
+        "serviceName":"EXPRESS DOMESTIC"
+    }],
     "shipMethodTypes":[
         {
             "key":"Gander & White",

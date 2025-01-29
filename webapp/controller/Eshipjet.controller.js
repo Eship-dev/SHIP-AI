@@ -8889,6 +8889,325 @@ sap.ui.define([
     onLTLClassesCloseFinishImportingPress: function () {
         this.byId("idLTLClassesImportPopover").close();
     },
-
+    onShipRatePress:function(){
+            oController.onShipRateRequest();            
+    },
+    onShipRateRequest:function(){
+        var oEshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+        var oPayload = {
+            "HeaderInfo": {
+                "FeederSystem": "Manual",
+                "DocumentNumber": "",
+                "DocumentType": "Delivery Order",
+                "ShipDate": "2024-10-29T09:08:36.962Z",
+                "CreatedDate": "2024-10-29T09:08:36.962Z",
+                "ShipmentType": "Manual",
+                "Location": "1001",
+                "ERP": "Manual",
+                "TotalWeight": "020"
+            },
+            "Shipper": {
+                "COMPANY": "Eshipjet Software Inc.",
+                "CONTACT": "Steve Marsh",
+                "ADDRESS_LINE1": "5717 Legacy",
+                "ADDRESS_LINE2": "Suite 250",
+                "ADDRESS_LINE3": null,
+                "CITY": "Plano",
+                "STATE": "TX",
+                "ZIPCODE": "75024",
+                "COUNTRY": "US",
+                "PHONE": "(888) 464 2360",
+                "EMAIL": "info@eshipjet.ai"
+            },
+            "ShipTo": {
+                "COMPANY": "Vinay Inc co",
+                "CONTACT": "John Williams",
+                "ADDRESS_LINE1": "4232 Balandre Ln",
+                "ADDRESS_LINE2": "Suite 250",
+                "ADDRESS_LINE3": null,
+                "CITY": "McKinney",
+                "STATE": "CA",
+                "ZIPCODE": "94538",
+                "COUNTRY": "US",
+                "PHONE": "4088380699",
+                "EMAIL": "info@eshipjet.ai",
+                "TAXID": null
+            },
+            "SoldTo": {
+                "COMPANY": "",
+                "CONTACT": "",
+                "ADDRESS_LINE1": "",
+                "ADDRESS_LINE2": "",
+                "ADDRESS_LINE3": "",
+                "CITY": "",
+                "STATE": "",
+                "ZIPCODE": "",
+                "COUNTRY": "",
+                "PHONE": "",
+                "EMAIL": ""
+            },
+            "Packages": [
+                {
+                    "ItemsInfo": [
+                        {
+                            "ItemNo": "OPF12346",
+                            "ProductNo": "OPF12346",
+                            "Description": "Oakley Square plastic",
+                            "IsDG": false,
+                            "UnitCost": "131",
+                            "UnitWeight": "1",
+                            "Dimension": "",
+                            "HTSCode": "900410",
+                            "ECCN": "",
+                            "UN": "",
+                            "Class": 50,
+                            "NMFC": "",
+                            "Category": "",
+                            "IsSerial": null,
+                            "IsBatch": null,
+                            "IsStackable": null,
+                            "IsActive": true,
+                            "LocationId": "",
+                            "id": 1,
+                            "Sno": 1,
+                            "Quantity": 15,
+                            "Partial": 15,
+                            "Balance": 15
+                        }
+                    ],
+                    "SpecialServices": {},
+                    "Weightunits": "LBS",
+                    "DimensionUnits": "IN",
+                    "Sno": 1,
+                    "HU": 1371,
+                    "Weight": "11",
+                    "Dimension": "5x5x5",
+                    "PackageSpecialServiceTyeps": []
+                }
+            ],
+            "ShipmentLevelServices": {},
+            "ShipmentLevelSpecialServices": {},
+            "id": 86,
+            "items": [],
+            "ShipmentSpecialServiceTypes": [],
+            "InternationalDetails": {
+                "ItemInfo": [
+                    {
+                        "ItemNo": "",
+                        "ProductNo": "",
+                        "Description": "",
+                        "IsDG": null,
+                        "UnitCost": "",
+                        "UnitWeight": "",
+                        "Dimension": "",
+                        "HTSCode": "",
+                        "ECCN": "",
+                        "UN": "",
+                        "Class": "",
+                        "NMFC": "",
+                        "Category": "",
+                        "IsSerial": null,
+                        "IsBatch": null,
+                        "IsStackable": null,
+                        "IsActive": true,
+                        "LocationId": "1001",
+                        "id": 1,
+                        "Sno": 1,
+                        "Quantity": null,
+                        "Partial": 1,
+                        "Balance": null,
+                        "UOM": null
+                    }
+                ],
+                "termsofShipment": "",
+                "reasonforExport": "",
+                "customDecVal": "",
+                "documentsContentType": "",
+                "iNTDutiesTaxes": "",
+                "dutiesAccountnumber": "",
+                "bookingConfirmnumber": "",
+                "B13AFilingOption": "",
+                "Permitnumber": "",
+                "ITN": "",
+                "compliStatement": "",
+                "payorCountryCode": ""
+            },
+            "CarrierDetails": [
+                {
+                    "Carrier": "FedEx",
+                    "ServiceName": "",
+                    "PaymentType": "Sender",
+                    "ShippingAccount": "740561073",
+                    "BillingAccount": "",
+                    "BillingZipCode": "",
+                    "Reference1": "",
+                    "Reference2": "",
+                    "Reference3": "",
+                    "Reference4": "",
+                    "Note": "",
+                    "UserId": "l70c717f3eaf284dc9af42169e93874b6e",
+                    "Password": "7f271bf486084e8f8073945bb7e6a020",
+                    "LocationId": "1001",
+                    "Account": "740561073"
+                },
+                {
+                    "Carrier": "RL",
+                    "ServiceName": "",
+                    "PaymentType": "Sender",
+                    "ShippingAccount": "",
+                    "BillingAccount": "",
+                    "BillingCountry": "",
+                    "BillingZipCode": "",
+                    "Reference1": "",
+                    "Reference2": "",
+                    "Reference3": "",
+                    "Reference4": "",
+                    "Note": "",
+                    "UserId": "test",
+                    "Password": "test",
+                    "AccessKey": "ItO0YzFzIxZ1Q0MWQtZWNlZi00MDVkLTgxYzNGNiQlMzMTkTC"
+                },
+                {
+                    "Carrier": "ABF",
+                    "ServiceName": "07",
+                    "PaymentType": "Sender",
+                    "ShippingAccount": "B24W72",
+                    "BillingAccount": "",
+                    "BillingCountry": "",
+                    "BillingZipCode": "",
+                    "Reference1": "",
+                    "Reference2": "",
+                    "Reference3": "",
+                    "Reference4": "",
+                    "Note": "",
+                    "UserId": "ABFESHIPJET",
+                    "Password": "Legacy!@3",
+                    "AccessKey": "JVG9SX85"
+                },
+                {
+                    "Carrier": "UPS",
+                    "ServiceName": "",
+                    "PaymentType": "Sender",
+                    "ShippingAccount": "B24W72",
+                    "BillingAccount": "",
+                    "BillingCountry": "",
+                    "BillingZipCode": "",
+                    "Reference1": "EWM17-CU02",
+                    "Reference2": "",
+                    "Reference3": "",
+                    "Reference4": "",
+                    "Note": "",
+                    "UserId": "6ljUpEbuu1OlOk7ow932lsxXHISUET0WKjTn59GzQ5MRdEbA",
+                    "Password": "ioZmsfcbrzlWfGh7wGMhqHL6sY4EAaKzZObullipni0cEGJGChjFmGpkcdCWQynK",
+                    "AccessKey": ""
+                },
+                {
+                    "Carrier": "USPS",
+                    "ShippingAccount": "3087617",
+                    "PaymentType": "Sender",
+                    "BillingAccount": "",
+                    "BillingCountry": "",
+                    "BillingZipCode": "",
+                    "Note": "",
+                    "Reference1": "",
+                    "Reference2": "",
+                    "Reference3": "",
+                    "Reference4": "",
+                    "ServiceName": "Priority",
+                    "costCenter": "",
+                    "PoNo": "",
+                    "InvoiceNo": "",
+                    "UserId": "3087617",
+                    "Password": "October2024!",
+                    "AccessKey": null
+                },
+                {
+                    "Carrier": "dhl",
+                    "ServiceName": "P",
+                    "PaymentType": "Sender",
+                    "ShippingAccount": "965278629",
+                    "BillingAccount": "",
+                    "BillingCountry": "",
+                    "BillingZipCode": "",
+                    "Reference1": "EWM17-CU02",
+                    "Reference2": "test",
+                    "Reference3": "",
+                    "Reference4": "",
+                    "Note": "",
+                    "UserId": "apT2vB7mV1qR1b",
+                    "Password": "U#3mO^1vY!5mT@0j",
+                    "AccessKey": "",
+                    "RefreshKey": ""
+                }
+            ],
+            "ShipFrom": {
+                "COMPANY": "Eshipjet Software Inc.",
+                "CONTACT": "Steve Marsh",
+                "ADDRESS_LINE1": "5717 Legacy",
+                "ADDRESS_LINE2": "Suite 250",
+                "ADDRESS_LINE3": null,
+                "CITY": "Plano",
+                "STATE": "TX",
+                "ZIPCODE": "75024",
+                "COUNTRY": "US",
+                "PHONE": "(888) 464 2360",
+                "EMAIL": "info@eshipjet.ai"
+            }
+        };
+        var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/Rateall "; 
+        oController.oBusyDialog.open();       
+        $.ajax({
+            url: sPath, // Replace with your API endpoint
+            method: "POST",
+            contentType: "application/json", // Set content type to JSON if sending JSON data
+            data: JSON.stringify(oPayload),
+            success: function (response) {
+                oController.oBusyDialog.close();
+                // Handle successful response               
+                console.log("Success:", response);
+                if(response && response.RateServices && response.RateServices.length > 0){
+                    oEshipjetModel.setProperty("/shipNowShippingRates", response.RateServices);
+                    oController.onOpenShipNowShippinRateDialog();
+                }
+            },
+            error: function (error) {
+                // Handle error                
+                console.log("Error:", error);
+                oController.oBusyDialog.close();
+            }
+        });
+    },
+    onOpenShipNowShippinRateDialog:function(){    
+        var oView = oController.getView();
+        if (!oController.byId("_IDGenShipNowShppindRateDialog")) {
+            Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.ShippingRates",
+                controller: this // Pass the controller for binding
+            }).then(function (oShippingDialog) {
+                oView.addDependent(oShippingDialog);
+                oShippingDialog.open();                
+            });
+        } else {
+            this.byId("_IDGenShipNowShppindRateDialog").open(); 
+        }
+    },
+    onCloseShipNowShippinRateDialog:function(){
+        oController.byId("_ShippingRateTableId").removeSelections();
+        this.byId("_IDGenShipNowShppindRateDialog").close();        
+    },
+    onPickCarrierSubmit:function(oEvent){
+        var oTable  = oController.byId("_ShippingRateTableId");
+        var oEshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+        var aSelectedItems = oTable.getSelectedItems();
+        var oSelectObj;
+        if(aSelectedItems && aSelectedItems.length > 0){
+            oSelectObj = aSelectedItems[0].getBindingContext("eshipjetModel").getObject(); 
+            oEshipjetModel.setProperty("/ShipNowShipMethodSelectedKey", oSelectObj.Carrier);
+            oEshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey", oSelectObj.serviceCode);
+            oEshipjetModel.setProperty("/accountNumber", oSelectObj.AccountNumber);                     
+        }
+        oController.onCloseShipNowShippinRateDialog();
+    }
     });
 });

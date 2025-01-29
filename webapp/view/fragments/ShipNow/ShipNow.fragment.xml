@@ -217,8 +217,8 @@
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Service Name" />
-													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/serviceName}">
-														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/serviceNameDropdown}" selectedKey="{eshipjetModel>/ShipNowShipsrvNameSelectedKey}">
+														<core:Item key="{eshipjetModel>serviceCode}" text="{eshipjetModel>serviceName}" />
 													</ComboBox>
 													<Label text="Cost Center" />
 													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/costCenter}">

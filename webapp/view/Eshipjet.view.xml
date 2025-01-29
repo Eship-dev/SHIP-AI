@@ -323,7 +323,7 @@
 		<OverflowToolbar class="eship-footer ship-now-footer" visible="{eshipjetModel>/shipNowViewFooter}">
 			<ToolbarSpacer/>
 				<!-- <Button text="Get Shipping Rates" class="ship-now-footer_ship-rates"/> -->
-				<Button text="Get Shipping Rates"  class="ship-now-footer_ship-rates" />
+				<Button text="Get Shipping Rates"  class="ship-now-footer_ship-rates"  press="onShipRatePress" />
 			<ToolbarSpacer/>
 				<Button text="Save" class="ship-now-footer_ship-now" />
 				<Button text="Ship Now" press="onShipNowPress" class="ship-now-footer_ship-now" />
@@ -336,7 +336,7 @@
 			
 				<Button text="Clear"  class="ship-now-footer_ship-rates" />
 			<ToolbarSpacer />
-				<Button text="Get Shipping Rates" class="ship-now-footer_ship-rates" visible="{eshipjetModel>/createShipReqBusinessSelect}" />
+				<Button text="Get Shipping Rates" class="ship-now-footer_ship-rates" visible="{eshipjetModel>/createShipReqBusinessSelect}"  press="onShipRatePress"/>
 				<Button text="Get Freight Quotes" press="onGetFreightQuotesPress" class="ship-now-footer_ship-rates" visible="{eshipjetModel>/createShipReqSpecialSrvsShow}" />
 				<Button text="Buy Shipping Label" class="ship-now-footer_ship-rates" visible="{eshipjetModel>/createShipReqPersonalSelect}" />
 			<ToolbarSpacer/>
