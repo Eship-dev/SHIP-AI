@@ -4,9 +4,9 @@
 			<Text text="Locations" class="toolBarHeader sapUiTinyMarginBegin sapUiMediumMarginBottom sapUiTinyMarginTop " ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button  text="Add Location"  press="onAddLocationPress" class="ship-req-toolbar__button sapUiMediumMarginBottom sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin"></Button>
-                    <Button type="Success" press="onADDLocImpPress" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiMediumMarginBottom sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin "></Button>
-                </HBox>
+						<Button  text="Add Location"  press="onAddLocationPress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="10rem" ></Button>
+						<Button type="Success" press="onADDLocImpPress" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button>
+                	</HBox>
 		</Toolbar>
 
         <Toolbar height="25%" class="sapUiTinyMarginBottom" >

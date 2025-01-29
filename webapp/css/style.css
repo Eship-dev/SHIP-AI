@@ -965,7 +965,7 @@ span.sapMBtnInner.sapMBtnReject {
   justify-content: center;
   margin-right: 0px;
 }
-
+ 
 .active-shipping-card[_ngcontent-ng-c929619375] {
   background-color: #030e4c;
   transform: scale(1.05);
@@ -988,10 +988,11 @@ span.sapMBtnInner.sapMBtnReject {
   transform: scale(1.05);
   transition: all 0.3s ease;
   justify-content: space-between;
-  border-radius: 4px 4px 4px 4px !important;
+  border-radius: 2px 2px 2px 2px !important;
   height: 40px !important;
-  padding: 8px;
-  text-align: center;
+  padding: 8px !important;
+  text-align: center !important;
+  margin-right: 6px !important;
  
 }
 

@@ -1642,3 +1642,11 @@ td[rowspan] {
   padding-left: .5rem !important;
   padding-top: 6px !important;
 }
+
+/* Ui Table Border Line Hide */
+.sapUiTableCell {
+  position: relative;
+  box-sizing: None !important;
+  border-right: None !important;
+  border-bottom: .0625rem solid #e5e5e5;
+}

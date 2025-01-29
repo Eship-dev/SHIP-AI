@@ -4,8 +4,8 @@
 			<Text text="Mode Of Transports" class="toolBarHeader sapUiTinyMarginBegin pageTitle"></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button type="Success" text="Add Mode Of Transport" press="AddModeOfTransportPress" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"></Button>
-                    <Button type="Success" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"></Button>
+                    <Button text="Add Mode Of Transport" press="AddModeOfTransportPress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="13rem" ></Button>
+                    <Button type="Success" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button>
                 </HBox>
 		</Toolbar>
 

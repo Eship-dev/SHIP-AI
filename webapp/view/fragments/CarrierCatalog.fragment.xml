@@ -4,8 +4,8 @@
 			<Text text="Carrier Catalog" class="toolBarHeader sapUiTinyMarginBegin pageTitle"  ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button  text="Add Carrier" press="AddCarrierDialog" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"></Button>
-                    <Button type="Success" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"></Button>
+                    <Button  text="Add Carrier" press="AddCarrierDialog" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="10rem" ></Button>
+                    <Button type="Success" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd"></Button>
                 </HBox>
 		</Toolbar>
 

@@ -4,8 +4,8 @@
 			<Text text="Cost Center" class="toolBarHeader sapUiTinyMarginBegin pageTitle" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button  text="Add Cost Center" press="OnAddCostCenterPress" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"></Button>
-                    <Button type="Success" icon="sap-icon://navigation-down-arrow" press="onCostCenterArrowPress" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"></Button>
+                    <Button  text="Add Cost Center" press="OnAddCostCenterPress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="10rem" ></Button>
+                    <Button type="Success" icon="sap-icon://navigation-down-arrow" press="onCostCenterArrowPress" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button>
                 </HBox>
 		</Toolbar>
 

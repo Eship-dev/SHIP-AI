@@ -5,8 +5,8 @@
 			<Text text="Address Book" class="toolBarHeader sapUiTinyMarginBegin pageTitle"  ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button  text="Add Address Book" press="onAddAdressBookIconPress" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"></Button>
-                    <Button type="Success" press="onAddAdressBookArrowPress" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin"></Button>
+                    <Button  text="Add Address Book" press="onAddAdressBookIconPress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="10rem" ></Button>
+                    <Button type="Success" press="onAddAdressBookArrowPress" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button>
                 </HBox>
 		</Toolbar>
  

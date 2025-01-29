@@ -1,11 +1,11 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
     <Toolbar width="auto" height="15%" class="toolbarbottomborder fixedLayout">
-			<Text text="Roles" class="toolBarHeader sapUiTinyMarginBegin pageTitle" ></Text>
+			<Text text="Roles" class="toolBarHeader sapUiTinyMargin" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button text="Add Role" press="onAddRolePress" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"></Button>
-                    <Button type="Success" icon="sap-icon://navigation-down-arrow" press="onRolesArrowPress" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"></Button>
+                    <Button text="Add Role" press="onAddRolePress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="6rem" ></Button>
+                    <Button type="Success" icon="sap-icon://navigation-down-arrow" press="onRolesArrowPress" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button>
                 </HBox>
 		</Toolbar>
 

@@ -1689,6 +1689,29 @@ sap.ui.define([
         },
 
         onScanShipExportToExcel: function () {
+            // var oTable = oController.getView().byId("idScanAndShipTable");
+            // var oModel = oController.getView().getModel("ScanShipTableDataModel");
+            // var aData = oModel.getProperty("/rows");
+            // var aColumns = oTable.getColumns().map(function (oColumn, index) {
+            //     var oLabel = oColumn.getLabel();
+            //     var sLabel = oLabel && oLabel.getText ? oLabel.getText() : "Column " + (index + 1);
+            //     var sProperty = oColumn.getCustomData().length > 0 ? oColumn.getCustomData()[0].getValue() : "col" + index;
+            //     return {
+            //         label: sLabel,
+            //         property: sProperty,
+            //         type: "string"
+            //     };
+            // });
+            // var oSettings = {
+            //     workbook: { columns: aColumns },
+            //     dataSource: aData,
+            //     fileName: "ExportedData.xlsx"
+            // };
+            // var oSpreadsheet = new sap.ui.export.Spreadsheet(oSettings);
+            // oSpreadsheet.build().finally(function () {
+            //     oSpreadsheet.destroy();
+            // });
+
             var ScanShipTableDataModel = this.getView().getModel("ScanShipTableDataModel");
             var rows = ScanShipTableDataModel.getProperty("/rows");
             var oSettings = {
@@ -1714,7 +1737,6 @@ sap.ui.define([
                         { label: "Requester Name", property: "requesterName" },
                         { label: "Connected To", property: "connectedTo" },
                         { label: "Order Type", property: "orderType" },
-                        // { label: "Actions", property: "actions" }
                     ]
                 },
                 dataSource: rows,
@@ -1828,7 +1850,6 @@ sap.ui.define([
         // Dashboar Tiles Changes End
 
         // Order Changes Starts
-
         _handleDisplayOrdersTable: function () {
             var that = this;
             const oView = oController.getView();

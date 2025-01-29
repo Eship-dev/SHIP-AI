@@ -80,32 +80,22 @@
 		autoPopinMode="false" popinLayout="GridSmall"
 		growingThreshold="20"
 		items="{ path: 'eshipjetModel>/OrderTableData/orderRows' }" >
-            <dependents>
-                <plugins:ColumnResizer columnResize="onColumnResize"/>
-                <columnmenu:Menu  beforeOpen="beforeOpenColumnMenu">
-                    <columnmenu:QuickSort change="onSort">
-                        <columnmenu:items>
-                            <columnmenu:QuickSortItem></columnmenu:QuickSortItem>
-                        </columnmenu:items>
-                    </columnmenu:QuickSort>
-                    <columnmenu:QuickGroup change="onGroup">
-                        <columnmenu:items>
-                            <columnmenu:QuickGroupItem></columnmenu:QuickGroupItem>
-                        </columnmenu:items>
-                    </columnmenu:QuickGroup>
-                    <columnmenu:items>
-                        <columnmenu:ActionItem icon="sap-icon://sort" label="Sort" press="onColumnHeaderItemPress"/>
-                    </columnmenu:items>
-                </columnmenu:Menu>
-            </dependents>
 
-        <columns>
+    <columns>
+		<Column width="10rem" visible="{eshipjetModel>/ShipReqColumns/0/visible}" >
+            <header>
+                <HBox>
+                    <Text text="{eshipjetModel>/OrderColumns/0/label}" class="sapUiTinyMarginEnd" />
+					<core:Icon src="sap-icon://sort" id="idOrderLocation" press="onSortPress" hoverColor="red" ></core:Icon>
+                </HBox>
+            </header>
+        </Column>
 
-			<Column app:p13nKey="locationName" width="10rem" headerMenu="menu" visible="{eshipjetModel>/OrderColumns/0/visible}">
+			<!-- <Column app:p13nKey="locationName" width="10rem" headerMenu="menu" visible="{eshipjetModel>/OrderColumns/0/visible}" >
                     <header>
                         <Text text="{eshipjetModel>/OrderColumns/0/label}"/>
                     </header>
-            </Column>
+            </Column> -->
 			<Column app:p13nKey="Consolidation ID" width="10rem" headerMenu="menu" visible="{eshipjetModel>/ShipReqColumns/1/visible}">
                     <header>
                         <Text text="{eshipjetModel>/OrderColumns/1/label}"/>
@@ -124,12 +114,25 @@
 				<Column app:p13nKey="ShipDate" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/4/visible}" headerMenu="menu">
                     <Text text="{eshipjetModel>/OrderColumns/4/label}"/>
                 </Column>
+
+				<Column width="10rem" visible="{eshipjetModel>/ShipReqColumns/0/visible}" >
+					<header>
+						<HBox>
+							<Text text="ship Method" class="sapUiTinyMarginEnd" />
+							<core:Icon src="sap-icon://sort" press="onSortPress" hoverColor="red" validationSuccess="Actions" validationError="vertical" ></core:Icon>
+						</HBox>
+					</header>
+				</Column>
+				
 				<Column app:p13nKey="ShipType" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/5/visible}" headerMenu="menu">
                     <Text text="{eshipjetModel>/OrderColumns/5/label}"/>
                 </Column>
-				<Column app:p13nKey="shipMethod" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/6/visible}" headerMenu="menu">
+
+				
+
+				<!-- <Column app:p13nKey="shipMethod" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/6/visible}" headerMenu="menu">
                     <Text text="{eshipjetModel>/OrderColumns/6/label}"/>
-                </Column>
+                </Column> -->
 				<Column app:p13nKey="ServiceName" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/7/visible}" headerMenu="menu">
                     <Text text="{eshipjetModel>/OrderColumns/7/label}"/>
                 </Column>

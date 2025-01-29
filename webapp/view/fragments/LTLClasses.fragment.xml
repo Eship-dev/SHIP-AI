@@ -4,8 +4,8 @@
 			<Text text="LTL Classes" class="toolBarHeader sapUiTinyMarginBegin pageTitle" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button  text="Add LTL Class" press="onAddLTLClassPress" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"></Button>
-                    <Button type="Success" icon="sap-icon://navigation-down-arrow" press="onLTLClassesArrowPress" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"></Button>
+                    <Button  text="Add LTL Class" press="onAddLTLClassPress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="8rem" ></Button>
+                    <Button type="Success" icon="sap-icon://navigation-down-arrow" press="onLTLClassesArrowPress" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button>
                 </HBox>
 		</Toolbar>
 
