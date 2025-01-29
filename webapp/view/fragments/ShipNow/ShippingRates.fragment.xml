@@ -40,12 +40,11 @@
 			<Toolbar>
 				<content>	
                 	<ToolbarSpacer />				
-					<Button type="Accept"
+					<Button type="Emphasized"
 							text="Submit"
 							press=".onPickCarrierSubmit" />
 					<Button id="Reject"
 						text="Cancel"
-						type="Reject"
 						press=".onCloseShipNowShippinRateDialog"
 						ariaHasPopup="Dialog" />
 				</content>
