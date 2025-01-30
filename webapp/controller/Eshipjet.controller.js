@@ -1767,7 +1767,7 @@ sap.ui.define([
                     ]
                 },
                 dataSource: rows,
-                fileName: 'Shipment_Data',
+                fileName: 'Shipment_Dataq',
                 Worker: true
             };
             var oSpreadsheet = new Spreadsheet(oSettings);
@@ -1995,6 +1995,49 @@ sap.ui.define([
             var oBinding = oList.getBinding("items");
             oBinding.filter(aFilters, "Application");
 
+        },
+
+
+        onOrderExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("OrderTableDataModel");
+            var rows = eshipjetModel.getProperty("/OrderTableData/orderRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Location Name", property: "locationName" },
+                        { label: "Consolidation ID", property: "consolidationID" },
+                        { label: "Request ID / Label ID", property: "requestIdLabelId" },
+                        { label: "Created Date", property: "CreatedDate" },
+                        { label: "Ship Date", property: "ShipDate" },
+                        { label: "Shipment Type", property: "ShipmentType" },
+                        { label: "Ship Method", property: "shipMethod" },
+                        { label: "Service Name", property: "ServiceName" },
+                        { label: "Tracking Number", property: "TrackingNumber" },
+                        { label: "Status", property: "status" },
+                        { label: "Ship To Contact", property: "ShipToContact" },
+                        { label: "Ship To Company", property: "ShipToCompany" },
+                        { label: "Ship To AddressLine1", property: "ShipToAddressLine1" },
+                        { label: "Ship To State / Provincey", property: "shipToStateProvince" },
+                        { label: "Ship To City", property: "shipToCity" },
+                        { label: "Ship To Zip / Postal Code", property: "shipToZipPostalCode" },
+                        { label: "Ship To Country", property: "shipToCountry" },
+                        { label: "Ship To Phone", property: "shipToPhone" },
+                        { label: "Ship To Email", property: "shipToEmail" },
+                        { label: "Requestor Name", property: "requesterName" },
+                        { label: "Connected To", property: "connectedTo" },
+                        { label: "Order Type", property: "orderType" },
+                        { label: "RFID", property: "RFID" },
+                        { label: "Actions", property: "actions" },
+                    ]
+                },
+                dataSource: rows,
+                fileName: 'Shipment_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
         },
 
         onoOrderColSelectOkPress: function () {
@@ -2379,6 +2422,50 @@ sap.ui.define([
                 oPopover.openBy(oButton);
             });
         },
+
+
+        onShipReqExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/ShipReqTableData/ShipReqRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Location Name", property: "locationName" },
+                        { label: "Consolidation ID", property: "consolidationID" },
+                        { label: "Request ID / Label ID", property: "requestIdLabelId" },
+                        { label: "Created Date", property: "CreatedDate" },
+                        { label: "Ship Date", property: "ShipDate" },
+                        { label: "Shipment Type", property: "ShipmentType" },
+                        { label: "Ship Method", property: "shipMethod" },
+                        { label: "Service Name", property: "ServiceName" },
+                        { label: "Tracking Number", property: "TrackingNumber" },
+                        { label: "Status", property: "status" },
+                        { label: "Ship To Contact", property: "ShipToContact" },
+                        { label: "Ship To Company", property: "ShipToCompany" },
+                        { label: "Ship To AddressLine1", property: "ShipToAddressLine1" },
+                        { label: "Ship To State / Provincey", property: "shipToStateProvince" },
+                        { label: "Ship To City", property: "shipToCity" },
+                        { label: "Ship To Zip / Postal Code", property: "shipToZipPostalCode" },
+                        { label: "Ship To Country", property: "shipToCountry" },
+                        { label: "Ship To Phone", property: "shipToPhone" },
+                        { label: "Ship To Email", property: "shipToEmail" },
+                        { label: "Requestor Name", property: "requesterName" },
+                        { label: "Connected To", property: "connectedTo" },
+                        { label: "Order Type", property: "orderType" },
+                        { label: "RFID", property: "RFID" },
+                        { label: "Actions", property: "actions" },
+                    ]
+                },
+                dataSource: rows,
+                fileName: 'Shipment_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
 
         ShipReqColumnsVisiblity: function () {
             var oView = oController.getView();
@@ -8081,7 +8168,7 @@ sap.ui.define([
             if (!this.byId("CompanySettingsopenDialog")) {
                 Fragment.load({
                     id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.CompanySettingsDialog",
+                    name: "com.eshipjet.zeshipjet.view.fragments.UpdateCompanySettingsPopover",
                     controller: this // Pass the controller for binding
                 }).then(function (oDialog) {
                     oView.addDependent(oDialog);
@@ -9275,6 +9362,11 @@ sap.ui.define([
             oEshipjetModel.setProperty("/accountNumber", oSelectObj.AccountNumber);                     
         }
         oController.onCloseShipNowShippinRateDialog();
+    },
+    onPressCloseShipNow: function() {
+        var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        oRouter.navTo("ShipRequestLabel"); // Replace with your actual route name
     }
+    
     });
 });

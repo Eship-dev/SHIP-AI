@@ -78,6 +78,7 @@
 				<ToolbarSpacer ></ToolbarSpacer>
 					<Button icon="sap-icon://synchronize" press="onShipReqRefreshPress"></Button>
 					<Button icon="sap-icon://action" press="onShipReqExportToExcel"></Button>
+					
                     <Button icon="sap-icon://action-settings" press="openShipReqColNamesPopover" >
                 <customData>
                     <core:CustomData key="remember" value="true" />

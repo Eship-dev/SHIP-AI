@@ -7,8 +7,8 @@
 
     <Popover id="addLocationPopover" 
             placement="Bottom" 
-            contentWidth="40%"
-            contentHeight="69%" 
+            contentWidth="45%"
+            contentHeight="60%" 
             showHeader="true"
 			class="sapUiResponsivePadding--header sapUiResponsivePadding--footer addLocationPopoverSpace"
             >
