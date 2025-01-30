@@ -341,7 +341,7 @@
 				<Button text="Buy Shipping Label" class="ship-now-footer_ship-rates" visible="{eshipjetModel>/createShipReqPersonalSelect}" />
 			<ToolbarSpacer/>
 				<HBox >
-					<Button type="Success" text="Save"  class="create-ship-req-toolbar_save-button" width="4rem" ></Button>
+					<Button type="Success" text="Save" class="create-ship-req-toolbar_save-button" width="4rem" ></Button>
 					<Button type="Success" icon="sap-icon://navigation-down-arrow" class="create-ship-req-toolbar__button" ></Button>
                 	
 
