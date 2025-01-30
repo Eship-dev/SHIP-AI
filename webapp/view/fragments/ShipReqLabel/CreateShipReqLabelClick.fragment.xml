@@ -264,7 +264,7 @@
 
                     <Toolbar height="60%">
     <HBox>
-        <VBox>
+        <VBox class="sapUiTinyMarginBottom ">
             <CheckBox text="Signature Required" class="sapUiTinyMarginBottom sapUiSmallMarginTop" />
             <CheckBox text="Fragile" class="sapUiTinyMarginBottom " />
             <CheckBox text="Inside Pickup" class="sapUiTinyMarginBottom" />
@@ -276,7 +276,7 @@
                 <ToolbarSeparator/>
             </Toolbar>
 
-            <CheckBox text="Customer Approval" class="sapUiTinyMarginBottom" />
+            <CheckBox text="Customer Approval" class="sapUiTinyMarginBottom sapUiSmallMarginTop" />
         </VBox>
 
         <VBox>

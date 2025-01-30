@@ -12,17 +12,17 @@
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Total" class="NumberSizeTitle2"></Text>
-					<Button type="Emphasized" press="handleTrackNowFilterBtnPress" id="idAESDirectTotalBtn" icon="false" width="100%" ></Button>
+					<Button class="totalProgress-request-button request-button" press="handleTrackNowFilterBtnPress" id="idAESDirectTotalBtn" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Open" class="NumberSizeTitle2"></Text>
-					<Button type="Critical" press="handleTrackNowFilterBtnPress" id="idAESDirectOpenBtn" icon="false" width="100%"  ></Button>
+					<Button class="inTransit-request-button  request-button" type="Critical" press="handleTrackNowFilterBtnPress" id="idAESDirectOpenBtn" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Shipped" class="NumberSizeTitle2"></Text>
-					<Button type="Success" press="handleTrackNowFilterBtnPress" id="idAESDirectShippedBtn" icon="false" width="100%" ></Button>
+					<Button class="InWhite-request-button request-button" type="Success" press="handleTrackNowFilterBtnPress" id="idAESDirectShippedBtn" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="0" class="NumberSizeTitle1"></Text>

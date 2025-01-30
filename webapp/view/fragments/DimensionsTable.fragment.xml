@@ -14,17 +14,17 @@
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="1" class="NumberSizeTitle1"></Text>
 					<Text text="Total Dimensions" class="NumberSizeTitle2"></Text>
-					<Button type="Emphasized" press="handleManifestFilterBtnPress" icon="false" width="100%"  ></Button>
+					<Button class="totalProgress-request-button request-button" press="handleManifestFilterBtnPress" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="2" class="NumberSizeTitle1"></Text>
 					<Text text="Active" class="NumberSizeTitle2"></Text>
-					<Button type="Critical" press="handleManifestFilterBtnPress" icon="false" width="100%" ></Button>
+					<Button class="inTransit-request-button  request-button" type="Critical" press="handleManifestFilterBtnPress" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="3" class="NumberSizeTitle1"></Text>
 					<Text text="Inactive" class="NumberSizeTitle2"></Text>
-					<Button type="Success" press="handleManifestFilterBtnPress" icon="false" width="100%" ></Button>
+					<Button class="InWhite-request-button request-button" type="Success" press="handleManifestFilterBtnPress" icon="false" width="100%" ></Button>
 				</VBox>
 			</HBox>
 		</Toolbar>

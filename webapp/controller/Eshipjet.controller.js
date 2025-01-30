@@ -8077,7 +8077,7 @@ sap.ui.define([
         CompanySettingsSaveDialog: function () {
             this.byId("idAddFreightQuotesDialog1").close();
         },
-        CompanySettingsClosePress: function () {
+        FreightQuotesClosePress: function () {
             this.byId("idAddFreightQuotesDialog1").close();
         },
 
