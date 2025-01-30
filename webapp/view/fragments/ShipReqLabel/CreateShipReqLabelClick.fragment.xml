@@ -13,7 +13,7 @@
 								<Button icon="sap-icon://past"  press="onOpenRecentShipmentPopover"/>
 								<Text text="Ship Request / Label"/>
 								<ToolbarSpacer/>
-								<Button  icon="sap-icon://decline" press="onPressCloseShipNow"/>
+								<Button  icon="sap-icon://decline" press="onCreateShipReqClosePress" />
 	        </Toolbar>
        
          <VBox class="scan-ship-page sapUiTinyMarginBottom" width="100%" >

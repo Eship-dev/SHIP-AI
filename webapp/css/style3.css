@@ -1650,3 +1650,28 @@ td[rowspan] {
   border-right: None !important;
   border-bottom: .0625rem solid #e5e5e5;
 }
+
+.sapTntToolHeader:not(.sapUshellShellToolHeader).sapMTBStandard {
+  border-bottom: none !important;
+  background-color: black !important;
+}
+.sapTntToolHeader .sapMText,
+.sapTntToolHeader .sapUiIcon {
+  color: white !important;
+  fill: white !important;
+}
+
+.sapTntToolHeader .sapMBtn {
+  background-color: black !important; /* Keeps default look */
+  color: white !important;
+  fill: white !important;
+  border: none; /* Remove borders if needed */
+}
+
+.fixedColumn {
+  position: sticky;
+  right: 0;
+  background: white; /* Prevent text overlap */
+  z-index: 2; /* Keep it above scrolling content */
+  box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
+}

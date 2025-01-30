@@ -375,6 +375,33 @@ sap.ui.define([
         // Shipper Copilot Changes end
 
         // Ship Now changes starts here
+
+        onShipNowClosePress:function(){
+            var sKey = "Dashboard";
+            var eshipjetModel = oController.getOwnerComponent().getModel();
+            eshipjetModel.setSizeLimit(9999999);
+            eshipjetModel.setProperty("/sapDeliveryNumber",""); //80000001
+            var oToolPage = this.byId("toolPage");
+            oToolPage.setSideExpanded(false);
+            eshipjetModel.setProperty("/shippingCharges",[]);
+            eshipjetModel.setProperty("/shippingDocuments",[]);
+            eshipjetModel.setProperty("/HandlingUnitItems",[]);
+            eshipjetModel.setProperty("/HandlingUnits",[]);
+            eshipjetModel.setProperty("/shippingDocuments",[]);
+            if (sKey === "Dashboard") {
+                eshipjetModel.setProperty("/allViewsFooter", true);
+                eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/createShipReqViewFooter", false);
+                eshipjetModel.setProperty("/routingGuidFooter", false);
+                eshipjetModel.setProperty("/showDarkThemeSwitch", false);
+                eshipjetModel.setProperty("/darkTheme", false);
+                document.body.classList.remove("dark-theme");
+            }
+            eshipjetModel.setProperty("/SideNavigation", false);
+            this.byId("pageContainer").to(this.getView().createId(sKey));
+        },
+
+
         onShipNowPress: function () {
             var that = this;
             BusyIndicator.show();
@@ -2244,6 +2271,25 @@ sap.ui.define([
         // RoutingGuide Changes End
 
         // Ship Request/Lable Code Changes Starts
+
+
+        onCreateShipReqClosePress:function(){
+            var sKey = "ShipRequestLabel";
+            var eshipjetModel = oController.getOwnerComponent().getModel();
+            if (sKey === "ShipRequestLabel") {
+                eshipjetModel.setProperty("/allViewsFooter", true);
+                eshipjetModel.setProperty("/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/createShipReqViewFooter", false);
+                eshipjetModel.setProperty("/routingGuidFooter", false);
+                eshipjetModel.setProperty("/showDarkThemeSwitch", false);
+                eshipjetModel.setProperty("/darkTheme", false);
+                document.body.classList.remove("dark-theme");
+                // this._handleDisplayShipReqTable();
+            }
+            eshipjetModel.setProperty("/SideNavigation", false);
+            this.byId("pageContainer").to(this.getView().createId(sKey));
+
+        },
 
         _handleDisplayShipReqTable: function () {
             var that = this;

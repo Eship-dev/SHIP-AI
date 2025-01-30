@@ -3,7 +3,7 @@
 	<App id="app">
 	<tnt:ToolPage id="toolPage" sideExpanded="false" >
 		<tnt:header >
-			<tnt:ToolHeader >
+			<tnt:ToolHeader id="myToolbar" >
 				<!-- <Button		id="sideNavigationToggleButton"		icon="{value:'com/eshipjet/zeshipjet/css/images/menu.png', formatter:'sap.ui.require.toUrl'}"
 					type="Transparent"		press=".onSideNavButtonPress"> -->
 				<Button id="sideNavigationToggleButton"  icon="sap-icon://customfont/menuIcon"
@@ -341,13 +341,12 @@
 				<Button text="Buy Shipping Label" class="ship-now-footer_ship-rates" visible="{eshipjetModel>/createShipReqPersonalSelect}" />
 			<ToolbarSpacer/>
 				<HBox >
-					<!-- <Button text="Save" class="create-ship-req-footer" /> -->
-					<!-- <Button icon="sap-icon://slim-arrow-down" class="ship-now-footer_ship-now"  type="Success" ></Button> -->
-					<!-- <Button icon="sap-icon://slim-arrow-down" class="create-ship-req-footer" press="onManifestPrintPress" ></Button> -->
-					<!-- <Button type="Success" press="onADDLocImpPress" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd"></Button> -->
+					<Button type="Success" text="Save"  class="create-ship-req-toolbar_save-button" width="4rem" ></Button>
+					<Button type="Success" icon="sap-icon://navigation-down-arrow" class="create-ship-req-toolbar__button" ></Button>
+                	
 
-				    <Button  text="Save" class="create-ship-req-footer" width="5rem" ></Button>
-                    <Button type="Success" press="onADDLocImpPress" icon="sap-icon://navigation-down-arrow" class="create-ship-req-footer" ></Button>
+				    <!-- <Button  text="Save" class="create-ship-req-footer" width="5rem" ></Button>
+                    <Button type="Success" press="onADDLocImpPress" icon="sap-icon://navigation-down-arrow" class="create-ship-req-footer" ></Button> -->
                 
 				</HBox>
 				<Button text="Ship Now" press="onShipNowPress" class="create-ship-req-footer sapUiSmallMarginEnd" />

@@ -220,7 +220,7 @@
 				<Column app:p13nKey="RFID" width="10rem"  hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/23/visible}" headerMenu="menu">
                     <Text text="RFID"/>
                 </Column>
-				<Column app:p13nKey="Actions" width="8rem" hAlign="Right" visible="true" headerMenu="menu" >
+				<Column app:p13nKey="Actions" class="fixedColumn" width="8rem" hAlign="Right" visible="true" headerMenu="menu" >
                     <Text text="Actions"/>
                 </Column>
 		</columns>

@@ -993,7 +993,39 @@ span.sapMBtnInner.sapMBtnReject {
   padding: 8px !important;
   text-align: center !important;
   margin-right: 6px !important;
- 
+}
+
+.create-ship-req-toolbar_save-button > span {
+  background-color: #4E9C2D !important;
+  color: #f03a3a !important;
+  border-top: 1px solid #4E9C2D !important;
+  border-bottom: 1px solid #4E9C2D !important;
+  border-left: 1px solid #4E9C2D !important;
+  border-right: 2px solid #ffffff !important;
+  transform: scale(1.05) !important;
+  transition: all 0.3s ease !important;
+  justify-content: center !important;
+  border-radius: 2px 2px 2px 2px !important;
+  height: 33px !important;
+  padding: 3px !important;
+  text-align: center !important;
+}
+
+.create-ship-req-toolbar__button > span {
+  background-color: #4E9C2D !important;
+  color: #fff !important;
+  border-top: 1px solid #4E9C2D !important;
+  border-bottom: 1px solid #4E9C2D !important;
+  border-right: 1px solid #4E9C2D !important;
+  border-left: 2px solid #ffffff !important;
+  transform: scale(1.05) !important;
+  transition: all 0.3s ease !important;
+  justify-content: space-between !important;
+  border-radius: 2px 2px 2px 2px !important;
+  height: 33px !important;
+  padding-top: 3px !important;
+  padding-left: 2px !important;
+  text-align: center !important;
 }
 
 
