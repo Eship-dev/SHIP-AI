@@ -34,7 +34,7 @@
     <ui:extension>
         <OverflowToolbar style="Clear">										
             <ToolbarSpacer />
-                <Button icon="sap-icon://action" ></Button>
+                <Button icon="sap-icon://action" press="onThirdPartyExportToExcel"></Button>
                 <Button icon="sap-icon://action-settings" press="openThirdPartiesColNamesPopover"></Button>
         </OverflowToolbar>
     </ui:extension>	

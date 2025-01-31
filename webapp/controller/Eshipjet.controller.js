@@ -2000,14 +2000,12 @@ sap.ui.define([
 
 
         onOrderExportToExcel: function () {
-            var eshipjetModel = oController.getOwnerComponent().getModel("OrderTableDataModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var rows = eshipjetModel.getProperty("/OrderTableData/orderRows");
             var oSettings = {
                 workbook: {
                     columns: [
-                        { label: "Location Name", property: "locationName" },
-                        { label: "Consolidation ID", property: "consolidationID" },
-                        { label: "Request ID / Label ID", property: "requestIdLabelId" },
+                        { label: "Order ID", property: "orderID" },
                         { label: "Created Date", property: "CreatedDate" },
                         { label: "Ship Date", property: "ShipDate" },
                         { label: "Shipment Type", property: "ShipmentType" },
@@ -2018,21 +2016,20 @@ sap.ui.define([
                         { label: "Ship To Contact", property: "ShipToContact" },
                         { label: "Ship To Company", property: "ShipToCompany" },
                         { label: "Ship To AddressLine1", property: "ShipToAddressLine1" },
-                        { label: "Ship To State / Provincey", property: "shipToStateProvince" },
                         { label: "Ship To City", property: "shipToCity" },
-                        { label: "Ship To Zip / Postal Code", property: "shipToZipPostalCode" },
+                        { label: "Ship To State", property: "shipToState" },
                         { label: "Ship To Country", property: "shipToCountry" },
+                        { label: "Ship To Zip", property: "shipToZip" },
                         { label: "Ship To Phone", property: "shipToPhone" },
                         { label: "Ship To Email", property: "shipToEmail" },
                         { label: "Requestor Name", property: "requesterName" },
                         { label: "Connected To", property: "connectedTo" },
-                        { label: "Order Type", property: "orderType" },
-                        { label: "RFID", property: "RFID" },
+                        { label: "Priority Level", property: "priorityLevel" },
                         { label: "Actions", property: "actions" },
                     ]
                 },
                 dataSource: rows,
-                fileName: 'Shipment_Data',
+                fileName: 'Orders_Data',
                 Worker: true
             };
             var oSpreadsheet = new Spreadsheet(oSettings);
@@ -2310,6 +2307,45 @@ sap.ui.define([
             }
             this._RoutingGuideSaveOptionsPopover.then(function (RoutingGuideSaveOptionsPopover) {
                 RoutingGuideSaveOptionsPopover.openBy(oButton);
+            });
+        },
+//   first add row and Col in table pendding
+        onRoutingGuideExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/RoutingGuideTableData/rows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Order ID", property: "orderID" },
+                        { label: "Created Date", property: "CreatedDate" },
+                        { label: "Ship Date", property: "ShipDate" },
+                        { label: "Shipment Type", property: "ShipmentType" },
+                        { label: "Ship Method", property: "shipMethod" },
+                        { label: "Service Name", property: "ServiceName" },
+                        { label: "Tracking Number", property: "TrackingNumber" },
+                        { label: "Status", property: "status" },
+                        { label: "Ship To Contact", property: "ShipToContact" },
+                        { label: "Ship To Company", property: "ShipToCompany" },
+                        { label: "Ship To AddressLine1", property: "ShipToAddressLine1" },
+                        { label: "Ship To City", property: "shipToCity" },
+                        { label: "Ship To State", property: "shipToState" },
+                        { label: "Ship To Country", property: "shipToCountry" },
+                        { label: "Ship To Zip", property: "shipToZip" },
+                        { label: "Ship To Phone", property: "shipToPhone" },
+                        { label: "Ship To Email", property: "shipToEmail" },
+                        { label: "Requestor Name", property: "requesterName" },
+                        { label: "Connected To", property: "connectedTo" },
+                        { label: "Priority Level", property: "priorityLevel" },
+                        { label: "Actions", property: "actions" },
+                    ]
+                },
+                dataSource: rows,
+                fileName: 'RoutingGide_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
             });
         },
         // RoutingGuide Changes End
@@ -3182,6 +3218,48 @@ sap.ui.define([
             this.byId("idManifestPrintPopover").close();
         },
 
+
+        OnManifestExportToExcel: function () {
+            
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/ManifestTableData/ManifestRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Request ID / Label ID", property: "requestIdLabelId" },
+                        { label: "Created Date", property: "CreatedDate" },
+                        { label: "Ship Date", property: "ShipDate" },
+                        { label: "Shipment Type", property: "ShipmentType" },
+                        { label: "Ship Method", property: "shipMethod" },
+                        { label: "Service Name", property: "ServiceName" },
+                        { label: "Tracking Number", property: "TrackingNumber" },
+                        { label: "Status", property: "status" },
+                        { label: "Ship To Contact", property: "ShipToContact" },
+                        { label: "Ship To Company", property: "ShipToCompany" },
+                        { label: "Ship To AddressLine1", property: "ShipToAddressLine1" },
+                        { label: "Ship To City", property: "shipToCity" },
+                        { label: "Ship To State", property: "shipToState" },
+                        { label: "Ship To Country", property: "shipToCountry" },
+                        { label: "Ship To Zipcode", property: "shipToZipcode" },
+                        { label: "Ship To Phone", property: "shipToPhone" },
+                        { label: "Ship To Email", property: "shipToEmail" },
+                        { label: "Requestor Name", property: "requesterName" },
+                        
+                        { label: "Connected To", property: "connectedTo" },
+                        { label: "Order Type", property: "orderType" },
+                        { label: "Priority Level", property: "priorityLevel" },
+                        { label: "Actions", property: "actions" },
+                    ]
+                },
+                dataSource: rows,
+                fileName: 'Manifast_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
         // Manifest Changes End here
 
         // Batch Ship Changes Starts
@@ -3818,6 +3896,99 @@ sap.ui.define([
                 }
             });
             oTable.bindRows("/AddressBookTableRows");
+        },
+
+
+        onAddressBookExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/AddressBookTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Contact Name", property: "contactName", visible: true },
+                        { label: "Company Name", property: "companyName", visible: true },
+                        { label: "Phone No", property: "phonenum", visible: true },
+                        { label: "Address Email", property: "addressEmail", visible: true },
+                        { label: "Address Line 1", property: "addressLine1", visible: false },
+                        { label: "Address Line 2", property: "addressLine2", visible: false },
+                        { label: "Address Line 3", property: "addressLine3", visible: false },
+                        { label: "State / Provience", property: "stateProvience", visible: true },
+                        { label: "City", property: "addressCity", visible: true },
+                        { label: "Zip / Postal Code", property: "addressZip", visible: false },
+                        { label: "Country", property: "addressCountry", visible: true },
+                        { label: "Address Category", property: "addCategory", visible: false },
+                        { label: "Address Type", property: "addressType", visible: false },
+                        { label: "Cost Center", property: "addCostCenter", visible: false },
+                        { label: "Locker No", property: "lockerNo", visible: true },
+                        { label: "Locker Location", property: "lockerLocation", visible: true },
+                        { label: "Locker Access Code", property: "lockerAccCode", visible: true },
+                        { label: "Building No", property: "buildingNo", visible: true },
+                        { label: "Floor No", property: "floorNo", visible: true },
+                        { label: "Mail Stop", property: "mailStop", visible: true },
+                        { label: "Status", property: "status", visible: true },
+                        { label: "RFID Tag", property: "rfidTag", visible: true }
+                    ]
+                    
+                    
+                },
+                dataSource: rows,
+                fileName: 'AddressBook_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
+
+        onRolesExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/RolesTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Role ID", property: "roleId", visible: true },
+                        { label: "Role Name", property: "roleName", visible: true },
+                        { label: "Status", property: "status", visible: true }
+                    ]                    
+                                        
+                },
+                dataSource: rows,
+                fileName: 'Roles_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
+
+
+        onCarrierCatalogExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/CarrierCatalogTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Ship Method ID", property: "shipMethodId", visible: true },
+                        { label: "Ship Method", property: "shipMethodName", visible: true },
+                        { label: "Ship Method Type", property: "shipMethodType", visible: true },
+                        { label: "Ship Method Coverage", property: "shipMethodCoverage", visible: true },
+                        { label: "Ship Method Status", property: "status", visible: true }
+                    ]
+                                  
+                                        
+                },
+                dataSource: rows,
+                fileName: 'CarrierCatalog_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
         },
 
         // Address Book Column Names Popover code changes End here
@@ -5143,6 +5314,35 @@ sap.ui.define([
             oTable.bindRows("/ThirdPartiesTableRows");
         },
 
+        onThirdPartyExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/ThirdPartiesTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Location Name", property: "locationName", visible: true },
+                        { label: "Account", property: "account", visible: true },
+                        { label: "Contact Name", property: "contactName", visible: true },
+                        { label: "Company Name", property: "companyName", visible: true },
+                        { label: "Address Line 1", property: "addressLine1", visible: false },
+                        { label: "Address Line 2", property: "addressLine2", visible: false },
+                        { label: "City", property: "addressCity", visible: true },
+                        { label: "State / Provience", property: "stateProvience", visible: true },
+                        { label: "Zip / Postal Code", property: "addressZip", visible: true },
+                        { label: "Country", property: "addressCountry", visible: true },
+                        { label: "Status", property: "status", visible: true }
+                    ]   
+                },
+                dataSource: rows,
+                fileName: 'ThirdParty',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
         // ThirdParties Column Names Popover code changes End here
 
 
@@ -5729,6 +5929,39 @@ sap.ui.define([
                 }
             });
             oTable.bindRows("/LocationTableRows");
+        },
+
+        onLocationsExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/LocationTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Location Name", property: "locationName", visible: false },
+                        { label: "Contact Name", property: "contactName", visible: true },
+                        { label: "Phone No", property: "phonenum", visible: true },
+                        { label: "Email", property: "Email", visible: true },
+                        { label: "Address Line 1", property: "addressLine1", visible: false },
+                        { label: "Address Line 2", property: "addressLine2", visible: false },
+                        { label: "State Provience", property: "stateProvience", visible: true },
+                        { label: "Location City", property: "locaCity", visible: true },
+                        { label: "ZipCode", property: "locZip", visible: false },
+                        { label: "Country", property: "locCountry", visible: true },
+                        { label: "Weight Unit", property: "locWeightUnit", visible: false },
+                        { label: "Currency", property: "locCurr", visible: false },
+                        { label: "Dimension Unit", property: "locDimensionUnit", visible: false },
+                        { label: "Status", property: "status", visible: true }
+                    ]
+                    
+                },
+                dataSource: rows,
+                fileName: 'Location_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
         },
 
         // Locations Column Names Popover code changes End here
