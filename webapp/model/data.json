@@ -4569,7 +4569,80 @@
             "visible": true
         }
     ],
-    "StatusesTableRows": [],
+    "StatusesTableRows": [
+
+        {
+            "locationName": "eshipJet Software Inc.",
+            "code": "OPN",
+            "colorPicker": "#00aeff",
+            "desc": "Open",
+            "status": "Active"
+        },
+        {
+            "locationName": "eshipJet Software Inc.",
+            "code": "INT",
+            "colorPicker": "#ed8a11",
+            "desc": "In-Transit",
+            "status": "Active"
+        },
+        {
+            "locationName": "eshipJet Software Inc.",
+            "code": "SPD",
+            "colorPicker": "#4a9c1a",
+            "desc": "Shipped",
+            "status": "Active"
+        },
+        {
+            "locationName": "eshipJet Software Inc.",
+            "code": "CAN",
+            "colorPicker": "#e82020",
+            "desc": "Cancelled",
+            "status": "Inactive"
+        },
+        {
+            "locationName": "eshipJet Software Inc.",
+            "code": "DLV",
+            "colorPicker": "#08751c",
+            "desc": "Delivered",
+            "status": "Active"
+        },
+        {
+            "locationName": "eshipJet Software Inc.",
+            "code": "OPN",
+            "colorPicker": "#00aeff",
+            "desc": "Open",
+            "status": "Active"
+        },
+        {
+            "locationName": "eshipJet Software Inc.",
+            "code": "INT",
+            "colorPicker": "#ed8a11",
+            "desc": "In-Transit",
+            "status": "Active"
+        },
+        {
+            "locationName": "eshipJet Software Inc.",
+            "code": "SPD",
+            "colorPicker": "#4a9c1a",
+            "desc": "Shipped",
+            "status": "Active"
+        },
+        {
+            "locationName": "eshipJet Software Inc.",
+            "code": "CAN",
+            "colorPicker": "#e82020",
+            "desc": "Cancelled",
+            "status": "Inactive"
+        },
+        {
+            "locationName": "eshipJet Software Inc.",
+            "code": "DLV",
+            "colorPicker": "#08751c",
+            "desc": "Delivered",
+            "status": "Active"
+        }
+
+    ],
     "ProductsTableColumns": [
         {
             "key": "locationName",

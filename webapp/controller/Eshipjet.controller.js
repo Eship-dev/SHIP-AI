@@ -3977,9 +3977,7 @@ sap.ui.define([
                         { label: "Ship Method Type", property: "shipMethodType", visible: true },
                         { label: "Ship Method Coverage", property: "shipMethodCoverage", visible: true },
                         { label: "Ship Method Status", property: "status", visible: true }
-                    ]
-                                  
-                                        
+                    ]                     
                 },
                 dataSource: rows,
                 fileName: 'CarrierCatalog_Data',
@@ -3990,6 +3988,9 @@ sap.ui.define([
                 oSpreadsheet.destroy();
             });
         },
+
+
+
 
         onCarrierAccountsExportToExcel: function () {
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
@@ -4019,6 +4020,70 @@ sap.ui.define([
                 },
                 dataSource: rows,
                 fileName: 'CarrierAccounts_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
+        onStatusesRefreshPress: function () {
+            location.reload();
+        },
+        
+
+        onStatusesExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/StatusesTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Ship Method ID", property: "shipMethodId", visible: true },
+                        { label: "Ship Method", property: "shipMethodName", visible: true },
+                        { label: "Ship Method Type", property: "shipMethodType", visible: true },
+                        { label: "Ship Method Coverage", property: "shipMethodCoverage", visible: true },
+                        { label: "Ship Method Status", property: "status", visible: true }
+                    ]                     
+                },
+                dataSource: rows,
+                fileName: 'Statuses_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
+
+        onProductsExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/ProductsTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                            { "label": "Location Name", "property": "locationName", "visible": true },
+                            { "label": "Item No", "property": "itemNo", "visible": true },
+                            { "label": "Product No", "property": "productNo", "visible": true },
+                            { "label": "Description", "property": "desc", "visible": true },
+                            { "label": "Quantity", "property": "quantity", "visible": true },
+                            { "label": "Unit Cost", "property": "unitCost", "visible": true },
+                            { "label": "Unit Weight", "property": "unitWeight", "visible": true },
+                            { "label": "Dimensions", "property": "dimensions", "visible": true },
+                            { "label": "Harmonized Code", "property": "harmonizedcode", "visible": true },
+                            { "label": "ECCN", "property": "eccn", "visible": true },
+                            { "label": "Un No", "property": "unNo", "visible": true },
+                            { "label": "Class", "property": "class", "visible": true },
+                            { "label": "NMFC", "property": "nmfc", "visible": true },
+                            { "label": "UOM", "property": "uom", "visible": true },
+                            { "label": "EPC-RFID", "property": "epcRfidNo", "visible": true },
+                            { "label": "Country Of MFR", "property": "countryOfMFR", "visible": true },
+                            { "label": "Status", "property": "status", "visible": true }
+                    ]                     
+                },
+                dataSource: rows,
+                fileName: 'Products_Data',
                 Worker: true
             };
             var oSpreadsheet = new Spreadsheet(oSettings);
