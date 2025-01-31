@@ -3991,6 +3991,42 @@ sap.ui.define([
             });
         },
 
+        onCarrierAccountsExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/CarrierAccountsTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Location Name", property: "locationName", visible: true },
+                        { label: "Ship Method", property: "shipMethodName", visible: true },
+                        { label: "Cost Center", property: "costCenter", visible: true },
+                        { label: "Ship From Country", property: "shipFromCountry", visible: true },
+                        { label: "Ship To Country", property: "shipToCountry", visible: true },
+                        { label: "Ship Url", property: "shipUrl", visible: true },
+                        { label: "Void Url", property: "voidUrl", visible: true },
+                        { label: "Rate Url", property: "rateUrl", visible: true },
+                        { label: "Track Url", property: "trackUrl", visible: true },
+                        { label: "Environment", property: "environment", visible: true },
+                        { label: "Carrier Type", property: "carrierType", visible: true },
+                        { label: "Status", property: "status", visible: true },
+                        { label: "ERP Carrier ID", property: "erpCarrierID", visible: true },
+                        { label: "Rate Shop", property: "rateShop", visible: true },
+                        { label: "EDOC", property: "edoc", visible: true },
+                        { label: "Manual Rates", property: "manualRates", visible: true },
+                        { label: "Actions", property: "actions", visible: true }
+                    ]
+                                      
+                },
+                dataSource: rows,
+                fileName: 'CarrierAccounts_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
         // Address Book Column Names Popover code changes End here
 
 
