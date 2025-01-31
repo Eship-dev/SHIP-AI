@@ -13,8 +13,7 @@
     <Dialog
         id="idAddProductDialog"
         showHeader="false"
-        contentWidth="90%"
-        contentHeight="50%" >
+		class="myCustomDialog" >
         <customHeader>
         <Toolbar >
             <Title text="Products Information"></Title>

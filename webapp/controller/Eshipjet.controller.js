@@ -15,8 +15,9 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/ui/core/library",
-    "sap/m/MessageBox"
-], function (Device, Controller, JSONModel, Popover, Button, library, MessageToast, BusyIndicator, Dialog, DateFormat, Fragment, Spreadsheet, formatter, Filter, FilterOperator, CoreLibrary, MessageBox) {
+    "sap/m/MessageBox",
+    "sap/ui/core/routing/History"
+], function (Device, Controller, JSONModel, Popover, Button, library, MessageToast, BusyIndicator, Dialog, DateFormat, Fragment, Spreadsheet, formatter, Filter, FilterOperator, CoreLibrary, MessageBox, History) {
     "use strict";
 
     var ButtonType = library.ButtonType,
@@ -378,7 +379,7 @@ sap.ui.define([
 
         onShipNowClosePress:function(){
             var sKey = "Dashboard";
-            var eshipjetModel = oController.getOwnerComponent().getModel();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             eshipjetModel.setSizeLimit(9999999);
             eshipjetModel.setProperty("/sapDeliveryNumber",""); //80000001
             var oToolPage = this.byId("toolPage");
@@ -2318,7 +2319,7 @@ sap.ui.define([
 
         onCreateShipReqClosePress:function(){
             var sKey = "ShipRequestLabel";
-            var eshipjetModel = oController.getOwnerComponent().getModel();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             if (sKey === "ShipRequestLabel") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
@@ -9044,14 +9045,14 @@ sap.ui.define([
         this.byId("idLTLClassesImportPopover").close();
     },
     onShipRatePress:function(){
-            oController.onShipRateRequest();            
+        oController.onShipRateRequest();         
     },
     onShipRateRequest:function(){
         var oEshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
         var oPayload = {
             "HeaderInfo": {
                 "FeederSystem": "Manual",
-                "DocumentNumber": "",
+                "DocumentNumber": oEshipjetModel.getData().sapDeliveryNumber,
                 "DocumentType": "Delivery Order",
                 "ShipDate": "2024-10-29T09:08:36.962Z",
                 "CreatedDate": "2024-10-29T09:08:36.962Z",
@@ -9308,6 +9309,9 @@ sap.ui.define([
                 "EMAIL": "info@eshipjet.ai"
             }
         };
+        var RecentShipmentSet = oEshipjetModel.getData().RecentShipmentSet;
+        RecentShipmentSet.push(oPayload);
+        oEshipjetModel.updateBindings(true);
         var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/Rateall "; 
         oController.oBusyDialog.open();       
         $.ajax({
@@ -9331,6 +9335,12 @@ sap.ui.define([
             }
         });
     },
+
+    onRecentShipmentsItemPress:function(oEvent){
+        
+    },
+
+
     onOpenShipNowShippinRateDialog:function(){    
         var oView = oController.getView();
         if (!oController.byId("_IDGenShipNowShppindRateDialog")) {
@@ -9354,6 +9364,9 @@ sap.ui.define([
         var oTable  = oController.byId("_ShippingRateTableId");
         var oEshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var aSelectedItems = oTable.getSelectedItems();
+
+        var RecentShipmentSet = oEshipjetModel.getData().RecentShipmentSet;
+        RecentShipmentSet["Carrier"] = aSelectedItems[0].Carrier;
         var oSelectObj;
         if(aSelectedItems && aSelectedItems.length > 0){
             oSelectObj = aSelectedItems[0].getBindingContext("eshipjetModel").getObject(); 

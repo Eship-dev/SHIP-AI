@@ -435,6 +435,22 @@ button.ship-tile-button span {
   cursor: pointer;
 }
 
+.ship-now-toolbar__button {
+  padding: 0 !important;
+  height: 5rem !important;
+  cursor: pointer;
+}
+
+.ship-now-toolbar__button:hover > span {
+  background-color: #4E9C2D !important;
+  color: #fff !important;
+  border: 1px solid #4E9C2D !important;
+  animation: animateBtn 1s infinite;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+  /* height: 5rem !important; */
+}
+
 .scan-ship-toolbar__button:hover > span {
   background-color: #4E9C2D !important;
   color: #fff !important;
@@ -632,7 +648,7 @@ span.sapMBtnInner.sapMBtnReject {
 
 /* ShipNow page  Page Begin*/
 .toolbarbottomborder.sapMTB.sapMTBStandard { 
-  border-bottom: none !important; 
+  border-bottom: none !important;
 }
 
 .LabelPadClass{

@@ -15,7 +15,7 @@
 								<ToolbarSpacer/>
 								<Button  icon="sap-icon://decline" press="onCreateShipReqClosePress" />
 	        </Toolbar>
-       
+        
          <VBox class="scan-ship-page sapUiTinyMarginBottom" width="100%" >
             <Toolbar class="scan-ship-toolbar" height="10%" >
             <ComboBox width="15%" 

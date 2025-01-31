@@ -26,7 +26,7 @@
             <Table 
                 id="idShipToAddressTable"
                 inset="false"
-                mode="SingleSelectLeft"
+                mode="SingleSelectMaster"
                 items="{
                     path: '/addresses'
                 }">

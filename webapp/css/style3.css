@@ -1651,7 +1651,7 @@ td[rowspan] {
   border-bottom: .0625rem solid #e5e5e5;
 }
 
-/* ToolPage Header Dark Theme */
+/*------ ToolPage Header Dark Theme -----*/
 
 /* .sapTntToolHeader:not(.sapUshellShellToolHeader).sapMTBStandard {
   border-bottom: none !important;
@@ -1662,10 +1662,19 @@ td[rowspan] {
   color: white !important;
   fill: white !important;
 }
-
 .sapTntToolHeader .sapMBtn {
-  background-color: black !important; /* Keeps default look */
+  background-color: black !important;
   color: white !important;
   fill: white !important;
-  border: none; /* Remove borders if needed */
+  border: none;
 } */
+
+/* Custom CSS to position the dialog on the left */
+.myCustomDialog .sapMDialog {
+  left: 0 !important;
+  top: 0 !important;
+  transform: none !important;
+  margin: 0 !important;
+  height: 100vh;
+  width: 400px;
+}

@@ -28,7 +28,7 @@
                    class="sapUiTinyMarginTop"
                    growing="true"
                    growingThreshold="12"
-                   mode="SingleSelectLeft"
+                   mode="SingleSelectMaster"
                    items="{/addresses}">
                 <columns>
                     <Column>

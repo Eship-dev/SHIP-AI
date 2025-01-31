@@ -22,10 +22,10 @@
 			</VBox>
 		</Toolbar> -->
 
-		<Toolbar width="auto" height="10%" class="toolbarbottomborder" >
+		<Toolbar width="auto" height="4rem" class="toolbarbottomborder" >
 			<Text text="Order" class="sapUiTinyMarginBegin sapUiMediumMarginBottom  pageTitle" ></Text>
         </Toolbar>
-		<Toolbar height="25%" >
+		<Toolbar height="7rem" >
 			<HBox width="100%">
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="9" class="NumberSizeTitle1"></Text>
