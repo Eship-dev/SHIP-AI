@@ -9636,7 +9636,8 @@ sap.ui.define([
 
         var oCarrier = oTable.getSelectedItem().getBindingContext("eshipjetModel").getObject();
         var RecentShipmentSet = oEshipjetModel.getData().RecentShipmentSet;
-        RecentShipmentSet["Carrier"] = oCarrier;
+        RecentShipmentSet[RecentShipmentSet.length-1]["Carrier"] = oCarrier.Carrier;
+        // RecentShipmentSet["Carrier"] = oCarrier;
         oEshipjetModel.updateBindings(true);
         var oSelectObj;
         if(aSelectedItems && aSelectedItems.length > 0){
