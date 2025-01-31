@@ -9606,7 +9606,36 @@ sap.ui.define([
     },
 
     onRecentShipmentsItemPress:function(oEvent){
-        
+        var oCurrentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+        var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
+        eshipjetModel.setProperty("/sapDeliveryNumber", oCurrentObj.HeaderInfo.DocumentNumber);
+        eshipjetModel.setProperty("/pickupDate", oCurrentObj.HeaderInfo.CreatedDate);
+        eshipjetModel.setProperty("/HeaderInfo/ShipDate", oCurrentObj.HeaderInfo.ShipDate);
+
+        ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromCONTACT", oCurrentObj.ShipFrom.CONTACT);
+        ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromADDRESS_LINE1", oCurrentObj.ShipFrom.ADDRESS_LINE1);
+        ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromCITY", oCurrentObj.ShipFrom.CITY);
+        ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromSTATE", oCurrentObj.ShipFrom.STATE);
+        ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromEMAIL", oCurrentObj.ShipFrom.EMAIL);
+        ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromCOMPANY", oCurrentObj.ShipFrom.CONTACT);
+        ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromADDRESS_LINE2", oCurrentObj.ShipFrom.ADDRESS_LINE2);
+        ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromZIPCODE", oCurrentObj.ShipFrom.ZIPCODE);
+        ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromCOUNTRY", oCurrentObj.ShipFrom.COUNTRY);
+        ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromPHONE", oCurrentObj.ShipFrom.PHONE);
+
+        ShipNowDataModel.setProperty("/ShipToAddress/FullName", oCurrentObj.ShipFrom.CONTACT);
+        ShipNowDataModel.setProperty("/ShipToAddress/StreetName", oCurrentObj.ShipFrom.ADDRESS_LINE1);
+        ShipNowDataModel.setProperty("/ShipToAddress/CityName", oCurrentObj.ShipFrom.CITY);
+        ShipNowDataModel.setProperty("/ShipToAddress/Region", oCurrentObj.ShipFrom.STATE);
+        ShipNowDataModel.setProperty("/ShipTo/EMAIL", oCurrentObj.ShipFrom.EMAIL);
+        ShipNowDataModel.setProperty("/ShipToAddress/BusinessPartnerName1", oCurrentObj.ShipFrom.CONTACT);
+        ShipNowDataModel.setProperty("/ShipToAddress/HouseNumber", oCurrentObj.ShipFrom.ADDRESS_LINE2);
+        ShipNowDataModel.setProperty("/ShipToAddress/PostalCode", oCurrentObj.ShipFrom.ZIPCODE);
+        ShipNowDataModel.setProperty("/ShipToAddress/Country", oCurrentObj.ShipFrom.COUNTRY);
+        ShipNowDataModel.setProperty("/ShipToAddress/PhoneNumber", oCurrentObj.ShipFrom.PHONE);
+
+        oController.onRecentShipmentClosePress();
     },
 
 

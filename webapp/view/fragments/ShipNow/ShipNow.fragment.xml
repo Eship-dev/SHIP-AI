@@ -84,7 +84,7 @@
 														<Button icon="sap-icon://customer-briefing" press="ShipNowPickAnAddressPopoverPress" id="idShipToAddressBtn" />
 														<Button icon="sap-icon://add" press="onShipNowAddIconPress"></Button>
 														<ToolbarSpacer ></ToolbarSpacer>
-														<Button text="Validate Address" class="scan-ship-toolbar__button" type="Ghost" width="25%" />
+														<Button text="Validate Address" class="scan-ship-toolbar__button" type="Ghost" width="10rem" />
 													</Toolbar>
 													<Label text="Contact Name" />
 													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/FullName}" />
