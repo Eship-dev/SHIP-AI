@@ -1678,3 +1678,110 @@ td[rowspan] {
   height: 100vh;
   width: 400px;
 }
+
+
+
+
+.scan-ship-toolbar1 {
+  padding: 0rem !important;
+  height: auto !important;
+  align-items: stretch;
+}
+
+.scan-ship-toolbar1__title {
+  align-self: center;
+}
+
+.scan-ship-toolbar1__input {
+  width: 400px !important;
+  height: auto !important;
+}
+
+.scan-ship-toolbar1__input > div {
+  height: auto !important;
+
+}
+
+.scan-ship-toolbar1__input input {
+  height: 52px;
+}
+
+.scan-ship-toolbar1__button {
+ 
+  height: 40px !important;
+  cursor: pointer;
+}
+
+.scan-ship-toolbar1__button:hover > span {
+  background-color: #4E9C2D !important;
+  color: #fff !important;
+  border: 1px solid #4E9C2D !important;
+  animation: animateBtn 1s infinite;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+
+.scan-ship-toolbar1__button_void:hover > span {
+  background-color: red !important;
+  border: 1px solid red !important;
+}
+
+
+.scan-ship-toolbar1__button:hover bdi {
+  color: #fff !important;
+
+}
+
+.scan-ship-toolbar1__button span {
+  height: 100% !important;
+ 
+  display: flex !important;
+  align-items: center;
+}
+
+body.dark-theme {
+  .scan-ship-toolbar1__input input {
+    color: #fff;
+  }
+
+  .scan-ship-toolbar1__input.sapInputFocused > div::before {
+    border: none !important;
+  }
+  .scan-ship-toolbar1__button > span{
+    background-color: gray;
+    color: #fff
+  }
+  .scan-ship-toolbar1__button:focus {
+    border: none;
+    span::before {
+      border: none !important;
+    }
+    
+  }
+  .scan-ship-toolbar1__title {
+    color: #f7f7f8;
+  }
+  div:has( > div > .scan-ship-page), .scan-ship-toolbar1, .scan-ship-table, .scan-ship-toolbar1__input input,
+  .scan-ship-table tr, .sapUiTableCtrlEmpty, div:has( > .scan-ship-table_footer_toolbar), .scan-ship-table_footer_toolbar {
+    background-color: #121212;;
+  }
+
+  .scan-ship-toolbar1__input input {
+    background-color: #2c2c2c !important;
+    color: #ffffff !important;
+    border: 1px solid #444 !important;
+  }
+
+  .scan-ship-table span, .sapUiTableCtrlEmpty, .scan-ship-toolbar1__input input::placeholder {
+    color: #fff;;
+  }
+
+  .scan-ship-toolbar1 {
+    border: 1px solid #f7f7f8 !important;
+  }
+  .scan-ship-toolbar__button {
+    
+    height: auto !important;
+    cursor: pointer;
+  }
+}

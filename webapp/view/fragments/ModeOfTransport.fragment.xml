@@ -35,7 +35,7 @@
     <ui:extension>
         <OverflowToolbar style="Clear">										
             <ToolbarSpacer />
-                <Button icon="sap-icon://action" ></Button>
+                <Button icon="sap-icon://action" press="ModeOfTransports" ></Button>
                 <Button icon="sap-icon://action-settings" press="openMOTColNamesPopover"></Button>
         </OverflowToolbar>
     </ui:extension>	

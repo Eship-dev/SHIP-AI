@@ -35,7 +35,7 @@
     <ui:extension>
         <OverflowToolbar style="Clear">										
             <ToolbarSpacer />
-                <Button icon="sap-icon://action" ></Button>
+                <Button icon="sap-icon://action" press="onLTLClassesExportToExcel" ></Button>
                 <Button icon="sap-icon://action-settings" press="openLTLClassesColNamesPopover"></Button>
         </OverflowToolbar>
     </ui:extension>	

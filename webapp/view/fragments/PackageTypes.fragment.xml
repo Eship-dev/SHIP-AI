@@ -34,8 +34,8 @@
              	selectionMode="None"	paste="onPaste" 	ariaLabelledBy="title">
     <ui:extension>
         <OverflowToolbar style="Clear">										
-            <ToolbarSpacer />
-                <Button icon="sap-icon://action" ></Button>
+            <ToolbarSpacer />  
+                <Button icon="sap-icon://action" press="onPackagesExportToExcel"></Button>
                 <Button icon="sap-icon://action-settings" press="openPackageTypesColNamesPopover"></Button>
         </OverflowToolbar>
     </ui:extension>	
