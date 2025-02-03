@@ -3443,6 +3443,10 @@ sap.ui.define([
         onOpenRecentShipmentPopover: function (oEvent) {
             var oButton = oEvent.getSource(),
                 oView = this.getView();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var sPath = oEvent.getSource().getId().split("--");
+            var btnId = sPath[sPath.length - 1];
+            eshipjetModel.setProperty("/RecentShipmentTab", btnId);
             // create popover
             if (!this._recentShipPopover) {
                 this._recentShipPopover = Fragment.load({
@@ -3527,6 +3531,9 @@ sap.ui.define([
             this.byId("idFeightAuditAnalysisFilterPopover").close();
         },
         handlePopoverListItemPress: function (oEvent) {
+            var oHeader = $(".sapTntToolHeader.sapMTBStandard");
+            oHeader.removeClass("customHeaderStyle");
+            
             var oSrc = oEvent.getSource();
             var oView = oController.getView();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
@@ -3534,6 +3541,8 @@ sap.ui.define([
             eshipjetModel.setProperty("/shipNowViewFooter", false);
             eshipjetModel.setProperty("/createShipReqViewFooter", false);
             eshipjetModel.setProperty("/routingGuidFooter", false);
+
+            eshipjetModel.setProperty("/showDarkThemeSwitch", false);
             var oCurrObj = oSrc.getBindingContext().getObject();
             var oToolPage = this.byId("toolPage");
             var oPageContainer = this.byId("pageContainer");
@@ -3719,11 +3728,15 @@ sap.ui.define([
         },
 
         onThemeChange: function (oEvent) {
+            var oHeader = $(".sapTntToolHeader.sapMTBStandard");
             var bState = oEvent.getSource().getState();
-            if (bState) {
+
+            if (bState && oHeader.hasClass("customHeaderStyle")) {
                 document.body.classList.remove("dark-theme");
+                oHeader.removeClass("customHeaderStyle");
             } else {
                 document.body.classList.add("dark-theme");
+                oHeader.addClass("customHeaderStyle");
             }
         },
         OpenDefaultConfigDialog: function () {
@@ -10021,6 +10034,8 @@ sap.ui.define([
         ShipNowDataModel.setProperty("/ShipToAddress/PostalCode", oCurrentObj.ShipFrom.ZIPCODE);
         ShipNowDataModel.setProperty("/ShipToAddress/Country", oCurrentObj.ShipFrom.COUNTRY);
         ShipNowDataModel.setProperty("/ShipToAddress/PhoneNumber", oCurrentObj.ShipFrom.PHONE);
+
+        eshipjetModel.setProperty("/ShipNowShipMethodSelectedKey", oCurrentObj.Carrier);
 
         oController.onRecentShipmentClosePress();
     },

@@ -7,7 +7,7 @@
 				<Toolbar class="toolbarbottomborder">
 					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="Columns"></Title>
 					<ToolbarSpacer ></ToolbarSpacer>					
-					<Button icon="sap-icon://decline" press="onEUCountriesColSelectClosePress"></Button>
+					<Button icon="sap-icon://decline" press="onEUCountriesColSelectClosePress" class="Decline_Btn" ></Button>
 				</Toolbar>
 				<SearchField placeholder="Search Columns"   liveChange="onEUCountriesColNameSearch"></SearchField>
 			</VBox>

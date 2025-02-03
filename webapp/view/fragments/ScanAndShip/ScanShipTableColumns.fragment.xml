@@ -7,7 +7,7 @@
 				<Toolbar id="_IDGenHBox" class="toolbarbottomborder">
 					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" id="_IDGenTitle" text="Columns"></Title>
 					<ToolbarSpacer id="_IDGenToolbarSpacer1" ></ToolbarSpacer>					
-					<Button id="_IDCloseIconPopover" icon="sap-icon://decline" press="onScanShipColSelectClosePress"></Button>
+					<Button id="_IDCloseIconPopover" icon="sap-icon://decline" press="onScanShipColSelectClosePress" class="Decline_Btn" ></Button>
 				</Toolbar>
 				<SearchField id="_IDGenSearchField" placeholder="Search Columns"   liveChange="onScanShipColNameSearch"></SearchField>
 			</VBox>

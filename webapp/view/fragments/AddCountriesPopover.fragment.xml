@@ -25,9 +25,8 @@
                 <!-- Close Button -->
                 <Button
                     icon="sap-icon://decline"
-                    press="AddCountriesClosePress"
-                    type="Transparent"
-                />
+                    class="Decline_Btn"
+                    press="AddCountriesClosePress" />
             </Toolbar>
         </customHeader>
         <footer>

@@ -18,8 +18,8 @@
                 <ToolbarSpacer />
                 <Button 
                     icon="sap-icon://decline" 
-                    press="onShipNowPickAnAddressCancelPress" 
-                    type="Transparent" />
+                    class="Decline_Btn"
+                    press="onShipNowPickAnAddressCancelPress" />
             </Toolbar>
         </customHeader>
 

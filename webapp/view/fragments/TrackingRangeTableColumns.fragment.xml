@@ -7,7 +7,7 @@
 				<Toolbar class="toolbarbottomborder">
 					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="Columns"></Title>
 					<ToolbarSpacer ></ToolbarSpacer>					
-					<Button icon="sap-icon://decline" press="onTrackingRangeColSelectClosePress"></Button>
+					<Button icon="sap-icon://decline" press="onTrackingRangeColSelectClosePress" class="Decline_Btn" ></Button>
 				</Toolbar>
 				<SearchField placeholder="Search Columns"   liveChange="onTrackingRangeColNameSearch"></SearchField>
 			</VBox>

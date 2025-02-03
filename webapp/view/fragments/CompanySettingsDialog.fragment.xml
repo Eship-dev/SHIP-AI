@@ -19,9 +19,9 @@
 
             <!-- Close Button -->
             <Button 
-                icon="sap-icon://decline" 
-                press="CompanySettingsClosePress" 
-                type="Transparent" />
+                icon="sap-icon://decline"
+                 class="Decline_Btn"  
+                press="CompanySettingsClosePress" />
         </Toolbar>
     </customHeader>
          <content>

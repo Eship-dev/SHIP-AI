@@ -5,6 +5,7 @@
     "createShipReqBusinessSelect": true,
     "createShipReqPersonalSelect": false,
     "routingGuidFooter": false,
+    "toolPageDarkHeader": false,
 
     "shipNowGanderWhiteSelect": false,
     "shipNowABFSelect": false,

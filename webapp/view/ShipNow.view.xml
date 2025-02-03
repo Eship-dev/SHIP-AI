@@ -5,7 +5,7 @@
 								<Button icon="sap-icon://past"  press="onOpenRecentShipmentPopover"/>
 								<Text text="Ship Now"/>
 								<ToolbarSpacer/>
-								<Button  icon="sap-icon://decline" press="onPressCloseShipNow"/>
+								<Button  icon="sap-icon://decline" press="onPressCloseShipNow" class="Decline_Btn" />
 							</Toolbar>
 							<Toolbar class="sapUiTinyMarginBottom" height="10%">
 								<Label text="SAP Delivery Number"  wrapping="true" width="11%" labelFor="SAPDelLabel"/>

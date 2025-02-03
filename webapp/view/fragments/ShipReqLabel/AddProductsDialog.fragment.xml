@@ -18,7 +18,7 @@
         <Toolbar >
             <Title text="Products Information"></Title>
             <ToolbarSpacer ></ToolbarSpacer>
-                <Button icon="sap-icon://decline" press="AddProductCancelDialog"></Button>
+                <Button icon="sap-icon://decline" press="AddProductCancelDialog" class="Decline_Btn" ></Button>
         </Toolbar>
         </customHeader>
             <!-- <Toolbar height="3rem" width="100%" class="toolbarbottomborder" >

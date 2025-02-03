@@ -4,7 +4,6 @@
 	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"	
 	xmlns:core="sap.ui.core"
-	
 	xmlns:plugins="sap.m.plugins"
 	xmlns:columnmenu="sap.m.table.columnmenu"
     xmlns:sap.ui.fl="sap.ui.fl"
@@ -23,7 +22,7 @@
 		</Toolbar> -->
 
 		<Toolbar width="auto" height="4rem" class="toolbarbottomborder" >
-			<Text text="Order" class="sapUiTinyMarginBegin sapUiMediumMarginBottom  pageTitle" ></Text>
+			<Text text="Order" class="sapUiTinyMarginBegin sapUiTinyMarginTop Orders_PageTitle" ></Text>
         </Toolbar>
 		<Toolbar height="7rem" >
 			<HBox width="100%">
@@ -51,7 +50,7 @@
 		</Toolbar>
 
 
-	<Toolbar >
+	<Toolbar class="sapUiTinyMarginTop" >
 			<Button icon="sap-icon://filter" press="onShipReqFilterPopoverPress"></Button>
 				<ToolbarSpacer ></ToolbarSpacer>
 					<Button icon="sap-icon://synchronize" press="onShipReqRefreshPress"></Button>
@@ -166,19 +165,19 @@
 				<Column app:p13nKey="shipToCountry" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/17/visible}" headerMenu="menu">
                     <Text text="{eshipjetModel>/OrderColumns/17/label}"/>
                 </Column>
-				<Column app:p13nKey="Actions" width="8rem" hAlign="Right"  visible="{eshipjetModel>/ShipReqColumns/18/visible}" headerMenu="menu" >
+				<Column app:p13nKey="Actions" width="8rem" hAlign="Left"  visible="{eshipjetModel>/ShipReqColumns/18/visible}" headerMenu="menu" >
                     <Text text="{eshipjetModel>/OrderColumns/18/label}"/>
                 </Column>
-				<Column app:p13nKey="Actions" width="8rem" hAlign="Right" visible="{eshipjetModel>/ShipReqColumns/19/visible}" headerMenu="menu" >
+				<Column app:p13nKey="Actions" width="8rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/19/visible}" headerMenu="menu" >
                     <Text text="{eshipjetModel>/OrderColumns/19/label}"/>
                 </Column>
-				<Column app:p13nKey="Actions" width="8rem" hAlign="Right" visible="{eshipjetModel>/ShipReqColumns/20/visible}" headerMenu="menu" >
+				<Column app:p13nKey="Actions" width="8rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/20/visible}" headerMenu="menu" >
                     <Text text="{eshipjetModel>/OrderColumns/20/label}"/>
                 </Column>
-				<Column app:p13nKey="Actions" width="8rem" hAlign="Right" visible="{eshipjetModel>/ShipReqColumns/21/visible}" headerMenu="menu" >
+				<Column app:p13nKey="Actions" width="8rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/21/visible}" headerMenu="menu" >
                     <Text text="{eshipjetModel>/OrderColumns/21/label}"/>
                 </Column>
-				<Column app:p13nKey="Actions" width="8rem" hAlign="Right" visible="true" headerMenu="menu" >
+				<Column app:p13nKey="Actions" width="8rem" hAlign="Left" visible="true" headerMenu="menu" >
                     <Text text="Actions"/>
                 </Column>
 		</columns>

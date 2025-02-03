@@ -22,6 +22,7 @@
         <ToolbarSpacer />
         <Button
             icon="sap-icon://decline"
+            class="Decline_Btn"
             press="onPressCloseRoutingGuide"
         />
     </Toolbar>

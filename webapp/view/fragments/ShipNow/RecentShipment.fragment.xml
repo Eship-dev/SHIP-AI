@@ -5,7 +5,7 @@
 				<Toolbar id="_IDGenHBoxRecentShipment" class="toolbarbottomborder">
 					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" id="_IDGenTitleRecentShipment" text="Recent Shipments"></Title>
 					<ToolbarSpacer id="_IDGenToolbarSpacer1RecentShipment" ></ToolbarSpacer>					
-					<Button id="_IDCloseIconPopoverRecentShipment" icon="sap-icon://decline" press="onRecentShipmentClosePress"></Button>
+					<Button id="_IDCloseIconPopoverRecentShipment" icon="sap-icon://decline" press="onRecentShipmentClosePress" class="Decline_Btn" ></Button>
 				</Toolbar>				
 			</VBox>
 		</customHeader>

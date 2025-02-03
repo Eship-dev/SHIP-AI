@@ -10,10 +10,10 @@
 
        
             <Toolbar height="10%">
-								<Button icon="sap-icon://past"  press="onOpenRecentShipmentPopover"/>
+								<Button icon="sap-icon://past" id="shipReqLabelRecentShips" press="onOpenRecentShipmentPopover"/>
 								<Text text="Ship Request / Label"/>
 								<ToolbarSpacer/>
-								<Button  icon="sap-icon://decline" press="onCreateShipReqClosePress" />
+								<Button  icon="sap-icon://decline" press="onCreateShipReqClosePress" class="Decline_Btn" />
 	        </Toolbar>
         
          <VBox class="scan-ship-page sapUiTinyMarginBottom" width="100%" >

@@ -24,8 +24,8 @@
             <!-- Close Button -->
             <Button 
                 icon="sap-icon://decline" 
-                press="AddSMTPConfigClosePress" 
-                type="Transparent" />
+                class="Decline_Btn"
+                press="AddSMTPConfigClosePress" />
         </Toolbar>
     </customHeader>
 		 <footer>

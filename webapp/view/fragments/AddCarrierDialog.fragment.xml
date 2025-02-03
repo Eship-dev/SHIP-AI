@@ -18,7 +18,7 @@
         <Toolbar >
             <Title text="Add Carrier"></Title>
             <ToolbarSpacer ></ToolbarSpacer>
-                <Button icon="sap-icon://decline" press="AddCarrierCancelDialog"></Button>
+                <Button icon="sap-icon://decline" press="AddCarrierCancelDialog" class="Decline_Btn" ></Button>
         </Toolbar>
        
             <form:SimpleForm editable="true" layout="ColumnLayout" columnsM="3" columnsL="3" columnsXL="5">

@@ -24,9 +24,8 @@
                 <!-- Close Button -->
                 <Button
                     icon="sap-icon://decline"
-                    press="AddRoleClosePress"
-                    type="Transparent"
-                />
+                    class="Decline_Btn"
+                    press="AddRoleClosePress" />
             </Toolbar>
         </customHeader>
         <footer>

@@ -16,8 +16,8 @@
                 <ToolbarSpacer />
                 <Button 
                     icon="sap-icon://decline" 
-                    press="ShipToPopoverClose" 
-                    type="Transparent" />
+                    class="Decline_Btn"
+                    press="ShipToPopoverClose" />
             </Toolbar>
         </customHeader>
 

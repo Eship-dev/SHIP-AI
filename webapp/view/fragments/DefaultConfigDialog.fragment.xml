@@ -19,8 +19,8 @@
             <!-- Close Button -->
             <Button 
                 icon="sap-icon://decline" 
-                press="onDefaultConfigurationClosePress" 
-                type="Transparent" />
+                 class="Decline_Btn" 
+                press="onDefaultConfigurationClosePress" />
         </Toolbar>
     </customHeader>
         <f:SimpleForm id="SimpleFormChange480_12120Dual"

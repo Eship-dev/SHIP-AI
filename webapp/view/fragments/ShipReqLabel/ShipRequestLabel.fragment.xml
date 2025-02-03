@@ -11,7 +11,7 @@
 
 	    
 		<Toolbar width="auto" height="15%" class="toolbarbottomborder fixedLayout" >
-			<Text text="Ship Requests / Labels" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiMediumMarginBottom toolBarHeader" ></Text>
+			<Text text="Ship Requests / Labels" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiSmallMarginBottom toolBarHeader" ></Text>
 				<ToolbarSpacer />
 					<Button text="Create Ship Request / Label" class="ship-req-toolbar__button sapUiTinyMargin" width="200px" press="onCreateShipReqLabelPress" ></Button>
 		</Toolbar>
@@ -221,7 +221,7 @@
 				<Column app:p13nKey="RFID" width="10rem"  hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/23/visible}" headerMenu="menu">
                     <Text text="RFID"/>
                 </Column>
-				<Column app:p13nKey="Actions" class="fixedColumn" width="8rem" hAlign="Right" visible="true" headerMenu="menu" >
+				<Column app:p13nKey="Actions" class="fixedColumn" width="8rem" hAlign="Left" visible="true" headerMenu="menu" >
                     <Text text="Actions"/>
                 </Column>
 		</columns>

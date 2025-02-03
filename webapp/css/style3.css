@@ -249,7 +249,7 @@
 }
 
 
-.pageTitle {
+.Orders_PageTitle {
   font-size: 22px;
   line-height: 32.78px;
   text-align: left;
@@ -332,155 +332,9 @@
   cursor: pointer;
 }
 
-::ng-deep .addMasterBtn {
-  border-radius: 4px !important;
-  border: none !important;
-  background-color: #4EA732 !important;
-  color: #fff !important;
-  height: 44px !important;
-  font-family: AvenirNextCyrMedium !important;
-  padding: 12px;
-  text-align: center;
-}
-
-::ng-deep .addMasterBtn .p-button .p-button-label {
-  font-size: 16px !important;
-  font-family: AvenirNextCyrMedium !important;
-  font-weight: normal !important;
-}
-
-::ng-deep .addMasterBtn:hover {
-  background-color: #258F1D !important;
-}
-
-::ng-deep .addMasterBtn .p-splitbutton-defaultbutton {
-  box-shadow: none !important;
-  border-right: 1px solid #fff !important;
-  border-radius: 0 !important;
-  height: 44px !important;
-  padding: 12px;
-  color: #fff !important;
-}
-
-::ng-deep .p-splitbutton-menubutton {
-  color: #fff !important;
-  padding-left: 10px !important;
-  padding-top: 10px !important;
-}
-
-::ng-deep .p-splitbutton-menubutton .p-icon {
-  width: 1.1rem !important;
-  height: 1.1rem !important;
-}
-
 .addMasterBtn .p-tieredmenu {
   top: 45px !important;
 }
-
-::ng-deep .p-inputswitch {
-  width: 3rem !important;
-  height: 1.6rem !important;
-}
-
-::ng-deep .footer-apply .p-button .p-button-label {
-  background: #4EA732;
-  border-radius: 20px;
-  color: #FFFFFF !important;
-  width: 90px;
-  height: 35px !important;
-  line-height: 35px !important;
-  font-size: 14px !important;
-  font-family: AvenirNextCyrMedium !important;
-}
-
-::ng-deep .footer-reset .p-button .p-button-label {
-  background: #FFFFFF;
-  border-radius: 20px;
-  color: #8D8D8D !important;
-  width: 90px;
-  height: 35px !important;
-  border: 2px solid #ccc;
-  font-size: 14px !important;
-  font-family: AvenirNextCyrMedium !important;
-}
-
-::ng-deep .footer-reset .p-button .p-button-label:hover {
-  background-color: #258F1D !important;
-  color: #fff !important;
-  border: 2px solid #258F1D !important;
-}
-
-::ng-deep .p-overlaypanel .p-overlaypanel-close {
-  right: 5px !important;
-  top: 5px !important;
-  color: #79788A !important;
-  font-weight: 700 !important;
-}
-
-::ng-deep .dropDownCss > .p-dropdown {
-  height: 40px !important;
-  line-height: 28px !important;
-  border: 1px solid #8E9096 !important;
-}
-
-::ng-deep .calendarCss .p-inputtext {
-  height: 40px !important;
-  line-height: 28px !important;
-  color: #514F4F !important;
-  border: 1px solid #8E9096 !important;
-}
-
-/* label {
-  font-size: 16px !important;
-  font-family: AvenirNextCyrMedium !important;
-  color: #8D8D8D !important;
-} */
-
-::ng-deep .p-inputtext {
-  font-size: 15px !important;
-  height: 40px !important;
-  border: 1px solid #8E9096 !important;
-  border-radius: 4px !important;
-  line-height: 25px !important;
-  font-family: AvenirNextCyrMedium !important;
-}
-
-::ng-deep .btnSave {
-  background-color: #4EA732 !important;
-  border: 1px solid #4EA732 !important;
-  color: #fff !important;
-  font-size: 16px !important;
-  border-radius: 4px !important;
-  height: 40px !important;
-  padding: 7px 30px !important;
-}
-
-::ng-deep .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
-  background: green !important;
-}
-
-::ng-deep .p-sidebar-header {
-  padding: 0.9rem 1.1rem !important;
-  background-color: white !important;
-  font-family: AvenirNextCyrMedium !important;
-  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.2);
-}
-
-@media (resolution: 120dpi) {
-  .pagedetails-header {
-    zoom: 80%;
-  }
-  ::ng-deep .gridCommonCss {
-    zoom: 92% !important;
-    margin-top: 6px !important;
-  }
-}
-
-::ng-deep .p-button .p-button-label {
-  font-size: 16px !important;
-}
-
-
 
 .buttonTitle {
   justify-content: space-between;
@@ -546,53 +400,12 @@
   height: 25px;
   width: 100%;
   padding: 0px;
-  border-radius: 4px 4px 4px 4px;
- 
+  border-radius: 4px 4px 4px 4px; 
 }
 
-
-
-
-:host :ng-deep .p-datatable-sm {
-  position: relative;
-  height: 64vh !important;
-  overflow: auto !important;
-}
-/* // ::ng-deep .p-sortable-column:not(.p-highlight):hover {
-//   background: none !important;
-//   color: #fff !important;
-// } */
-
-::ng-deep .p-datatable-thead>tr>th {
-  padding: 7px 7px !important;
-  background-color: #030e4c !important;
-}
-
-::ng-deep .timeLineImg:hover {
-  background-color: #e9ecef !important;
-  line-height: 1 !important;
-}
-
-::ng-deep .p-datatable-tbody>tr>td {
-  padding: 6px 6px !important;
-  border-width: 1px 0px 1px 0px !important;
-}
-::ng-deep .p-focus {
-  outline: 0 none !important;
-  outline-offset: 0 !important;
-  /* // border-color: #030e4c !important; */
-}
-:host::ng-deep .action-body {
-  text-align: center !important;
-}
-:host::ng-deep .action-head {
-  text-align: center !important;
-}
-:host::ng-deep .p-button .p-button-label {
-  font-size: 14px !important;
-}
 .search-container {
   display: flex;
+  padding: auto !important;
   align-items: center;
   position: relative;
   .search-icon {
@@ -601,174 +414,16 @@
     cursor: pointer;
     z-index: 1;
   }
-
   input {
     padding-right: 2rem;
   }
 }
 
-:host ::ng-deep .p-button .p-button-label {
-  font-size: 12px !important;
-}
-::ng-deep .actionDropdown{
-  transition:none !important;
-}
-::ng-deep .actionDropdown:hover{
-  color: #1554a1 !important;
-  transition:none !important;
-  font-weight: bold !important;
-}
-:host ::ng-deep .p-button.p-button-text:enabled:hover{
-  border-right: 1px solid #3276cb !important;
-}
-:host ::ng-deep .p-splitbutton-menubutton.p-button:enabled:hover{
-  border:none !important;
+.sapMSFI[type='search'] {
+  padding-bottom: 7px;
+  font-size: 1rem;
 }
 
-
-:host ::ng-deep .p-ripple .footer-apply {
-  color: #ffffff !important;
-  display: block;
-}
-
-/* // Filter Popup Css Start */
-
-::ng-deep .footer-apply .p-button .p-button-label {
-  float: right;
-  background: #4ea732;
-  border-radius: 20px;
-  color: #ffffff !important;
-  width: 90px;
-  height: 35px !important;
-  padding: 6px;
-  outline-color: transparent;
-  box-shadow: none !important;
-  font-size: 14px !important;
-  font-family: AvenirNextCyrMedium !important;
-  font-weight: normal !important;
-}
-::ng-deep .footer-apply .p-button .p-button-label:active {
-  box-shadow: none !important;
-  outline: none !important;
-}
-::ng-deep .footer-apply .p-button .p-button-label:hover{
-  background-color: #258f1d !important;
-  color: #fff !important;
-  border-color: 1px solid #258f1d !important;
-}
-::ng-deep .p-icon{
-  width: 1.3rem !important;
-  height: 1.3rem !important;
-}
-/* // ::ng-deep .close-icon-container { 
-//   padding: 26px !important;
-// } */
-::ng-deep .p-sortable-column:not(.p-highlight):hover {
-  background: #f8f9fa !important;
-  color: #767676 !important;
-}
-:host ::ng-deep .custom-paginator > .p-button {
-  color: #030927 !important;
-}
-::ng-deep .footer-reset .p-button .p-button-label {
-  float: right;
-  background: #ffffff;
-  border-radius: 20px;
-  color: #8d8d8d !important;
-  width: 90px;
-  height: 35px !important;
-  line-height: 20px !important;
-  padding: 6px;
-  outline-color: transparent;
-  box-shadow: none !important;
-  font-size: 14px !important;
-  border: 2px solid #ccc;
-  font-family: AvenirNextCyrMedium !important;
-}
-::ng-deep .footer-reset .p-button .p-button-label:hover{
-  background-color: #258f1d !important;
-  color: #fff !important;
-  border: 2px solid #258f1d !important;
-}
-::ng-deep .p-overlaypanel .p-overlaypanel-close {
-  right: 5px !important;
-  top: 5px !important;
-  color: #79788A !important;
-  font-weight: 700 !important;
-}
-::ng-deep .dropDownCss > .p-dropdown{
-  height: 40px !important;
-  line-height: 28px !important;
-  border: 1px solid #8e9096 !important;
-}
-::ng-deep .calendarCss .p-inputtext{
-  height: 40px !important;
-  line-height: 28px !important;
-  color: #514f4f !important;
-  border: 1px solid #8e9096 !important;
-}
-::ng-deep .inputTextCss {
-  height: 40px !important;
-  line-height: 28px !important;
-}
-/* label{
-  font-size: 16px !important;
-  font-family: AvenirNextCyrMedium !important;
-  color: #8d8d8d !important;
-} */
-::ng-deep .p-inputtext {
-  color: #514f4f !important;
-  font-size: 15px !important;
-  height: 40px !important;
-  border: 1px solid #8e9096 !important;
-  border-radius: 4px !important;
-  font-weight: 400 !important;
-  line-height: 25px !important;
-  text-align: left !important;
-  font-family: AvenirNextCyrMedium !important;
-}
-
-/* // Filter Popup Css End */
-
-::ng-deep .p-button {
-  padding: 0px;
-  outline: 0;
-  border: none;
-}
-
-::ng-deep .serch-div {
-  color: #030E4C !important;
-}
-
-.apply-div {
-  display: flex;
-  justify-content: flex-end;
-}
-
-::ng-deep .p-button-label:active {
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-
-
-::ng-deep .p-ink {
-  box-shadow: none !important;
-
-}
-
-::ng-deep .p-datatable>.p-datatable-wrapper {
-  margin-top: 6px;
-}
-
-::ng-deep .action-head {
-  background-color: green !important;
-}
-
-::ng-deep .ui-paginator-bottom {
-  position: fixed;
-  bottom: 0;
-}
 .button-container {
   display: flex;
   justify-content: space-between;
@@ -1669,6 +1324,26 @@ td[rowspan] {
   border: none;
 } */
 
+.customHeaderStyle {
+  border-bottom: none !important;
+  background-color: black !important;
+}
+
+.customHeaderStyle .sapMText,
+.customHeaderStyle .sapUiIcon {
+  color: white !important;
+  fill: white !important;
+}
+
+.customHeaderStyle .sapMBtn :hover {
+  background-color: black !important;
+  color: white !important;
+  fill: white !important;
+  border: none;
+}
+
+
+
 /* Custom CSS to position the dialog on the left */
 .myCustomDialog .sapMDialog {
   left: 0 !important;
@@ -1784,4 +1459,25 @@ body.dark-theme {
     height: auto !important;
     cursor: pointer;
   }
+}
+
+/* Decline Button CSS */
+.Decline_Btn {
+  border-radius: 0px;
+  padding: 4px 10px;
+  font-size: 16px !important;
+  margin: 0 7px 0 0 !important;
+}
+
+/* Hover effect */
+.Decline_Btn:hover { 
+  background-color: red !important;
+  border: 1px solid #939A99 !important;
+  color: #fff !important;
+}
+
+/* Change icon color when hovering */
+.Decline_Btn:hover .sapMBtnIcon {
+  color: #fff !important;
+  fill: #fff !important; /* Ensure the fill color is also changed for SVG icons */
 }

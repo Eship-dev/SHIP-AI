@@ -23,9 +23,9 @@
 
             <!-- Close Button -->
             <Button 
-                icon="sap-icon://decline" 
-                press="AddProductClosePress" 
-                type="Transparent" />
+                icon="sap-icon://decline"
+                class="Decline_Btn" 
+                press="AddProductClosePress" />
         </Toolbar>
     </customHeader>
 		 <footer>

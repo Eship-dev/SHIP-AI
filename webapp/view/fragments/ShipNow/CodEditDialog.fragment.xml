@@ -13,8 +13,8 @@
             <ToolbarSpacer />
                 <Button 
                     icon="sap-icon://decline" 
-                    press="onCodEditDialogCancelPress" 
-                    type="Transparent" />
+                    class="Decline_Btn"
+                    press="onCodEditDialogCancelPress" />
     </Toolbar>
     </customHeader>
         <f:SimpleForm 

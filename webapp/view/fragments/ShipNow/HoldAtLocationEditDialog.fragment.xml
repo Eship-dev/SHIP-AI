@@ -13,8 +13,8 @@
             <ToolbarSpacer />
                 <Button 
                     icon="sap-icon://decline" 
-                    press="onHoldAtLocationEditDialogClosePress" 
-                    type="Transparent" />
+                    class="Decline_Btn"
+                    press="onHoldAtLocationEditDialogClosePress" />
     </Toolbar>
     </customHeader>
         <f:SimpleForm 

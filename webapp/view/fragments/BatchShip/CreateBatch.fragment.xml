@@ -14,7 +14,7 @@
 		<Toolbar height="3.1rem" >
             <Text text="Create New Batch" ></Text>
 			<ToolbarSpacer ></ToolbarSpacer>
-				<Button icon="sap-icon://decline" press="onCreateBatchShipClosePress" ></Button>
+				<Button icon="sap-icon://decline" press="onCreateBatchShipClosePress" class="Decline_Btn" ></Button>
 		</Toolbar>
 		<footer >
 			<OverflowToolbar height="4rem" >
