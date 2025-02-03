@@ -4056,6 +4056,328 @@ sap.ui.define([
             });
         },
 
+        onPackagesExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/PackageTypeTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Location Name", property: "locationName", visible: true },
+                        { label: "Package Code", property: "packageCode", visible: true },
+                        { label: "Package Type", property: "packageType", visible: true },
+                        { label: "Ship Method", property: "shipMethod", visible: true },
+                        { label: "Dimension Units", property: "dimensionUnits", visible: true },
+                        { label: "Status", property: "status", visible: true },
+                        { label: "Ship Method ID", property: "shipMethodId", visible: true },
+                        { label: "Ship Method", property: "shipMethodName", visible: true },
+                        { label: "Ship Method Type", property: "shipMethodType", visible: true },
+                        { label: "Ship Method Coverage", property: "shipMethodCoverage", visible: true },
+                        { label: "Ship Method Status", property: "status", visible: true }
+                    ]                                  
+                },
+                dataSource: rows,
+                fileName: 'Packages_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
+
+
+        onLTLClassesExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/LtlClassesTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Location Name", property: "locationName", visible: true },
+                        { label: "Package Code", property: "packageCode", visible: true },
+                        { label: "Package Type", property: "packageType", visible: true },
+                        { label: "Ship Method", property: "shipMethod", visible: true },
+                        { label: "Dimension Units", property: "dimensionUnits", visible: true },
+                        { label: "Status", property: "status", visible: true },
+                        { label: "Ship Method ID", property: "shipMethodId", visible: true },
+                        { label: "Ship Method", property: "shipMethodName", visible: true },
+                        { label: "Ship Method Type", property: "shipMethodType", visible: true },
+                        { label: "Ship Method Coverage", property: "shipMethodCoverage", visible: true },
+                        { label: "Ship Method Status", property: "status", visible: true }
+                    ]                                  
+                },
+                dataSource: rows,
+                fileName: 'LTLClasses_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
+        onLTLClassesExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/LtlClassesTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Location Name", property: "locationName", visible: true },
+                        { label: "Package Code", property: "packageCode", visible: true },
+                        { label: "Package Type", property: "packageType", visible: true },
+                        { label: "Ship Method", property: "shipMethod", visible: true },
+                        { label: "Dimension Units", property: "dimensionUnits", visible: true },
+                        { label: "Status", property: "status", visible: true },
+                        { label: "Ship Method ID", property: "shipMethodId", visible: true },
+                        { label: "Ship Method", property: "shipMethodName", visible: true },
+                        { label: "Ship Method Type", property: "shipMethodType", visible: true },
+                        { label: "Ship Method Coverage", property: "shipMethodCoverage", visible: true },
+                        { label: "Ship Method Status", property: "status", visible: true }
+                    ]                                  
+                },
+                dataSource: rows,
+                fileName: 'LTLClasses_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
+        onNMFCExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/NmfcTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Location Name", property: "locationName", visible: true },
+                        { label: "NMFC Code", property: "nmfcCode", visible: true },
+                        { label: "NMFC Description", property: "nmfcDesc", visible: true },
+                        { label: "Ship Method", property: "shipMethod", visible: true },
+                        { label: "Status", property: "status", visible: true }
+                    ]                                    
+                },
+                dataSource: rows,
+                fileName: 'NMFC_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
+
+
+        onModeOfTransportsExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/MotTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Location Name", property: "locationName", visible: true },
+                        { label: "Mode", property: "mode", visible: true },
+                        { label: "Status", property: "status", visible: true }
+                    ]                                                 
+                },
+                dataSource: rows,
+                fileName: 'ModeOfTransports_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
+        onOrdersTypeExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/OrderTypesTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Location Name", property: "locationName", visible: true },
+                        { label: "Mode", property: "mode", visible: true },
+                        { label: "Status", property: "status", visible: true }
+                    ]                                                 
+                },
+                dataSource: rows,
+                fileName: 'OrdersType_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
+        onIncotermsExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/IncotermsTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Incoterm", property: "incoterm", visible: true },
+                        { label: "Description", property: "desc", visible: true },
+                        { label: "Status", property: "status", visible: true }
+                    ]                                                                 
+                },
+                dataSource: rows,
+                fileName: 'Incoterms_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
+
+        onTrackingRangeExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/TrackingRangeTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Location Name", property: "LocationName", visible: true },
+                        { label: "Carrier", property: "Carrier", visible: true },
+                        { label: "Range From", property: "RangeFrom", visible: true },
+                        { label: "Range To", property: "RangeTo", visible: true },
+                        { label: "Status", property: "status", visible: true }
+                    ]
+                                                                                 
+                },
+                dataSource: rows,
+                fileName: 'TrackingRange_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
+
+        onDimensionsExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/DiemnsionsTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Location Name", property: "locationName", visible: true },
+                        { label: "Dimension Code", property: "dimensionCode", visible: true },
+                        { label: "Dimension Value", property: "dimensionValue", visible: true },
+                        { label: "Length", property: "length", visible: true },
+                        { label: "Width", property: "width", visible: true },
+                        { label: "Height", property: "height", visible: true },
+                        { label: "Maximum Weight", property: "maxWeight", visible: true },
+                        { label: "Material Weight", property: "materialWeight", visible: true },
+                        { label: "Status", property: "status", visible: true }
+                    ]                                                              
+                },
+                dataSource: rows,
+                fileName: 'Dimensions_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
+        onPaymentTypesExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/PaymentTypesTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Payment Type", property: "paymentType", visible: true },
+                        { label: "Payment Code", property: "paymentCode", visible: true },
+                        { label: "Description", property: "desc", visible: true },
+                        { label: "Status", property: "status", visible: true }
+                    ]
+                                                                            
+                },
+                dataSource: rows,
+                fileName: 'PaymentTypes_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
+
+        onERPExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/ERPTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Location Name", property: "locationName", visible: true },
+                        { label: "ERP Name", property: "erpName", visible: true },
+                        { label: "ERP Code", property: "ERPCode", visible: true },
+                        { label: "Status", property: "status", visible: true }
+                    ]                    
+                                                                            
+                },
+                dataSource: rows,
+                fileName: 'ERP_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
+
+        onCountriesExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/CountriesTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Country Code", property: "countryCode", visible: true },
+                        { label: "Country Description", property: "countryDesc", visible: true },
+                        { label: "Region", property: "region", visible: true },
+                        { label: "Currency", property: "currency", visible: true },
+                        { label: "Status", property: "status", visible: true }
+                    ]                                                                                        
+                },
+                dataSource: rows,
+                fileName: 'Countries_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
+        onEUCountriesExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/EUCountriesTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Country Code", property: "countryCode", visible: true },
+                        { label: "Country Description", property: "countryDesc", visible: true },
+                        { label: "Status", property: "status", visible: true }
+                    ]                                                                                                         
+                },
+                dataSource: rows,
+                fileName: 'EUCountries_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
 
         onProductsExportToExcel: function () {
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
