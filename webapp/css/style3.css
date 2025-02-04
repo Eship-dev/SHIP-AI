@@ -1326,7 +1326,7 @@ td[rowspan] {
 
 .customHeaderStyle {
   border-bottom: none !important;
-  background-color: black !important;
+  background-color: #212121 !important;
 }
 
 .customHeaderStyle .sapMText,
@@ -1336,7 +1336,7 @@ td[rowspan] {
 }
 
 .customHeaderStyle .sapMBtn :hover {
-  background-color: black !important;
+  background-color: #212121 !important;
   color: white !important;
   fill: white !important;
   border: none;

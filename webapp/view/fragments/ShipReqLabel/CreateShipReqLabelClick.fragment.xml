@@ -75,7 +75,7 @@
                             <f:SimpleForm  editable="true" width="auto" layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="2">
                                 <f:content>
                                     <Label text="Contact Name"  />
-                                    <SearchField value="{oAddressModel>/contactName}" width="100%" search="onSearch" class="sapUiSmallMarginBottom" placeholder=" " />
+                                    <SearchField value="{ShipNowDataModel>/ShipFromAddress/ShipFromCONTACT}" width="100%" search="ShipNowPickAnAddressPopoverPress" class="sapUiSmallMarginBottom" placeholder=" " />
                                     <Label text="Address Line 1" />
                                     <Input value="{oAddressModel>/addressLine1}" class="sapUiSmallMarginBottom create-ship-req_input"/>
                                     <Label text="City" />

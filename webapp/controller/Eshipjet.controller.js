@@ -408,6 +408,7 @@ sap.ui.define([
             BusyIndicator.show();
             var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
             var oShipNowDataModel = this.getOwnerComponent().getModel("ShipNowDataModel");
+            var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
             var DocumentNumber = eshipjetModel.getProperty("/HeaderInfo/DocumentNumber");
             var ShipDate =  eshipjetModel.getProperty("/HeaderInfo/ShipDate");
             var ShipFromCONTACT = eshipjetModel.getProperty("/ShipFrom/CONTACT");
@@ -423,6 +424,7 @@ sap.ui.define([
                         
             var obj = {
                 "HeaderInfo": {
+                    "BillOfLading" : sapDeliveryNumber,
                     "FeederSystem": "Ship Request / Label",
                     "DocumentType": "Delivery Number",
                     "ShipDate": "2025-01-03T11:41:20.053Z",
@@ -684,7 +686,8 @@ sap.ui.define([
                                 eshipjetModel.setProperty("/shippingDocuments", response.shippingDocuments);
                             }
                             //post to manifest service
-                            oController.getManifestData(response);
+                            // oController.getManifestData(response);
+                            oController.getTrackNowData(response);
                         }else if(response && response.status === "Error"){
                             var sError = "Shipment process failed reasons:\n";
                             if(response && response.Errors && response.Errors.length > 0){
@@ -703,6 +706,23 @@ sap.ui.define([
                     }
                 });
             });
+        },
+
+        getTrackNowData:function(response){
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
+            var OutBoundDeliveryModel = oController.getOwnerComponent().getModel("OutBoundDeliveryModel");
+            response.BillOfLading = sapDeliveryNumber;
+            OutBoundDeliveryModel.update("/A_OutbDeliveryHeader",
+                response,
+                type= "PUT", {
+                success:function(oSuc){
+    
+                },
+                error:function(oErr){
+
+                }
+            })
         },
 
         getManifestData:function(response){
