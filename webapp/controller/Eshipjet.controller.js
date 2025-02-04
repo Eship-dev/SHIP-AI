@@ -7788,6 +7788,32 @@ sap.ui.define([
             this.byId("idShipNowPickAnAddressPopover").close();
         },
 
+          // add ShipNowPickAnAddressPopover changes start
+          ShipNowPickAnAddressSearchPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            var ShipNowDataModel = this.getView().getModel("ShipNowDataModel");
+            var sPath = oEvent.getSource().getId().split("--");
+            var btnId = sPath[sPath.length - 1];
+            ShipNowDataModel.setProperty("/shipNowBtnId", btnId);
+            if (!this._AddPickAnPopover) {
+                this._AddPickAnPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.ShipNowPickAnAddressSearchBind",
+                    controller: this
+                }).then(function (oAddPickPopover) {
+                    oView.addDependent(oAddPickPopover);
+                    return oAddPickPopover;
+                });
+            }
+            this._AddPickAnPopover.then(function (oAddPickPopover) {
+                oAddPickPopover.openBy(oButton);
+            });
+        },
+        onShipNowPickAnAddressSearchCancelPress: function () {
+            this.byId("idShipNowPickAnAddressSearchPopover").close();
+        },
+
         onShipNowPickAnAddressSelectPress: function () {
             var ShipNowDataModel = this.getView().getModel("ShipNowDataModel");
             var shipNowBtnId = ShipNowDataModel.getProperty("/shipNowBtnId");
@@ -7806,14 +7832,14 @@ sap.ui.define([
             oController.byId("idShipNowPickAnAddressPopover").close();
         },
 
-        onShipNowPickAnAddressSelectPress: function () {
+        onShipNowPickAnAddresssearchSelectPress: function () {
             var ShipNowDataModel = this.getView().getModel("ShipNowDataModel");
-            var shipNowBtnId = ShipNowDataModel.getProperty("/shipNowBtnId");
-            var oTable = this.getView().byId("idShipNowPickAnAddressTable");
+            var shipNowBtnId1 = ShipNowDataModel.getProperty("/shipNowBtnId1");
+            var oTable = this.getView().byId("idShipNowPickAnAddressSearchTable");
             
 
             var oSelectedItem = oTable.getSelectedItem();
-
+            
             var oContext = oSelectedItem.getBindingContext();
             var oSelectedData = oContext.getObject();
             var ShipFromAddress = new JSONModel(oSelectedData);

@@ -29,7 +29,7 @@
 												<f:content>
 													<Toolbar ariaLabelledBy="idShipFrom">
 														<Title id="idShipFrom" text="Ship From"/>
-														<Button icon="sap-icon://customer-briefing" press="ShipNowPickAnAddressPopoverPress" id="idShipFromAddressBtn" />
+														<Button icon="sap-icon://customer-briefing" press="ShipNowPickAnAddressSearchPopoverPress" id="idShipFromAddressBtn" />
 														<Text text=" - Eshipjet Software Inc." ></Text>
 													</Toolbar>
 													<Label text="Contact Name" />
