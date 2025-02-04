@@ -6,6 +6,7 @@
     <Popover id="idShipToPickAnAddressPopover"  
             placement="Bottom" 
             contentWidth="90%"
+            contentHeight="50%"
             showHeader="true"
             class="sapUiResponsivePadding--header sapUiResponsivePadding--footer">
         
@@ -95,7 +96,7 @@
             <OverflowToolbar>
                 <Button text="Cancel" press="ShipToCancelPopover" />
                 <ToolbarSpacer />
-                <Button type="Emphasized" text="Select" press="ShipToSelectPopover" />
+                <Button type="Emphasized" text="Select" press="onShipToPickAnAddressSelectPress" />
             </OverflowToolbar>
         </footer>
     </Popover>

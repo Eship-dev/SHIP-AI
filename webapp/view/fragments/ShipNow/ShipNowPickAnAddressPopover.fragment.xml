@@ -7,7 +7,7 @@
 
     <Popover id="idShipNowPickAnAddressPopover"  
              placement="Right" 
-             contentWidth="60%"
+             contentWidth="50%"
              showHeader="true"
              class="sapUiResponsivePadding--header sapUiResponsivePadding--footer">
         
@@ -27,7 +27,7 @@
             <Table id="idShipNowPickAnAddressTable"
                    class="sapUiTinyMarginTop"
                    growing="true"
-                   growingThreshold="12"
+                  
                    mode="SingleSelectMaster"
                    items="{/addresses}">
                 <columns>
