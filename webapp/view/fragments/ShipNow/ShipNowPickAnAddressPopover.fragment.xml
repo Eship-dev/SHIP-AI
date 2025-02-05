@@ -27,9 +27,8 @@
             <Table id="idShipNowPickAnAddressTable"
                    class="sapUiTinyMarginTop"
                    growing="true"
-                  
                    mode="SingleSelectMaster"
-                   items="{/addresses}">
+                   items="{/shipFromAddresses}" >
                 <columns>
                     <Column>
                         <header>
@@ -95,18 +94,18 @@
                 <items>
                     <ColumnListItem>
                         <cells>
-                            <Text text="{contactName}" />
-                            <Text text="{companyName}" />
-                            <Text text="{addressLine1}" />
-                            <Text text="{addressLine2}" />
+                            <Text text="{ShipFromCONTACT}" />
+                            <Text text="{ShipFromCOMPANY}" />
+                            <Text text="{ShipFromADDRESS_LINE1}" />
+                            <Text text="{ShipFromADDRESS_LINE2}" />
                             <Text text="{addressLine3}" />
-                            <Text text="{city}" />
-                            <Text text="{state}" />
-                            <Text text="{zipcode}" />
-                            <Text text="{country}" />
-                            <Text text="{phone}" />
-                            <Text text="{email}" />
-                            <Text text="{addressType}" />
+                            <Text text="{ShipFromCITY}" />
+                            <Text text="{ShipFromSTATE}" />
+                            <Text text="{ShipFromZIPCODE}" />
+                            <Text text="{ShipFromCOUNTRY}" />
+                            <Text text="{ShipFromPHONE}" />
+                            <Text text="{ShipFromEMAIL}" />
+                            <Text text="{ShipFromAddressType}" />
                         </cells>
                     </ColumnListItem>
                 </items>

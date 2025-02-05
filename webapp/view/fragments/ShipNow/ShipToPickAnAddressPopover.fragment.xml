@@ -4,7 +4,7 @@
     height="100%">
 
     <Popover id="idShipToPickAnAddressPopover"  
-            placement="Bottom" 
+            placement="HorizontalPreferredRight" 
             contentWidth="90%"
             contentHeight="50%"
             showHeader="true"
@@ -18,7 +18,7 @@
                 <Button 
                     icon="sap-icon://decline" 
                     class="Decline_Btn"
-                    press="ShipToPopoverClose" />
+                    press="onShipToPickAnAddressCancelPress" />
             </Toolbar>
         </customHeader>
 
@@ -29,7 +29,7 @@
                 inset="false"
                 mode="SingleSelectMaster"
                 items="{
-                    path: '/addresses'
+                    path: '/shipToAddresses'
                 }">
                 <columns>
                     <Column>
@@ -72,18 +72,18 @@
                 <items>
                     <ColumnListItem>
                         <cells>
-                            <Text text="{contactName}" />
-                            <Text text="{companyName}" />
-                            <Text text="{addressLine1}" />
-                            <Text text="{addressLine2}" />
-                            <Text text="{addressLine3}" />
-                            <Text text="{city}" />
-                            <Text text="{state}" />
-                            <Text text="{zipcode}" />
-                            <Text text="{country}" />
-                            <Text text="{phone}" />
-                            <Text text="{email}" />
-                            <Text text="{addressType}" />
+                            <Text text="{FullName}" />
+                            <Text text="{BusinessPartnerName1}" />
+                            <Text text="{StreetName}" />
+                            <Text text="{HouseNumber}" />
+                            <Text text="{AddressLine3}" />
+                            <Text text="{CityName}" />
+                            <Text text="{Region}" />
+                            <Text text="{PostalCode}" />
+                            <Text text="{Country}" />
+                            <Text text="{PhoneNumber}" />
+                            <Text text="{EMAIL}" />
+                            <Text text="{LocationType}" />
                         </cells>
                     </ColumnListItem>
                 </items>
@@ -94,7 +94,7 @@
         <!-- Footer with Actions -->
         <footer>
             <OverflowToolbar>
-                <Button text="Cancel" press="ShipToCancelPopover" />
+                <Button text="Cancel" press="onShipToPickAnAddressCancelPress" />
                 <ToolbarSpacer />
                 <Button type="Emphasized" text="Select" press="onShipToPickAnAddressSelectPress" />
             </OverflowToolbar>

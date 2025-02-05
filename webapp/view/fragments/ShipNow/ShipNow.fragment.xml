@@ -27,12 +27,12 @@
 										<VBox>
 											<f:SimpleForm id="SimpleFormChangeColumn_threeGroups346" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
 												<f:content>
-													<Toolbar ariaLabelledBy="idShipFrom">
+													<Toolbar ariaLabelledBy="idShipFrom" >
 														<Title id="idShipFrom" text="Ship From"/>
 														<Button icon="sap-icon://customer-briefing" press="ShipNowPickAnAddressSearchPopoverPress" id="idShipFromAddressBtn" />
 														<Text text=" - Eshipjet Software Inc." ></Text>
 													</Toolbar>
-													<Label text="Contact Name" />
+													<Label text="Contact Name" class="sapUiTinyMarginTop" />
 													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromCONTACT}" class="sapUiSmallMarginBottom create-ship-req_input" />
 													<Label text="Address Line 1" />
 													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE1}"></Input>
@@ -50,7 +50,7 @@
 													</Input>
 													<Label text="Email" />
 													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromEMAIL}" />
-													<Label text="Company Name" />
+													<Label text="Company Name" class="sapUiTinyMarginTop" />
 													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromCOMPANY}" />
 													<Label text="Address Line 2" />
 													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE2}" />
@@ -81,7 +81,7 @@
 
 													<Toolbar ariaLabelledBy="idShipTo" class="scan-ship-toolbar1">
 														<Title id="idShipTo" text="Ship To"/>
-														<Button icon="sap-icon://customer-briefing" press="ShipNowPickAnAddressPopoverPress" id="idShipToAddressBtn" />
+														<Button icon="sap-icon://customer-briefing" press="ShipToPickAnAddressPopoverPress" id="idShipToAddressBtn" />
 														<Button icon="sap-icon://add" press="onShipNowAddIconPress"></Button>
 														<ToolbarSpacer ></ToolbarSpacer>
 														<Button text="Validate Address" class="scan-ship-toolbar1__button" type="Ghost" width="10rem" />

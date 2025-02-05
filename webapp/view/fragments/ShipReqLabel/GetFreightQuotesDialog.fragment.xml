@@ -83,10 +83,10 @@
             <footer >
                     <Toolbar height="5rem"  class="scan-ship-toolbar" >
                         <Button  text="Cancel" type="Reject" press="AddFreightQuotesDialogClose" class="scan-ship-toolbar__button scan-ship-toolbar__button_void" />
-                        <Button  text="Submit to Carrier"  class="ship-req-toolbar__button" press="AddCarrierCancelDialog" />
-                        <Button  text="Customer Approval"  class="ship-req-toolbar__button" press="AddCarrierCancelDialog" />
+                        <Button  text="Submit to Carrier"  class="create-ship-req-footer sapUiSmallMarginEnd" press="AddCarrierCancelDialog" />
+                        <Button  text="Customer Approval"  class="create-ship-req-footer sapUiSmallMarginEnd" press="AddCarrierCancelDialog" />
                         <ToolbarSpacer/>
-                        <Button  text="Shipper Approval"  class="ship-req-toolbar__button" press="AddCarrierUpdateDialog" />
+                        <Button  text="Shipper Approval"  class="create-ship-req-footer sapUiSmallMarginEnd" press="AddCarrierUpdateDialog" />
                     </Toolbar>
             </footer>
     </Dialog>

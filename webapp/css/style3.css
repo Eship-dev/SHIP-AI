@@ -1481,3 +1481,22 @@ body.dark-theme {
   color: #fff !important;
   fill: #fff !important; /* Ensure the fill color is also changed for SVG icons */
 }
+
+
+.customTabBar {
+  margin: 10px;
+}
+
+.horizontalLine {
+  width: 100%;
+  height: 1px;
+  background-color: gray; /* Line Color */
+  margin: 10px 0;
+}
+
+.CreateShipReq_SpecialService{
+  background-color: white !important;
+  padding: 20px !important;
+  border-radius: 10px !important;
+  flex: auto !important;
+}

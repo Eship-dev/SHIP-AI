@@ -125,6 +125,9 @@ sap.ui.define([
                 document.body.classList.remove("dark-theme");
                 // this._handleDisplayShipReqTable();
             } else if (sKey === "ShipNow") {
+                var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
+                ShipNowDataModel.setProperty("/ShipFromAddress", "");
+                ShipNowDataModel.setProperty("/ShipToAddress", "");
                 eshipjetModel.setProperty("/allViewsFooter", false);
                 eshipjetModel.setProperty("/shipNowViewFooter", true);
                 eshipjetModel.setProperty("/createShipReqViewFooter", false);
@@ -2629,7 +2632,45 @@ sap.ui.define([
             eshipjetModel.setProperty("/shipNowViewFooter", false);
             eshipjetModel.setProperty("/routingGuidFooter", false);
             eshipjetModel.setProperty("/createShipReqViewFooter", true);
+            var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
+            ShipNowDataModel.setProperty("/ShipFromAddress", "");
+            ShipNowDataModel.setProperty("/ShipToAddress", "");
         },
+
+
+        onCreateShipReqSavePress:function(){
+            var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
+            var ShipFromAddress = ShipNowDataModel.getProperty("/ShipFromAddress");
+            var ShipToAddress = ShipNowDataModel.getProperty("/ShipToAddress");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var ShipReqRows = eshipjetModel.getData().ShipReqTableData.ShipReqRows;
+            var oCurrObj = {
+                "locationName": "eshipJet Software Inc.",
+                "requestIdLabelId": "DN000001385",
+                "CreatedDate": "01/20/2025",
+                "ShipDate": "01/21/2025",
+                "shipMethod": "FedEx",
+                "ServiceName": "FedEx 2Day",
+                "TrackingNumber": null,
+                "quoteStatus": "Sent for Clarifications",
+                "ShipToContact": ShipToAddress.FullName,
+                "ShipToCompany": ShipToAddress.BusinessPartnerName1,
+                "shipToCity": ShipToAddress.CityName,
+                "status": "Open",
+                "shipToStateProvince": ShipToAddress.Region,
+                "shipToZipPostalCode": ShipToAddress.PostalCode,
+                "shipToCountry": ShipToAddress.Country,
+                "shipToPhone": ShipToAddress.PhoneNumber,
+                "shipToEmail": ShipToAddress.EMAIL
+              };
+
+              ShipReqRows.push(oCurrObj);
+              eshipjetModel.updateBindings(true);
+
+            ShipNowDataModel.setProperty("/ShipFromAddress", "");
+            ShipNowDataModel.setProperty("/ShipToAddress", "");
+        },
+
 
         _handleDisplayCreateShipReqTable: function () {
             var that = this;
@@ -7844,49 +7885,85 @@ sap.ui.define([
 
             var oContext = oSelectedItem.getBindingContext();
             var oSelectedData = oContext.getObject();
-            var oAddressModel = new JSONModel(oSelectedData);
-            this.getView().setModel(oAddressModel, "oAddressModel");
+            var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
+            ShipNowDataModel.setProperty("/ShipFromAddress", oSelectedData);
+            // var oAddressModel = new JSONModel(oSelectedData);
+            // this.getView().setModel(oAddressModel, "oAddressModel");
 
            
             oTable.removeSelections(true);
             oController.byId("idShipNowPickAnAddressPopover").close();
         },
+        
 
-        onShipNowPickAnAddresssearchSelectPress: function () {
+        onShipToPickAnAddressSelectPress: function () {
             var ShipNowDataModel = this.getView().getModel("ShipNowDataModel");
-            var shipNowBtnId1 = ShipNowDataModel.getProperty("/shipNowBtnId1");
-            var oTable = this.getView().byId("idShipNowPickAnAddressSearchTable");
+            var shipNowBtnId = ShipNowDataModel.getProperty("/shipNowBtnId");
+            var oShipToTable = this.getView().byId("idShipToAddressTable");
             
 
-            var oSelectedItem = oTable.getSelectedItem();
-            
+            var oSelectedItem = oShipToTable.getSelectedItem();
+
             var oContext = oSelectedItem.getBindingContext();
             var oSelectedData = oContext.getObject();
-            var ShipFromAddress = new JSONModel(oSelectedData);
-            this.getView().setModel(ShipFromAddress, "ShipFromAddress");
+            var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
+            ShipNowDataModel.setProperty("/ShipToAddress", oSelectedData);
+            // var oAddressModel = new JSONModel(oSelectedData);
+            // this.getView().setModel(oAddressModel, "oAddressModel");
 
            
-            oTable.removeSelections(true);
-            oController.byId("idShipNowPickAnAddressPopover").close();
+            oShipToTable.removeSelections(true);
+            oController.byId("idShipToPickAnAddressPopover").close();
+        },
+
+        ShipToPickAnAddressPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            var ShipNowDataModel = this.getView().getModel("ShipNowDataModel");
+            var sPath = oEvent.getSource().getId().split("--");
+            var btnId = sPath[sPath.length - 1];
+            ShipNowDataModel.setProperty("/shipNowBtnId", btnId);
+            if (!this._ShipToAddPickPopover) {
+                this._ShipToAddPickPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.ShipToPickAnAddressPopover",
+                    controller: this
+                }).then(function (oShipToAddPickPopover) {
+                    oView.addDependent(oShipToAddPickPopover);
+                    return oShipToAddPickPopover;
+                });
+            }
+            this._ShipToAddPickPopover.then(function (oShipToAddPickPopover) {
+                oShipToAddPickPopover.openBy(oButton);
+            });
+        },
+        onShipToPickAnAddressCancelPress: function () {
+            this.byId("idShipToPickAnAddressPopover").close();
         },
 
         onShipToPickAnAddressSelectPress: function () {
             var ShipNowDataModel = this.getView().getModel("ShipNowDataModel");
-            var shipNowBtnId1 = ShipNowDataModel.getProperty("/shipNowBtnId1");
-            var oTable = this.getView().byId("idShipToPickAnAddressPopover");
+            var shipNowBtnId = ShipNowDataModel.getProperty("/shipNowBtnId");
+            var oShipToTable = this.getView().byId("idShipToAddressTable");
             
 
-            var oSelectedItem = oTable.getSelectedItem();
+            var oSelectedItem = oShipToTable.getSelectedItem();
 
             var oContext = oSelectedItem.getBindingContext();
             var oSelectedData = oContext.getObject();
-            var oAddressModel = new JSONModel(oSelectedData);
-            this.getView().setModel(oAddressModel, "oAddressModel");
+            var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
+            ShipNowDataModel.setProperty("/ShipToAddress", oSelectedData);
+            // var oAddressModel = new JSONModel(oSelectedData);
+            // this.getView().setModel(oAddressModel, "oAddressModel");
 
            
-            oTable.removeSelections(true);
+            oShipToTable.removeSelections(true);
             oController.byId("idShipToPickAnAddressPopover").close();
         },
+
+
+
+        
 
 
         
