@@ -175,7 +175,7 @@
                     }
                 }
             },
-            "ZSJ_SHIPPER_DATA_UPDATE_SRV_SRV": {
+            "ShipperDataUpdateSrvModel": {
                 "dataSource": "ZSJ_SHIPPER_DATA_UPDATE_SRV_SRV",
                 "preload": true,
                 "settings": {

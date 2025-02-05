@@ -693,7 +693,8 @@ sap.ui.define([
                             }
                             //post to manifest service
                             // oController.getManifestData(response);
-                            // oController.getTrackNowData(response);
+                            oController.ApiOutboundDeliverySrvData(response);
+                            oController.FreightQuoteUpdatedSrvData();
                         }else if(response && response.status === "Error"){
                             var sError = "Shipment process failed reasons:\n";
                             if(response && response.Errors && response.Errors.length > 0){
@@ -714,22 +715,6 @@ sap.ui.define([
             });
         },
 
-        getTrackNowData:function(response){
-            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
-            var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
-            var OutBoundDeliveryModel = oController.getOwnerComponent().getModel("OutBoundDeliveryModel");
-            response.BillOfLading = sapDeliveryNumber;
-            OutBoundDeliveryModel.update("/A_OutbDeliveryHeader",
-                response,
-                type= "PUT", {
-                success:function(oSuc){
-    
-                },
-                error:function(oErr){
-
-                }
-            })
-        },
 
         getManifestData:function(response){
             var ManifestSrvModel = oController.getOwnerComponent().getModel("ManifestSrvModel");
@@ -862,13 +847,32 @@ sap.ui.define([
             var sPath = "/A_OutbDeliveryHeader('"+ sDeveliveryNumber +"')/to_DeliveryDocumentPartner";
             if(sDeveliveryNumber && sDeveliveryNumber.length >= 8){
                 oController.oBusyDialog.open();
-                oDeliveryModel.read(sPath,{
+
+                var path = "/A_OutbDeliveryHeader('"+ sDeveliveryNumber +"')"
+                oDeliveryModel.read(path,{
+                    urlParameters: {
+                        "$expand": "to_DeliveryDocumentItem,to_DeliveryDocumentPartner"
+                    },
                     success:function(oData){
-                        myResolve();
+                        oController.etag = oData.__metadata.etag;
                         oController.oBusyDialog.close();
-                        if(oData && oData.results && oData.results.length > 0){                      
+                    },
+                    error: function(oErr){
+                        oController.oBusyDialog.close();
+                    }
+                });
+
+                oController.oBusyDialog.open();
+                oDeliveryModel.read(sPath,{
+                    // urlParameters: {
+                    //     "$expand": "to_DeliveryDocumentItem,to_DeliveryDocumentPartner"
+                    // },
+                    success:function(oData){
+                        oController.oBusyDialog.close();
+                        if(oData){                      
                             oController._getShipToAddress(oData.results, sDeveliveryNumber, sFromMenu);
                         }
+                        myResolve();
                     },
                     error: function(oErr){
                         oController.oBusyDialog.close();
@@ -9003,6 +9007,74 @@ sap.ui.define([
                     oController.byId("idFreightQuotesDialog").open(); // Open existing dialog
                 }
             }
+        },
+
+        FreightQuoteUpdatedSrvData:function(){
+            var ShipperDataUpdateSrvModel = oController.getOwnerComponent().getModel("ShipperDataUpdateSrvModel");
+            var oPayload = {
+                "Delivery": "80000017",
+                "Carrier": "UPS",
+                "SerName": "",
+                "TotPack": "",
+                "Currency": "",
+                "PubFrt": "30.00",
+                "DiscFrt": "0.00",
+                // "DEL": "",
+                "ShipDate": "/Date(1517875200000)/",
+                "ItemSet": [
+                  {
+                    "Delivery": "80000017",
+                    "DelItem": "10",
+                    "HandUnit": "101",
+                    "Weight": "10",
+                    "WeightUnit": "KG",
+                    "Dimension": "1X1X1",
+                    "Tracking": "1ZXXXXXXX"
+                  },
+                  {
+                    "Delivery": "80000017",
+                    "DelItem": "20",
+                    "HandUnit": "102",
+                    "Weight": "20",
+                    "WeightUnit": "KG",
+                    "Dimension": "1X1X1",
+                    "Tracking": "1ZXXXXXXX"
+                  }
+                ]
+              };
+              ShipperDataUpdateSrvModel.create("/HeaderSet", oPayload, {
+                success: function(oResponse) {
+                    sap.m.MessageToast.show("FreightQuote Updated successful!");
+                },
+                error: function(oError) {
+                    var errMsg = JSON.parse(oError.responseText).error.message.value
+                    sap.m.MessageBox.error(errMsg);
+                }
+            });
+        },
+
+        ApiOutboundDeliverySrvData:function(response){
+            var BillOfLading = response.HeaderInfo.BillOfLading;
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
+            var OutBoundDeliveryModel = oController.getOwnerComponent().getModel("OutBoundDeliveryModel");
+            var payload = { "BillOfLading" : BillOfLading };
+            var mHeaders = {
+                "accept": "application/json",
+                "content-type": "application/json",
+                "If-Match": oController.etag
+            }
+
+            OutBoundDeliveryModel.update("/A_OutbDeliveryHeader('" + sapDeliveryNumber + "')", payload, {
+                headers: mHeaders,
+                success: function(oResponse) {
+                    sap.m.MessageToast.show("OutBoundDelivery Updated successful!");
+                },
+                error: function(oError) {
+                    var errMsg = JSON.parse(oError.responseText).error.message.value
+                    sap.m.MessageBox.error(errMsg);
+                }
+            })
         },
 
         onFreightQuoteClosePress:function() {
