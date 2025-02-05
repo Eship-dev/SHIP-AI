@@ -9133,6 +9133,24 @@ sap.ui.define([
             this.byId("idAddProductDialog").close();
         },
 
+        onTrackingNumberPress: function () {
+            var oView = this.getView();
+            if (!this.byId("idTrackingNumberDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.TrackingNumberDialog",
+                    controller: this // Pass the controller for binding
+                }).then(function (oTrackingNumberDialog) {
+                    oView.addDependent(oTrackingNumberDialog);
+                    oTrackingNumberDialog.open();
+                });
+            } else {
+                this.byId("idTrackingNumberDialog").open(); // Open existing dialog
+            }
+        },
+        TrackingNumberCancelDialog: function () {
+            this.byId("idTrackingNumberDialog").close();
+        },
 
         handleAddProductRowPress:function(oEvent){
             var oSelectedObj = oEvent.getSource().getBindingContext().getObject();

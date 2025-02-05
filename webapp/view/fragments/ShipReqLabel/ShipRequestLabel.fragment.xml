@@ -237,8 +237,10 @@
 					<Text text="{}" />
 					<Text text="{eshipjetModel>shipMethod}" />
 					<Text text="{eshipjetModel>ServiceName}" class="ShipReq-Status-Bold" />
-					<Text text="{eshipjetModel>TrackingNumber}" />
-					<!-- <Text text="{eshipjetModel>status}" class="{path: 'eshipjetModel>status', formatter: '.formatStatusClass'}" /> -->
+					
+					<Link text="{eshipjetModel>TrackingNumber}" 
+      press="onTrackingNumberPress"
+      enabled="{= ${eshipjetModel>TrackingNumber} ? true : false }"/>
 
 				<ObjectStatus
 					text="{eshipjetModel>status}"

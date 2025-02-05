@@ -1559,7 +1559,7 @@
 				"label": "Actions",
 				"visible": true
 			}
-		],
+		],    
 		"ShipReqRows": [
             {
                 "locationName": "eshipJet Software Inc.",
@@ -1568,7 +1568,7 @@
                 "ShipDate": "01/21/2025",
                 "shipMethod": "FedEx",
                 "ServiceName": "FedEx 2Day",
-                "TrackingNumber": null,
+                "TrackingNumber": "794817852547",
                 "quoteStatus": "Sent for Clarifications",
                 "ShipToContact": "Jenny",
                 "ShipToCompany": "eshipjet",
@@ -5911,24 +5911,7 @@
             "status": ""
           }
     ],
-    "EUCountriesTableColumns": [
-        {
-            "key": "countryCode",
-            "label": "Country Code",
-            "visible": true
-        },
-        {
-            "key": "countryDesc",
-            "label": "Country Description",
-            "visible": true
-        },
-        {
-            "key": "status",
-            "label": "Status",
-            "visible": true
-        }
-    ],
-    "EUCountriesTableRows": [],
+
     
         "CarrierData": [
             {
@@ -7522,97 +7505,134 @@
 				"label": "Actions"
 			}
 		],
-    "freightQuoteCustomerApproval": false,
-    "freightQuoteSubmition":[
-        {
-            "ShipMethodID": "AFAS",
-            "ShipMethodDescription": "ARTEX Fine Art Services",
-            "CarrierEmail": "depot@artexprague.cz",
-            "CarrierPhone": "+420 246 024 191",
-            "TotalFreightQuote": "",
-            "TransitDays": "",
-            "QuoteStatus": "Open",
-            "Review": ""
-        },
-        {
-            "ShipMethodID": "AFA",
-            "ShipMethodDescription": "ATLAS Fine Art",
-            "CarrierEmail": "info@atlasgallery.com",
-            "CarrierPhone": "+44 (0)20 7224 4192",
-            "TotalFreightQuote": "",
-            "TransitDays": "",
-            "QuoteStatus": "",
-            "Review": ""
-        },
-        {
-            "ShipMethodID": "BFA",
-            "ShipMethodDescription": "Brinks Fine Art",
-            "CarrierEmail": "fineartservices@brinks.com",
-            "CarrierPhone": "804-289-9600",
-            "TotalFreightQuote": "",
-            "TransitDays": "",
-            "QuoteStatus": "",
-            "Review": ""
-        },
-        {
-            "ShipMethodID": "CFA",
-            "ShipMethodDescription": "Crown Fine Art",
-            "CarrierEmail": "uk@crownfineart.com",
-            "CarrierPhone": " +44 20 7732 7610",
-            "TotalFreightQuote": "",
-            "TransitDays": "",
-            "QuoteStatus": "",
-            "Review": ""
-        },
-        {
-            "ShipMethodID": "FAS",
-            "ShipMethodDescription": "Fine Art Shippers",
-            "CarrierEmail": "info@fineartshippers.com",
-            "CarrierPhone": "+1 917-658-5075",
-            "TotalFreightQuote": "",
-            "TransitDays": "",
-            "QuoteStatus": "",
-            "Review": ""
-        },
-        {
-            "ShipMethodID": "GaW",
-            "ShipMethodDescription": "Gander and White",
-            "CarrierEmail": "smaguire@ganderandwhite.com",
-            "CarrierPhone": "+44 20 8971 7171",
-            "TotalFreightQuote": "",
-            "TransitDays": "",
-            "QuoteStatus": "",
-            "Review": ""
-        },
-        {
-            "ShipMethodID": "M",
-            "ShipMethodDescription": "Malca-Amit",
-            "CarrierEmail": "majk@malca-amit.com",
-            "CarrierPhone": "+44 22 69414444",
-            "TotalFreightQuote": "",
-            "TransitDays": "",
-            "QuoteStatus": "",
-            "Review": ""
-        },
-        {
-            "ShipMethodID": "MG",
-            "ShipMethodDescription": "Movi Group",
-            "CarrierEmail": "info@movigroup.com",
-            "CarrierPhone": "+1 242-394-8950",
-            "TotalFreightQuote": "",
-            "TransitDays": "",
-            "QuoteStatus": "",
-            "Review": ""
-        },
-        {
-            "ShipMethodID": "TA",
-            "ShipMethodDescription": "The Armory",
-            "CarrierEmail": "tribeca@thearmoury.com",
-            "CarrierPhone": "+1 646 613 7613",
-            "TotalFreightQuote": "",
-            "TransitDays": "",
-            "QuoteStatus": "",
-            "Review": ""
-        }
-    ]
+        "EUCountriesTableColumns": [
+            {
+                "key": "countryCode",
+                "label": "Country Code",
+                "visible": true
+            },
+            {
+                "key": "countryDesc",
+                "label": "Country Description",
+                "visible": true
+            },
+            {
+                "key": "status",
+                "label": "Status",
+                "visible": true
+            }
+        ],
+        "EUCountriesTableRows": [],
+
+
+        "TrackingNumberColumns":[
+            {
+                "key": "Ship Method",
+                "label": "ShipMethod",
+                "visible": true
+            },
+            {
+                "key": "ServiceName",
+                "label": "Service Name",
+                "visible": true
+            },
+            {
+                "key": "DeliveredTo",
+                "label": "Delivered To",
+                "visible": true
+            },
+            {
+                "key": "ShipDate",
+                "label": "Ship Date",
+                "visible": true
+            },
+            {
+                "key": "StandardTransit",
+                "label": "Standard Transit",
+                "visible": true
+            },
+            {
+                "key": "delivered",
+                "label": "Delivered",
+                "visible": true
+            },
+            {
+                "key": "SignedBy",
+                "label": "Signed By",
+                "visible": true
+            },
+            {
+                "key": "ProofOfDeliveryLink",
+                "label": "Proof Of Delivery Link",
+                "visible": true
+            }
+        ],
+        "TrackingNumberTableRows": [ 
+            {
+                "ShipMethod": "UPS",
+                "ServiceName": "UPS Ground",
+                "DeliveredTo": "Nvidia",
+                "ShipDate": "01/31/25",
+                "StandardTransit": "01/31/25 before 2:39 PM",
+                "Delivered": "01/31/25 at 2:39 PM",
+                "SignedBy": "Stephen",
+                "ProofOfDeliveryLink": "https://example.com/proof-of-delivery"
+            }
+        ],
+        "ShipmentTravelHistoryColumns": [
+            {
+              "key": "Date",
+              "label": "Date",
+              "visible": true
+            },
+            {
+              "key": "Time",
+              "label": "Time",
+              "visible": true
+            },
+            {
+              "key": "Status",
+              "label": "Status",
+              "visible": true
+            },
+            {
+              "key": "Location",
+              "label": "Location",
+              "visible": true
+            }
+          ],
+          "ShipmentTravelHistoryRows": [
+            {
+              "Date": "05/15/2023",
+              "Time": "01:59 AM",
+              "Status": "Shipment information sent to FedEx",
+              "Location": ""
+            },
+            {
+              "Date": "05/16/2023",
+              "Time": "01:17 AM",
+              "Status": "Departed FedEx location",
+              "Location": "TROUTDALE"
+            },
+            {
+              "Date": "05/17/2023",
+              "Time": "01:18 AM",
+              "Status": "In transit",
+              "Location": "LARAMIE"
+            },
+            {
+              "Date": "05/18/2023",
+              "Time": "01:20 AM",
+              "Status": "Arrived at FedEx location",
+              "Location": "GREENWOOD"
+            },
+            {
+              "Date": "05/19/2023",
+              "Time": "04:33 AM",
+              "Status": "Ready for recipient pickup",
+              "Location": "GREENWOOD"
+            }
+          ]
+           
+      
 }

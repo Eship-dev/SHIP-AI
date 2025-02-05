@@ -1129,3 +1129,16 @@ span.sapMBtnInner.sapMBtnReject {
   left: 0;
   transform: translateY(-50%);
 }
+
+.GreenandCenter{
+  color: #258f1d !important;
+  font-size: 20px;
+  
+}
+.ShipmentTravelHistory{
+  color: #ffc404 !important;
+  font-size: 20px; 
+}
+.bg_colortn{
+  background-color: #000;
+}
