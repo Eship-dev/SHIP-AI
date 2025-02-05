@@ -9011,8 +9011,9 @@ sap.ui.define([
 
         FreightQuoteUpdatedSrvData:function(){
             var ShipperDataUpdateSrvModel = oController.getOwnerComponent().getModel("ShipperDataUpdateSrvModel");
+            var oEshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var oPayload = {
-                "Delivery": "80000017",
+                "Delivery": oEshipjetModel.getProperty("/sapDeliveryNumber"),
                 "Carrier": "UPS",
                 "SerName": "",
                 "TotPack": "",
@@ -9024,7 +9025,7 @@ sap.ui.define([
                 //"ShipDate":null,
                 "ItemSet": [
                   {
-                    "Delivery": "80000017",
+                    "Delivery": oEshipjetModel.getProperty("/sapDeliveryNumber"),
                     "DelItem": "10",
                     "HandUnit": "101",
                     "Weight": "10",
@@ -9033,7 +9034,7 @@ sap.ui.define([
                     "Tracking": "1ZXXXXXXX"
                   },
                   {
-                    "Delivery": "80000017",
+                    "Delivery": oEshipjetModel.getProperty("/sapDeliveryNumber"),
                     "DelItem": "20",
                     "HandUnit": "102",
                     "Weight": "20",
