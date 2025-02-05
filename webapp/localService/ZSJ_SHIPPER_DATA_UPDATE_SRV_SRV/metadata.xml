@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZSJ_SHIPPER_DATA_UPDATE_SRV_01" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Header" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Delivery"/>
+                </Key>
+                <Property Name="Delivery" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Delivery" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShipDate" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Carrier" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Carrier" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SerName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Service Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TotPack" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Total Packages" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PubFrt" Type="Edm.Decimal" Precision="12" Scale="3" sap:unicode="false" sap:unit="Currency" sap:label="Published Freight" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DiscFrt" Type="Edm.Decimal" Precision="12" Scale="3" sap:unicode="false" sap:unit="Currency" sap:label="Discounted Freight" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="Del" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Deletion Indicator" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ResultNav" Relationship="ZSJ_SHIPPER_DATA_UPDATE_SRV_01.Header_Result" FromRole="FromRole_Header_Result" ToRole="ToRole_Header_Result"/>
+                <NavigationProperty Name="ItemSet" Relationship="ZSJ_SHIPPER_DATA_UPDATE_SRV_01.Header_Item" FromRole="FromRole_Header_Item" ToRole="ToRole_Header_Item"/>
+            </EntityType>
+            <EntityType Name="Item" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Delivery"/>
+                </Key>
+                <Property Name="Delivery" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Delivery" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelItem" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="HandUnit" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Handling Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Weight" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="3" sap:unicode="false" sap:unit="WeightUnit" sap:label="Weight" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WeightUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Base Unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Dimension" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="Size/dimensions" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Tracking" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Tracking Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShipDate" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Carrier" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Carrier" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SerName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Service Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PubFrt" Type="Edm.Decimal" Precision="12" Scale="3" sap:unicode="false" sap:label="Published Freight" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DiscFrt" Type="Edm.Decimal" Precision="12" Scale="3" sap:unicode="false" sap:label="Discounted Freight" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+            </EntityType>
+            <EntityType Name="Result" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Status"/>
+                </Key>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MSGV1" Type="Edm.String" Nullable="false" MaxLength="250" sap:unicode="false" sap:label="MSGV1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MSGV2" Type="Edm.String" Nullable="false" MaxLength="250" sap:unicode="false" sap:label="MSGV2" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="Header_Item" sap:content-version="1">
+                <End Type="ZSJ_SHIPPER_DATA_UPDATE_SRV_01.Header" Multiplicity="1" Role="FromRole_Header_Item"/>
+                <End Type="ZSJ_SHIPPER_DATA_UPDATE_SRV_01.Item" Multiplicity="*" Role="ToRole_Header_Item"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_Header_Item">
+                        <PropertyRef Name="Delivery"/>
+                    </Principal>
+                    <Dependent Role="ToRole_Header_Item">
+                        <PropertyRef Name="Delivery"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Header_Result" sap:content-version="1">
+                <End Type="ZSJ_SHIPPER_DATA_UPDATE_SRV_01.Header" Multiplicity="1" Role="FromRole_Header_Result"/>
+                <End Type="ZSJ_SHIPPER_DATA_UPDATE_SRV_01.Result" Multiplicity="*" Role="ToRole_Header_Result"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_Header_Result">
+                        <PropertyRef Name="Delivery"/>
+                    </Principal>
+                    <Dependent Role="ToRole_Header_Result">
+                        <PropertyRef Name="MSGV1"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZSJ_SHIPPER_DATA_UPDATE_SRV_01_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="HeaderSet" EntityType="ZSJ_SHIPPER_DATA_UPDATE_SRV_01.Header" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ItemSet" EntityType="ZSJ_SHIPPER_DATA_UPDATE_SRV_01.Item" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ResultSet" EntityType="ZSJ_SHIPPER_DATA_UPDATE_SRV_01.Result" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="Header_ItemSet" Association="ZSJ_SHIPPER_DATA_UPDATE_SRV_01.Header_Item" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="HeaderSet" Role="FromRole_Header_Item"/>
+                    <End EntitySet="ItemSet" Role="ToRole_Header_Item"/>
+                </AssociationSet>
+                <AssociationSet Name="Header_ResultSet" Association="ZSJ_SHIPPER_DATA_UPDATE_SRV_01.Header_Result" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="HeaderSet" Role="FromRole_Header_Result"/>
+                    <End EntitySet="ResultSet" Role="ToRole_Header_Result"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <atom:link rel="self" href="https://sapdemo.eshipjet.com:44300/sap/opu/odata/sap/ZSJ_SHIPPER_DATA_UPDATE_SRV_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://sapdemo.eshipjet.com:44300/sap/opu/odata/sap/ZSJ_SHIPPER_DATA_UPDATE_SRV_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

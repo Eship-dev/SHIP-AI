@@ -135,6 +135,9 @@ sap.ui.define([
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
+                var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
+                ShipNowDataModel.setProperty("/ShipFromAddress", "");
+                ShipNowDataModel.setProperty("/ShipToAddress", "");
                 // this._handleDisplayShipNowProductsTable();
                 // this._handleDisplayShipNowHandlingUnitTable();
             } else if (sKey === "QuoteNow") {
@@ -690,7 +693,7 @@ sap.ui.define([
                             }
                             //post to manifest service
                             // oController.getManifestData(response);
-                            oController.getTrackNowData(response);
+                            // oController.getTrackNowData(response);
                         }else if(response && response.status === "Error"){
                             var sError = "Shipment process failed reasons:\n";
                             if(response && response.Errors && response.Errors.length > 0){
@@ -1883,6 +1886,9 @@ sap.ui.define([
                 eshipjetModel.setProperty("/shipNowViewFooter", true);
                 eshipjetModel.setProperty("/createShipReqViewFooter", false);
                 this.byId("pageContainer").to(this.getView().createId(sKey));
+                var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
+                ShipNowDataModel.setProperty("/ShipFromAddress", "");
+                ShipNowDataModel.setProperty("/ShipToAddress", "");
             } else if (tileTitle === "Track Now") {
                 this._handleDisplayTrackNowTable();
                 var sKey = "TrackNow";
@@ -8970,30 +8976,39 @@ sap.ui.define([
         },
 
 
+        // Freight Quote Changes Starts Here
+
         onGetFreightQuotesPress: function () {
-            var oView = this.getView();
-            if (!this.byId("idAddFreightQuotesDialog1")) {
-                Fragment.load({
-                    id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.GetFreightQuotesDialog",
-                    controller: this // Pass the controller for binding
-                }).then(function (oDialog) {
-                    oView.addDependent(oDialog);
-                    oDialog.open();
-                });
-            } else {
-                this.byId("idAddFreightQuotesDialog1").open(); // Open existing dialog
+            var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
+            var ShipFromAddress = ShipNowDataModel.getProperty("/ShipFromAddress");
+            var ShipToAddress = ShipNowDataModel.getProperty("/ShipToAddress");
+            var oTableLength = oController.byId("idCreateShipReqTable").getBinding("rows").getLength();
+
+            if(ShipToAddress.FullName === "" || ShipToAddress.FullName === undefined){
+                MessageBox.warning("Contact Name is required.");
+            }else if(ShipToAddress.FullName !== "" && oTableLength === 0) {
+                MessageBox.warning("At least one row must have all required fields (Product Code,Product Description, Quantity, Unit Weight).");
+            }else{
+                var oView = oController.getView();
+                if (!oController.byId("idFreightQuotesDialog")) {
+                    Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.GetFreightQuotesDialog",
+                        controller: oController // Pass the controller for binding
+                    }).then(function (oDialog) {
+                        oView.addDependent(oDialog);
+                        oDialog.open();
+                    });
+                } else {
+                    oController.byId("idFreightQuotesDialog").open(); // Open existing dialog
+                }
             }
         },
-        AddFreightQuotesDialogClose: function () {
-            this.byId("idAddFreightQuotesDialog1").close();
+
+        onFreightQuoteClosePress:function() {
+            oController.byId("idFreightQuotesDialog").close();
         },
-        CompanySettingsSaveDialog: function () {
-            this.byId("idAddFreightQuotesDialog1").close();
-        },
-        FreightQuotesClosePress: function () {
-            this.byId("idAddFreightQuotesDialog1").close();
-        },
+        // Freight Quote Changes End Here
 
 
 

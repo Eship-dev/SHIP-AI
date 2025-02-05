@@ -7521,5 +7521,98 @@
 				"name": "actions",
 				"label": "Actions"
 			}
-		]
+		],
+    "freightQuoteCustomerApproval": false,
+    "freightQuoteSubmition":[
+        {
+            "ShipMethodID": "AFAS",
+            "ShipMethodDescription": "ARTEX Fine Art Services",
+            "CarrierEmail": "depot@artexprague.cz",
+            "CarrierPhone": "+420 246 024 191",
+            "TotalFreightQuote": "",
+            "TransitDays": "",
+            "QuoteStatus": "Open",
+            "Review": ""
+        },
+        {
+            "ShipMethodID": "AFA",
+            "ShipMethodDescription": "ATLAS Fine Art",
+            "CarrierEmail": "info@atlasgallery.com",
+            "CarrierPhone": "+44 (0)20 7224 4192",
+            "TotalFreightQuote": "",
+            "TransitDays": "",
+            "QuoteStatus": "",
+            "Review": ""
+        },
+        {
+            "ShipMethodID": "BFA",
+            "ShipMethodDescription": "Brinks Fine Art",
+            "CarrierEmail": "fineartservices@brinks.com",
+            "CarrierPhone": "804-289-9600",
+            "TotalFreightQuote": "",
+            "TransitDays": "",
+            "QuoteStatus": "",
+            "Review": ""
+        },
+        {
+            "ShipMethodID": "CFA",
+            "ShipMethodDescription": "Crown Fine Art",
+            "CarrierEmail": "uk@crownfineart.com",
+            "CarrierPhone": " +44 20 7732 7610",
+            "TotalFreightQuote": "",
+            "TransitDays": "",
+            "QuoteStatus": "",
+            "Review": ""
+        },
+        {
+            "ShipMethodID": "FAS",
+            "ShipMethodDescription": "Fine Art Shippers",
+            "CarrierEmail": "info@fineartshippers.com",
+            "CarrierPhone": "+1 917-658-5075",
+            "TotalFreightQuote": "",
+            "TransitDays": "",
+            "QuoteStatus": "",
+            "Review": ""
+        },
+        {
+            "ShipMethodID": "GaW",
+            "ShipMethodDescription": "Gander and White",
+            "CarrierEmail": "smaguire@ganderandwhite.com",
+            "CarrierPhone": "+44 20 8971 7171",
+            "TotalFreightQuote": "",
+            "TransitDays": "",
+            "QuoteStatus": "",
+            "Review": ""
+        },
+        {
+            "ShipMethodID": "M",
+            "ShipMethodDescription": "Malca-Amit",
+            "CarrierEmail": "majk@malca-amit.com",
+            "CarrierPhone": "+44 22 69414444",
+            "TotalFreightQuote": "",
+            "TransitDays": "",
+            "QuoteStatus": "",
+            "Review": ""
+        },
+        {
+            "ShipMethodID": "MG",
+            "ShipMethodDescription": "Movi Group",
+            "CarrierEmail": "info@movigroup.com",
+            "CarrierPhone": "+1 242-394-8950",
+            "TotalFreightQuote": "",
+            "TransitDays": "",
+            "QuoteStatus": "",
+            "Review": ""
+        },
+        {
+            "ShipMethodID": "TA",
+            "ShipMethodDescription": "The Armory",
+            "CarrierEmail": "tribeca@thearmoury.com",
+            "CarrierPhone": "+1 646 613 7613",
+            "TotalFreightQuote": "",
+            "TransitDays": "",
+            "QuoteStatus": "",
+            "Review": ""
+        }
+    ]
 }

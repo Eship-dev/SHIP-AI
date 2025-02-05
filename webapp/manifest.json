@@ -60,6 +60,15 @@
                     "localUri": "localService/MANFEST_SRV1/metadata.xml",
                     "odataVersion": "2.0"
                 }
+            },
+            "ZSJ_SHIPPER_DATA_UPDATE_SRV_SRV": {
+                "uri": "/sap/opu/odata/sap/ZSJ_SHIPPER_DATA_UPDATE_SRV_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/ZSJ_SHIPPER_DATA_UPDATE_SRV_SRV/metadata.xml",
+                    "odataVersion": "2.0"
+                }
             }
         }
     },
@@ -156,6 +165,18 @@
             },
             "ManifestSrvModel": {
                 "dataSource": "MANFEST_SRV1",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "ZSJ_SHIPPER_DATA_UPDATE_SRV_SRV": {
+                "dataSource": "ZSJ_SHIPPER_DATA_UPDATE_SRV_SRV",
                 "preload": true,
                 "settings": {
                     "defaultBindingMode": "TwoWay",

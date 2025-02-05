@@ -11,14 +11,19 @@
 	xmlns:u="sap.ui.unified"
 	xmlns:c="sap.ui.core" >
     <Dialog
-        id="idAddFreightQuotesDialog1"
+        id="idFreightQuotesDialog"
         showHeader="false"
         contentWidth="75%"
-        contentHeight="50%" >
+        contentHeight="70%" >
         <Toolbar >
             <ToolbarSpacer ></ToolbarSpacer>
                 <Title text="Freight Quotes Submissions"></Title>
            <ToolbarSpacer ></ToolbarSpacer>
+           <ToolbarSpacer />
+           <Button 
+                    icon="sap-icon://decline" 
+                    class="Decline_Btn"
+                    press="onFreightQuoteClosePress" />
         </Toolbar>
        
             
@@ -26,7 +31,7 @@
     <Table id="idShipNowPickAnAddressTable1"
            class="sapUiTinyMarginTop"
             mode="MultiSelect"
-           items="{/addresses}">
+           items="{/freightQuoteSubmition}">
         <columns>
             <Column>
                 <header>
@@ -55,22 +60,31 @@
             </Column>
             <Column>
                 <header>
+                    <Label text="Transit Days" />
+                </header>
+            </Column>
+            <Column>
+                <header>
                     <Label text="Quote Status" />
                 </header>
             </Column>
-            
+            <Column>
+                <header>
+                    <Label text="Review" />
+                </header>
+            </Column>
         </columns>
         <items>
             <ColumnListItem>
                 <cells>
-                    <Text text="{contactName}" />
-                    <Text text="{companyName}" />
-                    <Text text="{addressLine1}" />
-                    <Text text="{addressLine2}" />
-                    <Text text="{addressLine3}" />
-                    <Text text="{city}" />
-                    <Text text="{state}" />
-                    <Text text="{zipcode}" />
+                    <Text text="{ShipMethodID}" />
+                    <Text text="{ShipMethodDescription}" />
+                    <Text text="{CarrierEmail}" />
+                    <Text text="{CarrierPhone}" />
+                    <Text text="{TotalFreightQuote}" />
+                    <Text text="{TransitDays}" />
+                    <Text text="{QuoteStatus}" />
+                    <Text text="{Review}" />
                     
                 </cells>
             </ColumnListItem>
@@ -82,9 +96,11 @@
                
             <footer >
                     <Toolbar height="5rem"  class="scan-ship-toolbar" >
-                        <Button  text="Cancel" type="Reject" press="AddFreightQuotesDialogClose" class="scan-ship-toolbar__button scan-ship-toolbar__button_void" />
-                        <Button  text="Submit to Carrier"  class="create-ship-req-footer sapUiSmallMarginEnd" press="AddCarrierCancelDialog" />
-                        <Button  text="Customer Approval"  class="create-ship-req-footer sapUiSmallMarginEnd" press="AddCarrierCancelDialog" />
+                        <Button  text="Cancel" type="Reject" press="onFreightQuoteClosePress" class="scan-ship-toolbar__button scan-ship-toolbar__button_void" />
+                        <ToolbarSpacer ></ToolbarSpacer>
+                            <Button  text="Submit to Carrier"  class="create-ship-req-footer sapUiSmallMarginEnd" press="AddCarrierCancelDialog" />
+                            <Button  text="Customer Approval" visible="{eshipjetModel>/freightQuoteCustomerApproval}" class="create-ship-req-footer sapUiSmallMarginEnd" press="AddCarrierCancelDialog" />
+                        <ToolbarSpacer ></ToolbarSpacer>
                         <ToolbarSpacer/>
                         <Button  text="Shipper Approval"  class="create-ship-req-footer sapUiSmallMarginEnd" press="AddCarrierUpdateDialog" />
                     </Toolbar>

@@ -102,7 +102,7 @@
                                         </layoutData>
                                     </Input>
                                     <Label text="Company Name" />
-                                    <SearchField value="{ShipNowDataModel>/ShipFromAddress/ShipFromCOMPANY}" width="100%" search="onSearch" class="sapUiSmallMarginBottom" placeholder=" " />
+                                    <SearchField value="{ShipNowDataModel>/ShipFromAddress/ShipFromCOMPANY}" width="100%" search="ShipNowPickAnAddressPopoverPress" class="sapUiSmallMarginBottom" placeholder=" " />
                                     <Label text="Address Line 2" />
                                     <Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE2}" class="sapUiSmallMarginBottom create-ship-req_input"/>
                                     <Label text="Zip / Postal Code" />
@@ -167,7 +167,7 @@
                                     </layoutData>
                                 </Input>
                                 <Label text="Company Name" />
-                                <SearchField value="{ShipNowDataModel>/ShipToAddress/BusinessPartnerName1}" width="100%" search="onSearch" class="sapUiSmallMarginBottom" placeholder=" "  />
+                                <SearchField value="{ShipNowDataModel>/ShipToAddress/BusinessPartnerName1}" width="100%" search="ShipToPickAnAddressPopoverPress" class="sapUiSmallMarginBottom" placeholder=" "  />
                                 <Label text="Address Line 2" />
                                 <Input value="{ShipNowDataModel>/ShipToAddress/HouseNumber}" class="sapUiSmallMarginBottom create-ship-req_input"/>
                                 <Label text="Zip / Postal Code" />
@@ -310,7 +310,7 @@
             <VBox class="horizontalLine"/>
 
             <!-- Customer Approval Checkbox (Now Below the Line) -->
-            <CheckBox text="Customer Approval" />
+            <CheckBox text="Customer Approval" selected="{eshipjetModel>/freightQuoteCustomerApproval}" />
 
             
         </VBox>
