@@ -5920,7 +5920,7 @@
         {
             "key": "countryDesc",
             "label": "Country Description",
-            "visible": true
+            "visible": tru
         },
         {
             "key": "status",

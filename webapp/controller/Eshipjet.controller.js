@@ -7902,7 +7902,7 @@ sap.ui.define([
             var oShipToTable = this.getView().byId("idShipToAddressTable");
             
 
-            var oSelectedItem = oShipToTable.getSelectedItem();
+            var oSelectedItem = oTable.getSelectedItem();
 
             var oContext = oSelectedItem.getBindingContext();
             var oSelectedData = oContext.getObject();
@@ -7912,33 +7912,8 @@ sap.ui.define([
             // this.getView().setModel(oAddressModel, "oAddressModel");
 
            
-            oShipToTable.removeSelections(true);
-            oController.byId("idShipToPickAnAddressPopover").close();
-        },
-
-        ShipToPickAnAddressPopoverPress: function (oEvent) {
-            var oButton = oEvent.getSource(),
-                oView = this.getView();
-            var ShipNowDataModel = this.getView().getModel("ShipNowDataModel");
-            var sPath = oEvent.getSource().getId().split("--");
-            var btnId = sPath[sPath.length - 1];
-            ShipNowDataModel.setProperty("/shipNowBtnId", btnId);
-            if (!this._ShipToAddPickPopover) {
-                this._ShipToAddPickPopover = Fragment.load({
-                    id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.ShipToPickAnAddressPopover",
-                    controller: this
-                }).then(function (oShipToAddPickPopover) {
-                    oView.addDependent(oShipToAddPickPopover);
-                    return oShipToAddPickPopover;
-                });
-            }
-            this._ShipToAddPickPopover.then(function (oShipToAddPickPopover) {
-                oShipToAddPickPopover.openBy(oButton);
-            });
-        },
-        onShipToPickAnAddressCancelPress: function () {
-            this.byId("idShipToPickAnAddressPopover").close();
+            oTable.removeSelections(true);
+            oController.byId("idShipNowPickAnAddressSearchPopover").close();
         },
 
         onShipToPickAnAddressSelectPress: function () {

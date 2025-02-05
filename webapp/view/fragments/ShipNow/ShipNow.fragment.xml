@@ -205,7 +205,7 @@
 									<!-- Routing and Billing Details Tab Starts here -->
 
 									<IconTabFilter text="Routing and Billing Details" key="Routing and Billing Details">
-										<VBox>
+										<VBox class="scan-ship-toolbar1 ">
 											<f:SimpleForm id="RoutingandBillingDetails" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4" >
 												<f:content>
 													<Label text="Ship Method" />
@@ -229,7 +229,7 @@
 													<Label text="PO No" />
 													<Input value="{eshipjetModel>/poNo}" class="create-ship-req_input" />
 													<Label text="Account No" class="LabelPadClass" />
-													<Button text="Get Carrier" class="scan-ship-toolbar__button" type="Ghost" >
+													<Button text="Get Carrier" class="scan-ship-toolbar1__button" type="Ghost" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="4" cellsLarge="4" />
 														</layoutData>
