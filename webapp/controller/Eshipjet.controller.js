@@ -9020,7 +9020,8 @@ sap.ui.define([
                 "PubFrt": "30.00",
                 "DiscFrt": "0.00",
                 // "DEL": "",
-                "ShipDate": "/Date(1517875200000)/",
+                //"ShipDate": "/Date(1517875200000)/",
+                //"ShipDate":null,
                 "ItemSet": [
                   {
                     "Delivery": "80000017",
