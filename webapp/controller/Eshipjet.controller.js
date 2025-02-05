@@ -7849,31 +7849,6 @@ sap.ui.define([
             this.byId("idShipNowPickAnAddressPopover").close();
         },
 
-          // add ShipNowPickAnAddressPopover changes start
-          ShipNowPickAnAddressSearchPopoverPress: function (oEvent) {
-            var oButton = oEvent.getSource(),
-                oView = this.getView();
-            var ShipNowDataModel = this.getView().getModel("ShipNowDataModel");
-            var sPath = oEvent.getSource().getId().split("--");
-            var btnId = sPath[sPath.length - 1];
-            ShipNowDataModel.setProperty("/shipNowBtnId", btnId);
-            if (!this._AddPickAnPopover) {
-                this._AddPickAnPopover = Fragment.load({
-                    id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.ShipNowPickAnAddressSearchBind",
-                    controller: this
-                }).then(function (oAddPickPopover) {
-                    oView.addDependent(oAddPickPopover);
-                    return oAddPickPopover;
-                });
-            }
-            this._AddPickAnPopover.then(function (oAddPickPopover) {
-                oAddPickPopover.openBy(oButton);
-            });
-        },
-        onShipNowPickAnAddressSearchCancelPress: function () {
-            this.byId("idShipNowPickAnAddressSearchPopover").close();
-        },
 
         onShipNowPickAnAddressSelectPress: function () {
             var ShipNowDataModel = this.getView().getModel("ShipNowDataModel");
