@@ -684,6 +684,7 @@ sap.ui.define([
                         resolve(response);
                         console.log("Success:", response);
                         if(response && response.status === "Success"){
+                            eshipjetModel.setProperty("/ShipNowPostResponse", response);
                             sap.m.MessageBox.success("Shipment processed successfully");
                             if(response && response.shippingCharges && response.shippingCharges.length > 0 ){
                                 eshipjetModel.setProperty("/shippingCharges", response.shippingCharges);
@@ -9023,27 +9024,47 @@ sap.ui.define([
                 // "DEL": "",
                 //"ShipDate": "/Date(1517875200000)/",
                 //"ShipDate":null,
-                "ItemSet": [
-                  {
-                    "Delivery": oEshipjetModel.getProperty("/sapDeliveryNumber"),
-                    "DelItem": "10",
-                    "HandUnit": "101",
-                    "Weight": "10",
-                    "WeightUnit": "KG",
-                    "Dimension": "1X1X1",
-                    "Tracking": "1ZXXXXXXX"
-                  },
-                  {
-                    "Delivery": oEshipjetModel.getProperty("/sapDeliveryNumber"),
-                    "DelItem": "20",
-                    "HandUnit": "102",
-                    "Weight": "20",
-                    "WeightUnit": "KG",
-                    "Dimension": "1X1X1",
-                    "Tracking": "1ZXXXXXXX"
-                  }
-                ]
+                // "ItemSet": [
+                //   {
+                //     "Delivery": oEshipjetModel.getProperty("/sapDeliveryNumber"),
+                //     "DelItem": "10",
+                //     "HandUnit": "101",
+                //     "Weight": "10",
+                //     "WeightUnit": "KG",
+                //     "Dimension": "1X1X1",
+                //     "Tracking": "1ZXXXXXXX"
+                //   },
+                //   {
+                //     "Delivery": oEshipjetModel.getProperty("/sapDeliveryNumber"),
+                //     "DelItem": "20",
+                //     "HandUnit": "102",
+                //     "Weight": "20",
+                //     "WeightUnit": "KG",
+                //     "Dimension": "1X1X1",
+                //     "Tracking": "1ZXXXXXXX"
+                //   }
+                // ]
               };
+              var aPackages = oEshipjetModel.getProperty("/ShipNowPostResponse/Packages");
+              var aItemInfo  = oEshipjetModel.getProperty("/ShipNowPostResponse/Packages/ItemsInfo");
+              var aPayloadPackages = [], packObj = {} ;
+              if(aPackages && aPackages.length > 0){
+                aPackages.forEach(function(currObj, Idx){
+                    packObj ={
+                        "Delivery": oEshipjetModel.getProperty("/sapDeliveryNumber"),
+                        "DelItem": "20",
+                        "HandUnit": currObj.HU.toString(),
+                        "Weight": currObj.Weight,
+                        "WeightUnit": currObj.Weightunits,
+                        "Dimension": currObj.Dimension,
+                        "Tracking": currObj.TrackingNumber
+                    };
+                    aPayloadPackages.push(packObj);    
+                    packObj = {};                                          
+                });
+                oPayload.ItemSet = aPayloadPackages;
+              }
+              
               ShipperDataUpdateSrvModel.create("/HeaderSet", oPayload, {
                 success: function(oResponse) {
                     sap.m.MessageToast.show("FreightQuote Updated successful!");
@@ -9935,11 +9956,12 @@ sap.ui.define([
         oController.onShipRateRequest();         
     },
     onShipRateRequest:function(){
-        var oEshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+        var oEshipjetModel  = oController.getOwnerComponent().getModel("eshipjetModel");
+        var oShipDataModel  = oController.getView().getModel("ShipNowDataModel");
         var oPayload = {
             "HeaderInfo": {
                 "FeederSystem": "Manual",
-                "DocumentNumber": oEshipjetModel.getData().sapDeliveryNumber,
+                "DocumentNumber": oEshipjetModel.getProperty("/sapDeliveryNumber"),
                 "DocumentType": "Delivery Order",
                 "ShipDate": "2024-10-29T09:08:36.962Z",
                 "CreatedDate": "2024-10-29T09:08:36.962Z",
@@ -9962,16 +9984,16 @@ sap.ui.define([
                 "EMAIL": "info@eshipjet.ai"
             },
             "ShipTo": {
-                "COMPANY": "Vinay Inc co",
-                "CONTACT": "John Williams",
-                "ADDRESS_LINE1": "4232 Balandre Ln",
+                "COMPANY": oShipDataModel.getProperty("/ShipToAddress/FullName"),
+                "CONTACT": oShipDataModel.getProperty("/ShipToAddress/BusinessPartnerName1"),
+                "ADDRESS_LINE1": oShipDataModel.getProperty("/ShipToAddress/StreetName"),
                 "ADDRESS_LINE2": "Suite 250",
                 "ADDRESS_LINE3": null,
-                "CITY": "McKinney",
-                "STATE": "CA",
-                "ZIPCODE": "94538",
-                "COUNTRY": "US",
-                "PHONE": "4088380699",
+                "CITY": oShipDataModel.getProperty("/ShipToAddress/CityName"),
+                "STATE": oShipDataModel.getProperty("/ShipToAddress/Region"),
+                "ZIPCODE": oShipDataModel.getProperty("/ShipToAddress/PostalCode"),
+                "COUNTRY": oShipDataModel.getProperty("/ShipToAddress/Country"),
+                "PHONE": oShipDataModel.getProperty("/ShipToAddress/PhoneNumber"),
                 "EMAIL": "info@eshipjet.ai",
                 "TAXID": null
             },
@@ -10183,17 +10205,17 @@ sap.ui.define([
                 }
             ],
             "ShipFrom": {
-                "COMPANY": "Eshipjet Software Inc.",
-                "CONTACT": "Steve Marsh",
-                "ADDRESS_LINE1": "5717 Legacy",
-                "ADDRESS_LINE2": "Suite 250",
-                "ADDRESS_LINE3": null,
-                "CITY": "Plano",
-                "STATE": "TX",
-                "ZIPCODE": "75024",
-                "COUNTRY": "US",
-                "PHONE": "(888) 464 2360",
-                "EMAIL": "info@eshipjet.ai"
+                "COMPANY": oShipDataModel.getProperty("/ShipFromAddress/ShipFromCOMPANY"),
+                "CONTACT": oShipDataModel.getProperty("/ShipFromAddress/ShipFromCONTACT"),
+                "ADDRESS_LINE1": oShipDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE1"),
+                "ADDRESS_LINE2": oShipDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE2"),
+                "ADDRESS_LINE3": oShipDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE3"),
+                "CITY": oShipDataModel.getProperty("/ShipFromAddress/ShipFromCITY"),
+                "STATE": oShipDataModel.getProperty("/ShipFromAddress/ShipFromSTATE"),
+                "ZIPCODE": oShipDataModel.getProperty("/ShipFromAddress/ShipFromZIPCODE"),
+                "COUNTRY": oShipDataModel.getProperty("/ShipFromAddress/ShipFromCOUNTRY"),
+                "PHONE": oShipDataModel.getProperty("/ShipFromAddress/ShipFromPHONE"),
+                "EMAIL": oShipDataModel.getProperty("/ShipFromAddress/ShipFromEMAIL")
             }
         };
         var RecentShipmentSet = oEshipjetModel.getData().RecentShipmentSet;
