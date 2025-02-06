@@ -26,7 +26,7 @@ sap.ui.define([
     const SortOrder = CoreLibrary.SortOrder;
 
     return Controller.extend("com.eshipjet.zeshipjet.controller.Eshipjet", {
-        Formatter: formatter,
+        formatter: formatter,
         onInit: function () {
             var oModel = new JSONModel(sap.ui.require.toUrl("com/eshipjet/zeshipjet/model/data.json"));
             this.getView().setModel(oModel);

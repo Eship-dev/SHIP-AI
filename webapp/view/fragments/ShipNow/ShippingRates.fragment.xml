@@ -1,6 +1,12 @@
 <core:FragmentDefinition   xmlns="sap.m"  xmlns:core="sap.ui.core"   height="100%">
-    <Dialog id="_IDGenShipNowShppindRateDialog" title="Pick a Carrier" titleAlignment="Center">
+    <Dialog id="_IDGenShipNowShppindRateDialog" title="Pick a Carrier" showHeader="false" titleAlignment="Center">
         <content>
+            <Toolbar >
+                <FlexBox justifyContent="Center" width="100%" >
+                    <Title text="Pick a Carrier" />
+                </FlexBox>
+                <Button icon="sap-icon://decline" press="onCloseShipNowShippinRateDialog" class="Decline_Btn" />
+            </Toolbar>
             <Table id="_ShippingRateTableId"  inset="false"  mode="SingleSelectLeft"  items="{path: 'eshipjetModel>/shipNowShippingRates'}">               
                 <columns>
                     <Column id="_IDGenColumn1">
@@ -29,8 +35,8 @@
                             <Text id="_IDGenText9" text="{eshipjetModel>serviceName}"></Text>
                             <Text id="_IDGenText10" text="{eshipjetModel>publishedFreight}"></Text>
                             <Text id="_IDGenText11" text="{eshipjetModel>discountFreight}"></Text>
-                            <Text id="_IDGenText12" text="{eshipjetModel>expectedDeliveryDate}"></Text>
-                            <Text id="_IDGenText13" text="{eshipjetModel>transitDays}"></Text>                          
+                            <Text id="_IDGenText12" text="{ path: 'eshipjetModel>expectedDeliveryDate', formatter: '.formatter.formatEstimatedDate' }" ></Text>
+                            <Text id="_IDGenText13" text="{ path: 'eshipjetModel>expectedDeliveryDate', formatter: '.formatter.calculateDaysDifference' }"></Text>                          
                         </cells>
                     </ColumnListItem>
                 </items>
