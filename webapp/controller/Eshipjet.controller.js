@@ -1010,7 +1010,7 @@ sap.ui.define([
                                 "ShipFromEMAIL": "info@eshipjet.ai",
                                 "ShipFromCITY": "Plano",
                                 "ShipFromSTATE": "TX",
-                                "ShipFromCOUNTRY": "United States",
+                                "ShipFromCOUNTRY": "US",
                                 "ShipFromZIPCODE": "75024",
                                 "ShipFromADDRESS_LINE1": "5717 Legacy",
                                 "ShipFromADDRESS_LINE2": "Suite 250",
@@ -10257,7 +10257,17 @@ sap.ui.define([
                 oController.oBusyDialog.close();
                 // Handle successful response               
                 console.log("Success:", response);
-                if(response && response.RateServices && response.RateServices.length > 0){
+                if(response && response.Errors && response.Errors.length > 0){
+                    var errMsg = "", sErrors = [];
+                    response.Errors.forEach(function(Obj, Idx){
+                        errMsg = Idx+1 + ". "+ Obj.carrier +" - "+ Obj.message + "\n";
+                        sErrors.push(errMsg);
+                        errMsg = "";
+                    });
+                    
+                    sap.m.MessageBox.error(sErrors.join(""));
+
+                }else if(response && response.RateServices && response.RateServices.length > 0){
                     response.RateServices.map(function(Obj, idx){
                         Obj["discountFreight_Cal"] = (Obj.publishedFreight * 20 ) / 100 ;  
                     });
