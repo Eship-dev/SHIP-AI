@@ -7632,6 +7632,28 @@
               "Status": "Ready for recipient pickup",
               "Location": "GREENWOOD"
             }
+          ],
+
+          "submitted": 2,
+          "received": 2,
+          "approved": 1,
+          "quotes": [
+              {
+                  "name": "ATLAS Fine Art",
+                  "email": "vinay@eshipjet.ai",
+                  "phone": "+44 (0)20 7224 4192",
+                  "currency": "USD 1826.48",
+                  "status": "Approved",
+                  "statusState": "Success"
+              },
+              {
+                  "name": "Crown Fine Art",
+                  "email": "vinayreddy@c360soft.ai",
+                  "phone": "+44 20 7732 7610",
+                  "currency": "USD 22053.76",
+                  "status": "Received",
+                  "statusState": "Information"
+              }
           ]
            
       

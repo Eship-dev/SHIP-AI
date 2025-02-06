@@ -1,0 +1,89 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f" xmlns:fb="sap.ui.comp.filterbar" xmlns:svm="sap.ui.comp.smartvariants" xmlns:ui="sap.ui.table" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core">
+  <Dialog id="idShipMethodDialog" showHeader="false"  class="myCustomDialog sapUiResponsiveContentPadding" stretch="{device>/system/phone}">
+    <customHeader>
+      <Toolbar>
+        <Title text="Freight Quote Status"></Title>
+        <ToolbarSpacer></ToolbarSpacer>
+        <Button icon="sap-icon://decline" press="ShipMethodCancelDialog" class="Decline_Btn"></Button>
+      </Toolbar>
+    </customHeader>
+      
+        <VBox>
+            <HBox justifyContent="SpaceAround" class="summary-section ">
+                <VBox class="stat-card">
+                    <Text text="Quotes Submitted" />
+                    <ObjectNumber number="{eshipjetModel>/submitted}" state="Success" />
+                </VBox>
+                <VBox class="stat-card sapUiMediumMarginBegin">
+                    <Text text="Quotes Received" />
+                    <ObjectNumber number="{eshipjetModel>/received}" state="Success"  />
+                </VBox>
+                <VBox class="stat-card sapUiMediumMarginBegin">
+                    <Text text="Quote Approved" />
+                    <ObjectNumber number="{eshipjetModel>/approved}" state="Success" />
+                </VBox>
+            </HBox>
+
+            <Text text="Freight Quotation Status" class="section-header" />
+
+  
+
+                <VBox class="carrier-card  customSimpleFormShadow">
+                    <HBox justifyContent="SpaceBetween" alignItems="Start">
+                        <!-- Left Section -->
+                        <Text text="Crown Fine Art" class="quote-title" />
+
+                        <!-- Right Section -->
+                        <VBox alignItems="End">
+                            <Text text="Received" class="quote-status" />
+                        </VBox>
+                    </HBox>
+
+                    <HBox>
+                        <VBox>
+                            <Text text="vinay@c360soft.ai" />
+                            <Text text="+44 20 7732 7610" />
+                            <Text text="USD 22053.76" class="quote-amount" />
+                        </VBox>
+                    </HBox>
+                    
+                </VBox>
+
+                <VBox class="carrier-card  customSimpleFormShadow">
+                    <HBox justifyContent="SpaceBetween" alignItems="Start">
+                        <!-- Left Section -->
+                        <Text text="Crown Fine Art" class="quote-title" />
+
+                        <!-- Right Section -->
+                        <VBox alignItems="End">
+                            <Text text="Received" class="quote-status" />
+                        </VBox>
+                    </HBox>
+
+                    <HBox>
+                        <VBox>
+                            <Text text="vinay@c360soft.ai" />
+                            <Text text="+44 20 7732 7610" />
+                            <Text text="USD 22053.76" class="quote-amount" />
+                        </VBox>
+                    </HBox>
+                    
+                </VBox>
+
+        </VBox>
+
+        <endButton>
+            <Button text="Close" press=".onCloseDialog" />
+        </endButton>
+    
+
+
+
+   
+  </Dialog>
+</core:FragmentDefinition>
+
+
+
+
+

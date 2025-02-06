@@ -235,7 +235,14 @@
 					<Text text="{eshipjetModel>CreatedDate}" />
 					<Text text="{eshipjetModel>ShipDate}" />
 					<Text text="{}" />
+				<HBox justifyContent="SpaceBetween">
 					<Text text="{eshipjetModel>shipMethod}" />
+					
+					<Button text="+" 
+							press="onShipMethodUpdate"
+							visible="{= ${eshipjetModel>status} === 'Open' }" />
+				</HBox>
+
 					<Text text="{eshipjetModel>ServiceName}" class="ShipReq-Status-Bold" />
 					
 					<Link text="{eshipjetModel>TrackingNumber}" 

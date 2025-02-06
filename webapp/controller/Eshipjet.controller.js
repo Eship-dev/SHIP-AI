@@ -9175,6 +9175,29 @@ sap.ui.define([
             this.byId("idTrackingNumberDialog").close();
         },
 
+
+        onShipMethodUpdate: function () {
+            var oView = this.getView();
+            if (!this.byId("idShipMethodDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.ShipMethodPlusDialog",
+                    controller: this // Pass the controller for binding
+                }).then(function (oShipMethodDialog) {
+                    oView.addDependent(oShipMethodDialog);
+                    oShipMethodDialog.open();
+                });
+            } else {
+                this.byId("idShipMethodDialog").open(); // Open existing dialog
+            }
+        },
+        ShipMethodCancelDialog: function () {
+            this.byId("idShipMethodDialog").close();
+        },
+        onCloseDialog: function () {
+            this.byId("idShipMethodDialog").close();
+        },
+
         handleAddProductRowPress:function(oEvent){
             var oSelectedObj = oEvent.getSource().getBindingContext().getObject();
             var ShipReqTableDataModel = this.getView().getModel("ShipReqTableDataModel");
