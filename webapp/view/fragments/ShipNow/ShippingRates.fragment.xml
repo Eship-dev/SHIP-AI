@@ -34,7 +34,7 @@
                             <Text id="_IDGenText8" text="{eshipjetModel>Carrier}"></Text>
                             <Text id="_IDGenText9" text="{eshipjetModel>serviceName}"></Text>
                             <Text id="_IDGenText10" text="{eshipjetModel>publishedFreight}"></Text>
-                            <Text id="_IDGenText11" text="{eshipjetModel>discountFreight}"></Text>
+                            <Text id="_IDGenText11" text="{eshipjetModel>discountFreight_Cal}"></Text>
                             <Text id="_IDGenText12" text="{ path: 'eshipjetModel>expectedDeliveryDate', formatter: '.formatter.formatEstimatedDate' }" ></Text>
                             <Text id="_IDGenText13" text="{ path: 'eshipjetModel>expectedDeliveryDate', formatter: '.formatter.calculateDaysDifference' }"></Text>                          
                         </cells>

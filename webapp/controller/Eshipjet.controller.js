@@ -9013,14 +9013,15 @@ sap.ui.define([
         FreightQuoteUpdatedSrvData:function(){
             var ShipperDataUpdateSrvModel = oController.getOwnerComponent().getModel("ShipperDataUpdateSrvModel");
             var oEshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var aPackages = oEshipjetModel.getProperty("/ShipNowPostResponse/Packages");
             var oPayload = {
-                "Delivery": oEshipjetModel.getProperty("/sapDeliveryNumber"),
-                "Carrier": "UPS",
-                "SerName": "",
-                "TotPack": "",
-                "Currency": "",
-                "PubFrt": "30.00",
-                "DiscFrt": "0.00",
+                "Delivery": oEshipjetModel.getProperty("/sapDeliveryNumber") ? oEshipjetModel.getProperty("/sapDeliveryNumber") : "",
+                "Carrier": oEshipjetModel.getProperty("/shipRateSelectItem/Carrier") ?  oEshipjetModel.getProperty("/shipRateSelectItem/Carrier") : "",
+                "SerName": oEshipjetModel.getProperty("/shipRateSelectItem/serviceName") ? oEshipjetModel.getProperty("/shipRateSelectItem/serviceName") : "",
+                "TotPack": oEshipjetModel.getProperty("/ShipNowPostResponse/Packages").length.toString() ? oEshipjetModel.getProperty("/ShipNowPostResponse/Packages").length.toString() : "",
+                "Currency": oEshipjetModel.getProperty("/shipRateSelectItem/currency") ? oEshipjetModel.getProperty("/shipRateSelectItem/currency") : "",
+                "PubFrt": oEshipjetModel.getProperty("/shipRateSelectItem/publishedFreight").toString() ? oEshipjetModel.getProperty("/shipRateSelectItem/publishedFreight").toString() : "",
+                "DiscFrt": oEshipjetModel.getProperty("/shipRateSelectItem/discountFreight_Cal").toString() ? oEshipjetModel.getProperty("/shipRateSelectItem/discountFreight_Cal").toString() : "",
                 // "DEL": "",
                 //"ShipDate": "/Date(1517875200000)/",
                 //"ShipDate":null,
@@ -9045,14 +9046,15 @@ sap.ui.define([
                 //   }
                 // ]
               };
-              var aPackages = oEshipjetModel.getProperty("/ShipNowPostResponse/Packages");
+             
               var aItemInfo  = oEshipjetModel.getProperty("/ShipNowPostResponse/Packages/ItemsInfo");
-              var aPayloadPackages = [], packObj = {} ;
+              var aPayloadPackages = [], packObj = {}, sIdx = 0;
               if(aPackages && aPackages.length > 0){
-                aPackages.forEach(function(currObj, Idx){
+                aPackages.forEach(function(currObj){
+                    sIdx =   sIdx + 10;
                     packObj ={
                         "Delivery": oEshipjetModel.getProperty("/sapDeliveryNumber"),
-                        "DelItem": "20",
+                        "DelItem": sIdx.toString(),
                         "HandUnit": currObj.HU.toString(),
                         "Weight": currObj.Weight,
                         "WeightUnit": currObj.Weightunits,
@@ -10233,6 +10235,9 @@ sap.ui.define([
                 // Handle successful response               
                 console.log("Success:", response);
                 if(response && response.RateServices && response.RateServices.length > 0){
+                    response.RateServices.map(function(Obj, idx){
+                        Obj["discountFreight_Cal"] = (Obj.publishedFreight * 20 ) / 100 ;  
+                    });
                     oEshipjetModel.setProperty("/shipNowShippingRates", response.RateServices);
                     oController.onOpenShipNowShippinRateDialog();
                 }
@@ -10304,12 +10309,13 @@ sap.ui.define([
         var oTable  = oController.byId("_ShippingRateTableId");
         var oEshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         var aSelectedItems = oTable.getSelectedItems();
-
         var oCarrier = oTable.getSelectedItem().getBindingContext("eshipjetModel").getObject();
         var RecentShipmentSet = oEshipjetModel.getData().RecentShipmentSet;
         RecentShipmentSet[RecentShipmentSet.length-1]["Carrier"] = oCarrier.Carrier;
         // RecentShipmentSet["Carrier"] = oCarrier;
+        oEshipjetModel.setProperty("/shipRateSelectItem", oCarrier);
         oEshipjetModel.updateBindings(true);
+        
         var oSelectObj;
         if(aSelectedItems && aSelectedItems.length > 0){
             oSelectObj = aSelectedItems[0].getBindingContext("eshipjetModel").getObject(); 
