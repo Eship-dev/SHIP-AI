@@ -10245,17 +10245,17 @@ sap.ui.define([
                 oController.oBusyDialog.close();
                 // Handle successful response               
                 console.log("Success:", response);
-                if(response && response.Errors && response.Errors.length > 0){
-                    var errMsg = "", sErrors = [];
-                    response.Errors.forEach(function(Obj, Idx){
-                        errMsg = Idx+1 + ". "+ Obj.carrier +" - "+ Obj.message + "\n";
-                        sErrors.push(errMsg);
-                        errMsg = "";
-                    });
-                    
-                    sap.m.MessageBox.error(sErrors.join(""));
+                // if(response && response.Errors && response.Errors.length > 0){
+                //     var errMsg = "", sErrors = [];
+                //     response.Errors.forEach(function(Obj, Idx){
+                //         errMsg = Idx+1 + ". "+ Obj.carrier +" - "+ Obj.message + "\n";
+                //         sErrors.push(errMsg);
+                //         errMsg = "";
+                //     });                    
+                //     sap.m.MessageBox.error(sErrors.join(""));
 
-                }else if(response && response.RateServices && response.RateServices.length > 0){
+                // }else 
+                if(response && response.RateServices && response.RateServices.length > 0){
                     response.RateServices.map(function(Obj, idx){
                         Obj["discountFreight_Cal"] = (Obj.publishedFreight * 20 ) / 100 ;  
                     });
