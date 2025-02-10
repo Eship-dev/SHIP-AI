@@ -174,11 +174,8 @@
 				<Column app:p13nKey="Actions" width="8rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/20/visible}" headerMenu="menu" >
                     <Text text="{eshipjetModel>/OrderColumns/20/label}"/>
                 </Column>
-				<Column app:p13nKey="Actions" width="8rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/21/visible}" headerMenu="menu" >
-                    <Text text="{eshipjetModel>/OrderColumns/21/label}"/>
-                </Column>
 				<Column app:p13nKey="Actions" width="8rem" hAlign="Left" visible="true" headerMenu="menu" >
-                    <Text text="Actions"/>
+                    <Text text="{eshipjetModel>/OrderColumns/21/label}"/>
                 </Column>
 		</columns>
 		<items>
