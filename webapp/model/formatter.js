@@ -41,16 +41,21 @@ sap.ui.define([
             return oDateFormat.format(oDate);
         },
 
-		calculateDaysDifference: function (sDate) {
-            if (!sDate) {
-                return "";
-            }
-            let oTargetDate = new Date(sDate);
-            let oToday = new Date();
-            oToday.setHours(0, 0, 0, 0);
-            oTargetDate.setHours(0, 0, 0, 0);
-            let iDiff = Math.round((oTargetDate - oToday) / (1000 * 60 * 60 * 24));
-            return iDiff;
+		getTransitDays: function (sDate) {
+            // if (!sDate) {
+            //     return "";
+            // }
+            // let oTargetDate = new Date(sDate);
+            // let oToday = new Date();
+            // oToday.setHours(0, 0, 0, 0);
+            // oTargetDate.setHours(0, 0, 0, 0);
+            // let iDiff = Math.round((oTargetDate - oToday) / (1000 * 60 * 60 * 24));
+            // return iDiff;
+			const today = new Date();
+			const expectedDate = new Date(sDate);
+			const timeDiff = expectedDate.getTime() - today.getTime();
+			const dayDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+			return dayDiff > 0 ? dayDiff : 5;
         }
 	};
 });

@@ -36,7 +36,7 @@
                             <Text id="_IDGenText10" text="{= Math.floor(${eshipjetModel>publishedFreight})}"></Text>
                             <Text id="_IDGenText11" text="{= Math.floor(${eshipjetModel>discountFreight_Cal})}"></Text>
                             <Text id="_IDGenText12" text="{ path: 'eshipjetModel>expectedDeliveryDate', formatter: '.formatter.formatEstimatedDate' }" ></Text>
-                            <Text id="_IDGenText13" text="{ path: 'eshipjetModel>expectedDeliveryDate', formatter: '.formatter.calculateDaysDifference' }"></Text>                          
+                            <Text id="_IDGenText13" text="{ path: 'eshipjetModel>expectedDeliveryDate', formatter: '.formatter.getTransitDays' }"></Text>                          
                         </cells>
                     </ColumnListItem>
                 </items>

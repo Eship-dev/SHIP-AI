@@ -455,8 +455,8 @@ sap.ui.define([
                     "PONumber": ""
                 },
                 "CarrierDetails": {
-                    "Carrier": "FedEx",
-                    "ShippingAccount": "740561073",
+                    "Carrier": oController.oSelectObj.Carrier,
+                    "ShippingAccount": oController.oSelectObj.AccountNumber,
                     "PaymentType": "Sender",
                     "BillingAccount": "",
                     "BillingCountry": "",
@@ -466,7 +466,7 @@ sap.ui.define([
                     "Reference2": "",
                     "Reference3": "",
                     "Reference4": "",
-                    "ServiceName": "FEDEX_2_DAY",
+                    "ServiceName": oController.oSelectObj.serviceName,
                     "costCenter": "",
                     "PoNo": "",
                     "InvoiceNo": "",
@@ -482,7 +482,7 @@ sap.ui.define([
                     "ShipToCountry": "",
                     "VoidURL": "",
                     "ShipfromCountry": "",
-                    "ERPCarrierID": "FedEx",
+                    "ERPCarrierID": oController.oSelectObj.Carrier,
                     "LocationId": "1001",
                     "MeterId": ""
                 },
@@ -856,27 +856,22 @@ sap.ui.define([
                     },
                     success:function(oData){
                         oController.etag = oData.__metadata.etag;
-                        oController.oBusyDialog.close();
                     },
                     error: function(oErr){
-                        oController.oBusyDialog.close();
                     }
                 });
 
-                oController.oBusyDialog.open();
                 oDeliveryModel.read(sPath,{
                     // urlParameters: {
                     //     "$expand": "to_DeliveryDocumentItem,to_DeliveryDocumentPartner"
                     // },
                     success:function(oData){
-                        oController.oBusyDialog.close();
                         if(oData){                      
                             oController._getShipToAddress(oData.results, sDeveliveryNumber, sFromMenu);
                         }
                         myResolve();
                     },
                     error: function(oErr){
-                        oController.oBusyDialog.close();
                         var err = oErr;
                         myResolve();
                     }
@@ -887,7 +882,6 @@ sap.ui.define([
                 oHandlingUnitModel.read("/HandlingUnit",{
                     filters: oFilter,
                     success:function(oData){
-                        oController.oBusyDialog.close();
                         if(oData && oData.results && oData.results.length > 0){
                             for(var i = 0; i < oData.results.length; i++){
                                 oData.results[i]["SerialNumber"] = i + 1;
@@ -899,7 +893,6 @@ sap.ui.define([
                     },
                     error: function(oErr){
                         var err = oErr;
-                        oController.oBusyDialog.close();
                     }
                 });
                 var aOutBoundDelveryFilter = [], aProductTable = [];
@@ -907,7 +900,6 @@ sap.ui.define([
                 oDeliveryModel.read("/A_OutbDeliveryItem",{
                     filters: aOutBoundDelveryFilter,
                     success:function(oData){
-                        oController.oBusyDialog.close();
                         if(oData && oData.results && oData.results.length > 0){
                             for(var i = 0; i < oData.results.length; i++){
                                 oData.results[i]["SerialNumber"] = i+1;
@@ -920,7 +912,6 @@ sap.ui.define([
                     },
                     error: function(oErr){
                         var err = oErr;
-                        oController.oBusyDialog.close();
                     }
                 });            
             }
@@ -937,7 +928,6 @@ sap.ui.define([
             oHandlingUnitModel.read("/HandlingUnitItem",{
                 filters: aFilters,
                 success:function(oData){
-                    oController.oBusyDialog.close();
                     if(oData && oData.results && oData.results.length > 0){
                         var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
                         eshipjetModel.setProperty("/HandlingUnitItems",oData.results);
@@ -950,7 +940,6 @@ sap.ui.define([
                 },
                 error: function(oErr){
                     var err = oErr;
-                    oController.oBusyDialog.close();
                 }
             });
         },
@@ -964,14 +953,12 @@ sap.ui.define([
             oSalesOrderModel.read("/A_SalesOrderItem",{
                 filters: aFilters,
                 success:function(oData){
-                    oController.oBusyDialog.close();
                     if(oData && oData.results && oData.results.length > 0){
                         eshipjetModel.setProperty("/SalesOrderItems",oData.results);
                     }
                 },
                 error: function(oErr){
                     var err = oErr;
-                    oController.oBusyDialog.close();
                 }
             });
 
@@ -10350,12 +10337,11 @@ sap.ui.define([
         oEshipjetModel.setProperty("/shipRateSelectItem", oCarrier);
         oEshipjetModel.updateBindings(true);
         
-        var oSelectObj;
         if(aSelectedItems && aSelectedItems.length > 0){
-            oSelectObj = aSelectedItems[0].getBindingContext("eshipjetModel").getObject(); 
-            oEshipjetModel.setProperty("/ShipNowShipMethodSelectedKey", oSelectObj.Carrier);
-            oEshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey", oSelectObj.serviceCode);
-            oEshipjetModel.setProperty("/accountNumber", oSelectObj.AccountNumber);                     
+            oController.oSelectObj = aSelectedItems[0].getBindingContext("eshipjetModel").getObject(); 
+            oEshipjetModel.setProperty("/ShipNowShipMethodSelectedKey", oController.oSelectObj.Carrier);
+            oEshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey", oController.oSelectObj.serviceCode);
+            oEshipjetModel.setProperty("/accountNumber", oController.oSelectObj.AccountNumber);                     
         }
         oController.onCloseShipNowShippinRateDialog();
     },

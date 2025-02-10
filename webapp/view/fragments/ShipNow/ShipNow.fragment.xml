@@ -9,7 +9,9 @@
 				</Toolbar>
 							<Toolbar class="sapUiTinyMarginBottom scan-ship-toolbar1 " height="10%">
 								<Label text="SAP Delivery Number"  wrapping="true" width="12%" labelFor="SAPDelLabel" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMargin sapUiMediumMarginTop" />
-								<SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch"   value="{eshipjetModel>/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" />
+								<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch"   value="{eshipjetModel>/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
+
+								<Input class="create-ship-req_input sapUiSmallMargin" submit="onShipNowGetPress" width="15%" editable="true" enabled="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
 								<Button text="Get" type="Ghost" class="scan-ship-toolbar1__button sapUiSmallMargin" press="onShipNowGetPress" width="5%"></Button>
 								<Button text="Consolidation" class="scan-ship-toolbar1__button sapUiSmallMargin " type="Ghost" press="handleConsolidationPress" width="8%"></Button>
 								<Label text="Pickup Date"  class="sapUiSmallMarginTop sapUiSmallMargin sapUiMediumMarginTop" labelFor="DP1" />
