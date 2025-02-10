@@ -11,7 +11,7 @@
 								<Label text="SAP Delivery Number"  wrapping="true" width="12%" labelFor="SAPDelLabel" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMargin sapUiMediumMarginTop" />
 								<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch"   value="{eshipjetModel>/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
 
-								<Input class="create-ship-req_input sapUiSmallMargin" submit="onShipNowGetPress" width="15%" editable="true" enabled="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
+								<Input value="{eshipjetModel>/sapDeliveryNumber}" submit="onShipNowGetPress" class="create-ship-req_input sapUiSmallMargin" width="15%" editable="true" enabled="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
 								<Button text="Get" type="Ghost" class="scan-ship-toolbar1__button sapUiSmallMargin" press="onShipNowGetPress" width="5%"></Button>
 								<Button text="Consolidation" class="scan-ship-toolbar1__button sapUiSmallMargin " type="Ghost" press="handleConsolidationPress" width="8%"></Button>
 								<Label text="Pickup Date"  class="sapUiSmallMarginTop sapUiSmallMargin sapUiMediumMarginTop" labelFor="DP1" />
@@ -82,7 +82,7 @@
 													</ComboBox>
 
 													<Toolbar ariaLabelledBy="idShipTo" class="scan-ship-toolbar1">
-														<Title id="idShipTo" text="Ship To"/>
+														<Title id="idShipTo" text="Ship To" class="sapUiTinyMarginTop" />
 														<Button icon="sap-icon://customer-briefing" press="ShipToPickAnAddressPopoverPress" id="idShipToAddressBtn" />
 														<Button icon="sap-icon://add" press="onShipNowAddIconPress"></Button>
 														<ToolbarSpacer ></ToolbarSpacer>
