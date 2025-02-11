@@ -14,7 +14,7 @@
 								<Input value="{eshipjetModel>/sapDeliveryNumber}" submit="onShipNowGetPress" class="create-ship-req_input sapUiSmallMargin" width="15%" editable="true" enabled="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
 								<Button text="Get" type="Ghost" class="scan-ship-toolbar1__button sapUiSmallMargin" press="onShipNowGetPress" width="5%"></Button>
 								<Button text="Consolidation" class="scan-ship-toolbar1__button sapUiSmallMargin " type="Ghost" press="handleConsolidationPress" width="8%"></Button>
-								<Label text="Pickup Date"  class="sapUiSmallMarginTop sapUiSmallMargin sapUiMediumMarginTop" labelFor="DP1" />
+								<Label text="Pickup Date"  class="sapUiMediumMarginTop" labelFor="DP1" />
 								<DatePicker class="create-ship-req_input sapUiSmallMargin" id="DP1" width="15%"   valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
 								<Label text="Ship Date"  class="sapUiSmallMarginTop sapUiSmallMargin sapUiMediumMarginTop" labelFor="DP2"  width="auto"/>
 								<DatePicker class="create-ship-req_input sapUiSmallMargin" id="DP2" width="15%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/HeaderInfo/ShipDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />

@@ -34,7 +34,14 @@ sap.ui.define([
 
 		formatEstimatedDate: function (sDate) {
             if (!sDate) {
-                return "";
+                return "01/01/70 (Thu)";
+            }
+            
+            if(sDate && sDate.length === 8){
+                const year = sDate.slice(0, 4);
+                const month = sDate.slice(4, 6) - 1; // Months are zero-indexed in JavaScript
+                const day = sDate.slice(6, 8);
+                sDate =  new Date(year, month, day);
             }
             let oDate = new Date(sDate);
             let oDateFormat = DateFormat.getDateInstance({ pattern: "d/MM/yy (EEE)" });

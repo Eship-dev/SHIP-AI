@@ -82,6 +82,10 @@ sap.ui.define([
             eshipjetModel.setProperty("/HandlingUnitItems",[]);
             eshipjetModel.setProperty("/HandlingUnits",[]);
             eshipjetModel.setProperty("/shippingDocuments",[]);
+            eshipjetModel.setProperty("/BusinessPartners",[]);
+            eshipjetModel.setProperty("/ShipNowShipMethodSelectedKey","");
+            eshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey","");
+            eshipjetModel.setProperty("/accountNumber","");
             if (sKey === "ShipperCopilot") {
                 var obj = {
                     "messages": [],
@@ -625,7 +629,7 @@ sap.ui.define([
 
             // var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/FedEx";
             var sPath = "https://carrier-api-v1.eshipjet.site/"+eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey");
-            return new Promise((resolve, reject) => {
+            let myPromise =  new Promise((resolve, reject) => {
                 $.ajax({
                     url: sPath,
                     method: "POST",
@@ -661,8 +665,8 @@ sap.ui.define([
                             // oController.getManifestData(response);
                             
                             oController.showLabelAfterShipmentSuccess(response);
-                            // oController.ApiOutboundDeliverySrvData(response);
-                            // oController.FreightQuoteUpdatedSrvData();
+                            
+                           
 
                         }else if(response && response.status === "Error"){
                             var sError = "Shipment process failed reasons:\n";
@@ -682,6 +686,17 @@ sap.ui.define([
                     }
                 });
             });
+            myPromise.then(
+                function(response) {
+                    oController.FreightQuoteUpdatedSrvData();
+                    oController.ApiOutboundDeliverySrvData(response);
+                    //resolved
+                },
+                function(error) {
+                   // myDisplayer(error);
+                }
+            );
+
         },
 
 
@@ -1923,6 +1938,8 @@ sap.ui.define([
                 var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
                 ShipNowDataModel.setProperty("/ShipFromAddress", "");
                 ShipNowDataModel.setProperty("/ShipToAddress", "");
+                eshipjetModel.setProperty("/BusinessPartners", []);
+
             } else if (tileTitle === "Track Now") {
                 this._handleDisplayTrackNowTable();
                 var sKey = "TrackNow";
@@ -2689,8 +2706,8 @@ sap.ui.define([
                 "requestIdLabelId": "DN000001385",
                 "CreatedDate": "01/20/2025",
                 "ShipDate": "01/21/2025",
-                "shipMethod": "FedEx",
-                "ServiceName": "FedEx 2Day",
+                "shipMethod": eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey"),
+                "ServiceName": eshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey"),
                 "TrackingNumber": null,
                 "quoteStatus": "Sent for Clarifications",
                 "ShipToContact": ShipToAddress.FullName,
@@ -9051,30 +9068,7 @@ sap.ui.define([
                 "Currency": oEshipjetModel.getProperty("/shipRateSelectItem/currency") ? oEshipjetModel.getProperty("/shipRateSelectItem/currency") : "",
                 "PubFrt": oEshipjetModel.getProperty("/shipRateSelectItem/publishedFreight") ? oEshipjetModel.getProperty("/shipRateSelectItem/publishedFreight").toString() : "",
                 "DiscFrt": oEshipjetModel.getProperty("/shipRateSelectItem/discountFreight_Cal") ? oEshipjetModel.getProperty("/shipRateSelectItem/discountFreight_Cal").toString() : "",
-                "ItemSet": []
-                // "DEL": "",
-                //"ShipDate": "/Date(1517875200000)/",
-                //"ShipDate":null,
-                // "ItemSet": [
-                //   {
-                //     "Delivery": oEshipjetModel.getProperty("/sapDeliveryNumber"),
-                //     "DelItem": "10",
-                //     "HandUnit": "101",
-                //     "Weight": "10",
-                //     "WeightUnit": "KG",
-                //     "Dimension": "1X1X1",
-                //     "Tracking": "1ZXXXXXXX"
-                //   },
-                //   {
-                //     "Delivery": oEshipjetModel.getProperty("/sapDeliveryNumber"),
-                //     "DelItem": "20",
-                //     "HandUnit": "102",
-                //     "Weight": "20",
-                //     "WeightUnit": "KG",
-                //     "Dimension": "1X1X1",
-                //     "Tracking": "1ZXXXXXXX"
-                //   }
-                // ]
+                "ItemSet": []               
               };
              
               var aItemInfo  = oEshipjetModel.getProperty("/ShipNowPostResponse/Packages/ItemsInfo");
@@ -9109,7 +9103,7 @@ sap.ui.define([
         },
 
         ApiOutboundDeliverySrvData:function(response){
-            var BillOfLading = response.HeaderInfo.BillOfLading;
+            var BillOfLading = response.Packages[0].TrackingNumber;
             var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
             var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
             var OutBoundDeliveryModel = oController.getOwnerComponent().getModel("OutBoundDeliveryModel");
@@ -9121,6 +9115,8 @@ sap.ui.define([
             }
 
             OutBoundDeliveryModel.update("/A_OutbDeliveryHeader('" + sapDeliveryNumber + "')", payload, {
+                //merge:false,
+                method:"PATCH",
                 headers: mHeaders,
                 success: function(oResponse) {
                     sap.m.MessageToast.show("OutBoundDelivery Updated successful!");
@@ -10363,7 +10359,7 @@ sap.ui.define([
                 // }else 
                 if(response && response.RateServices && response.RateServices.length > 0){
                     response.RateServices.map(function(Obj, idx){
-                        Obj["discountFreight_Cal"] = (Obj.publishedFreight * 20 ) / 100 ;  
+                        Obj["discountFreight_Cal"] = (Obj.publishedFreight) - ((Obj.publishedFreight * 20 ) / 100) ;  
                     });
                     oEshipjetModel.setProperty("/shipNowShippingRates", response.RateServices);
                     oController.onOpenShipNowShippinRateDialog();

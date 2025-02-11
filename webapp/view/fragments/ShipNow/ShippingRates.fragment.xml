@@ -1,5 +1,5 @@
 <core:FragmentDefinition   xmlns="sap.m"  xmlns:core="sap.ui.core"   height="100%">
-    <Dialog id="_IDGenShipNowShppindRateDialog" title="Pick a Carrier" showHeader="false" titleAlignment="Center" contentHeight="40%" contentWidth="60%">
+    <Dialog id="_IDGenShipNowShppindRateDialog" title="Pick a Carrier" showHeader="false" titleAlignment="Center" contentHeight="80%" contentWidth="80%">
         <content>
             <Toolbar >
                 <FlexBox justifyContent="Center" width="100%" >
