@@ -168,7 +168,7 @@
 				<Column app:p13nKey="ShipType" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/5/visible}" headerMenu="menu">
                     <Text text="Ship Type"/>
                 </Column>
-				<Column app:p13nKey="shipMethod" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/6/visible}" headerMenu="menu">
+				<Column app:p13nKey="shipMethod" width="10rem" class="sapUiMarginTop" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/6/visible}" headerMenu="menu">
                     <Text text="Ship Method"/>
                 </Column>
 				<Column app:p13nKey="ServiceName" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/7/visible}" headerMenu="menu">
@@ -239,10 +239,11 @@
 					<Text text="{eshipjetModel>CreatedDate}" />
 					<Text text="{eshipjetModel>ShipDate}" />
 					<Text text="{}" />
-				<HBox justifyContent="SpaceBetween">
+				<HBox justifyContent="SpaceBetween"  alignItems="Center">
 					<Text text="{eshipjetModel>shipMethod}" />
 					
 					<Button text="+" 
+					        
 							press="onShipMethodUpdate"
 							visible="{= ${eshipjetModel>status} === 'Open' }" />
 				</HBox>
