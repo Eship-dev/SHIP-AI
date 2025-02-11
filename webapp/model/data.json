@@ -93,6 +93,67 @@
     {
         "serviceCode":"N",
         "serviceName":"EXPRESS DOMESTIC"
+    },
+    { 
+	"serviceCode": "01",
+	"serviceName": "UPS Next Day Air"
+	},
+	{
+	"serviceCode": "02",
+	"serviceName": "UPS 2nd Day Air"
+	},
+	{
+	"serviceCode": "03",
+	"serviceName": "UPS Ground"
+	},
+	{
+	"serviceCode": "07",
+	"serviceName": "UPS Worldwide Express"
+	},
+	{
+	"serviceCode": "08",
+	"serviceName": "UPS Worldwide Express"
+	},
+	{
+	"serviceCode": "11",
+	"serviceName": "UPS Standard"
+	},
+	{
+	"serviceCode": "12",
+	"serviceName": "UPS 3 Day Select"
+	},
+	{
+	"serviceCode": "13",
+	"serviceName": "UPS Next Day Air Saver"
+	},
+	{
+	"serviceCode": "14",
+	"serviceName": "UPS Next Day Air Early"
+	},
+	{
+	"serviceCode": "17",
+	"serviceName": "UPS® Worldwide Economy DDU"
+    },
+	{
+	"serviceCode": "54",
+	"serviceName": "UPS Worldwide Express Plus"
+	},
+	{
+	"serviceCode": "59",
+	"serviceName": "UPS 2nd Day Air A.M."
+	},
+	{
+	"serviceCode": "65",
+	"serviceName": "UPS Worldwide Saver"
+	},
+	{
+	"serviceCode": "M2",
+	"serviceName": "UPS First-Class Mail"
+	},
+	{
+	"serviceCode": "M3",
+	"serviceName": "UPS Priority Mail"
+	
     }],
     "shipMethodTypes":[
         {

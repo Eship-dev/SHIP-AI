@@ -408,10 +408,10 @@ sap.ui.define([
             this.byId("pageContainer").to(this.getView().createId(sKey));
         },
 
-
+       
         onShipNowPress: function () {
             var that = this;
-            BusyIndicator.show();
+            oController.oBusyDialog.open();
             var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
             var oShipNowDataModel = this.getOwnerComponent().getModel("ShipNowDataModel");
             var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
@@ -423,263 +423,7 @@ sap.ui.define([
             }else if(carrier === "FedEx"){
                 var id = "l70c717f3eaf284dc9af42169e93874b6e";
                 var password = "7f271bf486084e8f8073945bb7e6a020";
-            }
-            // var DocumentNumber = eshipjetModel.getProperty("/HeaderInfo/DocumentNumber");
-            // var ShipDate =  eshipjetModel.getProperty("/HeaderInfo/ShipDate");
-            // var ShipFromCONTACT = eshipjetModel.getProperty("/ShipFrom/CONTACT");
-            // var ShipFromADDRESS_LINE1 = eshipjetModel.getProperty("/ShipFrom/ADDRESS_LINE1");            
-           
-            // var ShipFromLocationType = eshipjetModel.getData().ShipFrom.LocationType;
-          
-            // var ShipToLocationType = eshipjetModel.getData().ShipTo.LocationType;
-            // var PackagesQuantity = eshipjetModel.getData().Packages.Quantity;
-            // var Dimension = eshipjetModel.getData().Packages.Dimension;
-            // var Weight = eshipjetModel.getData().Packages.Weight;
-            // var ShipToLocationType = eshipjetModel.getData().Packages.LocationType;
-                        
-            // var obj = {
-            //     "HeaderInfo": {
-            //         "BillOfLading" : sapDeliveryNumber,
-            //         "FeederSystem": "Ship Request / Label",
-            //         "DocumentType": "Delivery Number",
-            //         "ShipDate": "2025-01-03T11:41:20.053Z",
-            //         "CreatedDate": "2025-01-03T11:40:30.619Z",
-            //         "DocumentNumber": "DN000004115",
-            //         "Location": "1001",
-            //         "ShipmentType": "Business",
-            //         "Status": "Open",
-            //         "requester": "",
-            //         "category": "P1",
-            //         "Requester": "Myself",
-            //         "IsDutiable": false,
-            //         "CreatedUser": "info@eshipjet.ai",
-            //         "InsuranceAmount": "",
-            //         "InsuranceCurrency": "",
-            //         "Currency": "",
-            //         "Description": "",
-            //         "Incoterm": "DDU",
-            //         "Notes": "",
-            //         "InvoiceNumber": "",
-            //         "SONumber": "",
-            //         "PONumber": ""
-            //     },
-            //     "CarrierDetails": {
-            //         "Carrier": oController.oSelectObj.Carrier,
-            //         "ShippingAccount": oController.oSelectObj.AccountNumber,
-            //         "PaymentType": "Sender",
-            //         "BillingAccount": "",
-            //         "BillingCountry": "",
-            //         "BillingZipCode": "",
-            //         "Note": "",
-            //         "Reference1": "",
-            //         "Reference2": "",
-            //         "Reference3": "",
-            //         "Reference4": "",
-            //         "ServiceName": oController.oSelectObj.serviceCode,
-            //         // "ServiceName": oController.oSelectObj.serviceName,
-            //         "costCenter": "",
-            //         "PoNo": "",
-            //         "InvoiceNo": "",
-            //         "CarrierType": "Parcel",
-            //         "UserId": "l70c717f3eaf284dc9af42169e93874b6e",
-            //         "Password": "7f271bf486084e8f8073945bb7e6a020",
-            //         "AccessKey": "",
-            //         "ConnectionType": "API",
-            //         "CostCenterName": "Cost Center 2",
-            //         "ShipURL": "",
-            //         "TrackURL": "",
-            //         "RateURL": "",
-            //         "ShipToCountry": "",
-            //         "VoidURL": "",
-            //         "ShipfromCountry": "",
-            //         "ERPCarrierID": oController.oSelectObj.Carrier,
-            //         "LocationId": "1001",
-            //         "MeterId": ""
-            //     },
-            //     "ShipFrom": {
-            //         "COMPANY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOMPANY"),
-            //         "CONTACT": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCONTACT"),
-            //         "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE1"),
-            //         "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE2"),
-            //         "ADDRESS_LINE3": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE3"),
-            //         "CITY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCITY"),
-            //         "STATE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromSTATE"),
-            //         "ZIPCODE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromZIPCODE"),
-            //         "COUNTRY": "US",//oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOUNTRY"),
-            //         "PHONE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromPHONE"),
-            //         "EMAIL":  oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromEMAIL"),
-            //         "AddressType": "",
-            //         "TAXID": "",
-            //         "VAT": "",
-            //         "EORI": "",
-            //         "LocationType": ""
-            //     },
-            //     "ShipTo": {
-            //         "CreatedUser": "info@eshipjet.ai",
-            //         "UpdatedUser": "info@eshipjet.ai",
-            //         "CreatedDate": "2024-11-26T00:14:05.385Z",
-            //         "UpdatedDate": "2024-11-26T00:14:05.385Z",
-            //         "emailPriority": "Low",
-            //         "IsActive": true,
-            //         "RFIDTag": false,
-            //         "CONTACT": oShipNowDataModel.getProperty("/ShipToAddress/FullName"),
-            //         "COMPANY": oShipNowDataModel.getProperty("/ShipToAddress/BusinessPartnerName1"),
-            //         "PHONE": oShipNowDataModel.getProperty("/ShipToAddress/PhoneNumber"),
-            //         "EMAIL": "steve@nvidia.com",
-            //         "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipToAddress/StreetName"),
-            //         "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipToAddress/HouseNumber"),
-            //         "CITY": oShipNowDataModel.getProperty("/ShipToAddress/CityName"),
-            //         "STATE": oShipNowDataModel.getProperty("/ShipToAddress/Region"),
-            //         "ZIPCODE":  oShipNowDataModel.getProperty("/ShipToAddress/PostalCode"),
-            //         "COUNTRY": oShipNowDataModel.getProperty("/ShipToAddress/Country"),
-            //         "AddressCategory": "Shipping Address",
-            //         "AddressType": "Residential",
-            //         "id": 87,
-            //         "TAXID": "",
-            //         "VAT": "",
-            //         "EORI": "",
-            //         "LocationType": ""
-            //     },
-            //     "InternationalDetails": {
-            //         "ItemInfo": [
-            //             {
-            //                 "HU": 12813,
-            //                 "ItemNo": "P8001",
-            //                 "ProductNo": "P8001",
-            //                 "Description": "Calculators",
-            //                 "IsDG": "",
-            //                 "UnitCost": "13.5",
-            //                 "UnitWeight": "12.3",
-            //                 "HTSCode": "980012",
-            //                 "ECCN": "ECCN",
-            //                 "UN": "",
-            //                 "Class": "50",
-            //                 "NMFC": "",
-            //                 "Category": "",
-            //                 "IsSerial": "",
-            //                 "IsBatch": "",
-            //                 "IsStackable": "",
-            //                 "IsActive": true,
-            //                 "LocationId": "",
-            //                 "id": 1,
-            //                 "Sno": 1,
-            //                 "Quantity": "4",
-            //                 "Partial": 4,
-            //                 "Balance": "",
-            //                 "UOM": "LB",
-            //                 "Harmonized": "980012",
-            //                 "LicenseNo": "12345",
-            //                 "CountryofMFR": "US",
-            //                 "Currency": "USD"
-            //             }
-            //         ],
-            //         "TermsofShipment": "DDU",
-            //         "dutiesAccountnumber": "",
-            //         "B13AFilingOption": "",
-            //         "Permitnumber": "",
-            //         "ITN": "",
-            //         "iNTDutiesTaxes": "RECIPIENT",
-            //         "PayorZipCode": "",
-            //         "ITNXTNSEDEEI": "",
-            //         "ATLASMRN": "",
-            //         "IncoTermLocation": "",
-            //         "CustomDecValCurrency": "",
-            //         "DutiesAccount": "",
-            //         "payorCountryCode": "",
-            //         "ShipFromTax": "",
-            //         "bookingConfirmnumber": "",
-            //         "ShipToTax": "",
-            //         "ReasonforExport": "SOLD",
-            //         "FreightForwarderTax": "",
-            //         "Permit": "",
-            //         "CustomDecVal": "54.000",
-            //         "compliStatement": "",
-            //         "documentsContentType": "",
-            //         "InvoiceNumber": "DN000004303"
-            //     },
-            //     "Packages": [
-            //         {
-            //             "ItemsInfo": [
-            //                 {
-            //                     "ItemNo": "P8001",
-            //                     "ProductNo": "P8001",
-            //                     "Description": "Calculators",
-            //                     "IsDG": false,
-            //                     "UnitCost": "13.5",
-            //                     "UnitWeight": "12.3",
-            //                     "Dimension": "5X3X2",
-            //                     "HTSCode": "980012",
-            //                     "ECCN": "ECCN",
-            //                     "UN": "",
-            //                     "Class": "50",
-            //                     "NMFC": "",
-            //                     "Category": "",
-            //                     "IsSerial": null,
-            //                     "IsBatch": null,
-            //                     "IsStackable": null,
-            //                     "IsActive": true,
-            //                     "LocationId": "",
-            //                     "id": 17,
-            //                     "Sno": 1,
-            //                     "Quantity": "4",
-            //                     "Partial": "4",
-            //                     "Balance": 0,
-            //                     "CountryofMFR": "US",
-            //                     "Currency": "USD",
-            //                     "LicenseNo": "12345",
-            //                     "UOM": "LB"
-            //                 }
-            //             ],
-            //             "SpecialServices": {
-            //             },
-            //             "Weightunits": "LB",
-            //             "DimensionUnits": "",
-            //             "Sno": 1,
-            //             "HU": 12357,
-            //             "Weight": "49.20",
-            //             "Dimension": "5X3X2",
-            //             "PackageSpecialServiceTyeps": [
-            //             ]
-            //         }
-            //     ],
-            //     "Shipper": {
-            //         "COMPANY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOMPANY"),
-            //         "CONTACT": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCONTACT"),
-            //         "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE1"),
-            //         "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE2"),
-            //         "ADDRESS_LINE3": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE3"),
-            //         "CITY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCITY"),
-            //         "STATE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromSTATE"),
-            //         "ZIPCODE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromZIPCODE"),
-            //         "COUNTRY": "US",//oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOUNTRY"),
-            //         "PHONE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromPHONE"),
-            //         "EMAIL":  oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromEMAIL"),
-            //         "TAXID": "",
-            //         "VAT": "",
-            //         "EORI": "",
-            //         "LocationType": ""
-            //     },
-            //     "SoldTo": {
-            //         "COMPANY": oShipNowDataModel.getProperty("/ShipToAddress/BusinessPartnerName1"),
-            //         "CONTACT": oShipNowDataModel.getProperty("/ShipToAddress/FullName"),
-            //         "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipToAddress/StreetName"),
-            //         "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipToAddress/HouseNumber"),
-            //         "CITY": oShipNowDataModel.getProperty("/ShipToAddress/CityName"),
-            //         "STATE": oShipNowDataModel.getProperty("/ShipToAddress/CityName"),
-            //         "ZIPCODE": oShipNowDataModel.getProperty("/ShipToAddress/PostalCode"),
-            //         "COUNTRY": oShipNowDataModel.getProperty("/ShipToAddress/Country"),
-            //         "PHONE": oShipNowDataModel.getProperty("/ShipToAddress/PhoneNumber"),
-            //         "EMAIL": oShipNowDataModel.getProperty("/ShipToAddress/EMAIL"),
-            //         "TAXID": "",
-            //         "VAT": "",
-            //         "EORI": "",
-            //         "LocationType": ""
-            //     },
-            //     "ShipmentLevelServices": {
-            //     },
-            //     "CompanyId": "CP000000001",
-            //     "id": 4115
-            // };
+            }          
             var obj = {
                 "ShipTo": {
                     "id": 2,
@@ -850,7 +594,7 @@ sap.ui.define([
                     "costCenter": "",
                     "CarrierType": "Parcel",
                     "PaymentType": "Sender",
-                    "ServiceName": "03",
+                    "ServiceName": eshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey"),
                     "ERPCarrierID": carrier,
                     "ShipToCountry": "",
                     "BillingAccount": "",
@@ -859,7 +603,7 @@ sap.ui.define([
                     "ConnectionType": "API",
                     "CostCenterName": "Cost Center 2",
                     "ShipfromCountry": "",
-                    "ShippingAccount": "B24W72"
+                    "ShippingAccount": eshipjetModel.getProperty("/accountNumber")
                 },
                 "shiprequest_id": 5348,
                 "InternationalDetails": [],
@@ -880,8 +624,7 @@ sap.ui.define([
             }
 
             // var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/FedEx";
-            var sPath = "https://carrier-api-v1.eshipjet.site/"+eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey")
-            ;
+            var sPath = "https://carrier-api-v1.eshipjet.site/"+eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey");
             return new Promise((resolve, reject) => {
                 $.ajax({
                     url: sPath,
@@ -916,44 +659,44 @@ sap.ui.define([
                             }
                             sap.m.MessageBox.error(sError);
                         }                       
-                        BusyIndicator.hide();
+                        oController.oBusyDialog.close();
                     },
                     error: function (error) {
                         reject(error);
                         console.log("Error:", error);
-                        BusyIndicator.hide();
+                        oController.oBusyDialog.close();
                     }
                 });
             });
         },
 
 
-        showLabelAfterShipmentSuccess:function(response){
-            var localModel = this.getView().getModel();
-            var sPath = response.shippingDocuments[0].docName;
-            var encodedLabel = sPath;
-            localModel.setProperty("/encodedLabel", encodedLabel);
-            var oView = this.getView();
-            if (!this._oDialog) {
-                this._oDialog = new Dialog({
-                    title: "Shipment processed successfully",
-                    contentWidth: "30%",
-                    contentHeight: "70%",
-                    content: new sap.m.Image({
-                        class: "sapUiSmallMargin",
-                        src: encodedLabel,
-                        width: "100%",
-                        height: "100%"
-                    }),
-                    endButton: new sap.m.Button({
-                        text: "Close",
-                        press: function () {
-                            this._oDialog.close();
-                        }.bind(this)
-                    })
-                });
+        showLabel:function(response){
+            var localModel = this.getView().getModel();          
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            if(response && response.shippingDocuments.length > 0){
+                var encodedLabel = response.shippingDocuments[0].docName
+                eshipjetModel.setProperty("/encodedLabelShipNow", response.shippingDocuments[0].docName);              
+                    
+                        this._oDialog = new Dialog({
+                            title: "Shipment processed successfully",
+                            contentWidth: "30%",
+                            contentHeight: "80%",
+                            content: new sap.m.Image({
+                                class: "sapUiSmallMargin",
+                                src: encodedLabel,
+                                width: "80%",
+                                height: "50%"
+                            }),
+                            endButton: new sap.m.Button({
+                                text: "Close",
+                                press: function () {
+                                    this._oDialog.close();
+                                }.bind(this)
+                            })
+                        });                    
+                    this._oDialog.open();
             }
-            this._oDialog.open();
         },
 
         onShippingDocumentsViewPress:function(oEvent){
@@ -1110,7 +853,10 @@ sap.ui.define([
         onShipNowGetPress: async function () {
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"); 
             var sDeveliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
-            oController.oBusyDialog = new sap.m.BusyDialog({});     
+            eshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey","");
+            eshipjetModel.setProperty("/ShipNowShipMethodSelectedKey","");
+            eshipjetModel.setProperty("/accountNumber","");
+                 
             let myPromise = new Promise(function(myResolve, myReject) {
                 oController.shipNowData(sDeveliveryNumber, "ShipNow", myResolve);                                                    
             });           
@@ -1213,11 +959,11 @@ sap.ui.define([
                     if(oData && oData.results && oData.results.length > 0){
                         var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
                         eshipjetModel.setProperty("/HandlingUnitItems",oData.results);
-                        var oShipNowHandlingUnitTable = oView.byId("idShipNowHandlingUnitTable");
-                        if(oShipNowHandlingUnitTable){
-                            oShipNowHandlingUnitTable.setModel(eshipjetModel);
-                            oShipNowHandlingUnitTable.bindRows("/HandlingUnitItems");
-                        }
+                        // var oShipNowHandlingUnitTable = oView.byId("idShipNowHandlingUnitTable");
+                        // if(oShipNowHandlingUnitTable){
+                        //     oShipNowHandlingUnitTable.setModel(eshipjetModel);
+                        //    // oShipNowHandlingUnitTable.bindRows("/HandlingUnitItems");
+                        // }
                     }
                 },
                 error: function(oErr){
@@ -9536,7 +9282,9 @@ sap.ui.define([
         onShopNowShipMethodTypeChange : function(oEvent){
 
             var eshipjetModel =  this.getOwnerComponent().getModel("eshipjetModel");
-            var ShipNowShipMethodSelectedKey =  eshipjetModel.getData().ShipNowShipMethodSelectedKey;
+            var ShipNowShipMethodSelectedKey =  eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey");
+            eshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey","");
+            eshipjetModel.setProperty("/accountNumber","");
             if (ShipNowShipMethodSelectedKey === "FedEx"){
                 eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
                 eshipjetModel.setProperty("/shipNowABFSelect", false );
