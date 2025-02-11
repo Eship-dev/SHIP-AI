@@ -965,18 +965,27 @@ sap.ui.define([
                 this._contentType = "Carrier Label";
             }
 
-            if (!this._oShippingDocumentDialog) {
-                this._oImage = new sap.m.Image({
-                    class: "sapUiSmallMargin",
-                    width: "100%",
-                    height: "100%"
-                });
+            this._dialogContent;
+                if(currentObj.docType === "PDF"){
+                    this._dialogContent = new sap.ui.core.HTML({
+                        content: "<iframe src='"+docName+"' width='100%' height='500px'></iframe>"
+                    })
 
+                }else{
+                    this._dialogContent = new sap.m.Image({
+                        class: "sapUiSmallMargin",
+                        src: docName,
+                        width: "100%",
+                        height: "100%"
+                    });
+                }
+
+            //if (!this._oShippingDocumentDialog) {
                 this._oShippingDocumentDialog = new Dialog({
                     title: this._contentType,
                     contentWidth: "30%",
                     contentHeight: "70%",
-                    content: [this._oImage],
+                    content: [this._dialogContent],
                     endButton: new sap.m.Button({
                         text: "Close",
                         press: function () {
@@ -986,9 +995,7 @@ sap.ui.define([
                 });
 
                 this.getView().addDependent(this._oShippingDocumentDialog);
-            }
-
-            this._oImage.setSrc(docName);
+            //}
             this._oShippingDocumentDialog.open();
         },
 
