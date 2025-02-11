@@ -38,14 +38,14 @@
 													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromCONTACT}" class="sapUiSmallMarginBottom create-ship-req_input" />
 													<Label text="Address Line 1" />
 													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE1}"></Input>
-													<Label text="City" />													
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromCITY}" >
+													<Label text="State / Province" />													
+													<Input class="sapUiSmallMarginBottom create-ship-req_input"  value="{ShipNowDataModel>/ShipFromAddress/ShipFromSTATE}">
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
 													<!-- <Label text="State / Province" /> -->
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" maxLength="3" value="{ShipNowDataModel>/ShipFromAddress/ShipFromSTATE}" placeholder="State" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input"  value="{ShipNowDataModel>/ShipFromAddress/ShipFromCITY}"  placeholder="City" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
@@ -92,13 +92,13 @@
 													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/FullName}" />
 													<Label text="Address Line 1" />
 													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/StreetName}"></Input>
-													<Label text="City" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/Region}" maxLength="3" >
+													<Label text="State / Province" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/Region}"  >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>									
 													</Input>
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/CityName}" placeholder="State" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/CityName}" placeholder="City" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>

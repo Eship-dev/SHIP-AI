@@ -603,7 +603,7 @@ sap.ui.define([
                     "ConnectionType": "API",
                     "CostCenterName": "Cost Center 2",
                     "ShipfromCountry": "",
-                    "ShippingAccount": eshipjetModel.getProperty("/accountNumber")
+                    "ShippingAccount": "B24W72"  //eshipjetModel.getProperty("/accountNumber")
                 },
                 "shiprequest_id": 5348,
                 "InternationalDetails": [],
@@ -636,7 +636,7 @@ sap.ui.define([
                         console.log("Success:", response);
                         if(response && response.status === "Success"){
                             eshipjetModel.setProperty("/ShipNowPostResponse", response);
-                            sap.m.MessageBox.success("Shipment processed successfully");
+                           
                             if(response && response.shippingCharges && response.shippingCharges.length > 0 ){
                                 eshipjetModel.setProperty("/shippingCharges", response.shippingCharges);
                             }
@@ -685,15 +685,15 @@ sap.ui.define([
         },
 
 
-        showLabel:function(response){
+        showLabelAfterShipmentSuccess:function(response){
             var localModel = this.getView().getModel();          
             var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
             if(response && response.shippingDocuments.length > 0){
                 var encodedLabel = response.shippingDocuments[0].docName
-                eshipjetModel.setProperty("/encodedLabelShipNow", response.shippingDocuments[0].docName);              
+                eshipjetModel.setProperty("/encodedLabelShipNow", response.shippingDocuments[0].docName);             
                     
                         this._oDialog = new Dialog({
-                            title: "Shipment processed successfully",
+                            title: "Carrier Label",
                             contentWidth: "30%",
                             contentHeight: "80%",
                             content: new sap.m.Image({
