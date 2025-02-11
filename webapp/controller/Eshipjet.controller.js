@@ -641,7 +641,21 @@ sap.ui.define([
                                 eshipjetModel.setProperty("/shippingCharges", response.shippingCharges);
                             }
                             if(response && response.shippingDocuments && response.shippingDocuments.length > 0 ){
-                                eshipjetModel.setProperty("/shippingDocuments", response.shippingDocuments);
+                                var shippingDocuments = response.shippingDocuments;
+                                var ashippingDocuments = [];
+                                for(var i=0; i<shippingDocuments.length; i++){
+                                    ashippingDocuments.push(
+                                        {
+                                            "srNo": i+1,
+                                            "contentType": shippingDocuments[i].contentType,
+                                            "copiesToPrint": shippingDocuments[i].copiesToPrint,
+                                            "docName": shippingDocuments[i].docName,
+                                            "docProvider": shippingDocuments[i].docProvider,
+                                            "docType": shippingDocuments[i].docType,
+                                            "encodedLabel": shippingDocuments[i].encodedLabel,
+                                    })
+                                }
+                                eshipjetModel.setProperty("/shippingDocuments", ashippingDocuments);
                             }
                             //post to manifest service
                             // oController.getManifestData(response);

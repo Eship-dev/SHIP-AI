@@ -1015,7 +1015,7 @@
 										<items>
 											<ColumnListItem vAlign="Middle">
 												<cells>
-													<Text  text="" />
+													<Text  text="{eshipjetModel>srNo}" />
 													<Text  text="{eshipjetModel>docProvider}" />
 													<Text  text="{eshipjetModel>docType}" />
 													<Text  text="{eshipjetModel>contentType}" />
