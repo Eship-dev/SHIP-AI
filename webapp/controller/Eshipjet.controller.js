@@ -10002,8 +10002,8 @@ sap.ui.define([
         var shipToAddressLine2 = ShipNowDataModel.getProperty("/ShipToAddress/HouseNumber");
         var shipToEmail = ShipNowDataModel.getProperty("/ShipToAddress/EMAIL");
         var shipToPhone = ShipNowDataModel.getProperty("/ShipToAddress/PhoneNumber");
-        var ShipNowHandlingUnitTable = oController.getView().byId("idShipNowHandlingUnitTable");
-        var oTableItemsLength = ShipNowHandlingUnitTable.getBinding("items").iLength;
+        var ShipNowPackTable = oController.getView().byId("idShipNowPackTable");
+        var oTableItemsLength = ShipNowPackTable.getBinding("items").iLength;
 
         if(shipToCountry === "" || shipToCountry === undefined){
             MessageBox.warning("Please Enter Ship To Country");
