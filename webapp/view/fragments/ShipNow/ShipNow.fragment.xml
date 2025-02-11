@@ -634,29 +634,29 @@
 									<!-- Pack Tab Starts here -->
 									<IconTabFilter text="Pack" key="Pack">
 
-										<Toolbar height="4rem" class="scan-ship-toolbar1" >
+										<Toolbar height="8rem" class="scan-ship-toolbar1" >
 											<HBox width="100%"  >
-															<Label text="Scan Product" class="sapUiTinyMargin" />
+															<Label text="Scan Product" class="sapUiTinyMargin sapUiSmallMarginTop" />
 															<Input class=" create-ship-req_input" value="{}"  ></Input>
 
-															<Label text="Quantity" class="sapUiTinyMargin"/>
+															<Label text="Quantity" class="sapUiTinyMargin sapUiSmallMarginTop"/>
 															<!-- <StepInput id="quantityInput1" value="{eshipjetModel>/Packages/Quantity}" class=" create-ship-req_input" min="0" max="100" step="1" width="8%" valueState="None" /> -->
 															<Input class=" create-ship-req_input" value="{eshipjetModel>/Packages/Quantity}"  ></Input>
-															<Label text="Package Type" class="sapUiTinyMargin" />
+															<Label text="Package Type" class="sapUiTinyMargin sapUiSmallMarginTop" />
 															<ComboBox items="{}" class=" create-ship-req_input" >
 																<core:Item key="{}" text="{}" />
 															</ComboBox>
 
-															<Label text="Dimensions" class="sapUiTinyMargin" />
+															<Label text="Dimensions" class="sapUiTinyMargin sapUiSmallMarginTop" />
 															<ComboBox items="{eshipjetModel>/packDimensions}" class=" create-ship-req_input" selectedKey="{eshipjetModel>/Packages/Dimension}">
 																<core:Item key="{eshipjetModel>dimension}" text="{eshipjetModel>dimension}" />
 															</ComboBox>
-															<Button icon="sap-icon://add" press="handleDimensionAddPress" class="sapUiSmallMarginEnd"></Button>
+															<Button icon="sap-icon://add" press="handleDimensionAddPress" class="sapUiSmallMarginEnd sapUiTinyMarginTop" ></Button>
 
-															<Label text="Total Pkgs/Weight"  class="sapUiTinyMargin"/>
+															<Label text="Total Pkgs/Weight"  class="sapUiTinyMargin sapUiSmallMarginTop"/>
 															<!-- <StepInput id="stepDownInput1" class=" create-ship-req_input" value="{eshipjetModel>/Packages/Weight1}" min="0" max="100" step="1"  width="6rem"  valueState="None" /> -->
 															<Input class=" create-ship-req_input" value="{eshipjetModel>/Packages/Weight1}"  ></Input>
-															<Text text="/" width="10%" class="sapUiTinyMarginTop" ></Text>
+															<Text text=" / " width="10%" class="sapUiSmallMarginTop" ></Text>
 															<!-- <StepInput id="stepUpInput1" class=" create-ship-req_input"  value="{eshipjetModel>/Packages/Weight2}" min="0" max="100" step="1" width="6rem" valueState="None" /> -->
 															<Input class=" create-ship-req_input" value="{eshipjetModel>/Packages/Weight2}"  ></Input>
 															<Button text="Auto Pack" class="scan-ship-toolbar1__button sapUiTinyMarginBegin" width="150px" press="handleAutoPackPress" type="Ghost" ></Button>
