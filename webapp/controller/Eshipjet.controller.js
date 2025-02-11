@@ -415,18 +415,18 @@ sap.ui.define([
             var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
             var oShipNowDataModel = this.getOwnerComponent().getModel("ShipNowDataModel");
             var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
-            var DocumentNumber = eshipjetModel.getProperty("/HeaderInfo/DocumentNumber");
-            var ShipDate =  eshipjetModel.getProperty("/HeaderInfo/ShipDate");
-            var ShipFromCONTACT = eshipjetModel.getProperty("/ShipFrom/CONTACT");
-            var ShipFromADDRESS_LINE1 = eshipjetModel.getProperty("/ShipFrom/ADDRESS_LINE1");            
+            // var DocumentNumber = eshipjetModel.getProperty("/HeaderInfo/DocumentNumber");
+            // var ShipDate =  eshipjetModel.getProperty("/HeaderInfo/ShipDate");
+            // var ShipFromCONTACT = eshipjetModel.getProperty("/ShipFrom/CONTACT");
+            // var ShipFromADDRESS_LINE1 = eshipjetModel.getProperty("/ShipFrom/ADDRESS_LINE1");            
            
-            var ShipFromLocationType = eshipjetModel.getData().ShipFrom.LocationType;
+            // var ShipFromLocationType = eshipjetModel.getData().ShipFrom.LocationType;
           
-            var ShipToLocationType = eshipjetModel.getData().ShipTo.LocationType;
-            var PackagesQuantity = eshipjetModel.getData().Packages.Quantity;
-            var Dimension = eshipjetModel.getData().Packages.Dimension;
-            var Weight = eshipjetModel.getData().Packages.Weight;
-            var ShipToLocationType = eshipjetModel.getData().Packages.LocationType;
+            // var ShipToLocationType = eshipjetModel.getData().ShipTo.LocationType;
+            // var PackagesQuantity = eshipjetModel.getData().Packages.Quantity;
+            // var Dimension = eshipjetModel.getData().Packages.Dimension;
+            // var Weight = eshipjetModel.getData().Packages.Weight;
+            // var ShipToLocationType = eshipjetModel.getData().Packages.LocationType;
                         
             var obj = {
                 "HeaderInfo": {
@@ -672,10 +672,9 @@ sap.ui.define([
                 "id": 4115
             };
 
-            //var sPath = "https://eshipjet-demo-srv-hvacbxf0fqapdpgd.francecentral-01.azurewebsites.net/copilot/v1/bot/process";
-           // var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/dhl";
             // var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/FedEx";
-            var sPath = "https://carrier-api-v1.eshipjet.site";
+            var sPath = "https://carrier-api-v1.eshipjet.site/"+eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey")
+            ;
             return new Promise((resolve, reject) => {
                 $.ajax({
                     url: sPath,
