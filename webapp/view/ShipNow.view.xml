@@ -45,7 +45,7 @@
 														</layoutData>
 													</Input>
 													<!-- <Label text="State / Province" /> -->
-													<Input value="{ShipNowDataModel>/ShipFromSTATE}" placeholder="State" >
+													<Input value="{ShipNowDataModel>/ShipFromSTATE}" maxLength="3" placeholder="State" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
@@ -386,7 +386,7 @@
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 													<Label text="Insurance Currency" />
-													<Input value="{}" />
+													<Input value="{}" maxLength="3" />
 													<Label text="IncoTerm Location" />
 													<Input value="{}" />
 
@@ -626,7 +626,7 @@
 													<Label text="Ship To Tax No" />
 													<Input value="{eshipjetModel>/shipToTaxNo}" />
 													<Label text="Currency" />
-													<Input value="{eshipjetModel>/Currency}"></Input>
+													<Input value="{eshipjetModel>/Currency}" maxLength="3"></Input>
 
 													<Label text="Documents Content Type"></Label>
 													<ComboBox items="{eshipjetModel>/documentContentType}">
