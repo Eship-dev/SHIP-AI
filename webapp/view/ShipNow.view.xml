@@ -423,7 +423,8 @@
 															<Input value="{}"></Input>
 
 															<Label text="Quantity" class="sapUiTinyMargin"/>
-															<StepInput id="quantityInput" value="" min="0" max="100" step="1" width="8%" valueState="None" />
+															<Input class=" create-ship-req_input" value=""  ></Input>
+															<!-- <StepInput id="quantityInput" value="" min="0" max="100" step="1" width="8%" valueState="None" /> -->
 
 															<Label text="Package Type" class="sapUiTinyMargin" />
 															<ComboBox items="{}" >
@@ -437,9 +438,11 @@
 															<Button icon="sap-icon://add" press="handleDimensionAddPress" class="sapUiSmallMarginEnd"></Button>
 
 															<Label text="Total Pkgs/Weight"  class="sapUiTinyMargin"/>
-															<StepInput id="stepDownInput" value="{dimensionModel>/weightStepDown}" min="0" max="100" step="1"  width="6rem"  valueState="None" />
+															<Input class=" create-ship-req_input" value="{dimensionModel>/weightStepDown}"  ></Input>
+															<!-- <StepInput id="stepDownInput" value="{dimensionModel>/weightStepDown}" min="0" max="100" step="1"  width="6rem"  valueState="None" /> -->
 															<Text text="/" width="10%" class="sapUiTinyMarginTop" ></Text>
-															<StepInput id="stepUpInput" value="{dimensionModel>/weightStepUp}" min="0" max="100" step="1" width="6rem" valueState="None" />
+															<Input class=" create-ship-req_input" value="{dimensionModel>/weightStepUp}"  ></Input>
+															<!-- <StepInput id="stepUpInput" value="{dimensionModel>/weightStepUp}" min="0" max="100" step="1" width="6rem" valueState="None" /> -->
 															<Button text="Auto Pack" press="handleAutoPackPress" ></Button>
 														</HBox>
 													</content>

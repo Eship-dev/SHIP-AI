@@ -55,17 +55,22 @@
                         <ComboBox  class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
                         </ComboBox>
                         <Label text="Length (inch/cm)" />  
-			            <StepInput class="sapUiSmallMarginBottom create-ship-req_input" min="0" max="100" step="1"  width="100%"  valueState="None" />
+			            <Input class=" create-ship-req_input" value="{}"  ></Input>
+                        <!-- <StepInput class="sapUiSmallMarginBottom create-ship-req_input" min="0" max="100" step="1"  width="100%"  valueState="None" /> -->
                         <Label text="Height (inch/cm)" />
-                         <StepInput  min="0" max="100" step="1"  width="100%"  valueState="None" />
+                         <Input class=" create-ship-req_input" value="{}"  ></Input>
+                         <!-- <StepInput  min="0" max="100" step="1"  width="100%"  valueState="None" /> -->
                         <Label text="Material Weight" />  
-			            <StepInput  min="0" max="100" step="1"  width="100%"  valueState="None" />
+			            <Input class=" create-ship-req_input" value="{}"  ></Input>
+                        <!-- <StepInput  min="0" max="100" step="1"  width="100%"  valueState="None" /> -->
                         <Label text="Name" />  
 			            <Input class="sapUiSmallMarginBottom create-ship-req_input" ></Input>
                         <Label text="Width (inch/cm)" />  
-			             <StepInput  min="0" max="100" step="1"  width="100%"  valueState="None" />
+			            <Input class=" create-ship-req_input" value="{}"  ></Input>
+                        <!-- <StepInput  min="0" max="100" step="1"  width="100%"  valueState="None" /> -->
                         <Label text="Maximum Weight" />  
-			             <StepInput  min="0" max="100" step="1"  width="100%"  valueState="None" />
+			            <Input class=" create-ship-req_input" value="{}"  ></Input>
+                        <!-- <StepInput  min="0" max="100" step="1"  width="100%"  valueState="None" /> -->
                         <Label text="Status" />
                         <Switch state="true" >
 				            <layoutData>

@@ -903,7 +903,7 @@ sap.ui.define([
                             //post to manifest service
                             // oController.getManifestData(response);
                             
-                            oController.showLabel(response);
+                            oController.showLabelAfterShipmentSuccess(response);
                             // oController.ApiOutboundDeliverySrvData(response);
                             // oController.FreightQuoteUpdatedSrvData();
 
@@ -928,7 +928,7 @@ sap.ui.define([
         },
 
 
-        showLabel:function(response){
+        showLabelAfterShipmentSuccess:function(response){
             var localModel = this.getView().getModel();
             var sPath = response.shippingDocuments[0].docName;
             var encodedLabel = sPath;
@@ -938,12 +938,12 @@ sap.ui.define([
                 this._oDialog = new Dialog({
                     title: "Shipment processed successfully",
                     contentWidth: "30%",
-                    contentHeight: "80%",
+                    contentHeight: "70%",
                     content: new sap.m.Image({
                         class: "sapUiSmallMargin",
                         src: encodedLabel,
-                        width: "80%",
-                        height: "50%"
+                        width: "100%",
+                        height: "100%"
                     }),
                     endButton: new sap.m.Button({
                         text: "Close",
@@ -956,6 +956,41 @@ sap.ui.define([
             this._oDialog.open();
         },
 
+        onShippingDocumentsViewPress:function(oEvent){
+            var currentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
+            var docName = currentObj.docName;
+            this._contentType = currentObj.contentType;
+
+            if (this._contentType === "Label") {
+                this._contentType = "Carrier Label";
+            }
+
+            if (!this._oShippingDocumentDialog) {
+                this._oImage = new sap.m.Image({
+                    class: "sapUiSmallMargin",
+                    width: "100%",
+                    height: "100%"
+                });
+
+                this._oShippingDocumentDialog = new Dialog({
+                    title: this._contentType,
+                    contentWidth: "30%",
+                    contentHeight: "70%",
+                    content: [this._oImage],
+                    endButton: new sap.m.Button({
+                        text: "Close",
+                        press: function () {
+                            this._oShippingDocumentDialog.close();
+                        }.bind(this)
+                    })
+                });
+
+                this.getView().addDependent(this._oShippingDocumentDialog);
+            }
+
+            this._oImage.setSrc(docName);
+            this._oShippingDocumentDialog.open();
+        },
 
         getManifestData:function(response){
             var ManifestSrvModel = oController.getOwnerComponent().getModel("ManifestSrvModel");
