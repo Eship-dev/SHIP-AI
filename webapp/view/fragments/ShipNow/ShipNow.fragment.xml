@@ -604,7 +604,7 @@
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 													<Label text="Insurance Currency" />
-													<Input value="{}" class="create-ship-req_input" />
+													<Input value="{}"  maxLength="3" class="create-ship-req_input" />
 													<Label text="IncoTerm Location" />
 													<Input value="{}" class="create-ship-req_input" />
 
@@ -617,7 +617,7 @@
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 													<Label text="Currency" />
-													<Input value="{}" class="create-ship-req_input" />
+													<Input value="{}"  maxLength="3" class="create-ship-req_input" />
 												</f:content>
 											</f:SimpleForm>
 											<Toolbar class="toolbarbottomborder" height="10%" width="100%">		
@@ -879,7 +879,7 @@
 													<Label text="Ship To Tax No" />
 													<Input value="{eshipjetModel>/InternationalDetails/shipFromTaxNo}" class="create-ship-req_input" />
 													<Label text="Currency" />
-													<Input value="{eshipjetModel>/Currency}" class="create-ship-req_input" ></Input>
+													<Input value="{eshipjetModel>/Currency}"  maxLength="3" class="create-ship-req_input" ></Input>
 
 													<Label text="Documents Content Type"></Label>
 													<ComboBox items="{eshipjetModel>/documentContentType}" class="create-ship-req_input" >

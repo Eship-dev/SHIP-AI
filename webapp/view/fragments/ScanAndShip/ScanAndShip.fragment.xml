@@ -6,10 +6,20 @@
         <Input class="scan-ship-toolbar__input" id="userscanShipInput"  value="{eshipjetModel>/sShipAndScan}" submit="onScanShipSearchPress"   placeholder="Enter SAP DN, Handing Unit or ODO" ></Input>
         <!-- <TextArea width="20rem" rows="2" id="userInput" placeholder="Enter SAP DN, Handing Unit or ODO" ></TextArea> -->
         <Button  class="scan-ship-toolbar__button" text="Ship Now" type="Accept" press="onScanShipSearchPress"  ></Button>
+        <!-- <ToolbarSpacer />
+            <HBox >
+                <Input  width="80px"  placeholder="L" class="text-dark lwdw mx-2 form-control inputField ng-pristine ng-valid ng-touched" ></Input>
+                <Text text="X" class="text-dark lwdw mx-2 form-control inputField ng-pristine ng-valid ng-touched" ></Text>
+                <Input  width="80px" placeholder="W" class="text-dark lwdw mx-2 form-control inputField ng-pristine ng-valid ng-touched" ></Input>
+                <Text text="X" class="text-dark lwdw mx-2 form-control inputField ng-pristine ng-valid ng-touched" ></Text>
+                <Input  width="80px" placeholder="H" class="text-dark lwdw mx-2 form-control inputField ng-pristine ng-valid ng-touched" ></Input>
+            </HBox>
+        <ToolbarSpacer /> -->
         <ToolbarSpacer />
         <Button class="scan-ship-toolbar__button scan-ship-toolbar__button_void" text="Void Now" type="Reject"></Button>
+        
 	</Toolbar>
-
+    
         <ui:Table class="sapUiTinyMargin scan-ship-table" fixedColumnCount="1"  	rowActionCount="0"	id="idScanAndShipTable"
 					selectionMode="None"	paste="onPaste"		ariaLabelledBy="title"   visibleRowCount="18">
 					<ui:extension>

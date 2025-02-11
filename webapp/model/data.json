@@ -1559,6 +1559,11 @@
 				"name": "actions",
 				"label": "Actions",
 				"visible": true
+			},
+            {
+				"name": "ShipmentWorkflow",
+				"label": "Shipment Workflow",
+				"visible": true
 			}
 		],    
 		"ShipReqRows": [
@@ -1579,7 +1584,8 @@
                 "shipToZipPostalCode": "94538",
                 "shipToCountry": "US",
                 "shipToPhone": "9908836717",
-                "shipToEmail": "jenny@imayl.com"
+                "shipToEmail": "jenny@imayl.com",
+                "ShipmentWorkflow": ""
               },
               {
                 "locationName": "eshipJet Software Inc.",
@@ -1598,7 +1604,8 @@
                 "shipToZipPostalCode": "75007",
                 "shipToCountry": "US",
                 "shipToPhone": "(972) 512-2700",
-                "shipToEmail": "info@google.com"
+                "shipToEmail": "info@google.com",
+                "ShipmentWorkflow": ""
               },
               {
                 "locationName": "eshipJet Software Inc.",
@@ -1617,7 +1624,8 @@
                 "shipToZipPostalCode": "110044",
                 "shipToCountry": "IN",
                 "shipToPhone": "+91 915 492 735",
-                "shipToEmail": "info@eshipjet.ai"
+                "shipToEmail": "info@eshipjet.ai",
+                "ShipmentWorkflow": ""
               },
               {
                 "locationName": "eshipJet Software Inc.",
@@ -1636,7 +1644,8 @@
                 "shipToZipPostalCode": "94538",
                 "shipToCountry": "US",
                 "shipToPhone": "9908836717",
-                "shipToEmail": "jenny@imayl.com"
+                "shipToEmail": "jenny@imayl.com",
+                "ShipmentWorkflow": ""
               },
               {
                 "locationName": "eshipJet Software Inc.",
@@ -1655,7 +1664,8 @@
                 "shipToZipPostalCode": "75007",
                 "shipToCountry": "US",
                 "shipToPhone": "(972) 512-2700",
-                "shipToEmail": "info@google.com"
+                "shipToEmail": "info@google.com",
+                "ShipmentWorkflow": ""
               },
               {
                 "locationName": "eshipJet Software Inc.",
@@ -1674,7 +1684,8 @@
                 "shipToZipPostalCode": "110044",
                 "shipToCountry": "IN",
                 "shipToPhone": "+91 915 492 735",
-                "shipToEmail": "info@eshipjet.ai"
+                "shipToEmail": "info@eshipjet.ai",
+                "ShipmentWorkflow": ""
               },
               {
                 "locationName": "eshipJet Software Inc.",
@@ -1693,7 +1704,8 @@
                 "shipToZipPostalCode": "75007",
                 "shipToCountry": "US",
                 "shipToPhone": "(972) 512-2700",
-                "shipToEmail": "info@google.com"
+                "shipToEmail": "info@google.com",
+                "ShipmentWorkflow": ""
               },
               {
                 "locationName": "eshipJet Software Inc.",
@@ -1712,7 +1724,8 @@
                 "shipToZipPostalCode": "110044",
                 "shipToCountry": "IN",
                 "shipToPhone": "+91 915 492 735",
-                "shipToEmail": "info@eshipjet.ai"
+                "shipToEmail": "info@eshipjet.ai",
+                "ShipmentWorkflow": ""
               },
               {
                 "locationName": "eshipJet Software Inc.",
@@ -1731,7 +1744,8 @@
                 "shipToZipPostalCode": "75007",
                 "shipToCountry": "US",
                 "shipToPhone": "(972) 512-2700",
-                "shipToEmail": "info@google.com"
+                "shipToEmail": "info@google.com",
+                "ShipmentWorkflow": ""
               },
               {
                 "locationName": "eshipJet Software Inc.",
@@ -1750,7 +1764,8 @@
                 "shipToZipPostalCode": "110044",
                 "shipToCountry": "IN",
                 "shipToPhone": "+91 915 492 735",
-                "shipToEmail": "info@eshipjet.ai"
+                "shipToEmail": "info@eshipjet.ai",
+                "ShipmentWorkflow": ""
               },
               {
                 "locationName": "eshipJet Software Inc.",
@@ -1769,7 +1784,8 @@
                 "shipToZipPostalCode": "94538",
                 "shipToCountry": "US",
                 "shipToPhone": "9908836717",
-                "shipToEmail": "jenny@imayl.com"
+                "shipToEmail": "jenny@imayl.com",
+                "ShipmentWorkflow": ""
               },
               {
                 "locationName": "eshipJet Software Inc.",
@@ -1788,7 +1804,8 @@
                 "shipToZipPostalCode": "75007",
                 "shipToCountry": "US",
                 "shipToPhone": "(972) 512-2700",
-                "shipToEmail": "info@google.com"
+                "shipToEmail": "info@google.com",
+                "ShipmentWorkflow": ""
               }
         ],
 
@@ -7655,7 +7672,24 @@
                   "status": "Received",
                   "statusState": "Information"
               }
-          ]
+          ],
+          "historyNotes": [
+            {
+                "date": "02/11/2025 08:47:29 AM",
+                "name": "info@eshipjet.ai",
+                "notes": "Shipped successfully"
+            },
+            {
+                "date": "02/11/2025 08:47:24 AM",
+                "name": "info@eshipjet.ai",
+                "notes": "Items are packed successfully"
+            },
+            {
+                "date": "02/11/2025 08:47:13 AM",
+                "name": "info@eshipjet.ai",
+                "notes": "Ship request created successfully"
+            }
+        ]
            
       
 }

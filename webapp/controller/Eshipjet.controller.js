@@ -9188,6 +9188,29 @@ sap.ui.define([
             this.byId("idShipMethodDialog").close();
         },
 
+        onShipmentWorkflowPress: function () {
+            var oView = this.getView();
+            if (!this.byId("idShipmentWorkflowDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.ShipmentWorkflowPlusDialog",
+                    controller: this // Pass the controller for binding
+                }).then(function (oShipmentWorkflowDialog) {
+                    oView.addDependent(oShipmentWorkflowDialog);
+                    oShipmentWorkflowDialog.open();
+                });
+            } else {
+                this.byId("idShipmentWorkflowDialog").open(); // Open existing dialog
+            }
+        },
+        ShipmentWorkflowCancelDialog: function () {
+            this.byId("idShipmentWorkflowDialog").close();
+        },
+        onCloseDialog: function () {
+            this.byId("idShipmentWorkflowDialog").close();
+        },
+
+
         handleAddProductRowPress:function(oEvent){
             var oSelectedObj = oEvent.getSource().getBindingContext().getObject();
             var ShipReqTableDataModel = this.getView().getModel("ShipReqTableDataModel");
@@ -10388,7 +10411,8 @@ sap.ui.define([
     onPressCloseShipNow: function() {
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
         oRouter.navTo("ShipRequestLabel"); // Replace with your actual route name
-    }
+    },
+    
     
     });
 });

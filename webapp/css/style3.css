@@ -1593,10 +1593,110 @@ body.dark-theme {
   box-sizing: border-box;
 }
 
-.actntbn {
+.fixedColumn {
   position: sticky;
   right: 0;
-  background: white;
-  z-index: 1;
-  padding-right: 5px;
+  background-color: #ffffff; /* Ensure background matches */
+  z-index: 10;
+}
+
+
+.fixedColumnRight {
+  position: sticky;
+  right: 0;
+  background-color: white; /* Match table background */
+  z-index: 10;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+}
+
+
+
+.dark-theme[_ngcontent-ng-c3884817082] .inputField[_ngcontent-ng-c3884817082], .dark-theme[_ngcontent-ng-c3884817082] .dropDownCss[_ngcontent-ng-c3884817082], .dark-theme[_ngcontent-ng-c3884817082] .calendarCss[_ngcontent-ng-c3884817082] {
+  background-color: #2c2c2c !important;
+  color: #ffffff !important;
+  border: 1px solid #444 !important;
+}
+.inputField[_ngcontent-ng-c3884817082] {
+  width: 270px;
+  font-size: 20px;
+  font-weight: 800 !important;
+  border-radius: 5px;
+  background-color: #3B3B3C !important;
+  color: white !important;
+  padding: 10px;
+  box-shadow: 0 0 0 1px transparent;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  border-bottom-right-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+  opacity: 0.8 !important;
+}
+.lwdw[_ngcontent-ng-c3884817082] {
+  font-size: 18px;
+  font-weight: 800 !important;
+  border: 1px solid #3C3C3C;
+  color: #FFFFFF !important;
+  font-weight: 800;
+  border-radius: 5px;
+  background-color: #3B3B3C !important;
+  color: white !important;
+  box-shadow: 0 0 0 1px transparent;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  border-bottom-right-radius: 5px !important;
+  border-top-right-radius: 5px !important;
+  opacity: 0.8 !important;
+  width: 3vw !important;
+}
+input[_ngcontent-ng-c3884817082], select[_ngcontent-ng-c3884817082], textarea[_ngcontent-ng-c3884817082] {
+  background: #2C2C2C;
+  color: #FFFFFF;
+  border: 1px solid #303030;
+  padding: 0.8rem;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+.mx-2 {
+  margin-left: 0.5rem !important;
+  margin-right: 0.5rem !important;
+}
+.text-dark {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
+}
+.mx-2 {
+  margin-right: .5rem !important;
+  margin-left: .5rem !important;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: var(--bs-body-bg);
+  background-clip: padding-box;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+button, input, optgroup, select, textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+* {
+  box-sizing: border-box;
 }

@@ -399,7 +399,7 @@
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 													<Label text="Currency" />
-													<Input value="{}" />
+													<Input value="{}"  maxLength="3"/>
 												</f:content>
 											</f:SimpleForm>
 											<Toolbar class="toolbarbottomborder" height="10%" width="100%">		

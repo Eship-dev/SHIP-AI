@@ -96,6 +96,7 @@
 	<Table id="idShipReqsTable"
 		inset="false"
 		sticky="ColumnHeaders,HeaderToolbar"
+		growingMode="Scroll"
 		growing="true"
 		ariaLabelledBy="title" fixedLayout="Strict"
 		autoPopinMode="false" popinLayout="GridSmall"
@@ -221,7 +222,10 @@
 				<Column app:p13nKey="RFID" width="10rem"  hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/23/visible}" headerMenu="menu">
                     <Text text="RFID"/>
                 </Column>
-				<Column app:p13nKey="Actions" class="fixedColumn" width="8rem" hAlign="Left" visible="true" headerMenu="menu" >
+				<Column app:p13nKey="ShipmentWorkflow" width="10rem"  hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/24/visible}" headerMenu="menu">
+                    <Text text="ShipmentWorkflow"/>
+                </Column>
+				<Column app:p13nKey="Actions" class="fixedColumn fixedColumnRight" width="8rem" hAlign="Left" visible="true" headerMenu="menu" >
                     <Text text="Actions"/>
                 </Column>
 		</columns>
@@ -281,15 +285,19 @@
 					<Text text="{eshipjetModel>shipToCountry}" />
 					<Text text="{eshipjetModel>shipToPhone}" />
 					<Text text="{eshipjetModel>shipToEmail}" />
+					<Text text="{eshipjetModel>ShipmentWorkflow}" />
 					<Text text="{}" />
 					<Text text="{}" />
 					<Text text="{}" />
 					<Text text="{}" />
-					<Text text="{}" />
+					<HBox justifyContent="Center" alignItems="Center">
+						<Button icon="sap-icon://document-text" type="Ghost" press="onShipmentWorkflowPress" />
+					</HBox>					
 					<HBox alignContent="End" alignItems="End" >
 						<Button text="View Now" type="Transparent" ></Button>
 						<Button icon="sap-icon://megamenu" type="Transparent" press="ShipReqActDownArrowPress" ></Button>
 					</HBox>
+
 				</cells>
 			</ColumnListItem>
 		</items>
