@@ -104,7 +104,7 @@
 														</layoutData>									
 													</Input>
 													<Label text="Email" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{eshipjetModel>/ShipTo/EMAIL}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/EMAIL}" />
 													<Label text="Company Name" />
 													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/BusinessPartnerName1}" />
 													<Label text="Address Line 2" />
@@ -127,7 +127,7 @@
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" selectedKey="{eshipjetModel>/ShipTo/LocationType}" items="{eshipjetModel>/shipNowAddressType}" placeholder="Address Type">
+													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" selectedKey="{ShipNowDataModel>/ShipToAddress/LocationType}" items="{eshipjetModel>/shipNowAddressType}" placeholder="Address Type">
 														<core:Item key="{eshipjetModel/addressType}" text="{eshipjetModel>addressType}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
@@ -767,7 +767,7 @@
 									<Button text="Add Product" press="handleAddProductPress" class="scan-ship-toolbar1__button" width="145px" type="Ghost" ></Button>																
 								</Toolbar>
 
-										<Table id="Pack2" inset="false" mode="MultiSelect" class="sapUiSmallMarginTop" items="{eshipjetModel>/HandlingUnits}">
+										<Table id="idShipNowHandlingUnitTable" inset="false" mode="MultiSelect" class="sapUiSmallMarginTop" items="{eshipjetModel>/HandlingUnits}">
 											<headerToolbar >
 												<OverflowToolbar class="sapUiSmallMarginBottom scan-ship-toolbar1">
 													<Label text="Scan Handling Unit" class="sapUiTinyMargin"></Label>

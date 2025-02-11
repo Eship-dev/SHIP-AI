@@ -1592,3 +1592,11 @@ body.dark-theme {
 * {
   box-sizing: border-box;
 }
+
+.actntbn {
+  position: sticky;
+  right: 0;
+  background: white;
+  z-index: 1;
+  padding-right: 5px;
+}

@@ -521,6 +521,7 @@
         {"country": "FR"}
     ],
     "shipNowAddressType":[
+        {"addressType": "Residential"},
         {"addressType": "Commercial"}
     ],
     "navigation": [

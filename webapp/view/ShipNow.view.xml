@@ -517,7 +517,7 @@
 										</Table>
 										
 
-										<Table id="Pack2" inset="false" class="sapUiSmallMarginTop" items="{eshipjetModel>/packTable2}">
+										<Table id="idShipNowHandlingUnitTable" inset="false" class="sapUiSmallMarginTop" items="{eshipjetModel>/packTable2}">
 											<headerToolbar >
 												<OverflowToolbar class="sapUiSmallMarginBottom">
 													<Label text="Scan Handling Unit" class="sapUiTinyMargin"></Label>

@@ -466,7 +466,8 @@ sap.ui.define([
                     "Reference2": "",
                     "Reference3": "",
                     "Reference4": "",
-                    "ServiceName": oController.oSelectObj.serviceName,
+                    "ServiceName": oController.oSelectObj.serviceCode,
+                    // "ServiceName": oController.oSelectObj.serviceName,
                     "costCenter": "",
                     "PoNo": "",
                     "InvoiceNo": "",
@@ -673,7 +674,8 @@ sap.ui.define([
 
             //var sPath = "https://eshipjet-demo-srv-hvacbxf0fqapdpgd.francecentral-01.azurewebsites.net/copilot/v1/bot/process";
            // var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/dhl";
-            var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/FedEx";
+            // var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/FedEx";
+            var sPath = "https://carrier-api-v1.eshipjet.site";
             return new Promise((resolve, reject) => {
                 $.ajax({
                     url: sPath,
@@ -9966,7 +9968,45 @@ sap.ui.define([
         this.byId("idLTLClassesImportPopover").close();
     },
     onShipRatePress:function(){
-        oController.onShipRateRequest();         
+        var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
+        var shipToCountry = ShipNowDataModel.getProperty("/ShipToAddress/Country");
+        var shipToAddressLine1 = ShipNowDataModel.getProperty("/ShipToAddress/StreetName");
+        var shipToCity = ShipNowDataModel.getProperty("/ShipToAddress/CityName");
+        var shipToZipCode = ShipNowDataModel.getProperty("/ShipToAddress/PostalCode");
+        var shipToState = ShipNowDataModel.getProperty("/ShipToAddress/CityName");
+        var shipToCompanyName = ShipNowDataModel.getProperty("/ShipToAddress/BusinessPartnerName1");
+        var shipToContactName = ShipNowDataModel.getProperty("/ShipToAddress/FullName");
+        var shipToAddressLine2 = ShipNowDataModel.getProperty("/ShipToAddress/HouseNumber");
+        var shipToEmail = ShipNowDataModel.getProperty("/ShipToAddress/EMAIL");
+        var shipToPhone = ShipNowDataModel.getProperty("/ShipToAddress/PhoneNumber");
+        var ShipNowHandlingUnitTable = oController.getView().byId("idShipNowHandlingUnitTable");
+        var oTableItemsLength = ShipNowHandlingUnitTable.getBinding("items").iLength;
+
+        if(shipToCountry === "" || shipToCountry === undefined){
+            MessageBox.warning("Please Enter Ship To Country");
+        }else if(shipToCountry !== "" && shipToAddressLine1 === ""){
+            MessageBox.warning("Please Enter Address Line 1");
+        }else if(shipToCountry !== "" && shipToAddressLine1 !== "" && shipToCity === ""){
+            MessageBox.warning("Please Enter Ship To City");
+        }else if(shipToCountry !== "" && shipToAddressLine1 !== "" && shipToCity !== "" && shipToZipCode === ""){
+            MessageBox.warning("Please Enter Ship To ZipCode");
+        }else if(shipToCountry !== "" && shipToAddressLine1 !== "" && shipToCity !== "" && shipToZipCode !== "" && shipToState === ""){
+            MessageBox.warning("Please Enter Ship To State");
+        }else if(shipToCountry !== "" && shipToAddressLine1 !== "" && shipToCity !== "" && shipToZipCode !== "" && shipToState !== "" && shipToCompanyName === ""){
+            MessageBox.warning("Please Enter Ship To Company Name");
+        }else if(shipToCountry !== "" && shipToAddressLine1 !== "" && shipToCity !== "" && shipToZipCode !== "" && shipToState !== "" && shipToCompanyName !== "" && shipToContactName === ""){
+            MessageBox.warning("Please Enter Ship To Contact Name");
+        }else if(shipToCountry !== "" && shipToAddressLine1 !== "" && shipToCity !== "" && shipToZipCode !== "" && shipToState !== "" && shipToCompanyName !== "" && shipToContactName !== "" && shipToAddressLine2 === ""){
+            MessageBox.warning("Please Enter Ship To Address Line 2");
+        }else if(shipToCountry !== "" && shipToAddressLine1 !== "" && shipToCity !== "" && shipToZipCode !== "" && shipToState !== "" && shipToCompanyName !== "" && shipToContactName !== "" && shipToAddressLine2 !== "" && shipToEmail === ""){
+            MessageBox.warning("Please Enter Ship To Email");
+        }else if(shipToCountry !== "" && shipToAddressLine1 !== "" && shipToCity !== "" && shipToZipCode !== "" && shipToState !== "" && shipToCompanyName !== "" && shipToContactName !== "" && shipToAddressLine2 !== "" && shipToEmail !== "" && shipToPhone === ""){
+            MessageBox.warning("Please Enter Ship To Phone No");
+        }else if(shipToCountry !== "" && shipToAddressLine1 !== "" && shipToCity !== "" && shipToZipCode !== "" && shipToState !== "" && shipToCompanyName !== "" && shipToContactName !== "" && shipToAddressLine2 !== "" && shipToEmail !== "" && shipToPhone !== "" && oTableItemsLength <= 0){
+            MessageBox.warning("Please create package");
+        }else{
+            oController.onShipRateRequest();
+        }        
     },
     onShipRateRequest:function(){
         var oEshipjetModel  = oController.getOwnerComponent().getModel("eshipjetModel");

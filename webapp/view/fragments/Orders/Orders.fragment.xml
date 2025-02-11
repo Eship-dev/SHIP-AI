@@ -174,8 +174,8 @@
 				<Column app:p13nKey="Actions" width="8rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/20/visible}" headerMenu="menu" >
                     <Text text="{eshipjetModel>/OrderColumns/20/label}"/>
                 </Column>
-				<Column app:p13nKey="Actions" width="8rem" hAlign="Left" visible="true" headerMenu="menu" >
-                    <Text text="{eshipjetModel>/OrderColumns/21/label}"/>
+				<Column app:p13nKey="Actions" class="actntbn" width="8rem" hAlign="Left" visible="true" headerMenu="menu" >
+                    <Text text="{eshipjetModel>/OrderColumns/21/label}" class="actntbn" />
                 </Column>
 		</columns>
 		<items>
@@ -203,7 +203,7 @@
 					<Text text="" />
 					<Text text="" />
 					<Text text="" />
-					<HBox alignContent="End" alignItems="End" >
+					<HBox alignContent="End" alignItems="End" class="actntbn" >
 						<Button text="View Now" type="Transparent" ></Button>
 						<Button icon="sap-icon://megamenu" type="Transparent" press="ShipReqActDownArrowPress" ></Button>
 					</HBox>
