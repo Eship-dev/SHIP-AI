@@ -10651,7 +10651,30 @@ sap.ui.define([
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
         oRouter.navTo("ShipRequestLabel"); // Replace with your actual route name
     },
-    
+    onViewNowPressBackToShipNow: function(){
+        var sKey = "ShipNow";
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+        eshipjetModel.setSizeLimit(9999999);
+        eshipjetModel.setProperty("/sapDeliveryNumber",""); //80000001
+        var oToolPage = this.byId("toolPage");
+        oToolPage.setSideExpanded(false);
+        eshipjetModel.setProperty("/shippingCharges",[]);
+        eshipjetModel.setProperty("/shippingDocuments",[]);
+        eshipjetModel.setProperty("/HandlingUnitItems",[]);
+        eshipjetModel.setProperty("/HandlingUnits",[]);
+        eshipjetModel.setProperty("/shippingDocuments",[]);
+        if (sKey === "ShipNow") {
+            eshipjetModel.setProperty("/allViewsFooter", true);
+            eshipjetModel.setProperty("/shipNowViewFooter", false);
+            eshipjetModel.setProperty("/createShipReqViewFooter", false);
+            eshipjetModel.setProperty("/routingGuidFooter", false);
+            eshipjetModel.setProperty("/showDarkThemeSwitch", false);
+            eshipjetModel.setProperty("/darkTheme", false);
+            document.body.classList.remove("dark-theme");
+        }
+        eshipjetModel.setProperty("/SideNavigation", false);
+        this.byId("pageContainer").to(this.getView().createId(sKey));
+    }
     
     });
 });

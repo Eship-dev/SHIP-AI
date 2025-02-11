@@ -294,7 +294,7 @@
 						<Button icon="sap-icon://document-text" type="Ghost" press="onShipmentWorkflowPress" />
 					</HBox>					
 					<HBox alignContent="End" alignItems="End" >
-						<Button text="View Now" type="Transparent" ></Button>
+						<Button text="View Now" type="Transparent" press="onViewNowPressBackToShipNow"></Button>
 						<Button icon="sap-icon://megamenu" type="Transparent" press="ShipReqActDownArrowPress" ></Button>
 					</HBox>
 
