@@ -11,14 +11,14 @@
 								<Label text="SAP Delivery Number" class="sapUiSmallMarginTop sapUiMediumMarginEnd sapUiSmallMarginBegin"  wrapping="false" labelFor="SAPDelLabel"/>
 								<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch"   value="{eshipjetModel>/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
 
-								<Input  id="idSapDeliveryNumber"  value="{eshipjetModel>/sapDeliveryNumber}" submit="onShipNowGetPress" class="create-ship-req_input sapUiTinyMarginTop sapUiSmallMarginEnd" width="15%" editable="true" enabled="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
-								<Button text="Get" type="Ghost" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" press="onShipNowGetPress" width="5%"></Button>
-								<Button text="Consolidation" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" type="Ghost" press="handleConsolidationPress" width="8%"></Button>
-								<Label text="Pickup Date"  class="sapUiSmallMarginTop sapUiSmallMarginEnd" labelFor="DP1" />
-								<DatePicker class="create-ship-req_input sapUiTinyMarginTop sapUiSmallMarginEnd" id="DP1" width="15%"   valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
-								<Label text="Ship Date" class="sapUiSmallMarginTop sapUiSmallMarginEnd" labelFor="DP2"  width="auto"/>
-								<DatePicker class="create-ship-req_input sapUiTinyMarginTop sapUiSmallMarginEnd" id="DP2" width="15%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/HeaderInfo/ShipDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
-								<Button text="New" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom" type="Ghost" width="4%" ></Button>
+								<Input value="{eshipjetModel>/sapDeliveryNumber}" submit="onShipNowGetPress" class="create-ship-req_input sapUiSmallMargin" width="15%" editable="true" enabled="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
+								<Button text="Get" type="Ghost" class="scan-ship-toolbar1__button sapUiSmallMargin" press="onShipNowGetPress" width="5%"></Button>
+								<Button text="Consolidation" class="scan-ship-toolbar1__button sapUiSmallMargin " type="Ghost" press="handleConsolidationPress" width="8%"></Button>
+								<Label text="Pickup Date"  class="sapUiSmallMarginTop sapUiSmallMargin sapUiMediumMarginTop" labelFor="DP1" />
+								<DatePicker class="create-ship-req_input sapUiSmallMargin" id="DP1" width="15%"   valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
+								<Label text="Ship Date"  class="sapUiSmallMarginTop sapUiSmallMargin sapUiMediumMarginTop" labelFor="DP2"  width="auto"/>
+								<DatePicker class="create-ship-req_input sapUiSmallMargin" id="DP2" width="15%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/HeaderInfo/ShipDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
+								<Button text="New" class="scan-ship-toolbar1__button sapUiSmallMargin " type="Ghost" width="4%" ></Button>
 								<ToolbarSpacer />
 							</Toolbar>
 							<!-- Icon Tab Bar Starts here -->			
@@ -38,14 +38,14 @@
 													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromCONTACT}" class="sapUiSmallMarginBottom create-ship-req_input" />
 													<Label text="Address Line 1" />
 													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE1}"></Input>
-													<Label text="State / Province" />													
-													<Input class="sapUiSmallMarginBottom create-ship-req_input"  value="{ShipNowDataModel>/ShipFromAddress/ShipFromSTATE}">
+													<Label text="City" />													
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromCITY}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
 													<!-- <Label text="State / Province" /> -->
-													<Input class="sapUiSmallMarginBottom create-ship-req_input"  value="{ShipNowDataModel>/ShipFromAddress/ShipFromCITY}"  placeholder="City" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" maxLength="3" value="{ShipNowDataModel>/ShipFromAddress/ShipFromSTATE}" placeholder="State" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
@@ -92,13 +92,13 @@
 													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/FullName}" />
 													<Label text="Address Line 1" />
 													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/StreetName}"></Input>
-													<Label text="State / Province" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/Region}"  >
+													<Label text="City" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/Region}" maxLength="3" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>									
 													</Input>
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/CityName}" placeholder="City" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/CityName}" placeholder="State" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
@@ -634,29 +634,29 @@
 									<!-- Pack Tab Starts here -->
 									<IconTabFilter text="Pack" key="Pack">
 
-										<Toolbar height="8rem" class="scan-ship-toolbar1" >
+										<Toolbar height="4rem" class="scan-ship-toolbar1" >
 											<HBox width="100%"  >
-															<Label text="Scan Product" class="sapUiTinyMargin sapUiSmallMarginTop" />
+															<Label text="Scan Product" class="sapUiTinyMargin" />
 															<Input class=" create-ship-req_input" value="{}"  ></Input>
 
-															<Label text="Quantity" class="sapUiTinyMargin sapUiSmallMarginTop"/>
+															<Label text="Quantity" class="sapUiTinyMargin"/>
 															<!-- <StepInput id="quantityInput1" value="{eshipjetModel>/Packages/Quantity}" class=" create-ship-req_input" min="0" max="100" step="1" width="8%" valueState="None" /> -->
 															<Input class=" create-ship-req_input" value="{eshipjetModel>/Packages/Quantity}"  ></Input>
-															<Label text="Package Type" class="sapUiTinyMargin sapUiSmallMarginTop" />
+															<Label text="Package Type" class="sapUiTinyMargin" />
 															<ComboBox items="{}" class=" create-ship-req_input" >
 																<core:Item key="{}" text="{}" />
 															</ComboBox>
 
-															<Label text="Dimensions" class="sapUiTinyMargin sapUiSmallMarginTop" />
+															<Label text="Dimensions" class="sapUiTinyMargin" />
 															<ComboBox items="{eshipjetModel>/packDimensions}" class=" create-ship-req_input" selectedKey="{eshipjetModel>/Packages/Dimension}">
 																<core:Item key="{eshipjetModel>dimension}" text="{eshipjetModel>dimension}" />
 															</ComboBox>
-															<Button icon="sap-icon://add" press="handleDimensionAddPress" class="sapUiSmallMarginEnd sapUiTinyMarginTop" ></Button>
+															<Button icon="sap-icon://add" press="handleDimensionAddPress" class="sapUiSmallMarginEnd"></Button>
 
-															<Label text="Total Pkgs/Weight"  class="sapUiTinyMargin sapUiSmallMarginTop"/>
+															<Label text="Total Pkgs/Weight"  class="sapUiTinyMargin"/>
 															<!-- <StepInput id="stepDownInput1" class=" create-ship-req_input" value="{eshipjetModel>/Packages/Weight1}" min="0" max="100" step="1"  width="6rem"  valueState="None" /> -->
 															<Input class=" create-ship-req_input" value="{eshipjetModel>/Packages/Weight1}"  ></Input>
-															<Text text=" / " width="10%" class="sapUiSmallMarginTop" ></Text>
+															<Text text="/" width="10%" class="sapUiTinyMarginTop" ></Text>
 															<!-- <StepInput id="stepUpInput1" class=" create-ship-req_input"  value="{eshipjetModel>/Packages/Weight2}" min="0" max="100" step="1" width="6rem" valueState="None" /> -->
 															<Input class=" create-ship-req_input" value="{eshipjetModel>/Packages/Weight2}"  ></Input>
 															<Button text="Auto Pack" class="scan-ship-toolbar1__button sapUiTinyMarginBegin" width="150px" press="handleAutoPackPress" type="Ghost" ></Button>
@@ -1015,7 +1015,7 @@
 										<items>
 											<ColumnListItem vAlign="Middle">
 												<cells>
-													<Text  text="{eshipjetModel>srNo}" />
+													<Text  text="" />
 													<Text  text="{eshipjetModel>docProvider}" />
 													<Text  text="{eshipjetModel>docType}" />
 													<Text  text="{eshipjetModel>contentType}" />

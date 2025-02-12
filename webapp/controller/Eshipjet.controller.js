@@ -720,60 +720,35 @@ sap.ui.define([
 
         },
 
-       
-        showLabelAfterShipmentSuccess: function(response) {
+
+        showLabelAfterShipmentSuccess:function(response){
             var localModel = this.getView().getModel();
             var sPath = response.shippingDocuments[0].docName;
             var encodedLabel = sPath;
             localModel.setProperty("/encodedLabel", encodedLabel);
-        
-            var oDeclineButton = new sap.m.Button({
-                icon: "sap-icon://decline",
-                class: "Decline_Btn",
-                type: "Transparent",
-                press: function () {
-                    this._oDialog.close()
-                }.bind(this)
-            });
-        
-            // **Create a toolbar as a custom header**
-            var oCustomHeader = new sap.m.Toolbar({
-                content: [
-                    new sap.m.Title({ text: "Shipment Label", level: "H2" }),
-                    new sap.m.ToolbarSpacer(), // Pushes the Decline button to the right
-                    oDeclineButton
-                ]
-            });
-
+            var oView = this.getView();
             if (!this._oDialog) {
-                this._oDialog = new sap.m.Dialog({
-                    customHeader: oCustomHeader,
-                    contentWidth: "500px",  // Fixed width
-                    contentHeight: "600px",  // Auto height
-                    verticalScrolling: false,
-                    horizontalScrolling: false,
-                    content: [
-                        new sap.m.VBox({
-                            alignItems: "Center",
-                            justifyContent: "Start",  // Align content to start (top)
-                            items: [
-                                new sap.m.Image({
-                                    src: encodedLabel,
-                                    width: "500px",  // Reduce image width
-                                    height: "600px",  // Maintain aspect ratio
-                                    densityAware: false,
-                                    layoutData: new sap.m.FlexItemData({
-                                        styleClass: "sapUiSmallMarginTop " 
-                                    })
-                                })
-                            ]
-                        })
-                    ]
+                this._oDialog = new Dialog({
+                    title: "Shipment processed successfully",
+                    contentWidth: "30%",
+                    contentHeight: "70%",
+                    content: new sap.m.Image({
+                        class: "sapUiSmallMargin",
+                        src: encodedLabel,
+                        width: "100%",
+                        height: "100%"
+                    }),
+                    endButton: new sap.m.Button({
+                        text: "Close",
+                        press: function () {
+                            this._oDialog.close();
+                        }.bind(this)
+                    })
                 });
             }
             this._oDialog.open();
-        },        
-
+        },
+        
         onShippingDocumentsViewPress:function(oEvent){
             var currentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
             var docName = currentObj.docName;
@@ -786,41 +761,30 @@ sap.ui.define([
             this._dialogContent;
                 if(currentObj.docType === "PDF"){
                     this._dialogContent = new sap.ui.core.HTML({
-                        content: "<iframe src='"+docName+"' width='500px' height='600px'></iframe>"
+                        content: "<iframe src='"+docName+"' width='100%' height='500px'></iframe>"
                     })
+
                 }else{
                     this._dialogContent = new sap.m.Image({
                         class: "sapUiSmallMargin",
                         src: docName,
-                        width: "500px",
-                        height: "600px"
+                        width: "100%",
+                        height: "100%"
                     });
                 }
 
-                var oDeclineButton = new sap.m.Button({
-                    icon: "sap-icon://decline",
-                    class: "Decline_Btn",
-                    type: "Transparent",
-                    press: function () {
-                        this._oShippingDocumentDialog.close();
-                    }.bind(this)
-                });
-            
-                // **Create a toolbar as a custom header**
-                var oCustomHeader = new sap.m.Toolbar({
-                    content: [
-                        new sap.m.Title({ text: this._contentType, level: "H2" }),
-                        new sap.m.ToolbarSpacer(), // Pushes the Decline button to the right
-                        oDeclineButton
-                    ]
-                });
-
             //if (!this._oShippingDocumentDialog) {
                 this._oShippingDocumentDialog = new Dialog({
-                    customHeader: oCustomHeader,
-                    contentWidth: "500px",
-                    contentHeight: "600px",
-                    content: [this._dialogContent]
+                    title: this._contentType,
+                    contentWidth: "30%",
+                    contentHeight: "70%",
+                    content: [this._dialogContent],
+                    endButton: new sap.m.Button({
+                        text: "Close",
+                        press: function () {
+                            this._oShippingDocumentDialog.close();
+                        }.bind(this)
+                    })
                 });
 
                 this.getView().addDependent(this._oShippingDocumentDialog);
