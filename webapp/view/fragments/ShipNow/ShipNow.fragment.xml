@@ -8,7 +8,7 @@
 						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn" />
 				</Toolbar>
 							<Toolbar class="sapUiTinyMarginBottom scan-ship-toolbar1 " height="10%">
-								<Label text="SAP Delivery Number"  wrapping="true" width="12%" labelFor="SAPDelLabel" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMargin sapUiMediumMarginTop" />
+								<Label text="SAP Delivery Number"  wrapping="true" width="8%" labelFor="SAPDelLabel" class="sapUiSmallMarginBegin sapUiSmallMarginTop sapUiSmallMargin sapUiMediumMarginTop" />
 								<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch"   value="{eshipjetModel>/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
 
 								<Input value="{eshipjetModel>/sapDeliveryNumber}" submit="onShipNowGetPress" class="create-ship-req_input sapUiSmallMargin" width="15%" editable="true" enabled="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>

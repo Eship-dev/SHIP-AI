@@ -699,34 +699,53 @@ sap.ui.define([
 
         },
 
-
-        showLabelAfterShipmentSuccess:function(response){
-            var localModel = this.getView().getModel();          
-            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
-            if(response && response.shippingDocuments.length > 0){
-                var encodedLabel = response.shippingDocuments[0].docName
-                eshipjetModel.setProperty("/encodedLabelShipNow", response.shippingDocuments[0].docName);             
-                    
-                        this._oDialog = new Dialog({
-                            title: "Carrier Label",
-                            contentWidth: "30%",
-                            contentHeight: "80%",
-                            content: new sap.m.Image({
-                                class: "sapUiSmallMargin",
-                                src: encodedLabel,
-                                width: "80%",
-                                height: "50%"
-                            }),
-                            endButton: new sap.m.Button({
-                                text: "Close",
-                                press: function () {
-                                    this._oDialog.close();
-                                }.bind(this)
-                            })
-                        });                    
-                    this._oDialog.open();
+       
+        showLabelAfterShipmentSuccess: function(response) {
+            var localModel = this.getView().getModel();
+            var sPath = response.shippingDocuments[0].docName;
+            var encodedLabel = sPath;
+            localModel.setProperty("/encodedLabel", encodedLabel);
+        
+            var oView = this.getView();
+            if (!this._oDialog) {
+                this._oDialog = new sap.m.Dialog({
+                    title: "Shipment Label",
+                    contentWidth: "400px",  // Fixed width
+                    contentHeight: "auto",  // Auto height
+                    verticalScrolling: false,
+                    horizontalScrolling: false,
+                    content: [
+                        new sap.m.VBox({
+                            alignItems: "Center",
+                            justifyContent: "Start",  // Align content to start (top)
+                            items: [
+                                new sap.m.Image({
+                                    src: encodedLabel,
+                                    width: "300px",  // Reduce image width
+                                    height: "auto",  // Maintain aspect ratio
+                                    densityAware: false,
+                                    layoutData: new sap.m.FlexItemData({
+                                        styleClass: "sapUiSmallMarginTop " 
+                                    })
+                                })
+                            ]
+                        })
+                    ],
+                    endButton: new sap.m.Button({
+                        text: "Close",
+                        press: function () {
+                            this._oDialog.close();
+                        }.bind(this)
+                    })
+                });
             }
-        },
+            this._oDialog.open();
+        }
+        
+        ,
+        
+        
+        
 
         onShippingDocumentsViewPress:function(oEvent){
             var currentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
