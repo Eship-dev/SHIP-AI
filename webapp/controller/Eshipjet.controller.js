@@ -646,7 +646,36 @@ sap.ui.define([
                         console.log("Success:", response);
                         if(response && response.status === "Success"){
                             eshipjetModel.setProperty("/ShipNowPostResponse", response);
-                           
+                            if(response.Packages.length > 0){
+                                var trackingArray = [];
+                                for(var i=0; i<response.Packages.length; i++){
+                                    var trackingObj = {
+                                        "COMPANY": response.Shipper.COMPANY,
+                                        "ConsolidationId": response.HeaderInfo.ConsolidationId,
+                                        "DocumentNumber": response.HeaderInfo.DocumentNumber,
+                                        "CreatedDate": response.HeaderInfo.CreatedDate,
+                                        "ShipDate": response.HeaderInfo.ShipDate,
+                                        "ShipmentType": response.HeaderInfo.ShipmentType,
+                                        "Carrier": response.CarrierDetails.Carrier,
+                                        "ERPCarrierID": response.CarrierDetails.ERPCarrierID,
+                                        "TrackingNumber": response.Packages[i].TrackingNumber,
+                                        "TrackingStatus": response.TrackingStatus,
+                                        "SHIP_TO_CONTACT": response.ShipTo.CONTACT,
+                                        "SHIP_TO_COMPANY": response.ShipTo.COMPANY,
+                                        "SHIP_TO_ADDRESS_LINE1": response.ShipTo.ADDRESS_LINE1,
+                                        "SHIP_TO_STATE": response.ShipTo.STATE,
+                                        "SHIP_TO_CITY": response.ShipTo.CITY,
+                                        "SHIP_TO_ZIPCODE": response.ShipTo.ZIPCODE,
+                                        "SHIP_TO_COUNTRY": response.ShipTo.COUNTRY,
+                                        "SHIP_TO_EMAIL": response.ShipTo.UpdatedUser,
+                                        "RequesterName": response.ShipFrom.EMAIL,
+                                        "ConnectedTo": "SAP ECC 6.0",
+                                        "orderType": "Delivery Number"
+                                    };
+                                    trackingArray.push(trackingObj);
+                                    eshipjetModel.setProperty("/trackingArray", trackingArray);
+                                }
+                            }
                             if(response && response.shippingCharges && response.shippingCharges.length > 0 ){
                                 eshipjetModel.setProperty("/shippingCharges", response.shippingCharges);
                             }
@@ -712,12 +741,29 @@ sap.ui.define([
             var encodedLabel = sPath;
             localModel.setProperty("/encodedLabel", encodedLabel);
         
-            var oView = this.getView();
+            var oDeclineButton = new sap.m.Button({
+                icon: "sap-icon://decline",
+                class: "Decline_Btn",
+                type: "Transparent",
+                press: function () {
+                    this._oDialog.close()
+                }.bind(this)
+            });
+        
+            // **Create a toolbar as a custom header**
+            var oCustomHeader = new sap.m.Toolbar({
+                content: [
+                    new sap.m.Title({ text: "Shipment Label", level: "H2" }),
+                    new sap.m.ToolbarSpacer(), // Pushes the Decline button to the right
+                    oDeclineButton
+                ]
+            });
+
             if (!this._oDialog) {
                 this._oDialog = new sap.m.Dialog({
-                    title: "Shipment Label",
-                    contentWidth: "400px",  // Fixed width
-                    contentHeight: "auto",  // Auto height
+                    customHeader: oCustomHeader,
+                    contentWidth: "500px",  // Fixed width
+                    contentHeight: "600px",  // Auto height
                     verticalScrolling: false,
                     horizontalScrolling: false,
                     content: [
@@ -727,8 +773,8 @@ sap.ui.define([
                             items: [
                                 new sap.m.Image({
                                     src: encodedLabel,
-                                    width: "300px",  // Reduce image width
-                                    height: "auto",  // Maintain aspect ratio
+                                    width: "500px",  // Reduce image width
+                                    height: "600px",  // Maintain aspect ratio
                                     densityAware: false,
                                     layoutData: new sap.m.FlexItemData({
                                         styleClass: "sapUiSmallMarginTop " 
@@ -736,21 +782,11 @@ sap.ui.define([
                                 })
                             ]
                         })
-                    ],
-                    endButton: new sap.m.Button({
-                        text: "Close",
-                        press: function () {
-                            this._oDialog.close();
-                        }.bind(this)
-                    })
+                    ]
                 });
             }
             this._oDialog.open();
-        }
-        
-        ,
-        
-        
+        },
         
 
         onShippingDocumentsViewPress:function(oEvent){
@@ -765,30 +801,41 @@ sap.ui.define([
             this._dialogContent;
                 if(currentObj.docType === "PDF"){
                     this._dialogContent = new sap.ui.core.HTML({
-                        content: "<iframe src='"+docName+"' width='100%' height='500px'></iframe>"
+                        content: "<iframe src='"+docName+"' width='500px' height='600px'></iframe>"
                     })
-
                 }else{
                     this._dialogContent = new sap.m.Image({
                         class: "sapUiSmallMargin",
                         src: docName,
-                        width: "100%",
-                        height: "100%"
+                        width: "500px",
+                        height: "600px"
                     });
                 }
 
+                var oDeclineButton = new sap.m.Button({
+                    icon: "sap-icon://decline",
+                    class: "Decline_Btn",
+                    type: "Transparent",
+                    press: function () {
+                        this._oShippingDocumentDialog.close();
+                    }.bind(this)
+                });
+            
+                // **Create a toolbar as a custom header**
+                var oCustomHeader = new sap.m.Toolbar({
+                    content: [
+                        new sap.m.Title({ text: this._contentType, level: "H2" }),
+                        new sap.m.ToolbarSpacer(), // Pushes the Decline button to the right
+                        oDeclineButton
+                    ]
+                });
+
             //if (!this._oShippingDocumentDialog) {
                 this._oShippingDocumentDialog = new Dialog({
-                    title: this._contentType,
-                    contentWidth: "30%",
-                    contentHeight: "70%",
-                    content: [this._dialogContent],
-                    endButton: new sap.m.Button({
-                        text: "Close",
-                        press: function () {
-                            this._oShippingDocumentDialog.close();
-                        }.bind(this)
-                    })
+                    customHeader: oCustomHeader,
+                    contentWidth: "500px",
+                    contentHeight: "600px",
+                    content: [this._dialogContent]
                 });
 
                 this.getView().addDependent(this._oShippingDocumentDialog);
@@ -3584,6 +3631,7 @@ sap.ui.define([
         },
 
         onOpenRecentShipmentPopover: function (oEvent) {
+            oController.getHistoryShipments();
             var oButton = oEvent.getSource(),
                 oView = this.getView();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
@@ -3609,6 +3657,33 @@ sap.ui.define([
         onRecentShipmentClosePress: function () {
             this._recentShipPopover.then(function (oPopover) {
                 oPopover.close();
+            });
+        },
+
+        getHistoryShipments:function(){
+            oController.oBusyDialog.open();
+            var obj = {
+                "user_id":"info@eshipjet.ai",
+                "filters":{
+                    "status":"Shipped",
+                    "locationid":"1001"
+                }
+            };
+            var sPath = "https://dev-api-v1.eshipjet.site/shipments/gethistoryshipments";
+            $.ajax({
+                url: sPath,
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(obj),
+                success: function (response) {
+                    console.log("Success:", response);                      
+                    oController.oBusyDialog.close();
+                },
+                error: function (error) {
+                    console.log("Error:", error);
+                    MessageBox.warning(error.responseText);
+                    oController.oBusyDialog.close();
+                }
             });
         },
 
@@ -10401,43 +10476,8 @@ sap.ui.define([
     onRecentShipmentsItemPress:function(oEvent){
         var oCurrentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
         var DocumentNumber = oCurrentObj.HeaderInfo.DocumentNumber;
-        // var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-        // eshipjetModel.setProperty("/sapDeliveryNumber", DocumentNumber);
-
         var oInput = this.getView().byId("idSapDeliveryNumber");
         oInput.fireSubmit({ value: oInput.setValue(DocumentNumber) });
-
-
-        // var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-        // var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
-        // eshipjetModel.setProperty("/sapDeliveryNumber", oCurrentObj.HeaderInfo.DocumentNumber);
-        // eshipjetModel.setProperty("/pickupDate", oCurrentObj.HeaderInfo.CreatedDate);
-        // eshipjetModel.setProperty("/HeaderInfo/ShipDate", oCurrentObj.HeaderInfo.ShipDate);
-
-        // ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromCONTACT", oCurrentObj.ShipFrom.CONTACT);
-        // ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromADDRESS_LINE1", oCurrentObj.ShipFrom.ADDRESS_LINE1);
-        // ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromCITY", oCurrentObj.ShipFrom.CITY);
-        // ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromSTATE", oCurrentObj.ShipFrom.STATE);
-        // ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromEMAIL", oCurrentObj.ShipFrom.EMAIL);
-        // ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromCOMPANY", oCurrentObj.ShipFrom.CONTACT);
-        // ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromADDRESS_LINE2", oCurrentObj.ShipFrom.ADDRESS_LINE2);
-        // ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromZIPCODE", oCurrentObj.ShipFrom.ZIPCODE);
-        // ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromCOUNTRY", oCurrentObj.ShipFrom.COUNTRY);
-        // ShipNowDataModel.setProperty("/ShipFromAddress/ShipFromPHONE", oCurrentObj.ShipFrom.PHONE);
-
-        // ShipNowDataModel.setProperty("/ShipToAddress/FullName", oCurrentObj.ShipFrom.CONTACT);
-        // ShipNowDataModel.setProperty("/ShipToAddress/StreetName", oCurrentObj.ShipFrom.ADDRESS_LINE1);
-        // ShipNowDataModel.setProperty("/ShipToAddress/CityName", oCurrentObj.ShipFrom.CITY);
-        // ShipNowDataModel.setProperty("/ShipToAddress/Region", oCurrentObj.ShipFrom.STATE);
-        // ShipNowDataModel.setProperty("/ShipTo/EMAIL", oCurrentObj.ShipFrom.EMAIL);
-        // ShipNowDataModel.setProperty("/ShipToAddress/BusinessPartnerName1", oCurrentObj.ShipFrom.CONTACT);
-        // ShipNowDataModel.setProperty("/ShipToAddress/HouseNumber", oCurrentObj.ShipFrom.ADDRESS_LINE2);
-        // ShipNowDataModel.setProperty("/ShipToAddress/PostalCode", oCurrentObj.ShipFrom.ZIPCODE);
-        // ShipNowDataModel.setProperty("/ShipToAddress/Country", oCurrentObj.ShipFrom.COUNTRY);
-        // ShipNowDataModel.setProperty("/ShipToAddress/PhoneNumber", oCurrentObj.ShipFrom.PHONE);
-
-        // eshipjetModel.setProperty("/ShipNowShipMethodSelectedKey", oCurrentObj.Carrier);
-
         oController.onRecentShipmentClosePress();
     },
 

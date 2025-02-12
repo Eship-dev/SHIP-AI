@@ -1031,7 +1031,107 @@
 
 									<!-- Track Tab Starts here -->
 									<IconTabFilter text="Track" key="Track" >
-										<Text text="Track content goes here ..." />
+										<Table items="{eshipjetModel>/trackingArray}">
+											<columns>
+												<Column >
+													<Text text="Location Name" />
+												</Column>
+												<Column visible="false" >
+													<Text text="Consolidation Id" />
+												</Column>
+												<Column visible="false" >
+													<Text text="Request Id/ Label Id" />
+												</Column>
+												<Column >
+													<Text text="Created Date" />
+												</Column>
+												<Column >
+													<Text text="Ship Date" />
+												</Column>
+												<Column visible="false" >
+													<Text text="Shipment Type" />
+												</Column>
+												<Column >
+													<Text text="Ship Method" />
+												</Column>
+												<Column >
+													<Text text="Service Name" />
+												</Column>
+												<Column >
+													<Text text="Tracking Number" />
+												</Column>
+												<Column >
+													<Text text="Status" />
+												</Column>
+												<Column >
+													<Text text="Ship To Contact" />
+												</Column>
+												<Column >
+													<Text text="Ship To Company" />
+												</Column>
+												<Column  visible="false" >
+													<Text text="Ship To Address Line 1" />
+												</Column>
+												<Column visible="false"  >
+													<Text text="Ship To State / Province" />
+												</Column>
+												<Column visible="false"  >
+													<Text text="Ship To City" />
+												</Column>
+												<Column  visible="false" >
+													<Text text="Ship To Zip / Postal Code" />
+												</Column>
+												<Column visible="false"  >
+													<Text text="Ship To Country" />
+												</Column>
+												<Column visible="false"  >
+													<Text text="Ship To Phone No" />
+												</Column>
+												<Column visible="false"  >
+													<Text text="Ship To Email" />
+												</Column>
+												<Column visible="false"  >
+													<Text text="Requester Name" />
+												</Column>
+												<Column visible="false"  >
+													<Text text="Connected To" />
+												</Column>
+												<Column visible="false"  >
+													<Text text="Order Type" />
+												</Column>
+												<Column visible="false"  >
+													<Text text="Rfid" />
+												</Column>
+											</columns>
+											<items>
+												<ColumnListItem vAlign="Middle">
+													<cells>
+														<Text  text="{eshipjetModel>COMPANY}" />
+														<Text  text="{eshipjetModel>ConsolidationId}" />
+														<Text  text="{eshipjetModel>DocumentNumber}" />
+														<Text  text="{eshipjetModel>CreatedDate}" />
+														<Text  text="{eshipjetModel>ShipDate}" />
+														<Text  text="{eshipjetModel>ShipmentType}" />
+														<Text  text="{eshipjetModel>Carrier}" />
+														<Text  text="{eshipjetModel>ERPCarrierID}" />
+														<Link  text="{eshipjetModel>TrackingNumber}" press="onTrackingNumberPress" />
+														<Text  text="{eshipjetModel>TrackingStatus}" />
+														<Text  text="{eshipjetModel>SHIP_TO_CONTACT}" />
+														<Text  text="{eshipjetModel>SHIP_TO_COMPANY}" />
+														<Text  text="{eshipjetModel>SHIP_TO_ADDRESS_LINE1}" />
+														<Text  text="{eshipjetModel>SHIP_TO_STATE}" />
+														<Text  text="{eshipjetModel>SHIP_TO_CITY}" />
+														<Text  text="{eshipjetModel>SHIP_TO_ZIPCODE}" />
+														<Text  text="{eshipjetModel>SHIP_TO_COUNTRY}" />
+														<Text  text="{eshipjetModel>SHIP_TO_EMAIL}" />
+														<Text  text="{eshipjetModel>RequesterName}" />
+														<Text  text="{eshipjetModel>ConnectedTo}" />
+														<Text  text="{eshipjetModel>orderType}" />
+													</cells>
+												</ColumnListItem>
+											</items>
+										</Table>
+
 									</IconTabFilter>
 
 									<IconTabFilter text="DG" key="DG" >
