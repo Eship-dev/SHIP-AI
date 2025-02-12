@@ -86,6 +86,10 @@ sap.ui.define([
             eshipjetModel.setProperty("/ShipNowShipMethodSelectedKey","");
             eshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey","");
             eshipjetModel.setProperty("/accountNumber","");
+            eshipjetModel.setProperty("/trackingArray", []);
+            eshipjetModel.setProperty("/pickAddProductTable",[]);
+            eshipjetModel.setProperty("/HandlingUnits",[]);
+            eshipjetModel.setProperty("/HandlingUnitItems",[]);
             if (sKey === "ShipperCopilot") {
                 var obj = {
                     "messages": [],
@@ -9282,8 +9286,17 @@ sap.ui.define([
             this.byId("idAddProductDialog").close();
         },
 
-        onTrackingNumberPress: function () {
+        onTrackingNumberPress: function (oEvent) {
             var oView = this.getView();
+            var oCurrentObject = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
+            var oEshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var aTrackDetails = [];
+            oCurrentObject["StandardTransit"]= "01/31/25 before 2:39 PM";
+            oCurrentObject["Delivered"] = "01/31/25 at 2:39 PM";
+            oCurrentObject["SignedBy"] = "Stephen";
+            oCurrentObject["ServiceName"] = oEshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey");
+            aTrackDetails.push(oCurrentObject);
+            oEshipjetModel.setProperty("/TrackingNumberTableRows",aTrackDetails);
             if (!this.byId("idTrackingNumberDialog")) {
                 Fragment.load({
                     id: oView.getId(),

@@ -12,7 +12,7 @@
         <!-- Existing Delivery Table -->
         <Toolbar class="customSimpleFormShadow" height="24%" >
         
-        <Table id="idDeliveryTable" inset="false" alternateRowColors="true" items="{/TrackingNumberTableRows}">
+        <Table id="idDeliveryTable" inset="false" alternateRowColors="true" items="{eshipjetModel>/TrackingNumberTableRows}">
           <headerToolbar>
             <OverflowToolbar>
               <Text text="Delivery Details" class="GreenandCenter"/>
@@ -44,13 +44,13 @@
           <items>
             <ColumnListItem vAlign="Middle">
               <cells>
-                <Text text="{ShipMethod}" />
-                <Text text="{ServiceName}" />
-                <Text text="{DeliveredTo}" />
-                <Text text="{ShipDate}" />
-                <Text text="{StandardTransit}" />
-                <Text text="{Delivered}" />
-                <Text text="{SignedBy}" />
+                <Text text="{eshipjetModel>ERPCarrierID}" />
+                <Text text="{eshipjetModel>Carrier}" />
+                <Text text="{eshipjetModel>COMPANY}" />
+                <Text text="{eshipjetModel>ShipDate}" />
+                <Text text="{eshipjetModel>StandardTransit}" />
+                <Text text="{eshipjetModel>Delivered}" />
+                <Text text="{eshipjetModel>SignedBy}" />
               </cells>
             </ColumnListItem>
           </items>
