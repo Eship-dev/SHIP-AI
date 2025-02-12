@@ -427,7 +427,13 @@ sap.ui.define([
             }else if(carrier === "FedEx"){
                 var id = "l70c717f3eaf284dc9af42169e93874b6e";
                 var password = "7f271bf486084e8f8073945bb7e6a020";
-            }          
+            }else if(carrier === "DHL"){
+                var id = "apT2vB7mV1qR1b";
+                var password = "U#3mO^1vY!5mT@0j";
+            }else if(carrier === "USPS"){
+                var id = "3087617";
+                var password = "October2024!";
+            }
             var obj = {
                 "ShipTo": {
                     "id": 2,
