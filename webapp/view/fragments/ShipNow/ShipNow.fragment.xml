@@ -1106,27 +1106,27 @@
 											<items>
 												<ColumnListItem vAlign="Middle">
 													<cells>
-														<Text  text="{eshipjetModel>COMPANY}" />
-														<Text  text="{eshipjetModel>ConsolidationId}" />
-														<Text  text="{eshipjetModel>DocumentNumber}" />
-														<Text  text="{eshipjetModel>CreatedDate}" />
-														<Text  text="{eshipjetModel>ShipDate}" />
-														<Text  text="{eshipjetModel>ShipmentType}" />
-														<Text  text="{eshipjetModel>Carrier}" />
-														<Text  text="{eshipjetModel>ERPCarrierID}" />
-														<Link  text="{eshipjetModel>TrackingNumber}" press="onTrackingNumberPress" />
-														<Text  text="{eshipjetModel>TrackingStatus}" />
-														<Text  text="{eshipjetModel>SHIP_TO_CONTACT}" />
-														<Text  text="{eshipjetModel>SHIP_TO_COMPANY}" />
-														<Text  text="{eshipjetModel>SHIP_TO_ADDRESS_LINE1}" />
-														<Text  text="{eshipjetModel>SHIP_TO_STATE}" />
-														<Text  text="{eshipjetModel>SHIP_TO_CITY}" />
-														<Text  text="{eshipjetModel>SHIP_TO_ZIPCODE}" />
-														<Text  text="{eshipjetModel>SHIP_TO_COUNTRY}" />
-														<Text  text="{eshipjetModel>SHIP_TO_EMAIL}" />
-														<Text  text="{eshipjetModel>RequesterName}" />
-														<Text  text="{eshipjetModel>ConnectedTo}" />
-														<Text  text="{eshipjetModel>orderType}" />
+														<Text text="{eshipjetModel>COMPANY}" />
+														<Text text="{eshipjetModel>ConsolidationId}" />
+														<Text text="{eshipjetModel>DocumentNumber}" />
+														<Text text="{path: 'eshipjetModel>CreatedDate', formatter: '.formatter.formatDate'}" />
+														<Text text="{path: 'eshipjetModel>ShipDate', formatter: '.formatter.formatDate'}" />
+														<Text text="{eshipjetModel>ShipmentType}" />
+														<Text text="{eshipjetModel>Carrier}" />
+														<Text text="{eshipjetModel>ERPCarrierID}" />
+														<Link text="{eshipjetModel>TrackingNumber}" press="onTrackingNumberPress" />
+														<Text text="{eshipjetModel>TrackingStatus}" />
+														<Text text="{eshipjetModel>SHIP_TO_CONTACT}" />
+														<Text text="{eshipjetModel>SHIP_TO_COMPANY}" />
+														<Text text="{eshipjetModel>SHIP_TO_ADDRESS_LINE1}" />
+														<Text text="{eshipjetModel>SHIP_TO_STATE}" />
+														<Text text="{eshipjetModel>SHIP_TO_CITY}" />
+														<Text text="{eshipjetModel>SHIP_TO_ZIPCODE}" />
+														<Text text="{eshipjetModel>SHIP_TO_COUNTRY}" />
+														<Text text="{eshipjetModel>SHIP_TO_EMAIL}" />
+														<Text text="{eshipjetModel>RequesterName}" />
+														<Text text="{eshipjetModel>ConnectedTo}" />
+														<Text text="{eshipjetModel>orderType}" />
 													</cells>
 												</ColumnListItem>
 											</items>

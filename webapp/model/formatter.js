@@ -13,7 +13,7 @@ sap.ui.define([
 		formatDate: function (sDate) {
             if (!sDate) return "";  // Handle null/empty date values
 
-            var oDateFormat = DateFormat.getInstance({ pattern: "dd MMM yyyy" });
+            var oDateFormat = DateFormat.getInstance({ pattern: "MM/dd/yyyy" });
             return oDateFormat.format(new Date(sDate));
         },
 

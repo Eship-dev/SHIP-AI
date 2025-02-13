@@ -47,7 +47,7 @@
                 <Text text="{eshipjetModel>ERPCarrierID}" />
                 <Text text="{eshipjetModel>Carrier}" />
                 <Text text="{eshipjetModel>COMPANY}" />
-                <Text text="{eshipjetModel>ShipDate}" />
+                <Text text="{path: 'eshipjetModel>ShipDate', formatter: '.formatter.formatDate'}" />
                 <Text text="{eshipjetModel>StandardTransit}" />
                 <Text text="{eshipjetModel>Delivered}" />
                 <Text text="{eshipjetModel>SignedBy}" />
