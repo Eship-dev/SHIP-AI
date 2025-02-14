@@ -7710,7 +7710,37 @@
               "Time": "04:33 AM",
               "Status": "Ready for recipient pickup",
               "Location": "GREENWOOD"
-            }
+            },
+            {
+                "Date": "05/15/2023",
+                "Time": "01:59 AM",
+                "Status": "Shipment information sent to UPS",
+                "Location": ""
+              },
+              {
+                "Date": "05/16/2023",
+                "Time": "01:17 AM",
+                "Status": "Departed UPS location",
+                "Location": "TROUTDALE"
+              },
+              {
+                "Date": "05/17/2023",
+                "Time": "01:18 AM",
+                "Status": "In transit",
+                "Location": "LARAMIE"
+              },
+              {
+                "Date": "05/18/2023",
+                "Time": "01:20 AM",
+                "Status": "Arrived at UPS location",
+                "Location": "GREENWOOD"
+              },
+              {
+                "Date": "05/19/2023",
+                "Time": "04:33 AM",
+                "Status": "Ready for recipient pickup",
+                "Location": "GREENWOOD"
+              }
           ],
 
           "submitted": 2,

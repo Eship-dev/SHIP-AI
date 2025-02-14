@@ -1,5 +1,14 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f" xmlns:fb="sap.ui.comp.filterbar" xmlns:svm="sap.ui.comp.smartvariants" xmlns:ui="sap.ui.table" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core">
-  <Dialog id="idTrackingNumberDialog" showHeader="false" class="myCustomDialog">
+<core:FragmentDefinition xmlns="sap.m" 
+  xmlns:l="sap.ui.layout" 
+  xmlns:f="sap.ui.layout.form" 
+  xmlns:core="sap.ui.core" 
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:fb="sap.ui.comp.filterbar" 
+  xmlns:svm="sap.ui.comp.smartvariants" 
+  xmlns:ui="sap.ui.table" 
+  xmlns:u="sap.ui.unified" 
+  xmlns:c="sap.ui.core">
+  <Dialog id="idTrackingNumberDialog" showHeader="false" class="myCustomDialog" contentWidth="45%" contentHeight="80%" >
     <customHeader>
       <Toolbar>
         <Title text="ShipperCopilot Tracking ID - 794817852547"></Title>
@@ -10,60 +19,62 @@
     <content>
       <mvc:View controllerName="sap.m.sample.TableAlternateRowColors.Table" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
         <!-- Existing Delivery Table -->
-        <Toolbar class="customSimpleFormShadow" height="24%" >
-        
-        <Table id="idDeliveryTable" inset="false" alternateRowColors="true" items="{eshipjetModel>/TrackingNumberTableRows}">
-          <headerToolbar>
-            <OverflowToolbar>
-              <Text text="Delivery Details" class="GreenandCenter"/>
-            </OverflowToolbar>
-          </headerToolbar>
-          <columns>
-            <Column>
-              <Text text="Ship Method" />
-            </Column>
-            <Column>
-              <Text text="Service Name" />
-            </Column>
-            <Column>
-              <Text text="Delivered To" />
-            </Column>
-            <Column>
-              <Text text="Ship Date" />
-            </Column>
-            <Column>
-              <Text text="Standard Transit" />
-            </Column>
-            <Column>
-              <Text text="Delivered" />
-            </Column>
-            <Column>
-              <Text text="Signed By" />
-            </Column>
-          </columns>
-          <items>
-            <ColumnListItem vAlign="Middle">
-              <cells>
-                <Text text="{eshipjetModel>ERPCarrierID}" />
-                <Text text="{eshipjetModel>Carrier}" />
-                <Text text="{eshipjetModel>COMPANY}" />
-                <Text text="{path: 'eshipjetModel>ShipDate', formatter: '.formatter.formatDate'}" />
-                <Text text="{eshipjetModel>StandardTransit}" />
-                <Text text="{eshipjetModel>Delivered}" />
-                <Text text="{eshipjetModel>SignedBy}" />
-              </cells>
-            </ColumnListItem>
-          </items>
-        </Table>
-        <!-- <Toolbar >
-    <HBox>
-          <Link text="Obtain proof of delivery" href="{ProofOfDeliveryLink}" target="_blank" wrapping="true" />
-    </HBox>
-</Toolbar> -->
-    </Toolbar>
+    
+    <VBox class="customSimpleFormShadow" >
+        <VBox justifyContent="Center" alignItems="Center" class="sapUiTinyMarginTop" >
+          <Image src="https://dev.eshipjet.site/assets/images/statusProgress.png" width="100%" height="100%" ></Image>
+          <Text text="Delivered" class="GreenandCenter sapUiTinyMarginTop"/>
+        </VBox>
+
+    <VBox justifyContent="Center" > 
+      <f:SimpleForm id="SimpleFormDisplay354"
+        editable="false"
+        layout="ResponsiveGridLayout"
+        labelSpanXL="3"
+        labelSpanL="3"
+        labelSpanM="6"
+        labelSpanS="6"
+        adjustLabelSpan="false"
+        emptySpanXL="4"
+        emptySpanL="4"
+        emptySpanM="0"
+        emptySpanS="0"
+        columnsXL="1"
+        columnsL="1"
+        columnsM="1"
+        singleContainerFullSize="false" >
+        <f:content>
+          <Label text="Ship Method" />
+          <Text text="{eshipjetModel>/TrackingNumberTableRows/0/ERPCarrierID}" />
+          <Label text="Service Name" />
+          <Text text="{eshipjetModel>/TrackingNumberTableRows/0/Carrier}" />
+          <Label text="Delivered To" />
+          <Text text="{eshipjetModel>/TrackingNumberTableRows/0/COMPANY}" />
+          <Label text="Ship Date" />
+          <Text text="{path: 'eshipjetModel>/TrackingNumberTableRows/0/ShipDate', formatter: '.formatter.formatDate'}" />
+          <Label text="Standard Transit" />
+          <Text text="{eshipjetModel>/TrackingNumberTableRows/0/StandardTransit}" />
+          <Label text="Delivered" />
+          <Text text="{eshipjetModel>/TrackingNumberTableRows/0/Delivered}" />
+          <Label text="Signed By" />
+          <Text text="{eshipjetModel>/TrackingNumberTableRows/0/SignedBy}" />
+        </f:content>
+      </f:SimpleForm>
+    </VBox>
+    </VBox>
         <!-- New Shipment Travel History Table -->
-        <Toolbar class="customSimpleFormShadow" height="40%" >
-        <Table id="idShipmentHistoryTable" inset="false" alternateRowColors="true" items="{/ShipmentTravelHistoryRows}" >
+        <!-- <Toolbar class="customSimpleFormShadow" height="40%" > -->
+  <ScrollContainer
+    class="customSimpleFormShadow"
+		height="270px"
+		width="auto"
+		vertical="true"
+		focusable="true">
+        <Table id="idShipmentHistoryTable" 
+          inset="false"
+          sticky="ColumnHeaders,HeaderToolbar"
+          alternateRowColors="true" 
+          items="{/ShipmentTravelHistoryRows}" >
           <headerToolbar>
             <OverflowToolbar>
               <Text text="Shipment Travel History" class="ShipmentTravelHistory"/>
@@ -94,7 +105,8 @@
             </ColumnListItem>
           </items>
         </Table>
-        </Toolbar>
+        </ScrollContainer>
+        <!-- </Toolbar> -->
         
       </mvc:View>
     </content>
