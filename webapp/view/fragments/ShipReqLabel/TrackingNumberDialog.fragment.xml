@@ -26,38 +26,28 @@
           <Text text="Delivered" class="GreenandCenter sapUiTinyMarginTop"/>
         </VBox>
 
-    <VBox justifyContent="Center" > 
+    <VBox  > 
       <f:SimpleForm id="SimpleFormDisplay354"
-        editable="false"
-        layout="ResponsiveGridLayout"
-        labelSpanXL="3"
-        labelSpanL="3"
-        labelSpanM="6"
-        labelSpanS="6"
-        adjustLabelSpan="false"
-        emptySpanXL="4"
-        emptySpanL="4"
-        emptySpanM="0"
-        emptySpanS="0"
-        columnsXL="1"
-        columnsL="1"
-        columnsM="1"
-        singleContainerFullSize="false" >
+       	editable="true"
+			layout="ResponsiveGridLayout"
+			columnsM="2"
+			columnsL="3"
+			columnsXL="4" >
         <f:content>
           <Label text="Ship Method" />
-          <Text text="{eshipjetModel>/TrackingNumberTableRows/0/ERPCarrierID}" />
+          <Text text="{eshipjetModel>/TrackingNumberTableRows/0/ERPCarrierID}" class="TrackingSpaceField" />
           <Label text="Service Name" />
-          <Text text="{eshipjetModel>/TrackingNumberTableRows/0/Carrier}" />
+          <Text text="{eshipjetModel>/TrackingNumberTableRows/0/Carrier}" class="TrackingSpaceField"/>
           <Label text="Delivered To" />
-          <Text text="{eshipjetModel>/TrackingNumberTableRows/0/COMPANY}" />
+          <Text text="{eshipjetModel>/TrackingNumberTableRows/0/COMPANY}" class="TrackingSpaceField"/>
           <Label text="Ship Date" />
-          <Text text="{path: 'eshipjetModel>/TrackingNumberTableRows/0/ShipDate', formatter: '.formatter.formatDate'}" />
+          <Text text="{path: 'eshipjetModel>/TrackingNumberTableRows/0/ShipDate', formatter: '.formatter.formatDate'}" class="TrackingSpaceField" />
           <Label text="Standard Transit" />
-          <Text text="{eshipjetModel>/TrackingNumberTableRows/0/StandardTransit}" />
+          <Text text="{eshipjetModel>/TrackingNumberTableRows/0/StandardTransit}" class="TrackingSpaceField"/>
           <Label text="Delivered" />
-          <Text text="{eshipjetModel>/TrackingNumberTableRows/0/Delivered}" />
+          <Text text="{eshipjetModel>/TrackingNumberTableRows/0/Delivered}" class="TrackingSpaceField" />
           <Label text="Signed By" />
-          <Text text="{eshipjetModel>/TrackingNumberTableRows/0/SignedBy}" />
+          <Text text="{eshipjetModel>/TrackingNumberTableRows/0/SignedBy}" class="TrackingSpaceField"/>
         </f:content>
       </f:SimpleForm>
     </VBox>
@@ -87,6 +77,9 @@
             <Column>
               <Text text="Time" />
             </Column>
+            <Column width="">
+              <Text  />
+            </Column>
             <Column>
               <Text text="Status" />
             </Column>
@@ -99,6 +92,7 @@
               <cells>
                 <Text text="{Date}" />
                 <Text text="{Time}" />
+                <Text text="" class="timeline-line" />
                 <Text text="{Status}" />
                 <Text text="{Location}" />
               </cells>

@@ -1142,3 +1142,18 @@ span.sapMBtnInner.sapMBtnReject {
 .bg_colortn{
   background-color: #000;
 }
+.TrackingSpaceField{
+  justify-content: center !important;
+  align-items: flex-start !important;
+  text-align: center !important;
+  padding: 10px !important;
+}
+
+.timeline-line[_ngcontent-ng-c2322355910] {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background-color: black;
+  top: 0;
+  left: 48%;
+}
