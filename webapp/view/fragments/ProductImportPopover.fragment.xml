@@ -7,34 +7,35 @@
 		contentWidth="40%"
         contentHeight="60%"
 		showHeader="false"
-		id="idAddIMportRolesPopover"
+		id="idProductImportPopover"
 		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
 		placement="Bottom"
 		initialFocus="email">
-		<Toolbar height="3.1rem" >
-            <Text text="Import Locations" class="pageTitle"></Text>
+		<Toolbar  width="auto" height="15%" class="toolbarbottomborder fixedLayout" >
+            <Text text="Import Product" class="pageTitle"></Text>
 			<ToolbarSpacer ></ToolbarSpacer>
-				<Button icon="sap-icon://decline" press="onAddIMportRolesClosePress" class="Decline_Btn" ></Button>
+				<Button icon="sap-icon://decline" press="onAddImportProductClosePress" class="Decline_Btn" ></Button>
 		</Toolbar>
 		<footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>
 				<Button
 					text="Finish Importing"
-					class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"
-					press="onCreateBatchShipFinishImportingPress" />
+                    class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"
+					press="onProductcenterFinishImportingPress" />
 			</OverflowToolbar>
 		</footer>
         <VBox >
 		<HBox  class="customSimpleFormShadow">
 			<Label text="User ID" class="sapUiSmallMargin" />
 			<Input value="" class="sapUiSmallMarginBottom create-ship-req_input" ></Input>
+            
 			<Label text="Description" class="sapUiSmallMargin sapUiMediumMarginBegin" />
-			<Input value="" class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+			<Input value="" class="sapUiSmallMarginBottom create-ship-req_input" ></Input>
 		</HBox>
 
         <UploadCollection
-			id="UploadCollection11"
+			id="UploadCollection11234511123"
 			class="customSimpleFormShadow"
 			maximumFilenameLength="55"
 			maximumFileSize="10"

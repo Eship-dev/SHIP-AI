@@ -6,7 +6,7 @@
 	<Popover
 		contentWidth="10%"
 		showHeader="false"
-		id="idScanAndShipActionPopove11r"
+		id="ProductArrowPopoverss"
 		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
 		placement="Bottom"
 		initialFocus="email">
@@ -14,9 +14,11 @@
             <!-- items="{eshipjetModel>/scanAndShipActionPopoverItems}" > -->
             <StandardListItem
                 type="Active"
-                press="AddIMportLocPress"
-	    		title="Import Locations"/>
+                press="onProductImportPress"
+	    		title="import Carrier Catalog"/>
     	</List>
 	</Popover>
 </core:FragmentDefinition>
+
+
 

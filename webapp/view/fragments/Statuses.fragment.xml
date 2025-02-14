@@ -5,7 +5,7 @@
 				<ToolbarSpacer />
 					<HBox>
                     <Button  text="Add Status" press="onAddStatusPress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="6rem" ></Button>
-                    <Button type="Success" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button>
+                    <Button type="Success" press="onStatusArrowPress" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button>
                 </HBox>
 		</Toolbar>
 

@@ -9806,7 +9806,7 @@ sap.ui.define([
         },
 
          // add location popover down arrow 
-         AddIMportRolesPress: function (oEvent) {
+         AddIMportLocPress: function (oEvent) {
             var oButton = oEvent.getSource(),
                 oView = this.getView();
             if (!this._oAddIMportRolesPopover) {
@@ -10027,7 +10027,14 @@ sap.ui.define([
         this._oAddCostCenterArrowPopover.then(function (AddCostCenterArrowPopover) {
             AddCostCenterArrowPopover.openBy(oButton);
         });
+        
     },  
+    onAddImportCostCenterClosePress: function () {
+        this.byId("idCostCenterImportPopover").close();
+    },
+    onCreateCostcenterFinishImportingPress: function () {
+        this.byId("idCostCenterImportPopover").close();
+    },
 
          // add AddCostCenterPress popover down arrow 
          AddImportCostCenterPress: function (oEvent) {
@@ -10089,12 +10096,253 @@ sap.ui.define([
             AddLTLClassesImportPopover.openBy(oButton);
         });
     },
-    onLTLClassesImportClosePress: function () {
+    onAddImportLTLCLassesClosePress: function () {
         this.byId("idLTLClassesImportPopover").close();
     },
-    onLTLClassesCloseFinishImportingPress: function () {
+    onCreateLTLClassesFinishImportingPress: function () {
         this.byId("idLTLClassesImportPopover").close();
     },
+
+
+     // add carriercatalog  Arrow click popover down arrow 
+     onCarrierCatalogArrowPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._oAddCarrierCatalogArrowPopover) {
+            this._oAddCarrierCatalogArrowPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.CarrierCatalogArrowPopover",
+                controller: this
+            }).then(function (AddCarrierCatalogArrowPopover) {
+                oView.addDependent(AddCarrierCatalogArrowPopover);
+                // AddCarrierCatalogArrowPopover.bindElement("/ProductCollection/0");
+                return AddCarrierCatalogArrowPopover;
+            });
+        }
+        this._oAddCarrierCatalogArrowPopover.then(function (AddCarrierCatalogArrowPopover) {
+            AddCarrierCatalogArrowPopover.openBy(oButton);
+        });
+    },  
+
+         // add onCarrierCatalogArrowPress popover down arrow 
+         onCarrierCatalogImportPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._oAddCarrierCatalogImportPopover) {
+            this._oAddCarrierCatalogImportPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.CarrierCatalogImportPopover",
+                controller: this
+            }).then(function (AddCarrierCatalogImportPopover) {
+                oView.addDependent(AddCarrierCatalogImportPopover);
+                // AddCarrierCatalogImportPopover.bindElement("/ProductCollection/0");
+                return AddCarrierCatalogImportPopover;
+            });
+        }
+        this._oAddCarrierCatalogImportPopover.then(function (AddCarrierCatalogImportPopover) {
+            AddCarrierCatalogImportPopover.openBy(oButton);
+        });
+    },
+    onAddImportCarrierCatalogClosePress: function () {
+        this.byId("idCarrierCatalogImportPopover").close();
+    },
+    onCarrierCatalogcenterFinishImportingPress: function () {
+        this.byId("idCarrierCatalogImportPopover").close();
+    },
+
+         // add carriercatalog  Arrow click popover down arrow 
+     onCarrierAccountsArrowPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._oAddCarrierAccountsArrowPopover) {
+            this._oAddCarrierAccountsArrowPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.CarrierAccountsArrowPopover",
+                controller: this
+            }).then(function (AddCarrierAccountsArrowPopover) {
+                oView.addDependent(AddCarrierAccountsArrowPopover);
+                // AddCarrierAccountsArrowPopover.bindElement("/ProductCollection/0");
+                return AddCarrierAccountsArrowPopover;
+            });
+        }
+        this._oAddCarrierAccountsArrowPopover.then(function (AddCarrierAccountsArrowPopover) {
+            AddCarrierAccountsArrowPopover.openBy(oButton);
+        });
+    },  
+
+         // add onCarrierAccountsArrowPress popover down arrow 
+         onCarrierAccountsImportPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._oAddCarrierAccountsImportPopover) {
+            this._oAddCarrierAccountsImportPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.CarrierAccountsImportPopover",
+                controller: this
+            }).then(function (AddCarrierAccountsImportPopover) {
+                oView.addDependent(AddCarrierAccountsImportPopover);
+                // AddCarrierAccountsImportPopover.bindElement("/ProductCollection/0");
+                return AddCarrierAccountsImportPopover;
+            });
+        }
+        this._oAddCarrierAccountsImportPopover.then(function (AddCarrierAccountsImportPopover) {
+            AddCarrierAccountsImportPopover.openBy(oButton);
+        });
+    },
+    onAddImportCarrierAccountsClosePress: function () {
+        this.byId("idCarrierAccountsImportPopover").close();
+    },
+    onCarrierAccountscenterFinishImportingPress: function () {
+        this.byId("idCarrierAccountsImportPopover").close();
+    },
+
+
+
+
+          // add Status  Arrow click popover down arrow 
+          onStatusArrowPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._oAddStatusArrowPopover) {
+                this._oAddStatusArrowPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.StatusArrowPopover",
+                    controller: this
+                }).then(function (AddStatusArrowPopover) {
+                    oView.addDependent(AddStatusArrowPopover);
+                    // AddStatusArrowPopover.bindElement("/ProductCollection/0");
+                    return AddStatusArrowPopover;
+                });
+            }
+            this._oAddStatusArrowPopover.then(function (AddStatusArrowPopover) {
+                AddStatusArrowPopover.openBy(oButton);
+            });
+        },  
+    
+             // add onStatusArrowPress popover down arrow 
+             onStatusImportPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._oAddStatusImportPopover) {
+                this._oAddStatusImportPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.StatusImportPopover",
+                    controller: this
+                }).then(function (AddStatusImportPopover) {
+                    oView.addDependent(AddStatusImportPopover);
+                    // AddStatusImportPopover.bindElement("/ProductCollection/0");
+                    return AddStatusImportPopover;
+                });
+            }
+            this._oAddStatusImportPopover.then(function (AddStatusImportPopover) {
+                AddStatusImportPopover.openBy(oButton);
+            });
+        },
+        onAddImportStatusClosePress: function () {
+            this.byId("idStatusImportPopover").close();
+        },
+        onStatuscenterFinishImportingPress: function () {
+            this.byId("idStatusImportPopover").close();
+        },
+
+
+
+         // add Product  Arrow click popover down arrow 
+         onProductArrowPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._oAddProductArrowPopover) {
+                this._oAddProductArrowPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ProductArrowPopover",
+                    controller: this
+                }).then(function (AddProductArrowPopover) {
+                    oView.addDependent(AddProductArrowPopover);
+                    // AddProductArrowPopover.bindElement("/ProductCollection/0");
+                    return AddProductArrowPopover;
+                });
+            }
+            this._oAddProductArrowPopover.then(function (AddProductArrowPopover) {
+                AddProductArrowPopover.openBy(oButton);
+            });
+        },  
+    
+             // add onProductArrowPress popover down arrow 
+             onProductImportPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._oAddProductImportPopover) {
+                this._oAddProductImportPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ProductImportPopover",
+                    controller: this
+                }).then(function (AddProductImportPopover) {
+                    oView.addDependent(AddProductImportPopover);
+                    // AddProductImportPopover.bindElement("/ProductCollection/0");
+                    return AddProductImportPopover;
+                });
+            }
+            this._oAddProductImportPopover.then(function (AddProductImportPopover) {
+                AddProductImportPopover.openBy(oButton);
+            });
+        },
+        onAddImportProductClosePress: function () {
+            this.byId("idProductImportPopover").close();
+        },
+        onProductcenterFinishImportingPress: function () {
+            this.byId("idProductImportPopover").close();
+        },
+
+
+         // add PackagesTypes  Arrow click popover down arrow 
+         onPackagesTypesArrowPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._oAddPackagesTypesArrowPopover) {
+                this._oAddPackagesTypesArrowPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.PackageTypesArrowPopover",
+                    controller: this
+                }).then(function (AddPackagesTypesArrowPopover) {
+                    oView.addDependent(AddPackagesTypesArrowPopover);
+                    // AddPackagesTypesArrowPopover.bindElement("/PackagesTypesCollection/0");
+                    return AddPackagesTypesArrowPopover;
+                });
+            }
+            this._oAddPackagesTypesArrowPopover.then(function (AddPackagesTypesArrowPopover) {
+                AddPackagesTypesArrowPopover.openBy(oButton);
+            });
+        },  
+    
+             // add onPackagesTypesArrowPress popover down arrow 
+             onPackagesTypesImportPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._oAddPackagesTypesImportPopover) {
+                this._oAddPackagesTypesImportPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.PackageTypesImportPopover",
+                    controller: this
+                }).then(function (AddPackagesTypesImportPopover) {
+                    oView.addDependent(AddPackagesTypesImportPopover);
+                    // AddPackagesTypesImportPopover.bindElement("/PackagesTypesCollection/0");
+                    return AddPackagesTypesImportPopover;
+                });
+            }
+            this._oAddPackagesTypesImportPopover.then(function (AddPackagesTypesImportPopover) {
+                AddPackagesTypesImportPopover.openBy(oButton);
+            });
+        },
+        onAddImportPackagesTypesClosePress: function () {
+            this.byId("idPackagesTypesImportPopover").close();
+        },
+        onPackagesTypescenterFinishImportingPress: function () {
+            this.byId("idPackagesTypesImportPopover").close();
+        },
+    
+
+        
+
     onShipRatePress:function(){
         var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
         var shipToCountry = ShipNowDataModel.getProperty("/ShipToAddress/Country");

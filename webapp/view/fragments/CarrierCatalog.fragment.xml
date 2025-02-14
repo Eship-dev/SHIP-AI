@@ -5,7 +5,7 @@
 				<ToolbarSpacer />
 					<HBox>
                     <Button  text="Add Carrier" press="AddCarrierDialog" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="10rem" ></Button>
-                    <Button type="Success" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd"></Button>
+                    <Button type="Success" icon="sap-icon://navigation-down-arrow" press="onCarrierCatalogArrowPress" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd"></Button>
                 </HBox>
 		</Toolbar>
 

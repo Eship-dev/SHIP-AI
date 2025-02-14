@@ -17,7 +17,7 @@
             <StandardListItem
                 type="Active"
                 press="onLTLClassesImportPress"
-	    		title="Import Roles"/>
+	    		title="Import LTLClasses"/>
     	</List>
 	</Popover>
 </core:FragmentDefinition>

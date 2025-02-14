@@ -21,7 +21,7 @@
 				<ToolbarSpacer/>
 				<Button
 					text="Finish Importing"
-					type="Success"
+					class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"
 					press="onCreateBatchShipFinishImportingPress" />
 			</OverflowToolbar>
 		</footer>
