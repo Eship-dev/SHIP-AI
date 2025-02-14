@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f" xmlns:fb="sap.ui.comp.filterbar" xmlns:svm="sap.ui.comp.smartvariants" xmlns:ui="sap.ui.table" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core">
-  <Dialog id="idShipMethodDialog" showHeader="false"  class="myCustomDialog sapUiResponsiveContentPadding" stretch="{device>/system/phone}">
+  <Dialog id="idShipMethodDialog" showHeader="false"  class="myCustomDialog sapUiResponsiveContentPadding" stretch="{device>/system/phone}" >
     <customHeader>
       <Toolbar>
         <Title text="Freight Quote Status"></Title>

@@ -1700,3 +1700,20 @@ button, input, optgroup, select, textarea {
 * {
   box-sizing: border-box;
 }
+
+.rightSideDialog {
+  width: 45% !important;
+  height: 100% !important;
+  overflow: auto !important;
+  position: absolute !important;
+  visibility: visible !important;
+  z-index: 99999 !important;
+  max-width: 1230px;
+  max-height: 100% !important;
+  top: 0px !important;
+  padding-top: 40px !important;
+  display: block;
+  right: 0 !important;
+  left: auto !important;
+  border-radius: 0px !important;
+}
