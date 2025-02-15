@@ -6,11 +6,10 @@
     height="100%">
 
     <Popover id="idAddSMTPConfigPopover" 
-            placement="Bottom" 
-            contentWidth="40%"
-            contentHeight="69%" 
-            showHeader="true"
-			class="sapUiResponsivePadding sapUiResponsivePadding"
+            placement="Bottom"
+        contentHeight="100%"
+        showHeader="false"
+        class="rightSidePopoverGare"
             >
 			 <!-- Custom Header -->
     <customHeader>
@@ -29,7 +28,7 @@
         </Toolbar>
     </customHeader>
 		 <footer>
-            <OverflowToolbar>
+            <OverflowToolbar class="p-sidebar-header">
                 <Button text="Cancel" press="AddSMTPConfigCancelPopover" />
                 <ToolbarSpacer/>
                 <Button type="Emphasized" text="Save" press="AddSMTPConfigSelectPopover" />

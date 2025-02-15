@@ -4,27 +4,34 @@
 	xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
 	<Popover
-		contentWidth="40%"
-        contentHeight="60%"
+		
 		showHeader="false"
 		id="idAddAddressBookImportPopover"
-		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
-		placement="Bottom"
-		initialFocus="email">
-		<Toolbar  width="auto" height="15%" class="toolbarbottomborder fixedLayout" >
+		class=" rightSidePopoverGare"
+		contentHeight="100%"
+		>
+		<!-- <Toolbar  width="auto" height="15%" class="p-sidebar-header" >
             <Text text="Import Address Book" class="pageTitle"></Text>
 			<ToolbarSpacer ></ToolbarSpacer>
 				<Button icon="sap-icon://decline" press="onAddImportAddressBookClosePress" class="Decline_Btn" ></Button>
-		</Toolbar>
-		<footer>
-			<OverflowToolbar>
-				<ToolbarSpacer/>
-				<Button
-					text="Finish Importing"
-					class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"
-					press="onCreateBatchShipFinishImportingPress" />
-			</OverflowToolbar>
-		</footer>
+		</Toolbar> -->
+
+		
+            <Toolbar class="">
+                <!-- Title -->
+                <Title text="Import Address Book" />
+
+                <!-- Spacer to push close button to the right -->
+                <ToolbarSpacer />
+
+                <!-- Close Button -->
+                <Button
+                    icon="sap-icon://decline"
+                    class="Decline_Btn"
+                    press="onAddImportAddressBookClosePress" />
+            </Toolbar>
+      
+		
         <VBox >
 		<HBox  class="customSimpleFormShadow">
 			<Label text="User ID" class="sapUiSmallMargin" />
@@ -53,5 +60,27 @@
         <Button text="Download Sample" type="Ghost" class="sapUiSmallMargin" ></Button>
 
         </VBox>
+
+		
+			<!-- <OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+					text="Finish Importing"
+					class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"
+					press="onCreateBatchShipFinishImportingPress" />
+			</OverflowToolbar> -->
+			<footer >
+            <OverflowToolbar class="p-sidebar-header">
+               
+                <ToolbarSpacer />
+                <Button
+                    
+					class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding"
+                    text="Finish Importing"
+                    press="AddAddressBookCancelPopover"
+                />
+            </OverflowToolbar>
+        </footer>
+		
 	</Popover>
 </core:FragmentDefinition>

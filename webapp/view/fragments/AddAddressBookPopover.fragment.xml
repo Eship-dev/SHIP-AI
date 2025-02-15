@@ -8,14 +8,13 @@
     <Popover
         id="idAddAddressBookPopover"
         placement="Bottom"
-        contentWidth="40%"
-        contentHeight="65%"
-        showHeader="true"
-        class="sapUiResponsivePadding sapUiResponsivePadding addLocationPopoverSpace"
+        contentHeight="100%"
+        showHeader="false"
+        class="rightSidePopoverGare"
     >
         <!-- Custom Header -->
-        <customHeader>
-            <Toolbar>
+       <customHeader>
+            <Toolbar >
                 <!-- Title -->
                 <Title text="Add Address Book" />
 
@@ -28,9 +27,9 @@
                     class="Decline_Btn"
                     press="AddAddressBookClosePress" />
             </Toolbar>
-        </customHeader>
-        <footer>
-            <OverflowToolbar>
+      </customHeader>
+        <footer >
+            <OverflowToolbar class="p-sidebar-header" >
                 <Button
                     text="Cancel"
                     press="AddAddressBookCancelPopover"

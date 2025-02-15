@@ -9869,7 +9869,7 @@ sap.ui.define([
         });
     },
     onAddImportAddressBookClosePress: function () {
-        this.byId("idAddImportAddressBookPopover").close();
+        this.byId("idAddAddressBookImportPopover").close();
     },
 
          // add User Arrow click popover down arrow 

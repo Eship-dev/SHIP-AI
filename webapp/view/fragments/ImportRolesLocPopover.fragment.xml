@@ -4,12 +4,12 @@
 	xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
 	<Popover
-		contentWidth="40%"
-        contentHeight="60%"
-		showHeader="false"
+		
 		id="idAddIMportRolesPopover"
-		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
-		placement="Bottom"
+		 placement="Bottom"
+        contentHeight="100%"
+        showHeader="false"
+        class="rightSidePopoverGare"
 		initialFocus="email">
 		<Toolbar height="3.1rem" >
             <Text text="Import Locations" class="pageTitle"></Text>
@@ -17,7 +17,7 @@
 				<Button icon="sap-icon://decline" press="onAddIMportRolesClosePress" class="Decline_Btn" ></Button>
 		</Toolbar>
 		<footer>
-			<OverflowToolbar>
+			<OverflowToolbar class="p-sidebar-header">
 				<ToolbarSpacer/>
 				<Button
 					text="Finish Importing"

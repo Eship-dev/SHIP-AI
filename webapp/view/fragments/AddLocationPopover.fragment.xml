@@ -1,156 +1,230 @@
-<core:FragmentDefinition 
+<core:FragmentDefinition
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
-    height="100%">
+    height="100%"
+>
+    <Popover
+        id="addLocationPopover"
+        placement="Bottom"
+        contentHeight="100%"
+        showHeader="false"
+        class="rightSidePopoverGare"
+    >
+        <!-- Custom Header -->
+        <customHeader>
+            <Toolbar >
+                <!-- Title -->
+                <Title text="Add Location" />
 
-    <Popover id="addLocationPopover" 
-            placement="Bottom" 
-            contentWidth="45%"
-            contentHeight="60%" 
-            showHeader="true"
-			class="sapUiResponsivePadding--header sapUiResponsivePadding--footer addLocationPopoverSpace"
-            >
-			 <!-- Custom Header -->
-    <customHeader>
-        <Toolbar>
-            <!-- Title -->
-            <Title text="Add Location" />
-            
-            <!-- Spacer to push close button to the right -->
-            <ToolbarSpacer />
+                <!-- Spacer to push close button to the right -->
+                <ToolbarSpacer />
 
-            <!-- Close Button -->
-            <Button 
-                icon="sap-icon://decline" 
-                class="Decline_Btn"
-                press="onAddLocationClosePress"  />
-        </Toolbar>
-    </customHeader>
-		 <footer>
-            <OverflowToolbar>
-                <Button text="Cancel" press="AddLocCancelPopover" />
-                <ToolbarSpacer/>
-                <Button type="Emphasized" text="Save" press="AddLocSelectPopover" />
+                <!-- Close Button -->
+                <Button
+                    icon="sap-icon://decline"
+                    class="Decline_Btn"
+                    press="onAddLocationClosePress"
+                />
+            </Toolbar>
+        </customHeader>
+        
+        <footer>
+            <OverflowToolbar class="p-sidebar-header">
+                <Button
+                    text="Cancel"
+                    class="frieghtCancelBtn"
+                    press="AddLocCancelPopover"
+                />
+                <ToolbarSpacer />
+                <Button
+                    class="btnSave"
+                    type="Emphasized"
+                    text="Save"
+                    press="AddLocSelectPopover"
+                />
             </OverflowToolbar>
         </footer>
 
-		
-        <content >
-            
-           
-           	<f:SimpleForm editable="true"
-                        class="customSimpleFormShadow"
-                        width="auto"
-							  layout="ColumnLayout"
-							  columnsM="2"
-							  columnsL="2"
-							  columnsXL="2">
-					<f:content>
-						<Toolbar ariaLabelledBy="idShipFrom">
-                                <Button icon="sap-icon://customer-briefing" press="handleAddLocPress"/>
-								<Title id="idAddLocaTionFrom11" text="Name and Contact"/>
-						</Toolbar>
-						 <Label text="Location Code" />
-                         <Input class="sapUiSmallMarginBottom create-ship-req_input" />
-                         <Label text="Contact Name" />
-                         <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
-                        <Label text="Email" />
-                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
-                        <Label text="Location Name" />
-                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
-                        <Label text="Phone No" />
-                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
-					</f:content>
-				</f:SimpleForm>
+        <content>
+            <f:SimpleForm
+                editable="true"
+                class="customSimpleFormShadow"
+                width="auto"
+                layout="ColumnLayout"
+                columnsM="2"
+                columnsL="2"
+                columnsXL="2"
+            >
+                <f:content>
+                    <Toolbar ariaLabelledBy="idShipFrom">
+                        <Button
+                            icon="sap-icon://customer-briefing"
+                            press="handleAddLocPress"
+                        />
+                        <Title
+                            id="idAddLocaTionFrom11"
+                            text="Name and Contact"
+                        />
+                    </Toolbar>
+                    <Label text="Location Code" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Contact Name" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Email" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Location Name" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Phone No" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                </f:content>
+            </f:SimpleForm>
 
-           	<f:SimpleForm editable="true"
-                        class="customSimpleFormShadow"
-                        width="auto"
-							  layout="ColumnLayout"
-							  columnsM="2"
-							  columnsL="2"
-							  columnsXL="2">
-					<f:content>
-						<Toolbar ariaLabelledBy="idShipFrom">
-                                <Button icon="sap-icon://customer-briefing" press="handleAddLocPress"/>
-								<Title id="idAddLocaTionFrom1" text="Address Info"/>
-						</Toolbar>
-						 <Label text="Address Line 1" />
-                         <Input class="sapUiSmallMarginBottom create-ship-req_input" />
-                         <Label text="City" />
-                         <Input class="sapUiSmallMarginBottom create-ship-req_input" />
-                        <Label text="Zip / Postal Code" />
-                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
-                        <Label text="Ship From Tax" />
-                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
-                         <Label text="Address Line 2" />
-                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
-                        <Label text="State / Province" />
-                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
-                        <Label text="Country" />
-                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
-					</f:content>
-				</f:SimpleForm>
+            <f:SimpleForm
+                editable="true"
+                class="customSimpleFormShadow"
+                width="auto"
+                layout="ColumnLayout"
+                columnsM="2"
+                columnsL="2"
+                columnsXL="2"
+            >
+                <f:content>
+                    <Toolbar ariaLabelledBy="idShipFrom">
+                        <Button
+                            icon="sap-icon://customer-briefing"
+                            press="handleAddLocPress"
+                        />
+                        <Title
+                            id="idAddLocaTionFrom1"
+                            text="Address Info"
+                        />
+                    </Toolbar>
+                    <Label text="Address Line 1" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="City" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Zip / Postal Code" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Ship From Tax" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Address Line 2" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="State / Province" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Country" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                </f:content>
+            </f:SimpleForm>
 
-       
-           	<f:SimpleForm editable="true"
-                        class="customSimpleFormShadow"
-                        width="auto"
-							  layout="ColumnLayout"
-							  columnsM="2"
-							  columnsL="2"
-							  columnsXL="2">
-					<f:content>
-						<Toolbar ariaLabelledBy="idShipFrom">
-                            <Button icon="sap-icon://customer-briefing" press="handleAddLocPress"/>
-							<Title id="idAddLocaTionFrom2" text="Mailroom Contact"/>
-						</Toolbar>
-						 <Label text="Contact Name" />
-                         <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
-                         <Label text="Email" />
-                         <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
-                        <Label text="Phone" />
-                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
-					</f:content>
-				</f:SimpleForm>
-               	
+            <f:SimpleForm
+                editable="true"
+                class="customSimpleFormShadow"
+                width="auto"
+                layout="ColumnLayout"
+                columnsM="2"
+                columnsL="2"
+                columnsXL="2"
+            >
+                <f:content>
+                    <Toolbar ariaLabelledBy="idShipFrom">
+                        <Button
+                            icon="sap-icon://customer-briefing"
+                            press="handleAddLocPress"
+                        />
+                        <Title
+                            id="idAddLocaTionFrom2"
+                            text="Mailroom Contact"
+                        />
+                    </Toolbar>
+                    <Label text="Contact Name" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Email" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Phone" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                </f:content>
+            </f:SimpleForm>
 
-           	<f:SimpleForm editable="true"
-                            class="customSimpleFormShadow"
-                            width="auto"
-							  layout="ColumnLayout"
-							  columnsM="2"
-							  columnsL="2"
-							  columnsXL="2">
-					<f:content>
-						<Toolbar ariaLabelledBy="idShipFrom">
-                            <Button icon="sap-icon://customer-briefing" press="handleAddLocPress"/>
-								<Title id="idAddLocaTionFrom3" text="Additional Info"/>
-						</Toolbar>
-						 <Label text="Weight Units" />  
-			             <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" id="idLocationType" placeholder="Select">
-                         </ComboBox>
-                         <Label text="Dimension Unit" />
-                         <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" id="idLocationType1" placeholder="Select">
-                         </ComboBox>
-                          <Label text="Status" />
-                        <Switch state="true" >
-				            <layoutData>
-					            <FlexItemData growFactor="1" />
-				            </layoutData>
-			            </Switch>
-                        <Label text="Currency" />
-                        <Input class="sapUiSmallMarginBottom create-ship-req_input" />
-                        <Label text="Time Zone" />
-                        <Input class="sapUiSmallMarginBottom create-ship-req_input"/>
-                       
-					</f:content>
-				</f:SimpleForm>
-
-        </content>      
-
-       
+            <f:SimpleForm
+                editable="true"
+                class="customSimpleFormShadow"
+                width="auto"
+                layout="ColumnLayout"
+                columnsM="2"
+                columnsL="2"
+                columnsXL="2"
+            >
+                <f:content>
+                    <Toolbar ariaLabelledBy="idShipFrom">
+                        <Button
+                            icon="sap-icon://customer-briefing"
+                            press="handleAddLocPress"
+                        />
+                        <Title
+                            id="idAddLocaTionFrom3"
+                            text="Additional Info"
+                        />
+                    </Toolbar>
+                    <Label text="Weight Units" />
+                    <ComboBox
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                        id="idLocationType"
+                        placeholder="Select"
+                    />
+                    <Label text="Dimension Unit" />
+                    <ComboBox
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                        id="idLocationType1"
+                        placeholder="Select"
+                    />
+                    <Label text="Status" />
+                    <Switch state="true">
+                        <layoutData>
+                            <FlexItemData growFactor="1" />
+                        </layoutData>
+                    </Switch>
+                    <Label text="Currency" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Time Zone" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                </f:content>
+            </f:SimpleForm>
+        </content>
     </Popover>
 </core:FragmentDefinition>

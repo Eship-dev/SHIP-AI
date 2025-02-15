@@ -8,10 +8,9 @@
     <Popover
         id="idAddNMFCClassPopover"
         placement="Bottom"
-        contentWidth="45%"
-        contentHeight="69%"
-        showHeader="true"
-        class="sapUiResponsivePadding sapUiResponsivePadding ">
+        contentHeight="100%"
+        showHeader="false"
+        class="rightSidePopoverGare">
         <!-- Custom Header -->
         <customHeader>
             <Toolbar>
@@ -29,7 +28,7 @@
             </Toolbar>
         </customHeader>
         <footer>
-            <OverflowToolbar>
+            <OverflowToolbar class="p-sidebar-header">
                 <Button
                     text="Cancel"
                     press="AddNMFCClassCancelPopover"

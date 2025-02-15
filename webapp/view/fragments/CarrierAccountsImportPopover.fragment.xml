@@ -4,12 +4,12 @@
 	xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
 	<Popover
-		contentWidth="40%"
-        contentHeight="60%"
-		showHeader="false"
+		 placement="Bottom"
+        contentHeight="100%"
+        showHeader="false"
+        class="rightSidePopoverGare"
 		id="idCarrierAccountsImportPopover"
-		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
-		placement="Bottom"
+		
 		initialFocus="email">
 		<Toolbar  width="auto" height="15%" class="toolbarbottomborder fixedLayout" >
             <Text text="Import Carrier Catalog" class="pageTitle"></Text>
@@ -17,7 +17,7 @@
 				<Button icon="sap-icon://decline" press="onAddImportCarrierAccountsClosePress" class="Decline_Btn" ></Button>
 		</Toolbar>
 		<footer>
-			<OverflowToolbar>
+			<OverflowToolbar class="p-sidebar-header">
 				<ToolbarSpacer/>
 				<Button
 					text="Finish Importing"
