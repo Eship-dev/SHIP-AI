@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f" xmlns:fb="sap.ui.comp.filterbar" xmlns:svm="sap.ui.comp.smartvariants" xmlns:ui="sap.ui.table" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core">
-  <Dialog id="idShipmentWorkflowDialog" showHeader="false" contentWidth="70%" class="myCustomDialog sapUiResponsiveContentPadding" stretch="{device>/system/phone}" >
+  <Dialog id="idShipmentWorkflowDialog" showHeader="false" contentWidth="70%" class="rightSideDialogForTracking" >
     <customHeader>
       <Toolbar>
         <Title text="Shipment Notes"></Title>
@@ -7,15 +7,13 @@
         <Button icon="sap-icon://decline" press="ShipmentWorkflowCancelDialog" class="Decline_Btn"></Button>
       </Toolbar>
     </customHeader>
-       <VBox>
+       <VBox class="sapUiSmallMargin" >
         <!-- Notes Section -->
         <Label text="Notes" />
-        <TextArea width="100%" rows="4" />
-
-        <ToolbarSeparator/>
+        <TextArea width="100%" rows="4" class="sapUiTinyMarginBottom" />
 
         <!-- History Notes Section -->
-        <Label text="History Notes" design="Bold" />
+        <Label text="History Notes" />
 
         <Table width="100%" items="{eshipjetModel>/historyNotes}">
             <columns>
@@ -41,8 +39,11 @@
         </Table>
     </VBox>
       
+        <beginButton>
+            <Button text="Cancel" press="ShipmentWorkflowCancelDialog" ></Button>
+        </beginButton>
         <endButton>
-            <Button text="Close" press=".onCloseDialog" />
+            <Button text="Save" type="Success" />
         </endButton>
     
 

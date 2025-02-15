@@ -6,133 +6,94 @@
     xmlns:f="sap.ui.layout.form">
 
     <Popover id="idShipNowPickAnAddressPopover"  
-             placement="Right" 
-             contentWidth="50%"
+             placement="Auto"
              showHeader="true"
-             class="sapUiResponsivePadding--header sapUiResponsivePadding--footer">
+             class="sapUiResponsivePadding--header sapUiResponsivePadding--footer  rightSideDialogForTracking">
         
-        <!-- Custom Header -->
         <customHeader>
             <Toolbar>
                 <Title text="Pick An Address" />
                 <ToolbarSpacer />
-                <Button 
-                    icon="sap-icon://decline" 
-                    class="Decline_Btn"
-                    press="onShipNowPickAnAddressCancelPress" />
+                <Button icon="sap-icon://decline" class="Decline_Btn" press="onShipNowPickAnAddressCancelPress" />
             </Toolbar>
         </customHeader>
 
-        <content>
+    <ScrollContainer
+        class="customSimpleFormShadow"
+        height="100%"
+        width="100%"
+        horizontal="true"
+        vertical="true">
             <Table id="idShipNowPickAnAddressTable"
                    class="sapUiTinyMarginTop"
                    growing="true"
                    mode="SingleSelectMaster"
                    items="{/shipFromAddresses}" >
                 <columns>
-                    <Column>
-                        <header>
-                            <Label text="Contact Name" />
-                        </header>
+                    <Column width="10rem" >
+                        <Text text="Contact Name" ></Text>
                     </Column>
-                    <Column>
-                        <header>
-                            <Label text="Company Name" />
-                        </header>
+                    <Column width="10rem" >
+                        <Text text="Company Name" ></Text>
                     </Column>
-                    <Column>
-                        <header>
-                            <Label text="Address Line 1" />
-                        </header>
+                    <Column width="10rem" >
+                        <Text text="Address Line 1" ></Text>
                     </Column>
-                    <Column>
-                        <header>
-                            <Label text="Address Line 2" />
-                        </header>
+                    <Column width="10rem" >
+                        <Text text="Address Line 2" ></Text>
                     </Column>
-                    <Column>
-                        <header>
-                            <Label text="Address Line 3" />
-                        </header>
+                    <Column width="10rem" >
+                        <Text text="Address Line 3" ></Text>
                     </Column>
-                    <Column>
-                        <header>
-                            <Label text="City" />
-                        </header>
+                    <Column width="10rem" >
+                        <Text text="City" ></Text>
                     </Column>
-                    <Column>
-                        <header>
-                            <Label text="State" />
-                        </header>
+                    <Column width="10rem" >
+                        <Text text="State" ></Text>
                     </Column>
-                    <Column>
-                        <header>
-                            <Label text="Zipcode" />
-                        </header>
+                    <Column width="10rem" >
+                        <Text text="Zip Code" ></Text>
                     </Column>
-                    <Column>
-                        <header>
-                            <Label text="Country" />
-                        </header>
+                    <Column width="10rem" >
+                        <Text text="Country" ></Text>
                     </Column>
-                    <Column>
-                        <header>
-                            <Label text="Phone" />
-                        </header>
+                    <Column width="10rem" >
+                        <Text text="Phone" ></Text>
                     </Column>
-                    <Column>
-                        <header>
-                            <Label text="Email" />
-                        </header>
+                    <Column width="10rem" >
+                        <Text text="Email" ></Text>
                     </Column>
-                    <Column>
-                        <header>
-                            <Label text="Address Type" />
-                        </header>
+                    <Column width="10rem" >
+                        <Text text="Address Type" ></Text>
                     </Column>
                 </columns>
                 <items>
                     <ColumnListItem>
                         <cells>
-                            <Text text="{ShipFromCONTACT}" />
-                            <Text text="{ShipFromCOMPANY}" />
-                            <Text text="{ShipFromADDRESS_LINE1}" />
-                            <Text text="{ShipFromADDRESS_LINE2}" />
-                            <Text text="{addressLine3}" />
-                            <Text text="{ShipFromCITY}" />
-                            <Text text="{ShipFromSTATE}" />
-                            <Text text="{ShipFromZIPCODE}" />
-                            <Text text="{ShipFromCOUNTRY}" />
-                            <Text text="{ShipFromPHONE}" />
-                            <Text text="{ShipFromEMAIL}" />
-                            <Text text="{ShipFromAddressType}" />
+                            <Text text="{ShipFromCONTACT}" wrapping="false" />
+                            <Text text="{ShipFromCOMPANY}" wrapping="false" />
+                            <Text text="{ShipFromADDRESS_LINE1}" wrapping="false" />
+                            <Text text="{ShipFromADDRESS_LINE2}" wrapping="false" />
+                            <Text text="{addressLine3}" wrapping="false" />
+                            <Text text="{ShipFromCITY}" wrapping="false" />
+                            <Text text="{ShipFromSTATE}" wrapping="false" />
+                            <Text text="{ShipFromZIPCODE}" wrapping="false" />
+                            <Text text="{ShipFromCOUNTRY}" wrapping="false" />
+                            <Text text="{ShipFromPHONE}" wrapping="false" />
+                            <Text text="{ShipFromEMAIL}" wrapping="false" />
+                            <Text text="{ShipFromAddressType}" wrapping="false" />
                         </cells>
                     </ColumnListItem>
                 </items>
             </Table>
-            <Toolbar>
-                <ToolbarSpacer />
-                <Button text="First" enabled="false" />
-                <Button text="Previous" enabled="false" />
-                <Text text="1-50 of 74" />
-                <Button text="Next" />
-                <Button text="Last" />
-            </Toolbar>
-        </content>
+        </ScrollContainer>
 
 		<footer>
-            <OverflowToolbar>
-                <Button
-                    text="Cancel"
-                    press="onShipNowPickAnAddressCancelPress"
-                />
+            <Toolbar>
+                <Button text="Cancel" press="onShipNowPickAnAddressCancelPress" />
                 <ToolbarSpacer />
-                <Button
-                    type="Emphasized"
-                    text="Submit"
-                    press="onShipNowPickAnAddressSelectPress"
-                />
-            </OverflowToolbar>
+                <Button type="Emphasized" text="Submit" press="onShipNowPickAnAddressSelectPress" />
+            </Toolbar>
         </footer>
     </Popover>
 </core:FragmentDefinition>

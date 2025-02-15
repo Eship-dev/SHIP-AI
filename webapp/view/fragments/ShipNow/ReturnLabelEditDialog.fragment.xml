@@ -6,7 +6,8 @@
     <Dialog
         id="idReturnLabelEditDialog"
         contentWidth="40%"
-        contentHeight="70%" >
+        contentHeight="70%"
+		class="rightSideDialogForTracking" >
      <customHeader>
     <Toolbar>
         <Title text="Return Address Information" />

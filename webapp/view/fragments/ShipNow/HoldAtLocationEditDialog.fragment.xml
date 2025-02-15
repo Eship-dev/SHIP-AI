@@ -6,7 +6,8 @@
     <Dialog
         id="idHoldAtLocationEditDialog"
         contentWidth="40%"
-        contentHeight="80%" >
+        contentHeight="80%"
+        class="rightSideDialogForTracking" >
      <customHeader>
     <Toolbar>
         <Title text="Hold Location Information" />

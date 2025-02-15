@@ -8,10 +8,8 @@
     <Popover
         id="idShipReqLabelEditIconAddIconPopover"
         placement="Left"
-        contentWidth="45%"
-        contentHeight="70%"
         showHeader="true"
-        class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+        class="sapUiResponsivePadding--header sapUiResponsivePadding--footer rightSideDialogForTracking"
     >
         <!-- Custom Header -->
         <customHeader>

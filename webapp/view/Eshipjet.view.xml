@@ -24,7 +24,7 @@
 			</tnt:ToolHeader>
 		</tnt:header>
 		<tnt:sideContent >
-			<tnt:SideNavigation visible="{eshipjetModel>/SideNavigation}" class="sapUiMediumMarginBottom" expanded="true" selectedKey="{eshipjetModel>/selectedKey}"	itemSelect=".onItemSelect">
+			<tnt:SideNavigation visible="{eshipjetModel>/SideNavigation}" class="sapUiMediumMarginBottom" expanded="true" selectedKey="{eshipjetModel>/selectedKey}" itemSelect=".onItemSelect">
 				<tnt:NavigationList class="side-navigation">
 					<tnt:NavigationListItem  text="SAP ShipperCopilot" icon="sap-icon://customfont/ShipperCopilate" key="ShipperCopilot">
 					</tnt:NavigationListItem>

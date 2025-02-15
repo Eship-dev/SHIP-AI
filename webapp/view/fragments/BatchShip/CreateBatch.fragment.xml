@@ -4,11 +4,9 @@
 	xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
 	<Popover
-		contentWidth="40%"
-        contentHeight="80%"
 		showHeader="false"
 		id="idCreateBatchShipPopover"
-		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer rightSideDialogForTracking"
 		placement="Left"
 		initialFocus="email">
 		<Toolbar height="3.1rem" >

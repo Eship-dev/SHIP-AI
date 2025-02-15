@@ -4,94 +4,89 @@
     height="100%">
 
     <Popover id="idShipToPickAnAddressPopover"  
-            placement="HorizontalPreferredRight" 
-            contentWidth="90%"
-            contentHeight="50%"
+            placement="HorizontalPreferredRight"
             showHeader="true"
-            class="sapUiResponsivePadding--header sapUiResponsivePadding--footer">
+            class="sapUiResponsivePadding--header sapUiResponsivePadding--footer rightSideDialogForTracking">
         
         <!-- Custom Header -->
         <customHeader>
-            <Toolbar>
+            <Toolbar class="sapUiSmallMargin" >
                 <Title text="Pick An Address" />
                 <ToolbarSpacer />
-                <Button 
-                    icon="sap-icon://decline" 
-                    class="Decline_Btn"
-                    press="onShipToPickAnAddressCancelPress" />
+                <Button icon="sap-icon://decline" class="Decline_Btn" press="onShipToPickAnAddressCancelPress" />
             </Toolbar>
         </customHeader>
 
-        <content>
-        <Toolbar height="100%">
+    <ScrollContainer
+        class="customSimpleFormShadow sapUiSmallMargin"
+        height="100%"
+        width="100%"
+        horizontal="true"
+        vertical="true">
             <Table 
                 id="idShipToAddressTable"
                 inset="false"
                 mode="SingleSelectMaster"
-                items="{
-                    path: '/shipToAddresses'
-                }">
+                items="{ path: '/shipToAddresses' }">
                 <columns>
-                    <Column>
+                    <Column width="10rem" >
                         <Text text="Contact Name" />
                     </Column>
-                    <Column>
+                    <Column width="10rem">
                         <Text text="Company Name" />
                     </Column>
-                    <Column>
+                    <Column width="10rem">
                         <Text text="Address Line 1" />
                     </Column>
-                    <Column>
+                    <Column width="10rem">
                         <Text text="Address Line 2" />
                     </Column>
-                    <Column>
+                    <Column width="10rem">
                         <Text text="Address Line 3" />
                     </Column>
-                    <Column>
+                    <Column width="10rem" >
                         <Text text="City" />
                     </Column>
-                    <Column>
+                    <Column width="10rem" >
                         <Text text="State" />
                     </Column>
-                    <Column>
+                    <Column width="10rem" >
                         <Text text="Zipcode" />
                     </Column>
-                    <Column>
+                    <Column width="10rem" >
                         <Text text="Country" />
                     </Column>
-                    <Column>
+                    <Column width="10rem" >
                         <Text text="Phone" />
                     </Column>
-                    <Column>
+                    <Column width="10rem" >
                         <Text text="Email" />
                     </Column>
-                    <Column>
+                    <Column width="10rem" >
                         <Text text="Address Type" />
                     </Column>
                 </columns>
                 <items>
                     <ColumnListItem>
                         <cells>
-                            <Text text="{FullName}" />
-                            <Text text="{BusinessPartnerName1}" />
-                            <Text text="{StreetName}" />
-                            <Text text="{HouseNumber}" />
-                            <Text text="{AddressLine3}" />
-                            <Text text="{CityName}" />
-                            <Text text="{Region}" />
-                            <Text text="{PostalCode}" />
-                            <Text text="{Country}" />
-                            <Text text="{PhoneNumber}" />
-                            <Text text="{EMAIL}" />
-                            <Text text="{LocationType}" />
+                            <Text text="{FullName}" wrapping="false" />
+                            <Text text="{BusinessPartnerName1}" wrapping="false" />
+                            <Text text="{StreetName}" wrapping="false" />
+                            <Text text="{HouseNumber}" wrapping="false" />
+                            <Text text="{AddressLine3}" wrapping="false" />
+                            <Text text="{CityName}" wrapping="false" />
+                            <Text text="{Region}" wrapping="false" />
+                            <Text text="{PostalCode}" wrapping="false" />
+                            <Text text="{Country}" wrapping="false" />
+                            <Text text="{PhoneNumber}" wrapping="false" />
+                            <Text text="{EMAIL}" wrapping="false" />
+                            <Text text="{LocationType}" wrapping="false" />
                         </cells>
                     </ColumnListItem>
                 </items>
             </Table>
-            </Toolbar>
-        </content>
+        </ScrollContainer>
 
-        <!-- Footer with Actions -->
         <footer>
             <OverflowToolbar>
                 <Button text="Cancel" press="onShipToPickAnAddressCancelPress" />

@@ -1,15 +1,34 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f" xmlns:fb="sap.ui.comp.filterbar" xmlns:svm="sap.ui.comp.smartvariants" xmlns:ui="sap.ui.table" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core">
-  <Dialog id="idShipMethodDialog" showHeader="false"  class="myCustomDialog sapUiResponsiveContentPadding" stretch="{device>/system/phone}" >
-    <customHeader>
+<core:FragmentDefinition xmlns="sap.m" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:form="sap.ui.layout.form" 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:f="sap.f" 
+    xmlns:fb="sap.ui.comp.filterbar" 
+    xmlns:svm="sap.ui.comp.smartvariants" 
+    xmlns:ui="sap.ui.table" 
+    xmlns:u="sap.ui.unified" 
+    xmlns:c="sap.ui.core" >
+  <Dialog id="idShipMethodDialog" showHeader="false"  class="rightSideDialogForTracking" >
+    <!-- <customHeader>
       <Toolbar>
         <Title text="Freight Quote Status"></Title>
         <ToolbarSpacer></ToolbarSpacer>
         <Button icon="sap-icon://decline" press="ShipMethodCancelDialog" class="Decline_Btn"></Button>
       </Toolbar>
-    </customHeader>
+    </customHeader> -->
+
+    <!-- Custom Header -->
+       <customHeader>
+            <Toolbar height="3.5rem" >
+                <Title text="Freight Quote Status" />
+                <ToolbarSpacer />
+                <Button icon="sap-icon://decline" class="Decline_Btn" press="ShipMethodCancelDialog" />
+            </Toolbar>
+      </customHeader>
       
         <VBox>
-            <HBox justifyContent="SpaceAround" class="summary-section ">
+            <HBox justifyContent="SpaceAround" class="summary-section">
                 <VBox class="stat-card">
                     <Text text="Quotes Submitted" />
                     <ObjectNumber number="{eshipjetModel>/submitted}" state="Success" />

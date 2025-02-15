@@ -10,7 +10,7 @@
 	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" >
 
 	    
-		<Toolbar width="auto" height="15%" class="toolbarbottomborder fixedLayout" >
+		<Toolbar width="auto" height="15%" class="toolbarbottomborder" >
 			<Text text="Ship Requests / Labels" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiSmallMarginBottom toolBarHeader" ></Text>
 				<ToolbarSpacer />
 					<Button text="Create Ship Request / Label" class="ship-req-toolbar__button sapUiTinyMargin" width="200px" press="onCreateShipReqLabelPress" ></Button>
@@ -96,7 +96,6 @@
 	<Table id="idShipReqsTable"
 		inset="false"
 		sticky="ColumnHeaders,HeaderToolbar"
-		growingMode="Scroll"
 		growing="true"
 		ariaLabelledBy="title" fixedLayout="Strict"
 		autoPopinMode="false" popinLayout="GridSmall"

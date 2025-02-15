@@ -3,10 +3,7 @@
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
     xmlns:core="sap.ui.core">
-    <Dialog
-        id="idCodEditDialog"
-        contentWidth="40%"
-        contentHeight="80%" >
+    <Dialog id="idCodEditDialog" class="rightSideDialogForTracking" >
      <customHeader>
     <Toolbar>
         <Title text="COD Information" />

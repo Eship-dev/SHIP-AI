@@ -6,7 +6,8 @@
     <Dialog
         id="idBrokerSelectEditDialog"
         contentWidth="40%"
-        contentHeight="80%" >
+        contentHeight="80%"
+        class="rightSideDialogForTracking" >
      <customHeader>
     <Toolbar>
         <Title text="Broker Information" />
