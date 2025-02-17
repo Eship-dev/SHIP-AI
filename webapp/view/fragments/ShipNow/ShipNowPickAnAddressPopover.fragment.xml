@@ -89,7 +89,7 @@
         </ScrollContainer>
 
 		<footer>
-            <Toolbar>
+            <Toolbar class="rightSidePopupBottomAdjustment" >
                 <Button text="Cancel" press="onShipNowPickAnAddressCancelPress" />
                 <ToolbarSpacer />
                 <Button type="Emphasized" text="Submit" press="onShipNowPickAnAddressSelectPress" />

@@ -35,10 +35,8 @@
                 <ToolbarSpacer />
                 <Button
                     type="Emphasized"
-                   
                     text="Submit"
-                    press="ShioReqLabelEditIconSubmitPress"
-                />
+                    press="ShioReqLabelEditIconSubmitPress" />
             </OverflowToolbar>
         </footer>
          <!-- class="ship-req-toolbar__button " use at line number 41-->
@@ -50,8 +48,7 @@
                 layout="ColumnLayout"
                 columnsM="2"
                 columnsL="2"
-                columnsXL="2"
-            >
+                columnsXL="2" >
                 <f:content>
                     <Toolbar ariaLabelledBy="idShipFrom">
                         <Button
