@@ -766,10 +766,10 @@ span.sapMBtnInner.sapMBtnReject {
 }
 
 .customSimpleFormShadow {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 54px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   background-color: #ffffff;
-  margin: 15px !important;
+  margin: 30px !important;
 }
 
 .sapTntNLIFirstLevel .sapTntNLIText {

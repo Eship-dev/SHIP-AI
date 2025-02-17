@@ -28,58 +28,115 @@
     <Text text="Delivered" class="GreenandCenter sapUiTinyMarginTop"/>
   </VBox>
 
-  <!-- SimpleForm for Delivery Details -->
-  <VBox> 
-    <f:SimpleForm id="SimpleFormDisplay354"
-      editable="true"
-      layout="ResponsiveGridLayout"
-      columnsM="2"
-      columnsL="3"
-      columnsXL="4">
-      <f:content>
-        <Label text="Ship Method" />
-        <Text text="{eshipjetModel>/TrackingNumberTableRows/0/ERPCarrierID}" class="TrackingSpaceField" />
-        <Label text="Service Name" />
-        <Text text="{eshipjetModel>/TrackingNumberTableRows/0/Carrier}" class="TrackingSpaceField"/>
-        <Label text="Delivered To" />
-        <Text text="{eshipjetModel>/TrackingNumberTableRows/0/COMPANY}" class="TrackingSpaceField"/>
-        <Label text="Ship Date" />
-        <Text text="{path: 'eshipjetModel>/TrackingNumberTableRows/0/ShipDate', formatter: '.formatter.formatDate'}" class="TrackingSpaceField" />
-        <Label text="Standard Transit" />
-        <Text text="{eshipjetModel>/TrackingNumberTableRows/0/StandardTransit}" class="TrackingSpaceField"/>
-        <Label text="Delivered" />
-        <Text text="{eshipjetModel>/TrackingNumberTableRows/0/Delivered}" class="TrackingSpaceField" />
-        <Label text="Signed By" />
-        <Text text="{eshipjetModel>/TrackingNumberTableRows/0/SignedBy}" class="TrackingSpaceField"/>
-      </f:content>
-    </f:SimpleForm>
-  </VBox>
+<!-- SimpleForm for Delivery Details -->
+  <!-- <f:SimpleForm id="SimpleFormDisplay354"
+  editable="false"
+  layout="ResponsiveGridLayout"
+  columnsM="2"
+  columnsL="3"
+  columnsXL="4"
+  class="customSimpleForm">
+  <f:content>
+    <Label text="Ship Method" class="customLabel grayBackgroundColor" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/ERPCarrierID}" class="customTextField grayBackgroundColor" />
+    
+    <Label text="Service Name" class="customLabel" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/Carrier}" class="customTextField" />
+    
+    <Label text="Delivered To" class="customLabel grayBackgroundColor" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/COMPANY}" class="customTextField grayBackgroundColor" />
+    
+    <Label text="Ship Date" class="customLabel" />
+    <Text text="{path: 'eshipjetModel>/TrackingNumberTableRows/0/ShipDate', formatter: '.formatter.formatDate'}" class="customTextField" />
+    
+    <Label text="Standard Transit" class="customLabel grayBackgroundColor" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/StandardTransit}" class="customTextField grayBackgroundColor" />
+    
+    <Label text="Delivered" class="customLabel" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/Delivered}" class="customTextField" />
+    
+    <Label text="Signed By" class="customLabel grayBackgroundColor" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/SignedBy}" class="customTextField grayBackgroundColor" />
+  </f:content>
+</f:SimpleForm> -->
+
+  <VBox class="customVBox">
+  <!-- First Row: Ship Method -->
+  <HBox class="customRow" width="100%" >
+    <Label text="Ship Method:" class="customLabel" width="15rem" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/ERPCarrierID}" class="customTextField centerText" width="15rem" />
+  </HBox>
+  
+  <!-- Second Row: Service Name -->
+  <HBox class="customRow" width="100%">
+    <Label text="Service Name:" class="customLabel" width="15rem" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/Carrier}" class="customTextField centerText" width="15rem" />
+  </HBox>
+  
+  <!-- Third Row: Delivered To -->
+  <HBox class="customRow" width="100%" >
+    <Label text="Delivered To:" class="customLabel" width="15rem" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/COMPANY}" class="customTextField centerText" width="15rem" />
+  </HBox>
+  
+  <!-- Fourth Row: Ship Date -->
+  <HBox class="customRow" width="100%" >
+    <Label text="Ship Date:" class="customLabel" width="15rem" />
+    <Text text="{path: 'eshipjetModel>/TrackingNumberTableRows/0/ShipDate', formatter: '.formatter.formatDate'}" class="customTextField centerText" width="15rem" />
+  </HBox>
+  
+  <!-- Fifth Row: Standard Transit -->
+  <HBox class="customRow" width="100%" >
+    <Label text="Standard Transit:" class="customLabel" width="15rem" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/StandardTransit}" class="customTextField centerText" width="15rem" />
+  </HBox>
+  
+  <!-- Sixth Row: Delivered -->
+  <HBox class="customRow" width="100%" >
+    <Label text="Delivered:" class="customLabel" width="15rem" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/Delivered}" class="customTextField centerText" width="15rem" />
+  </HBox>
+  
+  <!-- Seventh Row: Signed By -->
+  <HBox class="customRow" width="100%" >
+    <Label text="Signed By:" class="customLabel" width="15rem" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/SignedBy}" class="customTextField centerText" width="15rem" />
+  </HBox>
+
+  <HBox class="customRow" width="100%" >
+    <core:Icon src="sap-icon://download" class="obtainProofOfDelivery" ></core:Icon>
+    <Text text="Obtain proof of delivery" class="obtainProofOfDelivery sapUiTinyMarginBegin" width="15rem" />
+  </HBox>
+</VBox>
+
+
 </VBox>
 
 <!-- Scrollable Table -->
 <ScrollContainer
   class="customSimpleFormShadow"
-  height="400px"
+  height="300px"
   width="auto"
   vertical="true">
   <Table id="idShipmentHistoryTable" 
+    class="backgroundForTrackTableColumns"
     inset="false"
     sticky="ColumnHeaders,HeaderToolbar"
     alternateRowColors="true" 
-    items="{/ShipmentTravelHistoryRows}">
+    items="{/ShipmentTravelHistoryRows}" >
     <headerToolbar>
       <OverflowToolbar>
         <Text text="Shipment Travel History" class="ShipmentTravelHistory"/>
       </OverflowToolbar>
     </headerToolbar>
     <columns>
-      <Column>
+      <Column width="8rem" >
         <Text text="Date" />
       </Column>
-      <Column>
+      <Column width="8rem" >
         <Text text="Time" />
       </Column>
-      <Column width="">
+      <Column width="2rem" >
         <Text />
       </Column>
       <Column>
@@ -94,7 +151,11 @@
         <cells>
           <Text text="{Date}" />
           <Text text="{Time}" />
-          <Text text="" class="timeline-line" />
+          <HBox class="timeline-container">
+              <Text class="timeline-line" visible="{= ${Status} === 'DELIVERED' ? false : true }" />
+              <Text class="timeline-icon" visible="{= ${Status} === 'DELIVERED' ? false : true }" />
+              <Text text="{= ${Status} === 'DELIVERED' ? '✔' : '' }" visible="{= ${Status} === 'DELIVERED' ? true : false }" />
+          </HBox>
           <Text text="{Status}" />
           <Text text="{Location}" />
         </cells>

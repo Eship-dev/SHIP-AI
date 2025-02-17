@@ -6,6 +6,7 @@
     "createShipReqPersonalSelect": false,
     "routingGuidFooter": false,
     "toolPageDarkHeader": false,
+    "toolPageHeader":true,
 
     "shipNowGanderWhiteSelect": false,
     "shipNowABFSelect": false,
@@ -7907,6 +7908,12 @@
                 "Date": "05/19/2023",
                 "Time": "04:33 AM",
                 "Status": "Ready for recipient pickup",
+                "Location": "GREENWOOD"
+              },
+              {
+                "Date": "05/20/2023",
+                "Time": "05:00 AM",
+                "Status": "DELIVERED",
                 "Location": "GREENWOOD"
               }
           ],

@@ -5,7 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{appTitle}}</title>
+    <title>eshipjet.ai</title>
+    <link href="https://dev.eshipjet.site/assets/images/copilotlogo1.png" rel="icon" type="image/x-icon" />
+
+    <script>
+        function setCustomFavicon() {
+            var link = document.querySelector("link[rel='icon']");
+            if (!link) {
+                link = document.createElement("link");
+                link.rel = "icon";
+                document.head.appendChild(link);
+            }
+            link.href = "https://dev.eshipjet.site/assets/images/copilotlogo1.png";
+        }
+    
+        // Apply favicon immediately
+        setCustomFavicon();
+    
+        // Ensure favicon is set after Fiori Launchpad initializes
+        setInterval(setCustomFavicon, 2000);
+    </script>
 
     <!-- Bootstrap the unified shell in sandbox mode for standalone usage.
 

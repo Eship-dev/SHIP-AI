@@ -28,6 +28,7 @@ sap.ui.define([
     return Controller.extend("com.eshipjet.zeshipjet.controller.Eshipjet", {
         formatter: formatter,
         onInit: function () {
+            
             var oModel = new JSONModel(sap.ui.require.toUrl("com/eshipjet/zeshipjet/model/data.json"));
             this.getView().setModel(oModel);
             oController = this;
@@ -133,6 +134,7 @@ sap.ui.define([
                 var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
                 ShipNowDataModel.setProperty("/ShipFromAddress", "");
                 ShipNowDataModel.setProperty("/ShipToAddress", "");
+                eshipjetModel.setProperty("/toolPageHeader", false);
                 eshipjetModel.setProperty("/allViewsFooter", false);
                 eshipjetModel.setProperty("/shipNowViewFooter", true);
                 eshipjetModel.setProperty("/createShipReqViewFooter", false);
@@ -392,6 +394,7 @@ sap.ui.define([
             eshipjetModel.setProperty("/HandlingUnits",[]);
             eshipjetModel.setProperty("/shippingDocuments",[]);
             if (sKey === "Dashboard") {
+                eshipjetModel.setProperty("/toolPageHeader", true);
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
                 eshipjetModel.setProperty("/createShipReqViewFooter", false);
@@ -2455,6 +2458,7 @@ sap.ui.define([
             var sKey = "ShipRequestLabel";
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             if (sKey === "ShipRequestLabel") {
+                eshipjetModel.setProperty("/toolPageHeader", true);
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
                 eshipjetModel.setProperty("/createShipReqViewFooter", false);
@@ -2703,6 +2707,7 @@ sap.ui.define([
             var oPageContainer = this.byId("pageContainer");
             oPageContainer.to(oView.createId("_ID_CreateShipReqLabel_TableScrollContainer"));
             this._handleDisplayCreateShipReqTable();
+            eshipjetModel.setProperty("/toolPageHeader", false);
             eshipjetModel.setProperty("/allViewsFooter", false);
             eshipjetModel.setProperty("/shipNowViewFooter", false);
             eshipjetModel.setProperty("/routingGuidFooter", false);
@@ -7990,20 +7995,15 @@ sap.ui.define([
             var ShipNowDataModel = this.getView().getModel("ShipNowDataModel");
             var shipNowBtnId = ShipNowDataModel.getProperty("/shipNowBtnId");
             var oShipToTable = this.getView().byId("idShipToAddressTable");
-            
-
             var oSelectedItem = oShipToTable.getSelectedItem();
-
             var oContext = oSelectedItem.getBindingContext();
             var oSelectedData = oContext.getObject();
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             ShipNowDataModel.setProperty("/ShipToAddress", oSelectedData);
             // var oAddressModel = new JSONModel(oSelectedData);
             // this.getView().setModel(oAddressModel, "oAddressModel");
-
-           
             oShipToTable.removeSelections(true);
-            oController.byId("idShipToPickAnAddressPopover").close();
+            this.byId("idShipToPickAnAddressPopover").close();
         },
 
         ShipToPickAnAddressPopoverPress: function (oEvent) {

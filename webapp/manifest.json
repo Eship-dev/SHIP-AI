@@ -76,7 +76,7 @@
         "technology": "UI5",
         "icons": {
             "icon": "",
-            "favIcon": "",
+            "favIcon": "https://dev.eshipjet.site/assets/images/copilotlogo1.png",
             "phone": "",
             "phone@2": "",
             "tablet": "",

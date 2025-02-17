@@ -3,7 +3,7 @@
 	<App id="app">
 	<tnt:ToolPage id="toolPage" sideExpanded="false" >
 		<tnt:header >
-			<tnt:ToolHeader id="myToolbar" >
+			<tnt:ToolHeader id="myToolbar" visible="{eshipjetModel>/toolPageHeader}" >
 				<!-- <Button		id="sideNavigationToggleButton"		icon="{value:'com/eshipjet/zeshipjet/css/images/menu.png', formatter:'sap.ui.require.toUrl'}"
 					type="Transparent"		press=".onSideNavButtonPress"> -->
 				<Button id="sideNavigationToggleButton"  icon="sap-icon://customfont/menuIcon"

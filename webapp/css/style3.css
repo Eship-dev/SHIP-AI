@@ -1703,7 +1703,7 @@ button, input, optgroup, select, textarea {
 
 .rightSideDialogForTracking {
   width: 55% !important;
-  height: 110vh !important;  /* Adjusting height dynamically */
+  height: 100% !important;  /* Adjusting height dynamically */
   position: fixed !important;
   z-index: 10002 !important;
   max-width: 1230px;
@@ -1718,4 +1718,148 @@ button, input, optgroup, select, textarea {
 .rightSidePopupBottomAdjustment{
   position: relative !important;
   bottom: 0 !important;
+}
+
+.backgroundForTrackTableColumns .sapMListTblCell.sapMListTblHeaderCell {
+  padding: 0;
+  background-color: black;
+  color: white !important;
+}
+
+
+/* Timeline Container - ensures alignment */
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100%;
+}
+
+/* Timeline Dot */
+.timeline-icon {
+  width: 12px;
+  height: 12px;
+  background-color: black !important;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white !important;
+  font-size: 8px !important;
+  left: 20% !important;
+}
+
+.backgroundForTrackTableColumns .sapMListTblHeaderCell .sapMText {
+  color: white !important;
+}
+
+/* SimpleForm Styling */
+.customSimpleForm {
+  width: 100%;
+  background-color: #F8F8F8; /* Light gray background */
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Label Alignment */
+.customLabel {
+  width: 40%;
+  text-align: left;
+  color: #333;
+}
+
+/* Text Alignment */
+.customTextField {
+  width: 100%;
+  text-align: center !important;
+  color: black;
+}
+
+.grayBackgroundColor .sapUiForm:not(.sapUiFormEdit) .sapMText {
+  min-height: 1rem;
+  background-color: gray;
+}
+
+/* Shipment Travel History Table Styling */
+.backgroundForTrackTableColumns {
+  width: 100%;
+  background-color: white;
+  border-radius: 8px;
+}
+
+/* Table Header Black Background */
+.customTableHeader {
+  background-color: black;
+  color: white !important;
+  font-weight: bold;
+  padding: 10px;
+}
+
+/* Alternating Row Colors */
+#idShipmentHistoryTable .sapMListTblRow:nth-child(odd) {
+  background-color: black !important;
+  color: white !important;
+}
+
+#idShipmentHistoryTable .sapMListTblRow:nth-child(even) {
+  background-color: gray !important;
+  color: white !important;
+}
+
+.timeline-line {
+  position: absolute !important;
+  width: 2px !important;
+  height: 100% !important;
+  background-color: black !important;
+  top: 100px !important;
+  left: 40% !important;
+}
+
+
+
+
+.customVBox {
+  padding: 20px;
+}
+
+/* Style for each row inside VBox */
+.customRow {
+  display: flex;
+  align-items: center; /* Vertically center the content */
+  padding: 10px;
+}
+
+/* Ensure that text is centered in the HBox */
+.centerText {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: start !important;
+}
+
+/* Alternate row colors */
+.customRow:nth-child(odd) {
+  background-color: #f5f5f5; /* Light gray background for even rows */
+}
+
+.customRow:nth-child(even) {
+  background-color: #ffffff; /* White background for odd rows */
+}
+
+/* Style for labels */
+.customLabel {
+  width: 40%; /* Adjust the width as needed */
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+/* Style for text fields */
+.customTextField {
+  width: 60%; /* Adjust the width as needed */
+  padding-left: 10px;
+}
+
+.obtainProofOfDelivery{
+  color: #23A1B7 !important;
 }
