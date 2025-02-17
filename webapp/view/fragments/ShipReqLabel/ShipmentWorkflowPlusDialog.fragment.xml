@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f" xmlns:fb="sap.ui.comp.filterbar" xmlns:svm="sap.ui.comp.smartvariants" xmlns:ui="sap.ui.table" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core">
-  <Dialog id="idShipmentWorkflowDialog" showHeader="false" contentWidth="70%" class="rightSideDialogForTracking" >
+  <Dialog id="idShipmentWorkflowDialog" showHeader="false" contentWidth="70%" class="rightSideDialogForTracking1" >
     <customHeader>
       <Toolbar>
         <Title text="Shipment Notes"></Title>
@@ -7,7 +7,7 @@
         <Button icon="sap-icon://decline" press="ShipmentWorkflowCancelDialog" class="Decline_Btn"></Button>
       </Toolbar>
     </customHeader>
-       <VBox class="sapUiSmallMargin" >
+       <VBox class="sapUiSmallMargin shipmethod" >
         <!-- Notes Section -->
         <Label text="Notes" />
         <TextArea width="100%" rows="4" class="sapUiTinyMarginBottom" />
@@ -39,13 +39,23 @@
         </Table>
     </VBox>
       
-        <beginButton>
-            <Button text="Cancel" press="ShipmentWorkflowCancelDialog" ></Button>
-        </beginButton>
-        <endButton>
-            <Button text="Save" type="Success" />
-        </endButton>
-    
+       
+     <footer>
+            <OverflowToolbar class="p-sidebar-header sapMPopoverFooter1">
+                <Button
+                    text="Cancel"
+                    class="frieghtCancelBtn"
+                    press="ShipmentWorkflowCancelDialog"
+                />
+                <ToolbarSpacer />
+                <Button
+                    class="btnSave"
+                    type="Emphasized"
+                    text="Save"
+                    press="AddLocSelectPopover"
+                />
+            </OverflowToolbar>
+        </footer>
 
 
 

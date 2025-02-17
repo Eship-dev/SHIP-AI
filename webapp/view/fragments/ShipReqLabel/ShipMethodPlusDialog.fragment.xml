@@ -9,7 +9,7 @@
     xmlns:ui="sap.ui.table" 
     xmlns:u="sap.ui.unified" 
     xmlns:c="sap.ui.core" >
-  <Dialog id="idShipMethodDialog" showHeader="false"  class="rightSideDialogForTracking" >
+  <Dialog id="idShipMethodDialog" showHeader="false"  class="rightSideDialogForFreightQuoteStatus">
     <!-- <customHeader>
       <Toolbar>
         <Title text="Freight Quote Status"></Title>
@@ -21,79 +21,78 @@
     <!-- Custom Header -->
        <customHeader>
             <Toolbar height="3.5rem" >
+                 <ToolbarSpacer />
                 <Title text="Freight Quote Status" />
                 <ToolbarSpacer />
                 <Button icon="sap-icon://decline" class="Decline_Btn" press="ShipMethodCancelDialog" />
             </Toolbar>
       </customHeader>
       
-        <VBox>
-            <HBox justifyContent="SpaceAround" class="summary-section">
-                <VBox class="stat-card">
-                    <Text text="Quotes Submitted" />
-                    <ObjectNumber number="{eshipjetModel>/submitted}" state="Success" />
-                </VBox>
-                <VBox class="stat-card sapUiMediumMarginBegin">
-                    <Text text="Quotes Received" />
-                    <ObjectNumber number="{eshipjetModel>/received}" state="Success"  />
-                </VBox>
-                <VBox class="stat-card sapUiMediumMarginBegin">
-                    <Text text="Quote Approved" />
-                    <ObjectNumber number="{eshipjetModel>/approved}" state="Success" />
-                </VBox>
+       <VBox>
+    <HBox justifyContent="SpaceAround" class="summary-section shipmethod">
+        
+        <VBox class="stat-card">
+            <HBox>
+                <Text text="✔" class="checkmark" />
+                <Text text="Quotes Submitted" />
             </HBox>
-
-            <Text text="Freight Quotation Status" class="section-header" />
-
-  
-
-                <VBox class="carrier-card  customSimpleFormShadow">
-                    <HBox justifyContent="SpaceBetween" alignItems="Start">
-                        <!-- Left Section -->
-                        <Text text="Crown Fine Art" class="quote-title" />
-
-                        <!-- Right Section -->
-                        <VBox alignItems="End">
-                            <Text text="Received" class="quote-status" />
-                        </VBox>
-                    </HBox>
-
-                    <HBox>
-                        <VBox>
-                            <Text text="vinay@c360soft.ai" />
-                            <Text text="+44 20 7732 7610" />
-                            <Text text="USD 22053.76" class="quote-amount" />
-                        </VBox>
-                    </HBox>
-                    
-                </VBox>
-
-                <VBox class="carrier-card  customSimpleFormShadow">
-                    <HBox justifyContent="SpaceBetween" alignItems="Start">
-                        <!-- Left Section -->
-                        <Text text="Crown Fine Art" class="quote-title" />
-
-                        <!-- Right Section -->
-                        <VBox alignItems="End">
-                            <Text text="Received" class="quote-status" />
-                        </VBox>
-                    </HBox>
-
-                    <HBox>
-                        <VBox>
-                            <Text text="vinay@c360soft.ai" />
-                            <Text text="+44 20 7732 7610" />
-                            <Text text="USD 22053.76" class="quote-amount" />
-                        </VBox>
-                    </HBox>
-                    
-                </VBox>
-
+            <ObjectNumber number="{eshipjetModel>/submitted}" state="Success" class="QuotesSubmittedNumberBegin" />
         </VBox>
 
-        <endButton>
-            <Button text="Close" press=".onCloseDialog" />
-        </endButton>
+        <VBox class="stat-card sapUiMediumMarginBegin">
+            <HBox>
+                <Text text="✔" class="checkmark" />
+                <Text text="Quotes Received" />
+            </HBox>
+            <ObjectNumber number="{eshipjetModel>/received}" state="Success" />
+        </VBox>
+
+        <VBox class="stat-card sapUiMediumMarginBegin">
+            <HBox>
+                <Text text="✔" class="checkmark" />
+                <Text text="Quote Approved" />
+            </HBox>
+            <ObjectNumber number="{eshipjetModel>/approved}" state="Success" />
+        </VBox>
+
+    </HBox>
+</VBox>
+
+        
+<Toolbar ></Toolbar>
+       
+       <VBox class=" customSimpleFormShadow1">
+    <Text text="Freight Quotation Status" class="section-header" />
+
+    <VBox class="carrier-card">
+        <HBox justifyContent="SpaceBetween" alignItems="Start">
+            <Text text="Pilot Freight Services" class="quote-title" />
+            <Text text="Received" class="quote-status" />
+        </HBox>
+        <HBox>
+            <VBox>
+                <Text text="kumar@eshipjet.ai" />
+                <Text text="+12064331010" />
+                <Text text="USD 800.00" class="quote-amount" />
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <VBox class="carrier-card">
+        <HBox justifyContent="SpaceBetween" alignItems="Start">
+            <Text text="SEKO Logistics" class="quote-title" />
+            <Text text="Approved" class="quote-status" />
+        </HBox>
+        <HBox>
+            <VBox>
+                <Text text="kumar@c360soft.ai" />
+                <Text text="+14043620500" />
+                <Text text="USD 1800.00" class="quote-amount" />
+            </VBox>
+        </HBox>
+    </VBox>
+</VBox>
+
     
 
 

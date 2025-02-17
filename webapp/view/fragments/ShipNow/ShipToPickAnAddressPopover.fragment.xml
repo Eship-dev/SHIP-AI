@@ -26,7 +26,7 @@
             <Table 
                 id="idShipToAddressTable"
                 inset="false"
-                mode="SingleSelectMaster"
+                mode="SingleSelectLeft"
                 items="{ path: '/shipToAddresses' }">
                 <columns>
                     <Column width="10rem" >
@@ -88,7 +88,7 @@
         </ScrollContainer>
 
         <footer>
-            <OverflowToolbar>
+            <OverflowToolbar class="p-sidebar-header sapMPopoverFooter1 shipmethod">
                 <Button text="Cancel" press="onShipToPickAnAddressCancelPress" />
                 <ToolbarSpacer />
                 <Button type="Emphasized" text="Select" press="onShipToPickAnAddressSelectPress" />

@@ -1179,7 +1179,9 @@ span.sapMBtnInner.sapMBtnReject {
 
 sidebar-header {
   padding: 0.9rem !important;
+  border: 2px solid red !important;
   padding-top: 1.5rem !important;
+  position: relative !important;
   padding-bottom: 0.9rem !important;
   background-color: white !important;
   font-family: AvenirNextCyrMedium !important;
@@ -1196,7 +1198,10 @@ sidebar-header {
   border-bottom: 1px solid #eee !important;
   height: 70px !important;
   margin-bottom: 0%;
-  padding-bottom: 10px;
+  padding-bottom: 0px;
+  position: absolute !important;
+  bottom: 0px !important;
+  width: 100% !important;
 }
 .p-sidebar-header {
   padding: 0.9rem !important;
@@ -1234,6 +1239,130 @@ sidebar-header {
 }
 * {
   box-sizing: border-box;
+}
+.sapMPopoverFooter1{
+    position: absolute !important;
+    bottom: 0px !important;
+    width: 100% !important;
+}
+.rightSideDialogForTracking1{
+  width: 40% !important;
+  height: 102% !important;  /* Adjusting height dynamically */
+  position: fixed !important;
+  z-index: 10002 !important;
+  max-width: 1230px;
+  /* max-height: calc(100% - 100px) !important; */
+  top: 3px !important;    /* Adds 50px space from the top */
+ 
+  right: 0 !important;
+  left: auto !important;
+  border-radius: 3px !important; 
+  visibility: visible !important;
+  max-height: 100% !important;
+  padding-bottom: 0px !important;
+  top: 3px !important;
+  padding-top: 0px !important;
+}
+
+.rightSideDialogForFreightQuoteStatus{
+  width: 40% !important;
+  height: 102% !important;  /* Adjusting height dynamically */
+  position: fixed !important;
+  z-index: 10002 !important;
+  max-width: 1230px;
+  /* max-height: calc(100% - 100px) !important; */
+  top: 3px !important;    /* Adds 50px space from the top */
+ 
+  right: 0 !important;
+  left: auto !important;
+  border-radius: 3px !important; 
+  visibility: visible !important;
+  max-height: 100% !important;
+  padding-bottom: 0px !important;
+  top: 3px !important;
+  padding-top: 0px !important;
+  
+}
+
+.shipmethod{
+  margin-top: 69px !important;
+ 
+}
+.section-header {
+  font-weight: bold;
+  font-size: 18px;
+  color: #0047ab;
+  padding: 10px 15px;
+  display: block;
+}
+
+.freight-container {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+  max-width: 100%;
+  margin: 20px auto;
+  
+}
+
+
+.customSimpleFormShadow1 {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #ffffff;
+  margin: 5px !important;
+  
+}
+
+.carrier-card {
+  background: #f9fbff;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e3e7ff;
+}
+
+.quote-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #222;
+}
+
+.quote-status {
+  font-size: 14px;
+  font-weight: bold;
+  color: green; /* Can be dynamic based on status */
+}
+
+.quote-amount {
+  font-size: 16px;
+  font-weight: bold;
+  color: #008000;
+}
+
+.icon-style {
+  color: #2a7ade; /* Adjust color if needed */
+  margin-right: 8px; /* Space between icon and text */
+}
+
+
+.checkmark {
+  color: #0078d4;  /* Green color */
+  font-size: 16px; /* Adjust size */
+  font-weight: bold;
+  margin-right: 5px; /* Space between ✔ and text */
+  display: flex;
+  margin-top: 12px;
+  align-items: center;
+}
+.QuotesSubmittedNumberBegin{
+  align-items: start !important;
+  justify-content: start !important;
 }
 
 

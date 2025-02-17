@@ -29,7 +29,7 @@
             </Toolbar>
       </customHeader>
         <footer >
-            <OverflowToolbar class="p-sidebar-header" >
+            <OverflowToolbar class="p-sidebar-header sapMPopoverFooter1" >
                 <Button
                     text="Cancel"
                     press="AddAddressBookCancelPopover"

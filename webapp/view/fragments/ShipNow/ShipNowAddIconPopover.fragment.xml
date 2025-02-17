@@ -6,11 +6,10 @@
     height="100%" >
     <Popover
         id="idShipNowAddIconPopover"
-        placement="Right"
-        contentWidth="45%"
-        contentHeight="70%"
-        showHeader="true"
-        class="sapUiResponsivePadding--header sapUiResponsivePadding--footer rightSideDialogForTracking"
+         placement="Bottom"
+        contentHeight="100%"
+        showHeader="false"
+        class="rightSidePopoverGare"
     >
         <!-- Custom Header -->
         <customHeader>
@@ -28,7 +27,7 @@
             </Toolbar>
         </customHeader>
         <footer>
-            <OverflowToolbar>
+            <OverflowToolbar class="p-sidebar-header sapMPopoverFooter1">
                 <Button
                     text="Cancel"
                     press="ShipNowAddIconCancelPopover"

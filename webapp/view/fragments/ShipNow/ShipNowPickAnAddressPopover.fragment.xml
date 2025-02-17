@@ -22,12 +22,13 @@
         class="customSimpleFormShadow"
         height="100%"
         width="100%"
+   
         horizontal="true"
         vertical="true">
             <Table id="idShipNowPickAnAddressTable"
                    class="sapUiTinyMarginTop"
                    growing="true"
-                   mode="SingleSelectMaster"
+                   mode="SingleSelectLeft"
                    items="{/shipFromAddresses}" >
                 <columns>
                     <Column width="10rem" >
@@ -89,7 +90,7 @@
         </ScrollContainer>
 
 		<footer>
-            <Toolbar class="rightSidePopupBottomAdjustment" >
+            <Toolbar class="p-sidebar-header s  apMPopoverFooter1">
                 <Button text="Cancel" press="onShipNowPickAnAddressCancelPress" />
                 <ToolbarSpacer />
                 <Button type="Emphasized" text="Submit" press="onShipNowPickAnAddressSelectPress" />
