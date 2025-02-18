@@ -40,7 +40,7 @@
 			</HBox>
 		</Toolbar>
 
-        <!-- <ui:Table id="idShipReqsTable"
+        <ui:Table id="idShipReqsTable"
                 class="sapUiTinyMarginTop"
 				rows="{eshipjetModel>/Orderitems}"
 				selectionMode="None"
@@ -69,11 +69,11 @@
 						<Button  text="Last" />
 					</Toolbar>
 				</ui:footer>
-		</ui:Table> -->
+		</ui:Table>
 
  
 
-		<Toolbar >
+		<!-- <Toolbar >
 			<Button icon="sap-icon://filter" press="onShipReqFilterPopoverPress"></Button>
 				<ToolbarSpacer ></ToolbarSpacer>
 					<Button icon="sap-icon://synchronize" press="onShipReqRefreshPress"></Button>
@@ -101,21 +101,6 @@
 		autoPopinMode="false" popinLayout="GridSmall"
 		growingThreshold="20"
 		items="{ path: 'eshipjetModel>/ShipReqTableData/ShipReqRows' }" >
-			<!-- <headerToolbar>
-                <OverflowToolbar >
-                    <Button icon="sap-icon://filter" press="onShipReqFilterPopoverPress"></Button>
-						<ToolbarSpacer ></ToolbarSpacer>
-							<Button icon="sap-icon://synchronize" press="onShipReqRefreshPress"></Button>
-							<Button icon="sap-icon://action" press="onShipReqExportToExcel"></Button>
-                            <Button icon="sap-icon://action-settings" press="openShipReqColNamesPopover" >
-                                <customData>
-                                    <core:CustomData key="remember" value="true" />
-                                    <core:CustomData key="showClearButton" value="true" />
-                                    <core:CustomData key="confirmButtonText" value="Ok" />
-                                </customData>
-							</Button>
-                </OverflowToolbar>
-            </headerToolbar> -->
             <dependents>
                 <plugins:ColumnResizer columnResize="onColumnResize"/>
                 <columnmenu:Menu id="menu" beforeOpen="beforeOpenColumnMenu">
@@ -134,13 +119,7 @@
                     </columnmenu:items>
                 </columnmenu:Menu>
             </dependents>
-
-            <!-- <dragDropConfig>
-                <dnd:DragDropInfo sourceAggregation="columns" targetAggregation="columns" dropPosition="Between" drop="onColumnMove"/>
-            </dragDropConfig> -->
-
 		<columns>
-
 			<Column app:p13nKey="locationName" width="10rem" headerMenu="menu" visible="{eshipjetModel>/ShipReqColumns/0/visible}">
                     <header>
                         <Text text="Location Name"/>
@@ -257,21 +236,6 @@
 					text="{eshipjetModel>status}"
 					state="{= ${eshipjetModel>status} === 'Open' ? 'Information' :
 							${eshipjetModel>status} === 'Shipped' ? 'Success' : 'Error' }" />
-				
-				
-					<!-- <ObjectNumber number="{eshipjetModel>status}" class="ShipReq-Status-Bold"
-							state= "{= ${eshipjetModel>status} === 'Open' ? 'Error' : 'Success' }" /> -->
-
-					<!-- <ObjectNumber
-						number="{eshipjetModel>status}"
-						state="{
-							path: 'eshipjetModel>status',
-							formatter: '.formatter.weightState'
-						}" /> -->
-
-					<!-- <ObjectIdentifier
-						text="{eshipjetModel>status}" /> -->
-
 					<Text text="{eshipjetModel>ShipToContact}" />
 					<Text text="{eshipjetModel>ShipToCompany}" />
 					<ObjectStatus
@@ -310,7 +274,7 @@
 				<Text    text="1-50 of 74"/>
 				<Button  text="Next" />
 				<Button  text="Last" />
-		</Toolbar>
+		</Toolbar> -->
 
 
 </core:FragmentDefinition>

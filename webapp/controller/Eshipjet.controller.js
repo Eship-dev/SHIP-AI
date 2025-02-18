@@ -129,7 +129,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
-                // this._handleDisplayShipReqTable();
+                this._handleDisplayShipReqTable();
             } else if (sKey === "ShipNow") {
                 var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
                 ShipNowDataModel.setProperty("/ShipFromAddress", "");
@@ -639,6 +639,15 @@ sap.ui.define([
                             eshipjetModel.setProperty("/ShipNowPostResponse", response);
                             if(response.Packages.length > 0){
                                 var trackingArray = [];
+
+                                var ShipNowShipsrvNameSelectedKey = eshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey");
+                                var serviceNameDropdown = eshipjetModel.getProperty("/serviceNameDropdown");
+                                for(var i=0; i<serviceNameDropdown.length; i++){
+                                    if(serviceNameDropdown[i].serviceCode === ShipNowShipsrvNameSelectedKey){
+                                        var serviceName = serviceNameDropdown[i].serviceName;
+                                    }
+                                }
+                                
                                 for(var i=0; i<response.Packages.length; i++){
                                     var trackingObj = {
                                         "COMPANY": response.Shipper.COMPANY,
@@ -648,7 +657,7 @@ sap.ui.define([
                                         "ShipDate": response.HeaderInfo.ShipDate,
                                         "ShipmentType": response.HeaderInfo.ShipmentType,
                                         "Carrier": response.CarrierDetails.Carrier,
-                                        "ERPCarrierID": response.CarrierDetails.ERPCarrierID,
+                                        "ERPCarrierID": serviceName,
                                         "TrackingNumber": response.Packages[i].TrackingNumber,
                                         "TrackingStatus": response.TrackingStatus,
                                         "SHIP_TO_CONTACT": response.ShipTo.CONTACT,
@@ -714,6 +723,7 @@ sap.ui.define([
                 function(response) {
                     oController.FreightQuoteUpdatedSrvData();
                     oController.ApiOutboundDeliverySrvData(response);
+                    oController.createRecentShipments(response);
                     //resolved
                 },
                 function(error) {
@@ -721,6 +731,254 @@ sap.ui.define([
                 }
             );
 
+        },
+
+        createRecentShipments:function(response){
+            // var oPayload = {
+            //     "Vbeln": response.Vbeln,
+            //     "Createddate": response.HeaderInfo.CreatedDate,
+            //     "TpCompany": response.ShipTo.COMPANY,
+            //     "Carriertype": response.CarrierDetails.Carrier
+            // }
+
+            var ShipDate = new Date(response.HeaderInfo.ShipDate);
+            var timestamp = ShipDate.getTime();
+            var ShipDate = `/Date(${timestamp})/`;
+
+            var CreatedDate = new Date(response.HeaderInfo.CreatedDate);
+            var timestamp = CreatedDate.getTime();
+            var CreatedDate = `/Date(${timestamp})/`;
+
+            var oPayload = {
+                "Saturdaydel": false,
+                "Residentialdel": false,
+                "Priorityalert": false,
+                "Satpickup": false,
+                "Insidedel": false,
+                "Insidepickup": false,
+                "Liftgate": false,
+                "Hold": false,
+                "Dghazmat": false,
+                "CodFlag": false,
+                "Closeout": false,
+                "Upsoffline": false,
+                "ArrivalNotification": false,
+                "Bsoflag": false,
+                "Documents": false,
+                "LimitedAccess": false,
+                "Fedexonerate": false,
+                "Tpc": false,
+                "Crossdock": false,
+                "Ddo": false,
+                "Isc": false,
+                "Appointment": false,
+                "DateAdded": ShipDate,
+                "Createddate": CreatedDate,
+                "CancDt": null,
+                "PodDate": null,
+                "PodCurrentdate": null,
+                "PodPickupdate": null,
+                "ExpDelDate": null,
+                "Scandate": null,
+                "EtaDate": null,
+                "CrossdockRecdate": null,
+                "CrossdockShipdate": null,
+                "WecloseDate": null,
+                "PackageWeight": response.Packages[0].Weight,
+                "Chargweight": "10.000",
+                "Codamount": "100.000",
+                "Customs": "0.000",
+                "Freightamt": response.shippingCharges[0].amount,
+                "Discountamt": response.shippingCharges[1].amount,
+                "Insurance": "0.000",
+                "Dryweight": "0.000",
+                "Vbeln": response.HeaderInfo.DocumentNumber,
+                "Posnr": "000010",
+                "Plant": response.HeaderInfo.Location,
+                "Shipmenttype": "",
+                "Pkgcount": "00001",
+                "MultiSeq": "",
+                "MultiLegno": "",
+                "Totalpkg": "00001",
+                "HandlingUnit": "1",
+                "SalesOrder": "34455",
+                "PurchaseOrder": "233",
+                "TrackingNumber": response.Packages[0].TrackingNumber,
+                "Mastertracking": response.Packages[0].TrackingNumber,
+                "Uspstracking": "",
+                "Iorcode": "",
+                "Externaldoc": "",
+                "CarrierCode": response.CarrierDetails.Carrier,
+                "Carriertype": response.CarrierDetails.Carrier,
+                "CarrierDesc": response.CarrierDetails.Carrier,
+                "Paymentcode": "SENDER",
+                "Shipperacct": "4577788",
+                "Accountnumber": "",
+                "Dutytaxpaytype": "",
+                "Dtaccountnumber": "",
+                "Dimensions": response.Packages[0].Dimension,
+                "Aesitn": "",
+                "Vhilm": "",
+                "Emailaddress": response.HeaderInfo.CreatedUser,
+                "Signaturetype": "",
+                "RecCompany": response.ShipTo.COMPANY,
+                "RecContact": response.ShipTo.CONTACT,
+                "RecAddress1": response.ShipTo.ADDRESS_LINE1,
+                "RecAddress2": response.ShipTo.ADDRESS_LINE2,
+                "RecAddress3": response.ShipTo.ADDRESS_LINE3,
+                "RecCity": response.ShipTo.CITY,
+                "RecRegion": "",
+                "RecPostalcode": response.ShipTo.ZIPCODE,
+                "RecCountry": response.ShipTo.COUNTRY,
+                "RecPhone": response.ShipTo.PHONE,
+                "Company": response.ShipFrom.COMPANY,
+                "Contact": response.ShipFrom.CONTACT,
+                "Address1": response.ShipFrom.ADDRESS_LINE1,
+                "Address2": response.ShipFrom.ADDRESS_LINE2,
+                "Address3": response.ShipFrom.ADDRESS_LINE3,
+                "City": response.ShipFrom.CITY,
+                "Region": "",
+                "Postalcode": response.ShipFrom.ZIPCODE,
+                "Country": response.ShipFrom.COUNTRY,
+                "Phone": response.ShipFrom.PHONE,
+                "Stceg": "",
+                "PodSignature": "",
+                "PodLocation": "",
+                "PodActivity": "",
+                "Podstatus": "",
+                "Podcurrentstatus": "",
+                "Podexpstatus": "",
+                "Consolidation": "",
+                "ReturnTrack": "",
+                "FromCompany": response.ShipFrom.COMPANY,
+                "FromContact": response.ShipFrom.CONTACT,
+                "FromStreet": response.ShipFrom.ADDRESS_LINE1,
+                "FromStreet2": response.ShipFrom.ADDRESS_LINE2,
+                "Fromcity": response.ShipFrom.CITY,
+                "FromRegion": "",
+                "FromPostalcode": response.ShipFrom.ZIPCODE,
+                "FromCountry": response.ShipFrom.COUNTRY,
+                "FromPhone": response.ShipFrom.PHONE,
+                "EnteredBy": "",
+                "Sammg": "",
+                "Lifnr": "",
+                "Waerk": "",
+                "Meabm": "",
+                "Billoflading": "",
+                "Ltlclass": "",
+                "Ltlboxcount": "",
+                "Ltlhutype": "",
+                "Ltlpacktype": "",
+                "Ltlnmfccode": "",
+                "TpCompany": response.ShipTo.COMPANY,
+                "TpContact": response.ShipTo.CONTACT,
+                "TpStreet": response.ShipTo.ADDRESS_LINE1,
+                "TpStreet2": response.ShipTo.ADDRESS_LINE2,
+                "TpCity1": response.ShipTo.CITY,
+                "TpRegion": "",
+                "TpPostCode1": response.ShipTo.ZIPCODE,
+                "TpCountry": response.ShipTo.COUNTRY,
+                "TpPhone": response.ShipTo.PHONE,
+                "EuClearance": "",
+                "Reference1": "",
+                "Reference2": "",
+                "Kunnr": "",
+                "Kunag": "",
+                "Vkorg": "",
+                "Werks": "",
+                "Auart": "",
+                "Lfart": "",
+                "Description": "",
+                "Shipprocess": "",
+                "Venum": "",
+                "Gewei": "",
+                "Reasonforexport": "",
+                "Addcomments": "",
+                "DimensionFactor": "00000",
+                "TransitDays": "000",
+                "Delivery": "",
+                "UpsEod": "",
+                "Tcode": "",
+                "Packagetype": "",
+                "Manifestid": "",
+                "Scac": "",
+                "Sealnumber": "",
+                "Trailerno": "",
+                "Door": "",
+                "Paperlessinv": "",
+                "Tu": "",
+                "Odo": "",
+                "Scanflag": "",
+                "Returntype": "",
+                "Volumequote": "",
+                "Truckno": "",
+                "Container": "",
+                "Pallets": "",
+                "Seal": "",
+                "Crossdockloc": "",
+                "Ecsid": "",
+                "Saleterms": "",
+                "Iorpartner": "",
+                "Iorcompany": "",
+                "Iorcontact": "",
+                "Ioraddress1": "",
+                "Ioraddress2": "",
+                "Iorcity": "",
+                "Iorregion": "",
+                "Iorpostalcode": "",
+                "Iorcountry": "",
+                "Iorphone": "",
+                "SfOrderid": "",
+                "CrossdockStatus": "",
+                "CrossdockRecby": "",
+                "CrossdockShipby": "",
+                "EdiControlNo": "",
+                "Edi997Status": "",
+                "Shipmentid": "",
+                "EodTimestamp": "",
+                "Labelurl": "",
+                "DgUrl": "",
+                "Multi": "",
+                "Legno": "",
+                "Wemshipid": "",
+                "Weshipid": "",
+                "Wemanfid": "",
+                "WeconsolManfid": "",
+                "Weportcode": "",
+                "Wecloseout": "",
+                "WecloseBy": "",
+                "Leg": "",
+                "Knota": "",
+                "Knotz": "",
+                "DeliveryStatus": "",
+                "Stagloc": "",
+                "Licence": "",
+                "Orate": "",
+                "Ocarrier": "",
+                "Accessorial": "",
+                "Fuel": "",
+                "Deliverynno": "",
+                "TimeAdded": "PT00H00M00S",
+                "CancTim": "PT00H00M00S",
+                "PodTime": "PT00H00M00S",
+                "PodCurrenttime": "PT00H00M00S",
+                "PodPickuptime": "PT00H00M00S",
+                "Scantime": "PT00H00M00S",
+                "EtaTime": "PT00H00M00S",
+                "CrossdockRectime": "PT00H00M00S",
+                "CrossdockShiptime": "PT00H00M00S",
+                "WecloseTime": "PT00H00M00S"
+            };
+            var ManifestSrvModel = oController.getOwnerComponent().getModel("ManifestSrvModel");
+            ManifestSrvModel.create("/EshipjetManfestSet", oPayload, {
+                success: function (oData) {
+                    console.log("Created Successfully", oData);
+                },
+                error: function (oError) {
+                    var errMsg = JSON.parse(oError.responseText).error.message.value
+                    sap.m.MessageBox.error(errMsg);
+                }
+            });
         },
 
 
@@ -1944,7 +2202,7 @@ sap.ui.define([
             var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
             var tileTitle = oEvent.getParameters().domRef.innerText;
             if (tileTitle === "Ship Request/Label") {
-                // this._handleDisplayShipReqTable();
+                this._handleDisplayShipReqTable();
                 var sKey = "ShipRequestLabel";
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
@@ -2467,7 +2725,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
-                // this._handleDisplayShipReqTable();
+                this._handleDisplayShipReqTable();
             }
             eshipjetModel.setProperty("/SideNavigation", false);
             this.byId("pageContainer").to(this.getView().createId(sKey));
@@ -2656,7 +2914,7 @@ sap.ui.define([
                 })
             });
             eshipjetModel.updateBindings(true);
-            // this._handleDisplayShipReqTable();
+            this._handleDisplayShipReqTable();
             this._pShipReqPopover.then(function (oPopover) {
                 oPopover.close();
             });
@@ -3629,10 +3887,11 @@ sap.ui.define([
                 //     "$expand": "to_DeliveryDocumentItem,to_DeliveryDocumentPartner"
                 // },
                 success:function(response){
+                    var last10Records = response.results.slice(-10);
                     if(response && response.results.length > 0){
-                        eshipjetModel.setProperty("/RecentShipmentSet",response.results);
+                        eshipjetModel.setProperty("/RecentShipmentSet",last10Records);
                     }
-                    resolve();                      
+                    resolve();
                     oController.oBusyDialog.close();
                 },
                 error: function(error){
@@ -10711,7 +10970,7 @@ sap.ui.define([
 
     onRecentShipmentsItemPress:function(oEvent){
         var oCurrentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
-        var sDocumentNumber = oCurrentObj.details.HeaderInfo.DocumentNumber;        
+        var sDocumentNumber = oCurrentObj.Vbeln;        
         oController.getOwnerComponent().getModel("eshipjetModel").setProperty("/sapDeliveryNumber",sDocumentNumber);
         oController.onShipNowGetPress();
         oController.onRecentShipmentClosePress();

@@ -130,10 +130,10 @@
       </OverflowToolbar>
     </headerToolbar>
     <columns>
-      <Column width="8rem" >
+      <Column width="10rem" >
         <Text text="Date" />
       </Column>
-      <Column width="8rem" >
+      <Column width="6rem" >
         <Text text="Time" />
       </Column>
       <Column width="10px" hAlign="Center" >
