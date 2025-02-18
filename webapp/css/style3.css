@@ -1811,10 +1811,10 @@ button, input, optgroup, select, textarea {
 .timeline-line {
   position: absolute !important;
   width: 2px !important;
-  height: 100% !important;
+  height: 75% !important;
   background-color: black !important;
   top: 100px !important;
-  left: 40% !important;
+  left: 37.5% !important;
 }
 
 

@@ -1952,6 +1952,7 @@ sap.ui.define([
                 this.byId("pageContainer").to(this.getView().createId(sKey));
             } else if (tileTitle === "Ship Now") {
                 var sKey = "ShipNow";
+                eshipjetModel.setProperty("/toolPageHeader", false);
                 eshipjetModel.setProperty("/allViewsFooter", false);
                 eshipjetModel.setProperty("/shipNowViewFooter", true);
                 eshipjetModel.setProperty("/createShipReqViewFooter", false);
@@ -3620,34 +3621,54 @@ sap.ui.define([
         },
 
         getHistoryShipments:function(resolve){
-            oController.oBusyDialog.open();            
-            var obj = {
-                "user_id":"info@eshipjet.ai",
-                "filters":{
-                    "status":"Shipped",
-                    "locationid":"1001"
-                }
-            };
-            var sPath = "https://dev-api-v1.eshipjet.site/shipments/gethistoryshipments";
-            $.ajax({
-                url: sPath,
-                method: "POST",
-                contentType: "application/json",
-                data: JSON.stringify(obj),
-                success: function (response) {
-                    if(response && response.length > 0){
-                        eshipjetModel.setProperty("/RecentShipmentSet",response);
+            oController.oBusyDialog.open();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var ManifestSrvModel = oController.getOwnerComponent().getModel("ManifestSrvModel");
+            ManifestSrvModel.read("/EshipjetManfestSet",{
+                // urlParameters: {
+                //     "$expand": "to_DeliveryDocumentItem,to_DeliveryDocumentPartner"
+                // },
+                success:function(response){
+                    if(response && response.results.length > 0){
+                        eshipjetModel.setProperty("/RecentShipmentSet",response.results);
                     }
                     resolve();                      
                     oController.oBusyDialog.close();
                 },
-                error: function (error) {
-                    console.log("Error:", error);
+                error: function(error){
                     resolve();
                     MessageBox.warning(error.responseText);
                     oController.oBusyDialog.close();
                 }
             });
+
+            // var obj = {
+            //     "user_id":"info@eshipjet.ai",
+            //     "filters":{
+            //         "status":"Shipped",
+            //         "locationid":"1001"
+            //     }
+            // };
+            // var sPath = "https://dev-api-v1.eshipjet.site/shipments/gethistoryshipments";
+            // $.ajax({
+            //     url: sPath,
+            //     method: "POST",
+            //     contentType: "application/json",
+            //     data: JSON.stringify(obj),
+            //     success: function (response) {
+            //         if(response && response.length > 0){
+            //             eshipjetModel.setProperty("/RecentShipmentSet",response);
+            //         }
+            //         resolve();                      
+            //         oController.oBusyDialog.close();
+            //     },
+            //     error: function (error) {
+            //         console.log("Error:", error);
+            //         resolve();
+            //         MessageBox.warning(error.responseText);
+            //         oController.oBusyDialog.close();
+            //     }
+            // });
         },
 
         onColumnSearch: function (oEvent) {
@@ -10752,6 +10773,7 @@ sap.ui.define([
         eshipjetModel.setProperty("/HandlingUnits",[]);
         eshipjetModel.setProperty("/shippingDocuments",[]);
         if (sKey === "ShipNow") {
+            eshipjetModel.setProperty("/toolPageHeader", false);
             eshipjetModel.setProperty("/allViewsFooter", true);
             eshipjetModel.setProperty("/shipNowViewFooter", false);
             eshipjetModel.setProperty("/createShipReqViewFooter", false);

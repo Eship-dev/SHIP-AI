@@ -1116,7 +1116,8 @@ span.sapMBtnInner.sapMBtnReject {
 
 .customObjectStatus {
   font-weight: bold;
-  color: rgb(31, 152, 222) !important;
+  color: #4ea732;
+  border: none;
 }
 
 .middle-line::before {

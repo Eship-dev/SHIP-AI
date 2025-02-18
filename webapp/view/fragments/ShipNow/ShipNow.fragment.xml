@@ -31,7 +31,6 @@
 													<Toolbar ariaLabelledBy="idShipFrom" >
 														<Title id="idShipFrom" text="Ship From"/>
 														<Button icon="sap-icon://customer-briefing" press="ShipNowPickAnAddressPopoverPress" id="idShipFromAddressBtn" />
-														<Text text=" - Eshipjet Software Inc." ></Text>
 													</Toolbar>
 													<Label text="Contact Name" class="sapUiTinyMarginTop" />
 													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromCONTACT}" class="sapUiSmallMarginBottom create-ship-req_input" />

@@ -13,10 +13,10 @@
         <Table	id="rencentShipmentTblId"  items="{eshipjetModel>/RecentShipmentSet}" >
 		<ColumnListItem  vAlign="Middle" press="onRecentShipmentsItemPress" type="Active" >
 			<cells>				
-			  	<ObjectStatus	text="{eshipjetModel>details/HeaderInfo/DocumentNumber}" state="Information"	class="customObjectStatus" />
-                <Text text="{path: 'eshipjetModel>details/HeaderInfo/ShipDate', formatter:'Formatter.formatDate'}" />	
-                <Text text="{eshipjetModel>details/HeaderInfo/ShipmentType}"  wrapping="false" />	
-                <Text text="{eshipjetModel>details/CarrierDetails/Carrier}" />
+			  	<Text text="{eshipjetModel>Vbeln}" class="customObjectStatus" />
+                <Text text="{ path: 'eshipjetModel>Createddate', formatter: '.formatter.formatDate' }" />	
+                <Text text="{eshipjetModel>TpCompany}"  wrapping="false" />	
+                <Text text="{eshipjetModel>Carriertype}" />
 			</cells>
 		</ColumnListItem>
 		<columns>	
