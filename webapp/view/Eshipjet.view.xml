@@ -247,6 +247,9 @@
 					<ScrollContainer	id="_ID_PackageTypes_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.PackageTypes" type="XML" />
 					</ScrollContainer> 
+					<ScrollContainer	id="_ID_DangerousGoods_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.DangerousGoods" type="XML" />
+					</ScrollContainer> 
 
 					<ScrollContainer	id="_ID_ThirdParties_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ThirdParty" type="XML" />

@@ -1,0 +1,98 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    height="100%"
+>
+    <Popover
+        id="idAddDangerousGoodsPopover"
+        placement="Bottom"
+        contentHeight="100%"
+        showHeader="false"
+        class="rightSidePopoverGare">
+        <!-- Custom Header -->
+        <customHeader>
+            <Toolbar>
+                <!-- Title -->
+                <Title text="Add Dangerous Goods" class="sapUiSmallMarginBottom"/>
+
+                <!-- Spacer to push close button to the right -->
+                <ToolbarSpacer />
+
+                <!-- Close Button -->
+                <Button
+                    icon="sap-icon://decline"
+                    class="Decline_Btn sapUiLargeMarginBottom"
+                    press="AddDangerousGoodsClosePress" />
+            </Toolbar>
+        </customHeader>
+        <footer>
+            <OverflowToolbar class="p-sidebar-header">
+                <Button
+                    text="Cancel"
+                    class="Cancel-req-toolbar__button sapUiTinyMarginBottom"
+                    press="AddDangerousGoodsCancelPopover"
+                />
+                <ToolbarSpacer />
+                <Button
+                    type=""
+                    class="ship-req-toolbar__button sapUiTinyMarginBottom"
+                    text="Save"
+                    press="AddDangerousGoodsSelectPopover"
+                />
+            </OverflowToolbar>
+        </footer>
+        <content>
+           	<f:SimpleForm editable="true"
+                            class="customSimpleFormShadow"
+                            width="auto"
+							  layout="ColumnLayout"
+							  columnsM="2"
+							  columnsL="2"
+							  columnsXL="2">
+					<f:content>
+                        <Label text="UN No" />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+                        <Label text="Transport Mode" />  
+			            <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
+                         </ComboBox>
+                       
+                        <Label ></Label>
+                        <Button text="Search" class="ship-req-toolbar__button sapUiLargeMarginBottom" width="10rem"></Button>
+
+                         <Label text="ERG Guide Number" />
+                         <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+                        <Label text="Labels Required" />  
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+                        <Label text="Packing Group" />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+                         <Label text="Carrier" />
+                         <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
+                         </ComboBox>
+
+                        <Label text="Destination" />  
+			            <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
+                         </ComboBox>
+
+                        <Label text="Hazard ID" />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+                        <Label text="Hazard Class" />  
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+                        <Label text="Additional Info" />
+                        <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
+                         </ComboBox>
+
+                        <Label text="Passenger  Cargo Max Net Qty" />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+					</f:content>
+				</f:SimpleForm>
+        </content>
+    </Popover>
+</core:FragmentDefinition>

@@ -4061,6 +4061,11 @@ sap.ui.define([
 
                 oController._displayTables("_IDPackageTypesTable", "PackageTypeTableColumns", "PackageTypeTableRows", "Package Types");
                 oPageContainer.to(oView.createId("_ID_PackageTypes_TableScrollContainer"));
+                
+            } else if (oCurrObj && oCurrObj.name === "Dangerous Goods") {
+
+                oController._displayTables("_IDDangerousGoodsTable", "DangerousGoodsTableColumns", "DangerousGoodsTableRows", "Dangerous Goods");
+                oPageContainer.to(oView.createId("_ID_DangerousGoods_TableScrollContainer"));
 
             } else if (oCurrObj && oCurrObj.name === "Third Party") {
 
@@ -6065,6 +6070,145 @@ sap.ui.define([
         },
 
         // PackageTypes Column Names Popover code changes End here
+
+
+
+          // DangerousGoods Column Names Popover code changes starts here
+
+          openDangerousGoodsColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pDangerousGoodsPopover) {
+                this._pDangerousGoodsPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.DangerousGoodsTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pDangerousGoodsPopover.then(function (oPopover) {
+                oController.DangerousGoodsColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        DangerousGoodsColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/DangerousGoodsTableColumns");
+            var oDangerousGoodsTable = oView.byId("myDangerousGoodsColumnSelectId");
+            var aTableItems = oDangerousGoodsTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onDangerousGoodsColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myDangerousGoodsColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onDangerousGoodsColSelectOkPress: function () {
+            var oView = this.getView();
+            var oDangerousGoodsTable = oView.byId("myDangerousGoodsColumnSelectId");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var oTable = oView.byId("_IDDangerousGoodsTable")
+            oTable.setModel(eshipjetModel);
+
+            var oDangerousGoodsTblItems = oDangerousGoodsTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/DangerousGoodsTableColumns");
+            oDangerousGoodsTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            oDangerousGoodsTable.setModel(eshipjetModel);
+            this._handleDisplayDangerousGoodsTable();
+            this._pDangerousGoodsPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onDangerousGoodsColSelectClosePress: function () {
+            this._pDangerousGoodsPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        _handleDisplayDangerousGoodsTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var DangerousGoodsTableColumns = eshipjetModel.getData().DangerousGoodsTableColumns;
+            const oTable = oView.byId("_IDDangerousGoodsTable");
+            oTable.setModel(eshipjetModel);
+            var count = 0;
+            for (var i = 0; i < DangerousGoodsTableColumns.length; i++) {
+                if (DangerousGoodsTableColumns[i].visible === true) {
+                    count += 1
+                }
+            }
+            oTable.bindColumns("/DangerousGoodsTableColumns", function (sId, oContext) {
+                columnName = oContext.getObject().key;
+                label = oContext.getObject().label;
+                var minWidth = "100%";
+                if (count >= 14) {
+                    var minWidth = "130px";
+                }
+                if (columnName === "Actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "Edit", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.onDangerousGoodsDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }  else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/DangerousGoodsTableRows");
+        },
+
+        // DangerousGoods Column Names Popover code changes End here
 
 
         // ThirdParties Column Names Popover code changes starts here
@@ -11043,7 +11187,37 @@ sap.ui.define([
         }
         eshipjetModel.setProperty("/SideNavigation", false);
         this.byId("pageContainer").to(this.getView().createId(sKey));
-    }
+    },
+    // add onAddAddPaymentTypes popover changes start
+    onAddAddDangerousGoodsPress: function (oEvent) {
+        var oButton = oEvent.getSource(),
+            oView = this.getView();
+        if (!this._AddDangerousGoodsPopover) {
+            this._AddDangerousGoodsPopover = Fragment.load({
+                id: oView.getId(),
+                name: "com.eshipjet.zeshipjet.view.fragments.AddDangerousGoodsPopover",
+                controller: this
+            }).then(function (oAddDangerousGoodsPopover) {
+                oView.addDependent(oAddDangerousGoodsPopover);
+                return oAddDangerousGoodsPopover;
+            });
+        }
+        this._AddDangerousGoodsPopover.then(function (oAddDangerousGoodsPopover) {
+            oAddDangerousGoodsPopover.openBy(oButton);
+        });
+    },
+    AddDangerousGoodsClosePress: function () {
+        this.byId("idAddDangerousGoodsPopover").close();
+    },
+    AddDangerousGoodsCancelPopover: function () {
+        this.byId("idAddDangerousGoodsPopover").close();
+    },
+
+    AddDangerousGoodsSelectPopover: function () {
+        this.byId("idAddDangerousGoodsPopover").close();
+    },
+
+
     
     });
 });

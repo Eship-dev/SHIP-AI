@@ -34,7 +34,8 @@
             <OverflowToolbar class="p-sidebar-header sapMPopoverFooter1">
                 <Button
                     text="Cancel"
-                    class="frieghtCancelBtn"
+                    class="Cancel_Btn"
+                    type=""
                     press="AddLocCancelPopover"
                 />
                 <ToolbarSpacer />

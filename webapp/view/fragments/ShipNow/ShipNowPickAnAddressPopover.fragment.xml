@@ -6,9 +6,11 @@
     xmlns:f="sap.ui.layout.form">
 
     <Popover id="idShipNowPickAnAddressPopover"  
-             placement="Auto"
-             showHeader="true"
-             class="sapUiResponsivePadding--header sapUiResponsivePadding--footer  rightSideDialogForTracking">
+        placement="Bottom"
+        contentHeight="100%"
+        showHeader="false" 
+        class="rightSidePopoverShipNow"
+    >
         
         <customHeader>
             <Toolbar>
@@ -90,7 +92,7 @@
         </ScrollContainer>
 
 		<footer>
-            <Toolbar class="p-sidebar-header s  apMPopoverFooter1">
+            <Toolbar class="p-sidebar-header sapMPopoverFooter1">
                 <Button text="Cancel" press="onShipNowPickAnAddressCancelPress" />
                 <ToolbarSpacer />
                 <Button type="Emphasized" text="Submit" press="onShipNowPickAnAddressSelectPress" />

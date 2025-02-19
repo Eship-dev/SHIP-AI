@@ -3254,6 +3254,9 @@
             "name": "Third Party"
         },
         {
+            "name": "Dangerous Goods"
+        },
+        {
             "name": "LTL Classes"
         },
         {
@@ -5119,6 +5122,91 @@
             "shipMethod":"UPS",
             "dimensionUnits":"CM",
             "status":""
+        }
+    ],
+    "DangerousGoodsTableColumns": [
+        {
+            "key": "UNNo",
+            "label": "UN No",
+            "visible": true
+        },
+        {
+            "key": "Carrier",
+            "label": "Package Code",
+            "visible": true
+        },
+        {
+            "key": "Destination",
+            "label": "Destination",
+            "visible": true
+        },
+        {
+            "key": "TransportMode",
+            "label": "Transport Mode",
+            "visible": true
+        },
+        {
+            "key": "Actions",
+            "label": "Actions",
+            "visible": true
+        }
+    ],
+    "DangerousGoodsTableRows": [
+        {
+            "UNNo":"1070",
+            "Carrier":"LTL",
+            "Destination":"Domestic",
+            "TransportMode":"Ground",
+            "Actions":""
+        },
+        {
+            "UNNo":"1070",
+            "Carrier":"LTL",
+            "Destination":"Domestic",
+            "TransportMode":"Ground",
+            "Actions":""
+        },
+        {
+            "UNNo":"1070",
+            "Carrier":"LTL",
+            "Destination":"Domestic",
+            "TransportMode":"Ground",
+            "Actions":""
+        },
+        {
+            "UNNo":"1070",
+            "Carrier":"LTL",
+            "Destination":"Domestic",
+            "TransportMode":"Ground",
+            "Actions":""
+        },
+        {
+            "UNNo":"1070",
+            "Carrier":"LTL",
+            "Destination":"Domestic",
+            "TransportMode":"Ground",
+            "Actions":""
+        },
+        {
+            "UNNo":"1050",
+            "Carrier":"LTL",
+            "Destination":"Domestic",
+            "TransportMode":"Ground",
+            "Actions":""
+        },
+        {
+            "UNNo":"1070",
+            "Carrier":"LTL",
+            "Destination":"Domestic",
+            "TransportMode":"Ground",
+            "Actions":""
+        },
+        {
+            "UNNo":"1050",
+            "Carrier":"LTL",
+            "Destination":"Domestic",
+            "TransportMode":"Ground",
+            "Actions":""
         }
     ],
     "ThirdPartiesTableColumns": [
