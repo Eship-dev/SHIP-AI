@@ -1503,373 +1503,127 @@
     "ShipReqTableData":{
 		"ShipReqColumns": [
 			{
-				"name": "locationName",
-				"label": "Location Name",
-				"visible": false
-			},
-			{
-				"name": "consolidationID",
-				"label": "Consolidation ID",
-				"visible": false
-			},
-			{
-				"name": "requestIdLabelId",
-				"label": "Request ID / Label ID",
-				"visible": true
-			},
-			{
-				"name": "CreatedDate",
-				"label": "Created Date",
-				"visible": true
-			},
-			{
-				"name": "ShipDate",
-				"label": "Ship Date",
-				"visible": true
-			},
-			{
-				"name": "ShipmentType",
-				"label": "Shipment Type",
-				"visible": false
-			},
+                "name": "PodLocation",
+                "label": "Location Name",
+                "visible": false
+            },
             {
-				"name": "shipMethod",
-				"label": "Ship Method",
-				"visible": true
-			},
+                "name": "Consolidation",
+                "label": "Consolidation ID",
+                "visible": false
+            },
             {
-				"name": "ServiceName",
-				"label": "Service Name",
-				"visible": true
-			},
-			{
-				"name": "TrackingNumber",
-				"label": "Tracking Number",
-				"visible": true
-			},
-			{
-				"name": "status",
-				"label": "Status",
-				"visible": true
-			},
-			{
-				"name": "ShipToContact",
-				"label": "Ship To Contact",
-				"visible": true
-			},
-			{
-				"name": "ShipToCompany",
-				"label": "Ship To Company",
-				"visible": true
-			},
-			{
-				"name": "ShipToAddressLine1",
-				"label": "Ship To AddressLine1",
-				"visible": false
-			},
+                "name": "requestIdLabelId",
+                "label": "Request ID / Label ID",
+                "visible": true
+            },
             {
-				"name": "shipToStateProvince",
-				"label": "Ship To State / Province",
-				"visible": false
-			},
-			{
-				"name": "shipToCity",
-				"label": "Ship To City",
-				"visible": true
-			},
-			{
-				"name": "shipToZipPostalCode",
-				"label": "Ship To Zip / Postal Code",
-				"visible": false
-			},
-			{
-				"name": "shipToCountry",
-				"label": "Ship To Country",
-				"visible": false
-			},
-			{
-				"name": "shipToPhone",
-				"label": "Ship To Phone",
-				"visible": false
-			},
-			{
-				"name": "shipToEmail",
-				"label": "Ship To Email",
-				"visible": false
-			},
-			{
-				"name": "requesterName",
-				"label": "Requestor Name",
-				"visible": false
-			},
-			{
-				"name": "connectedTo",
-				"label": "Connected To",
-				"visible": false
-			},
-			{
-				"name": "orderType",
-				"label": "Order Type",
-				"visible": false
-			},
-			{
-				"name": "RFID",
-				"label": "RFID",
-				"visible": false
-			},
-			{
-				"name": "actions",
-				"label": "Actions",
-				"visible": true
-			},
+                "name": "Createddate",
+                "label": "Created Date",
+                "visible": true
+            },
             {
-				"name": "ShipmentWorkflow",
-				"label": "Shipment Workflow",
-				"visible": true
-			}
+                "name": "CrossdockShipdate",
+                "label": "Ship Date",
+                "visible": true
+            },
+            {
+                "name": "Shipmenttype",
+                "label": "Shipment Type",
+                "visible": false
+            },
+            {
+                "name": "ShipMethod",
+                "label": "Ship Method",
+                "visible": true
+            },
+            {
+                "name": "ServiceName",
+                "label": "Service Name",
+                "visible": true
+            },
+            {
+                "name": "TrackingNumber",
+                "label": "Tracking Number",
+                "visible": true
+            },
+            {
+                "name": "DeliveryStatus",
+                "label": "Status",
+                "visible": true
+            },
+            {
+                "name": "RecContact",
+                "label": "Ship To Contact",
+                "visible": true
+            },
+            {
+                "name": "RecCompany",
+                "label": "Ship To Company",
+                "visible": true
+            },
+            {
+                "name": "RecAddress1",
+                "label": "Ship To AddressLine1",
+                "visible": false
+            },
+            {
+                "name": "RecRegion",
+                "label": "Ship To State / Province",
+                "visible": false
+            },
+            {
+                "name": "RecCity",
+                "label": "Ship To City",
+                "visible": true
+            },
+            {
+                "name": "Postalcode",
+                "label": "Ship To Zip / Postal Code",
+                "visible": false
+            },
+            {
+                "name": "RecCountry",
+                "label": "Ship To Country",
+                "visible": false
+            },
+            {
+                "name": "RecPhone",
+                "label": "Ship To Phone",
+                "visible": false
+            },
+            {
+                "name": "Emailaddress",
+                "label": "Ship To Email",
+                "visible": false
+            },
+            {
+                "name": "RequestorName",
+                "label": "Requestor Name",
+                "visible": false
+            },
+            {
+                "name": "ConnectedTo",
+                "label": "Connected To",
+                "visible": false
+            },
+            {
+                "name": "OrderType",
+                "label": "Order Type",
+                "visible": false
+            },
+            {
+                "name": "RFID",
+                "label": "RFID",
+                "visible": false
+            },
+            {
+                "name": "actions",
+                "label": "Actions",
+                "visible": true
+            }
 		],    
-		"ShipReqRows": [
-            {
-                "locationName": "eshipJet Software Inc.",
-                "requestIdLabelId": "DN000001385",
-                "CreatedDate": "01/20/2025",
-                "ShipDate": "01/21/2025",
-                "shipMethod": "FedEx",
-                "ServiceName": "FedEx 2Day",
-                "TrackingNumber": "794817852547",
-                "quoteStatus": "Sent for Clarifications",
-                "ShipToContact": "Jenny",
-                "ShipToCompany": "eshipjet",
-                "shipToCity": "Fremont",
-                "status": "Open",
-                "shipToStateProvince": "CA",
-                "shipToZipPostalCode": "94538",
-                "shipToCountry": "US",
-                "shipToPhone": "9908836717",
-                "shipToEmail": "jenny@imayl.com",
-                "ShipmentWorkflow": ""
-              },
-              {
-                "locationName": "eshipJet Software Inc.",
-                "requestIdLabelId": "DN000001384",
-                "CreatedDate": "01/22/2025",
-                "ShipDate": "01/23/2025",
-                "shipMethod": "DHL",
-                "ServiceName": "Economy Select - ESI",
-                "TrackingNumber": null,
-                "quoteStatus": "Submitted",
-                "ShipToContact": "Tomas Pineda",
-                "ShipToCompany": "Ingram Micro, Inc",
-                "shipToCity": "Carrollton",
-                "status": "Shipped",
-                "shipToStateProvince": "TX",
-                "shipToZipPostalCode": "75007",
-                "shipToCountry": "US",
-                "shipToPhone": "(972) 512-2700",
-                "shipToEmail": "info@google.com",
-                "ShipmentWorkflow": ""
-              },
-              {
-                "locationName": "eshipJet Software Inc.",
-                "requestIdLabelId": "DN000001383",
-                "CreatedDate": "01/24/2025",
-                "ShipDate": "01/25/2025",
-                "shipMethod": "Delhivery",
-                "ServiceName": "Express Parcel",
-                "TrackingNumber": null,
-                "quoteStatus": "Submitted",
-                "ShipToContact": "Shruti Joshi",
-                "ShipToCompany": "eshipJet Software private limited.",
-                "shipToCity": "New Delhi",
-                "status": "Cancelled",
-                "shipToStateProvince": "DL",
-                "shipToZipPostalCode": "110044",
-                "shipToCountry": "IN",
-                "shipToPhone": "+91 915 492 735",
-                "shipToEmail": "info@eshipjet.ai",
-                "ShipmentWorkflow": ""
-              },
-              {
-                "locationName": "eshipJet Software Inc.",
-                "requestIdLabelId": "DN000001385",
-                "CreatedDate": "01/26/2025",
-                "ShipDate": "01/27/2025",
-                "shipMethod": "FedEx",
-                "ServiceName": "FedEx 2Day",
-                "TrackingNumber": null,
-                "quoteStatus": "Sent for Clarifications",
-                "ShipToContact": "Jenny",
-                "ShipToCompany": "eshipjet",
-                "shipToCity": "Fremont",
-                "status": "Shipped",
-                "shipToStateProvince": "CA",
-                "shipToZipPostalCode": "94538",
-                "shipToCountry": "US",
-                "shipToPhone": "9908836717",
-                "shipToEmail": "jenny@imayl.com",
-                "ShipmentWorkflow": ""
-              },
-              {
-                "locationName": "eshipJet Software Inc.",
-                "requestIdLabelId": "DN000001384",
-                "CreatedDate": "01/28/2025",
-                "ShipDate": "01/29/2025",
-                "shipMethod": "DHL",
-                "ServiceName": "Economy Select - ESI",
-                "TrackingNumber": null,
-                "quoteStatus": "Received",
-                "ShipToContact": "Tomas Pineda",
-                "ShipToCompany": "Ingram Micro, Inc",
-                "shipToCity": "Carrollton",
-                "status": "Open",
-                "shipToStateProvince": "TX",
-                "shipToZipPostalCode": "75007",
-                "shipToCountry": "US",
-                "shipToPhone": "(972) 512-2700",
-                "shipToEmail": "info@google.com",
-                "ShipmentWorkflow": ""
-              },
-              {
-                "locationName": "eshipJet Software Inc.",
-                "requestIdLabelId": "DN000001383",
-                "CreatedDate": "01/20/2025",
-                "ShipDate": "01/21/2025",
-                "shipMethod": "Delhivery",
-                "ServiceName": "Express Parcel",
-                "TrackingNumber": null,
-                "quoteStatus": "Received",
-                "ShipToContact": "Shruti Joshi",
-                "ShipToCompany": "eshipJet Software private limited.",
-                "shipToCity": "New Delhi",
-                "status": "Cancelled",
-                "shipToStateProvince": "DL",
-                "shipToZipPostalCode": "110044",
-                "shipToCountry": "IN",
-                "shipToPhone": "+91 915 492 735",
-                "shipToEmail": "info@eshipjet.ai",
-                "ShipmentWorkflow": ""
-              },
-              {
-                "locationName": "eshipJet Software Inc.",
-                "requestIdLabelId": "DN000001384",
-                "CreatedDate": "01/22/2025",
-                "ShipDate": "01/23/2025",
-                "shipMethod": "DHL",
-                "ServiceName": "Economy Select - ESI",
-                "TrackingNumber": null,
-                "quoteStatus": "Open",
-                "ShipToContact": "Tomas Pineda",
-                "ShipToCompany": "Ingram Micro, Inc",
-                "shipToCity": "Carrollton",
-                "status": "Open",
-                "shipToStateProvince": "TX",
-                "shipToZipPostalCode": "75007",
-                "shipToCountry": "US",
-                "shipToPhone": "(972) 512-2700",
-                "shipToEmail": "info@google.com",
-                "ShipmentWorkflow": ""
-              },
-              {
-                "locationName": "eshipJet Software Inc.",
-                "requestIdLabelId": "DN000001383",
-                "CreatedDate": "01/24/2025",
-                "ShipDate": "01/25/2025",
-                "shipMethod": "Delhivery",
-                "ServiceName": "Express Parcel",
-                "TrackingNumber": null,
-                "quoteStatus": "",
-                "ShipToContact": "Shruti Joshi",
-                "ShipToCompany": "eshipJet Software private limited.",
-                "shipToCity": "New Delhi",
-                "status": "Shipped",
-                "shipToStateProvince": "DL",
-                "shipToZipPostalCode": "110044",
-                "shipToCountry": "IN",
-                "shipToPhone": "+91 915 492 735",
-                "shipToEmail": "info@eshipjet.ai",
-                "ShipmentWorkflow": ""
-              },
-              {
-                "locationName": "eshipJet Software Inc.",
-                "requestIdLabelId": "DN000001384",
-                "CreatedDate": "01/26/2025",
-                "ShipDate": "01/27/2025",
-                "shipMethod": "DHL",
-                "ServiceName": "Economy Select - ESI",
-                "TrackingNumber": null,
-                "quoteStatus": "",
-                "ShipToContact": "Tomas Pineda",
-                "ShipToCompany": "Ingram Micro, Inc",
-                "shipToCity": "Carrollton",
-                "status": "Cancelled",
-                "shipToStateProvince": "TX",
-                "shipToZipPostalCode": "75007",
-                "shipToCountry": "US",
-                "shipToPhone": "(972) 512-2700",
-                "shipToEmail": "info@google.com",
-                "ShipmentWorkflow": ""
-              },
-              {
-                "locationName": "eshipJet Software Inc.",
-                "requestIdLabelId": "DN000001383",
-                "CreatedDate": "01/28/2025",
-                "ShipDate": "01/28/2025",
-                "shipMethod": "Delhivery",
-                "ServiceName": "Express Parcel",
-                "TrackingNumber": null,
-                "quoteStatus": "",
-                "ShipToContact": "Shruti Joshi",
-                "ShipToCompany": "eshipJet Software private limited.",
-                "shipToCity": "New Delhi",
-                "status": "Shipped",
-                "shipToStateProvince": "DL",
-                "shipToZipPostalCode": "110044",
-                "shipToCountry": "IN",
-                "shipToPhone": "+91 915 492 735",
-                "shipToEmail": "info@eshipjet.ai",
-                "ShipmentWorkflow": ""
-              },
-              {
-                "locationName": "eshipJet Software Inc.",
-                "requestIdLabelId": "DN000001385",
-                "CreatedDate": "01/28/2025",
-                "ShipDate": "01/28/2025",
-                "shipMethod": "FedEx",
-                "ServiceName": "FedEx 2Day",
-                "TrackingNumber": null,
-                "quoteStatus": "",
-                "ShipToContact": "Jenny",
-                "ShipToCompany": "eshipjet",
-                "shipToCity": "Fremont",
-                "status": "Open",
-                "shipToStateProvince": "CA",
-                "shipToZipPostalCode": "94538",
-                "shipToCountry": "US",
-                "shipToPhone": "9908836717",
-                "shipToEmail": "jenny@imayl.com",
-                "ShipmentWorkflow": ""
-              },
-              {
-                "locationName": "eshipJet Software Inc.",
-                "requestIdLabelId": "DN000001384",
-                "CreatedDate": "01/28/2025",
-                "ShipDate": "01/28/2025",
-                "shipMethod": "DHL",
-                "ServiceName": "Economy Select - ESI",
-                "TrackingNumber": null,
-                "quoteStatus": "",
-                "ShipToContact": "Tomas Pineda",
-                "ShipToCompany": "Ingram Micro, Inc",
-                "shipToCity": "Carrollton",
-                "status": "Cancelled",
-                "shipToStateProvince": "TX",
-                "shipToZipPostalCode": "75007",
-                "shipToCountry": "US",
-                "shipToPhone": "(972) 512-2700",
-                "shipToEmail": "info@google.com",
-                "ShipmentWorkflow": ""
-              }
-        ],
+		"ShipReqRows": [],
 
         
 
@@ -7591,127 +7345,127 @@
 
 
     "ShipReqColumns": [
-			{
-				"name": "locationName",
-				"label": "Location Name",
-				"visible": true
-			},
-			{
-				"name": "consolidationID",
-				"label": "Consolidation ID",
-				"visible": false
-			},
-			{
-				"name": "requestIdLabelId",
-				"label": "Request ID / Label ID",
-				"visible": true
-			},
-			{
-				"name": "CreatedDate",
-				"label": "Created Date",
-				"visible": true
-			},
-			{
-				"name": "ShipDate",
-				"label": "Ship Date",
-				"visible": true
-			},
-			{
-				"name": "ShipmentType",
-				"label": "Shipment Type",
-				"visible": false
-			},
-            {
-				"name": "shipMethod",
-				"label": "Ship Method",
-				"visible": true
-			},
-            {
-				"name": "ServiceName",
-				"label": "Service Name",
-				"visible": true
-			},
-			{
-				"name": "TrackingNumber",
-				"label": "Tracking Number",
-				"visible": true
-			},
-			{
-				"name": "quoteStatus",
-				"label": "quoteStatus",
-				"visible": true
-			},
-			{
-				"name": "ShipToContact",
-				"label": "Ship To Contact",
-				"visible": true
-			},
-			{
-				"name": "ShipToCompany",
-				"label": "Ship To Company",
-				"visible": true
-			},
-            {
-				"name": "status",
-				"label": "Status",
-				"visible": true
-			},
-			{
-				"name": "ShipToAddressLine1",
-				"label": "Ship To AddressLine1",
-				"visible": false
-			},
-            {
-				"name": "shipToStateProvince",
-				"label": "Ship To State / Province",
-				"visible": false
-			},
-			{
-				"name": "shipToCity",
-				"label": "Ship To City",
-				"visible": false
-			},
-			{
-				"name": "shipToZipPostalCode",
-				"label": "Ship To Zip / Postal Code",
-				"visible": false
-			},
-			{
-				"name": "shipToCountry",
-				"label": "Ship To Country",
-				"visible": false
-			},
-			{
-				"name": "shipToPhone",
-				"label": "Ship To Phone",
-				"visible": false
-			},
-			{
-				"name": "shipToEmail",
-				"label": "Ship To Email",
-				"visible": false
-			},
-			{
-				"name": "requesterName",
-				"label": "Requestor Name",
-				"visible": false
-			},
-			{
-				"name": "connectedTo",
-				"label": "Connected To",
-				"visible": false
-			},
-			{
-				"name": "orderType",
-				"label": "Order Type",
-				"visible": false
-			},
-			{
-				"name": "RFID",
-				"label": "RFID",
-				"visible": false
-			}
-		],
+        {
+            "name": "PodLocation",
+            "label": "Location Name",
+            "visible": false
+        },
+        {
+            "name": "Consolidation",
+            "label": "Consolidation ID",
+            "visible": false
+        },
+        {
+            "name": "requestIdLabelId",
+            "label": "Request ID / Label ID",
+            "visible": true
+        },
+        {
+            "name": "Createddate",
+            "label": "Created Date",
+            "visible": true
+        },
+        {
+            "name": "CrossdockShipdate",
+            "label": "Ship Date",
+            "visible": true
+        },
+        {
+            "name": "Shipmenttype",
+            "label": "Shipment Type",
+            "visible": false
+        },
+        {
+            "name": "ShipMethod",
+            "label": "Ship Method",
+            "visible": true
+        },
+        {
+            "name": "ServiceName",
+            "label": "Service Name",
+            "visible": true
+        },
+        {
+            "name": "TrackingNumber",
+            "label": "Tracking Number",
+            "visible": true
+        },
+        {
+            "name": "DeliveryStatus",
+            "label": "Status",
+            "visible": true
+        },
+        {
+            "name": "RecContact",
+            "label": "Ship To Contact",
+            "visible": true
+        },
+        {
+            "name": "RecCompany",
+            "label": "Ship To Company",
+            "visible": true
+        },
+        {
+            "name": "RecAddress1",
+            "label": "Ship To AddressLine1",
+            "visible": false
+        },
+        {
+            "name": "RecRegion",
+            "label": "Ship To State / Province",
+            "visible": false
+        },
+        {
+            "name": "RecCity",
+            "label": "Ship To City",
+            "visible": true
+        },
+        {
+            "name": "Postalcode",
+            "label": "Ship To Zip / Postal Code",
+            "visible": false
+        },
+        {
+            "name": "RecCountry",
+            "label": "Ship To Country",
+            "visible": false
+        },
+        {
+            "name": "RecPhone",
+            "label": "Ship To Phone",
+            "visible": false
+        },
+        {
+            "name": "Emailaddress",
+            "label": "Ship To Email",
+            "visible": false
+        },
+        {
+            "name": "RequestorName",
+            "label": "Requestor Name",
+            "visible": false
+        },
+        {
+            "name": "ConnectedTo",
+            "label": "Connected To",
+            "visible": false
+        },
+        {
+            "name": "OrderType",
+            "label": "Order Type",
+            "visible": false
+        },
+        {
+            "name": "RFID",
+            "label": "RFID",
+            "visible": false
+        },
+        {
+            "name": "actions",
+            "label": "Actions",
+            "visible": true
+        }
+	],
         
     "shipReqActionPopoverItems": [
         {

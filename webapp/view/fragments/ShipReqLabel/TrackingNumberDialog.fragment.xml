@@ -64,43 +64,43 @@
   <!-- First Row: Ship Method -->
   <HBox class="customRow" width="100%" >
     <Label text="Ship Method:" class="customLabel" width="15rem" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/ERPCarrierID}" class="customTextField centerText" width="15rem" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/CarrierCode}" class="customTextField centerText" width="15rem" />
   </HBox>
   
   <!-- Second Row: Service Name -->
   <HBox class="customRow" width="100%">
     <Label text="Service Name:" class="customLabel" width="15rem" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/Carrier}" class="customTextField centerText" width="15rem" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/Carriertype}" class="customTextField centerText" width="15rem" />
   </HBox>
   
   <!-- Third Row: Delivered To -->
   <HBox class="customRow" width="100%" >
     <Label text="Delivered To:" class="customLabel" width="15rem" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/COMPANY}" class="customTextField centerText" width="15rem" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/RecCompany}" class="customTextField centerText" width="15rem" />
   </HBox>
   
   <!-- Fourth Row: Ship Date -->
   <HBox class="customRow" width="100%" >
     <Label text="Ship Date:" class="customLabel" width="15rem" />
-    <Text text="{path: 'eshipjetModel>/TrackingNumberTableRows/0/ShipDate', formatter: '.formatter.formatDate'}" class="customTextField centerText" width="15rem" />
+    <Text text="{path: 'eshipjetModel>/TrackingNumberTableRows/Createddate', formatter: '.formatter.formatDate'}" class="customTextField centerText" width="15rem" />
   </HBox>
   
   <!-- Fifth Row: Standard Transit -->
   <HBox class="customRow" width="100%" >
     <Label text="Standard Transit:" class="customLabel" width="15rem" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/StandardTransit}" class="customTextField centerText" width="15rem" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/StandardTransit}" class="customTextField centerText" width="15rem" />
   </HBox>
   
   <!-- Sixth Row: Delivered -->
   <HBox class="customRow" width="100%" >
     <Label text="Delivered:" class="customLabel" width="15rem" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/Delivered}" class="customTextField centerText" width="15rem" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/Delivered}" class="customTextField centerText" width="15rem" />
   </HBox>
   
   <!-- Seventh Row: Signed By -->
   <HBox class="customRow" width="100%" >
     <Label text="Signed By:" class="customLabel" width="15rem" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/SignedBy}" class="customTextField centerText" width="15rem" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/SignedBy}" class="customTextField centerText" width="15rem" />
   </HBox>
 
   <HBox class="customRow sapUiTinyMarginTop" width="100%" >
@@ -136,9 +136,9 @@
       <Column width="6rem" >
         <Text text="Time" />
       </Column>
-      <Column width="10px" hAlign="Center" >
+      <!-- <Column width="10px" hAlign="Center" >
         <Text />
-      </Column>
+      </Column> -->
       <Column width="2rem" hAlign="Center" >
         <Text />
       </Column>
@@ -154,7 +154,7 @@
         <cells>
           <Text text="{Date}" />
           <Text text="{Time}" />
-          <Text class="timeline-line" visible="{= ${Status} === 'DELIVERED' ? false : true }" />
+          <!-- <Text class="timeline-line" visible="{= ${Status} === 'DELIVERED' ? false : true }" /> -->
           <HBox class="timeline-container" alignItems="Center" >
               <!-- <Text class="timeline-line" visible="{= ${Status} === 'DELIVERED' ? false : true }" /> -->
               <Text class="timeline-icon" visible="{= ${Status} === 'DELIVERED' ? false : true }" />

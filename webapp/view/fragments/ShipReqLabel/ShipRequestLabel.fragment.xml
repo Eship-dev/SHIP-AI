@@ -43,6 +43,7 @@
         <ui:Table id="idShipReqsTable"
                 class="sapUiTinyMarginTop"
 				rows="{eshipjetModel>/Orderitems}"
+				scrollThreshold="-1"
 				selectionMode="None"
 				visibleRowCount="13">
 					<ui:extension>
