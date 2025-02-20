@@ -15,8 +15,8 @@
         <customHeader>
             <Toolbar>
                 <!-- Title -->
-                <Title text="Add Dangerous Goods" class="sapUiSmallMarginBottom"/>
-
+                <Title text="Add Dangerous Goods" class="sapUiSmallMarginBottom" visible="true" />
+                 <Title text="Update Dangerous Goods" class="sapUiSmallMarginBottom" visible="false" />
                 <!-- Spacer to push close button to the right -->
                 <ToolbarSpacer />
 
@@ -71,6 +71,34 @@
                         <Label text="Packing Group" />
                         <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
 
+                         <Label text="Proper Shipping Name" />
+                         <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+                        <Label text="Cargo Aircraft Only Quantity" />  
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+                        <Label text="Do Not Print PSN Reference Only" />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+                         <Label text="Exemption Required" />
+                         <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+                        <Label text="Limited Quantity Max Net Qty Per Package" />  
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+                        <Label text="Limited Quantity" />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+
+                         <Label text="Packaging Exceptions" />
+                         <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+                        <Label text="Passenger  Cargo Aircraft Packing Instructions" />  
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+                        <Label text="Passenger  Cargo Aircraft Unit of Measure" />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
                          <Label text="Carrier" />
                          <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
                          </ComboBox>
@@ -90,6 +118,36 @@
                          </ComboBox>
 
                         <Label text="Passenger  Cargo Max Net Qty" />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+                         <Label text="Canada Permitted" />
+                         <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
+                         </ComboBox>
+
+                        <Label text="Cargo Aircraft Only Unit of Measure" />  
+			            <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
+                         </ComboBox>
+
+                        <Label text="Excepted Quantity Code" />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+                        <Label text="Forbidden" />  
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+                        <Label text="Limited Quantity Packing Instructions" />
+                        <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Select">
+                         </ComboBox>
+
+                        <Label text="Limited Quantity Unit of Measure" />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+                         <Label text="Packaging Non-Bulk" />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+                         <Label text="Passenger  Cargo Aircraft Quantity" />
+                        <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+
+                         <Label text="Technical Info Flag" />
                         <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
 					</f:content>
 				</f:SimpleForm>

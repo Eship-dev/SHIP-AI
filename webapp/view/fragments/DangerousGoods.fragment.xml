@@ -1,11 +1,11 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
     <Toolbar width="auto" height="15%" class="toolbarbottomborder fixedLayout">
-			<Text text="Dangerous Goodss" class="toolBarHeader sapUiTinyMarginBegin pageTitle" ></Text>
+			<Text text="Dangerous Goods" class="toolBarHeader sapUiTinyMarginBegin pageTitle" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button  text="Add Dangerous Goods" press="onAddAddDangerousGoodsPress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="12rem" ></Button>
-                    <Button type="Success" press="onPackagesTypesArrowPress" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button>
+                    <Button  text="Add Dangerous Goods" press="onAddAddDangerousGoodsPress" class="ship-req-toolbar__button sapUiSmallMarginBottom sapUiTinyMarginEnd sapUiTinyMarginTop" width="12rem" ></Button>
+                    <Button type="Success" press="onPackagesTypesArrowPress" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginTop" ></Button>
                 </HBox>
 		</Toolbar>
 

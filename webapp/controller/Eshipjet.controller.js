@@ -4217,7 +4217,7 @@ sap.ui.define([
                 oPageContainer.to(oView.createId("_ID_PackageTypes_TableScrollContainer"));
                 
             } else if (oCurrObj && oCurrObj.name === "Dangerous Goods") {
-
+                oController._handleDisplayDangerousGoodsTable();
                 oController._displayTables("_IDDangerousGoodsTable", "DangerousGoodsTableColumns", "DangerousGoodsTableRows", "Dangerous Goods");
                 oPageContainer.to(oView.createId("_ID_DangerousGoods_TableScrollContainer"));
 
@@ -6331,9 +6331,9 @@ sap.ui.define([
                 if (count >= 14) {
                     var minWidth = "130px";
                 }
-                if (columnName === "Actions") {
+                if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
-                    var Btn1 = new sap.m.Button({ text: "Edit", type: "Transparent" });
+                    var Btn1 = new sap.m.Button({ text: "Edit", type: "Transparent", press:"onDangerousGoodsEditPress" });
                     var Btn2 = new sap.m.Button({
                         icon: "sap-icon://megamenu", type: "Transparent",
                         press: function (oEvent) {
@@ -6344,7 +6344,7 @@ sap.ui.define([
                     oHBox.addItem(Btn2);
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
-                        template: oHBox,
+                        template: Btn1,
                         visible: oContext.getObject().visible,
                         width: minWidth,
                         sortProperty: columnName

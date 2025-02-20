@@ -28,6 +28,8 @@
     "shipNowUPSSelect": false,
     "shipNowUSPSSelect": false,
 
+    "DgUpdate":false,
+    "DgAdd":false,
 
     "showDarkThemeSwitch": false,
     "darkTheme": true,
@@ -4879,88 +4881,251 @@
         }
     ],
     "DangerousGoodsTableColumns": [
-        {
-            "key": "UNNo",
-            "label": "UN No",
-            "visible": true
-        },
-        {
-            "key": "Carrier",
-            "label": "Package Code",
-            "visible": true
-        },
-        {
-            "key": "Destination",
-            "label": "Destination",
-            "visible": true
-        },
-        {
-            "key": "TransportMode",
-            "label": "Transport Mode",
-            "visible": true
-        },
-        {
-            "key": "Actions",
-            "label": "Actions",
-            "visible": true
-        }
-    ],
+            {
+                "key": "unNo",
+                "label": "UN No",
+                "visible": true
+            },
+            {
+                "key": "carrier",
+                "label": "Carrier",
+                "visible": true
+            },
+            {
+                "key": "transportMode",
+                "label": "Transport Mode",
+                "visible": true
+            },
+            {
+                "key": "destination",
+                "label": "Destination",
+                "visible": true
+            },
+            {
+                "key": "hazardId",
+                "label": "Hazard ID",
+                "visible": true
+            },
+            {
+                "key": "ergGuideNumber",
+                "label": "ERG Guide Number",
+                "visible": true
+            },
+            {
+                "key": "hazardClass",
+                "label": "Hazard Class",
+                "visible": true
+            },
+            {
+                "key": "labelsRequired",
+                "label": "Labels Required",
+                "visible": true
+            },
+            {
+                "key": "additionalInfo",
+                "label": "Additional Info",
+                "visible": false
+            },
+            {
+                "key": "packingGroup",
+                "label": "Packing Group",
+                "visible": false
+            },
+            {
+                "key": "passengerCargoMaxNetQty",
+                "label": "Passenger & Cargo Max Net Qty",
+                "visible": false
+            },
+            {
+                "key": "properShippingName",
+                "label": "Proper Shipping Name",
+                "visible": false
+            },
+            {
+                "key": "canadaPermitted",
+                "label": "Canada Permitted",
+                "visible": false
+            },
+            {
+                "key": "cargoAircraftOnlyQuantity",
+                "label": "Cargo Aircraft Only Quantity",
+                "visible": false
+            },
+            {
+                "key": "cargoAircraftOnlyUnit",
+                "label": "Cargo Aircraft Only Unit of Measure",
+                "visible": false
+            },
+            {
+                "key": "doNotPrintPSN",
+                "label": "Do Not Print PSN Reference Only",
+                "visible": false
+            },
+            {
+                "key": "exceptedQuantityCode",
+                "label": "Excepted Quantity Code",
+                "visible": false
+            },
+            {
+                "key": "exemptionRequired",
+                "label": "Exemption Required",
+                "visible": false
+            },
+            {
+                "key": "forbidden",
+                "label": "Forbidden",
+                "visible": false
+            },
+            {
+                "key": "limitedQuantityMaxNetQty",
+                "label": "Limited Quantity Max Net Qty Per Package",
+                "visible": true
+            },
+            {
+                "key": "limitedQuantityPackingInstructions",
+                "label": "Limited Quantity Packing Instructions",
+                "visible": true
+            },
+            {
+                "key": "limitedQuantity",
+                "label": "Limited Quantity",
+                "visible": true
+            },
+            {
+                "key": "limitedQuantityUnit",
+                "label": "Limited Quantity Unit of Measure",
+                "visible": true
+            },
+            {
+                "key": "packagingExceptions",
+                "label": "Packaging Exceptions",
+                "visible": true
+            },
+            {
+                "key": "packagingNonBulk",
+                "label": "Packaging Non-Bulk",
+                "visible": true
+            },
+            {
+                "key": "passengerCargoAircraftPackingInstructions",
+                "label": "Passenger & Cargo Aircraft Packing Instructions",
+                "visible": true
+            },
+            {
+                "key": "passengerCargoAircraftQuantity",
+                "label": "Passenger & Cargo Aircraft Quantity",
+                "visible": true
+            },
+            {
+                "key": "passengerCargoAircraftUnit",
+                "label": "Passenger & Cargo Aircraft Unit of Measure",
+                "visible": true
+            },
+            {
+                "key": "technicalInfoFlag",
+                "label": "Technical Info Flag",
+                "visible": true
+            },
+            {
+                "key": "actions",
+                "label": "Actions",
+                "visible": true
+            }
+],
+
     "DangerousGoodsTableRows": [
         {
-            "UNNo":"1070",
-            "Carrier":"LTL",
-            "Destination":"Domestic",
-            "TransportMode":"Ground",
-            "Actions":""
+            
+            "destination": "Domestic",
+            "transportMode": "Ground",
+            "hazardClass": "2.3",
+            "labelsRequired": "POISONOUS GAS, CORROSIVE",
+            "additionalInfo": "Inhalation Hazard Zone B",
+            "packingGroup": "None",
+            "forbidden": "Forbidden",
+            "properShippingName": "Compressed gas, toxic, corrosive, n.o.s. Inhalation Hazard Zone B",
+            "canadaPermitted": false,
+            "cargoAircraftOnlyQuantity": 0,
+            "cargoAircraftOnlyUnit": "None",
+            "doNotPrintPSN": false,
+            "exceptedQuantityCode": false,
+            "exemptionRequired": false,
+            "limitedQuantityMaxNetQty": 0,
+            "limitedQuantityPackingInstructions": "None",
+            "limitedQuantity": 0,
+            "limitedQuantityUnit": "None",
+            "packagingExceptions": true,
+            "unNo": 1070,
+            "carrier": "LTL"
         },
         {
-            "UNNo":"1070",
-            "Carrier":"LTL",
-            "Destination":"Domestic",
-            "TransportMode":"Ground",
-            "Actions":""
+            "destination": "Domestic",
+            "transportMode": "Ground",
+            "hazardClass": "2.3",
+            "labelsRequired": "POISON GAS",
+            "additionalInfo": "Inhalation Hazard Zone C",
+            "packingGroup": "None",
+            "forbidden": "Forbidden",
+            "properShippingName": "Compressed gas, toxic, n.o.s. Inhalation Hazard Zone C",
+            "canadaPermitted": false,
+            "cargoAircraftOnlyQuantity": 0,
+            "cargoAircraftOnlyUnit": "None",
+            "doNotPrintPSN": false,
+            "exceptedQuantityCode": false,
+            "exemptionRequired": false,
+            "limitedQuantityMaxNetQty": 0,
+            "limitedQuantityPackingInstructions": "None",
+            "limitedQuantity": 0,
+            "limitedQuantityUnit": "None",
+            "packagingExceptions": true,
+            "unNo": 1070,
+             "carrier": "LTL"
         },
         {
-            "UNNo":"1070",
-            "Carrier":"LTL",
-            "Destination":"Domestic",
-            "TransportMode":"Ground",
-            "Actions":""
+            "destination": "Domestic",
+            "transportMode": "Ground",
+            "hazardClass": "2.3",
+            "labelsRequired": "POISONOUS GAS, CORROSIVE",
+            "additionalInfo": "Inhalation Hazard Zone B",
+            "packingGroup": "None",
+            "forbidden": "Forbidden",
+            "properShippingName": "Compressed gas, toxic, corrosive, n.o.s. Inhalation Hazard Zone B",
+            "canadaPermitted": false,
+            "cargoAircraftOnlyQuantity": 0,
+            "cargoAircraftOnlyUnit": "None",
+            "doNotPrintPSN": false,
+            "exceptedQuantityCode": false,
+            "exemptionRequired": false,
+            "limitedQuantityMaxNetQty": 0,
+            "limitedQuantityPackingInstructions": "None",
+            "limitedQuantity": 0,
+            "limitedQuantityUnit": "None",
+            "packagingExceptions": true,
+            "unNo": 1050,
+             "carrier": "LTL"
         },
         {
-            "UNNo":"1070",
-            "Carrier":"LTL",
-            "Destination":"Domestic",
-            "TransportMode":"Ground",
-            "Actions":""
-        },
-        {
-            "UNNo":"1070",
-            "Carrier":"LTL",
-            "Destination":"Domestic",
-            "TransportMode":"Ground",
-            "Actions":""
-        },
-        {
-            "UNNo":"1050",
-            "Carrier":"LTL",
-            "Destination":"Domestic",
-            "TransportMode":"Ground",
-            "Actions":""
-        },
-        {
-            "UNNo":"1070",
-            "Carrier":"LTL",
-            "Destination":"Domestic",
-            "TransportMode":"Ground",
-            "Actions":""
-        },
-        {
-            "UNNo":"1050",
-            "Carrier":"LTL",
-            "Destination":"Domestic",
-            "TransportMode":"Ground",
-            "Actions":""
+            "destination": "Domestic",
+            "transportMode": "Ground",
+            "hazardClass": "2.3",
+            "labelsRequired": "POISON GAS",
+            "additionalInfo": "Inhalation Hazard Zone C",
+            "packingGroup": "None",
+            "forbidden": "Forbidden",
+            "properShippingName": "Compressed gas, toxic, n.o.s. Inhalation Hazard Zone C",
+            "canadaPermitted": false,
+            "cargoAircraftOnlyQuantity": 0,
+            "cargoAircraftOnlyUnit": "None",
+            "doNotPrintPSN": false,
+            "exceptedQuantityCode": false,
+            "exemptionRequired": false,
+            "limitedQuantityMaxNetQty": 0,
+            "limitedQuantityPackingInstructions": "None",
+            "limitedQuantity": 0,
+            "limitedQuantityUnit": "None",
+            "packagingExceptions": true,
+            "unNo": 1050,
+             "carrier": "LTL"
         }
     ],
     "ThirdPartiesTableColumns": [
