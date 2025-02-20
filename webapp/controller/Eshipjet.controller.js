@@ -9864,7 +9864,6 @@ sap.ui.define([
         onPressAddProduct: function (oEvent) {
             var oDeliveryModel = oController.getView().getModel("OutBoundDeliveryModel");
             oDeliveryModel.read("/A_OutbDeliveryItem",{
-                // filters: aOutBoundDelveryFilter,
                 success:function(oData){
                     if(oData && oData.results && oData.results.length > 0){
                         var aProductTable = [];
