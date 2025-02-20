@@ -1371,6 +1371,116 @@ sap.ui.define([
                 }    
             });            
         },
+
+        onPackPress:function(){
+            sap.ui.core.BusyIndicator.show();
+            var productTable = oController.byId("idShipNowPackTable");
+            var selectedItems = productTable.getSelectedItems();
+            var OutBoundDeliveryModel = this.getOwnerComponent().getModel("OutBoundDeliveryModel");
+            var aDeferredGroups = ProjectSet.getDeferredGroups();
+            aDeferredGroups= aDeferredGroups.concat(["isProjectUploadBatch"]);
+            ProjectSet.setDeferredGroups(aDeferredGroups);
+		    var updateDataArray = [];
+            var createDataArray = [];
+            for (var i = 0; i < excelData.length; i++) {
+                var StartDate = excelData[i]['Project Start Date'];
+                var WorkPackageID = excelData[i]['WorkPackageID'];
+                var WorkPackageName = excelData[i]['WorkPackageName'];
+                var ProjectID = excelData[i]['Project Id'];
+                var ProjectDesc = excelData[i]['Project Desc'];
+                var EndDate = excelData[i]['Project End Date'];
+                var YY1_InvoiceTemplate_Cpr = excelData[i]['Invoice Template'];
+                var EngPartnerBP = excelData[i]['Eng Partner BP'];
+                var BillerBP = excelData[i]['Biller'];
+                var EngManagBP = excelData[i]['Eng Manag BP'];
+                var YY1_AdminChargePerc_Cpr = excelData[i]['Eng Admin 1/2/3'];
+                var oData = {
+                    "ProjectID": ProjectID,
+                    // "YY1_InvoiceTemplate_Cpr": excelData[i]['Invoice Template'],
+                    "EndDate": excelData[i]['Project End Date'],
+                    "WorkPackageID":WorkPackageID,
+                    "WorkPackageName":WorkPackageName,
+                    "StartDate":StartDate,
+                    "ProjectDesc":ProjectDesc,
+                    "YY1_InvoiceTemplate_Cpr":YY1_InvoiceTemplate_Cpr
+                };
+                updateDataArray.push(oData);
+            }
+            ProjectSet.refreshSecurityToken();
+            var oHeaders = ProjectSet.oHeaders;
+            var sToken = oHeaders['x-csrf-token'];
+            var oHeaders = {
+                "X-CSRF-Token": sToken,
+                "Content-Type": "multipart/mixed; boundary=batch_cb41-3377-9507"
+            };
+            var ProjectSet = this.getOwnerComponent().getModel();
+            ProjectSet.setDeferredGroups(["isProjectUploadBatch"]);
+            ProjectSet.setUseBatch(true);
+            for (var i = 0; i < updateDataArray.length; i++) {
+                if (updateDataArray[i].ProjectID !== undefined) {
+                    var pData = {
+                    "YY1_InvoiceTemplate_Cpr": updateDataArray[i].YY1_InvoiceTemplate_Cpr,
+                    "EndDate": updateDataArray[i].EndDate
+                };
+                ProjectSet.update("/ProjectSet(ProjectID='" + updateDataArray[i].ProjectID + "')", pData, {
+                    method: "PUT",
+                    "groupId": "isProjectUploadBatch",
+                    "merge": false
+                });
+                var wpData = {
+                    "WPEndDate": updateDataArray[i].EndDate
+                };
+                ProjectSet.update("/WorkPackageSet(ProjectID='"+updateDataArray[i].ProjectID+"', WorkPackageID='"+updateDataArray[i].WorkPackageID+"', WorkPackageName='"+updateDataArray[i].WorkPackageName+"')", wpData, {
+                    method: "PUT",
+                    "groupId": "isProjectUploadBatch",
+                    "merge": false
+                });
+                } else {
+                    var pData = {
+                    "StartDate": updateDataArray[i].StartDate,
+                    "EndDate": updateDataArray[i].EndDate,
+                    "ProjectDesc": updateDataArray[i].ProjectDesc,
+                    "YY1_InvoiceTemplate_Cpr": updateDataArray[i].YY1_InvoiceTemplate_Cpr
+                    };
+                    ProjectSet.create("/ProjectSet", pData, {
+                        method: "POST",
+                        "groupId": "isProjectUploadBatch",
+                        "merge": false
+                    });
+                }
+            }
+            ProjectSet.submitChanges({
+                "groupId": "isProjectUploadBatch",
+                success: function (oRes) {
+                    sap.ui.core.BusyIndicator.hide();
+                    sap.m.MessageBox.success("Updated Successfully");
+                },
+                error: function (e) {
+                    sap.ui.core.BusyIndicator.hide();
+                    sap.m.MessageBox.error("Not Updated");
+                }
+            });
+        },
+
+        onPackAllPress:function(){
+            var OutBoundDeliveryModel = oController.getOwnerComponent().getModel("OutBoundDeliveryModel");
+            var oPayload = {
+                "HandlingUnitExternalId" : "$1",
+                "PackagingMaterial" : "EWMS4-WBTRO00",
+                "DeliveryDocument" : "80000112"
+            };
+            OutBoundDeliveryModel.create("/A_HandlingUnitHeaderDelivery", oPayload, {
+                success: function(oResponse) {
+                    sap.m.MessageToast.show("Handling Unit Created Successfully!");
+                    console.log("Success:", oData);
+                },
+                error: function(oError) {
+                    var errMsg = JSON.parse(oError.responseText).error.message.value
+                    sap.m.MessageBox.error(errMsg);
+                }
+            });
+        },
+
         onShipNowCodEditPress:function(){
             var oView = this.getView();
             if (!this.byId("idCodEditDialog")) {
@@ -2758,7 +2868,13 @@ sap.ui.define([
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
-                    var Btn1 = new sap.m.Button({ text: "Ship Now", type: "Transparent" });
+                    var Btn1 = new sap.m.Button({ 
+                        text: "View Now", 
+                        type: "Transparent",
+                        press: function(oEvent){
+                            oController.onViewNowPressBackToShipNow(oEvent);
+                        }
+                    });
                     var Btn2 = new sap.m.Button({
                         icon: "sap-icon://megamenu", type: "Transparent",
                         press: function (oEvent) {
@@ -9683,8 +9799,18 @@ sap.ui.define([
             this.byId("idAddTrackingRangePopover").close();
         },
 
-        onPressAddProduct: function () {
+        onPressAddProduct: function (oEvent) {
             var oView = this.getView();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var btnPath = oEvent.getSource().getId().split('--');
+            var btnId = btnPath[btnPath.length-1];
+            if(btnId === "idShipNowAddProduct"){
+                eshipjetModel.setProperty("/isShipNowAddProduct", true);
+                eshipjetModel.setProperty("/isShipReqAddProduct", false);
+            }else if(btnId === "idShipReqAddProduct"){
+                eshipjetModel.setProperty("/isShipReqAddProduct", true);
+                eshipjetModel.setProperty("/isShipNowAddProduct", false);
+            }
             if (!this.byId("idAddProductDialog")) {
                 Fragment.load({
                     id: oView.getId(),
@@ -9776,16 +9902,29 @@ sap.ui.define([
 
 
         handleAddProductRowPress:function(oEvent){
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var isShipNowAddProduct = eshipjetModel.getProperty("/isShipNowAddProduct");
+            var isShipReqAddProduct = eshipjetModel.getProperty("/isShipReqAddProduct");
             var oSelectedObj = oEvent.getSource().getBindingContext().getObject();
-            var ShipReqTableDataModel = this.getView().getModel("ShipReqTableDataModel");
-            var CreateShipReqRowsData = ShipReqTableDataModel.getData().CreateShipReqRows;
-            CreateShipReqRowsData.push(oSelectedObj);
-            ShipReqTableDataModel.updateBindings(true);
-            for(var i=0; i<CreateShipReqRowsData.length; i++){
-                CreateShipReqRowsData[i]["#"] = i+1;
+            if(isShipNowAddProduct){
+                var pickAddProductTable = eshipjetModel.getData().pickAddProductTable;
+                pickAddProductTable.push(oSelectedObj);
+                eshipjetModel.updateBindings(true);
+                for(var i=0; i<pickAddProductTable.length; i++){
+                    pickAddProductTable[i]["#"] = i+1;
+                    eshipjetModel.updateBindings(true);
+                }
+            }else if(isShipReqAddProduct){
+                var ShipReqTableDataModel = this.getView().getModel("ShipReqTableDataModel");
+                var CreateShipReqRowsData = ShipReqTableDataModel.getData().CreateShipReqRows;
+                CreateShipReqRowsData.push(oSelectedObj);
                 ShipReqTableDataModel.updateBindings(true);
+                for(var i=0; i<CreateShipReqRowsData.length; i++){
+                    CreateShipReqRowsData[i]["#"] = i+1;
+                    ShipReqTableDataModel.updateBindings(true);
+                }
+                oController._handleDisplayCreateShipReqTable();
             }
-            oController._handleDisplayCreateShipReqTable();
             this.byId("idAddProductDialog").close();
         },
 

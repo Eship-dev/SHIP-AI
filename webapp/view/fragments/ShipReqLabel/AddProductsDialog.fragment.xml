@@ -111,20 +111,20 @@
 		<items>
 			<ColumnListItem vAlign="Middle" type="Active" press="handleAddProductRowPress" >
 				<cells>
-					<Text text="{itemNo}" wrapping="false" />
-					<Text text="{productNo}" wrapping="false" />
+					<Text text="{Material}" wrapping="false" />
+					<Text text="{Material}" wrapping="false" />
 					<Text text="{desc}" wrapping="false" />
 					<Text text="{quantity}" wrapping="false" />
 					<Text text="{DG}" wrapping="false" />
-					<Text text="{EPC-RFID No}" wrapping="false" />
-					<Text text="{unitCost}" wrapping="false" />
-					<Text text="{unitWeight}" wrapping="false" />
+					<Text text="{epcRfidNo}" wrapping="false" />
+					<Text text="{ItemGrossWeight}" wrapping="false" />
+					<Text text="{ItemWeightUnit}" wrapping="false" />
 					<Text text="{dimensions}" wrapping="false" />
 					<Text text="{harmonizedcode}" wrapping="false" />
 					<Text text="{eccn}" wrapping="false" />
 					<Text text="{unNo}" wrapping="false" />
 					<Text text="{class}" wrapping="false" />
-					<Text text="{nmfc}" wrapping="false" />
+					<Text text="{partialQty}" wrapping="false" />
 					<Text text="{Category}" wrapping="false" />
 					<Text text="{Serial}" wrapping="false" />
 					<Text text="{Batch}" wrapping="false" />

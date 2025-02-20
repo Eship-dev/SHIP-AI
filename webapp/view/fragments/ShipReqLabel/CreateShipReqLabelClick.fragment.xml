@@ -371,7 +371,7 @@
 					<ui:footer>
                 <Toolbar class="toolbarbottomborder" >
                     <OverflowToolbar class="toolbarbottomborder" >
-                        <Button  text="Add Product" type="Ghost" press="onPressAddProduct"/>
+                        <Button  text="Add Product" id="idShipReqAddProduct" type="Ghost" press="onPressAddProduct"/>
                     </OverflowToolbar>
 				</Toolbar>
 		    </ui:footer>
