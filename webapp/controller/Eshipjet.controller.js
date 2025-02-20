@@ -2950,7 +2950,6 @@ sap.ui.define([
 
         _handleDisplayShipReqTable: function () {
             var that = this;
-            oController.getShipReqLabelHistoryShipments();
             const oView = oController.getView();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var ShipReqTableData = eshipjetModel.getData().ShipReqTableData;
@@ -2971,17 +2970,11 @@ sap.ui.define([
                 label = oContext.getObject().label;
                 var minWidth = "100%";
                 if (count >= 14) {
-                    minWidth = "150px";
+                    var minWidth = "130px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
-                    var Btn1 = new sap.m.Button({ 
-                        text: "View Now", 
-                        type: "Transparent",
-                        press: function(oEvent){
-                            oController.onViewNowPressBackToShipNow(oEvent);
-                        }
-                    });
+                    var Btn1 = new sap.m.Button({ text: "Ship Now", type: "Transparent" });
                     var Btn2 = new sap.m.Button({
                         icon: "sap-icon://megamenu", type: "Transparent",
                         press: function (oEvent) {
@@ -2997,31 +2990,17 @@ sap.ui.define([
                         width: minWidth,
                         sortProperty: columnName
                     });
-                } else if (columnName === "TrackingNumber") {
-                    var Link = new sap.m.Link({
-                        text: '{TrackingNumber}',
-                        press: function (oEvent) {
-                            that.onTrackingNumberPress(oEvent);
-                        }
-                    });
-                    return new sap.ui.table.Column({
-                        label: oResourceBundle.getText(columnName),
-                        template: Link,
-                        visible: oContext.getObject().visible,
-                        width: minWidth,
-                        sortProperty: columnName
-                    });
-                } else if (columnName === "Createddate" || columnName === "CrossdockShipdate") {
+                } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
                     var DateTxt = new sap.m.Text({
                         text: {
-                            path: '{Createddate}',
+                            path: 'ShipReqTableDataModel>ShipDate',
                             formatter: formatter.formatDate  // Attach the formatter dynamically
                         },
                         wrapping: false
                     });
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
-                        template: DateTxt,
+                        template: columnName,
                         visible: oContext.getObject().visible,
                         width: minWidth,
                         sortProperty: columnName
@@ -3036,8 +3015,7 @@ sap.ui.define([
                     });
                 }
             });
-            oTable.setModel(eshipjetModel);
-            oTable.bindRows("/RecentShipmentSetShipReqLabel");
+            oTable.bindRows("/ShipReqRows");
         },
 
         openShipReqColNamesPopover: function (oEvent) {
@@ -3137,10 +3115,9 @@ sap.ui.define([
             var oView = this.getView()
             var oShipReqTable = oView.byId("myShipReqColumnSelectId");
             var eshipjetModel = oView.getModel("eshipjetModel");
-            var ShipReqTableDataModel = oController.getView().getModel("ShipReqTableDataModel");
             var oShipReqTblItems = oShipReqTable.getItems();
-            var aColumnsData = ShipReqTableDataModel.getProperty("/ShipReqColumns");
-            var aColumnsData = ShipReqTableDataModel.getData().ShipReqColumns;
+            // var aColumnsData = ShipReqTableDataModel.getProperty("/ShipReqColumns");
+            var aColumnsData = eshipjetModel.getData().ShipReqColumns;
             oShipReqTblItems.map(function (oTableItems) {
                 aColumnsData.map(function (oColObj) {
                     if (oTableItems.getBindingContext("eshipjetModel").getObject().name === oColObj.name) {
@@ -3152,7 +3129,7 @@ sap.ui.define([
                     }
                 })
             });
-            ShipReqTableDataModel.updateBindings(true);
+            eshipjetModel.updateBindings(true);
             this._handleDisplayShipReqTable();
             this._pShipReqPopover.then(function (oPopover) {
                 oPopover.close();
@@ -4167,28 +4144,6 @@ sap.ui.define([
             //         oController.oBusyDialog.close();
             //     }
             // });
-        },
-
-        getShipReqLabelHistoryShipments:function(){
-            oController.oBusyDialog.open();
-            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var ManifestSrvModel = oController.getOwnerComponent().getModel("ManifestSrvModel");
-            ManifestSrvModel.read("/EshipjetManfestSet",{
-                // urlParameters: {
-                //     "$expand": "to_DeliveryDocumentItem,to_DeliveryDocumentPartner"
-                // },
-                success:function(response){
-                    var last50Records = response.results.slice(-50);
-                    if(response && response.results.length > 0){
-                        eshipjetModel.setProperty("/RecentShipmentSetShipReqLabel",last50Records);
-                    }
-                    oController.oBusyDialog.close();
-                },
-                error: function(error){
-                    MessageBox.warning(error.responseText);
-                    oController.oBusyDialog.close();
-                }
-            });
         },
 
         onColumnSearch: function (oEvent) {
@@ -6438,7 +6393,7 @@ sap.ui.define([
                 if (count >= 14) {
                     var minWidth = "130px";
                 }
-                if (columnName === "actions") {
+                if (columnName === "Actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
                     var Btn1 = new sap.m.Button({ text: "Edit", type: "Transparent", press:"onDangerousGoodsEditPress" });
                     var Btn2 = new sap.m.Button({
@@ -6451,7 +6406,7 @@ sap.ui.define([
                     oHBox.addItem(Btn2);
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
-                        template: Btn1,
+                        template: oHBox,
                         visible: oContext.getObject().visible,
                         width: minWidth,
                         sortProperty: columnName
@@ -9928,16 +9883,6 @@ sap.ui.define([
                 }
             });
             var oView = this.getView();
-            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var btnPath = oEvent.getSource().getId().split('--');
-            var btnId = btnPath[btnPath.length-1];
-            if(btnId === "idShipNowAddProduct"){
-                eshipjetModel.setProperty("/isShipNowAddProduct", true);
-                eshipjetModel.setProperty("/isShipReqAddProduct", false);
-            }else if(btnId === "idShipReqAddProduct"){
-                eshipjetModel.setProperty("/isShipReqAddProduct", true);
-                eshipjetModel.setProperty("/isShipNowAddProduct", false);
-            }
             if (!this.byId("idAddProductDialog")) {
                 Fragment.load({
                     id: oView.getId(),
@@ -9957,13 +9902,15 @@ sap.ui.define([
 
         onTrackingNumberPress: function (oEvent) {
             var oView = this.getView();
-            var oCurrentObject = oEvent.getSource().getBindingContext().getObject();
+            var oCurrentObject = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
             var oEshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var aTrackDetails = [];
             oCurrentObject["StandardTransit"]= "01/31/25 before 2:39 PM";
             oCurrentObject["Delivered"] = "01/31/25 at 2:39 PM";
             oCurrentObject["SignedBy"] = "Stephen";
             oCurrentObject["ServiceName"] = oEshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey");
-            oEshipjetModel.setProperty("/TrackingNumberTableRows",oCurrentObject);
+            aTrackDetails.push(oCurrentObject);
+            oEshipjetModel.setProperty("/TrackingNumberTableRows",aTrackDetails);
             if (!this.byId("idTrackingNumberDialog")) {
                 Fragment.load({
                     id: oView.getId(),
@@ -9977,7 +9924,6 @@ sap.ui.define([
                 this.byId("idTrackingNumberDialog").open(); // Open existing dialog
             }
         },
-
         TrackingNumberCancelDialog: function () {
             this.byId("idTrackingNumberDialog").close();
         },
@@ -10029,29 +9975,16 @@ sap.ui.define([
 
 
         handleAddProductRowPress:function(oEvent){
-            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var isShipNowAddProduct = eshipjetModel.getProperty("/isShipNowAddProduct");
-            var isShipReqAddProduct = eshipjetModel.getProperty("/isShipReqAddProduct");
             var oSelectedObj = oEvent.getSource().getBindingContext().getObject();
-            if(isShipNowAddProduct){
-                var pickAddProductTable = eshipjetModel.getData().pickAddProductTable;
-                pickAddProductTable.push(oSelectedObj);
-                eshipjetModel.updateBindings(true);
-                for(var i=0; i<pickAddProductTable.length; i++){
-                    pickAddProductTable[i]["#"] = i+1;
-                    eshipjetModel.updateBindings(true);
-                }
-            }else if(isShipReqAddProduct){
-                var ShipReqTableDataModel = this.getView().getModel("ShipReqTableDataModel");
-                var CreateShipReqRowsData = ShipReqTableDataModel.getData().CreateShipReqRows;
-                CreateShipReqRowsData.push(oSelectedObj);
+            var ShipReqTableDataModel = this.getView().getModel("ShipReqTableDataModel");
+            var CreateShipReqRowsData = ShipReqTableDataModel.getData().CreateShipReqRows;
+            CreateShipReqRowsData.push(oSelectedObj);
+            ShipReqTableDataModel.updateBindings(true);
+            for(var i=0; i<CreateShipReqRowsData.length; i++){
+                CreateShipReqRowsData[i]["#"] = i+1;
                 ShipReqTableDataModel.updateBindings(true);
-                for(var i=0; i<CreateShipReqRowsData.length; i++){
-                    CreateShipReqRowsData[i]["#"] = i+1;
-                    ShipReqTableDataModel.updateBindings(true);
-                }
-                oController._handleDisplayCreateShipReqTable();
             }
+            oController._handleDisplayCreateShipReqTable();
             this.byId("idAddProductDialog").close();
         },
 

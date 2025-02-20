@@ -3,107 +3,398 @@
     xmlns:l="sap.ui.layout"
     xmlns:form="sap.ui.layout.form"
     xmlns:core="sap.ui.core"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:f="sap.f"
-	xmlns:fb="sap.ui.comp.filterbar"
-	xmlns:svm="sap.ui.comp.smartvariants"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:svm="sap.ui.comp.smartvariants"
     xmlns:ui="sap.ui.table"
-	xmlns:u="sap.ui.unified"
-	xmlns:c="sap.ui.core" >
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core"
+>
     <Dialog
         id="idAddProductDialog"
         showHeader="false"
-		class="myCustomDialog" >
+		contentHeight="45%"
+		contentWidth="60%"
+        class="myCustomDialog"
+    >
         <customHeader>
-        <Toolbar >
-            <Title text="Products Information"></Title>
-            <ToolbarSpacer ></ToolbarSpacer>
-                <Button icon="sap-icon://decline" press="AddProductCancelDialog" class="Decline_Btn" ></Button>
-        </Toolbar>
+            <Toolbar>
+                <Title text="Products Information" />
+                <ToolbarSpacer />
+                <Button
+                    icon="sap-icon://decline"
+                    press="AddProductCancelDialog"
+                    class="Decline_Btn"
+                />
+            </Toolbar>
         </customHeader>
-            <!-- <Toolbar height="3rem" width="100%" class="toolbarbottomborder" >
+        <!-- <Toolbar height="3rem" width="100%" class="toolbarbottomborder" >
                 <SearchField width="50%" class="sapUiSmallMarginBottom" placeholder="Global Filter" ></SearchField>
         	</Toolbar> -->
-           
-		   <content>
-	<Table
-		mode="SingleSelectLeft"
-		sticky="HeaderToolbar,ColumnHeaders"
-		items="{eshipjetModel>/pickAddProductTable}" >
-		<headerToolbar>
-            <OverflowToolbar class="toolbarbottomborder sapUiTinyMarginTop" >
-				<Toolbar width="100%" height="4rem" class="toolbarbottomborder" >
-                    <SearchField width="50%" class="sapUiSmallMarginBottom" placeholder="Global Filter" ></SearchField>
-				</Toolbar>
-			</OverflowToolbar>
-        </headerToolbar>
-		<columns>
-			<Column width="6em">
-				<Text text="#" />
-			</Column>
-			<Column width="6em">
-				<Text text="Product Code" />
-			</Column>
-			<Column width="6em">
-				<Text text="Description" />
-			</Column>
-			<Column width="6em">
-				<Text text="Quantity" />
-			</Column>
-			<Column width="6em">
-				<Text text="Epc-Rfid No" />
-			</Column>
-			<Column width="6em">
-				<Text text="Unit Cost" />
-			</Column>
-			<Column width="6em">
-				<Text text="Unit Weight" />
-			</Column>
-			<Column width="6em">
-				<Text text="Dimensions" />
-			</Column>
-			<Column width="6em">
-				<Text text="Country of mfr" />
-			</Column>
-			<Column width="6em">
-				<Text text="Uom" />
-			</Column>
-			<Column width="6em">
-				<Text text="Currency" />
-			</Column>
-			<Column width="6em">
-				<Text text="Licence No" />
-			</Column>
-			<Column width="6em">
-				<Text text="Eccn" />
-			</Column>
-			<Column width="6em">
-				<Text text="Is Dg" />
-			</Column>
-		</columns>
-		<items>
-			<ColumnListItem vAlign="Middle" type="Active" press="handleAddProductRowPress" >
-				<cells>
-					<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-					<Text text="{eshipjetModel>Material}" wrapping="false" />
-					<Text text="{eshipjetModel>DeliveryDocumentItemText}" wrapping="false" />
-					<Text text="{eshipjetModel>ActualDeliveryQuantity}" wrapping="false" />
-					<Text text="{eshipjetModel>DeliveryDocument}" wrapping="false" />
-					<Text text="{eshipjetModel>ItemVolume}" wrapping="false" />
-					<Text text="{eshipjetModel>ItemGrossWeight}" wrapping="false" />
-					<Text text="{eshipjetModel>ItemNetWeight}" wrapping="false" />
-					<Text text="{eshipjetModel>DeliveryGroup}" wrapping="false" />
-					<Text text="{eshipjetModel>AdditionalCustomerGroup1}" wrapping="false" />
-					<Text text="{eshipjetModel>AdditionalCustomerGroup2}" wrapping="false" />
-					<Text text="{eshipjetModel>AdditionalCustomerGroup3}" wrapping="false" />
-					<Text text="{eshipjetModel>AdditionalCustomerGroup4}" wrapping="false" />
-					<Text text="{eshipjetModel>AdditionalCustomerGroup5}" wrapping="false" />
-				</cells>
-			</ColumnListItem>
-		</items>
-	</Table>
 
+        <IconTabBar
+            id="idIconTabBarMulti"
+            expandable="false"
+            enableTabReordering="true"
+            class="shipNow-IconTabBar-Width"
+        >
+            <items>
+                <IconTabFilter
+				    
+                    text="Products"
+                    key="ShipFromTo"
+                    class="shipNow-IconTabBar-Width"
+                >
+                    <Toolbar
+                        width="100%"
+                        height="4rem"
+                        class="toolbarbottomborder"
+                    >
+                        <SearchField
+                            width="50%"
+                            class="sapUiSmallMarginBottom"
+                            placeholder="Global Filter"
+                        />
+                    </Toolbar>
+                    <ScrollContainer
+                        height="50%"
+                        width="100%"
+                        vertical="true"
+						horizontal="true"
+                        focusable="true"
+                    >
+                        <Table
+                            mode="SingleSelectLeft"
+                            sticky="ColumnHeaders,HeaderToolbar"
+                            items="{/AddProductRows}"
+                        >
+                            <columns>
+                                <Column width="8em">
+                                    <Text text="Item No" />
+                                </Column>
+                                <Column width="12em">
+                                    <Text text="Product Code" />
+                                </Column>
+                                <Column width="10em">
+                                    <Text text="Description" />
+                                </Column>
+                                <Column width="4em">
+                                    <Text text="Qty" />
+                                </Column>
+                                <Column width="4em">
+                                    <Text text="DG" />
+                                </Column>
+                                <Column width="12em">
+                                    <Text text="Epc-Rfid No" />
+                                </Column>
+                                <Column width="8em">
+                                    <Text text="Unit Cost" />
+                                </Column>
+                                <Column width="10em">
+                                    <Text text="Unit Weight" />
+                                </Column>
+                                <Column width="10em">
+                                    <Text text="Dimensions" />
+                                </Column>
+                                <Column width="15em">
+                                    <Text text="Harmonized Code" />
+                                </Column>
+                                <Column width="8em">
+                                    <Text text="Eccn" />
+                                </Column>
+                                <Column width="8em">
+                                    <Text text="Un No" />
+                                </Column>
+                                <Column width="8em">
+                                    <Text text="Class" />
+                                </Column>
+                                <Column width="8em">
+                                    <Text text="Nmfc" />
+                                </Column>
+                                <Column width="10em">
+                                    <Text text="Category" />
+                                </Column>
+                                <Column width="8em">
+                                    <Text text="Serial" />
+                                </Column>
+                                <Column width="8em">
+                                    <Text text="Batch" />
+                                </Column>
+                                <Column width="10em">
+                                    <Text text="Stackable" />
+                                </Column>
+                                <Column width="12em">
+                                    <Text text="Country Of Mfr" />
+                                </Column>
+                                <Column width="12em">
+                                    <Text text="Currency" />
+                                </Column>
+                                <Column width="10em">
+                                    <Text text="License No" />
+                                </Column>
+                                <Column width="8em">
+                                    <Text text="Uom" />
+                                </Column>
+                                <Column width="12em">
+                                    <Text text="View Image" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem
+                                    vAlign="Middle"
+                                    type="Active"
+                                    press="handleAddProductRowPress"
+                                >
+                                    <cells>
+                                        <Text
+                                            text="{Material}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{Material}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{desc}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{quantity}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{DG}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{epcRfidNo}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{ItemGrossWeight}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{ItemWeightUnit}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{dimensions}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{harmonizedcode}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{eccn}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{unNo}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{class}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{partialQty}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{Category}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{Serial}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{Batch}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{Stackable}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{CountryofMFR}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{Currency}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{LicenseNo}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{UOM}"
+                                            wrapping="false"
+                                        />
+                                        <Text
+                                            text="{image}"
+                                            wrapping="false"
+                                        />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
+                    </ScrollContainer>
+                </IconTabFilter>
+                <IconTabFilter
+                    text="Dangerous Goods"
+                    key="ShipFromTo"
+                    class="shipNow-IconTabBar-Width"
+                >
+				<Toolbar
+                                    width="100%"
+                                    height="4rem"
+                                    class="toolbarbottomborder"
+                                >
+                                    <SearchField
+                                        width="50%"
+                                        class="sapUiSmallMarginBottom"
+                                        placeholder="Search Dangerous Goods"
+                                    />
+                                </Toolbar>
 
+								 <ScrollContainer
+                        height="100%"
+                        width="100%"
+                        vertical="true"
+                        focusable="true"
+                    >
+                    <Table
+                        id="dangerousGoodsTable"
+                        mode="SingleSelectLeft"
+                        sticky="HeaderToolbar,ColumnHeaders"
+                        items="{/DangerousGoodsTableRows}"
+                    >
+                      
+                                
+                        <columns>
+                            <Column width="8em">
+                                <Text text="UN No" />
+                            </Column>
+                            <Column width="10em">
+                                <Text text="Carrier" />
+                            </Column>
+                            <Column width="12em">
+                                <Text text="Transport Mode" />
+                            </Column>
+                            <Column width="10em">
+                                <Text text="Destination" />
+                            </Column>
+                            <Column width="10em">
+                                <Text text="Hazard ID" />
+                            </Column>
+                            <Column width="12em">
+                                <Text text="ERG Guide Number" />
+                            </Column>
+                            <Column width="10em">
+                                <Text text="Hazard Class" />
+                            </Column>
+                            <Column width="12em">
+                                <Text text="Labels Required" />
+                            </Column>
+                            <Column width="15em">
+                                <Text text="Limited Quantity Max Net Qty" />
+                            </Column>
+                            <Column width="12em">
+                                <Text
+                                    text="Limited Quantity Packing Instructions"
+                                />
+                            </Column>
+                            <Column width="12em">
+                                <Text text="Limited Quantity Unit" />
+                            </Column>
+                            <Column width="10em">
+                                <Text text="Packaging Exceptions" />
+                            </Column>
+                            <Column width="10em">
+                                <Text text="Packaging Non-Bulk" />
+                            </Column>
+                            <Column width="12em">
+                                <Text text="Actions" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem
+                                vAlign="Middle"
+                                type="Active"
+                                press="handleDangerousGoodsRowPress"
+                            >
+                                <cells>
+                                    <Text
+                                        text="{unNo}"
+                                        wrapping="false"
+                                    />
+                                    <Text
+                                        text="{carrier}"
+                                        wrapping="false"
+                                    />
+                                    <Text
+                                        text="{transportMode}"
+                                        wrapping="false"
+                                    />
+                                    <Text
+                                        text="{destination}"
+                                        wrapping="false"
+                                    />
+                                    <Text
+                                        text="{hazardId}"
+                                        wrapping="false"
+                                    />
+                                    <Text
+                                        text="{ergGuideNumber}"
+                                        wrapping="false"
+                                    />
+                                    <Text
+                                        text="{hazardClass}"
+                                        wrapping="false"
+                                    />
+                                    <Text
+                                        text="{labelsRequired}"
+                                        wrapping="false"
+                                    />
+                                    <Text
+                                        text="{limitedQuantityMaxNetQty}"
+                                        wrapping="false"
+                                    />
+                                    <Text
+                                        text="{limitedQuantityPackingInstructions}"
+                                        wrapping="false"
+                                    />
+                                    <Text
+                                        text="{limitedQuantityUnit}"
+                                        wrapping="false"
+                                    />
+                                    <Text
+                                        text="{packagingExceptions}"
+                                        wrapping="false"
+                                    />
+                                    <Text
+                                        text="{packagingNonBulk}"
+                                        wrapping="false"
+                                    />
+                                    <Button
+                                        text="Edit"
+                                        press="onEditDangerousGoods"
+                                    />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+					 </ScrollContainer>
+                </IconTabFilter>
+            </items>
+        </IconTabBar>
+
+        <content>
             <!-- <ui:Table 
                 class="sapUiTinyMarginTop"
                 selectionMode="Single"
@@ -254,18 +545,23 @@
                             <Button  text="Next" />
                             <Button  text="Last" />
                     </Toolbar> -->
-
         </content>
-                    
+
         <footer>
-			<Toolbar >
-                        <ToolbarSpacer ></ToolbarSpacer>
-                            <Button  text="First" enabled="false" />
-                            <Button  text="Previous" enabled="false"/>
-                            <Text    text="1-50 of 74"/>
-                            <Button  text="Next" />
-                            <Button  text="Last" />
-                    </Toolbar>
-		</footer>
+            <Toolbar>
+                <ToolbarSpacer />
+                <Button
+                    text="First"
+                    enabled="false"
+                />
+                <Button
+                    text="Previous"
+                    enabled="false"
+                />
+                <Text text="1-50 of 74" />
+                <Button text="Next" />
+                <Button text="Last" />
+            </Toolbar>
+        </footer>
     </Dialog>
 </core:FragmentDefinition>

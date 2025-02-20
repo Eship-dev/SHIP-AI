@@ -1127,7 +1127,12 @@ td[rowspan] {
 }
 
 .shipNow-IconTabBar-Width{
-  min-width: 10rem !important;
+  min-width: 15rem !important;
+ 
+}
+.sapMScrollCont.sapUiContentPadding > .sapMScrollContScroll {
+    padding: 0rem;
+    box-sizing: border-box;
 }
 
 /* ShipNow Icon Tab Bar Width adjustment */
