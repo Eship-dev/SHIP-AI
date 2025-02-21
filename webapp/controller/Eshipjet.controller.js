@@ -2950,6 +2950,7 @@ sap.ui.define([
 
         _handleDisplayShipReqTable: function () {
             var that = this;
+            oController.getShipReqLabelHistoryShipments();
             const oView = oController.getView();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var ShipReqTableData = eshipjetModel.getData().ShipReqTableData;
@@ -2970,11 +2971,17 @@ sap.ui.define([
                 label = oContext.getObject().label;
                 var minWidth = "100%";
                 if (count >= 14) {
-                    var minWidth = "130px";
+                    minWidth = "150px";
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
-                    var Btn1 = new sap.m.Button({ text: "Ship Now", type: "Transparent" });
+                    var Btn1 = new sap.m.Button({ 
+                        text: "View Now", 
+                        type: "Transparent",
+                        press: function(oEvent){
+                            oController.onViewNowPressBackToShipNow(oEvent);
+                        }
+                    });
                     var Btn2 = new sap.m.Button({
                         icon: "sap-icon://megamenu", type: "Transparent",
                         press: function (oEvent) {
@@ -2990,17 +2997,31 @@ sap.ui.define([
                         width: minWidth,
                         sortProperty: columnName
                     });
-                } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
+                } else if (columnName === "TrackingNumber") {
+                    var Link = new sap.m.Link({
+                        text: '{TrackingNumber}',
+                        press: function (oEvent) {
+                            that.onTrackingNumberPress(oEvent);
+                        }
+                    });
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: Link,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "Createddate" || columnName === "CrossdockShipdate") {
                     var DateTxt = new sap.m.Text({
                         text: {
-                            path: 'ShipReqTableDataModel>ShipDate',
+                            path: '{Createddate}',
                             formatter: formatter.formatDate  // Attach the formatter dynamically
                         },
                         wrapping: false
                     });
                     return new sap.ui.table.Column({
                         label: oResourceBundle.getText(columnName),
-                        template: columnName,
+                        template: DateTxt,
                         visible: oContext.getObject().visible,
                         width: minWidth,
                         sortProperty: columnName
@@ -3015,7 +3036,8 @@ sap.ui.define([
                     });
                 }
             });
-            oTable.bindRows("/ShipReqRows");
+            oTable.setModel(eshipjetModel);
+            oTable.bindRows("/RecentShipmentSetShipReqLabel");
         },
 
         openShipReqColNamesPopover: function (oEvent) {
@@ -4144,6 +4166,28 @@ sap.ui.define([
             //         oController.oBusyDialog.close();
             //     }
             // });
+        },
+
+        getShipReqLabelHistoryShipments:function(){
+            oController.oBusyDialog.open();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var ManifestSrvModel = oController.getOwnerComponent().getModel("ManifestSrvModel");
+            ManifestSrvModel.read("/EshipjetManfestSet",{
+                // urlParameters: {
+                //     "$expand": "to_DeliveryDocumentItem,to_DeliveryDocumentPartner"
+                // },
+                success:function(response){
+                    var last50Records = response.results.slice(-50);
+                    if(response && response.results.length > 0){
+                        eshipjetModel.setProperty("/RecentShipmentSetShipReqLabel",last50Records);
+                    }
+                    oController.oBusyDialog.close();
+                },
+                error: function(error){
+                    MessageBox.warning(error.responseText);
+                    oController.oBusyDialog.close();
+                }
+            });
         },
 
         onColumnSearch: function (oEvent) {
@@ -9901,15 +9945,13 @@ sap.ui.define([
 
         onTrackingNumberPress: function (oEvent) {
             var oView = this.getView();
-            var oCurrentObject = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
+            var oCurrentObject = oEvent.getSource().getBindingContext().getObject();
             var oEshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var aTrackDetails = [];
             oCurrentObject["StandardTransit"]= "01/31/25 before 2:39 PM";
             oCurrentObject["Delivered"] = "01/31/25 at 2:39 PM";
             oCurrentObject["SignedBy"] = "Stephen";
             oCurrentObject["ServiceName"] = oEshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey");
-            aTrackDetails.push(oCurrentObject);
-            oEshipjetModel.setProperty("/TrackingNumberTableRows",aTrackDetails);
+            oEshipjetModel.setProperty("/TrackingNumberTableRows",oCurrentObject);
             if (!this.byId("idTrackingNumberDialog")) {
                 Fragment.load({
                     id: oView.getId(),
