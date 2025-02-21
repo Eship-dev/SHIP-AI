@@ -1256,7 +1256,7 @@ sap.ui.define([
                                 aProductTable.push(oData.results[i]);
                             }
                             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-                            eshipjetModel.setProperty("/pickAddProductTable",aProductTable);
+                            eshipjetModel.setProperty("/packAddProductTable",aProductTable);
                             oController.getSalesOrder(aProductTable);
                         }
                     },
@@ -9906,6 +9906,7 @@ sap.ui.define([
         },
 
         onPressAddProduct: function (oEvent) {
+            BusyIndicator.show();
             var oDeliveryModel = oController.getView().getModel("OutBoundDeliveryModel");
             oDeliveryModel.read("/A_OutbDeliveryItem",{
                 success:function(oData){
@@ -9918,11 +9919,13 @@ sap.ui.define([
                         var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
                         eshipjetModel.setProperty("/pickAddProductTable",aProductTable);
                         oController.getSalesOrder(aProductTable);
+                        BusyIndicator.hide();
                     }
                 },
                 error: function(oErr){
                     console.log(oErr);
                     oController.oBusyDialog.close();
+                    BusyIndicator.hide();
                 }
             });
             var oView = this.getView();

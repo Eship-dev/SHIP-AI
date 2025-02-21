@@ -677,7 +677,7 @@
 					</ui:extension>
 				</ui:Table> -->
 
-										<Table id="idShipNowPackTable" inset="false" mode="MultiSelect" width="100%" class="sapUiTinyMarginTop" items="{eshipjetModel>/pickAddProductTable}">
+										<Table id="idShipNowPackTable" inset="false" mode="MultiSelect" width="100%" class="sapUiTinyMarginTop" items="{eshipjetModel>/packAddProductTable}">
 											<infoToolbar>
 												<Toolbar >
 													<Title text="Product"></Title>
