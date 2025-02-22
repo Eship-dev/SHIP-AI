@@ -1199,7 +1199,12 @@ td[rowspan] {
   }
 
 }
+sapMPopover .sapMPopoverCont {
+  padding: 0.0625rem;
+  padding-bottom: 26px;
+  padding-left: 0px;
 
+}
 .request-button {
   span {
     height: 25px !important;

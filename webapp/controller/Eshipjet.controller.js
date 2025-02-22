@@ -8988,6 +8988,59 @@ sap.ui.define([
         onConsolidationClosePress: function () {
             this.byId("idShipNowConsolidationDialog").close();
         },
+        
+
+        handleHULinkPress: function (oEvent) {
+                var currentObj = oEvent.getSource().getBindingContext('eshipjetModel').getObject();
+                var oView = this.getView();
+                
+                // Get the existing model
+                var oModel = this.getView().getModel("eshipjetModel");
+
+                // Get the table reference inside the dialog
+                var oTable = this.byId("HandlingUnitTableId"); // Replace with actual table ID inside the dialog
+
+                // Get the existing data (if required)
+                var aData = oModel.getProperty("/HandlingUnits");
+
+                // Check if data exists, else initialize as an array
+                if (!Array.isArray(aData)) {
+                    aData = [];
+                }
+
+                // Add the new object
+                aData.push(currentObj);
+
+                // Update the model
+                oModel.setProperty("/HandlingUnits", aData);
+
+                // Refresh the binding
+                if (oTable) {
+                    oTable.getBinding("items").refresh();
+                }
+
+            
+            oController.HandlingUnitDlg = oController.byId("idHandlingUnitDialog1");
+            if (!oController.HandlingUnitDlg) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.HandlingUnitDialog",
+                    controller: this
+                }).then(function (oHandlingUnitDialog) {
+                    oView.addDependent(oHandlingUnitDialog);
+                    oHandlingUnitDialog.open();
+                });
+            } else {
+                oController.HandlingUnitDlg.open();
+            }
+        },
+        onHandlingUnitDialogClosePress: function () {
+            oController.byId("idHandlingUnitDialog1").close();
+        },
+        onHandlingUnitDialogClosePress: function () {
+            this.byId("idHandlingUnitDialog1").close();
+        },
+
 
 
         _handleDisplayShipNowConsolidationTable: function () {

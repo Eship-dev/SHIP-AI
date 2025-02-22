@@ -21,14 +21,14 @@
         </customHeader>
 
     <ScrollContainer
-        class="customSimpleFormShadow"
+        class=""
         height="100%"
         width="100%"
    
         horizontal="true"
         vertical="true">
             <Table id="idShipNowPickAnAddressTable"
-                   class="sapUiTinyMarginTop"
+                   class="sapUiTinyMarginTop cnthight"
                    growing="true"
                    mode="SingleSelectLeft"
                    items="{/shipFromAddresses}" >

@@ -4,9 +4,10 @@
     height="100%">
 
     <Popover id="idShipToPickAnAddressPopover"  
-            placement="HorizontalPreferredRight"
-            showHeader="true"
-            class="sapUiResponsivePadding--header sapUiResponsivePadding--footer rightSideDialogForTracking">
+             placement="Bottom"
+        contentHeight="100%"
+        showHeader="false" 
+        class="rightSidePopoverShipNow">
         
         <!-- Custom Header -->
         <customHeader>
@@ -18,7 +19,7 @@
         </customHeader>
 
     <ScrollContainer
-        class="customSimpleFormShadow sapUiSmallMargin"
+        class=" sapUiSmallMargin"
         height="100%"
         width="100%"
         horizontal="true"

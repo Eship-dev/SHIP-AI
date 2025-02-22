@@ -1192,7 +1192,7 @@ span.sapMBtnInner.sapMBtnReject {
 }
 .rightSidePopoverShipNow {
   width: 45% !important;
-  height: 100% !important; ;
+  height: auto !important; ;
   overflow: auto !important;
   position: fixed !important;
   visibility: visible !important;
@@ -1206,6 +1206,9 @@ span.sapMBtnInner.sapMBtnReject {
   right: 0 !important;
   left: auto !important;
   border-radius: 0px !important;
+}
+.cnthight{
+  height: 100% !important;
 }
 
 sidebar-header {

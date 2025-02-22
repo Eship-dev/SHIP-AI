@@ -1,0 +1,61 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.f"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:svm="sap.ui.comp.smartvariants"
+    xmlns:ui="sap.ui.table"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core" >
+    <Dialog
+        id="idHandlingUnitDialog1"
+        showHeader="false"
+        contentWidth="70%"
+        contentHeight="40%" >
+
+        <Toolbar >
+            <Text text="Product Details"></Text>
+            <ToolbarSpacer />
+            <Button icon="sap-icon://decline" press="onHandlingUnitDialogClosePress" class="Decline_Btn" ></Button>
+        </Toolbar>
+
+           
+            <Table id="HandlingUnitTableId" items="{eshipjetModel>/HandlingUnits}">
+                <columns>
+                    <Column>
+                        <Text text="Product"/>
+                    </Column>
+                    <Column>
+                        <Text text="Description"/>
+                    </Column>
+                    <Column>
+                        <Text text="Quantity"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{eshipjetModel>PackagingMaterialType}"/>
+                            <Text text="{eshipjetModel>CreationDateTime}"/>
+                            <Text text="{eshipjetModel>GrossVolume}"/>
+                            <Text text="{eshipjetModel>GrossWeight}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+            <footer >
+                    <Toolbar >
+                       <ToolbarSpacer ></ToolbarSpacer>
+                            <Button  text="First" />
+                            <Button  text="Previous" />
+                            <Text    text="51-64 of 64" />
+                            <Button  text="Next" enabled="false" />
+                            <Button  text="Last" enabled="false" />
+                    </Toolbar>
+            </footer>
+    </Dialog>
+</core:FragmentDefinition>

@@ -4,6 +4,7 @@
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
     height="100%"
+    modal="false"
 >
     <Popover
         id="addLocationPopover"
