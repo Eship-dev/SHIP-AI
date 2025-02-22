@@ -54,46 +54,45 @@
                         <SearchField
                             width="50%"
                             class="sapUiSmallMarginBottom"
-                            placeholder="Global Filter"
-                        />
+                            placeholder="Global Filter" />
                     </Toolbar>
                     <ScrollContainer
                         height="50%"
                         width="100%"
                         vertical="true"
-						horizontal="true"
-                        focusable="true"
-                    >
+						horizontal="true" >
                         <Table
 		mode="SingleSelectLeft"
+        fixedLayout="true"
+
 		sticky="HeaderToolbar,ColumnHeaders"
 		items="{eshipjetModel>/pickAddProductTable}" >
 		<columns>
 			<Column width="6em">
 				<Text text="#" />
 			</Column>
-			<Column width="6em">
+			<Column width="10em">
 				<Text text="Product Code" />
 			</Column>
-			<Column width="6em">
+			<Column width="10em">
 				<Text text="Description" />
 			</Column>
 			<Column width="6em">
 				<Text text="Quantity" />
 			</Column>
-			<Column width="6em">
+			<Column width="10em">
 				<Text text="Epc-Rfid No" />
 			</Column>
 			<Column width="6em">
 				<Text text="Unit Cost" />
 			</Column>
-			<Column width="6em">
+			<Column width="10em">
 				<Text text="Unit Weight" />
 			</Column>
-			<Column width="6em">
+			<Column width="10em">
 				<Text text="Dimensions" />
 			</Column>
-			<Column width="6em">
+			<Column width="10em">
 				<Text text="Country of mfr" />
 			</Column>
 			<Column width="6em">
@@ -102,7 +101,7 @@
 			<Column width="6em">
 				<Text text="Currency" />
 			</Column>
-			<Column width="6em">
+			<Column width="10em">
 				<Text text="Licence No" />
 			</Column>
 			<Column width="6em">
@@ -173,7 +172,7 @@
                             <Column width="10em">
                                 <Text text="Carrier" />
                             </Column>
-                            <Column width="12em">
+                            <Column width="10em">
                                 <Text text="Transport Mode" />
                             </Column>
                             <Column width="10em">
@@ -182,24 +181,24 @@
                             <Column width="10em">
                                 <Text text="Hazard ID" />
                             </Column>
-                            <Column width="12em">
+                            <Column width="10em">
                                 <Text text="ERG Guide Number" />
                             </Column>
                             <Column width="10em">
                                 <Text text="Hazard Class" />
                             </Column>
-                            <Column width="12em">
+                            <Column width="10em">
                                 <Text text="Labels Required" />
                             </Column>
                             <Column width="15em">
                                 <Text text="Limited Quantity Max Net Qty" />
                             </Column>
-                            <Column width="12em">
+                            <Column width="10em">
                                 <Text
                                     text="Limited Quantity Packing Instructions"
                                 />
                             </Column>
-                            <Column width="12em">
+                            <Column width="10em">
                                 <Text text="Limited Quantity Unit" />
                             </Column>
                             <Column width="10em">
@@ -208,7 +207,7 @@
                             <Column width="10em">
                                 <Text text="Packaging Non-Bulk" />
                             </Column>
-                            <Column width="12em">
+                            <Column width="10em">
                                 <Text text="Actions" />
                             </Column>
                         </columns>

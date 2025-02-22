@@ -276,7 +276,7 @@ sap.ui.define([
 
         // shipper Copilot changes start
         onSendPress: async function () {
-            BusyIndicator.show();
+            oController.oBusyDialog.open();
             const oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
             const sUserMessage = this.getView().byId("userInput").getValue();
             if (!sUserMessage) {
@@ -305,13 +305,13 @@ sap.ui.define([
                     var dataUrl = "https://eshipjetsatge.blob.core.windows.net/shipping-labels/" + sLabel
                     aMessages.push({ sender: "Bot", text: dataUrl });
                     oShipperCopilotModel.setProperty("/messages", aMessages);
-                    BusyIndicator.hide();
+                    oController.oBusyDialog.close();
                 } else {
                     var aError = sResponse.Errors;
                     if (aError.length !== 0) {
                         aMessages.push({ sender: "BotError", text: aError[0] });
                         oShipperCopilotModel.setProperty("/messages", aMessages);
-                        BusyIndicator.hide();
+                        oController.oBusyDialog.close();
                     }
                 }
 
@@ -321,7 +321,7 @@ sap.ui.define([
                     oShipperCopilotModel.setProperty("/messages", aMessages);
                 }
                 //MessageToast.show("Error communicating with Copilot.");
-                BusyIndicator.hide();
+                oController.oBusyDialog.close();
             }
         },
 
@@ -1373,115 +1373,153 @@ sap.ui.define([
         },
 
         onPackPress:function(){
-            BusyIndicator.show();
+            oController.oBusyDialog.open();
             var productTable = this.byId("idShipNowPackTable");
             var selectedItems = productTable.getSelectedItems();
-            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
-            var OutBoundDeliveryModel = this.getOwnerComponent().getModel("OutBoundDeliveryModel");
-            
-            // Ensure batch group is set
-            var aDeferredGroups = OutBoundDeliveryModel.getDeferredGroups();
-            if (!aDeferredGroups.includes("isProjectCreateBatch")) {
-                aDeferredGroups.push("isProjectCreateBatch");
-            }
-            OutBoundDeliveryModel.setDeferredGroups(aDeferredGroups);
-            
-            var createDataArray = [];
-            for (var i = 0; i < selectedItems.length; i++) {
-                var currentObj = selectedItems[i].getBindingContext("eshipjetModel").getObject();
-                var creationDate = new Date(currentObj.CreationDate);
-                var hours = String(creationDate.getHours()).padStart(2, '0');
-                var minutes = String(creationDate.getMinutes()).padStart(2, '0');
-                var seconds = String(creationDate.getSeconds()).padStart(2, '0');
-                var creationTime = `PT${hours}H${minutes}M${seconds}S`;
+            if(selectedItems.length === 0){
+                oController.oBusyDialog.close();
+                MessageBox.warning("Please Select atleast one record from Product Table");
+            }else{
+                var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+                var OutBoundDeliveryModel = this.getOwnerComponent().getModel("OutBoundDeliveryModel");
 
-                var oData = {
-                    "CreatedByUser": "",
-                    "CreationDate": null,
-                    "CreationTime": creationTime,
-                    "DeliveryDocument": currentObj.DeliveryDocument,
-                    "GrossVolume": currentObj.ItemVolume,
-                    "GrossWeight": currentObj.ItemGrossWeight,
-                    "HandlingUnitBaseUnitOfMeasure": "",
-                    "HandlingUnitContentDescription": "",
-                    "HandlingUnitExternalId": currentObj.OrderID,
-                    "HandlingUnitExternalIdType": "",
-                    "HandlingUnitGroup1": "",
-                    "HandlingUnitGroup2": "",
-                    "HandlingUnitGroup3": "",
-                    "HandlingUnitGroup4": "",
-                    "HandlingUnitGroup5": "",
-                    "HandlingUnitHeight": "0.000",
-                    "HandlingUnitInternalId": "",
-                    "HandlingUnitInternalStatus": "",
-                    "HandlingUnitLength": "0.000",
-                    "HandlingUnitLowerLevelRefer": "",
-                    "HandlingUnitMaxVolume": "0.000",
-                    "HandlingUnitMaxWeight": "0.000",
-                    "HandlingUnitNetVolume": "0.000",
-                    "HandlingUnitSecondExternalId": "",
-                    "HandlingUnitTareVolume": "0.000",
-                    "HandlingUnitTareVolumeUnit": "",
-                    "HandlingUnitTareWeight": "0.000",
-                    "HandlingUnitTareWeightUnit": "",
-                    "HandlingUnitUoMDimension": "",
-                    "HandlingUnitWidth": "0.000",
-                    "LastChangeDate": null,
-                    "LastChangedByUser": "",
-                    "LastChangeTime": "PT00H00M00S",
-                    "NetWeight": currentObj.ItemNetWeight,
-                    "PackagingMaterial": "EWMS4-WBTRO00",
-                    "PackagingMaterialCategory": "",
-                    "PackagingMaterialGroup": "",
-                    "PackagingMaterialType": "",
-                    "PackingInstructionNumber": "",
-                    "ShippingPoint": "",
-                    "VolumeUnit": "",
-                    "WeightUnit": "",
-                    "Warehouse": "",
+                // var aDeferredGroups = OutBoundDeliveryModel.getDeferredGroups();
+                // if (!aDeferredGroups.includes("isProjectCreateBatch")) {
+                //     aDeferredGroups.push("isProjectCreateBatch");
+                // }
+                // OutBoundDeliveryModel.setDeferredGroups(aDeferredGroups);
+                
+                var createDataArray = [];
+                for (var i = 0; i < selectedItems.length; i++) {
+                    var currentObj = selectedItems[i].getBindingContext("eshipjetModel").getObject();
+                    if(currentObj.partialQty === "" || currentObj.partialQty === undefined){
+                        oController.oBusyDialog.close();
+                        MessageBox.warning("Please add partial quantity for at least one valid product.");
+                    }else{
+                        var creationDate = new Date(currentObj.CreationDate);
+                        var hours = String(creationDate.getHours()).padStart(2, '0');
+                        var minutes = String(creationDate.getMinutes()).padStart(2, '0');
+                        var seconds = String(creationDate.getSeconds()).padStart(2, '0');
+                        var creationTime = `PT${hours}H${minutes}M${seconds}S`;
+                        
+                        var oData = {
+                            "CreatedByUser": null,
+                            "CreationDate": null,
+                            "CreationTime": creationTime,
+                            "DeliveryDocument": currentObj.DeliveryDocument,
+                            "GrossVolume": currentObj.ItemVolume,
+                            "GrossWeight": currentObj.ItemGrossWeight,
+                            "HandlingUnitBaseUnitOfMeasure": "",
+                            "HandlingUnitContentDescription": "",
+                            "HandlingUnitExternalId": "300000017",
+                            "HandlingUnitExternalIdType": "",
+                            "HandlingUnitGroup1": "",
+                            "HandlingUnitGroup2": "",
+                            "HandlingUnitGroup3": "",
+                            "HandlingUnitGroup4": "",
+                            "HandlingUnitGroup5": "",
+                            "HandlingUnitHeight": "0.000",
+                            "HandlingUnitInternalId": "",
+                            "HandlingUnitInternalStatus": "",
+                            "HandlingUnitLength": "0.000",
+                            "HandlingUnitLowerLevelRefer": "",
+                            "HandlingUnitMaxVolume": "0.000",
+                            "HandlingUnitMaxWeight": "0.000",
+                            "HandlingUnitNetVolume": "0.000",
+                            "HandlingUnitSecondExternalId": "",
+                            "HandlingUnitTareVolume": "0.000",
+                            "HandlingUnitTareVolumeUnit": "",
+                            "HandlingUnitTareWeight": "0.000",
+                            "HandlingUnitTareWeightUnit": "",
+                            "HandlingUnitUoMDimension": "",
+                            "HandlingUnitWidth": "0.000",
+                            "LastChangeDate": null,
+                            "LastChangedByUser": "",
+                            "LastChangeTime": "PT00H00M00S",
+                            "NetWeight": currentObj.partialQty,
+                            "PackagingMaterial": "EWMS4-WBTRO00",
+                            "PackagingMaterialCategory": "",
+                            "PackagingMaterialGroup": "",
+                            "PackagingMaterialType": "",
+                            "PackingInstructionNumber": "",
+                            "ShippingPoint": "",
+                            "VolumeUnit": "",
+                            "WeightUnit": "",
+                            "Warehouse": "",
+                        };
+                    };
+
+                        // // Create deep entity call
+                        // oModel.create("/A_HandlingUnitHeaderDelivery", oPayload, {
+                        //     success: function (oData) {
+                        //         MessageToast.show("Handling Unit Created Successfully");
+                        //         console.log("Success:", oData);
+                        //     },
+                        //     error: function (oError) {
+                        //         MessageBox.error("Error creating Handling Unit");
+                        //         console.error("Error:", oError);
+                        //     }
+                        // });
+                        createDataArray.push(oData);
+                    }
+                    // OutBoundDeliveryModel.refreshSecurityToken();
+                    // OutBoundDeliveryModel.setUseBatch(true);
+
+                //     for (var i = 0; i < createDataArray.length; i++) {
+                //         OutBoundDeliveryModel.create("/A_HandlingUnitHeaderDelivery", createDataArray[i], {
+                //             method: "POST",
+                //             groupId: "isProjectCreateBatch",
+                //             merge: false
+                //         });
+                //     }
+
+                //     OutBoundDeliveryModel.submitChanges({
+                //         groupId: "isProjectCreateBatch",
+                //         success: function (oData) {
+                //             var HandlingUnits = eshipjetModel.getData().HandlingUnits;
+                //             for(var i=0; i<oData.__batchResponses[0].__changeResponses.length; i++){
+                //                 var oResponse = oData.__batchResponses[0].__changeResponses[i].data;
+                //                 HandlingUnits.push(oResponse);
+                //                 eshipjetModel.updateBindings(true);
+                //             };
+                //             eshipjetModel.refresh(true);
+                //             var oTable = oController.getView().byId("idShipNowHandlingUnitTable");
+                //             oTable.getBinding("items").refresh();
+                //             eshipjetModel.setProperty("/pickAddProductTable", []);
+                //             oController.oBusyDialog.close();
+                //         },
+                //         error: function (oError) {
+                //             oController.oBusyDialog.close();
+                //             MessageBox.error("Batch request failed");
+                //         }
+                //     });
+                // }    
+
+
+                var oPayload = {
+                    "HandlingUnitExternalId": "300000017",
+                    "PackagingMaterial" : "EWMS4-WBTRO00",
+                    "DeliveryDocument" : selectedItems[0].getBindingContext("eshipjetModel").getObject().DeliveryDocument,
+                    "to_HandlingUnitItemDelivery": createDataArray
                 };
-                createDataArray.push(oData);
-            }
-
-            // Refresh security token properly
-            OutBoundDeliveryModel.refreshSecurityToken();
-
-            // Enable batch processing
-            OutBoundDeliveryModel.setUseBatch(true);
-
-            for (var i = 0; i < createDataArray.length; i++) {
-                OutBoundDeliveryModel.create("/A_HandlingUnitHeaderDelivery", createDataArray[i], {
-                    method: "POST",
-                    groupId: "isProjectCreateBatch",
-                    merge: false
+                OutBoundDeliveryModel.create("/A_HandlingUnitHeaderDelivery", oPayload, {
+                    success: function (oData) {
+                        MessageToast.show("Handling Unit Created Successfully");
+                        console.log("Success:", oData);
+                        oController.oBusyDialog.close();
+                    },
+                    error: function (oError) {
+                        var errMsg = JSON.parse(oError.responseText).error.message.value;
+                        sap.m.MessageBox.error(errMsg);
+                        oController.oBusyDialog.close();
+                    }
                 });
-            }
 
-            // Submit the batch request
-            OutBoundDeliveryModel.submitChanges({
-                groupId: "isProjectCreateBatch",
-                success: function (oData) {
-                    // var HandlingUnits = eshipjetModel.getData().HandlingUnits;
-                    // for(var i=0; i<oData.__batchResponses[0].__changeResponses.length; i++){
-                    //     var oResponse = oData.__batchResponses[0].__changeResponses[i].data;
-                    //     HandlingUnits.push(oResponse);
-                    //     eshipjetModel.updateBindings(true);
-                    // };
-                    eshipjetModel.refresh(true);
-                    var oTable = this.getView().byId("idShipNowHandlingUnitTable");
-                    oTable.getBinding("items").refresh();
-                    eshipjetModel.setProperty("/pickAddProductTable", []);
-                    BusyIndicator.hide();
-                },
-                error: function (oError) {
-                    BusyIndicator.hide();
-                    MessageBox.error("Batch request failed");
-                }
-            });
+            }
         },
 
         onPackAllPress:function(){
-            BusyIndicator.show();
+            oController.oBusyDialog.open();
             var productTable = this.byId("idShipNowPackTable");
             var selectedItems = productTable.getSelectedItems();
             var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
@@ -1579,10 +1617,10 @@ sap.ui.define([
 
                     var pickAddProductTable = eshipjetModel.getData().pickAddProductTable;
                     eshipjetModel.setProperty("/pickAddProductTable", []);
-                    BusyIndicator.hide();
+                    oController.oBusyDialog.close();
                 },
                 error: function (oError) {
-                    BusyIndicator.hide();
+                    oController.oBusyDialog.close();
                     MessageBox.error("Batch request failed");
                 }
             });
@@ -2164,11 +2202,11 @@ sap.ui.define([
         },
 
         onScanShipSearchPress: async function () {
-            BusyIndicator.show();            
+            oController.oBusyDialog.open();            
             const sUserMessage = eshipjetModel.getProperty("/sShipAndScan");
             if (!sUserMessage) {
                 MessageToast.show("Please Enter Request ID.");
-                BusyIndicator.hide();
+                oController.oBusyDialog.close();
                 return;
             }
              let myPromise = new Promise(function(myResolve, myReject) {
@@ -2241,14 +2279,14 @@ sap.ui.define([
                                 ScanShipTableDataModel.updateBindings(true);
                                 ScanShipTableDataModel.setProperty("/ScanShipTableLength", rows.length);
                                 // Handle successful response
-                                BusyIndicator.hide();
+                                oController.oBusyDialog.close();
                                 resolve(response);
                                 console.log("Success:", response);
                             }
                             },
                             error: function (error) {
                                 // Handle error
-                                BusyIndicator.hide();
+                                oController.oBusyDialog.close();
                                 reject(error);
                                 console.log("Error:", error);
                             }
@@ -9906,28 +9944,37 @@ sap.ui.define([
         },
 
         onPressAddProduct: function (oEvent) {
-            BusyIndicator.show();
+            oController.oBusyDialog.open();
             var oDeliveryModel = oController.getView().getModel("OutBoundDeliveryModel");
-            oDeliveryModel.read("/A_OutbDeliveryItem",{
-                success:function(oData){
-                    if(oData && oData.results && oData.results.length > 0){
-                        var aProductTable = [];
-                        for(var i = 0; i < oData.results.length; i++){
-                            oData.results[i]["SerialNumber"] = i+1;
-                            aProductTable.push(oData.results[i]);
+            var promise = new Promise(function (resolved, rejected) {
+                oDeliveryModel.read("/A_OutbDeliveryItem",{
+                    success:function(oData){
+                        if(oData && oData.results && oData.results.length > 0){
+                            var aProductTable = [];
+                            for(var i = 0; i < oData.results.length; i++){
+                                oData.results[i]["SerialNumber"] = i+1;
+                                aProductTable.push(oData.results[i]);
+                            }
+                            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+                            eshipjetModel.setProperty("/pickAddProductTable",aProductTable);
                         }
-                        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-                        eshipjetModel.setProperty("/pickAddProductTable",aProductTable);
-                        oController.getSalesOrder(aProductTable);
-                        BusyIndicator.hide();
+                        resolved(oData);
+                    },
+                    error:function(error){
+                        rejected(error);
                     }
-                },
-                error: function(oErr){
-                    console.log(oErr);
-                    oController.oBusyDialog.close();
-                    BusyIndicator.hide();
-                }
+                })
             });
+
+            promise.then(function (data) {
+                oController.onOpenProductsDialog();
+                oController.oBusyDialog.close();
+            }).catch(function(oError){
+                oController.oBusyDialog.close();
+            });
+        },
+
+        onOpenProductsDialog:function(){
             var oView = this.getView();
             if (!this.byId("idAddProductDialog")) {
                 Fragment.load({
@@ -9942,6 +9989,8 @@ sap.ui.define([
                 this.byId("idAddProductDialog").open(); // Open existing dialog
             }
         },
+
+
         AddProductCancelDialog: function () {
             this.byId("idAddProductDialog").close();
         },

@@ -21,7 +21,7 @@
                                 <ToolbarSpacer />
                             </Toolbar>
 							<!-- Icon Tab Bar Starts here -->			
-							<IconTabBar id="idIconTabBarFiori2" expandable="false" enableTabReordering="true" class="shipNow-IconTabBar-Width" >
+							<IconTabBar id="idIconTabBarFiori2" selectedKey = "Pack" expandable="false" enableTabReordering="true" class="shipNow-IconTabBar-Width" >
 								<items >
 									<!-- Ship From / To Tab Starts here -->
 									<IconTabFilter text="Ship From / To" key="ShipFromTo" class="shipNow-IconTabBar-Width" >
@@ -823,7 +823,7 @@
 														<Text text="{eshipjetModel>SerialNumber}" />
 														<Link text="{eshipjetModel>HandlingUnitExternalID}" press="handleHULinkPress"></Link>
 														<Text text="{eshipjetModel>erpHandlingUnit}" />
-														<Input value="{eshipjetModel>GrossWeight}" />
+														<Input value="{eshipjetModel>NetWeight}" />
 														<core:Icon src="{eshipjetModel>shipmentIcon}" press="handlePackTable2ShipmentPress" tooltip="Shipment">
 														</core:Icon>
 														<Input value="{eshipjetModel>WeightUnit}" />
