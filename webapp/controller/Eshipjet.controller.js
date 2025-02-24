@@ -381,6 +381,110 @@ sap.ui.define([
         // Shipper Copilot Changes end
 
         // Ship Now changes starts here
+        onShipNowPrdctDltPress:function(oEvent){
+            MessageBox.warning("Are you sure you want to delete this product?", {
+                actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
+                emphasizedAction: MessageBox.Action.OK,
+                onClose: function (sAction) {
+                    if(sAction === "OK"){
+                        oController.onConfirmShipNowPrdctDltPress(oEvent);
+                    }
+                }
+            });
+        },
+
+        onConfirmShipNowPrdctDltPress:function(oEvent){
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var packAddProductTable = eshipjetModel.getData().packAddProductTable;
+            var sPath = oEvent.getSource().getBindingContext("eshipjetModel").sPath.split("/");
+            var idx = parseInt(sPath[sPath.length-1]);
+            packAddProductTable.splice(idx, 1);
+            for(var i=0; i<packAddProductTable.length; i++){
+                packAddProductTable[i]["SerialNo"] = i+1;
+            };
+            eshipjetModel.updateBindings(true);
+        },
+
+        onShipNowAllPrdctsDltPress:function(oEvent){
+            MessageBox.warning("Are you sure you want to delete all the product?", {
+                actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
+                emphasizedAction: MessageBox.Action.OK,
+                onClose: function (sAction) {
+                    if(sAction === "OK"){
+                        oController.onConfirmShipNowAllPrdctsDltPress(oEvent);
+                    }
+                }
+            });
+        },
+
+        onConfirmShipNowAllPrdctsDltPress:function(oEvent){
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/packAddProductTable", []);
+        },
+        
+        onShipNowHandlingUnitDelPress:function(oEvent){
+            MessageBox.warning("Are you sure you want to delete this product?", {
+                actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
+                emphasizedAction: MessageBox.Action.OK,
+                onClose: function (sAction) {
+                    if(sAction === "OK"){
+                        oController.onConfirmShipNowHandlingUnitDelPress(oEvent);
+                    }
+                }
+            });
+        },
+
+        onConfirmShipNowHandlingUnitDelPress:function(oEvent){
+            var oCurrObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var HandlingUnits = eshipjetModel.getData().HandlingUnits;
+            var sPath = oEvent.getSource().getBindingContext("eshipjetModel").sPath.split("/");
+            var idx = parseInt(sPath[sPath.length-1]);
+            HandlingUnits.splice(idx, 1);
+            for(var i=0; i<HandlingUnits.length; i++){
+                HandlingUnits[i]["SerialNumber"] = i+1;
+            };
+            var packAddProductTable = eshipjetModel.getData().packAddProductTable;
+            for(var i=0; i<oCurrObj.ItemsInfo.length; i++){
+                packAddProductTable.push(oCurrObj.ItemsInfo[i]);
+            };
+            eshipjetModel.updateBindings(true);
+        },
+
+
+        onShipNowAllHandlingUnitDelPress:function(oEvent){
+            MessageBox.warning("Are you sure you want to delete all packed items?", {
+                actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
+                emphasizedAction: MessageBox.Action.OK,
+                onClose: function (sAction) {
+                    if(sAction === "OK"){
+                        oController.onConfirmShipNowAllHandlingUnitDelPress(oEvent);
+                    }
+                }
+            });
+        },
+
+        onConfirmShipNowAllHandlingUnitDelPress:function(oEvent){
+            var oCurrObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var HandlingUnits = eshipjetModel.getData().HandlingUnits;
+            var packAddProductTable = eshipjetModel.getData().packAddProductTable;
+
+            for(var i=0; i<HandlingUnits.length; i++){
+                for(var j=0; j<HandlingUnits[i].ItemsInfo.length; j++){
+                    packAddProductTable.push(HandlingUnits[i].ItemsInfo[j]);
+                    eshipjetModel.updateBindings(true);
+                }
+            };
+
+            for(var i=0; i<packAddProductTable.length; i++){
+                packAddProductTable[i]["SerialNo"] = i+1;
+            };
+            
+            eshipjetModel.setProperty("/HandlingUnits", []);
+            eshipjetModel.updateBindings(true);
+        },
+
         onShipNowClosePress:function(){
             var sKey = "Dashboard";
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
@@ -1505,110 +1609,123 @@ sap.ui.define([
 
         onPackAllPress:function(){
             oController.oBusyDialog.open();
-            var productTable = this.byId("idShipNowPackTable");
-            var selectedItems = productTable.getSelectedItems();
-            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
-            var pickAddProductTable = eshipjetModel.getData().pickAddProductTable;
-            var OutBoundDeliveryModel = this.getOwnerComponent().getModel("OutBoundDeliveryModel");
-            
-            // Ensure batch group is set
-            var aDeferredGroups = OutBoundDeliveryModel.getDeferredGroups();
-            if (!aDeferredGroups.includes("isProjectCreateBatch")) {
-                aDeferredGroups.push("isProjectCreateBatch");
-            }
-            OutBoundDeliveryModel.setDeferredGroups(aDeferredGroups);
-            
-            var createDataArray = [];
-            for (var i = 0; i < pickAddProductTable.length; i++) {
-                var currentObj = pickAddProductTable[i];
-                var creationDate = new Date(currentObj.CreationDate);
-                var hours = String(creationDate.getHours()).padStart(2, '0');
-                var minutes = String(creationDate.getMinutes()).padStart(2, '0');
-                var seconds = String(creationDate.getSeconds()).padStart(2, '0');
-                var creationTime = `PT${hours}H${minutes}M${seconds}S`;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var packAddProductTable = eshipjetModel.getProperty("/packAddProductTable");
+            var totalWeight = 0;
+            for(var i=0; i<packAddProductTable.length; i++){
+                totalWeight += parseInt(packAddProductTable[i].ItemGrossWeight);
+            };
+            var oTable = oController.getView().byId("idShipNowHandlingUnitTable");
+            var oTableLength = oTable.getBinding("items").iLength;
+            var obj = {
+                "SpecialServices": {},
+                "Weightunits": "",
+                "Weight": totalWeight.toFixed(2),
+                "DimensionUnits": "",
+                "SerialNumber": oTableLength+1,
+                "IsInternal": true,
+                "ItemsInfo": packAddProductTable,
+                "HandlingUnitExternalID": 1530 + oTableLength + 1
+            };
+            var HandlingUnits = eshipjetModel.getData().HandlingUnits
+            HandlingUnits.push(obj);
+            eshipjetModel.updateBindings(true);
+            eshipjetModel.setProperty("/packAddProductTable", []);
+            oController.oBusyDialog.close();
 
-                var oData = {
-                    "CreatedByUser": "",
-                    "CreationDate": null,
-                    "CreationTime": creationTime,
-                    "DeliveryDocument": currentObj.DeliveryDocument,
-                    "GrossVolume": currentObj.ItemVolume,
-                    "GrossWeight": currentObj.ItemGrossWeight,
-                    "HandlingUnitBaseUnitOfMeasure": "",
-                    "HandlingUnitContentDescription": "",
-                    "HandlingUnitExternalId": currentObj.OrderID,
-                    "HandlingUnitExternalIdType": "",
-                    "HandlingUnitGroup1": "",
-                    "HandlingUnitGroup2": "",
-                    "HandlingUnitGroup3": "",
-                    "HandlingUnitGroup4": "",
-                    "HandlingUnitGroup5": "",
-                    "HandlingUnitHeight": "0.000",
-                    "HandlingUnitInternalId": "",
-                    "HandlingUnitInternalStatus": "",
-                    "HandlingUnitLength": "0.000",
-                    "HandlingUnitLowerLevelRefer": "",
-                    "HandlingUnitMaxVolume": "0.000",
-                    "HandlingUnitMaxWeight": "0.000",
-                    "HandlingUnitNetVolume": "0.000",
-                    "HandlingUnitSecondExternalId": "",
-                    "HandlingUnitTareVolume": "0.000",
-                    "HandlingUnitTareVolumeUnit": "",
-                    "HandlingUnitTareWeight": "0.000",
-                    "HandlingUnitTareWeightUnit": "",
-                    "HandlingUnitUoMDimension": "",
-                    "HandlingUnitWidth": "0.000",
-                    "LastChangeDate": null,
-                    "LastChangedByUser": "",
-                    "LastChangeTime": "PT00H00M00S",
-                    "NetWeight": currentObj.ItemNetWeight,
-                    "PackagingMaterial": "EWMS4-WBTRO00",
-                    "PackagingMaterialCategory": "",
-                    "PackagingMaterialGroup": "",
-                    "PackagingMaterialType": "",
-                    "PackingInstructionNumber": "",
-                    "ShippingPoint": "",
-                    "VolumeUnit": "",
-                    "WeightUnit": "",
-                    "Warehouse": "",
-                };
-                createDataArray.push(oData);
-            }
+            // var productTable = this.byId("idShipNowPackTable");
+            // var selectedItems = productTable.getSelectedItems();
+            // var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            // var pickAddProductTable = eshipjetModel.getData().pickAddProductTable;
+            // var OutBoundDeliveryModel = this.getOwnerComponent().getModel("OutBoundDeliveryModel");
+            // var aDeferredGroups = OutBoundDeliveryModel.getDeferredGroups();
+            // if (!aDeferredGroups.includes("isProjectCreateBatch")) {
+            //     aDeferredGroups.push("isProjectCreateBatch");
+            // }
+            // OutBoundDeliveryModel.setDeferredGroups(aDeferredGroups);
+            // var createDataArray = [];
+            // for (var i = 0; i < pickAddProductTable.length; i++) {
+            //     var currentObj = pickAddProductTable[i];
+            //     var creationDate = new Date(currentObj.CreationDate);
+            //     var hours = String(creationDate.getHours()).padStart(2, '0');
+            //     var minutes = String(creationDate.getMinutes()).padStart(2, '0');
+            //     var seconds = String(creationDate.getSeconds()).padStart(2, '0');
+            //     var creationTime = `PT${hours}H${minutes}M${seconds}S`;
+            //     var oData = {
+            //         "CreatedByUser": "",
+            //         "CreationDate": null,
+            //         "CreationTime": creationTime,
+            //         "DeliveryDocument": currentObj.DeliveryDocument,
+            //         "GrossVolume": currentObj.ItemVolume,
+            //         "GrossWeight": currentObj.ItemGrossWeight,
+            //         "HandlingUnitBaseUnitOfMeasure": "",
+            //         "HandlingUnitContentDescription": "",
+            //         "HandlingUnitExternalId": currentObj.OrderID,
+            //         "HandlingUnitExternalIdType": "",
+            //         "HandlingUnitGroup1": "",
+            //         "HandlingUnitGroup2": "",
+            //         "HandlingUnitGroup3": "",
+            //         "HandlingUnitGroup4": "",
+            //         "HandlingUnitGroup5": "",
+            //         "HandlingUnitHeight": "0.000",
+            //         "HandlingUnitInternalId": "",
+            //         "HandlingUnitInternalStatus": "",
+            //         "HandlingUnitLength": "0.000",
+            //         "HandlingUnitLowerLevelRefer": "",
+            //         "HandlingUnitMaxVolume": "0.000",
+            //         "HandlingUnitMaxWeight": "0.000",
+            //         "HandlingUnitNetVolume": "0.000",
+            //         "HandlingUnitSecondExternalId": "",
+            //         "HandlingUnitTareVolume": "0.000",
+            //         "HandlingUnitTareVolumeUnit": "",
+            //         "HandlingUnitTareWeight": "0.000",
+            //         "HandlingUnitTareWeightUnit": "",
+            //         "HandlingUnitUoMDimension": "",
+            //         "HandlingUnitWidth": "0.000",
+            //         "LastChangeDate": null,
+            //         "LastChangedByUser": "",
+            //         "LastChangeTime": "PT00H00M00S",
+            //         "NetWeight": currentObj.ItemNetWeight,
+            //         "PackagingMaterial": "EWMS4-WBTRO00",
+            //         "PackagingMaterialCategory": "",
+            //         "PackagingMaterialGroup": "",
+            //         "PackagingMaterialType": "",
+            //         "PackingInstructionNumber": "",
+            //         "ShippingPoint": "",
+            //         "VolumeUnit": "",
+            //         "WeightUnit": "",
+            //         "Warehouse": "",
+            //     };
+            //     createDataArray.push(oData);
+            // }
+            // OutBoundDeliveryModel.refreshSecurityToken();
+            // OutBoundDeliveryModel.setUseBatch(true);
+            // for (var i = 0; i < createDataArray.length; i++) {
+            //     OutBoundDeliveryModel.create("/A_HandlingUnitHeaderDelivery", createDataArray[i], {
+            //         method: "POST",
+            //         groupId: "isProjectCreateBatch",
+            //         merge: false
+            //     });
+            // }
+            // OutBoundDeliveryModel.submitChanges({
+            //     groupId: "isProjectCreateBatch",
+            //     success: function (oData) {
+            //         var HandlingUnits = eshipjetModel.getData().HandlingUnits;
+            //         // for(var i=0; i<oData.__batchResponses[0].__changeResponses.length; i++){
+            //         //     var oResponse = oData.__batchResponses[0].__changeResponses[i].data;
+            //         //     HandlingUnits.push(oResponse);
+            //         //     eshipjetModel.updateBindings(true);
+            //         // };
 
-            // Refresh security token properly
-            OutBoundDeliveryModel.refreshSecurityToken();
-
-            // Enable batch processing
-            OutBoundDeliveryModel.setUseBatch(true);
-
-            for (var i = 0; i < createDataArray.length; i++) {
-                OutBoundDeliveryModel.create("/A_HandlingUnitHeaderDelivery", createDataArray[i], {
-                    method: "POST",
-                    groupId: "isProjectCreateBatch",
-                    merge: false
-                });
-            }
-
-            // Submit the batch request
-            OutBoundDeliveryModel.submitChanges({
-                groupId: "isProjectCreateBatch",
-                success: function (oData) {
-                    var HandlingUnits = eshipjetModel.getData().HandlingUnits;
-                    // for(var i=0; i<oData.__batchResponses[0].__changeResponses.length; i++){
-                    //     var oResponse = oData.__batchResponses[0].__changeResponses[i].data;
-                    //     HandlingUnits.push(oResponse);
-                    //     eshipjetModel.updateBindings(true);
-                    // };
-
-                    var pickAddProductTable = eshipjetModel.getData().pickAddProductTable;
-                    eshipjetModel.setProperty("/pickAddProductTable", []);
-                    oController.oBusyDialog.close();
-                },
-                error: function (oError) {
-                    oController.oBusyDialog.close();
-                    MessageBox.error("Batch request failed");
-                }
-            });
+            //         var pickAddProductTable = eshipjetModel.getData().pickAddProductTable;
+            //         eshipjetModel.setProperty("/pickAddProductTable", []);
+            //         oController.oBusyDialog.close();
+            //     },
+            //     error: function (oError) {
+            //         oController.oBusyDialog.close();
+            //         MessageBox.error("Batch request failed");
+            //     }
+            // });
         },
 
         onShipNowCodEditPress:function(){
@@ -9957,6 +10074,10 @@ sap.ui.define([
 
         onPressAddProduct: function (oEvent) {
             oController.oBusyDialog.open();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var sPath = oEvent.getSource().sId.split("--");
+            var addPrctBtnId = sPath[sPath.length-1];
+            eshipjetModel.setProperty("/addPrctBtnId", addPrctBtnId);
             var oDeliveryModel = oController.getView().getModel("OutBoundDeliveryModel");
             var promise = new Promise(function (resolved, rejected) {
                 oDeliveryModel.read("/A_OutbDeliveryItem",{
@@ -9966,8 +10087,7 @@ sap.ui.define([
                             for(var i = 0; i < oData.results.length; i++){
                                 oData.results[i]["SerialNumber"] = i+1;
                                 aProductTable.push(oData.results[i]);
-                            }
-                            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+                            };
                             eshipjetModel.setProperty("/pickAddProductTable",aProductTable);
                         }
                         resolved(oData);
@@ -10001,7 +10121,6 @@ sap.ui.define([
                 this.byId("idAddProductDialog").open(); // Open existing dialog
             }
         },
-
 
         AddProductCancelDialog: function () {
             this.byId("idAddProductDialog").close();
@@ -10080,16 +10199,29 @@ sap.ui.define([
 
 
         handleAddProductRowPress:function(oEvent){
-            var oSelectedObj = oEvent.getSource().getBindingContext().getObject();
-            var ShipReqTableDataModel = this.getView().getModel("ShipReqTableDataModel");
-            var CreateShipReqRowsData = ShipReqTableDataModel.getData().CreateShipReqRows;
-            CreateShipReqRowsData.push(oSelectedObj);
-            ShipReqTableDataModel.updateBindings(true);
-            for(var i=0; i<CreateShipReqRowsData.length; i++){
-                CreateShipReqRowsData[i]["#"] = i+1;
+            var oSelectedObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var addPrctBtnId = eshipjetModel.getProperty("/addPrctBtnId");
+            if(addPrctBtnId === "idShipNowAddProduct"){
+                var packAddProductTable = eshipjetModel.getData().packAddProductTable;
+                packAddProductTable.push(oSelectedObj);
+                eshipjetModel.updateBindings(true);
+                for(var i=0; i<packAddProductTable.length; i++){
+                    packAddProductTable[i]["SerialNo"] = i+1;
+                };
+            }else if(addPrctBtnId === "idShipReqAddProduct"){
+                var ShipReqTableDataModel = this.getView().getModel("ShipReqTableDataModel");
+                var CreateShipReqRowsData = ShipReqTableDataModel.getData().CreateShipReqRows;
+                CreateShipReqRowsData.push(oSelectedObj);
                 ShipReqTableDataModel.updateBindings(true);
+                for(var i=0; i<CreateShipReqRowsData.length; i++){
+                    CreateShipReqRowsData[i]["#"] = i+1;
+                    ShipReqTableDataModel.updateBindings(true);
+                }
+                oController._handleDisplayCreateShipReqTable();
             }
-            oController._handleDisplayCreateShipReqTable();
+            var oTable = oController.getView().byId("idAddProductsDialog");
+            oTable.removeSelections();
             this.byId("idAddProductDialog").close();
         },
 

@@ -740,7 +740,8 @@
     ],
 
 
-
+    "packAddProductTable":[],
+    "HandlingUnits": [],
 	"ShipNowProductsTableColumns": [
 			{
 				"name": "SerialNumber",
@@ -839,7 +840,7 @@
 			}
 		],
         "pickAddProductTable":[],
-
+        
         "ShipNowHandlingUnitTableColumns": [
 			{
 				"name": "SerialNumber",

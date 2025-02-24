@@ -717,13 +717,13 @@
 													<Text text="Is DG" />
 												</Column>
 												<Column >
-													<Button icon="sap-icon://delete" type="Attention" tooltip="Delete All" press="handleDeleteAllPickAddProductTable" ></Button>
+													<Button icon="sap-icon://delete" type="Attention" tooltip="Delete All" press="onShipNowAllPrdctsDltPress" ></Button>
 												</Column>
 											</columns>
 											<items>
 												<ColumnListItem vAlign="Middle">
 													<cells>
-														<Text text="{eshipjetModel>SerialNumber}" />
+														<Text text="{eshipjetModel>SerialNo}" />
 														<Text text="{eshipjetModel>Material}" />
 														<Text text="{eshipjetModel>Material}" />
 														<Text text="{eshipjetModel>epcRfidNo}" />
@@ -733,7 +733,7 @@
 														<Input value="{eshipjetModel>partialQty}" />
 														<CheckBox ></CheckBox>
 														<CheckBox ></CheckBox>
-														<Button icon="sap-icon://delete" type="Attention" tooltip="Delete" press="handlePackTable2DeletePress" ></Button>
+														<Button icon="sap-icon://delete" type="Attention" tooltip="Delete" press="onShipNowPrdctDltPress" ></Button>
 													</cells>
 												</ColumnListItem>
 											</items>
@@ -814,7 +814,7 @@
 													<Text text="Tracking#" />
 												</Column>
 												<Column >
-													<Button icon="sap-icon://delete" type="Attention" tooltip="Delete All" press="handleDeleteAll" ></Button>
+													<Button icon="sap-icon://delete" type="Attention" tooltip="Delete All" press="onShipNowAllHandlingUnitDelPress" ></Button>
 												</Column>
 											</columns>
 											<items>
@@ -837,7 +837,7 @@
 															<core:Item  text="250" key="250" > </core:Item>
 														</ComboBox>
 														<Text text="{eshipjetModel>Tracking}" />
-														<Button icon="sap-icon://delete" type="Attention" tooltip="Delete" press="handlePackTable2DeletePress" ></Button>												
+														<Button icon="sap-icon://delete" type="Attention" tooltip="Delete" press="onShipNowHandlingUnitDelPress" ></Button>												
 													</cells>
 												</ColumnListItem>
 											</items>

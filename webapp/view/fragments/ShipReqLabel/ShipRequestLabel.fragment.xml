@@ -216,7 +216,7 @@
 					<Text text="{}" />
 					<Text text="{eshipjetModel>requestIdLabelId}" />
 					<Text text="{eshipjetModel>CreatedDate}" />
-					<Text text="{eshipjetModel>ShipDate}" />
+					<Text text="{eshipjetModel>DateAdded}" />
 					<Text text="{}" />
 				<HBox justifyContent="SpaceBetween"  alignItems="Center">
 					<Text text="{eshipjetModel>shipMethod}" />
@@ -234,9 +234,9 @@
       enabled="{= ${eshipjetModel>TrackingNumber} ? true : false }"/>
 
 				<ObjectStatus
-					text="{eshipjetModel>status}"
-					state="{= ${eshipjetModel>status} === 'Open' ? 'Information' :
-							${eshipjetModel>status} === 'Shipped' ? 'Success' : 'Error' }" />
+					text="{eshipjetModel>DeliveryStatus}"
+					state="{= ${eshipjetModel>DeliveryStatus} === 'Open' ? 'Information' :
+							${eshipjetModel>DeliveryStatus} === 'Shipped' ? 'Success' : 'Error' }" />
 					<Text text="{eshipjetModel>ShipToContact}" />
 					<Text text="{eshipjetModel>ShipToCompany}" />
 					<ObjectStatus

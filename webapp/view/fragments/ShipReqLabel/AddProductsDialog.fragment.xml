@@ -9,15 +9,13 @@
     xmlns:svm="sap.ui.comp.smartvariants"
     xmlns:ui="sap.ui.table"
     xmlns:u="sap.ui.unified"
-    xmlns:c="sap.ui.core"
->
+    xmlns:c="sap.ui.core" >
     <Dialog
         id="idAddProductDialog"
         showHeader="false"
 		contentHeight="45%"
 		contentWidth="60%"
-        class="myCustomDialog"
-    >
+        class="myCustomDialog" >
         <customHeader>
             <Toolbar>
                 <Title text="Products Information" />
@@ -37,15 +35,13 @@
             id="idIconTabBarMulti"
             expandable="false"
             enableTabReordering="true"
-            class="shipNow-IconTabBar-Width"
-        >
+            class="shipNow-IconTabBar-Width" >
             <items>
                 <IconTabFilter
 				    
                     text="Products"
                     key="ShipFromTo"
-                    class="shipNow-IconTabBar-Width"
-                >
+                    class="shipNow-IconTabBar-Width" >
                     <Toolbar
                         width="100%"
                         height="4rem"
@@ -64,7 +60,7 @@
                         <Table
 		mode="SingleSelectLeft"
         fixedLayout="true"
-
+        id="idAddProductsDialog"
 		sticky="HeaderToolbar,ColumnHeaders"
 		items="{eshipjetModel>/pickAddProductTable}" >
 		<columns>
