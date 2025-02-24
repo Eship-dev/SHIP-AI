@@ -982,55 +982,40 @@ sap.ui.define([
         },
 
 
-        showLabelAfterShipmentSuccess: function(response) {
+        showLabelAfterShipmentSuccess: function (response) {
             var localModel = this.getView().getModel();
-            var sPath = response.shippingDocuments[0].docName;
-            var encodedLabel = sPath;
+            var encodedLabel = response.shippingDocuments[0].docName;
             localModel.setProperty("/encodedLabel", encodedLabel);
-            var oDeclineButton = new sap.m.Button({
-                icon: "sap-icon://decline",
-                class: "Decline_Btn",
-                type: "Transparent",
-                press: function () {
-                    this._oDialog.close()
-                }.bind(this)
-            });
-            // **Create a toolbar as a custom header**
-            var oCustomHeader = new sap.m.Toolbar({
-                content: [
-                    new sap.m.Title({ text: "Shipment Label", level: "H2" }),
-                    new sap.m.ToolbarSpacer(), // Pushes the Decline button to the right
-                    oDeclineButton
-                ]
-            });
+        
+            // Load the fragment
             if (!this._oDialog) {
-                this._oDialog = new sap.m.Dialog({
-                    customHeader: oCustomHeader,
-                    contentWidth: "500px",  // Fixed width
-                    contentHeight: "600px",  // Auto height
-                    verticalScrolling: false,
-                    horizontalScrolling: false,
-                    content: [
-                        new sap.m.VBox({
-                            alignItems: "Center",
-                            justifyContent: "Start",  // Align content to start (top)
-                            items: [
-                                new sap.m.Image({
-                                    src: encodedLabel,
-                                    width: "500px",  // Reduce image width
-                                    height: "600px",  // Maintain aspect ratio
-                                    densityAware: false,
-                                    layoutData: new sap.m.FlexItemData({
-                                        styleClass: "sapUiSmallMarginTop "
-                                    })
-                                })
-                            ]
-                        })
-                    ]
-                });
+                Fragment.load({
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.AfterShipNowClickDialog", // Adjust namespace as per your project
+                    controller: this
+                }).then(function (oDialog) {
+                    this._oDialog = oDialog;
+                    this.getView().addDependent(this._oDialog);
+        
+                    // Set image source dynamically
+                    this._oDialog.getContent()[0].getItems()[0].setSrc(encodedLabel);
+        
+                    this._oDialog.open();
+                }.bind(this));
+            } else {
+                // Update the image if the dialog already exists
+                this._oDialog.getContent()[0].getItems()[0].setSrc(encodedLabel);
+                this._oDialog.open();
             }
-            this._oDialog.open();
         },
+        onshipmentLabelDialogSelectPress: function () {
+            this.byId("shipmentLabelDialog").close();
+        },
+        // Close dialog function
+        onshipmentLabelDialogdelinePress: function () {
+            this.byId("shipmentLabelDialog").close();
+        },
+
+        
         onShippingDocumentsViewPress:function(oEvent){
             var currentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
             var docName = currentObj.docName;
@@ -8994,32 +8979,6 @@ sap.ui.define([
                 var currentObj = oEvent.getSource().getBindingContext('eshipjetModel').getObject();
                 var oView = this.getView();
                 
-                // Get the existing model
-                var oModel = this.getView().getModel("eshipjetModel");
-
-                // Get the table reference inside the dialog
-                var oTable = this.byId("HandlingUnitTableId"); // Replace with actual table ID inside the dialog
-
-                // Get the existing data (if required)
-                var aData = oModel.getProperty("/HandlingUnits");
-
-                // Check if data exists, else initialize as an array
-                if (!Array.isArray(aData)) {
-                    aData = [];
-                }
-
-                // Add the new object
-                aData.push(currentObj);
-
-                // Update the model
-                oModel.setProperty("/HandlingUnits", aData);
-
-                // Refresh the binding
-                if (oTable) {
-                    oTable.getBinding("items").refresh();
-                }
-
-            
             oController.HandlingUnitDlg = oController.byId("idHandlingUnitDialog1");
             if (!oController.HandlingUnitDlg) {
                 Fragment.load({
