@@ -23,7 +23,7 @@
         </Toolbar>
 
            
-            <Table id="HandlingUnitTableId" items="{eshipjetModel>/HandlingUnits}">
+            <Table id="HandlingUnitTableId" items="{ItemsInfoModel>/ItemsInfo}">
                 <columns>
                     <Column>
                         <Text text="Product"/>
@@ -38,10 +38,9 @@
                 <items>
                     <ColumnListItem>
                         <cells>
-                            <Text text="{eshipjetModel>PackagingMaterialType}"/>
-                            <Text text="{eshipjetModel>CreationDateTime}"/>
-                            <Text text="{eshipjetModel>GrossVolume}"/>
-                            <Text text="{eshipjetModel>GrossWeight}"/>
+                            <Text text="{ItemsInfoModel>Material}"/>
+                            <Text text="{ItemsInfoModel>DeliveryDocumentItemText}"/>
+                            <Text text="{ItemsInfoModel>ItemGrossWeight}"/>
                         </cells>
                     </ColumnListItem>
                 </items>

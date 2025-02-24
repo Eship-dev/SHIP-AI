@@ -446,6 +446,7 @@ sap.ui.define([
             };
             var packAddProductTable = eshipjetModel.getData().packAddProductTable;
             for(var i=0; i<oCurrObj.ItemsInfo.length; i++){
+                oCurrObj.ItemsInfo[i]["SerialNo"] = packAddProductTable.length + 1;
                 packAddProductTable.push(oCurrObj.ItemsInfo[i]);
             };
             eshipjetModel.updateBindings(true);
@@ -465,21 +466,21 @@ sap.ui.define([
         },
 
         onConfirmShipNowAllHandlingUnitDelPress:function(oEvent){
-            var oCurrObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var HandlingUnits = eshipjetModel.getData().HandlingUnits;
             var packAddProductTable = eshipjetModel.getData().packAddProductTable;
 
             for(var i=0; i<HandlingUnits.length; i++){
                 for(var j=0; j<HandlingUnits[i].ItemsInfo.length; j++){
+                    HandlingUnits[i].ItemsInfo[j]["SerialNo"] = packAddProductTable.length + 1;
                     packAddProductTable.push(HandlingUnits[i].ItemsInfo[j]);
                     eshipjetModel.updateBindings(true);
                 }
             };
 
-            for(var i=0; i<packAddProductTable.length; i++){
-                packAddProductTable[i]["SerialNo"] = i+1;
-            };
+            // for(var i=0; i<packAddProductTable.length; i++){
+            //     packAddProductTable[i]["SerialNo"] = i+1;
+            // };
             
             eshipjetModel.setProperty("/HandlingUnits", []);
             eshipjetModel.updateBindings(true);
@@ -1099,10 +1100,8 @@ sap.ui.define([
                 }).then(function (oDialog) {
                     this._oDialog = oDialog;
                     this.getView().addDependent(this._oDialog);
-        
                     // Set image source dynamically
                     this._oDialog.getContent()[0].getItems()[0].setSrc(encodedLabel);
-        
                     this._oDialog.open();
                 }.bind(this));
             } else {
@@ -1111,15 +1110,11 @@ sap.ui.define([
                 this._oDialog.open();
             }
         },
-        onshipmentLabelDialogSelectPress: function () {
-            this.byId("shipmentLabelDialog").close();
-        },
-        // Close dialog function
-        onshipmentLabelDialogdelinePress: function () {
-            this.byId("shipmentLabelDialog").close();
-        },
 
-        
+        onshipmentLabelDialogClosePress: function () {
+            oController.getView().byId("idAfterShipmentLabelDialog").close();
+        },
+    
         onShippingDocumentsViewPress:function(oEvent){
             var currentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
             var docName = currentObj.docName;
@@ -9093,9 +9088,11 @@ sap.ui.define([
         
 
         handleHULinkPress: function (oEvent) {
-                var currentObj = oEvent.getSource().getBindingContext('eshipjetModel').getObject();
-                var oView = this.getView();
-                
+            var oView = this.getView();
+            var currentObj = oEvent.getSource().getBindingContext('eshipjetModel').getObject();
+            var ItemsInfoModel = new JSONModel(currentObj);
+            oController.getView().setModel(ItemsInfoModel, "ItemsInfoModel");
+
             oController.HandlingUnitDlg = oController.byId("idHandlingUnitDialog1");
             if (!oController.HandlingUnitDlg) {
                 Fragment.load({
@@ -10204,11 +10201,12 @@ sap.ui.define([
             var addPrctBtnId = eshipjetModel.getProperty("/addPrctBtnId");
             if(addPrctBtnId === "idShipNowAddProduct"){
                 var packAddProductTable = eshipjetModel.getData().packAddProductTable;
+                oSelectedObj["SerialNo"] = packAddProductTable.length+1;
                 packAddProductTable.push(oSelectedObj);
                 eshipjetModel.updateBindings(true);
-                for(var i=0; i<packAddProductTable.length; i++){
-                    packAddProductTable[i]["SerialNo"] = i+1;
-                };
+                // for(var i=0; i<packAddProductTable.length; i++){
+                //     packAddProductTable[i]["SerialNo"] = i+1;
+                // };
             }else if(addPrctBtnId === "idShipReqAddProduct"){
                 var ShipReqTableDataModel = this.getView().getModel("ShipReqTableDataModel");
                 var CreateShipReqRowsData = ShipReqTableDataModel.getData().CreateShipReqRows;
