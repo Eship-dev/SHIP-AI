@@ -40,7 +40,7 @@
                         <cells>
                             <Text text="{ItemsInfoModel>Material}"/>
                             <Text text="{ItemsInfoModel>DeliveryDocumentItemText}"/>
-                            <Text text="{ItemsInfoModel>ItemGrossWeight}"/>
+                            <Text text="{ItemsInfoModel>ItemWeight}"/>
                         </cells>
                     </ColumnListItem>
                 </items>

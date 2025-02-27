@@ -440,15 +440,27 @@ sap.ui.define([
             var HandlingUnits = eshipjetModel.getData().HandlingUnits;
             var sPath = oEvent.getSource().getBindingContext("eshipjetModel").sPath.split("/");
             var idx = parseInt(sPath[sPath.length-1]);
+            var packAddProductTable = eshipjetModel.getData().packAddProductTable;
+            for(var i=0; i<oCurrObj.ItemsInfo.length; i++){
+                for(var j=0; j<packAddProductTable.length; j++){
+                    if(oCurrObj.ItemsInfo[i].DeliveryDocument === packAddProductTable[j].DeliveryDocument){
+                        packAddProductTable[i].ItemNetWeight += oCurrObj.ItemsInfo[i].ItemWeight;
+                    }else{
+                        // oCurrObj.ItemsInfo[i]["SerialNo"] = packAddProductTable.length + 1;
+                        // packAddProductTable.push(oCurrObj.ItemsInfo[i]);
+                    }
+                };
+            };
+            
             HandlingUnits.splice(idx, 1);
             for(var i=0; i<HandlingUnits.length; i++){
                 HandlingUnits[i]["SerialNumber"] = i+1;
             };
-            var packAddProductTable = eshipjetModel.getData().packAddProductTable;
-            for(var i=0; i<oCurrObj.ItemsInfo.length; i++){
-                oCurrObj.ItemsInfo[i]["SerialNo"] = packAddProductTable.length + 1;
-                packAddProductTable.push(oCurrObj.ItemsInfo[i]);
-            };
+            
+            // for(var i=0; i<oCurrObj.ItemsInfo.length; i++){
+            //     oCurrObj.ItemsInfo[i]["SerialNo"] = packAddProductTable.length + 1;
+            //     packAddProductTable.push(oCurrObj.ItemsInfo[i]);
+            // };
             eshipjetModel.updateBindings(true);
         },
 
@@ -1473,7 +1485,8 @@ sap.ui.define([
                 // }
                 // OutBoundDeliveryModel.setDeferredGroups(aDeferredGroups);
                 
-                var createDataArray = [];
+                var totalWeight = 0;
+                var ItemsInfo = [];
                 for (var i = 0; i < selectedItems.length; i++) {
                     var currentObj = selectedItems[i].getBindingContext("eshipjetModel").getObject();
                     if(currentObj.partialQty === "" || currentObj.partialQty === undefined){
@@ -1485,120 +1498,120 @@ sap.ui.define([
                         var minutes = String(creationDate.getMinutes()).padStart(2, '0');
                         var seconds = String(creationDate.getSeconds()).padStart(2, '0');
                         var creationTime = `PT${hours}H${minutes}M${seconds}S`;
+                        var oTableSelectedItems = oController.getView().byId("idShipNowPackTable").getSelectedItems();
+                        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+                        var packAddProductTable = eshipjetModel.getProperty("/packAddProductTable");
+
+                        totalWeight += parseInt(currentObj.partialQty);
+
+                        currentObj["ItemNetWeight"] = parseInt(currentObj["ItemNetWeight"]) - parseInt(currentObj.partialQty);
+                        currentObj["ItemWeight"] = parseInt(currentObj.partialQty);
+                        currentObj["partialQty"] = "";
                         
-                        var oData = {
-                            "CreatedByUser": null,
-                            "CreationDate": null,
-                            "CreationTime": creationTime,
-                            "DeliveryDocument": currentObj.DeliveryDocument,
-                            "GrossVolume": currentObj.ItemVolume,
-                            "GrossWeight": currentObj.ItemGrossWeight,
-                            "HandlingUnitBaseUnitOfMeasure": "",
-                            "HandlingUnitContentDescription": "",
-                            "HandlingUnitExternalId": "300000017",
-                            "HandlingUnitExternalIdType": "",
-                            "HandlingUnitGroup1": "",
-                            "HandlingUnitGroup2": "",
-                            "HandlingUnitGroup3": "",
-                            "HandlingUnitGroup4": "",
-                            "HandlingUnitGroup5": "",
-                            "HandlingUnitHeight": "0.000",
-                            "HandlingUnitInternalId": "",
-                            "HandlingUnitInternalStatus": "",
-                            "HandlingUnitLength": "0.000",
-                            "HandlingUnitLowerLevelRefer": "",
-                            "HandlingUnitMaxVolume": "0.000",
-                            "HandlingUnitMaxWeight": "0.000",
-                            "HandlingUnitNetVolume": "0.000",
-                            "HandlingUnitSecondExternalId": "",
-                            "HandlingUnitTareVolume": "0.000",
-                            "HandlingUnitTareVolumeUnit": "",
-                            "HandlingUnitTareWeight": "0.000",
-                            "HandlingUnitTareWeightUnit": "",
-                            "HandlingUnitUoMDimension": "",
-                            "HandlingUnitWidth": "0.000",
-                            "LastChangeDate": null,
-                            "LastChangedByUser": "",
-                            "LastChangeTime": "PT00H00M00S",
-                            "NetWeight": currentObj.partialQty,
-                            "PackagingMaterial": "EWMS4-WBTRO00",
-                            "PackagingMaterialCategory": "",
-                            "PackagingMaterialGroup": "",
-                            "PackagingMaterialType": "",
-                            "PackingInstructionNumber": "",
-                            "ShippingPoint": "",
-                            "VolumeUnit": "",
-                            "WeightUnit": "",
-                            "Warehouse": "",
+                        var oTable = oController.getView().byId("idShipNowHandlingUnitTable");
+                        var oTableLength = oTable.getBinding("items").iLength;
+
+                        var packAddProductTable = eshipjetModel.getProperty("/packAddProductTable");
+                        for(var j=0; j<packAddProductTable.length; j++){
+                            if(packAddProductTable[j].ItemNetWeight === 0){
+                                packAddProductTable.slice(j, 1);
+                                eshipjetModel.updateBindings(true);
+                            }
                         };
-                    };
+                        ItemsInfo.push(currentObj);
 
-                        // // Create deep entity call
-                        // oModel.create("/A_HandlingUnitHeaderDelivery", oPayload, {
-                        //     success: function (oData) {
-                        //         MessageToast.show("Handling Unit Created Successfully");
-                        //         console.log("Success:", oData);
-                        //     },
-                        //     error: function (oError) {
-                        //         MessageBox.error("Error creating Handling Unit");
-                        //         console.error("Error:", oError);
-                        //     }
-                        // });
-                        createDataArray.push(oData);
-                    }
-                    // OutBoundDeliveryModel.refreshSecurityToken();
-                    // OutBoundDeliveryModel.setUseBatch(true);
-
-                //     for (var i = 0; i < createDataArray.length; i++) {
-                //         OutBoundDeliveryModel.create("/A_HandlingUnitHeaderDelivery", createDataArray[i], {
-                //             method: "POST",
-                //             groupId: "isProjectCreateBatch",
-                //             merge: false
-                //         });
+                //         var partialQty = currentObj.partialQty;
+                //         var creationDate = new Date(currentObj.CreationDate);
+                //         var hours = String(creationDate.getHours()).padStart(2, '0');
+                //         var minutes = String(creationDate.getMinutes()).padStart(2, '0');
+                //         var seconds = String(creationDate.getSeconds()).padStart(2, '0');
+                //         var creationTime = `PT${hours}H${minutes}M${seconds}S`;
+                        
+                //         var oData = {
+                //             "CreatedByUser": null,
+                //             "CreationDate": null,
+                //             "CreationTime": creationTime,
+                //             "DeliveryDocument": currentObj.DeliveryDocument,
+                //             "GrossVolume": currentObj.ItemVolume,
+                //             "GrossWeight": currentObj.ItemGrossWeight,
+                //             "HandlingUnitBaseUnitOfMeasure": "",
+                //             "HandlingUnitContentDescription": "",
+                //             "HandlingUnitExternalId": "300000017",
+                //             "HandlingUnitExternalIdType": "",
+                //             "HandlingUnitGroup1": "",
+                //             "HandlingUnitGroup2": "",
+                //             "HandlingUnitGroup3": "",
+                //             "HandlingUnitGroup4": "",
+                //             "HandlingUnitGroup5": "",
+                //             "HandlingUnitHeight": "0.000",
+                //             "HandlingUnitInternalId": "",
+                //             "HandlingUnitInternalStatus": "",
+                //             "HandlingUnitLength": "0.000",
+                //             "HandlingUnitLowerLevelRefer": "",
+                //             "HandlingUnitMaxVolume": "0.000",
+                //             "HandlingUnitMaxWeight": "0.000",
+                //             "HandlingUnitNetVolume": "0.000",
+                //             "HandlingUnitSecondExternalId": "",
+                //             "HandlingUnitTareVolume": "0.000",
+                //             "HandlingUnitTareVolumeUnit": "",
+                //             "HandlingUnitTareWeight": "0.000",
+                //             "HandlingUnitTareWeightUnit": "",
+                //             "HandlingUnitUoMDimension": "",
+                //             "HandlingUnitWidth": "0.000",
+                //             "LastChangeDate": null,
+                //             "LastChangedByUser": "",
+                //             "LastChangeTime": "PT00H00M00S",
+                //             "NetWeight": currentObj.partialQty,
+                //             "PackagingMaterial": "EWMS4-WBTRO00",
+                //             "PackagingMaterialCategory": "",
+                //             "PackagingMaterialGroup": "",
+                //             "PackagingMaterialType": "",
+                //             "PackingInstructionNumber": "",
+                //             "ShippingPoint": "",
+                //             "VolumeUnit": "",
+                //             "WeightUnit": "",
+                //             "Warehouse": "",
+                //         };
+                //     };
+                //     createDataArray.push(oData);
+                // }
+                // var oPayload = {
+                //     "HandlingUnitExternalId": "300000017",
+                //     "PackagingMaterial" : "EWMS4-WBTRO00",
+                //     "DeliveryDocument" : selectedItems[0].getBindingContext("eshipjetModel").getObject().DeliveryDocument,
+                //     "to_HandlingUnitItemDelivery": createDataArray
+                // };
+                // OutBoundDeliveryModel.create("/A_HandlingUnitHeaderDelivery", oPayload, {
+                //     success: function (oData) {
+                //         MessageToast.show("Handling Unit Created Successfully");
+                //         console.log("Success:", oData);
+                //         oController.oBusyDialog.close();
+                //     },
+                //     error: function (oError) {
+                //         var errMsg = JSON.parse(oError.responseText).error.message.value;
+                //         sap.m.MessageBox.error(errMsg);
+                //         oController.oBusyDialog.close();
                 //     }
-
-                //     OutBoundDeliveryModel.submitChanges({
-                //         groupId: "isProjectCreateBatch",
-                //         success: function (oData) {
-                //             var HandlingUnits = eshipjetModel.getData().HandlingUnits;
-                //             for(var i=0; i<oData.__batchResponses[0].__changeResponses.length; i++){
-                //                 var oResponse = oData.__batchResponses[0].__changeResponses[i].data;
-                //                 HandlingUnits.push(oResponse);
-                //                 eshipjetModel.updateBindings(true);
-                //             };
-                //             eshipjetModel.refresh(true);
-                //             var oTable = oController.getView().byId("idShipNowHandlingUnitTable");
-                //             oTable.getBinding("items").refresh();
-                //             eshipjetModel.setProperty("/pickAddProductTable", []);
-                //             oController.oBusyDialog.close();
-                //         },
-                //         error: function (oError) {
-                //             oController.oBusyDialog.close();
-                //             MessageBox.error("Batch request failed");
-                //         }
-                //     });
-                // }    
+                // });
 
 
-                var oPayload = {
-                    "HandlingUnitExternalId": "300000017",
-                    "PackagingMaterial" : "EWMS4-WBTRO00",
-                    "DeliveryDocument" : selectedItems[0].getBindingContext("eshipjetModel").getObject().DeliveryDocument,
-                    "to_HandlingUnitItemDelivery": createDataArray
-                };
-                OutBoundDeliveryModel.create("/A_HandlingUnitHeaderDelivery", oPayload, {
-                    success: function (oData) {
-                        MessageToast.show("Handling Unit Created Successfully");
-                        console.log("Success:", oData);
-                        oController.oBusyDialog.close();
-                    },
-                    error: function (oError) {
-                        var errMsg = JSON.parse(oError.responseText).error.message.value;
-                        sap.m.MessageBox.error(errMsg);
-                        oController.oBusyDialog.close();
                     }
-                });
+                }
 
+                var obj = {
+                    "SpecialServices": {},
+                    "Weightunits": "",
+                    "Weight": totalWeight.toFixed(2),
+                    "DimensionUnits": "",
+                    "SerialNumber": oTableLength+1,
+                    "IsInternal": true,
+                    "ItemsInfo": ItemsInfo,
+                    "HandlingUnitExternalID": 1530 + oTableLength + 1
+                };
+                var HandlingUnits = eshipjetModel.getData().HandlingUnits
+                HandlingUnits.push(obj);
+                eshipjetModel.updateBindings(true);
+                oController.oBusyDialog.close();
             }
         },
 
@@ -1721,6 +1734,57 @@ sap.ui.define([
             //         MessageBox.error("Batch request failed");
             //     }
             // });
+
+
+            var oPayload = {
+                "HandlingUnitExternalID": "300000006",
+                "Warehouse": "",
+                "StockItemUUID": "00000000-0000-0000-0000-000000000001",
+                "HandlingUnitItem": "1",
+                "HandlingUnitReferenceDocument": "80000001",
+                "HandlingUnitRefDocumentItem": "0000000010",
+                "HandlingUnitQuantity": "10",
+                "HandlingUnitQuantityUnit": "PC",
+                "HandlingUnitAltUnitOfMeasure": "PC",
+                "Material": "EWMS4-02",
+                "ShelfLifeExpirationDate": null,
+                "HandlingUnitGoodsReceiptDate": null,
+                "to_HandlingUnit": [
+                    {
+                        "HandlingUnitExternalID": "300000006",
+                        "Warehouse": "",
+                        "PackagingMaterial": "EWMS4-WBTRO00",
+                        "PackagingMaterialType": "YN03",
+                        "Plant": "",
+                        "StorageLocation": "",
+                        "ShippingPoint": "1710",
+                        "ParentHandlingUnitNumber": "",
+                        "GrossWeight": 40.000,
+                        "NetWeight": 40.000,
+                        "HandlingUnitMaxWeight": 0.000,
+                        "WeightUnit": "KG",
+                        "HandlingUnitTareWeight": 0.000,
+                        "HandlingUnitTareWeightUnit": "KG",
+                        "GrossVolume": 30.000,
+                        "HandlingUnitNetVolume": 30.000,
+                        "VolumeUnit": "L",
+                        "HandlingUnitTareVolume": 0.000,
+                        "HandlingUnitTareVolumeUnit": "",
+                        "HandlingUnitLength": 0.000,
+                        "HandlingUnitWidth": 0.000,
+                        "HandlingUnitHeight": 0.000,
+                        "UnitOfMeasureDimension": "",
+                        "HandlingUnitPackingObjectKey": "0080000001",
+                        "HandlingUnitReferenceDocument": "80000001",
+                        "CreatedByUser": "SOUJANYA.T",
+                        "CreationDateTime": "2025-02-18T21:37:55",
+                        "LastChangedByUser": "SOUJANYA.T",
+                        "LastChangeDateTime": "2025-02-18T21:37:55",
+                        "HandlingUnitProcessStatus": "B"
+                      }
+                ]
+            };
+            var sPath = "/HandlingUnitItem(HandlingUnitExternalID='7005',Warehouse='1710',StockItemUUID=guid'0b246343-97f5-1edf-a498-b24e8bb93e0a')/to_HandlingUnit"
         },
 
         onShipNowCodEditPress:function(){
