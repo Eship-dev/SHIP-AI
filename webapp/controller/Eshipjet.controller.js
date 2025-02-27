@@ -3326,6 +3326,96 @@ sap.ui.define([
         onShipReqFilterPopoverApplyPress: function () {
             this.byId("idShipReqFilterPopover").close();
         },
+        onSettingsPress: function (oEvent) {
+            var that = this;
+            
+            if (!this._oPopover) {
+                this._oPopover = new sap.m.Popover({
+                    title: "Filter Columns",
+                    placement: "Left",
+                    contentWidth: "200px",
+                    content: new sap.m.VBox({
+                        items: [
+                            new sap.m.CheckBox({
+                                id: "cbSelectAll",
+                                text: "Select All",
+                                select: function (oEvent) {
+                                    var bSelected = oEvent.getParameter("selected");
+                                    that.toggleAllColumns(bSelected);
+                                }
+                            }),
+                            new sap.m.CheckBox({ id: "cbShipMethodID", text: "Ship Method ID", selected: true }),
+                            new sap.m.CheckBox({ id: "cbShipMethodDescription", text: "Ship Method Description", selected: true }),
+                            new sap.m.CheckBox({ id: "cbCarrierEmail", text: "Carrier Email", selected: true }),
+                            new sap.m.CheckBox({ id: "cbCarrierPhone", text: "Carrier Phone", selected: true }),
+                            new sap.m.CheckBox({ id: "cbTotalFreightQuote", text: "Total Freight Quote", selected: true }),
+                            new sap.m.CheckBox({ id: "cbTransitDays", text: "Transit Days", selected: true }),
+                            new sap.m.CheckBox({ id: "cbQuoteStatus", text: "Quote Status", selected: true }),
+                            new sap.m.CheckBox({ id: "cbReview", text: "Review", selected: true })
+                        ]
+                    }),
+                    footer: new sap.m.Bar({
+                        contentRight: [
+                            new sap.m.Button({
+                                text: "Apply",
+                                type: "Emphasized",
+                                press: function () {
+                                    that.onFilterChange();
+                                    that._oPopover.close();
+                                }
+                            }),
+                           
+                        ]
+                    })
+                });
+                this.getView().addDependent(this._oPopover);
+            }
+        
+            this._oPopover.openBy(oEvent.getSource());
+        },
+        
+        toggleAllColumns: function (bSelected) {
+            var aCheckBoxes = [
+                "cbShipMethodID",
+                "cbShipMethodDescription",
+                "cbCarrierEmail",
+                "cbCarrierPhone",
+                "cbTotalFreightQuote",
+                "cbTransitDays",
+                "cbQuoteStatus",
+                "cbReview"
+            ];
+        
+            aCheckBoxes.forEach(function (sCheckBoxId) {
+                var oCheckBox = sap.ui.getCore().byId(sCheckBoxId);
+                if (oCheckBox) {
+                    oCheckBox.setSelected(bSelected);
+                }
+            });
+        },
+        
+        onFilterChange: function () {
+            var aColumns = [
+                "colShipMethodID",
+                "colShipMethodDescription",
+                "colCarrierEmail",
+                "colCarrierPhone",
+                "colTotalFreightQuote",
+                "colTransitDays",
+                "colQuoteStatus",
+                "colReview"
+            ];
+        
+            aColumns.forEach(function (sColumnId) {
+                var oCheckBox = sap.ui.getCore().byId("cb" + sColumnId.replace("col", ""));
+                var oColumn = this.getView().byId(sColumnId);
+                if (oColumn && oCheckBox) {
+                    oColumn.setVisible(oCheckBox.getSelected());
+                }
+            }.bind(this));
+        }
+        ,
+        
 
         onCreateShipReqLabelPress: function () {
             var oView = this.getView();
@@ -3707,6 +3797,54 @@ sap.ui.define([
             });
             oTable.bindRows("/TrackNowRows");
         },
+
+        handleTrackNowFilterBtnPress: function (oEvent) {
+            var oButton = oEvent.getSource();
+            var sButtonId = oButton.getId(); // Get the button's ID
+        
+            // Trim namespace prefix if exists (e.g., "__component0---idShippedBtn")
+            sButtonId = sButtonId.split("---").pop();  
+        
+            var sStatus = "";  
+        
+            switch (sButtonId) {  
+                case "idShippedBtn":  
+                    sStatus = "Shipped";  
+                    break;  
+                case "idInTransitBtn":  
+                    sStatus = "In-Transit";  
+                    break;  
+                case "idCancelledBtn":  
+                    sStatus = "Cancelled";  
+                    break;  
+                case "idDeliveredBtn":  
+                    sStatus = "Delivered";  
+                    break;  
+                default:  
+                    console.error("⚠️ Unknown Button Clicked:", sButtonId);  
+                    return;  
+            }  
+        
+            // Get the model
+            var oModel = this.getView().getModel("TrackNowTableDataModel");
+        
+            // Store the original dataset if not already saved
+            if (!this._aOriginalData) {
+                this._aOriginalData = JSON.parse(JSON.stringify(oModel.getProperty("/TrackNowRows")));  
+            }
+        
+            // Filter the data
+            var aFilteredData = this._aOriginalData.filter(function (oItem) {
+                return oItem.Status === sStatus;
+            });
+        
+            console.log("✅ Filtered Data:", aFilteredData); // Debugging Output
+        
+            // Update the model with filtered data
+            oModel.setProperty("/TrackNowRows", aFilteredData);
+        }
+        ,
+        
 
         openTrackNowColNamesPopover: function (oEvent) {
             var oButton = oEvent.getSource(),

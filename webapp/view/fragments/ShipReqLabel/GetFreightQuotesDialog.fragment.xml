@@ -17,6 +17,7 @@
         contentHeight="70%" >
         <Toolbar >
             <ToolbarSpacer ></ToolbarSpacer>
+             <ToolbarSpacer ></ToolbarSpacer>
                 <Title text="Freight Quotes Submissions"></Title>
            <ToolbarSpacer ></ToolbarSpacer>
            <ToolbarSpacer />
@@ -28,68 +29,61 @@
        
             
 <content>
-    <Table id="idShipNowPickAnAddressTable1"
-           class="sapUiTinyMarginTop"
-            mode="MultiSelect"
-           items="{/freightQuoteSubmition}">
-        <columns>
-            <Column>
-                <header>
-                    <Label text="Ship Method ID" />
-                </header>
-            </Column>
-            <Column>
-                <header>
-                    <Label text="Ship Method Description" />
-                </header>
-            </Column>
-            <Column>
-                <header>
-                    <Label text="Carrier Email" />
-                </header>
-            </Column>
-            <Column>
-                <header>
-                    <Label text="Carrier Phone" />
-                </header>
-            </Column>
-            <Column>
-                <header>
-                    <Label text="Total Freight Quote" />
-                </header>
-            </Column>
-            <Column>
-                <header>
-                    <Label text="Transit Days" />
-                </header>
-            </Column>
-            <Column>
-                <header>
-                    <Label text="Quote Status" />
-                </header>
-            </Column>
-            <Column>
-                <header>
-                    <Label text="Review" />
-                </header>
-            </Column>
-        </columns>
-        <items>
-            <ColumnListItem>
-                <cells>
-                    <Text text="{ShipMethodID}" />
-                    <Text text="{ShipMethodDescription}" />
-                    <Text text="{CarrierEmail}" />
-                    <Text text="{CarrierPhone}" />
-                    <Text text="{TotalFreightQuote}" />
-                    <Text text="{TransitDays}" />
-                    <Text text="{QuoteStatus}" />
-                    <Text text="{Review}" />
-                    
-                </cells>
-            </ColumnListItem>
-        </items>
-    </Table>
+ <Table id="idShipNowPickAnAddressTable1"
+       class="sapUiTinyMarginTop"
+       mode="MultiSelect"
+       items="{/freightQuoteSubmition}">
+    <columns>
+        <Column id="colShipMethodID">
+            <header><Label text="Ship Method ID" /></header>
+        </Column>
+        <Column id="colShipMethodDescription">
+            <header><Label text="Ship Method Description" /></header>
+        </Column>
+        <Column id="colCarrierEmail">
+            <header><Label text="Carrier Email" /></header>
+        </Column>
+        <Column id="colCarrierPhone">
+            <header><Label text="Carrier Phone" /></header>
+        </Column>
+        <Column id="colTotalFreightQuote">
+            <header><Label text="Total Freight Quote" /></header>
+        </Column>
+        <Column id="colTransitDays">
+            <header><Label text="Transit Days" /></header>
+        </Column>
+        <Column id="colQuoteStatus">
+            <header><Label text="Quote Status" /></header>
+        </Column>
+        <Column id="colReview">
+            <header><Label text="Review" /></header>
+        </Column>
+        <!-- Settings Column (Last Column) -->
+        <Column id="colSettings" hAlign="Center">
+            <header>
+                <Button icon="sap-icon://action-settings" press="onSettingsPress" />
+            </header>
+        </Column>
+    </columns>
+    <items>
+        <ColumnListItem>
+            <cells>
+                <Text text="{ShipMethodID}" />
+                <Text text="{ShipMethodDescription}" />
+                <Text text="{CarrierEmail}" />
+                <Text text="{CarrierPhone}" />
+                <Text text="{TotalFreightQuote}" />
+                <Text text="{TransitDays}" />
+                <Text text="{QuoteStatus}" />
+                <Text text="{Review}" />
+                <!-- Empty Cell for Settings -->
+                <Text text="" />
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table>
+
+
 </content>
 
 
