@@ -328,7 +328,7 @@
 				<!-- <Button text="Get Shipping Rates" class="ship-now-footer_ship-rates"/> -->
 				<Button text="Get Shipping Rates"  class="ship-now-footer_ship-rates"  press="onShipRatePress" />
 			<ToolbarSpacer/>
-				<Button text="Save" class="ship-now-footer_ship-now" />
+				<Button text="Save" press="createHandlingUnits" class="ship-now-footer_ship-now" />
 				<Button text="Ship Now" press="onShipNowPress" class="ship-now-footer_ship-now" />
 		</OverflowToolbar>
 

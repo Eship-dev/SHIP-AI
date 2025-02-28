@@ -730,7 +730,7 @@
 														<Text text="{eshipjetModel>ItemWeightUnit}" />
 														<Text text="{eshipjetModel>ItemGrossWeight}" />
 														<Text text="{eshipjetModel>ItemNetWeight}" />
-														<Input value="{eshipjetModel>partialQty}" />
+														<Input value="{eshipjetModel>partialQty}" liveChange="onPartialQtyChange" />
 														<CheckBox ></CheckBox>
 														<CheckBox ></CheckBox>
 														<Button icon="sap-icon://delete" type="Attention" tooltip="Delete" press="onShipNowPrdctDltPress" ></Button>

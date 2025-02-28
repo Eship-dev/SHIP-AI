@@ -381,6 +381,18 @@ sap.ui.define([
         // Shipper Copilot Changes end
 
         // Ship Now changes starts here
+        onPartialQtyChange:function(oEvent){
+            var currObjItemNetWeight = parseInt(oEvent.getSource().getBindingContext("eshipjetModel").getObject().ItemNetWeight);
+            var currValue = parseInt(oEvent.getParameters().value);
+            if(currValue > currObjItemNetWeight){
+                var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+                var sPathArray = oEvent.getSource().getBindingContext("eshipjetModel").sPath.split("/");
+                var obj = eshipjetModel.getData().packAddProductTable[sPathArray[sPathArray.length - 1]];
+                obj["partialQty"] = 0;
+                MessageBox.warning("Partial quantity cannot be greater than balance quantity.");
+            }
+        },
+
         onShipNowPrdctDltPress:function(oEvent){
             MessageBox.warning("Are you sure you want to delete this product?", {
                 actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
@@ -841,6 +853,7 @@ sap.ui.define([
                     oController.FreightQuoteUpdatedSrvData();
                     oController.ApiOutboundDeliverySrvData(response);
                     oController.createRecentShipments(response);
+                    oController.createHandlingUnits();
                     //resolved
                 },
                 function(error) {
@@ -848,6 +861,81 @@ sap.ui.define([
                 }
             );
 
+        },
+
+        createHandlingUnits:function(){
+            oController.oBusyDialog.open();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var HandlingUnits = eshipjetModel.getData().HandlingUnits;
+
+            var oPayload = {
+                "HandlingUnitExternalID": "300000006",
+                "Warehouse": "1710",
+                "StockItemUUID": "00000000-0000-0000-0000-000000000001",
+                "HandlingUnitItem": "1",
+                "HandlingUnitReferenceDocument": "80000001",
+                "HandlingUnitRefDocumentItem": "0000000010",
+                "HandlingUnitQuantity": "10",
+                "HandlingUnitQuantityUnit": "PC",
+                "HandlingUnitAltUnitOfMeasure": "PC",
+                "Material": "EWMS4-02",
+                "ShelfLifeExpirationDate": null,
+                "HandlingUnitGoodsReceiptDate": null,
+                "to_HandlingUnit": [
+                    {
+                        "HandlingUnitExternalID": "300000006",
+                        "Warehouse": "1710",
+                        "PackagingMaterial": "EWMS4-WBTRO00",
+                        "PackagingMaterialType": "YN03",
+                        "Plant": "",
+                        "StorageLocation": "",
+                        "ShippingPoint": "1710",
+                        "ParentHandlingUnitNumber": "",
+                        "GrossWeight": 40.000,
+                        "NetWeight": 40.000,
+                        "HandlingUnitMaxWeight": 0.000,
+                        "WeightUnit": "KG",
+                        "HandlingUnitTareWeight": 0.000,
+                        "HandlingUnitTareWeightUnit": "KG",
+                        "GrossVolume": 30.000,
+                        "HandlingUnitNetVolume": 30.000,
+                        "VolumeUnit": "L",
+                        "HandlingUnitTareVolume": 0.000,
+                        "HandlingUnitTareVolumeUnit": "",
+                        "HandlingUnitLength": 0.000,
+                        "HandlingUnitWidth": 0.000,
+                        "HandlingUnitHeight": 0.000,
+                        "UnitOfMeasureDimension": "",
+                        "HandlingUnitPackingObjectKey": "0080000001",
+                        "HandlingUnitReferenceDocument": "80000001",
+                        "CreatedByUser": "SOUJANYA.T",
+                        "CreationDateTime": "2025-02-18T21:37:55",
+                        "LastChangedByUser": "SOUJANYA.T",
+                        "LastChangeDateTime": "2025-02-18T21:37:55",
+                        "HandlingUnitProcessStatus": "B"
+                      }
+                ]
+            };
+            var sPath = "/HandlingUnit(HandlingUnitExternalID='300000006',Warehouse='1710',StockItemUUID=guid'0b246343-97f5-1edf-a498-b24e8bb93e0a')"
+
+            var urlParameters = {
+                "$expand": "to_HandlingUnitItem"
+            };
+
+            var OutBoundDeliveryModel = oController.getOwnerComponent().getModel("OutBoundDeliveryModel");
+            OutBoundDeliveryModel.create(sPath, oPayload, {
+                urlParameters: urlParameters,
+                success: function (oData) {
+                    MessageToast.show("Handling Unit Created Successfully");
+                    console.log("Success:", oData);
+                    oController.oBusyDialog.close();
+                },
+                error: function (oError) {
+                    var errMsg = JSON.parse(oError.responseText).error.message.value;
+                    sap.m.MessageBox.error(errMsg);
+                    oController.oBusyDialog.close();
+                }
+            });
         },
 
         createRecentShipments:function(response){
@@ -1734,57 +1822,6 @@ sap.ui.define([
             //         MessageBox.error("Batch request failed");
             //     }
             // });
-
-
-            var oPayload = {
-                "HandlingUnitExternalID": "300000006",
-                "Warehouse": "",
-                "StockItemUUID": "00000000-0000-0000-0000-000000000001",
-                "HandlingUnitItem": "1",
-                "HandlingUnitReferenceDocument": "80000001",
-                "HandlingUnitRefDocumentItem": "0000000010",
-                "HandlingUnitQuantity": "10",
-                "HandlingUnitQuantityUnit": "PC",
-                "HandlingUnitAltUnitOfMeasure": "PC",
-                "Material": "EWMS4-02",
-                "ShelfLifeExpirationDate": null,
-                "HandlingUnitGoodsReceiptDate": null,
-                "to_HandlingUnit": [
-                    {
-                        "HandlingUnitExternalID": "300000006",
-                        "Warehouse": "",
-                        "PackagingMaterial": "EWMS4-WBTRO00",
-                        "PackagingMaterialType": "YN03",
-                        "Plant": "",
-                        "StorageLocation": "",
-                        "ShippingPoint": "1710",
-                        "ParentHandlingUnitNumber": "",
-                        "GrossWeight": 40.000,
-                        "NetWeight": 40.000,
-                        "HandlingUnitMaxWeight": 0.000,
-                        "WeightUnit": "KG",
-                        "HandlingUnitTareWeight": 0.000,
-                        "HandlingUnitTareWeightUnit": "KG",
-                        "GrossVolume": 30.000,
-                        "HandlingUnitNetVolume": 30.000,
-                        "VolumeUnit": "L",
-                        "HandlingUnitTareVolume": 0.000,
-                        "HandlingUnitTareVolumeUnit": "",
-                        "HandlingUnitLength": 0.000,
-                        "HandlingUnitWidth": 0.000,
-                        "HandlingUnitHeight": 0.000,
-                        "UnitOfMeasureDimension": "",
-                        "HandlingUnitPackingObjectKey": "0080000001",
-                        "HandlingUnitReferenceDocument": "80000001",
-                        "CreatedByUser": "SOUJANYA.T",
-                        "CreationDateTime": "2025-02-18T21:37:55",
-                        "LastChangedByUser": "SOUJANYA.T",
-                        "LastChangeDateTime": "2025-02-18T21:37:55",
-                        "HandlingUnitProcessStatus": "B"
-                      }
-                ]
-            };
-            var sPath = "/HandlingUnitItem(HandlingUnitExternalID='7005',Warehouse='1710',StockItemUUID=guid'0b246343-97f5-1edf-a498-b24e8bb93e0a')/to_HandlingUnit"
         },
 
         onShipNowCodEditPress:function(){
@@ -3906,8 +3943,7 @@ sap.ui.define([
         
             // Update the model with filtered data
             oModel.setProperty("/TrackNowRows", aFilteredData);
-        }
-        ,
+        },
         
 
         openTrackNowColNamesPopover: function (oEvent) {
