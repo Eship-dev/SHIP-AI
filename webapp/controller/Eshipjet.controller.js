@@ -494,20 +494,25 @@ sap.ui.define([
             var HandlingUnits = eshipjetModel.getData().HandlingUnits;
             var packAddProductTable = eshipjetModel.getData().packAddProductTable;
 
-            for(var i=0; i<HandlingUnits.length; i++){
-                for(var j=0; j<HandlingUnits[i].ItemsInfo.length; j++){
-                    HandlingUnits[i].ItemsInfo[j]["SerialNo"] = packAddProductTable.length + 1;
-                    packAddProductTable.push(HandlingUnits[i].ItemsInfo[j]);
-                    eshipjetModel.updateBindings(true);
-                }
-            };
-
-            // for(var i=0; i<packAddProductTable.length; i++){
-            //     packAddProductTable[i]["SerialNo"] = i+1;
-            // };
-            
+            HandlingUnits.forEach(oDeletedData => {
+               oDeletedData.ItemsInfo.forEach(item => {
+                    var matchingDelivery = packAddProductTable.find(delivery => 
+                        String(delivery.DeliveryDocument) === String(item.DeliveryDocument)
+                    );
+        
+                    if (matchingDelivery) {
+                        matchingDelivery.ItemNetWeight = (matchingDelivery.ItemNetWeight || 0) + (item.ItemWeight || 0);
+                    } else {
+                        packAddProductTable.push(item);
+                    }
+                });
+            });
+        
             eshipjetModel.setProperty("/HandlingUnits", []);
-            eshipjetModel.updateBindings(true);
+            eshipjetModel.setProperty("/packAddProductTable", packAddProductTable);
+            eshipjetModel.refresh(true);
+        
+            MessageToast.show("All items removed and weight updated.");
         },
 
         onShipNowClosePress:function(){
@@ -1707,7 +1712,11 @@ sap.ui.define([
             var packAddProductTable = eshipjetModel.getProperty("/packAddProductTable");
             var totalWeight = 0;
             for(var i=0; i<packAddProductTable.length; i++){
-                totalWeight += parseInt(packAddProductTable[i].ItemGrossWeight);
+                totalWeight += parseInt(packAddProductTable[i].ItemNetWeight);
+                if(packAddProductTable[i].partialQty === ""){
+                    packAddProductTable[i]["partialQty"] = packAddProductTable[i].ItemNetWeight;
+                    packAddProductTable[i]["ItemWeight"] = packAddProductTable[i].ItemNetWeight;
+                }
             };
             var oTable = oController.getView().byId("idShipNowHandlingUnitTable");
             var oTableLength = oTable.getBinding("items").iLength;
