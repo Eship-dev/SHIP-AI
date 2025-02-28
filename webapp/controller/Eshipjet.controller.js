@@ -3920,7 +3920,7 @@ sap.ui.define([
                     sStatus = "Delivered";  
                     break;  
                 default:  
-                    console.error("⚠️ Unknown Button Clicked:", sButtonId);  
+                    console.error(" Unknown Button Clicked:", sButtonId);  
                     return;  
             }  
         
@@ -3937,7 +3937,7 @@ sap.ui.define([
                 return oItem.Status === sStatus;
             });
         
-            console.log("✅ Filtered Data:", aFilteredData); // Debugging Output
+            console.log(" Filtered Data:", aFilteredData); // Debugging Output
         
             // Update the model with filtered data
             oModel.setProperty("/TrackNowRows", aFilteredData);
@@ -10228,12 +10228,12 @@ sap.ui.define([
             var ShipFromAddress = ShipNowDataModel.getProperty("/ShipFromAddress");
             var ShipToAddress = ShipNowDataModel.getProperty("/ShipToAddress");
             var oTableLength = oController.byId("idCreateShipReqTable").getBinding("rows").getLength();
-
-            if(ShipToAddress.FullName === "" || ShipToAddress.FullName === undefined){
+        
+            if (ShipToAddress.FullName === "" || ShipToAddress.FullName === undefined) {
                 MessageBox.warning("Contact Name is required.");
-            }else if(ShipToAddress.FullName !== "" && oTableLength === 0) {
-                MessageBox.warning("At least one row must have all required fields (Product Code,Product Description, Quantity, Unit Weight).");
-            }else{
+            } else if (ShipToAddress.FullName !== "" && oTableLength === 0) {
+                MessageBox.warning("At least one row must have all required fields (Product Code, Product Description, Quantity, Unit Weight)." );
+            } else {
                 var oView = oController.getView();
                 if (!oController.byId("idFreightQuotesDialog")) {
                     Fragment.load({
@@ -10247,6 +10247,28 @@ sap.ui.define([
                 } else {
                     oController.byId("idFreightQuotesDialog").open(); // Open existing dialog
                 }
+        
+                // API Call to Fetch Data
+                var sPath = "https://dev-api-v1.eshipjet.site/profile/info@eshipjet.ai";
+                oController.oBusyDialog.open();
+                
+                $.ajax({
+                    url: sPath,
+                    method: "GET",
+                    dataType: "json",
+                    success: function (oData) {
+                        oController.oBusyDialog.close();
+                        console.log("API Response:", oData);
+                        
+                        // Set the API response to the model
+                        var oModel = oController.getView().getModel("eshipjetModel");
+                        oModel.setProperty("/freightQuoteSubmition", oData);
+                    },
+                    error: function (error) {
+                        console.log("Error:", error);
+                        oController.oBusyDialog.close();
+                    }
+                });
             }
         },
 
@@ -11917,6 +11939,7 @@ sap.ui.define([
             }
         });
     },
+
 
     onRecentShipmentsItemPress:function(oEvent){
         var oCurrentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();

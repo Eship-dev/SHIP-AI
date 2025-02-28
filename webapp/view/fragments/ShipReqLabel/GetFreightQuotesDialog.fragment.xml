@@ -3,101 +3,98 @@
     xmlns:l="sap.ui.layout"
     xmlns:form="sap.ui.layout.form"
     xmlns:core="sap.ui.core"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:f="sap.f"
-	xmlns:fb="sap.ui.comp.filterbar"
-	xmlns:svm="sap.ui.comp.smartvariants"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:svm="sap.ui.comp.smartvariants"
     xmlns:ui="sap.ui.table"
-	xmlns:u="sap.ui.unified"
-	xmlns:c="sap.ui.core" >
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core">
+    
     <Dialog
         id="idFreightQuotesDialog"
         showHeader="false"
         contentWidth="75%"
-        contentHeight="70%" >
-        <Toolbar >
-            <ToolbarSpacer ></ToolbarSpacer>
-             <ToolbarSpacer ></ToolbarSpacer>
-                <Title text="Freight Quotes Submissions"></Title>
-           <ToolbarSpacer ></ToolbarSpacer>
-           <ToolbarSpacer />
-           <Button 
-                    icon="sap-icon://decline" 
-                    class="Decline_Btn"
-                    press="onFreightQuoteClosePress" />
+        contentHeight="70%">
+        
+        <Toolbar>
+            <ToolbarSpacer />
+            <ToolbarSpacer />
+            <Title text="Freight Quotes Submissions" />
+            <ToolbarSpacer />
+            <ToolbarSpacer />
+            <Button 
+                icon="sap-icon://decline" 
+                class="Decline_Btn"
+                press="onFreightQuoteClosePress" />
         </Toolbar>
-       
-            
-<content>
- <Table id="idShipNowPickAnAddressTable1"
-       class="sapUiTinyMarginTop"
-       mode="MultiSelect"
-       items="{/freightQuoteSubmition}">
-    <columns>
-        <Column id="colShipMethodID">
-            <header><Label text="Ship Method ID" /></header>
-        </Column>
-        <Column id="colShipMethodDescription">
-            <header><Label text="Ship Method Description" /></header>
-        </Column>
-        <Column id="colCarrierEmail">
-            <header><Label text="Carrier Email" /></header>
-        </Column>
-        <Column id="colCarrierPhone">
-            <header><Label text="Carrier Phone" /></header>
-        </Column>
-        <Column id="colTotalFreightQuote">
-            <header><Label text="Total Freight Quote" /></header>
-        </Column>
-        <Column id="colTransitDays">
-            <header><Label text="Transit Days" /></header>
-        </Column>
-        <Column id="colQuoteStatus">
-            <header><Label text="Quote Status" /></header>
-        </Column>
-        <Column id="colReview">
-            <header><Label text="Review" /></header>
-        </Column>
-        <!-- Settings Column (Last Column) -->
-        <Column id="colSettings" hAlign="Center">
-            <header>
-                <Button icon="sap-icon://action-settings" press="onSettingsPress" />
-            </header>
-        </Column>
-    </columns>
-    <items>
-        <ColumnListItem>
-            <cells>
-                <Text text="{ShipMethodID}" />
-                <Text text="{ShipMethodDescription}" />
-                <Text text="{CarrierEmail}" />
-                <Text text="{CarrierPhone}" />
-                <Text text="{TotalFreightQuote}" />
-                <Text text="{TransitDays}" />
-                <Text text="{QuoteStatus}" />
-                <Text text="{Review}" />
-                <!-- Empty Cell for Settings -->
-                <Text text="" />
-            </cells>
-        </ColumnListItem>
-    </items>
-</Table>
 
+        <content>
+            <Table id="idShipNowPickAnAddressTable1"
+                class="sapUiTinyMarginTop"
+                mode="MultiSelect"
+                items="{eshipjetModel>/freightQuoteSubmition}">
+                
+                <columns>
+                    <Column id="colShipMethodID">
+                        <header><Label text="Ship Method ID" /></header>
+                    </Column>
+                    <Column id="colShipMethodDescription">
+                        <header><Label text="Ship Method Description" /></header>
+                    </Column>
+                    <Column id="colCarrierEmail">
+                        <header><Label text="Carrier Email" /></header>
+                    </Column>
+                    <Column id="colCarrierPhone">
+                        <header><Label text="Carrier Phone" /></header>
+                    </Column>
+                    <Column id="colTotalFreightQuote">
+                        <header><Label text="Total Freight Quote" /></header>
+                    </Column>
+                    <Column id="colTransitDays">
+                        <header><Label text="Transit Days" /></header>
+                    </Column>
+                    <Column id="colQuoteStatus">
+                        <header><Label text="Quote Status" /></header>
+                    </Column>
+                    <Column id="colReview">
+                        <header><Label text="Review" /></header>
+                    </Column>
+                    <Column id="colSettings" hAlign="Center">
+                        <header>
+                            <Button icon="sap-icon://action-settings" press="onSettingsPress" />
+                        </header>
+                    </Column>
+                </columns>
 
-</content>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{ShipMethodID}" />
+                            <Text text="{ShipMethodDescription}" />
+                            <Text text="{CarrierEmail}" />
+                            <Text text="{CarrierPhone}" />
+                            <Text text="{TotalFreightQuote}" />
+                            <Text text="{TransitDays}" />
+                            <Text text="{QuoteStatus}" />
+                            <Text text="{Review}" />
+                            <Text text="" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
 
-
-               
-            <footer >
-                    <Toolbar height="5rem"  class="scan-ship-toolbar" >
-                        <Button  text="Cancel" type="Reject" press="onFreightQuoteClosePress" class="scan-ship-toolbar__button scan-ship-toolbar__button_void" />
-                        <ToolbarSpacer ></ToolbarSpacer>
-                            <Button  text="Submit to Carrier"  class="create-ship-req-footer sapUiSmallMarginEnd" press="AddCarrierCancelDialog" />
-                            <Button  text="Customer Approval" visible="{eshipjetModel>/freightQuoteCustomerApproval}" class="create-ship-req-footer sapUiSmallMarginEnd" press="AddCarrierCancelDialog" />
-                        <ToolbarSpacer ></ToolbarSpacer>
-                        <ToolbarSpacer/>
-                        <Button  text="Shipper Approval"  class="create-ship-req-footer sapUiSmallMarginEnd" press="AddCarrierUpdateDialog" />
-                    </Toolbar>
-            </footer>
+        <footer>
+            <Toolbar height="5rem" class="scan-ship-toolbar">
+                <Button text="Cancel" type="Reject" press="onFreightQuoteClosePress" class="scan-ship-toolbar__button scan-ship-toolbar__button_void" />
+                <ToolbarSpacer />
+                <Button text="Submit to Carrier" class="create-ship-req-footer sapUiSmallMarginEnd" press="AddCarrierCancelDialog" />
+                <Button text="Customer Approval" visible="{eshipjetModel>/freightQuoteCustomerApproval}" class="create-ship-req-footer sapUiSmallMarginEnd" press="AddCarrierCancelDialog" />
+                <ToolbarSpacer />
+                <ToolbarSpacer />
+                <Button text="Shipper Approval" class="create-ship-req-footer sapUiSmallMarginEnd" press="AddCarrierUpdateDialog" />
+            </Toolbar>
+        </footer>
     </Dialog>
 </core:FragmentDefinition>
