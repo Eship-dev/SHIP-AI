@@ -1,0 +1,58 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    
+    <Dialog
+        id="idDangerousGoodsImportDialog"
+        title="Import DangerousGoods"
+        class="rightSideDialogGare"
+        stretch="false">
+
+        <VBox>
+            <HBox class="customSimpleFormShadow">
+                <Label text="User ID" class="sapUiSmallMargin" />
+                <Input value="" class="sapUiSmallMarginBottom create-ship-req_input" />
+
+                <Label text="Description" class="sapUiSmallMargin sapUiMediumMarginBegin" />
+                <Input value="" class="sapUiSmallMarginBottom create-ship-req_input" />
+            </HBox>
+
+            <UploadCollection
+                id="UploadCollection11211"
+                class="customSimpleFormShadow"
+                maximumFilenameLength="55"
+                maximumFileSize="10"
+                multiple="true"
+                sameFilenameAllowed="true"
+                instantUpload="false"
+                noDataDescription="Please drag and drop your CSV or Excel file here or use the &quot;Add&quot; button to upload Files, and I'll take care of the rest!"
+                change="onChange"
+                fileDeleted="onFileDeleted"
+                filenameLengthExceed="onFilenameLengthExceed"
+                fileSizeExceed="onFileSizeExceed"
+                typeMissmatch="onTypeMissmatch"
+                uploadComplete="onUploadComplete"
+                beforeUploadStarts="onBeforeUploadStarts" />
+            
+            <Button text="Download Sample" type="Ghost" class="sapUiSmallMargin" />
+        </VBox>
+
+        <!-- Dialog Footer -->
+        <beginButton>
+            <Button
+                text="Finish Importing"
+                class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd sapUiTinyMarginBegin TopMarginpadding sapUiSmallMarginTop  sapUiSmallMarginBottom"
+                press="onCreateBatchShipFinishImportingPress" />
+        </beginButton>
+
+        <!-- <endButton>
+            <Button
+                icon="sap-icon://decline"
+                class="Decline_Btn"
+                press="onAddImportAddressBookClosePress" />
+        </endButton> -->
+
+    </Dialog>
+</core:FragmentDefinition>

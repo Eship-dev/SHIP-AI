@@ -6839,6 +6839,58 @@ sap.ui.define([
             oTable.bindRows("/DangerousGoodsTableRows");
         },
 
+
+        onDangerousGoodsExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/DangerousGoodsTableRows");
+            var oSettings = {
+                Workbook: {
+                    columns: [
+                        { label: "UN No", property: "unNo", visible: true },
+                        { label: "Carrier", property: "carrier", visible: true },
+                        { label: "Transport Mode", property: "transportMode", visible: true },
+                        { label: "Destination", property: "destination", visible: true },
+                        { label: "Hazard ID", property: "hazardId", visible: true },
+                        { label: "ERG Guide Number", property: "ergGuideNumber", visible: true },
+                        { label: "Hazard Class", property: "hazardClass", visible: true },
+                        { label: "Labels Required", property: "labelsRequired", visible: true },
+                        { label: "Limited Quantity Max Net Qty Per Package", property: "limitedQuantityMaxNetQty", visible: true },
+                        { label: "Limited Quantity Packing Instructions", property: "limitedQuantityPackingInstructions", visible: true },
+                        { label: "Limited Quantity", property: "limitedQuantity", visible: true },
+                        { label: "Limited Quantity Unit of Measure", property: "limitedQuantityUnit", visible: true },
+                        { label: "Packaging Exceptions", property: "packagingExceptions", visible: true },
+                        { label: "Packaging Non-Bulk", property: "packagingNonBulk", visible: true },
+                        { label: "Passenger & Cargo Aircraft Packing Instructions", property: "passengerCargoAircraftPackingInstructions", visible: true },
+                        { label: "Passenger & Cargo Aircraft Quantity", property: "passengerCargoAircraftQuantity", visible: true },
+                        { label: "Passenger & Cargo Aircraft Unit of Measure", property: "passengerCargoAircraftUnit", visible: true },
+                        { label: "Technical Info Flag", property: "technicalInfoFlag", visible: true },
+                        { label: "Actions", property: "actions", visible: true },
+                        
+                        // Fields with `visible: false`
+                        { label: "Additional Info", property: "additionalInfo", visible: false },
+                        { label: "Packing Group", property: "packingGroup", visible: false },
+                        { label: "Passenger & Cargo Max Net Qty", property: "passengerCargoMaxNetQty", visible: false },
+                        { label: "Proper Shipping Name", property: "properShippingName", visible: false },
+                        { label: "Canada Permitted", property: "canadaPermitted", visible: false },
+                        { label: "Cargo Aircraft Only Quantity", property: "cargoAircraftOnlyQuantity", visible: false },
+                        { label: "Cargo Aircraft Only Unit of Measure", property: "cargoAircraftOnlyUnit", visible: false },
+                        { label: "Do Not Print PSN Reference Only", property: "doNotPrintPSN", visible: false },
+                        { label: "Excepted Quantity Code", property: "exceptedQuantityCode", visible: false },
+                        { label: "Exemption Required", property: "exemptionRequired", visible: false },
+                        { label: "Forbidden", property: "forbidden", visible: false }
+                    ]
+                },
+                
+                dataSource: rows,
+                fileName: 'DangerousGoods_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
         // DangerousGoods Column Names Popover code changes End here
 
 
@@ -11424,6 +11476,53 @@ sap.ui.define([
             this.byId("idProductImportPopover").close();
         },
 
+         // add PackagesTypes  Arrow click popover down arrow 
+         onDangerousGoodsArrowPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._oAddDangerousGoodsArrowPopover) {
+                this._oAddDangerousGoodsArrowPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.DangerousGoodsImportArrowPopover",
+                    controller: this
+                }).then(function (AddDangerousGoodsArrowPopover) {
+                    oView.addDependent(AddDangerousGoodsArrowPopover);
+                    // AddDangerousGoodsArrowPopover.bindElement("/DangerousGoodsCollection/0");
+                    return AddDangerousGoodsArrowPopover;
+                });
+            }
+            this._oAddDangerousGoodsArrowPopover.then(function (AddDangerousGoodsArrowPopover) {
+                AddDangerousGoodsArrowPopover.openBy(oButton);
+            });
+        },  
+
+        AddImportDangerousGoodsPress: function (oEvent) {
+            var oView = this.getView();
+        
+            if (!this._oAddDangerousGoodsImportDialog) {
+                this._oAddDangerousGoodsImportDialog = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.DangerousGoodsImportDialog",
+                    controller: this
+                }).then(function (oDialog) {
+                    oView.addDependent(oDialog);
+                    return oDialog;
+                });
+            }
+        
+            this._oAddDangerousGoodsImportDialog.then(function (oDialog) {
+                oDialog.open();
+            });
+        },
+        
+        onAddImportDangerousGoodsClosePress: function () {
+            this.byId("idDangerousGoodsImportDialog").close();
+        },
+        
+        onDangerousGoodscenterFinishImportingPress: function () {
+            this.byId("idDangerousGoodsImportDialog").close();
+        },
+        
 
          // add PackagesTypes  Arrow click popover down arrow 
          onPackagesTypesArrowPress: function (oEvent) {

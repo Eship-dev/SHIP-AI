@@ -5,7 +5,7 @@
 				<ToolbarSpacer />
 					<HBox>
                     <Button  text="Add Dangerous Goods" press="onAddAddDangerousGoodsPress" class="ship-req-toolbar__button sapUiSmallMarginBottom sapUiTinyMarginEnd sapUiTinyMarginTop" width="12rem" ></Button>
-                    <Button type="Success" press="onPackagesTypesArrowPress" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginTop" ></Button>
+                    <Button type="Success" press="onDangerousGoodsArrowPress" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginTop" ></Button>
                 </HBox>
 		</Toolbar>
 
@@ -35,7 +35,8 @@
     <ui:extension>
         <OverflowToolbar style="Clear">										
             <ToolbarSpacer />  
-                <Button icon="sap-icon://action" press="onPackagesExportToExcel"></Button>
+				<Button icon="sap-icon://synchronize" press="onDangerousGoodsRefreshPress"></Button>
+                <Button icon="sap-icon://action" press="onDangerousGoodsExportToExcel"></Button>
                 <Button icon="sap-icon://action-settings" press="openDangerousGoodsColNamesPopover"></Button>
         </OverflowToolbar>
     </ui:extension>	
