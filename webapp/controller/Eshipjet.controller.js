@@ -1188,33 +1188,31 @@ sap.ui.define([
 
 
         showLabelAfterShipmentSuccess: function (response) {
-            var localModel = this.getView().getModel();
+            var oView = this.getView();
+            var localModel = oView.getModel();
             var encodedLabel = response.shippingDocuments[0].docName;
             localModel.setProperty("/encodedLabel", encodedLabel);
         
-            // Load the fragment
-            if (!this._oDialog) {
+            if (!this.byId("idAfterShipmentLabelDialog")) {
                 Fragment.load({
-                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.AfterShipNowClickDialog", // Adjust namespace as per your project
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.AfterShipNowClickDialog",
                     controller: this
                 }).then(function (oDialog) {
-                    this._oDialog = oDialog;
-                    this.getView().addDependent(this._oDialog);
-                    // Set image source dynamically
-                    this._oDialog.getContent()[0].getItems()[0].setSrc(encodedLabel);
-                    this._oDialog.open();
-                }.bind(this));
+                    oView.addDependent(oDialog);
+                    oDialog.getContent()[0].getItems()[0].setSrc(encodedLabel);
+                    oDialog.open();
+                });
             } else {
-                // Update the image if the dialog already exists
-                this._oDialog.getContent()[0].getItems()[0].setSrc(encodedLabel);
-                this._oDialog.open();
+                this.byId("idAfterShipmentLabelDialog").getContent()[0].getItems()[0].setSrc(encodedLabel);
+                this.byId("idAfterShipmentLabelDialog").open();
             }
         },
-
-        onshipmentLabelDialogClosePress: function () {
-            oController.getView().byId("idAfterShipmentLabelDialog").close();
+        
+        onShipmentLabelDialogClosePress: function () {
+            this.byId("idAfterShipmentLabelDialog").close();
         },
-    
+        
         onShippingDocumentsViewPress:function(oEvent){
             var currentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
             var docName = currentObj.docName;

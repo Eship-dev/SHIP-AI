@@ -13,7 +13,7 @@
             <Toolbar>
                 <Title text="Shipment Label" level="H6" class="sapUiLargeMarginTop sapUiLargeMarginBottom" />
                 <ToolbarSpacer/>
-                <Button icon="sap-icon://decline" type="Transparent" press="onshipmentLabelDialogClosePress"/>
+                <Button icon="sap-icon://decline" type="Transparent" press=".onShipmentLabelDialogClosePress"/>
             </Toolbar>
         </customHeader>
 
@@ -27,7 +27,7 @@
         <footer>
             <OverflowToolbar class="p-sidebar-header sapMPopoverFooter1 shipmethod">
                 <ToolbarSpacer />
-                <Button type="Emphasized" text="Close" press="onshipmentLabelDialogClosePress" />
+                <Button type="Emphasized" text="Close" press=".onshipmentLabelDialogClosePress" />
             </OverflowToolbar>
         </footer>
     </Dialog>
