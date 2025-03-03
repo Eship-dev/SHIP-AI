@@ -6120,146 +6120,96 @@
             
         
         "freightData": [
-          {
-            "Location": "1001",
-            "LocationName": "eshipjet software inc",
-            "Carrier": "ABF",
-            "TotalWeightLBS": 0,
-            "TotalPackages": 38,
-            "TotalFreightCost": "$2835.38",
-            "DiscountedFreight": "$2835.38",
-            "AverageFreightCost": "$405.05"
-          },
-          {
-            "Location": "1001",
-            "LocationName": "eshipjet software inc",
-            "Carrier": "Blue Dart",
-            "TotalWeightLBS": 160,
-            "TotalPackages": 8,
-            "TotalFreightCost": "$60.96",
-            "DiscountedFreight": "$60.96",
-            "AverageFreightCost": "$60.96"
-          },
-          {
-            "Location": "1001",
-            "LocationName": "eshipjet software inc",
-            "Carrier": "DHL",
-            "TotalWeightLBS": 520,
-            "TotalPackages": 134,
-            "TotalFreightCost": "$2803.7",
-            "DiscountedFreight": "$2803.7",
-            "AverageFreightCost": "$233.64"
-          },
-          {
-            "Location": "1001",
-            "LocationName": "eshipjet software inc",
-            "Carrier": "FedEx",
-            "TotalWeightLBS": 11486,
-            "TotalPackages": 1244,
-            "TotalFreightCost": "$31539.14",
-            "DiscountedFreight": "$31539.14",
-            "AverageFreightCost": "$927.62"
-          },
-          {
-            "Location": "1001",
-            "LocationName": "eshipjet software inc",
-            "Carrier": "Generic Carrier",
-            "TotalWeightLBS": 160,
-            "TotalPackages": 16,
-            "TotalFreightCost": "$132",
-            "DiscountedFreight": "$132",
-            "AverageFreightCost": "$66"
-          },
-          {
-            "Location": "1001",
-            "LocationName": "eshipjet software inc",
-            "Carrier": "JPMorgan Chase Internal",
-            "TotalWeightLBS": 1044,
-            "TotalPackages": 84,
-            "TotalFreightCost": "$1768.8",
-            "DiscountedFreight": "$1768.8",
-            "AverageFreightCost": "$160.8"
-          },
-          {
-            "Location": "1001",
-            "LocationName": "eshipjet software inc",
-            "Carrier": "USPS",
-            "TotalWeightLBS": 1232,
-            "TotalPackages": 160,
-            "TotalFreightCost": "$1021.4",
-            "DiscountedFreight": "$1021.4",
-            "AverageFreightCost": "$60.08"
-          },
-          {
-            "Location": "1001",
-            "LocationName": "eshipjet software inc",
-            "Carrier": "ABF",
-            "TotalWeightLBS": 0,
-            "TotalPackages": 38,
-            "TotalFreightCost": "$2835.38",
-            "DiscountedFreight": "$2835.38",
-            "AverageFreightCost": "$405.05"
-          },
-          {
-            "Location": "1001",
-            "LocationName": "eshipjet software inc",
-            "Carrier": "Blue Dart",
-            "TotalWeightLBS": 160,
-            "TotalPackages": 8,
-            "TotalFreightCost": "$60.96",
-            "DiscountedFreight": "$60.96",
-            "AverageFreightCost": "$60.96"
-          },
-          {
-            "Location": "1001",
-            "LocationName": "eshipjet software inc",
-            "Carrier": "DHL",
-            "TotalWeightLBS": 520,
-            "TotalPackages": 134,
-            "TotalFreightCost": "$2803.7",
-            "DiscountedFreight": "$2803.7",
-            "AverageFreightCost": "$233.64"
-          },
-          {
-            "Location": "1001",
-            "LocationName": "eshipjet software inc",
-            "Carrier": "FedEx",
-            "TotalWeightLBS": 11486,
-            "TotalPackages": 1244,
-            "TotalFreightCost": "$31539.14",
-            "DiscountedFreight": "$31539.14",
-            "AverageFreightCost": "$927.62"
-          },
-          {
-            "Location": "1001",
-            "LocationName": "eshipjet software inc",
-            "Carrier": "Generic Carrier",
-            "TotalWeightLBS": 160,
-            "TotalPackages": 16,
-            "TotalFreightCost": "$132",
-            "DiscountedFreight": "$132",
-            "AverageFreightCost": "$66"
-          },
-          {
-            "Location": "1001",
-            "LocationName": "eshipjet software inc",
-            "Carrier": "JPMorgan Chase Internal",
-            "TotalWeightLBS": 1044,
-            "TotalPackages": 84,
-            "TotalFreightCost": "$1768.8",
-            "DiscountedFreight": "$1768.8",
-            "AverageFreightCost": "$160.8"
-          },
-          {
-            "Location": "1001",
-            "LocationName": "eshipjet software inc",
-            "Carrier": "USPS",
-            "TotalWeightLBS": 1232,
-            "TotalPackages": 160,
-            "TotalFreightCost": "$1021.4",
-            "DiscountedFreight": "$1021.4",
-            "AverageFreightCost": "$60.08"
-          }
+            [
+                {
+                  "company": "eshipJet Software Inc.",
+                  "carrier": "ABF",
+                  "trackingNumber": "998824",
+                  "date": "12/30/2024",
+                  "totalAmount": 153.51,
+                  "baseAmount": 153.51,
+                  "additionalCharges": 0.00,
+                  "purchaseOrder": "PO-89982",
+                  "approvalStatus": "Auto Approved",
+                  "deliveryNumber": "DN000004061",
+                  "shipDate": "12/30/2024",
+                  "deliveryDate": "12/30/2024",
+                  "shipmentType": "Business",
+                  "serviceLevel": "Standard",
+                  "customerNumber": "070973963",
+                  "brand": {
+                    "name": "Brand Fasteners",
+                    "address": "27 Deerfield Crescent",
+                    "state": "ON",
+                    "city": "Brampton",
+                    "postalCode": "L6T1K5",
+                    "country": "CA",
+                    "phone": "4088380699",
+                    "email": "brand@brand.com",
+                    "companyEmail": "info@eshipjet.ai"
+                  },
+                  "action": "Ship Request / Label"
+                },
+                {
+                  "company": "eshipJet Software Inc.",
+                  "carrier": "ABF",
+                  "trackingNumber": "776651",
+                  "date": "12/30/2024",
+                  "totalAmount": 250.00,
+                  "baseAmount": 220.00,
+                  "additionalCharges": 30.00,
+                  "purchaseOrder": "PO-66729",
+                  "approvalStatus": "Approved",
+                  "deliveryNumber": "DN000004061",
+                  "shipDate": "12/30/2024",
+                  "deliveryDate": "12/30/2024",
+                  "shipmentType": "Business",
+                  "serviceLevel": "Standard",
+                  "customerNumber": "070973963",
+                  "brand": {
+                    "name": "Brand Fasteners",
+                    "address": "27 Deerfield Crescent",
+                    "state": "ON",
+                    "city": "Brampton",
+                    "postalCode": "L6T1K5",
+                    "country": "CA",
+                    "phone": "4088380699",
+                    "email": "brand@brand.com",
+                    "companyEmail": "info@eshipjet.ai"
+                  },
+                  "action": "Ship Request / Label"
+                },
+                {
+                  "company": "eshipJet Software Inc.",
+                  "carrier": "ABF",
+                  "trackingNumber": "558823",
+                  "date": "12/30/2024",
+                  "totalAmount": 178.58,
+                  "baseAmount": 160.20,
+                  "additionalCharges": 18.38,
+                  "purchaseOrder": "PO-66823",
+                  "approvalStatus": "Pending",
+                  "deliveryNumber": "DN000004061",
+                  "shipDate": "12/30/2024",
+                  "deliveryDate": "12/30/2024",
+                  "shipmentType": "Business",
+                  "serviceLevel": "Standard",
+                  "customerNumber": "070973963",
+                  "brand": {
+                    "name": "Brand Fasteners",
+                    "address": "27 Deerfield Crescent",
+                    "state": "ON",
+                    "city": "Brampton",
+                    "postalCode": "L6T1K5",
+                    "country": "CA",
+                    "phone": "4088380699",
+                    "email": "brand@brand.com",
+                    "companyEmail": "info@eshipjet.ai"
+                  },
+                  "action": "Ship Request / Label"
+                }
+              ]
+              
         ],
         "RecentShipmentSet":[],
         "shipNowDeliveryNum":"",

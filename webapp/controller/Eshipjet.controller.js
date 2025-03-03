@@ -1312,6 +1312,9 @@ sap.ui.define([
         onShipmentLabelDialogClosePress: function () {
             this.byId("idAfterShipmentLabelDialog").close();
         },
+        onShipmentLabelDialogClosePress1: function () {
+            this.byId("idAfterShipmentLabelDialog").close();
+        },
         
         onShippingDocumentsViewPress:function(oEvent){
             var currentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
@@ -1477,7 +1480,27 @@ sap.ui.define([
             var oHandlingUnitModel = oController.getView().getModel("HandlingUnitModel");           
             var sPath = "/A_OutbDeliveryHeader('"+ sDeveliveryNumber +"')/to_DeliveryDocumentPartner";
             if(sDeveliveryNumber && sDeveliveryNumber.length >= 8){
+                oController.oBusyDialog = new sap.m.BusyDialog({
+                    showCancelButton: false,
+                    customIcon: "https://dev.eshipjet.site/assets/images/copilotlogo1.png", // Directly use the URL
+                    customIconDensityAware: false,
+                    contentWidth: "150px",  // Reduce width
+                    contentHeight: "150px", // Reduce height
+                    customContent: [
+                        new sap.m.VBox({
+                            alignItems: "Center",
+                            justifyContent: "Center",
+                            items: [
+                                new sap.m.Text({
+                                    text: "Please wait..."
+                                })
+                            ]
+                        }).addStyleClass("sapUiSmallMargin")
+                    ]
+                });
+                
                 oController.oBusyDialog.open();
+                
 
                 var path = "/A_OutbDeliveryHeader('"+ sDeveliveryNumber +"')"
                 oDeliveryModel.read(path,{
@@ -10354,7 +10377,7 @@ sap.ui.define([
                 }
         
                 // API Call to Fetch Data
-                var sPath = "https://dev-api-v1.eshipjet.site/profile/info@eshipjet.ai";
+                var sPath = "https://dev-api-v1.eshipjet.site/LocationMaster/defaultdata ";
                 oController.oBusyDialog.open();
                 
                 $.ajax({
