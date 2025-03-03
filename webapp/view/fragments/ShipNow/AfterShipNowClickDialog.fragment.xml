@@ -27,7 +27,7 @@
         <footer>
             <OverflowToolbar class="p-sidebar-header sapMPopoverFooter1 shipmethod">
                 <ToolbarSpacer />
-                <Button type="Emphasized" text="Close" press=".onshipmentLabelDialogClosePress" />
+                <!-- <Button type="Emphasized" text="Close" press=".onshipmentLabelDialogClosePress" /> -->
             </OverflowToolbar>
         </footer>
     </Dialog>
