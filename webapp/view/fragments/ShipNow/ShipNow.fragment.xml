@@ -8,11 +8,12 @@
 						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn" />
 				</Toolbar>
 							<Toolbar class="sapUiTinyMarginBottom scan-ship-toolbar1 " height="10%">
+								<Input placeholder="Licence Plate" class="create-ship-req_input sapUiTinyMargin" width="15%" editable="true" enabled="true" ></Input>
                                 <Label text="SAP Delivery Number" class="sapUiSmallMarginTop sapUiMediumMarginEnd sapUiSmallMarginBegin"  wrapping="false" labelFor="SAPDelLabel"/>
                                 <!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch"   value="{eshipjetModel>/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
                                 <Input  id="idSapDeliveryNumber"  value="{eshipjetModel>/sapDeliveryNumber}" submit="onShipNowGetPress" class="create-ship-req_input sapUiTinyMarginTop sapUiSmallMarginEnd" width="15%" editable="true" enabled="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
                                 <Button text="Get" type="Ghost" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" press="onShipNowGetPress" width="5%"></Button>
-                                <Button text="Consolidation" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" type="Ghost" press="handleConsolidationPress" width="8%"></Button>
+                                <!-- <Button text="Consolidation" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" type="Ghost" press="handleConsolidationPress" width="8%"></Button> -->
                                 <Label text="Pickup Date"  class="sapUiSmallMarginTop sapUiSmallMarginEnd" labelFor="DP1" />
                                 <DatePicker class="create-ship-req_input sapUiTinyMarginTop sapUiSmallMarginEnd" id="DP1" width="15%"   valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
                                 <Label text="Ship Date" class="sapUiSmallMarginTop sapUiSmallMarginEnd" labelFor="DP2"  width="auto"/>
@@ -632,8 +633,8 @@
 									<!-- Pack Tab Starts here -->
 									<IconTabFilter text="Pack" key="Pack">
 
-										<Toolbar height="4rem" class="scan-ship-toolbar1" >
-											<HBox width="100%"  >
+										<Toolbar height="5rem" class="scan-ship-toolbar1" >
+											<HBox width="100%" >
 															<Label text="Scan Product" class="sapUiTinyMargin" />
 															<Input class=" create-ship-req_input" value="{}"  ></Input>
 
@@ -645,19 +646,27 @@
 																<core:Item key="{}" text="{}" />
 															</ComboBox>
 
-															<Label text="Dimensions" class="sapUiTinyMargin" />
+															<!-- <Label text="Dimensions" class="sapUiTinyMargin" />
 															<ComboBox items="{eshipjetModel>/packDimensions}" class=" create-ship-req_input" selectedKey="{eshipjetModel>/Packages/Dimension}">
 																<core:Item key="{eshipjetModel>dimension}" text="{eshipjetModel>dimension}" />
-															</ComboBox>
+															</ComboBox> -->
 															<!-- <Button icon="sap-icon://add" press="handleDimensionAddPress" class="sapUiSmallMarginEnd"></Button> -->
 
-															<Label text="Total Pkgs/Weight"  class="sapUiTinyMargin"/>
+															<Label text="Total Pkgs | Weight | DIMS"  class="sapUiTinyMargin"/>
 															<!-- <StepInput id="stepDownInput1" class=" create-ship-req_input" value="{eshipjetModel>/Packages/Weight1}" min="0" max="100" step="1"  width="6rem"  valueState="None" /> -->
-															<Input class=" create-ship-req_input" value="{eshipjetModel>/Packages/Weight1}"  ></Input>
-															<Text text="/" width="10%" class="sapUiTinyMarginTop" ></Text>
+															<Input class="create-ship-req_input" value="{eshipjetModel>/Packages/Weight1}" width="5%" ></Input>
+															<Text text="/" class="sapUiTinyMargin" ></Text>
 															<!-- <StepInput id="stepUpInput1" class=" create-ship-req_input"  value="{eshipjetModel>/Packages/Weight2}" min="0" max="100" step="1" width="6rem" valueState="None" /> -->
-															<Input class=" create-ship-req_input" value="{eshipjetModel>/Packages/Weight2}"  ></Input>
+															<Input class="create-ship-req_input" value="{eshipjetModel>/Packages/Weight2}" width="5%" ></Input>
+															<Button icon="sap-icon://dimension" ></Button>
+															<ComboBox items="" class=" create-ship-req_input" selectedKey="">
+																<core:Item key="" text="" />
+															</ComboBox>
+															<Text text="+" class="sapUiTinyMargin" ></Text>
 															<Button text="Auto Pack" class="scan-ship-toolbar1__button sapUiTinyMarginBegin" width="150px" press="handleAutoPackPress" type="Ghost" ></Button>
+															<VBox width="20rem" >
+																<Text text="" ></Text>
+															</VBox>
 														</HBox>
 										</Toolbar>
 
@@ -677,7 +686,7 @@
 					</ui:extension>
 				</ui:Table> -->
 
-										<Table id="idShipNowPackTable" inset="false" mode="MultiSelect" width="100%" class="sapUiTinyMarginTop" items="{eshipjetModel>/packAddProductTable}">
+										<!-- <Table id="idShipNowPackTable" inset="false" mode="MultiSelect" width="100%" class="sapUiTinyMarginTop" items="{eshipjetModel>/packAddProductTable}">
 											<infoToolbar>
 												<Toolbar >
 													<Title text="Product"></Title>
@@ -737,7 +746,22 @@
 													</cells>
 												</ColumnListItem>
 											</items>
-										</Table>
+										</Table> -->
+
+						<ui:Table
+							id="idShipNowPackTable"
+							rows="{eshipjetModel>/packAddProductTable}"
+							class="sapUiSmallMarginTop"
+							selectionMode="None"
+							visibleRowCount="4" >
+							<ui:extension>
+								<OverflowToolbar class="scan-ship-table__toolbar">
+									<ToolbarSpacer ></ToolbarSpacer>
+									<Button icon="sap-icon://action-settings" press="openShipNowPrdctColNamesPopover" ></Button>
+								</OverflowToolbar>
+							</ui:extension>
+						</ui:Table>
+
 										
 <!--			<ui:Table class="sapUiTinyMargin scan-ship-table" rowActionCount="0"	id="idShipNowHandlingUnitTable"
 					selectionMode="None"	paste="onPaste" ariaLabelledBy="title" visibleRowCount="5" >
@@ -764,12 +788,27 @@
 						</OverflowToolbar>
 					</ui:extension>
 				</ui:Table> -->
-								<Toolbar class="toolbarbottomborder scan-ship-toolbar1">															
-									<Button text="Add Product" id="idShipNowAddProduct" press="onPressAddProduct" class="scan-ship-toolbar1__button" width="145px" type="Ghost" ></Button>																
+								<Toolbar class="toolbarbottomborder scan-ship-toolbar1 sapUiTinyMarginTop">															
+									<!-- <Button text="Add Product" id="idShipNowAddProduct" press="onPressAddProduct" class="scan-ship-toolbar1__button" width="145px" type="Ghost" ></Button>																 -->
+									<Text text="No of Packages:" class="sapUiTinyMargin" ></Text>
+									<Text text="0" class="sapUiTinyMarginTop" ></Text>
+									<ToolbarSpacer />
+										<Text text="Master Tracking #" class="sapUiTinyMarginTop" ></Text>
+										<Input value="{}" class="create-ship-req_input" width="8rem"></Input>
+									<ToolbarSpacer />
+									<ToolbarSpacer />
+										<Button text="Pack" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="4%" press="onPackPress" ></Button>
+										<Button text="Pack All" class="scan-ship-toolbar1__button" type="Ghost" width="5%" press="onPackAllPress" ></Button>
+									<ToolbarSpacer />
+
+									<ToolbarSpacer />
+									<Text text="Tracking / Pro#" class="sapUiTinyMarginTop" ></Text>
+									<Input value="{}" class="create-ship-req_input" width="8rem"></Input>
+									<Button text="Get" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="4%" ></Button>
 								</Toolbar>
 
 										<Table id="idShipNowHandlingUnitTable" inset="false" mode="MultiSelect" class="sapUiSmallMarginTop" items="{eshipjetModel>/HandlingUnits}">
-											<headerToolbar >
+											<!-- <headerToolbar >
 												<OverflowToolbar class="sapUiSmallMarginBottom scan-ship-toolbar1">
 													<Label text="Scan Handling Unit" class="sapUiTinyMargin"></Label>
 													<Input value="{}" class="create-ship-req_input" width="8rem"></Input>
@@ -781,7 +820,7 @@
 													<ToolbarSpacer />												
 													<Button icon="sap-icon://action-settings" ></Button>
 												</OverflowToolbar>
-											</headerToolbar>
+											</headerToolbar> -->
 											<columns >
 												<Column >
 													<Text text="#" />

@@ -744,7 +744,7 @@
     "HandlingUnits": [],
 	"ShipNowProductsTableColumns": [
 			{
-				"name": "SerialNumber",
+				"name": "SerialNo",
 				"label": "#",
 				"visible": true
 			},
@@ -754,13 +754,13 @@
 				"visible": true
 			},
 			{
-				"name": "Material",
+				"name": "DeliveryDocumentItemText",
 				"label": "Description",
 				"visible": true
 			},
 			{
 				"name": "epcRfidNo",
-				"label": "EPCRFIDNo",
+				"label": "EPC-RFID No",
 				"visible": true
 			},
 			{
@@ -794,8 +794,8 @@
 				"visible": true
 			},
 			{
-				"name": "UnitWeight",
-				"label": "Unit Weight",
+				"name": "WeightIN",
+				"label": "Weight(IN)",
 				"visible": false
 			},
 			{
