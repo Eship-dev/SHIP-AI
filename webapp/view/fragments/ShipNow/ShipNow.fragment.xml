@@ -760,6 +760,12 @@
 									<Button icon="sap-icon://action-settings" press="openShipNowPrdctColNamesPopover" ></Button>
 								</OverflowToolbar>
 							</ui:extension>
+							<ui:footer>
+								<Toolbar height="3rem" >
+									<Button text="Add Product" id="idShipNowAddProduct" press="onPressAddProduct" class="scan-ship-toolbar1__button" width="145px" type="Ghost" ></Button>
+								</Toolbar>
+								
+							</ui:footer>
 						</ui:Table>
 
 										
@@ -789,7 +795,7 @@
 					</ui:extension>
 				</ui:Table> -->
 								<Toolbar class="toolbarbottomborder scan-ship-toolbar1 sapUiTinyMarginTop">															
-									<!-- <Button text="Add Product" id="idShipNowAddProduct" press="onPressAddProduct" class="scan-ship-toolbar1__button" width="145px" type="Ghost" ></Button>																 -->
+																									
 									<Text text="No of Packages:" class="sapUiTinyMargin" ></Text>
 									<Text text="0" class="sapUiTinyMarginTop" ></Text>
 									<ToolbarSpacer />
@@ -799,6 +805,8 @@
 									<ToolbarSpacer />
 										<Button text="Pack" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="4%" press="onPackPress" ></Button>
 										<Button text="Pack All" class="scan-ship-toolbar1__button" type="Ghost" width="5%" press="onPackAllPress" ></Button>
+										<Button text="DG Pack" class="scan-ship-toolbar1__button" type="Ghost" width="6%" ></Button>
+										<Button text="DG Pack All" class="scan-ship-toolbar1__button" type="Ghost" width="7%" ></Button>
 									<ToolbarSpacer />
 
 									<ToolbarSpacer />
