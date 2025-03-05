@@ -28,7 +28,7 @@ sap.ui.define([
     return Controller.extend("com.eshipjet.zeshipjet.controller.Eshipjet", {
         formatter: formatter,
         onInit: function () {
-            this.getMasterData();
+            // this.getMasterData();
             var oModel = new JSONModel(sap.ui.require.toUrl("com/eshipjet/zeshipjet/model/data.json"));
             this.getView().setModel(oModel);
             oController = this;
@@ -187,7 +187,7 @@ sap.ui.define([
                 var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
                 ShipNowDataModel.setProperty("/ShipFromAddress", "");
                 ShipNowDataModel.setProperty("/ShipToAddress", "");
-                oController._handleDisplayShipNowPackTable();
+                // oController._handleDisplayShipNowPackTable();
                 // this._handleDisplayShipNowProductsTable();
                 // this._handleDisplayShipNowHandlingUnitTable();
             } else if (sKey === "QuoteNow") {
@@ -424,6 +424,83 @@ sap.ui.define([
         // Shipper Copilot Changes end
 
         // Ship Now changes starts here
+
+        onShipNowHUColumnConfigPress:function(oEvent){
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pShipNowHUColumnConfigPopover) {
+                this._pShipNowHUColumnConfigPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.ShipNowHUColumnConfig",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pShipNowHUColumnConfigPopover.then(function (oPopover) {
+                oController.ShipNowHUColumnConfigVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        ShipNowHUColumnConfigVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/ShipNowHandlingUnitTableColumns");
+            var oShipNowHUColumnConfigTable = oView.byId("myShipNowHUColumnConfigSelectId");
+            var aTableItems = oShipNowHUColumnConfigTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.name === oItem.getBindingContext("eshipjetModel").getObject().name && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onShipNowHUColumnConfigNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myShipNowHUColumnConfigSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+        },
+
+        onShipNowHUColumnConfigSelectOkPress: function () {
+            var oView = this.getView();
+            var oShipNowHUColumnConfigTable = oView.byId("myShipNowHUColumnConfigSelectId");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var oShipNowHUColumnConfigTableItems = oShipNowHUColumnConfigTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/ShipNowHandlingUnitTableColumns");
+            oShipNowHUColumnConfigTableItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().name === oColObj.name) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            this._pShipNowHUColumnConfigPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onShipNowHUColumnConfigSelectClosePress: function () {
+            this._pShipNowHUColumnConfigPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
         _handleDisplayShipNowPackTable: function () {
             var that = this;
             const oView = oController.getView();
@@ -556,7 +633,7 @@ sap.ui.define([
                 })
             });
             eshipjetModel.updateBindings(true);
-            this._handleDisplayShipNowPackTable();
+            // this._handleDisplayShipNowPackTable();
             this._pShipNowPrdctPopover.then(function (oPopover) {
                 oPopover.close();
             });
@@ -1662,63 +1739,31 @@ sap.ui.define([
             );
         },
 
+        onOpenBusyDialog: function () {
+            if (!this._pBusyDialog) {
+                this._pBusyDialog = Fragment.load({
+                    name: "com.eshipjet.zeshipjet.view.fragments.BusyDialog",
+                    controller: this
+                }).then(function (oBusyDialog) {
+                    this.getView().addDependent(oBusyDialog);
+                    return oBusyDialog;
+                }.bind(this));
+            }
+        
+            this._pBusyDialog.then(function (oBusyDialog) {
+                oBusyDialog.open();
+                this.fetchData();
+            }.bind(this));
+        },
+
+
         shipNowData:function(sDeveliveryNumber ,sFromMenu, myResolve){
             var oDeliveryModel = oController.getView().getModel("OutBoundDeliveryModel");                    
             var oHandlingUnitModel = oController.getView().getModel("HandlingUnitModel");           
             var sPath = "/A_OutbDeliveryHeader('"+ sDeveliveryNumber +"')/to_DeliveryDocumentPartner";
             if(sDeveliveryNumber && sDeveliveryNumber.length >= 8){
-                oController.oBusyDialog = new sap.m.BusyDialog({
-                    showCancelButton: false,
-                    customIcon: "https://dev.eshipjet.site/assets/images/copilotlogo1.png",
-                    customIconDensityAware: false,
-                    customIconWidth: "80px",  // Adjust image size
-                    customIconHeight: "80px", // Adjust image size
-                    text: "Please wait...",  // Ensure text appears at the bottom center
-                    contentWidth: "200px",   // Adjust dialog width
-                    contentHeight: "200px",  // Adjust dialog height
-                });
-                
-                // Apply custom CSS to REMOVE rotation and enable smooth zoom effect
-                var oStyle = document.createElement("style");
-                oStyle.innerHTML = `
-                    /* Ensure the BusyDialog background remains white */
-                    .sapMDialog {
-                        background: white !important;
-                    }
-                
-                    /* Fix the icon (prevent rotation) and apply only zoom-in/zoom-out */
-                    .sapMBusyDialogIcon {
-                        animation: zoomEffect 1.5s infinite alternate ease-in-out !important; /* Smooth zoom effect */
-                        transform-origin: center !important;
-                        transform: none !important; /* Ensures no rotation */
-                    }
-                
-                    /* Position "Please wait..." text at the bottom center */
-                    .sapMBusyDialogLabel {
-                        position: absolute;
-                        bottom: 10px;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        font-size: 16px;
-                        font-weight: bold;
-                        color: black !important;
-                        text-align: center;
-                    }
-                
-                    /* Define zoom-in/zoom-out effect */
-                    @keyframes zoomEffect {
-                        0% {
-                            transform: scale(1);
-                        }
-                        100% {
-                            transform: scale(1.1);
-                        }
-                    }
-                `;
-                document.head.appendChild(oStyle);
-                
-                // Open BusyDialog
-                oController.oBusyDialog.open();
+                oController.onOpenBusyDialog();
+                // oController.oBusyDialog.open();
                 
                 
 
@@ -1729,9 +1774,15 @@ sap.ui.define([
                     },
                     success:function(oData){                        
                         oController.etag = oData.__metadata.etag;
+                        oController._pBusyDialog.then(function (oBusyDialog) {
+                            oBusyDialog.close();
+                        });
                     },
                     error: function(oErr){
-                        oController.oBusyDialog.close();
+                        oController._pBusyDialog.then(function (oBusyDialog) {
+                            oBusyDialog.close();
+                        });
+                        // oController.oBusyDialog.close();
                     }
                 });
 
@@ -3018,7 +3069,7 @@ sap.ui.define([
                 ShipNowDataModel.setProperty("/ShipFromAddress", "");
                 ShipNowDataModel.setProperty("/ShipToAddress", "");
                 eshipjetModel.setProperty("/BusinessPartners", []);
-                oController._handleDisplayShipNowPackTable();
+                // oController._handleDisplayShipNowPackTable();
 
             } else if (tileTitle === "Track Now") {
                 this._handleDisplayTrackNowTable();
@@ -12354,7 +12405,7 @@ sap.ui.define([
         eshipjetModel.setProperty("/HandlingUnitItems",[]);
         eshipjetModel.setProperty("/HandlingUnits",[]);
         eshipjetModel.setProperty("/shippingDocuments",[]);
-        oController._handleDisplayShipNowPackTable();
+        // oController._handleDisplayShipNowPackTable();
         if (sKey === "ShipNow") {
             eshipjetModel.setProperty("/toolPageHeader", false);
             eshipjetModel.setProperty("/allViewsFooter", true);

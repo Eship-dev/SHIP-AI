@@ -794,8 +794,13 @@
 				"visible": true
 			},
 			{
-				"name": "WeightIN",
-				"label": "Weight(IN)",
+				"name": "PackageMaterial",
+				"label": "Package Material",
+				"visible": false
+			},
+			{
+				"name": "UnitWeight",
+				"label": "Unit Weight",
 				"visible": false
 			},
 			{
@@ -809,13 +814,13 @@
 				"visible": false
 			},
 			{
-				"name": "CountryOfMFR",
-				"label": "Country of MFR",
+				"name": "CountryOfMfr",
+				"label": "Country Of Mfr",
 				"visible": false
 			},
 			{
-				"name": "UOM",
-				"label": "UOM",
+				"name": "Uom",
+				"label": "Uom",
 				"visible": false
 			},
 			{
@@ -829,14 +834,54 @@
 				"visible": false
 			},
 			{
-				"name": "ECCN",
-				"label": "ECCN",
+				"name": "Eccn",
+				"label": "Eccn",
 				"visible": false
 			},
 			{
-				"name": "DeleteIcon",
-				"label": "Delete Icon",
+				"name": "UnNo",
+				"label": "Un No",
+				"visible": false
+			},
+			{
+				"name": "MaxQtyPerInnerReceptacle",
+				"label": "Max Quantity Per Inner Receptacle",
+				"visible": false
+			},
+			{
+				"name": "HazardId",
+				"label": "Hazard Id",
+				"visible": false
+			},
+			{
+				"name": "ErgGuideNumber",
+				"label": "Erg Guide Number",
 				"visible": true
+			},
+			{
+				"name": "HazardClass",
+				"label": "Hazard Class",
+				"visible": false
+			},
+			{
+				"name": "LabelsRequired",
+				"label": "Labels Required",
+				"visible": false
+			},
+			{
+				"name": "AdditionalInfo",
+				"label": "Additional Info",
+				"visible": false
+			},
+			{
+				"name": "PackingGroup",
+				"label": "Packing Group",
+				"visible": false
+			},
+			{
+				"name": "PassengerCargoMaxNetQty",
+				"label": "Passenger / Cargo Max Net Qty",
+				"visible": false
 			}
 		],
         "pickAddProductTable":[],
@@ -848,48 +893,68 @@
 				"visible": true
 			},
             {
-				"name": "HandlingUnitExternalID",
-				"label": "H.U.",
+				"name": "SAPHUID",
+				"label": "SAP HU ID.",
 				"visible": true
 			},
 			{
-				"name": "erpHandlingUnit",
-				"label": "ERP Handling Unit",
+				"name": "HUType",
+				"label": "HU Type",
 				"visible": true
 			},
 			{
-				"name": "GrossWeight",
-				"label": "Weight",
+				"name": "HUID",
+				"label": "HU ID",
 				"visible": true
 			},
 			{
-				"name": "WeightUnit",
-				"label": "Weight Units",
+				"name": "WeightLB",
+				"label": "Weight (LB)",
 				"visible": true
 			},
 			{
-				"name": "UnitOfMeasureDimension",
-				"label": "Dimensions",
+				"name": "WDS",
+				"label": "WDS",
 				"visible": false
 			},
 			{
-				"name": "DimensionUnits",
-				"label": "Dimension Units",
+				"name": "DimensionsIN",
+				"label": "Dimensions (IN)",
 				"visible": true
 			},
 			{
-				"name": "Class",
-				"label": "Class",
+				"name": "PackageType",
+				"label": "Package Type",
 				"visible": false
+			},
+			{
+				"name": "BoxCount",
+				"label": "Box Count",
+				"visible": true
 			},
 			{
 				"name": "Tracking",
-				"label": "Tracking#",
+				"label": "Tracking #",
 				"visible": true
 			},
 			{
-				"name": "DeleteIcon",
-				"label": "Delete Icon",
+				"name": "ReturnTracking",
+				"label": "Return Tracking #",
+				"visible": true
+			},
+			{
+				"name": "ReturnShipment",
+				"label": "Return Shipment",
+				"visible": true
+			},
+			{
+				"name": "PackageMaterial",
+				"label": "Package Material",
+				"visible": true
+			},
+			{
+				"name": "PackageImage",
+				"label": "Package Image",
 				"visible": true
 			}
 		],

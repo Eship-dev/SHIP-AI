@@ -7,14 +7,14 @@
 				<Toolbar class="toolbarbottomborder">
 					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="Columns"></Title>
 					<ToolbarSpacer ></ToolbarSpacer>					
-					<Button icon="sap-icon://decline" press="onShipNowPrdColSelectClosePress" class="Decline_Btn" ></Button>
+					<Button icon="sap-icon://decline" press="onShipNowHUColumnConfigSelectClosePress" class="Decline_Btn" ></Button>
 				</Toolbar>
-				<SearchField placeholder="Search Columns"   liveChange="onShipNowPrdColNameSearch"></SearchField>
+				<SearchField placeholder="Search Columns"   liveChange="onShipNowHUColumnConfigNameSearch"></SearchField>
 			</VBox>
 		</customHeader>
 		<content>
-        <Table	id="myShipNowPrdColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/ShipNowProductsTableColumns'}" >
-		<ColumnListItem id="_IDGenShipNowPrdColumnListItem1" vAlign="Middle">
+        <Table	id="myShipNowHUColumnConfigSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/ShipNowHandlingUnitTableColumns'}" >
+		<ColumnListItem id="_IDGenShipNowHUColumnConfigListItem1" vAlign="Middle">
 			<cells>				
 				<Text text="{eshipjetModel>label}" />				
 			</cells>
@@ -31,7 +31,7 @@
         <footer>
             <Toolbar >
                 <ToolbarSpacer />
-                <Button text="Apply" press="onShipNowPrdColSelectOkPress" type="Emphasized"></Button>               
+                <Button text="Apply" press="onShipNowHUColumnConfigSelectOkPress" type="Emphasized"></Button>               
             </Toolbar>
         </footer>      
 	</Popover>   
