@@ -1669,24 +1669,57 @@ sap.ui.define([
             if(sDeveliveryNumber && sDeveliveryNumber.length >= 8){
                 oController.oBusyDialog = new sap.m.BusyDialog({
                     showCancelButton: false,
-                    customIcon: "https://dev.eshipjet.site/assets/images/copilotlogo1.png", // Directly use the URL
+                    customIcon: "https://dev.eshipjet.site/assets/images/copilotlogo1.png",
                     customIconDensityAware: false,
-                    contentWidth: "150px",  // Reduce width
-                    contentHeight: "150px", // Reduce height
-                    customContent: [
-                        new sap.m.VBox({
-                            alignItems: "Center",
-                            justifyContent: "Center",
-                            items: [
-                                new sap.m.Text({
-                                    text: "Please wait..."
-                                })
-                            ]
-                        }).addStyleClass("sapUiSmallMargin")
-                    ]
+                    customIconWidth: "80px",  // Adjust image size
+                    customIconHeight: "80px", // Adjust image size
+                    text: "Please wait...",  // Ensure text appears at the bottom center
+                    contentWidth: "200px",   // Adjust dialog width
+                    contentHeight: "200px",  // Adjust dialog height
                 });
                 
+                // Apply custom CSS to REMOVE rotation and enable smooth zoom effect
+                var oStyle = document.createElement("style");
+                oStyle.innerHTML = `
+                    /* Ensure the BusyDialog background remains white */
+                    .sapMDialog {
+                        background: white !important;
+                    }
+                
+                    /* Fix the icon (prevent rotation) and apply only zoom-in/zoom-out */
+                    .sapMBusyDialogIcon {
+                        animation: zoomEffect 1.5s infinite alternate ease-in-out !important; /* Smooth zoom effect */
+                        transform-origin: center !important;
+                        transform: none !important; /* Ensures no rotation */
+                    }
+                
+                    /* Position "Please wait..." text at the bottom center */
+                    .sapMBusyDialogLabel {
+                        position: absolute;
+                        bottom: 10px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        font-size: 16px;
+                        font-weight: bold;
+                        color: black !important;
+                        text-align: center;
+                    }
+                
+                    /* Define zoom-in/zoom-out effect */
+                    @keyframes zoomEffect {
+                        0% {
+                            transform: scale(1);
+                        }
+                        100% {
+                            transform: scale(1.1);
+                        }
+                    }
+                `;
+                document.head.appendChild(oStyle);
+                
+                // Open BusyDialog
                 oController.oBusyDialog.open();
+                
                 
 
                 var path = "/A_OutbDeliveryHeader('"+ sDeveliveryNumber +"')"
