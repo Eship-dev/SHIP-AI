@@ -319,7 +319,7 @@ sap.ui.define([
 
         // shipper Copilot changes start
         onSendPress: async function () {
-            oController.oBusyDialog.open();
+             oController.onOpenBusyDialog();
             const oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
             const sUserMessage = this.getView().byId("userInput").getValue();
             if (!sUserMessage) {
@@ -815,7 +815,7 @@ sap.ui.define([
         },
 
         onShipNowNewPress:function(){
-            oController.oBusyDialog.open(); 
+             oController.onOpenBusyDialog(); 
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             var shipFromObj = {
                 "ShipFromCONTACT": "",
@@ -855,11 +855,13 @@ sap.ui.define([
             eshipjetModel.setProperty("/routingGuidFooter", false);
             eshipjetModel.setProperty("/showDarkThemeSwitch", false);
             eshipjetModel.setProperty("/darkTheme", false);
-            oController.oBusyDialog.close(); 
+            oController._pBusyDialog.then(function (oBusyDialog) {
+                            oBusyDialog.close();
+                        });
         },
        
         onShipNowPress: function () {            
-            oController.oBusyDialog.open();            
+             oController.onOpenBusyDialog();            
             var oShipNowDataModel = this.getOwnerComponent().getModel("ShipNowDataModel");
             var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
             var carrier = eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey");
@@ -1186,7 +1188,7 @@ sap.ui.define([
         },
 
         createHandlingUnits:function(){
-            oController.oBusyDialog.open();
+             oController.onOpenBusyDialog();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var HandlingUnits = eshipjetModel.getData().HandlingUnits;
 
@@ -1532,7 +1534,7 @@ sap.ui.define([
         },
         
         onShipmentLabelDialogClosePress: function () {
-            oController.oBusyDialog.open(); 
+             oController.onOpenBusyDialog(); 
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             var shipFromObj = {
                 "ShipFromCONTACT": "",
@@ -1574,7 +1576,9 @@ sap.ui.define([
             eshipjetModel.setProperty("/darkTheme", false);
             
             this.byId("idAfterShipmentLabelDialog").close();
-            oController.oBusyDialog.close(); 
+            oController._pBusyDialog.then(function (oBusyDialog) {
+                            oBusyDialog.close();
+                        });
         },
         onShipmentLabelDialogClosePress1: function () {
             this.byId("idAfterShipmentLabelDialog").close();
@@ -1763,7 +1767,7 @@ sap.ui.define([
             var sPath = "/A_OutbDeliveryHeader('"+ sDeveliveryNumber +"')/to_DeliveryDocumentPartner";
             if(sDeveliveryNumber && sDeveliveryNumber.length >= 8){
                 oController.onOpenBusyDialog();
-                // oController.oBusyDialog.open();
+                //  oController.onOpenBusyDialog();
                 
                 
 
@@ -1950,7 +1954,7 @@ sap.ui.define([
         },
 
         onPackPress:function(){
-            oController.oBusyDialog.open();
+             oController.onOpenBusyDialog();
             var productTable = this.byId("idShipNowPackTable");
             var selectedItems = productTable.getSelectedItems();
             if(selectedItems.length === 0){
@@ -2097,7 +2101,7 @@ sap.ui.define([
         },
 
         onPackAllPress:function(){
-            oController.oBusyDialog.open();
+             oController.onOpenBusyDialog();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var packAddProductTable = eshipjetModel.getProperty("/packAddProductTable");
             var totalWeight = 0;
@@ -2797,7 +2801,7 @@ sap.ui.define([
         },
 
         onScanShipSearchPress: async function () {
-            oController.oBusyDialog.open();            
+             oController.onOpenBusyDialog();            
             const sUserMessage = eshipjetModel.getProperty("/sShipAndScan");
             if (!sUserMessage) {
                 MessageToast.show("Please Enter Request ID.");
@@ -4888,7 +4892,7 @@ sap.ui.define([
         },
 
         getHistoryShipments:function(resolve){
-            oController.oBusyDialog.open();
+             oController.onOpenBusyDialog();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var ManifestSrvModel = oController.getOwnerComponent().getModel("ManifestSrvModel");
             ManifestSrvModel.read("/EshipjetManfestSet",{
@@ -4940,7 +4944,7 @@ sap.ui.define([
         },
 
         getShipReqLabelHistoryShipments:function(){
-            oController.oBusyDialog.open();
+             oController.onOpenBusyDialog();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var ManifestSrvModel = oController.getOwnerComponent().getModel("ManifestSrvModel");
             ManifestSrvModel.read("/EshipjetManfestSet",{
@@ -10650,7 +10654,7 @@ sap.ui.define([
         
                 // API Call to Fetch Data
                 var sPath = "https://dev-api-v1.eshipjet.site/LocationMaster/defaultdata ";
-                oController.oBusyDialog.open();
+                 oController.onOpenBusyDialog();
                 
                 $.ajax({
                     url: sPath,
@@ -10780,7 +10784,7 @@ sap.ui.define([
         },
 
         onPressAddProduct: function (oEvent) {
-            oController.oBusyDialog.open();
+             oController.onOpenBusyDialog();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var sPath = oEvent.getSource().sId.split("--");
             var addPrctBtnId = sPath[sPath.length-1];
@@ -12304,7 +12308,7 @@ sap.ui.define([
         oEshipjetModel.updateBindings(true);
         // var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/Rateall "; 
         var sPath = "https://carrier-api-v1.eshipjet.site/rateall"
-        oController.oBusyDialog.open();       
+         oController.onOpenBusyDialog();       
         $.ajax({
             url: sPath, // Replace with your API endpoint
             method: "POST",

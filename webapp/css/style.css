@@ -1400,6 +1400,9 @@ sidebar-header {
   color: #2a7ade; /* Adjust color if needed */
   margin-right: 8px; /* Space between icon and text */
 }
+.add-space {
+  margin-right: 1rem !important; /* Adjust as needed */
+}
 
 
 .checkmark {

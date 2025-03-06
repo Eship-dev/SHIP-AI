@@ -10,7 +10,7 @@
 					<Text text=" Days" class="toolBarHeader"/>
 				</HBox>
 				<ToolbarSpacer />
-					<Text text="11/23/2024 - 11/29/2024" class="toolBarHeader1 sapUiTinyMarginBottom sapUiTinyMarginEnd " width="270px"></Text>
+					<Text text="11/23/2024 - 11/29/2024" class="toolBarHeader1 sapUiTinyMarginBottom sapUiTinyMarginTop sapUiTinyMarginEnd " width="270px"></Text>
 		</Toolbar>
 
 		<Toolbar height="15%" >

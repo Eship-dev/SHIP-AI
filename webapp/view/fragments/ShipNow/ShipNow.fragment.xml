@@ -639,7 +639,7 @@
 
 															<Label text="Quantity" class="sapUiTinyMargin" width="5%" />
 															<!-- <StepInput id="quantityInput1" value="{eshipjetModel>/Packages/Quantity}" class=" create-ship-req_input" min="0" max="100" step="1" width="8%" valueState="None" /> -->
-															<Input class=" create-ship-req_input" value="{eshipjetModel>/Packages/Quantity}" width="8%" ></Input>
+															<Input class=" create-ship-req_input add-space" value="{eshipjetModel>/Packages/Quantity}" width="8%" ></Input> 
 															<Label text="Package Type" class="sapUiTinyMargin" width="8%" />
 															<ComboBox items="{}" class=" create-ship-req_input" width="8%" >
 																<core:Item key="{}" text="{}" />
