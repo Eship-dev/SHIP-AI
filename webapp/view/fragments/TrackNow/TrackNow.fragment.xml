@@ -18,22 +18,22 @@
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="3" class="NumberSizeTitle1"></Text>
 					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Success" press="handleTrackNowFilterBtnPress" class="shipped-request-button request-button" id="idShippedBtn" icon="false" width="100%" ></Button>
+					<Button type="Success" press="onTrackNowShippedFilterPress" class="shipped-request-button request-button" id="idShippedBtn" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="3" class="NumberSizeTitle1"></Text>
 					<Text text="In-Transit" class="sapUiTinyMarginBottom"></Text>
-					<Button  press="handleTrackNowFilterBtnPress" class="cancelled-request-button request-button" id="idInTransitBtn" icon="false" width="100%"  ></Button>
+					<Button  press="onTrackNowInTransitFilterPress" class="cancelled-request-button request-button" id="idInTransitBtn" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="3" class="NumberSizeTitle1"></Text>
 					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Negative" press="handleTrackNowFilterBtnPress" id="idCancelledBtn" class="shippedProgress-request-button request-button" icon="false" width="100%" ></Button>
+					<Button type="Negative" press="onTrackNowCancelledFilterPress" id="idCancelledBtn" class="shippedProgress-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="3" class="NumberSizeTitle1"></Text>
 					<Text text="Delivered" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Success" press="handleTrackNowFilterBtnPress" id="idDeliveredBtn" class="inTransit-request-button request-button" icon="false" width="100%" ></Button>
+					<Button type="Success" press="onTrackNowDeliveredFilterPress" id="idDeliveredBtn" class="inTransit-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 			</HBox>
 		</Toolbar>

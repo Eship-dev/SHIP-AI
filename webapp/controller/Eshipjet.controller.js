@@ -863,6 +863,8 @@ sap.ui.define([
         onShipNowPress: function () {            
              oController.onOpenBusyDialog();            
             var oShipNowDataModel = this.getOwnerComponent().getModel("ShipNowDataModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/shipNowGetBtn", true);
             var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
             var carrier = eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey");
             if(carrier === "UPS"){
@@ -1728,6 +1730,7 @@ sap.ui.define([
         onShipNowGetPress: async function () {            
             var sDeveliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
             eshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey","");
+            
             eshipjetModel.setProperty("/ShipNowShipMethodSelectedKey","");
             eshipjetModel.setProperty("/accountNumber","");                 
             let myPromise = new Promise(function(myResolve, myReject) {
@@ -1936,6 +1939,7 @@ sap.ui.define([
                             oShipNowModel.setProperty("/ShipToAddress",aBusinessPartnerTable[1]);
                             eshipjetModel.setProperty("/BusinessPartners",aBusinessPartnerTable);
                             eshipjetModel.setProperty("/InternationalDetails/shipFromTaxNo",aBusinessPartnerTable[0].TaxJurisdiction);
+                            eshipjetModel.setProperty("/shipNowGetBtn", false);
                             oShipNowModel.updateBindings(true);
                             eshipjetModel.updateBindings(true);
                         }
@@ -4299,6 +4303,34 @@ sap.ui.define([
                 }
             });
             oTable.bindRows("/TrackNowRows");
+        },
+
+        onTrackNowShippedFilterPress:function(oEvent){
+            var oTable = oController.getView().byId("idTrackNowTable");
+            var oBinding = oTable.getBinding("rows");
+            var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Shipped");
+            oBinding.filter([oFilter]);
+        },
+
+        onTrackNowInTransitFilterPress:function(){
+            var oTable = oController.getView().byId("idTrackNowTable");
+            var oBinding = oTable.getBinding("rows");
+            var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "In-Transit");
+            oBinding.filter([oFilter]);
+        },
+
+        onTrackNowCancelledFilterPress:function(){
+            var oTable = oController.getView().byId("idTrackNowTable");
+            var oBinding = oTable.getBinding("rows");
+            var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Cancelled");
+            oBinding.filter([oFilter]);
+        },
+
+        onTrackNowDeliveredFilterPress:function(){
+            var oTable = oController.getView().byId("idTrackNowTable");
+            var oBinding = oTable.getBinding("rows");
+            var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Delivered");
+            oBinding.filter([oFilter]);
         },
 
         handleTrackNowFilterBtnPress: function (oEvent) {

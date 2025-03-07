@@ -7,7 +7,8 @@
     "routingGuidFooter": false,
     "toolPageDarkHeader": false,
     "toolPageHeader":true,
-
+    "shipNowGetBtn": true,
+    
     "shipNowGanderWhiteSelect": false,
     "shipNowABFSelect": false,
     "shipNowARTEXFineArtSrvSelect": false,

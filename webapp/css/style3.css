@@ -1920,3 +1920,50 @@ button, input, optgroup, select, textarea {
 .transparentDialog .sapMDialogScrollCont {
   background: transparent !important;
 }
+
+.whiteBackground{
+  background-color: white !important;
+  padding: 4px !important;
+}
+
+.numberData {
+  color: black;
+  padding: 5px 15px !important;
+  margin-left: 8px;
+  border-radius: 6px;
+  font-weight: bold;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.TransparentBackground{
+  background-color: transparent !important;
+}
+
+.customTabStyle .sapMITBSelected {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(200, 230, 200, 0.8), rgba(78, 167, 50, 0.7)) !important;
+  border-bottom: 2px solid #4ea732 !important;
+  color: black !important;
+}
+
+.customTabStyle .sapMITBSelected .sapMITBText {
+  color: black !important;
+}
+
+.customTabStyle .sapMITBFilter .sapMITBText {
+  color: black !important;
+}
+
+/* Change the bottom border of the selected tab */
+.customTabStyle .sapMITBSelected {
+  border-bottom: 2px solid #4ea732 !important; /* Green border */
+}
+
+/* Override the default blue border for selected tab indicator */
+.customTabStyle .sapMITBSelected .sapMITBContent {
+  border-bottom: 2px solid #4ea732 !important;
+}
+
+/* Optional: Override UI5's tab indicator color */
+.customTabStyle .sapMITBSelected .sapMITBSelectedContent {
+  border-bottom-color: #4ea732 !important;
+}
