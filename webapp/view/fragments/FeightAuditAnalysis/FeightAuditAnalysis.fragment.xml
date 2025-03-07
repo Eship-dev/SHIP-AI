@@ -30,7 +30,7 @@
 		</Toolbar>
     		<ui:Table
                 id="idFeightAuditAnalysisTable"
-				rows="{eshipjetModel>/FreightAuditRows}"
+				rows="{eshipjetModel>/FeightAuditAnalysisRows}"
 				class="sapUiTinyMargin"
 				selectionMode="None"
 				visibleRowCount="12">

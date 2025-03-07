@@ -4677,24 +4677,26 @@ sap.ui.define([
 
         // Batch Ship Changes Starts
 
-        _handleDisplayBatchShipTable: function () {
+        // Track Now changes start
+
+        _handleDisplayFeightAuditAnalysisTable: function () {
             var that = this;
             const oView = oController.getView();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
-            var BatchShipTableData = eshipjetModel.getData().BatchShipTableData;
-            var BatchShipTableDataModel = new JSONModel(BatchShipTableData);
-            this.getView().setModel(BatchShipTableDataModel, "BatchShipTableDataModel");
-            const oTable = oView.byId("idBatchShipTable");
-            oTable.setModel(BatchShipTableDataModel);
-            var BatchShipTableDataModel = this.getView().getModel("BatchShipTableDataModel");
-            var BatchShipColumns = BatchShipTableDataModel.getData().BatchShipColumns;
+            var FeightAuditAnalysisTableData = eshipjetModel.getData().FeightAuditAnalysisTableData;
+            var FeightAuditAnalysisTableDataModel = new JSONModel(FeightAuditAnalysisTableData);
+            this.getView().setModel(FeightAuditAnalysisTableDataModel, "FeightAuditAnalysisTableDataModel");
+            const oTable = oView.byId("idFeightAuditAnalysisTable");
+            oTable.setModel(FeightAuditAnalysisTableDataModel);
+            var FeightAuditAnalysisTableDataModel = this.getView().getModel("FeightAuditAnalysisTableDataModel");
+            var FeightAuditAnalysisColumns = FeightAuditAnalysisTableDataModel.getData().FeightAuditAnalysisColumns;
             var count = 0;
-            for (var i = 0; i < BatchShipColumns.length; i++) {
-                if (BatchShipColumns[i].visible === true) {
+            for (var i = 0; i < FeightAuditAnalysisColumns.length; i++) {
+                if (FeightAuditAnalysisColumns[i].visible === true) {
                     count += 1
                 }
             }
-            oTable.bindColumns("/BatchShipColumns", function (sId, oContext) {
+            oTable.bindColumns("/FeightAuditAnalysisColumns", function (sId, oContext) {
                 columnName = oContext.getObject().name;
                 label = oContext.getObject().label;
                 var minWidth = "100%";
@@ -4703,7 +4705,7 @@ sap.ui.define([
                 }
                 if (columnName === "actions") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
-                    var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                    var Btn1 = new sap.m.Button({ text: "Edit", type: "Transparent" });
                     var Btn2 = new sap.m.Button({
                         icon: "sap-icon://megamenu", type: "Transparent",
                         press: function (oEvent) {
@@ -4722,7 +4724,7 @@ sap.ui.define([
                 } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
                     var DateTxt = new sap.m.Text({
                         text: {
-                            path: 'BatchShipTableDataModel>ShipDate',
+                            path: 'FeightAuditAnalysisTableDataModel>ShipDate',
                             formatter: formatter.formatDate  // Attach the formatter dynamically
                         },
                         wrapping: false
@@ -4744,45 +4746,92 @@ sap.ui.define([
                     });
                 }
             });
-            oTable.bindRows("/BatchShipRows");
+            oTable.bindRows("/FeightAuditAnalysisRows");
         },
 
-        openBatchShipColNamesPopover: function (oEvent) {
+        handleFeightAuditAnalysisFilterBtnPress: function (oEvent) {
+            var oButton = oEvent.getSource();
+            var sButtonId = oButton.getId(); // Get the button's ID
+        
+            // Trim namespace prefix if exists (e.g., "__component0---idShippedBtn")
+            sButtonId = sButtonId.split("---").pop();  
+        
+            var sStatus = "";  
+        
+            switch (sButtonId) {  
+                case "idShippedBtn":  
+                    sStatus = "Shipped";  
+                    break;  
+                case "idInTransitBtn":  
+                    sStatus = "In-Transit";  
+                    break;  
+                case "idCancelledBtn":  
+                    sStatus = "Cancelled";  
+                    break;  
+                case "idDeliveredBtn":  
+                    sStatus = "Delivered";  
+                    break;  
+                default:  
+                    console.error(" Unknown Button Clicked:", sButtonId);  
+                    return;  
+            }  
+        
+            // Get the model
+            var oModel = this.getView().getModel("FeightAuditAnalysisTableDataModel");
+        
+            // Store the original dataset if not already saved
+            if (!this._aOriginalData) {
+                this._aOriginalData = JSON.parse(JSON.stringify(oModel.getProperty("/FeightAuditAnalysisRows")));  
+            }
+        
+            // Filter the data
+            var aFilteredData = this._aOriginalData.filter(function (oItem) {
+                return oItem.Status === sStatus;
+            });
+        
+            console.log(" Filtered Data:", aFilteredData); // Debugging Output
+        
+            // Update the model with filtered data
+            oModel.setProperty("/FeightAuditAnalysisRows", aFilteredData);
+        },
+        
+
+        openFeightAuditAnalysisColNamesPopover: function (oEvent) {
             var oButton = oEvent.getSource(),
                 oView = this.getView();
-            if (!this._pBatchShipPopover) {
-                this._pBatchShipPopover = Fragment.load({
+            if (!this._pFeightAuditAnalysisPopover) {
+                this._pFeightAuditAnalysisPopover = Fragment.load({
                     id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.BatchShip.BatchShipTableColumns",
+                    name: "com.eshipjet.zeshipjet.view.fragments.FeightAuditAnalysis.FeightAuditAnalysisTableColumns",
                     controller: this
                 }).then(function (oPopover) {
                     oView.addDependent(oPopover);
                     return oPopover;
                 });
             }
-            this._pBatchShipPopover.then(function (oPopover) {
-                oController.BatchShipColumnsVisiblity();
+            this._pFeightAuditAnalysisPopover.then(function (oPopover) {
+                oController.FeightAuditAnalysisColumnsVisiblity();
                 oPopover.openBy(oButton);
             });
         },
 
-        BatchShipColumnsVisiblity: function () {
+        FeightAuditAnalysisColumnsVisiblity: function () {
             var oView = oController.getView();
-            var oBatchShipTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var aColumns = oBatchShipTableModel.getProperty("/BatchShipTableData/BatchShipColumns");
-            var oBatchShipTable = oView.byId("myBatchShipColumnSelectId");
-            var aTableItems = oBatchShipTable.getItems();
+            var oFeightAuditAnalysisTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var aColumns = oFeightAuditAnalysisTableModel.getProperty("/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns");
+            var oFeightAuditAnalysisTable = oView.byId("myFeightAuditAnalysisColumnSelectId");
+            var aTableItems = oFeightAuditAnalysisTable.getItems();
 
             aColumns.map(function (oColObj) {
                 aTableItems.map(function (oItem) {
-                    if (oColObj.name === oItem.getBindingContext("BatchShipTableDataModel").getObject().name && oColObj.visible) {
+                    if (oColObj.name === oItem.getBindingContext("FeightAuditAnalysisTableDataModel").getObject().name && oColObj.visible) {
                         oItem.setSelected(true);
                     }
                 });
             });
         },
 
-        onBatchShipColNameSearch: function (oEvent) {
+        onFeightAuditAnalysisColNameSearch: function (oEvent) {
             var aFilters = [];
             var sQuery = oEvent.getSource().getValue();
             if (sQuery && sQuery.length > 0) {
@@ -4790,21 +4839,21 @@ sap.ui.define([
                 aFilters.push(filter);
             }
             // update list binding
-            var oList = oController.getView().byId("myBatchShipColumnSelectId");
+            var oList = oController.getView().byId("myFeightAuditAnalysisColumnSelectId");
             var oBinding = oList.getBinding("items");
             oBinding.filter(aFilters, "Application");
 
         },
 
-        onBatchShipColSelectOkPress: function () {
+        onoFeightAuditAnalysisColSelectOkPress: function () {
             var oView = this.getView()
-            var oBatchShipTable = oView.byId("myBatchShipColumnSelectId");
-            var BatchShipTableDataModel = oView.getModel("BatchShipTableDataModel");
-            var oBatchShipTblItems = oBatchShipTable.getItems();
-            var aColumnsData = BatchShipTableDataModel.getProperty("/BatchShipColumns");
-            oBatchShipTblItems.map(function (oTableItems) {
+            var oFeightAuditAnalysisTable = oView.byId("myFeightAuditAnalysisColumnSelectId");
+            var FeightAuditAnalysisTableDataModel = oView.getModel("FeightAuditAnalysisTableDataModel");
+            var oFeightAuditAnalysisTblItems = oFeightAuditAnalysisTable.getItems();
+            var aColumnsData = FeightAuditAnalysisTableDataModel.getProperty("/FeightAuditAnalysisColumns");
+            oFeightAuditAnalysisTblItems.map(function (oTableItems) {
                 aColumnsData.map(function (oColObj) {
-                    if (oTableItems.getBindingContext("BatchShipTableDataModel").getObject().name === oColObj.name) {
+                    if (oTableItems.getBindingContext("FeightAuditAnalysisTableDataModel").getObject().name === oColObj.name) {
                         if (oTableItems.getSelected()) {
                             oColObj.visible = true;
                         } else {
@@ -4813,17 +4862,20 @@ sap.ui.define([
                     }
                 })
             });
-            BatchShipTableDataModel.updateBindings(true);
-            this._handleDisplayBatchShipTable();
-            this._pBatchShipPopover.then(function (oPopover) {
+            FeightAuditAnalysisTableDataModel.updateBindings(true);
+            this._handleDisplayFeightAuditAnalysisTable();
+            this._pFeightAuditAnalysisPopover.then(function (oPopover) {
                 oPopover.close();
             });
         },
-        onBatchShipColSelectClosePress: function () {
-            this._pBatchShipPopover.then(function (oPopover) {
+        onFeightAuditAnalysisColSelectClosePress: function () {
+            this._pFeightAuditAnalysisPopover.then(function (oPopover) {
                 oPopover.close();
             });
         },
+
+        
+
 
         onBatchShipFilterPress: function (oEvent) {
             var oButton = oEvent.getSource(),
@@ -4853,186 +4905,6 @@ sap.ui.define([
             this.byId("idBatchShipFilterPopover").close();
         },
 
-    // FeightAuditAnalysis Changes Starts
-
-      _handleDisplayFeightAuditAnalysisTable: function () {
-        var that = this;
-        const oView = oController.getView();
-        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
-        var FeightAuditAnalysisTableData = eshipjetModel.getData().FeightAuditAnalysisTableData;
-        var FeightAuditAnalysisTableDataModel = new JSONModel(FeightAuditAnalysisTableData);
-        this.getView().setModel(FeightAuditAnalysisTableDataModel, "FeightAuditAnalysisTableDataModel");
-        const oTable = oView.byId("idFeightAuditAnalysisTable");
-        oTable.setModel(FeightAuditAnalysisTableDataModel);
-        var FeightAuditAnalysisTableDataModel = this.getView().getModel("FeightAuditAnalysisTableDataModel");
-        var FeightAuditAnalysisColumns = FeightAuditAnalysisTableDataModel.getData().FeightAuditAnalysisColumns;
-        var count = 0;
-        for (var i = 0; i < FeightAuditAnalysisColumns.length; i++) {
-            if (FeightAuditAnalysisColumns[i].visible === true) {
-                count += 1
-            }
-        }
-        oTable.bindColumns("/FeightAuditAnalysisColumns", function (sId, oContext) {
-            columnName = oContext.getObject().name;
-            label = oContext.getObject().label;
-            var minWidth = "100%";
-            if (count >= 14) {
-                var minWidth = "130px";
-            }
-            if (columnName === "actions") {
-                var oHBox = new sap.m.HBox({}); // Create Text instance 
-                var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
-                var Btn2 = new sap.m.Button({
-                    icon: "sap-icon://megamenu", type: "Transparent",
-                    press: function (oEvent) {
-                        that.handleDownArrowPress(oEvent);
-                    }
-                });
-                oHBox.addItem(Btn1);
-                oHBox.addItem(Btn2);
-                return new sap.ui.table.Column({
-                    label: oResourceBundle.getText(columnName),
-                    template: oHBox,
-                    visible: oContext.getObject().visible,
-                    width: minWidth,
-                    sortProperty: columnName
-                });
-            } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
-                var DateTxt = new sap.m.Text({
-                    text: {
-                        path: 'FeightAuditAnalysisTableDataModel>ShipDate',
-                        formatter: formatter.formatDate  // Attach the formatter dynamically
-                    },
-                    wrapping: false
-                });
-                return new sap.ui.table.Column({
-                    label: oResourceBundle.getText(columnName),
-                    template: columnName,
-                    visible: oContext.getObject().visible,
-                    width: minWidth,
-                    sortProperty: columnName
-                });
-            } else {
-                return new sap.ui.table.Column({
-                    label: oResourceBundle.getText(columnName),
-                    template: columnName,
-                    visible: oContext.getObject().visible,
-                    width: minWidth,
-                    sortProperty: columnName
-                });
-            }
-        });
-        oTable.bindRows("/FeightAuditAnalysisRows");
-    },
-
-    openFeightAuditAnalysisColNamesPopover: function (oEvent) {
-        var oButton = oEvent.getSource(),
-            oView = this.getView();
-        if (!this._pFeightAuditAnalysisPopover) {
-            this._pFeightAuditAnalysisPopover = Fragment.load({
-                id: oView.getId(),
-                name: "com.eshipjet.zeshipjet.view.fragments.FeightAuditAnalysis.FeightAuditAnalysisTableColumns",
-                controller: this
-            }).then(function (oPopover) {
-                oView.addDependent(oPopover);
-                return oPopover;
-            });
-        }
-        this._pFeightAuditAnalysisPopover.then(function (oPopover) {
-            oController.FeightAuditAnalysisColumnsVisiblity();
-            oPopover.openBy(oButton);
-        });
-    },
-
-    FeightAuditAnalysisColumnsVisiblity: function () {
-        var oView = oController.getView();
-        var oFeightAuditAnalysisTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
-        var aColumns = oFeightAuditAnalysisTableModel.getProperty("/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns");
-        var oFeightAuditAnalysisTable = oView.byId("myFeightAuditAnalysisColumnSelectId");
-        var aTableItems = oFeightAuditAnalysisTable.getItems();
-
-        aColumns.map(function (oColObj) {
-            aTableItems.map(function (oItem) {
-                if (oColObj.name === oItem.getBindingContext("FeightAuditAnalysisTableDataModel").getObject().name && oColObj.visible) {
-                    oItem.setSelected(true);
-                }
-            });
-        });
-    },
-
-    onFeightAuditAnalysisColNameSearch: function (oEvent) {
-        var aFilters = [];
-        var sQuery = oEvent.getSource().getValue();
-        if (sQuery && sQuery.length > 0) {
-            var filter = new Filter("label", FilterOperator.Contains, sQuery);
-            aFilters.push(filter);
-        }
-        // update list binding
-        var oList = oController.getView().byId("myFeightAuditAnalysisColumnSelectId");
-        var oBinding = oList.getBinding("items");
-        oBinding.filter(aFilters, "Application");
-
-    },
-
-    onFeightAuditAnalysisColSelectOkPress: function () {
-        var oView = this.getView()
-        var oFeightAuditAnalysisTable = oView.byId("myFeightAuditAnalysisColumnSelectId");
-        var FeightAuditAnalysisTableDataModel = oView.getModel("FeightAuditAnalysisTableDataModel");
-        var oFeightAuditAnalysisTblItems = oFeightAuditAnalysisTable.getItems();
-        var aColumnsData = FeightAuditAnalysisTableDataModel.getProperty("/FeightAuditAnalysisColumns");
-        oFeightAuditAnalysisTblItems.map(function (oTableItems) {
-            aColumnsData.map(function (oColObj) {
-                if (oTableItems.getBindingContext("FeightAuditAnalysisTableDataModel").getObject().name === oColObj.name) {
-                    if (oTableItems.getSelected()) {
-                        oColObj.visible = true;
-                    } else {
-                        oColObj.visible = false;
-                    }
-                }
-            })
-        });
-        FeightAuditAnalysisTableDataModel.updateBindings(true);
-        this._handleDisplayFeightAuditAnalysisTable();
-        this._pFeightAuditAnalysisPopover.then(function (oPopover) {
-            oPopover.close();
-        });
-    },
-    onFeightAuditAnalysisColSelectClosePress: function () {
-        this._pFeightAuditAnalysisPopover.then(function (oPopover) {
-            oPopover.close();
-        });
-    },
-       
-
-        onFeightAuditAnalysisFilterPress: function (oEvent) {
-            var oButton = oEvent.getSource(),
-                oView = this.getView();
-            if (!this._FeightAuditAnalysisPopover) {
-                this._FeightAuditAnalysisPopover = Fragment.load({
-                    id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.FeightAuditAnalysis.FeightAuditAnalysisFilterPopover",
-                    controller: this
-                }).then(function (FeightAuditAnalysisPopover) {
-                    oView.addDependent(FeightAuditAnalysisPopover);
-                    // FeightAuditAnalysisPopover.bindElement("/ProductCollection/0");
-                    return FeightAuditAnalysisPopover;
-                });
-            }
-            this._FeightAuditAnalysisPopover.then(function (FeightAuditAnalysisPopover) {
-                FeightAuditAnalysisPopover.openBy(oButton);
-            });
-        },
-        onFeightAuditAnalysisFilterPopoverClosePress: function () {
-            this.byId("idFeightAuditAnalysisFilterPopover").close();
-        },
-        onFeightAuditAnalysisFilterPopoverResetPress: function () {
-            this.byId("idFeightAuditAnalysisFilterPopover").close();
-        },
-        onFeightAuditAnalysisFilterPopoverApplyPress: function () {
-            this.byId("idFeightAuditAnalysisFilterPopover").close();
-        },
-
- // FeightAuditAnalysis Changes ends
 
 
         onOpenRecentShipmentPopover: function (oEvent) {
