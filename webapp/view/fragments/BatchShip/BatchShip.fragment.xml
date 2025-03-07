@@ -11,28 +11,28 @@
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="10" class="NumberSizeTitle1"></Text>
 					<Text text="Total" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Emphasized" press="handleTrackNowFilterBtnPress" class="totalProgress-request-button request-button" id="idBatchShipTotalBtn" icon="false" width="100%"  ></Button>
+					<Button type="Emphasized" press="onBatchShipDeliveredFilterPress" class="totalProgress-request-button request-button" id="idBatchShipTotalBtn" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Open" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Critical" press="handleTrackNowFilterBtnPress" class="open-request-button request-button" id="idBatchShipOpenBtn" icon="false" width="100%" ></Button>
+					<Button type="Critical" press="onBatchShipInTransitFilterPress" class="open-request-button request-button" id="idBatchShipOpenBtn" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="10" class="NumberSizeTitle1"></Text>
 					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Success" press="handleTrackNowFilterBtnPress" id="idBatchShipShippedBtn" class="shipped-request-button request-button" icon="false" width="100%" ></Button>
+					<Button type="Success" press="handleBatchShipFilterBtnPress" id="idBatchShipShippedBtn" class="shipped-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Negative" press="handleTrackNowFilterBtnPress" id="idBatchShipCancelledBtn" class="cancelled-request-button request-button" icon="false" width="100%" ></Button>
+					<Button type="Negative" press="handleBatchShipFilterBtnPress" id="idBatchShipCancelledBtn" class="cancelled-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 			</HBox>
 		</Toolbar>
     		<ui:Table
                 id="idBatchShipTable"
-				rows="{eshipjetModel>/TrackNowItems}"
+				rows="{eshipjetModel>/BatchShipItems}"
 				class="sapUiSmallMarginTop"
 				selectionMode="None"
 				visibleRowCount="12" >

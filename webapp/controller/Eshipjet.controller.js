@@ -4332,53 +4332,8 @@ sap.ui.define([
             var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Delivered");
             oBinding.filter([oFilter]);
         },
-
-        handleTrackNowFilterBtnPress: function (oEvent) {
-            var oButton = oEvent.getSource();
-            var sButtonId = oButton.getId(); // Get the button's ID
-        
-            // Trim namespace prefix if exists (e.g., "__component0---idShippedBtn")
-            sButtonId = sButtonId.split("---").pop();  
-        
-            var sStatus = "";  
-        
-            switch (sButtonId) {  
-                case "idShippedBtn":  
-                    sStatus = "Shipped";  
-                    break;  
-                case "idInTransitBtn":  
-                    sStatus = "In-Transit";  
-                    break;  
-                case "idCancelledBtn":  
-                    sStatus = "Cancelled";  
-                    break;  
-                case "idDeliveredBtn":  
-                    sStatus = "Delivered";  
-                    break;  
-                default:  
-                    console.error(" Unknown Button Clicked:", sButtonId);  
-                    return;  
-            }  
-        
-            // Get the model
-            var oModel = this.getView().getModel("TrackNowTableDataModel");
-        
-            // Store the original dataset if not already saved
-            if (!this._aOriginalData) {
-                this._aOriginalData = JSON.parse(JSON.stringify(oModel.getProperty("/TrackNowRows")));  
-            }
-        
-            // Filter the data
-            var aFilteredData = this._aOriginalData.filter(function (oItem) {
-                return oItem.Status === sStatus;
-            });
-        
-            console.log(" Filtered Data:", aFilteredData); // Debugging Output
-        
-            // Update the model with filtered data
-            oModel.setProperty("/TrackNowRows", aFilteredData);
-        },
-        
+    
+       
 
         openTrackNowColNamesPopover: function (oEvent) {
             var oButton = oEvent.getSource(),
@@ -4907,7 +4862,153 @@ sap.ui.define([
         },
 
         
+        _handleDisplayBatchShipTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var BatchShipTableData = eshipjetModel.getData().BatchShipTableData;
+            var BatchShipTableDataModel = new JSONModel(BatchShipTableData);
+            this.getView().setModel(BatchShipTableDataModel, "BatchShipTableDataModel");
+            const oTable = oView.byId("idBatchShipTable");
+            oTable.setModel(BatchShipTableDataModel);
+            var BatchShipTableDataModel = this.getView().getModel("BatchShipTableDataModel");
+            var BatchShipColumns = BatchShipTableDataModel.getData().BatchShipColumns;
+            var count = 0;
+            for (var i = 0; i < BatchShipColumns.length; i++) {
+                if (BatchShipColumns[i].visible === true) {
+                    count += 1
+                }
+            }
+            oTable.bindColumns("/BatchShipColumns", function (sId, oContext) {
+                columnName = oContext.getObject().name;
+                label = oContext.getObject().label;
+                var minWidth = "100%";
+                if (count >= 14) {
+                    var minWidth = "130px";
+                }
+                if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
+                    var DateTxt = new sap.m.Text({
+                        text: {
+                            path: 'BatchShipTableDataModel>ShipDate',
+                            formatter: formatter.formatDate  // Attach the formatter dynamically
+                        },
+                        wrapping: false
+                    });
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/BatchShipRows");
+        },
 
+        openBatchShipColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pBatchShipPopover) {
+                this._pBatchShipPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.BatchShip.BatchShipTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pBatchShipPopover.then(function (oPopover) {
+                oController.BatchShipColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        BatchShipColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var oBatchShipTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var aColumns = oBatchShipTableModel.getProperty("/BatchShipTableData/BatchShipColumns");
+            var oBatchShipTable = oView.byId("myBatchShipColumnSelectId");
+            var aTableItems = oBatchShipTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.name === oItem.getBindingContext("BatchShipTableDataModel").getObject().name && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onBatchShipColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myBatchShipColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onBatchShipColSelectOkPress: function () {
+            var oView = this.getView()
+            var oBatchShipTable = oView.byId("myBatchShipColumnSelectId");
+            var BatchShipTableDataModel = oView.getModel("BatchShipTableDataModel");
+            var oBatchShipTblItems = oBatchShipTable.getItems();
+            var aColumnsData = BatchShipTableDataModel.getProperty("/BatchShipColumns");
+            oBatchShipTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("BatchShipTableDataModel").getObject().name === oColObj.name) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            BatchShipTableDataModel.updateBindings(true);
+            this._handleDisplayBatchShipTable();
+            this._pBatchShipPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onBatchShipColSelectClosePress: function () {
+            this._pBatchShipPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
 
         onBatchShipFilterPress: function (oEvent) {
             var oButton = oEvent.getSource(),
@@ -4937,7 +5038,62 @@ sap.ui.define([
             this.byId("idBatchShipFilterPopover").close();
         },
 
+        onBatchShipFilterPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._batchShipPopover) {
+                this._batchShipPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.BatchShip.BatchShipFilterPopover",
+                    controller: this
+                }).then(function (batchShipPopover) {
+                    oView.addDependent(batchShipPopover);
+                    // batchShipPopover.bindElement("/ProductCollection/0");
+                    return batchShipPopover;
+                });
+            }
+            this._batchShipPopover.then(function (batchShipPopover) {
+                batchShipPopover.openBy(oButton);
+            });
+        },
+        onBatchShipFilterPopoverClosePress: function () {
+            this.byId("idBatchShipFilterPopover").close();
+        },
+        onBatchShipFilterPopoverResetPress: function () {
+            this.byId("idBatchShipFilterPopover").close();
+        },
+        onBatchShipFilterPopoverApplyPress: function () {
+            this.byId("idBatchShipFilterPopover").close();
+        },
 
+        onBatchShipShippedFilterPress:function(oEvent){
+            var oTable = oController.getView().byId("idBatchShipTable");
+            var oBinding = oTable.getBinding("rows");
+            var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Shipped");
+            oBinding.filter([oFilter]);
+        },
+
+        onBatchShipInTransitFilterPress:function(){
+            var oTable = oController.getView().byId("idBatchShipTable");
+            var oBinding = oTable.getBinding("rows");
+            var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "In-Transit");
+            oBinding.filter([oFilter]);
+        },
+
+        onBatchShipCancelledFilterPress:function(){
+            var oTable = oController.getView().byId("idBatchShipTable");
+            var oBinding = oTable.getBinding("rows");
+            var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Cancelled");
+            oBinding.filter([oFilter]);
+        },
+
+        onBatchShipDeliveredFilterPress:function(){
+            var oTable = oController.getView().byId("idBatchShipTable");
+            var oBinding = oTable.getBinding("rows");
+            var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Delivered");
+            oBinding.filter([oFilter]);
+        },
+    
 
         onOpenRecentShipmentPopover: function (oEvent) {
             var oButton = oEvent.getSource(),
