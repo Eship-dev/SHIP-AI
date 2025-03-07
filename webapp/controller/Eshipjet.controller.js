@@ -42,6 +42,21 @@ sap.ui.define([
             this.getView().setModel(oShipperCopilotModel, "ShipperCopilotModel");
             oResourceBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
             this._setToggleButtonTooltip(!Device.system.desktop);
+
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var aHandlingUnits = eshipjetModel.getProperty("/HandlingUnits") || [];
+            var aPackAddProductTable = eshipjetModel.getProperty("/packAddProductTable") || [];
+            // If HandlingUnits has less than 6 items, add empty rows
+            while (aPackAddProductTable.length < 4) {
+                aPackAddProductTable.push({ SerialNo: "" });
+            }
+
+            while (aHandlingUnits.length < 6) {
+                aHandlingUnits.push({ SerialNumber: "" });
+            }
+            
+            eshipjetModel.setProperty("/packAddProductTable", aPackAddProductTable);
+            eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
             
             var ShipNowDataModel = {
                 "sapShipmentID": "",

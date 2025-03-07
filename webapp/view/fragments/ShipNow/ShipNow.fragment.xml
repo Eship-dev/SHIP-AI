@@ -11,7 +11,7 @@
 									<Input placeholder="Licence Plate" class="create-ship-req_input sapUiTinyMargin sapUiLargeMarginEnd" width="13%" editable="true" enabled="true" ></Input>
 									<Label text="SAP Delivery Number" class="sapUiSmallMarginTop sapUiMediumMarginEnd sapUiSmallMarginBegin" width="10%" wrapping="false" labelFor="SAPDelLabel"/>
 									<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch"   value="{eshipjetModel>/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
-									<Input  id="idSapDeliveryNumber"  value="{eshipjetModel>/sapDeliveryNumber}" submit="onShipNowGetPress" class="create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd" width="13%" editable="true" enabled="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
+									<Input  id="idSapDeliveryNumber"  value="{eshipjetModel>/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd" width="13%" editable="true" enabled="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
 									<Button text="Get" type="Ghost" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" press="onShipNowGetPress" width="5%"></Button>
 									<!-- <Button text="Consolidation" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" type="Ghost" press="handleConsolidationPress" width="8%"></Button> -->
 									<Label text="Pickup Date"  class="sapUiSmallMarginTop" labelFor="DP1" width="6%" />
@@ -657,9 +657,9 @@
 															<Label text="Total Pkgs | Weight | DIMS" width="auto" class="sapUiTinyMargin"/>
 															<!-- <StepInput id="stepDownInput1" class=" create-ship-req_input" value="{eshipjetModel>/Packages/Weight1}" min="0" max="100" step="1"  width="6rem"  valueState="None" /> -->
 														
-															<HBox width="10%" >
+															<HBox width="10%" alignItems="Center" >
 																<Input class="create-ship-req_input" value="{eshipjetModel>/Packages/Weight1}" width="5%" />
-																<Text text="/" class="sapUiTinyMarginTop sapUiTinyMarginEnd" width="auto" />
+																<Text text="/" class="sapUiTinyMargin packageWeightsDevideText" width="auto" />
 																<Input class="create-ship-req_input" value="{eshipjetModel>/Packages/Weight2}" width="5%" />
 															</HBox>
 
@@ -1011,7 +1011,8 @@
 							rows="{eshipjetModel>/HandlingUnits}"
 							class="sapUiTinyMarginTop"
 							selectionMode="None"
-							visibleRowCount="4" >
+							visibleRowCount="6"
+    						visibleRowCountMode="Fixed" >
 							
 							<ui:columns>
 								<ui:Column visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/0/visible}" width="3rem" >
@@ -1047,7 +1048,7 @@
 								<ui:Column width="4rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/5/visible}" >
 									<Label text="WDS" />
 									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
+										<Button icon="sap-icon://tri-state" type="Transparent" ></Button>
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/6/visible}" >
