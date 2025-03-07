@@ -58,7 +58,7 @@
                     <Label text="First Name" />
                     <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Location Name" />
-                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" ></ComboBox>
                     <Label text="Address Line 1" />
                     <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="City" />
@@ -78,11 +78,12 @@
                     <Label text="Address Line 2" />
                     <Input class="sapUiSmallMarginBottom create-ship-req_input" /> 
                     <Label text="Country" />
-                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" ></ComboBox>
                     <Label text="Email" />
                     <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Role Assignment" />
-                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                    
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" ></ComboBox>
                     <Label text="Status" />
                         <Switch state="true" >
 				            <layoutData>
@@ -91,32 +92,35 @@
 			            </Switch>   
                 </f:content>
             </f:SimpleForm>
-
+       
             	<f:SimpleForm editable="true"
                             class="customSimpleFormShadow"
-                            width="auto"
-							  layout="ResponsiveGridLayout"
-							  columnsM="2"
-							  columnsL="2"
-							  columnsXL="2">
+                            width="auto"		  
+			                layout="ColumnLayout"
+                            columnsM="3"
+                            columnsL="4"
+                            columnsXL="6">
 					<f:content>
                     <Toolbar ariaLabelledBy="idShipFrom">
-							<Title id="iduserFrom3" text="ERP"/>
+							<Title id="iduserFrom3" text="Notification Type"/>
 					</Toolbar>
-                          <Label text="Status" />
-                        <CheckBox class="sapUiSmallMarginBottom create-ship-req_input" ></CheckBox>
-                          <Label text="Status" />
-                        <CheckBox class="sapUiSmallMarginBottom create-ship-req_input" ></CheckBox>
-                         <Label text="Status" />
-                        <CheckBox class="sapUiSmallMarginBottom create-ship-req_input" ></CheckBox>
-                         <Label text="Status" />
-                        <CheckBox class="sapUiSmallMarginBottom create-ship-req_input" ></CheckBox>
-                          <Label text="Status" />
-                        <CheckBox class="sapUiSmallMarginBottom create-ship-req_input" ></CheckBox>
-                         <Label text="Status" />
-                        <CheckBox class="sapUiSmallMarginBottom create-ship-req_input" ></CheckBox>
+                          <Label text="Email" />
+                        <CheckBox ></CheckBox>
+                          <Label text="SMS" />
+                        <CheckBox  ></CheckBox>
+                         <Label text="Whatsapp" />
+                        <CheckBox  ></CheckBox>
+                         <Label text="Received" />
+                        <CheckBox  ></CheckBox>
+                          <Label text="Delivered" />
+                        <CheckBox  ></CheckBox>
+                         <Label text="Exceptions" />
+                        <CheckBox  ></CheckBox>
+                          <Label text="All Statuses" />
+                        <CheckBox  ></CheckBox>
 					</f:content>
 				</f:SimpleForm>
+                
         </content>
     </Popover>
 </core:FragmentDefinition>
