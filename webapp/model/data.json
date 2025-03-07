@@ -903,9 +903,9 @@
 				"visible": true
 			},
 			{
-				"name": "HUID",
-				"label": "HU ID",
-				"visible": true
+				"name": "HU",
+				"label": "H.u.",
+				"visible": false
 			},
 			{
 				"name": "WeightLB",
@@ -915,7 +915,7 @@
 			{
 				"name": "WDS",
 				"label": "WDS",
-				"visible": false
+				"visible": true
 			},
 			{
 				"name": "DimensionsIN",
@@ -925,7 +925,7 @@
 			{
 				"name": "PackageType",
 				"label": "Package Type",
-				"visible": false
+				"visible": true
 			},
 			{
 				"name": "BoxCount",
@@ -1563,6 +1563,118 @@
            
         ]
 	},
+
+    "FreightAuditTableData":{
+		"FreightAuditColumns": [
+			{
+				"name": "Routing Rule Name",
+				"label": "RoutingRuleName",
+				"visible": true
+			},
+			{
+				"name": "CreatedDate",
+				"label": "Created Date",
+				"visible": true
+			},
+			{
+				"name": "Applicable Days",
+				"label": "ApplicableDays",
+				"visible": true
+			},
+			{
+				"name": "Active From Date",
+				"label": "ActiveFromDate",
+				"visible": false
+			},
+			{
+				"name": "Active To Date",
+				"label": "ActiveToDate",
+				"visible": true
+			},
+			{
+				"name": "Carrier Name",
+				"label": "CarrierName",
+				"visible": true
+			},
+			{
+				"name": "Service Name",
+				"label": "ServiceName",
+				"visible": true
+			},
+			{
+				"name": "Priority",
+				"label": "Priority",
+				"visible": true
+			},
+            {
+				"name": "Status",
+				"label": "Status",
+				"visible": true
+			},
+			{
+				"name": "ShipToContact",
+				"label": "Ship To Contact",
+				"visible": true
+			},
+			{
+				"name": "ShipToCompany",
+				"label": "Ship To Company",
+				"visible": true
+			},
+			{
+				"name": "ShipToAddressLine1",
+				"label": "Ship To AddressLine1",
+				"visible": false
+			},
+			{
+				"name": "shipToCity",
+				"label": "Ship To City",
+				"visible": false
+			},
+			{
+				"name": "shipToState",
+				"label": "Ship To State",
+				"visible": false
+			},
+			{
+				"name": "shipToCountry",
+				"label": "Ship To Country",
+				"visible": false
+			},
+			{
+				"name": "shipToZipcode",
+				"label": "Ship To Zipcode",
+				"visible": false
+			},
+			{
+				"name": "shipToPhone",
+				"label": "Ship To Phone",
+				"visible": false
+			},
+			{
+				"name": "shipToEmail",
+				"label": "Ship To Email",
+				"visible": false
+			},
+			{
+				"name": "requesterName",
+				"label": "Requestor Name",
+				"visible": false
+			},
+			{
+				"name": "connectedTo",
+				"label": "Connected To",
+				"visible": false
+			},
+			{
+				"name": "orderType",
+				"label": "Order Type",
+				"visible": false
+			}
+		],
+		"FreightAuditRows": []
+	},
+
     "RoutingGuidSaveBtnOptions":[
         {"saveOption": "Save and New"},
         {"saveOption": "Save and Close"}

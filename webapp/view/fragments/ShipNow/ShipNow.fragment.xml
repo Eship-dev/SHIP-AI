@@ -21,7 +21,7 @@
 									<Button text="New" press="onShipNowNewPress" class="scan-ship-toolbar1__button sapUiTinyMargin" type="Ghost" width="10%" ></Button>
                             </Toolbar>
 							<!-- Icon Tab Bar Starts here -->			
-							<IconTabBar id="idIconTabBarFiori2" selectedKey = "Pack" expandable="false" enableTabReordering="true" class="shipNow-IconTabBar-Width" >
+							<IconTabBar id="idIconTabBarFiori2" selectedKey = "Pack" expandable="false" enableTabReordering="true" class="shipNow-IconTabBar-Width customTab" >
 								<items >
 									<!-- Ship From / To Tab Starts here -->
 									<IconTabFilter text="Ship From / To" key="ShipFromTo" class="shipNow-IconTabBar-Width" >
@@ -632,14 +632,17 @@
 									<!-- Pack Tab Starts here -->
 									<IconTabFilter text="Pack" key="Pack">
 
-										
-												<Toolbar height="6rem" width="100%" class="scan-ship-toolbar1 sapUiTinyMarginEnd" >
+											<HBox alignContent="Center" >
+												<Toolbar height="6rem" width="75%" class="scan-ship-toolbar1 sapUiTinyMarginEnd" >
 															<Label text="Scan Product" width="8%" class="sapUiTinyMargin" />
 															<Input class=" create-ship-req_input" width="8%" value=""  ></Input>
 
 															<Label text="Quantity" class="sapUiTinyMargin" width="5%" />
 															<!-- <StepInput id="quantityInput1" value="{eshipjetModel>/Packages/Quantity}" class=" create-ship-req_input" min="0" max="100" step="1" width="8%" valueState="None" /> -->
-															<Input class=" create-ship-req_input add-space" value="{eshipjetModel>/Packages/Quantity}" width="8%" ></Input> 
+															<Input class=" create-ship-req_input" value="{eshipjetModel>/Packages/Quantity}" width="8%" ></Input>
+													</Toolbar>
+
+													<Toolbar height="6rem" width="100%" class="scan-ship-toolbar1 sapUiTinyMarginEnd" >		
 															<Label text="Package Type" class="sapUiTinyMargin" width="8%" />
 															<ComboBox items="{}" class=" create-ship-req_input" width="8%" >
 																<core:Item key="{}" text="{}" />
@@ -664,9 +667,12 @@
 															</ComboBox>
 															<Button icon="sap-icon://add" class="" ></Button>
 															<Button text="Auto Pack" class="scan-ship-toolbar1__button" width="8%" press="handleAutoPackPress" type="Ghost" ></Button>
-															
+													</Toolbar>
+
+													<Toolbar height="6rem" class="scan-ship-toolbar1 sapUiTinyMarginEnd" >
 															<Text text="" width="20%" ></Text>
 												</Toolbar>
+											</HBox>
 										
 
 				<!-- <ui:Table class="sapUiTinyMargin scan-ship-table" rowActionCount="0"	id="idShipNowProductTable"
@@ -975,7 +981,7 @@
 				</ui:Table> -->
 								<Toolbar class="toolbarbottomborder scan-ship-toolbar1 sapUiTinyMarginTop">															
 																									
-									<Text text="No of Packages:" class="sapUiTinyMargin" ></Text>
+									<Text text="No of Packages:" class="sapUiTinyMargin text-primary" ></Text>
 									<Text text="0" class="sapUiTinyMarginTop" ></Text>
 									<ToolbarSpacer />
 										<Text text="Master Tracking #" class="sapUiTinyMarginTop" ></Text>

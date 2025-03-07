@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-    <Dialog id="busyDialog" busyIndicatorDelay="0" showHeader="false" type="Message">
+    <Dialog id="busyDialog" busyIndicatorDelay="0" showHeader="false" type="Message" class="transparentDialog" >
         <content>
             <VBox alignItems="Center" justifyContent="Center" width="100%">
                 <Image src="https://dev.eshipjet.site/assets/images/copilotlogo1.png" width="60px" height="60px"/>

@@ -1873,3 +1873,50 @@ button, input, optgroup, select, textarea {
 .obtainProofOfDelivery{
   color: #23A1B7 !important;
 }
+
+.text-primary {
+    color: #2196f3 !important;
+    font-weight: bold !important;
+}
+
+
+.customTabActive {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(200, 230, 200, 0.8), rgba(78, 167, 50, 0.7)) !important;
+  border-bottom: 1px solid #4ea732 !important;
+}
+
+.customTab {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-decoration: none;
+  background: none;
+  font-family: var(--mat-tab-header-label-text-font);
+  font-size: var(--mat-tab-header-label-text-size);
+  letter-spacing: var(--mat-tab-header-label-text-tracking);
+  line-height: var(--mat-tab-header-label-text-line-height);
+  font-weight: var(--mat-tab-header-label-text-weight);
+}
+
+.transparentDialog .sapMDialog {
+  background: rgba(0, 0, 0, 0) !important; /* Fully transparent */
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.transparentDialog .sapMDialog > .sapMDialogScroll {
+  background: rgba(0, 0, 0, 0) !important;
+}
+
+.transparentDialog .sapMDialog > section {
+  background: rgba(0, 0, 0, 0) !important;
+}
+
+.transparentDialog .sapMDialog > .sapMDialogSection {
+  background: rgba(0, 0, 0, 0) !important;
+}
+
+/* Also target any inner containers */
+.transparentDialog .sapMDialogScrollCont {
+  background: transparent !important;
+}
