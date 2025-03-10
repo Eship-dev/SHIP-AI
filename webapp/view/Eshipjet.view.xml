@@ -28,7 +28,7 @@
 				<tnt:NavigationList class="side-navigation">
 					<tnt:NavigationListItem  text="SAP ShipperCopilot" icon="sap-icon://customfont/ShipperCopilate" key="ShipperCopilot">
 					</tnt:NavigationListItem>
-					<tnt:NavigationListItem text="Orders" icon="sap-icon://customfont/order_icon" key="Orders">
+					<tnt:NavigationListItem text="Orders" icon="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADYAAAA6CAYAAAD7h6qmAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJTSURBVHgB7ZrtbcIwEIbfVv0PGxA2YISMwAYNE8AGoRPABrABI4QNEBMAEwQmSH1pS8GJEyfxR4z8SCehyB/3+myfHQL8EzJLmKXMsp4Y+ROhAzFgxXFZi9GCCEDmgIVoSAJYdbjJtGwE30CAfhDg2a+0SeW330r8s77Q2rd3vChemGt4Ya4hKyyG3hwVQzGy230G/cj0q3y7/4JelLfvE7RreGGu4YW5hk/Q0I9P0DL4BO0aXphreGGuoTNBK0+6TdCdoO9tZQwYRGeC1p3UKzGWoClii8UCt9vt/my1WmE4HEIX/NrQ0wljNBo99bVcLjNdfMAg0+k0j9j5fMZ+v8d6vQYTi65Q1KltHmMR+yNNU+VXHzZITxGzksdohKMogkoGg0HhmfGIEYfDQVm0wjAsrDFrwghyqI0Q3k6nU7+EJUnSWRSb0mVN2xWmImpl0eqFsC5Rm8/nombtC2sbtSAIhNHqjTDKQU2FbTabqib7IYxGv4mosu2dx+iRqoztdpsfsYjdbofJZFJbhw0EZOC/dpOr1ZC6aIm27bbQFSVBiw+wWggrPKNIjcfj/DcdYmWixcN2RuHVJ0SHPCJrdRFra6KdkdbYHj+33RgWYHkMs9nsvs5U8Xhbjph9QtO0zMy+8jCHaCqyXTFjaySfVjI3avZ6IS9PU5jtosJyMEVZ53Th5NdYlbOUlB/LkkBqowyrL0yv12thbR2PR2H5y+VSqE9mFVEU+IhVnf/4AzPVFQFTiBwgIbRuKEGT43XQzZvKUp2qQTD2J5/RUcQL/ynxDSFjRE3rCxTIAAAAAElFTkSuQmCC" key="Orders">
 					</tnt:NavigationListItem>
 					<tnt:NavigationListItem text="Batch Ship" icon="sap-icon://customfont/batchship_icon" key="BatchShip">
 					</tnt:NavigationListItem>

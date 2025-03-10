@@ -240,7 +240,7 @@
             "text":"USPS"
         }
     ],
-    "ShipNowShipMethodSelectedKey":"FedEx",
+    "ShipNowShipMethodSelectedKey":"",
 
     "shipRequests": [
         { "key": "d365fo", "text": "Microsoft Dynamics 365 Finance & Operations" },

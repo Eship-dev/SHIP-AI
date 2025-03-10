@@ -8,16 +8,21 @@
 						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn" />
 				</Toolbar>
 							<Toolbar class="sapUiTinyMarginBottom scan-ship-toolbar1 " height="10%">
-									<Input placeholder="Licence Plate" class="create-ship-req_input sapUiTinyMargin sapUiLargeMarginEnd" width="13%" editable="true" enabled="true" ></Input>
-									<Label text="SAP Delivery Number" class="sapUiSmallMarginTop sapUiMediumMarginEnd sapUiSmallMarginBegin" width="10%" wrapping="false" labelFor="SAPDelLabel"/>
+									<ComboBox class="create-ship-req_input sapUiTinyMargin" width="10%" selectedKey="SAPEWM" >
+										<core:Item key="Manual" text="Manual" />
+										<core:Item key="SAPEWM" text="SAP EWM" />												
+									</ComboBox>
+
+									<Input placeholder="Licence Plate" class="create-ship-req_input sapUiTinyMargin sapUiLargeMarginEnd" width="10%" editable="true" enabled="true" ></Input>
+									<Label text="SAP Delivery Number" class="sapUiSmallMarginTop sapUiMediumMarginEnd sapUiSmallMarginBegin" width="12%" wrapping="false" labelFor="SAPDelLabel"/>
 									<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch"   value="{eshipjetModel>/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
-									<Input  id="idSapDeliveryNumber"  value="{eshipjetModel>/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd" width="13%" editable="true" enabled="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
+									<Input id="idSapDeliveryNumber"  value="{eshipjetModel>/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd" width="14%" editable="true" enabled="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
 									<Button text="Get" type="Ghost" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" press="onShipNowGetPress" width="5%"></Button>
 									<!-- <Button text="Consolidation" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" type="Ghost" press="handleConsolidationPress" width="8%"></Button> -->
-									<Label text="Pickup Date"  class="sapUiSmallMarginTop" labelFor="DP1" width="6%" />
-									<DatePicker class="create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd" id="DP1" width="12%"   valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
+									<Label text="Pickup Date" class="sapUiSmallMarginTop" labelFor="DP1" width="6%" />
+									<DatePicker class="create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd" id="DP1" width="10%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" placeholder=" " />
 									<Label text="Ship Date" class="sapUiSmallMarginTop" labelFor="DP2" width="5%" />
-									<DatePicker class="create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd" id="DP2" width="12%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/HeaderInfo/ShipDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" placeholder="" />
+									<DatePicker class="create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd" id="DP2" width="10%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/HeaderInfo/ShipDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" placeholder=" " />
 									<Button text="New" press="onShipNowNewPress" class="scan-ship-toolbar1__button sapUiTinyMargin" type="Ghost" width="10%" ></Button>
                             </Toolbar>
 							<!-- Icon Tab Bar Starts here -->			
@@ -642,7 +647,7 @@
 															<Input class=" create-ship-req_input" value="{eshipjetModel>/Packages/Quantity}" width="auto" ></Input>
 													</HBox>
 
-													<HBox height="3rem" width="50%" class="whiteBackground sapUiTinyMarginEnd sapUiSmallPadding" justifyContent="Start" alignItems="Center" >
+													<HBox height="3rem" width="55%" class="whiteBackground sapUiTinyMarginEnd sapUiSmallPadding" justifyContent="Start" alignItems="Center" >
 															<Label text="Package Type" class="sapUiTinyMargin" width="auto" />
 															<ComboBox items="{}" class=" create-ship-req_input" width="auto" >
 																<core:Item key="{}" text="{}" />
@@ -663,7 +668,17 @@
 																<Input class="create-ship-req_input" value="{eshipjetModel>/Packages/Weight2}" width="5%" />
 															</HBox>
 
-															<Button icon="sap-icon://dimension" type="Transparent" class="sapUiTinyMarginBegin" ></Button>
+													<Button
+														type="Transparent"
+														icon="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAeCAYAAAA/xX6fAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFtSURBVHgB7ZbhcQIhEIXfWEE6kBKSCkIqSEqgA9PB0YFJBdrBpQPtwBIsQVNBsjfCzLLH4SLnP9/Mm0GP4+PYhQWo0xO5I5/IR7LDncRBf8ID+AMzygnQIQC8+L8nGzTIhsHjgCeMl9CQt0i/eINKsCXvBMjjsqxTMhnwGlfAJsyOv/R1BZSb7BFpfJ3slEuIHdri4UrgXoAs5pMTYLdAmtIGjZnGNKzcEmlIXoE0OeZa0pUYL7Y3HGjRnuIW+dj5HHAZXjKoT3GL8lYqAsHABzHbz0yfXkzOY7yVVMAoh/wydQJUOtp8DXAKXLOVfAQuoNeW/EL+Dr/P5LfgvXIM1AAj5Ie196hULbBZD+BdgOfQ9pjv4Oay5PfQ/o0gvqk7xQCxb0kG4+POxIcOikqtBA7H2hrKIuAUYIs8cOrmYKGQF2BeH20GuLoVxGWQr4+OAS30oWgCS2uuktV6RlofS/VvVjlcYjTcWQ0q9Q9p4tga7BXjNQAAAABJRU5ErkJggg=="
+														press="onImagePress"
+														class="customBlueYellowIcon sapUiTinyMargin"
+														tooltip="Get weight and dims"
+														width="20px"
+													/>
+
+													<!-- <image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAeCAYAAAA/xX6fAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFtSURBVHgB7ZbhcQIhEIXfWEE6kBKSCkIqSEqgA9PB0YFJBdrBpQPtwBIsQVNBsjfCzLLH4SLnP9/Mm0GP4+PYhQWo0xO5I5/IR7LDncRBf8ID+AMzygnQIQC8+L8nGzTIhsHjgCeMl9CQt0i/eINKsCXvBMjjsqxTMhnwGlfAJsyOv/R1BZSb7BFpfJ3slEuIHdri4UrgXoAs5pMTYLdAmtIGjZnGNKzcEmlIXoE0OeZa0pUYL7Y3HGjRnuIW+dj5HHAZXjKoT3GL8lYqAsHABzHbz0yfXkzOY7yVVMAoh/wydQJUOtp8DXAKXLOVfAQuoNeW/EL+Dr/P5LfgvXIM1AAj5Ie196hULbBZD+BdgOfQ9pjv4Oay5PfQ/o0gvqk7xQCxb0kG4+POxIcOikqtBA7H2hrKIuAUYIs8cOrmYKGQF2BeH20GuLoVxGWQr4+OAS30oWgCS2uuktV6RlofS/VvVjlcYjTcWQ0q9Q9p4tga7BXjNQAAAABJRU5ErkJggg==" ></image> -->
+															<!-- <Button icon="sap-icon://dimension" type="Transparent" class="sapUiTinyMarginBegin" ></Button> -->
 															<ComboBox items="" class=" create-ship-req_input" width="auto" selectedKey="">
 																<core:Item key="" text="" />
 															</ComboBox>
@@ -671,10 +686,11 @@
 															<Button text="Auto Pack" class="scan-ship-toolbar1__button" width="auto" press="handleAutoPackPress" type="Ghost" ></Button>
 													</HBox>
 
-													<HBox height="3rem" width="25%" class="whiteBackground" alignItems="Center" >
-															<Text text="" width="auto" ></Text>
+													<HBox height="3rem" width="20%" alignItems="Center"
+														class="{= ${eshipjetModel>/ShipNowShipMethodSelectedKey} || ${eshipjetModel>/ShipNowShipsrvNameSelectedKey} ? 'blueBackground' : 'whiteBackground' }" >
+															<Text text="{eshipjetModel>/ShipNowShipMethodSelectedKey} {eshipjetModel>/ShipNowShipsrvNameSelectedKey}" width="auto" ></Text>
+													</HBox>
 												</HBox>
-											</HBox>
 										
 
 				<!-- <ui:Table class="sapUiTinyMargin scan-ship-table" rowActionCount="0"	id="idShipNowProductTable"
@@ -759,7 +775,7 @@
 							id="idShipNowPackTable"
 							rows="{eshipjetModel>/packAddProductTable}"
 							class="sapUiSmallMarginTop"
-							selectionMode="None"
+							selectionMode="MultiToggle"
 							visibleRowCount="4" >
 							<!-- <ui:extension>
 								<OverflowToolbar class="scan-ship-table__toolbar">
@@ -1048,13 +1064,13 @@
 								<ui:Column width="4rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/5/visible}" >
 									<Label text="WDS" />
 									<ui:template>
-										<Button icon="sap-icon://tri-state" type="Transparent" ></Button>
+										<Button class="customBlueYellowIcon" tooltip="Get weight and dims" icon="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAeCAYAAAA/xX6fAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFtSURBVHgB7ZbhcQIhEIXfWEE6kBKSCkIqSEqgA9PB0YFJBdrBpQPtwBIsQVNBsjfCzLLH4SLnP9/Mm0GP4+PYhQWo0xO5I5/IR7LDncRBf8ID+AMzygnQIQC8+L8nGzTIhsHjgCeMl9CQt0i/eINKsCXvBMjjsqxTMhnwGlfAJsyOv/R1BZSb7BFpfJ3slEuIHdri4UrgXoAs5pMTYLdAmtIGjZnGNKzcEmlIXoE0OeZa0pUYL7Y3HGjRnuIW+dj5HHAZXjKoT3GL8lYqAsHABzHbz0yfXkzOY7yVVMAoh/wydQJUOtp8DXAKXLOVfAQuoNeW/EL+Dr/P5LfgvXIM1AAj5Ie196hULbBZD+BdgOfQ9pjv4Oay5PfQ/o0gvqk7xQCxb0kG4+POxIcOikqtBA7H2hrKIuAUYIs8cOrmYKGQF2BeH20GuLoVxGWQr4+OAS30oWgCS2uuktV6RlofS/VvVjlcYjTcWQ0q9Q9p4tga7BXjNQAAAABJRU5ErkJggg==" type="Transparent" ></Button>
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/6/visible}" >
 									<Label text="Dimensions (IN)" />
 									<ui:template>
-										<Text text="{eshipjetModel>HandlingUnitLength} X {eshipjetModel>HandlingUnitWidth} X {eshipjetModel>HandlingUnitHeight}" wrapping="false" />
+										<Text text="{eshipjetModel>HandlingUnitLength} X {eshipjetModel>HandlingUnitWidth} X {eshipjetModel>HandlingUnitHeight}" visible="{= !!${eshipjetModel>HandlingUnitLength} }" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/7/visible}" >

@@ -63,6 +63,13 @@ sap.ui.define([
 			const timeDiff = expectedDate.getTime() - today.getTime();
 			const dayDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
 			return dayDiff > 0 ? dayDiff : 5;
+        },
+
+        getHBoxStyleClass: function(sMethod, sService) {
+            if (sMethod || sService) {
+                return "blueBackground"; // Custom class for non-empty values
+            }
+            return "whiteBackground"; // Default class for empty values
         }
 	};
 });

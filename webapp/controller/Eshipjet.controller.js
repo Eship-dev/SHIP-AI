@@ -1988,11 +1988,10 @@ sap.ui.define([
         },
 
         onPackPress:function(){
-             oController.onOpenBusyDialog();
             var productTable = this.byId("idShipNowPackTable");
-            var selectedItems = productTable.getSelectedItems();
+            var selectedItems = productTable.getSelectedIndices();
             if(selectedItems.length === 0){
-                oController.oBusyDialog.close();
+                // oController.oBusyDialog.close();
                 MessageBox.warning("Please Select atleast one record from Product Table");
             }else{
                 var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
@@ -2007,17 +2006,18 @@ sap.ui.define([
                 var totalWeight = 0;
                 var ItemsInfo = [];
                 for (var i = 0; i < selectedItems.length; i++) {
-                    var currentObj = selectedItems[i].getBindingContext("eshipjetModel").getObject();
+                    var currentObj = productTable.getContextByIndex(i).getObject();
                     if(currentObj.partialQty === "" || currentObj.partialQty === undefined){
-                        oController.oBusyDialog.close();
+                        // oController.oBusyDialog.close();
                         MessageBox.warning("Please add partial quantity for at least one valid product.");
                     }else{
+                        oController.onOpenBusyDialog();
                         var creationDate = new Date(currentObj.CreationDate);
                         var hours = String(creationDate.getHours()).padStart(2, '0');
                         var minutes = String(creationDate.getMinutes()).padStart(2, '0');
                         var seconds = String(creationDate.getSeconds()).padStart(2, '0');
                         var creationTime = `PT${hours}H${minutes}M${seconds}S`;
-                        var oTableSelectedItems = oController.getView().byId("idShipNowPackTable").getSelectedItems();
+                        // var oTableSelectedItems = oController.getView().byId("idShipNowPackTable").getSelectedItems();
                         var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
                         var packAddProductTable = eshipjetModel.getProperty("/packAddProductTable");
 
@@ -12264,7 +12264,7 @@ sap.ui.define([
         var shipToEmail = ShipNowDataModel.getProperty("/ShipToAddress/EMAIL");
         var shipToPhone = ShipNowDataModel.getProperty("/ShipToAddress/PhoneNumber");
         var ShipNowPackTable = oController.getView().byId("idShipNowPackTable");
-        var oTableItemsLength = ShipNowPackTable.getBinding("items").iLength;
+        var oTableItemsLength = ShipNowPackTable.getBinding("rows").iLength;
 
         if(shipToCountry === "" || shipToCountry === undefined){
             MessageBox.warning("Please Enter Ship To Country");
