@@ -1486,4 +1486,16 @@ button {
 }
 
 
+.TransparentBackground {
+  background: rgba(0, 0, 0, 0) !important;  /* Fully transparent */
+  box-shadow: none !important;  /* Remove any shadow */
+}
+
+.TransparentBackground .sapMDialogScroll {
+  background: transparent !important;
+}
+
+.TransparentBackground .sapMBusyDialog {
+  background: transparent !important;
+}
 

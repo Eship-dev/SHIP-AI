@@ -11,22 +11,22 @@
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="10" class="NumberSizeTitle1"></Text>
 					<Text text="Total" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Emphasized" press="onBatchShipDeliveredFilterPress" class="totalProgress-request-button request-button" id="idBatchShipTotalBtn" icon="false" width="100%"  ></Button>
+					<Button type="Emphasized" press="onBatchShipTotalFilterPress" class="totalProgress-request-button request-button" id="idBatchShipTotalBtn" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Open" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Critical" press="onBatchShipInTransitFilterPress" class="open-request-button request-button" id="idBatchShipOpenBtn" icon="false" width="100%" ></Button>
+					<Button type="Critical" press="onBatchShipopenFilterPress" class="open-request-button request-button" id="idBatchShipOpenBtn" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="10" class="NumberSizeTitle1"></Text>
 					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Success" press="handleBatchShipFilterBtnPress" id="idBatchShipShippedBtn" class="shipped-request-button request-button" icon="false" width="100%" ></Button>
+					<Button type="Success" press="onBatchShipShippedFilterPress" id="idBatchShipShippedBtn" class="shipped-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Negative" press="handleBatchShipFilterBtnPress" id="idBatchShipCancelledBtn" class="cancelled-request-button request-button" icon="false" width="100%" ></Button>
+					<Button type="Negative" press="onBatchShipCancelledFilterPress" id="idBatchShipCancelledBtn" class="cancelled-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 			</HBox>
 		</Toolbar>

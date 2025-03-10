@@ -1774,9 +1774,24 @@ sap.ui.define([
         
             this._pBusyDialog.then(function (oBusyDialog) {
                 oBusyDialog.open();
-                this.fetchData();
+                this.fetchData().then(function () {  // Ensure fetchData() returns a Promise
+                    oBusyDialog.close();
+                }).catch(function (error) {
+                    console.error("Error in fetchData: ", error);
+                    oBusyDialog.close();  // Ensure the dialog closes even if there's an error
+                });
             }.bind(this));
         },
+        fetchData: function () {
+            return new Promise(function (resolve, reject) {
+              
+                setTimeout(function () {
+                    console.log("Data fetched successfully!");
+                    resolve(); 
+                }, 2000);  
+            });
+        },
+        
 
 
         shipNowData:function(sDeveliveryNumber ,sFromMenu, myResolve){
@@ -5081,33 +5096,38 @@ sap.ui.define([
             this.byId("idBatchShipFilterPopover").close();
         },
 
-        onBatchShipShippedFilterPress:function(oEvent){
-            var oTable = oController.getView().byId("idBatchShipTable");
+       
+
+        onBatchShipTotalFilterPress: function(){
+            var oTable = this.getView().byId("idBatchShipTable"); // Ensure this is the actual table ID
+            var oBinding = oTable.getBinding("rows");
+            var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Total");
+            oBinding.filter([oFilter]);
+        },
+        
+        onBatchShipopenFilterPress: function(){
+            var oTable = this.getView().byId("idBatchShipTable"); // Ensure this is the actual table ID
+            var oBinding = oTable.getBinding("rows");
+            var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "open");
+            oBinding.filter([oFilter]);
+        },
+        
+        onBatchShipShippedFilterPress: function(){
+            var oTable = this.getView().byId("idBatchShipTable"); // Ensure this is the actual table ID
             var oBinding = oTable.getBinding("rows");
             var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Shipped");
             oBinding.filter([oFilter]);
         },
-
-        onBatchShipInTransitFilterPress:function(){
-            var oTable = oController.getView().byId("idBatchShipTable");
-            var oBinding = oTable.getBinding("rows");
-            var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "In-Transit");
-            oBinding.filter([oFilter]);
-        },
-
-        onBatchShipCancelledFilterPress:function(){
-            var oTable = oController.getView().byId("idBatchShipTable");
+        
+        onBatchShipCancelledFilterPress: function(){
+            var oTable = this.getView().byId("idBatchShipTable"); // Ensure this is the actual table ID
             var oBinding = oTable.getBinding("rows");
             var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Cancelled");
             oBinding.filter([oFilter]);
         },
+        
 
-        onBatchShipDeliveredFilterPress:function(){
-            var oTable = oController.getView().byId("idBatchShipTable");
-            var oBinding = oTable.getBinding("rows");
-            var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Delivered");
-            oBinding.filter([oFilter]);
-        },
+        
     
 
         onOpenRecentShipmentPopover: function (oEvent) {
