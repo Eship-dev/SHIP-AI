@@ -34,6 +34,7 @@ sap.ui.define([
             sap.ui.core.IconPool.addIcon('track_icon', 'customfont', 'icomoon', 'e91d');
             sap.ui.core.IconPool.addIcon('batchship_icon', 'customfont', 'icomoon', 'e91e');
 
+            
             // enable routing
             this.getRouter().initialize();
         }

@@ -14,7 +14,7 @@
 									</ComboBox>
 
 									<Input placeholder="Licence Plate" class="create-ship-req_input sapUiTinyMargin sapUiLargeMarginEnd" width="10%" editable="true" enabled="true" ></Input>
-									<Label text="SAP Delivery Number" class="sapUiSmallMarginTop sapUiMediumMarginEnd sapUiSmallMarginBegin" width="12%" wrapping="false" labelFor="SAPDelLabel"/>
+									<Label text="SAP Delivery Number" class="sapdeliverynumberbgcolor sapUiSmallMarginTop sapUiMediumMarginEnd sapUiSmallMarginBegin" width="12%" wrapping="false" labelFor="SAPDelLabel"/>
 									<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch"   value="{eshipjetModel>/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
 									<Input id="idSapDeliveryNumber"  value="{eshipjetModel>/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd" width="14%" editable="true" enabled="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
 									<Button text="Get" type="Ghost" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" press="onShipNowGetPress" width="5%"></Button>
@@ -833,24 +833,28 @@
 										<Input value="{eshipjetModel>partialQty}" liveChange="onPartialQtyChange" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/8/visible}" >
-									<Label text="Is Serial" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/9/visible}" >
-									<Label text="Is DG" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/10/visible}" >
-									<Label text="Package Material" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/8/visible}">
+										<HBox justifyContent="Center" alignItems="Center" width="100%">
+											<Label text="Is Serial"/>
+										</HBox>
+										<ui:template>
+											<HBox justifyContent="Center" alignItems="Center">
+												<CheckBox selected="{eshipjetModel>isSerialSelected}" select="onCheckBoxSelect"/>
+											</HBox>
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/9/visible}">
+										<HBox justifyContent="Center" alignItems="Center" width="100%">
+											<Label text="Is DG"/>
+										</HBox>
+										<ui:template>
+											<HBox justifyContent="Center" alignItems="Center">
+												<CheckBox selected="{eshipjetModel>isDGSelected}" select="onCheckBoxSelect"/>
+											</HBox>
+										</ui:template>
+									</ui:Column>
+
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/11/visible}" >
 									<Label text="Unit Weight" />
 									<ui:template>
@@ -1118,7 +1122,7 @@
 								<ui:Column visible="true" width="4rem" >
 									<Button icon="sap-icon://action-settings" type="Transparent" press="onShipNowHUColumnConfigPress" ></Button>
 									<ui:template>
-										<Button icon="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABxSURBVHgB7ZPBCcAgFEP/lw7QKbqEU3WEDucSPTmCAxTS76UU+aKiF8GcNIT4DoZJ0W0tNP9wjlOPc+FaGRqhSNFC8s93E5jSC9q9WNBNsApmK9g0M12dtsKxBFIf5J/uLYOSoP8IHuAE4KlegYErHl6WFC00H1bf2gAAAABJRU5ErkJggg==" type="Attention" tooltip="Delete" press="onShipNowHandlingUnitDelPress" ></Button>
+										<Button icon="sap-icon://delete" type="Attention" tooltip="Delete" press="onShipNowHandlingUnitDelPress" ></Button>
 									</ui:template>
 								</ui:Column>
 							</ui:columns>
