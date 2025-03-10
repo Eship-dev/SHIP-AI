@@ -1992,19 +1992,22 @@ button, input, optgroup, select, textarea {
 
 
 .customBlueYellowIcon .sapMBtnIcon {
+  height: 20px !important;
   background-color: transparent !important;
   border: none !important;
   box-shadow: none !important;
-  filter: brightness(0) saturate(100%) invert(25%) sepia(99%) saturate(2678%) 
-          hue-rotate(199deg) brightness(89%) contrast(92%); /* Default Blue */
+  filter: brightness(0) saturate(100%) invert(25%) sepia(99%) saturate(2678%) hue-rotate(199deg) brightness(89%) contrast(92%);
+  padding-top: 15% !important;
 }
 
 .customBlueYellowIcon .sapMBtnIcon:hover {
+  height: 22px !important;
   background-color: transparent !important;
   border: none !important;
   box-shadow: none !important;
   filter: brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(2000%)
             hue-rotate(20deg) brightness(100%) contrast(100%); /* Orange */
+  padding-top: 15% !important;
 }
 
 .customOrdersIcon .sapUiIcon::before {
@@ -2030,13 +2033,33 @@ button, input, optgroup, select, textarea {
 }
 
 
-.whiteBackground {
-  background-color: #ffffff !important; /* White background */
+.whiteBackground  {
+  background-color: #ffffff !important;
   padding: 4px !important;
 }
 
-.blueBackground {
+.blueBackground  {
   padding: 4px !important;
-  background-color: rgb(86, 136, 248) !important; /* Blue background */
-  color: #ffffff; /* Optional: White text for visibility */
+  background-color: rgb(86, 136, 248) !important;
+}
+
+.packScreenCarrier{
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 800;
+  margin-left: 10px !important;
+  animation: _ngcontent-ng-c1812421190_zoomIn 0.5sease-in-out;
+}
+
+.customDeleteButton .sapUiIcon {
+  color: red !important;      /* Red Icon */
+  background-color: white !important;  /* White Background */
+  border-radius: 50%;         /* Optional: For rounded button */
+  padding: 4px;               /* Padding for spacing */
+  font-size: 16px !important; /* Small Icon Size */
+  width: 15px;                /* Small Button Width */
+  height: 15px;               /* Small Button Height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -66,10 +66,7 @@ sap.ui.define([
         },
 
         getHBoxStyleClass: function(sMethod, sService) {
-            if (sMethod || sService) {
-                return "blueBackground"; // Custom class for non-empty values
-            }
-            return "whiteBackground"; // Default class for empty values
+            return (sMethod || sService) ? "blueBackground" : "whiteBackground";
         }
 	};
 });
