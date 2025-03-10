@@ -8,9 +8,9 @@
 						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn" />
 				</Toolbar>
 							<Toolbar class="sapUiTinyMarginBottom scan-ship-toolbar1 " height="10%">
-									<ComboBox class="create-ship-req_input sapUiTinyMargin" width="15%" selectedKey="SAPEWM" >
+									<ComboBox class="create-ship-req_input sapUiTinyMargin" width="15%" selectedKey="SAPS4HANA" >
 										<core:Item key="Manual" text="Manual" />
-										<core:Item key="SAPS4HANA" text="SAP S4 HANA" />												
+										<core:Item key="SAPS4HANA" text="SAP S4 HANA Private Cloud" />												
 									</ComboBox>
 
 									<Label text="SAP Delivery Number" class="sapdeliverynumberbgcolor sapUiSmallMarginTop sapUiMediumMarginEnd sapUiSmallMarginBegin" width="12%" wrapping="false" labelFor="SAPDelLabel"/>
