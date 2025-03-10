@@ -663,7 +663,7 @@
 																<Input class="create-ship-req_input" value="{eshipjetModel>/Packages/Weight2}" width="5%" />
 															</HBox>
 
-															<Button icon="sap-icon://dimension" type="Transparent" ></Button>
+															<Button icon="sap-icon://dimension" type="Transparent" class="sapUiTinyMarginBegin" ></Button>
 															<ComboBox items="" class=" create-ship-req_input" width="auto" selectedKey="">
 																<core:Item key="" text="" />
 															</ComboBox>
@@ -1024,13 +1024,13 @@
 								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/1/visible}" >
 									<Label text="SAP HU ID." />
 									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
+										<Link text="{eshipjetModel>HandlingUnitExternalID}" press="handleHULinkPress" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="8rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/2/visible}">
 									<Label text="HU Type" />
 									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
+										<Text text="{eshipjetModel>PackagingMaterial}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="6rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/3/visible}" >
@@ -1042,7 +1042,7 @@
 								<ui:Column width="8rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/4/visible}" >
 									<Label text="Weight (LB)" />
 									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
+										<Text text="{eshipjetModel>GrossWeight}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="4rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/5/visible}" >
@@ -1054,49 +1054,49 @@
 								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/6/visible}" >
 									<Label text="Dimensions (IN)" />
 									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
+										<Text text="{eshipjetModel>HandlingUnitLength} X {eshipjetModel>HandlingUnitWidth} X {eshipjetModel>HandlingUnitHeight}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/7/visible}" >
 									<Label text="Package Type" />
 									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
+										<Text text="{eshipjetModel>PackagingMaterialType}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/8/visible}" >
 									<Label text="Box Count" />
 									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
+										<Text text="{eshipjetModel>ShippingPoint}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/9/visible}" >
 									<Label text="Tracking #" />
 									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
+										<Text text="{eshipjetModel>HandlingUnitPackingObjectKey}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="12rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/10/visible}" >
 									<Label text="Return Tracking #" />
 									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
+										<Text text="{eshipjetModel>HandlingUnitPackingObjectKey}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="12rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/11/visible}" >
 									<Label text="Return Shipment" />
 									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
+										<Text text="{eshipjetModel>HandlingUnitPackingObjectKey}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="12rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/12/visible}" >
 									<Label text="Package Material" />
 									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
+										<Text text="{eshipjetModel>PackagingMaterial}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="12rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/13/visible}" >
 									<Label text="Package Image" />
 									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
+										<Text text="" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column visible="true" width="4rem" >
