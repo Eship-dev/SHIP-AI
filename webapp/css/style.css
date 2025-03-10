@@ -1498,4 +1498,10 @@ button {
 .TransparentBackground .sapMBusyDialog {
   background: transparent !important;
 }
+.sapdeliverynumberbgcolor{
+  text-align: center !important;
+    color: #005bb5 !important;
+    font-weight: 800 !important;
+}
+
 

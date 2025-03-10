@@ -1118,7 +1118,7 @@
 								<ui:Column visible="true" width="4rem" >
 									<Button icon="sap-icon://action-settings" type="Transparent" press="onShipNowHUColumnConfigPress" ></Button>
 									<ui:template>
-										<Button icon="sap-icon://delete" type="Attention" tooltip="Delete" press="onShipNowHandlingUnitDelPress" ></Button>
+										<Button icon="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABxSURBVHgB7ZPBCcAgFEP/lw7QKbqEU3WEDucSPTmCAxTS76UU+aKiF8GcNIT4DoZJ0W0tNP9wjlOPc+FaGRqhSNFC8s93E5jSC9q9WNBNsApmK9g0M12dtsKxBFIf5J/uLYOSoP8IHuAE4KlegYErHl6WFC00H1bf2gAAAABJRU5ErkJggg==" type="Attention" tooltip="Delete" press="onShipNowHandlingUnitDelPress" ></Button>
 									</ui:template>
 								</ui:Column>
 							</ui:columns>
