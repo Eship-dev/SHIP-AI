@@ -8,11 +8,12 @@
 						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn" />
 				</Toolbar>
 							<Toolbar class="sapUiTinyMarginBottom scan-ship-toolbar1 " height="10%">
-									<ComboBox class="create-ship-req_input sapUiTinyMargin" width="15%" selectedKey="SAPS4HANA" >
+									<ComboBox class="create-ship-req_input sapUiTinyMargin" width="10%" selectedKey="SAPEWM" >
 										<core:Item key="Manual" text="Manual" />
-										<core:Item key="SAPS4HANA" text="SAP S4 HANA Private Cloud" />												
+										<core:Item key="SAPEWM" text="SAP EWM" />												
 									</ComboBox>
 
+									<Input placeholder="Licence Plate" class="create-ship-req_input sapUiTinyMargin sapUiLargeMarginEnd" width="10%" editable="true" enabled="true" ></Input>
 									<Label text="SAP Delivery Number" class="sapdeliverynumberbgcolor sapUiSmallMarginTop sapUiMediumMarginEnd sapUiSmallMarginBegin" width="12%" wrapping="false" labelFor="SAPDelLabel"/>
 									<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch"   value="{eshipjetModel>/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
 									<Input id="idSapDeliveryNumber"  value="{eshipjetModel>/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd" width="14%" editable="true" enabled="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
@@ -685,11 +686,9 @@
 															<Button text="Auto Pack" class="scan-ship-toolbar1__button" width="auto" press="handleAutoPackPress" type="Ghost" ></Button>
 													</HBox>
 
-													<HBox height="3rem" width="20%" alignItems="Center" visible="{= ${eshipjetModel>/ShipNowShipMethodSelectedKey} ? false : true }" class="whiteBackground" >
-														<Text text="{eshipjetModel>/ShipNowShipMethodSelectedKey}" ></Text>
-													</HBox>
-													<HBox height="3rem" width="20%" alignItems="Center" visible="{= ${eshipjetModel>/ShipNowShipMethodSelectedKey} ? true : false }" class="blueBackground" >
-														<Text text="{eshipjetModel>/ShipNowShipMethodSelectedKey}" class="packScreenCarrier" ></Text>
+													<HBox height="3rem" width="20%" alignItems="Center"
+														class="{= ${eshipjetModel>/ShipNowShipMethodSelectedKey} || ${eshipjetModel>/ShipNowShipsrvNameSelectedKey} ? 'blueBackground' : 'whiteBackground' }" >
+															<Text text="{eshipjetModel>/ShipNowShipMethodSelectedKey} {eshipjetModel>/ShipNowShipsrvNameSelectedKey}" width="auto" ></Text>
 													</HBox>
 												</HBox>
 										
@@ -963,7 +962,7 @@
 								<ui:Column visible="true" width="4rem" >
 									<Button icon="sap-icon://action-settings" type="Transparent" press="openShipNowPrdctColNamesPopover" ></Button>
 									<ui:template>
-										<Button icon="sap-icon://delete" type="Transparent" tooltip="Delete" press="onShipNowPrdctDltPress" class="customDeleteButton" ></Button>
+										<Button icon="sap-icon://delete" type="Attention" tooltip="Delete" press="onShipNowPrdctDltPress" ></Button>
 									</ui:template>
 								</ui:Column>
 							</ui:columns>
@@ -1068,7 +1067,7 @@
 								</ui:Column>
 								<ui:Column width="4rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/5/visible}" >
 									<Label text="WDS" />
-									<ui:template align-items="anchor-center" >
+									<ui:template>
 										<Button class="customBlueYellowIcon" tooltip="Get weight and dims" icon="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAeCAYAAAA/xX6fAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFtSURBVHgB7ZbhcQIhEIXfWEE6kBKSCkIqSEqgA9PB0YFJBdrBpQPtwBIsQVNBsjfCzLLH4SLnP9/Mm0GP4+PYhQWo0xO5I5/IR7LDncRBf8ID+AMzygnQIQC8+L8nGzTIhsHjgCeMl9CQt0i/eINKsCXvBMjjsqxTMhnwGlfAJsyOv/R1BZSb7BFpfJ3slEuIHdri4UrgXoAs5pMTYLdAmtIGjZnGNKzcEmlIXoE0OeZa0pUYL7Y3HGjRnuIW+dj5HHAZXjKoT3GL8lYqAsHABzHbz0yfXkzOY7yVVMAoh/wydQJUOtp8DXAKXLOVfAQuoNeW/EL+Dr/P5LfgvXIM1AAj5Ie196hULbBZD+BdgOfQ9pjv4Oay5PfQ/o0gvqk7xQCxb0kG4+POxIcOikqtBA7H2hrKIuAUYIs8cOrmYKGQF2BeH20GuLoVxGWQr4+OAS30oWgCS2uuktV6RlofS/VvVjlcYjTcWQ0q9Q9p4tga7BXjNQAAAABJRU5ErkJggg==" type="Transparent" ></Button>
 									</ui:template>
 								</ui:Column>
@@ -1123,7 +1122,7 @@
 								<ui:Column visible="true" width="4rem" >
 									<Button icon="sap-icon://action-settings" type="Transparent" press="onShipNowHUColumnConfigPress" ></Button>
 									<ui:template>
-										<Button icon="sap-icon://delete" type="Transparent" tooltip="Delete" press="onShipNowHandlingUnitDelPress" class="customDeleteButton" ></Button>
+										<Button icon="sap-icon://delete" type="Attention" tooltip="Delete" press="onShipNowHandlingUnitDelPress" ></Button>
 									</ui:template>
 								</ui:Column>
 							</ui:columns>

@@ -405,6 +405,7 @@ button.ship-tile-button span {
 
 .create-ship-req_input {
   height: auto !important;
+  
 }
 
 .create-ship-req_input > div {
@@ -767,8 +768,7 @@ button {
     border: 1px solid #fff;
   }
 
-
-
+  
   .getship-now-footer_ship-rates {
     background-color: transparent !important;
     border: 1px solid  #0066cc !important;
@@ -807,7 +807,55 @@ button {
     border: 1px solid #258f1d;
   }
 }
+.btngetshipments{
+  background-color: #fff;
+  color: #0066CC;
+  /* // background-color: #444444 !important; */
+  border:1px solid #27a3eb;
+  /* // color: #fff; */
+  span:before {
+    display: none !important;
+  }
+  bdi {
+    color: #0071E3;
+  }
+}
+.btngetshipments:hover{
+  background-color: #0071E3 !important;
+  border:1px solid #fff;
+  color: #fff;
+  span:before {
+    display: none !important;
+  }
+  bdi {
+    color: #fff;
+  }
 
+}
+.save-btn {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  width: 80px !important;
+  margin-right: 80px !important;
+  span:before {
+    display: none !important;
+  }
+  bdi {
+    color: #000;
+  }
+}
+
+.save-btn:hover {
+  background-color: #086301;
+  color: #fff !important;
+  span:before {
+    display: none !important;
+  }
+  bdi {
+    color: #fff;
+  }
+}
 /* background-color: #4E9C2D !important;
   color: #fff !important;
   border: 1px solid #4E9C2D !important;
