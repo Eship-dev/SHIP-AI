@@ -1392,7 +1392,8 @@ sapMPopover .sapMPopoverCont {
 }
 
 .scan-ship-toolbar1__button {
-  
+  color: unset !important;
+  border-radius: 1% !important;
   height: 40px !important;
   cursor: pointer;
 }
@@ -1404,22 +1405,25 @@ sapMPopover .sapMPopoverCont {
   animation: animateBtn 1s infinite;
   transform: scale(1.05);
   transition: all 0.3s ease;
+  border-radius: 1% !important;
 }
 
 .scan-ship-toolbar1__button_void:hover > span {
   background-color: red !important;
   border: 1px solid red !important;
+  border-radius: 1% !important;
 }
 
 
 .scan-ship-toolbar1__button:hover bdi {
   color: #fff !important;
-
+  border-radius: 1% !important;
 }
 
 .scan-ship-toolbar1__button span {
+  color: unset !important;
   height: 100% !important;
- 
+  border-radius: 1% !important;
   display: flex !important;
   align-items: center;
 }
@@ -1433,11 +1437,13 @@ body.dark-theme {
     border: none !important;
   }
   .scan-ship-toolbar1__button > span{
+    border-radius: 1% !important;
     background-color: gray;
     color: #fff
   }
   .scan-ship-toolbar1__button:focus {
     border: none;
+    border-radius: 1% !important;
     span::before {
       border: none !important;
     }
@@ -2062,4 +2068,9 @@ button, input, optgroup, select, textarea {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.sapDeliveryNumberInptBold .sapMInputBaseInner {
+  padding-right: 0.25rem !important;
+  font-weight: bold !important;
 }

@@ -52,7 +52,9 @@ sap.ui.define([
             }
 
             while (aHandlingUnits.length < 6) {
-                aHandlingUnits.push({ SerialNumber: "" });
+                aHandlingUnits.push(
+                    { SerialNumber: "", SAPHUID: "" }
+                );
             }
             
             eshipjetModel.setProperty("/packAddProductTable", aPackAddProductTable);
@@ -76,6 +78,19 @@ sap.ui.define([
             this.getOwnerComponent().setModel(ShipNowDataModel, "ShipNowDataModel");
             oController.oBusyDialog = new sap.m.BusyDialog({});
             this.getOwnerComponent().getRouter().getRoute("RouteEshipjet").attachPatternMatched(this._handleRouteMatched, this);
+            oController.handlingUnitLength();
+        },
+
+        handlingUnitLength:function(){
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var HandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
+            var HandlingUnitsLength = 0;
+            for(var i=0; i<HandlingUnits.length; i++){
+                if(HandlingUnits[i].SAPHUID !== ""){
+                    HandlingUnitsLength += 1
+                }
+            }
+            eshipjetModel.setProperty("/HandlingUnitsLength", HandlingUnitsLength);
         },
 
         getMasterData:function(){           
@@ -1895,6 +1910,7 @@ sap.ui.define([
                     if(oData && oData.results && oData.results.length > 0){
                         var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
                         eshipjetModel.setProperty("/HandlingUnitItems",oData.results);
+                        oController.handlingUnitLength();
                         // var oShipNowHandlingUnitTable = oView.byId("idShipNowHandlingUnitTable");
                         // if(oShipNowHandlingUnitTable){
                         //     oShipNowHandlingUnitTable.setModel(eshipjetModel);
@@ -12708,7 +12724,33 @@ sap.ui.define([
         this.byId("idAddDangerousGoodsPopover").close();
     },
 
+    onOpenSAPDeliveryList:function(oEvent){
+        var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pShipNowSAPDeliveryPopover) {
+                this._pShipNowSAPDeliveryPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SAPDeliveryList",
+                    controller: this
+                }).then(function (oShipNowSAPDeliveryPopover) {
+                    oView.addDependent(oShipNowSAPDeliveryPopover);
+                    return oShipNowSAPDeliveryPopover;
+                });
+            }
+            this._pShipNowSAPDeliveryPopover.then(function (oShipNowSAPDeliveryPopover) {
+                oShipNowSAPDeliveryPopover.openBy(oButton);
+            });
+        },
 
+        onSAPDeliveryNoSelect:function(oEvent){
+            var oSelectedItem = oEvent.getParameter("listItem").getTitle();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/SAPDeliveryNo", oSelectedItem);
+            var oShipNowSAPDeliveryPopover = this.byId("idSAPDeliveryPopover"); // For fragments use `this.byId`
+            if (oShipNowSAPDeliveryPopover) {
+                oShipNowSAPDeliveryPopover.close();
+            }
+        }
     
     });
 });

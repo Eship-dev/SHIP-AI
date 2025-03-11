@@ -8311,7 +8311,13 @@
                 "name": "info@eshipjet.ai",
                 "notes": "Ship request created successfully"
             }
-        ]
+        ],
+
+    "shipNowSAPDeliveryItems":[
+        {"SAPDeliveryItem": "SAP Delivery No"},
+        {"SAPDeliveryItem": "Freight Quote Order"}
+    ],
+    "SAPDeliveryNo":"SAP Delivery No"
            
       
 }
