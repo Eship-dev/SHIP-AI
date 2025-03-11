@@ -585,10 +585,7 @@
         {"country": "US"},
         {"country": "FR"}
     ],
-    "shipNowAddressType":[
-        {"addressType": "Residential"},
-        {"addressType": "Commercial"}
-    ],
+    
     "navigation": [
         {
             "title": "SAP ShipperCopilot",
@@ -739,7 +736,10 @@
             "text": "Print"
         }
     ],
-
+    "shipNowAddressType": [
+        { "key": "Residential", "text": "Residential" },
+        { "key": "Commercial", "text": "Commercial" }
+      ],
 
     "packAddProductTable":[],
     "HandlingUnits": [],

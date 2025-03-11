@@ -16,7 +16,7 @@
 									<Input placeholder="Licence Plate" class="create-ship-req_input sapUiTinyMargin sapUiLargeMarginEnd" width="10%" editable="true" enabled="true" ></Input>
 									<Label text="SAP Delivery Number" class="sapdeliverynumberbgcolor sapUiSmallMarginTop sapUiMediumMarginEnd sapUiSmallMarginBegin" width="12%" wrapping="false" labelFor="SAPDelLabel"/>
 									<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch"   value="{eshipjetModel>/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
-									<Input id="idSapDeliveryNumber"  value="{eshipjetModel>/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd" width="14%" editable="true" enabled="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
+									<Input id="idSapDeliveryNumber"  value="{eshipjetModel>/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputsap customInputStyle create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd" width="14%" editable="true" enabled="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
 									<Button text="Get" type="Ghost" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" press="onShipNowGetPress" width="5%"></Button>
 									<!-- <Button text="Consolidation" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" type="Ghost" press="handleConsolidationPress" width="8%"></Button> -->
 									<Label text="Pickup Date" class="sapUiSmallMarginTop" labelFor="DP1" width="6%" />
@@ -77,15 +77,18 @@
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" selectedKey="{ShipNowDataModel>/ShipFromAddressType}" items="{eshipjetModel>/ShipFromAddress/addressType}" placeholder="Address Type">
-														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" 
+														selectedKey="{ShipNowDataModel>/ShipFromAddress/LocationType}" 
+														items="{eshipjetModel>/shipNowAddressType}" 
+														placeholder="Address Type">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</ComboBox>
 
 													<Toolbar ariaLabelledBy="idShipTo" class="scan-ship-toolbar1">
-														<Title id="idShipTo" text="Ship To" class="sapUiTinyMarginTop" />
+														<Title id="idShipTo" text="Ship To" class="sapUiTinyMarginTop sapdShipTocolor " />
 														<Button icon="sap-icon://customer-briefing" press="ShipToPickAnAddressPopoverPress" id="idShipToAddressBtn" />
 														<Button icon="sap-icon://add" press="onShipNowAddIconPress"></Button>
 														<ToolbarSpacer ></ToolbarSpacer>
@@ -131,82 +134,115 @@
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" selectedKey="{ShipNowDataModel>/ShipToAddress/LocationType}" items="{eshipjetModel>/shipNowAddressType}" placeholder="Address Type">
-														<core:Item key="{eshipjetModel/addressType}" text="{eshipjetModel>addressType}" />
+													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" 
+														selectedKey="{ShipNowDataModel>/ShipToAddress/LocationType}" 
+														items="{eshipjetModel>/shipNowAddressType}" 
+														placeholder="Address Type">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</ComboBox>
+
 												</f:content>
 											</f:SimpleForm>
+											</VBox>
 
-											<Table id="idBusinessPartnersTable" inset="false" items="{eshipjetModel>/BusinessPartners}">
-												<headerToolbar>
-													<OverflowToolbar>
-														<content>
-															<Title text="Business Partners" level="H2"/>
-														</content>
-													</OverflowToolbar>
-												</headerToolbar>
-												<columns>
-													<Column width="3rem">
-														<Text text="" />
-													</Column>
-													<Column >
-														<Text text="Partner Type" />
-													</Column>
-													<Column >
-														<Text text="Contact Name" />
-													</Column>
-													<Column >
-														<Text text="Company Name" />
-													</Column>
-													<Column >
-														<Text text="Address Line 1" />
-													</Column>
-													<Column >
-														<Text text="Address Line 2" />
-													</Column>
-													<Column >
-														<Text text="State / Province" />
-													</Column>
-													<Column >
-														<Text text="City" />
-													</Column>
-													<Column >
-														<Text text="Zip / Postal Code" />
-													</Column>
-													<Column >
-														<Text text="Country" />
-													</Column>
-													<Column >
-														<Text text="Phone No" />
-													</Column>
-													<Column >
-														<Text text="Email" />
-													</Column>
-												</columns>
-												<items>
-													<ColumnListItem vAlign="Middle">
-														<cells>
-															<Button icon="sap-icon://search" type="Transparent" press="handleSearchPickAnAddressPress"></Button>
-															<Input value="{eshipjetModel>PartnerType}" />
-															<Input value="{eshipjetModel>FullName}" />
-															<Input value="{eshipjetModel>BusinessPartnerName1}" />
-															<Input value="{eshipjetModel>StreetName}" />
-															<Input value="{eshipjetModel>HouseNumber}" />
-															<Input value="{eshipjetModel>Region}" />
-															<Input value="{eshipjetModel>CityName}" />
-															<Input value="{eshipjetModel>PostalCode}" />
-															<Input value="{eshipjetModel>Country}" />
-															<Input value="{eshipjetModel>PhoneNumber}" />
-															<Input value="{eshipjetModel>email}" />
-														</cells>
-													</ColumnListItem>
-												</items>
-											</Table>
+											<ui:Table id="idBusinessPartnersTable111"
+												rows="{eshipjetModel>/BusinessPartners}"
+												class="sapUiTinyMarginTop"
+												selectionMode="None"
+												visibleRowCount="4" 
+												visibleRowCountMode="Fixed" >
+											
+											<ui:columns>
+												<ui:Column width="3rem">
+													<Label text="" />
+													<ui:template>
+														<Button icon="sap-icon://search" type="Transparent" press="handleSearchPickAnAddressPress" />
+													</ui:template>
+												</ui:Column>
 
-										</VBox>
+												<ui:Column>
+													<Label text="Partner Type" />
+													<ui:template>
+														<Input value="{eshipjetModel>PartnerType}" />
+													</ui:template>
+												</ui:Column>
+
+												<ui:Column>
+													<Label text="Contact Name" />
+													<ui:template>
+														<Input value="{eshipjetModel>FullName}" />
+													</ui:template>
+												</ui:Column>
+
+												<ui:Column>
+													<Label text="Company Name" />
+													<ui:template>
+														<Input value="{eshipjetModel>BusinessPartnerName1}" />
+													</ui:template>
+												</ui:Column>
+
+												<ui:Column>
+													<Label text="Address Line 1" />
+													<ui:template>
+														<Input value="{eshipjetModel>StreetName}" />
+													</ui:template>
+												</ui:Column>
+
+												<ui:Column>
+													<Label text="Address Line 2" />
+													<ui:template>
+														<Input value="{eshipjetModel>HouseNumber}" />
+													</ui:template>
+												</ui:Column>
+
+												<ui:Column>
+													<Label text="State / Province" />
+													<ui:template>
+														<Input value="{eshipjetModel>Region}" />
+													</ui:template>
+												</ui:Column>
+
+												<ui:Column>
+													<Label text="City" />
+													<ui:template>
+														<Input value="{eshipjetModel>CityName}" />
+													</ui:template>
+												</ui:Column>
+
+												<ui:Column>
+													<Label text="Zip / Postal Code" />
+													<ui:template>
+														<Input value="{eshipjetModel>PostalCode}" />
+													</ui:template>
+												</ui:Column>
+
+												<ui:Column>
+													<Label text="Country" />
+													<ui:template>
+														<Input value="{eshipjetModel>Country}" />
+													</ui:template>
+												</ui:Column>
+
+												<ui:Column>
+													<Label text="Phone No" />
+													<ui:template>
+														<Input value="{eshipjetModel>PhoneNumber}" />
+													</ui:template>
+												</ui:Column>
+
+												<ui:Column>
+													<Label text="Email" />
+													<ui:template>
+														<Input value="{eshipjetModel>email}" />
+													</ui:template>
+												</ui:Column>
+											</ui:columns>
+										</ui:Table>
+
+										
 									</IconTabFilter>
 									<!-- Routing and Billing Details Tab Starts here -->
 
