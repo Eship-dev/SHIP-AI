@@ -1684,7 +1684,7 @@
     "ShipReqTableData":{
 		"ShipReqColumns": [
 			{
-                "name": "PodLocation",
+                "name": "RecCity",
                 "label": "Location Name",
                 "visible": false
             },
@@ -1704,22 +1704,22 @@
                 "visible": true
             },
             {
-                "name": "CrossdockShipdate",
+                "name": "DateAdded",
                 "label": "Ship Date",
                 "visible": true
             },
             {
-                "name": "Shipmenttype",
+                "name": "Carriertype",
                 "label": "Shipment Type",
                 "visible": false
             },
             {
-                "name": "ShipMethod",
+                "name": "CarrierCode",
                 "label": "Ship Method",
                 "visible": true
             },
             {
-                "name": "ServiceName",
+                "name": "CarrierDesc",
                 "label": "Service Name",
                 "visible": true
             },

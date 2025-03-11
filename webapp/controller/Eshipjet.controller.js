@@ -186,7 +186,8 @@ sap.ui.define([
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
-                this._handleDisplayShipReqTable();
+                // this._handleDisplayShipReqTable();
+                oController.getShipReqLabelHistoryShipments();
             } else if (sKey === "ShipNow") {
                 var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
                 ShipNowDataModel.setProperty("/ShipFromAddress", "");
@@ -3090,7 +3091,8 @@ sap.ui.define([
             var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
             var tileTitle = oEvent.getParameters().domRef.innerText;
             if (tileTitle === "Ship Request/Label") {
-                this._handleDisplayShipReqTable();
+                // this._handleDisplayShipReqTable();
+                oController.getShipReqLabelHistoryShipments();
                 var sKey = "ShipRequestLabel";
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
@@ -3614,7 +3616,8 @@ sap.ui.define([
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
-                this._handleDisplayShipReqTable();
+                // this._handleDisplayShipReqTable();
+                oController.getShipReqLabelHistoryShipments();
             }
             eshipjetModel.setProperty("/SideNavigation", false);
             this.byId("pageContainer").to(this.getView().createId(sKey));
@@ -3824,7 +3827,8 @@ sap.ui.define([
                 })
             });
             eshipjetModel.updateBindings(true);
-            this._handleDisplayShipReqTable();
+            // this._handleDisplayShipReqTable();
+            oController.getShipReqLabelHistoryShipments();
             this._pShipReqPopover.then(function (oPopover) {
                 oPopover.close();
             });

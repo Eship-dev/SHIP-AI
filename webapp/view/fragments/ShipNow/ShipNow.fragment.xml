@@ -686,9 +686,11 @@
 															<Button text="Auto Pack" class="scan-ship-toolbar1__button" width="auto" press="handleAutoPackPress" type="Ghost" ></Button>
 													</HBox>
 
-													<HBox height="3rem" width="20%" alignItems="Center"
-														class="{= ${eshipjetModel>/ShipNowShipMethodSelectedKey} || ${eshipjetModel>/ShipNowShipsrvNameSelectedKey} ? 'blueBackground' : 'whiteBackground' }" >
-															<Text text="{eshipjetModel>/ShipNowShipMethodSelectedKey} {eshipjetModel>/ShipNowShipsrvNameSelectedKey}" width="auto" ></Text>
+													<HBox height="3rem" width="20%" alignItems="Center" visible="{= ${eshipjetModel>/ShipNowShipMethodSelectedKey} ? false : true }" class="whiteBackground" >
+														<Text text="{eshipjetModel>/ShipNowShipMethodSelectedKey}" ></Text>
+													</HBox>
+													<HBox height="3rem" width="20%" alignItems="Center" visible="{= ${eshipjetModel>/ShipNowShipMethodSelectedKey} ? true : false }" class="blueBackground" >
+														<Text text="{eshipjetModel>/ShipNowShipMethodSelectedKey} - {eshipjetModel>/ShipNowShipsrvNameSelectedKey}" class="packScreenCarrier" ></Text>
 													</HBox>
 												</HBox>
 										
@@ -785,7 +787,7 @@
 							</ui:extension> -->
 
 							<ui:columns>
-								<ui:Column visible="{eshipjetModel>/ShipNowProductsTableColumns/0/visible}" width="auto" >
+								<ui:Column visible="{eshipjetModel>/ShipNowProductsTableColumns/0/visible}" width="3%" >
 									<Label text="#" />
 									<ui:template>
 										<Text text="{eshipjetModel>SerialNo}" wrapping="false" />

@@ -40,7 +40,7 @@
 			</HBox>
 		</Toolbar>
 
-        <ui:Table id="idShipReqsTable"
+        <!-- <ui:Table id="idShipReqsTable"
                 class="sapUiTinyMarginTop"
 				rows="{eshipjetModel>/Orderitems}"
 				scrollThreshold="-1"
@@ -70,212 +70,218 @@
 						<Button  text="Last" />
 					</Toolbar>
 				</ui:footer>
-		</ui:Table>
+		</ui:Table> -->
 
- 
 
-		<!-- <Toolbar >
-			<Button icon="sap-icon://filter" press="onShipReqFilterPopoverPress"></Button>
-				<ToolbarSpacer ></ToolbarSpacer>
-					<Button icon="sap-icon://synchronize" press="onShipReqRefreshPress"></Button>
-					<Button icon="sap-icon://action" press="onShipReqExportToExcel"></Button>
-					
-                    <Button icon="sap-icon://action-settings" press="openShipReqColNamesPopover" >
-                <customData>
-                    <core:CustomData key="remember" value="true" />
-                    <core:CustomData key="showClearButton" value="true" />
-                    <core:CustomData key="confirmButtonText" value="Ok" />
-                </customData>
-			</Button>
-		</Toolbar>
-<ScrollContainer
-                width="100%"
-                height="12%"
-                horizontal="true"
-                vertical="true">
+		<ui:Table
+							id="idShipReqsTable"
+							rows="{eshipjetModel>/RecentShipmentSetShipReqLabel}"
+							class="sapUiSmallMarginTop"
+							selectionMode="None"
+							visibleRowCount="13" >
+							<ui:extension>
+								<OverflowToolbar>
+									<Button icon="sap-icon://filter" press="onShipReqFilterPopoverPress"></Button>
+									<ToolbarSpacer ></ToolbarSpacer>
+									<Button icon="sap-icon://action" press="onShipReqExportToExcel"></Button>
+									<Button icon="sap-icon://action-settings" press="openShipReqColNamesPopover" >
+										<customData>
+											<core:CustomData key="remember" value="true" />
+											<core:CustomData key="showClearButton" value="true" />
+											<core:CustomData key="confirmButtonText" value="Ok" />
+										</customData>
+									</Button>										
+								</OverflowToolbar>
+							</ui:extension>
 
-	<Table id="idShipReqsTable"
-		inset="false"
-		sticky="ColumnHeaders,HeaderToolbar"
-		growing="true"
-		ariaLabelledBy="title" fixedLayout="Strict"
-		autoPopinMode="false" popinLayout="GridSmall"
-		growingThreshold="20"
-		items="{ path: 'eshipjetModel>/ShipReqTableData/ShipReqRows' }" >
-            <dependents>
-                <plugins:ColumnResizer columnResize="onColumnResize"/>
-                <columnmenu:Menu id="menu" beforeOpen="beforeOpenColumnMenu">
-                    <columnmenu:QuickSort change="onSort">
-                        <columnmenu:items>
-                            <columnmenu:QuickSortItem></columnmenu:QuickSortItem>
-                        </columnmenu:items>
-                    </columnmenu:QuickSort>
-                    <columnmenu:QuickGroup change="onGroup">
-                        <columnmenu:items>
-                            <columnmenu:QuickGroupItem></columnmenu:QuickGroupItem>
-                        </columnmenu:items>
-                    </columnmenu:QuickGroup>
-                    <columnmenu:items>
-                        <columnmenu:ActionItem icon="sap-icon://sort" label="Sort" press="onColumnHeaderItemPress"/>
-                    </columnmenu:items>
-                </columnmenu:Menu>
-            </dependents>
-		<columns>
-			<Column app:p13nKey="locationName" width="10rem" headerMenu="menu" visible="{eshipjetModel>/ShipReqColumns/0/visible}">
-                    <header>
-                        <Text text="Location Name"/>
-                    </header>
-            </Column>
-			<Column app:p13nKey="Consolidation ID" width="10rem" headerMenu="menu" visible="{eshipjetModel>/ShipReqColumns/1/visible}">
-                    <header>
-                        <Text text="Consolidation ID"/>
-                    </header>
-            </Column>
-			<Column app:p13nKey="requestIdLabelId" width="10rem" headerMenu="menu" visible="{eshipjetModel>/ShipReqColumns/2/visible}">
-				<header>
-                    <Text text="Request ID/Label ID"/>
-                </header>
-			</Column>
-                <Column app:p13nKey="CreatedDate" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/3/visible}" headerMenu="menu">
-					<header>
-						<Text text="Created Date"/>
-					</header>
-				</Column>
-				<Column app:p13nKey="ShipDate" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/4/visible}" headerMenu="menu">
-                    <Text text="Ship Date"/>
-                </Column>
-				<Column app:p13nKey="ShipType" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/5/visible}" headerMenu="menu">
-                    <Text text="Ship Type"/>
-                </Column>
-				<Column app:p13nKey="shipMethod" width="10rem" class="sapUiMarginTop" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/6/visible}" headerMenu="menu">
-                    <Text text="Ship Method"/>
-                </Column>
-				<Column app:p13nKey="ServiceName" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/7/visible}" headerMenu="menu">
-                    <Text text="Service Name"/>
-                </Column>
-				<Column app:p13nKey="TrackingNumber" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/8/visible}" headerMenu="menu">
-                    <Text text="Tracking Number"/>
-                </Column>
-				<Column app:p13nKey="Status" width="9rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/12/visible}" headerMenu="menu">
-                    <Text text="Status"/>
-                </Column>
-				<Column app:p13nKey="ShipToContact" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/10/visible}" headerMenu="menu">
-                    <Text text="Ship To Contact"/>
-                </Column>
-				<Column app:p13nKey="ShipToCompany" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/11/visible}" headerMenu="menu">
-                    <Text text="Ship To Company"/>
-                </Column>
-				<Column app:p13nKey="status" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/9/visible}" headerMenu="menu">
-                    <Text text="Quote Status"/>
-                </Column>
-				<Column app:p13nKey="ShipToAddressLine1" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/13/visible}" headerMenu="menu">
-                    <Text text="Ship To Address Line 1"/>
-                </Column>
-				<Column app:p13nKey="shipToStateProvince" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/14/visible}" headerMenu="menu">
-                    <Text text="Ship To State/Province"/>
-                </Column>
-				<Column app:p13nKey="shipToCity" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/15/visible}" headerMenu="menu">
-                    <Text text="Ship To City"/>
-                </Column>
-				<Column app:p13nKey="shipToZipPostalCode" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/16/visible}" headerMenu="menu">
-                    <Text text="Ship To Zip/Postal Code"/>
-                </Column>
-				<Column app:p13nKey="shipToCountry" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/17/visible}" headerMenu="menu">
-                    <Text text="Ship To Country"/>
-                </Column>
-				<Column app:p13nKey="shipToPhone" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/18/visible}" headerMenu="menu">
-                    <Text text="Ship To Phone No"/>
-                </Column>
-				<Column app:p13nKey="shipToEmail" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/19/visible}" headerMenu="menu">
-                    <Text text="Ship To Email"/>
-                </Column>
-				<Column app:p13nKey="RequesterName" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/20/visible}" headerMenu="menu">
-                    <Text text="Requester Name"/>
-                </Column>
-				<Column app:p13nKey="ConnectedTo" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/21/visible}" headerMenu="menu">
-                    <Text text="Connected To"/>
-                </Column>
-				<Column app:p13nKey="OrderType" width="10rem" hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/22/visible}" headerMenu="menu">
-                    <Text text="Order Type"/>
-                </Column>
-				<Column app:p13nKey="RFID" width="10rem"  hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/23/visible}" headerMenu="menu">
-                    <Text text="RFID"/>
-                </Column>
-				<Column app:p13nKey="ShipmentWorkflow" width="10rem"  hAlign="Left" visible="{eshipjetModel>/ShipReqColumns/24/visible}" headerMenu="menu">
-                    <Text text="ShipmentWorkflow"/>
-                </Column>
-				<Column app:p13nKey="Actions" class="fixedColumn fixedColumnRight" width="8rem" hAlign="Left" visible="true" headerMenu="menu" >
-                    <Text text="Actions"/>
-                </Column>
-		</columns>
-		<items>
-			<ColumnListItem vAlign="Middle">
-				<cells>
-					<ObjectIdentifier
-						text="{eshipjetModel>locationName}"/>
-					<Text text="{}" />
-					<Text text="{eshipjetModel>requestIdLabelId}" />
-					<Text text="{eshipjetModel>CreatedDate}" />
-					<Text text="{eshipjetModel>DateAdded}" />
-					<Text text="{}" />
-				<HBox justifyContent="SpaceBetween"  alignItems="Center">
-					<Text text="{eshipjetModel>shipMethod}" />
-					
-					<Button text="+" 
-					        
-							press="onShipMethodUpdate"
-							visible="{= ${eshipjetModel>status} === 'Open' }" />
-				</HBox>
+							<ui:columns>
+								<ui:Column visible="{eshipjetModel>/ShipReqColumns/0/visible}" width="auto" >
+									<Label text="Location Id" />
+									<ui:template>
+										<Text text="{eshipjetModel>RecCity}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/1/visible}" >
+									<Label text="Location Name" />
+									<ui:template>
+										<Text text="{eshipjetModel>RecCity}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/2/visible}">
+									<Label text="Consolidation Id" />
+									<ui:template>
+										<Text text="{eshipjetModel>Consolidation}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/3/visible}" >
+									<Label text="Delivery/handling Requests" />
+									<ui:template>
+										<Text text="{eshipjetModel>requestIdLabelId}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/4/visible}" >
+									<Label text="Eid" />
+									<ui:template>
+										<Text text="" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/5/visible}" >
+									<Label text="Created Date" />
+									<ui:template>
+										<Text text="{eshipjetModel>Createddate}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/6/visible}" >
+									<Label text="Ship Date" />
+									<ui:template>
+										<Text text="{eshipjetModel>DateAdded}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/7/visible}" >
+									<Label text="Shipment Type" />
+									<ui:template>
+										<Text value="{eshipjetModel>Carriertype}" />
+									</ui:template>
+								</ui:Column>
 
-					<Text text="{eshipjetModel>ServiceName}" class="ShipReq-Status-Bold" />
-					
-					<Link text="{eshipjetModel>TrackingNumber}" 
-      press="onTrackingNumberPress"
-      enabled="{= ${eshipjetModel>TrackingNumber} ? true : false }"/>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/11/visible}" >
+									<Label text="Ship Method Description" />
+									<ui:template>
+										<Text text="{eshipjetModel>CarrierCode}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/12/visible}" >
+									<Label text="Ship Description" />
+									<ui:template>
+										<Text text="{eshipjetModel>CarrierDesc}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/13/visible}" >
+									<Label text="Service Name" />
+									<ui:template>
+										<Text text="{eshipjetModel>CarrierDesc}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
 
-				<ObjectStatus
-					text="{eshipjetModel>DeliveryStatus}"
-					state="{= ${eshipjetModel>DeliveryStatus} === 'Open' ? 'Information' :
-							${eshipjetModel>DeliveryStatus} === 'Shipped' ? 'Success' : 'Error' }" />
-					<Text text="{eshipjetModel>ShipToContact}" />
-					<Text text="{eshipjetModel>ShipToCompany}" />
-					<ObjectStatus
-						text="{eshipjetModel>quoteStatus}"
-						state="{= ${eshipjetModel>quoteStatus} === 'Submitted' ? 'Information' :
-								${eshipjetModel>quoteStatus} === 'Received' ? 'Success' : 
-								${eshipjetModel>quoteStatus} === 'Open' ? 'None' : 'Error' }" />
-					<Text text="{eshipjetModel>shipToCity}" />
-					<Text text="{eshipjetModel>shipToStateProvince}" />
-					<Text text="{eshipjetModel>shipToZipPostalCode}" />
-					<Text text="{eshipjetModel>shipToCountry}" />
-					<Text text="{eshipjetModel>shipToPhone}" />
-					<Text text="{eshipjetModel>shipToEmail}" />
-					<Text text="{eshipjetModel>ShipmentWorkflow}" />
-					<Text text="{}" />
-					<Text text="{}" />
-					<Text text="{}" />
-					<Text text="{}" />
-					<HBox justifyContent="Center" alignItems="Center">
-						<Button icon="sap-icon://document-text" type="Ghost" press="onShipmentWorkflowPress" />
-					</HBox>					
-					<HBox alignContent="End" alignItems="End" >
-						<Button text="View Now" type="Transparent" press="onViewNowPressBackToShipNow"></Button>
-						<Button icon="sap-icon://megamenu" type="Transparent" press="ShipReqActDownArrowPress" ></Button>
-					</HBox>
 
-				</cells>
-			</ColumnListItem>
-		</items>
-	</Table>
-</ScrollContainer>
-		<Toolbar >
-			<ToolbarSpacer/>
-				<Button  text="First" enabled="false" />
-				<Button  text="Previous" enabled="false"/>
-				<Text    text="1-50 of 74"/>
-				<Button  text="Next" />
-				<Button  text="Last" />
-		</Toolbar> -->
-
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/14/visible}" >
+									<Label text="Master Tracking Number" />
+									<ui:template>
+										<Link text="{eshipjetModel>TrackingNumber}" press="onTrackingNumberPress" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/15/visible}" >
+									<Label text="Tracking Number" />
+									<ui:template>
+										<Link text="{eshipjetModel>TrackingNumber}" press="onTrackingNumberPress" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/16/visible}" >
+									<Label text="Quote Status" />
+									<ui:template>
+										<Text text="{eshipjetModel>DeliveryStatus}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/17/visible}" >
+									<Label text="Ship To Contact" />
+									<ui:template>
+										<Text text="{eshipjetModel>RecContact}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/18/visible}" >
+									<Label text="Ship To Company" />
+									<ui:template>
+										<Text text="{eshipjetModel>RecCompany}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/19/visible}" >
+									<Label text="Ship To Address Line 1" />
+									<ui:template>
+										<Text text="{eshipjetModel>RecAddress1}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/20/visible}" >
+									<Label text="Ship To State / Province" />
+									<ui:template>
+										<Text text="{eshipjetModel>RecRegion}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/21/visible}" >
+									<Label text="Ship To City" />
+									<ui:template>
+										<Text text="{eshipjetModel>RecCity}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/22/visible}" >
+									<Label text="Ship To Zip / Postal Code" />
+									<ui:template>
+										<Text text="{eshipjetModel>RecPostalcode}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/23/visible}" >
+									<Label text="Ship To Country" />
+									<ui:template>
+										<Text text="{eshipjetModel>RecCountry}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/24/visible}" >
+									<Label text="Ship To Phone No" />
+									<ui:template>
+										<Text text="{eshipjetModel>RecPhone}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/25/visible}" >
+									<Label text="Ship To Email" />
+									<ui:template>
+										<Text text="{eshipjetModel>Emailaddress}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/26/visible}" >
+									<Label text="Requester Name" />
+									<ui:template>
+										<Text text="{eshipjetModel>RecContact}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/27/visible}" >
+									<Label text="Connected To" />
+									<ui:template>
+										<Text text="{}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/27/visible}" >
+									<Label text="Status" />
+									<ui:template>
+										<Text text="{eshipjetModel>DeliveryStatus}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/27/visible}" >
+									<Label text="Order Type" />
+									<ui:template>
+										<Text text="{eshipjetModel>Packagetype}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/27/visible}" >
+									<Label text="Rfid" />
+									<ui:template>
+										<Text text="{}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/27/visible}" >
+									<Label text="Shipment Workflow" />
+									<ui:template>
+										<Text text="{eshipjetModel>Shipmenttype}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column visible="true" width="4rem" >
+									<Label text="Actions" />
+									<ui:template>
+										<HBox>
+											<Button text="View Now" type="Transparent" press="onViewNowPressBackToShipNow" ></Button>
+											<Button icon="sap-icon://megamenu" type="Transparent" press="handleDownArrowPress" ></Button>
+										</HBox>
+									</ui:template>
+								</ui:Column>
+							</ui:columns>
+						</ui:Table>
 
 </core:FragmentDefinition>
