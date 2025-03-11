@@ -670,6 +670,78 @@ span.sapMBtnInner.sapMBtnReject {
     font-size: 11px;
   }
 }
+.eship-footer1 {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  background: rgba(255, 254, 254, 0.975);
+  height: 40px;
+  line-height: 25px;
+  z-index: 999;
+  left: 0;
+
+  span {
+    color: rgb(180, 175, 175);
+    font-size: 11px;
+  }
+}
+
+.button-wrapper button {
+  margin: 0;
+}
+
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+  cursor: pointer;
+}
+.save-btn {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  width: 0px !important;
+  margin-right: 80px !important;
+}
+.btnshpnow {
+  background-color: #247a09;
+  border: 1px solid #4ea732;
+  float: right;
+  color: #fff;
+  margin-right: 7px !important;
+  font-size: 17.5px !important;
+  width: 100px !important;
+}
+.btn-default-css {
+  font-family: AvenirNextCyrMedium !important;
+  font-size: 16px !important;
+  height: 40px !important;
+  border-radius: 4px;
+  padding: 5px 15px;
+}
+[type=button], [type=reset], [type=submit], button {
+  -webkit-appearance: button;
+}
+button, select {
+  text-transform: none;
+}
+button, input, optgroup, select, textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+button {
+  border-radius: 0;
+}
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+* {
+  box-sizing: border-box;
+}
 
 .ship-now-footer {
   height: auto !important;
@@ -694,6 +766,27 @@ span.sapMBtnInner.sapMBtnReject {
     background-color: #404040 !important;
     border: 1px solid #fff;
   }
+
+
+
+  .getship-now-footer_ship-rates {
+    background-color: transparent !important;
+    border: 1px solid  #0066cc !important;
+    color: #27a3eb !important;
+    border-radius: 4px;
+    padding: 4px 10px;
+    span:before {
+      display: none !important;
+    }
+    bdi {
+      color: #fff;
+    }
+  }
+  .getship-now-footer_ship-rates:hover{
+    background-color: #3811e2 !important;
+    border: 1px solid #fff;
+  }
+
 
   .ship-now-footer_ship-now {
     background-color: #4ea732;

@@ -323,12 +323,13 @@
 			<ToolbarSpacer/>
 		</OverflowToolbar>
 
-		<OverflowToolbar class="eship-footer ship-now-footer" visible="{eshipjetModel>/shipNowViewFooter}">
+		<OverflowToolbar class="eship-footer1 ship-now-footer" visible="{eshipjetModel>/shipNowViewFooter}">
 			<ToolbarSpacer/>
 				<!-- <Button text="Get Shipping Rates" class="ship-now-footer_ship-rates"/> -->
-				<Button text="Get Shipping Rates"  class="ship-now-footer_ship-rates"  press="onShipRatePress" />
+				<Button text="Get Shipping Rates" type="" class="getship-now-footer_ship-rates"  press="onShipRatePress" />
+				<ComboBox ></ComboBox>
 			<ToolbarSpacer/>
-				<Button text="Save" press="createHandlingUnits" class="ship-now-footer_ship-now" />
+				<Button text="Save" press="createHandlingUnits" class="btn-default-css btnshpnow save-btn ng-tns-c2921696826-168 ng-star-inserted" />
 				<Button text="Ship Now" press="onShipNowPress" class="ship-now-footer_ship-now" />
 		</OverflowToolbar>
 
