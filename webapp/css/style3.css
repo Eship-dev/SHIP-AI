@@ -2053,12 +2053,12 @@ button, input, optgroup, select, textarea {
 
 .customDeleteButton .sapUiIcon {
   color: red !important;      /* Red Icon */
-  background-color: white !important;  /* White Background */
+  background-color: None !important;  /* White Background */
   border-radius: 50%;         /* Optional: For rounded button */
   padding-top: 15% !important;               /* Padding for spacing */
   font-size: 16px !important; /* Small Icon Size */
-  width: 15px;                /* Small Button Width */
-  height: 22px;               /* Small Button Height */
+  width: 10px !important;                /* Small Button Width */
+  height: 15px !important;               /* Small Button Height */
   display: flex;
   align-items: center;
   justify-content: center;
