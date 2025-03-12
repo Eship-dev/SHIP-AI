@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
     <Dialog id="idAfterShipmentLabelDialog"
-            contentWidth="500px"
-            contentHeight="100%"
+            contentWidth="400px"
+            contentHeight="95%"
             verticalScrolling="false"
             horizontalScrolling="false"
              
@@ -19,15 +19,25 @@
 
         <VBox alignItems="Center" justifyContent="Start">
             <Image id="shipmentLabelImage"
-                   width="500px"
+                   width="400px"
                    height="95%"
-                   class="sapUiLargeMarginTop"
+                   class="sapUiLargeMarginTop "
                    densityAware="false" />
         </VBox>
-        <footer>
-            <OverflowToolbar class="p-sidebar-header sapMPopoverFooter1 shipmethod">
+        <footer >
+            <OverflowToolbar class="p-sidebar-header sapMPopoverFooter1" >
+                <Button
+                    text="Cancel"
+                    class="save1-btn sapUiTinayMarginTop"
+                    press=""
+                />
                 <ToolbarSpacer />
-                <!-- <Button type="Emphasized" text="Close" press=".onshipmentLabelDialogClosePress" /> -->
+                <Button
+                    type="Ghost"
+                    class="scan-ship-toolbar1__button sapUiTinayMarginTop"
+                    text="Print"
+                    press=""
+                />
             </OverflowToolbar>
         </footer>
     </Dialog>
