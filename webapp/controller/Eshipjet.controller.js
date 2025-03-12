@@ -67,6 +67,8 @@ sap.ui.define([
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aHandlingUnits = eshipjetModel.getProperty("/HandlingUnits") || [];
             var aPackAddProductTable = eshipjetModel.getProperty("/packAddProductTable") || [];
+            var aBusinessPartnersTable = eshipjetModel.getProperty("/BusinessPartners") || [];
+
             // If HandlingUnits has less than 6 items, add empty rows
             while (aPackAddProductTable.length < 4) {
                 aPackAddProductTable.push({ SerialNo: "" });
@@ -77,9 +79,18 @@ sap.ui.define([
                     { SerialNumber: "", SAPHUID: "" }
                 );
             }
+
+            while (aBusinessPartnersTable.length < 5) {
+                aBusinessPartnersTable.push(
+                    { PartnerType: "Freight Forwarder" },
+                    { PartnerType: "Importer" },
+                    { PartnerType: "Third Party" }
+                );
+            }
             
             eshipjetModel.setProperty("/packAddProductTable", aPackAddProductTable);
             eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
+            eshipjetModel.setProperty("/BusinessPartners", aBusinessPartnersTable);
 
             var HandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
             var HandlingUnitsLength = 0;
@@ -1089,7 +1100,7 @@ sap.ui.define([
                     "ConnectionType": "API",
                     "CostCenterName": "Cost Center 2",
                     "ShipfromCountry": "",
-                    "ShippingAccount": "B24W72"  //eshipjetModel.getProperty("/accountNumber")
+                    "ShippingAccount": eshipjetModel.getProperty("/accountNumber")
                 },
                 "shiprequest_id": 5348,
                 "InternationalDetails": [],
@@ -1195,20 +1206,28 @@ sap.ui.define([
                             }
                             sap.m.MessageBox.error(sError);
                         }                       
-                        oController.oBusyDialog.close();
+                        oController._pBusyDialog.then(function (oBusyDialog) {
+                            oBusyDialog.close();
+                        });
                     },
                     error: function (error) {
                         reject(error);
                         console.log("Error:", error);
-                        oController.oBusyDialog.close();
+                        oController._pBusyDialog.then(function (oBusyDialog) {
+                            oBusyDialog.close();
+                        });
                     }
                 });
             });
             myPromise.then(
                 function(response) {
+                    oController.onOpenBusyDialog();
                     oController.FreightQuoteUpdatedSrvData();
                     oController.ApiOutboundDeliverySrvData(response);
                     oController.createRecentShipments(response);
+                    oController._pBusyDialog.then(function (oBusyDialog) {
+                        oBusyDialog.close();
+                    });
                     // oController.createHandlingUnits();
                     //resolved
                 },
@@ -1600,7 +1619,7 @@ sap.ui.define([
             eshipjetModel.setProperty("/shippingDocuments",[]);
             eshipjetModel.setProperty("/HandlingUnitItems",[]);
             eshipjetModel.setProperty("/HandlingUnits",[]);
-            eshipjetModel.setProperty("/toolPageHeader", true);
+            eshipjetModel.setProperty("/toolPageHeader", false);
             eshipjetModel.setProperty("/allViewsFooter", false);
             eshipjetModel.setProperty("/shipNowViewFooter", true);
             eshipjetModel.setProperty("/createShipReqViewFooter", false);
@@ -1611,8 +1630,8 @@ sap.ui.define([
             oController.onPackSectionEmptyRows();
             
             oController._pBusyDialog.then(function (oBusyDialog) {
-                            oBusyDialog.close();
-                        });
+                oBusyDialog.close();
+            });
         },
         onShipmentLabelDialogClosePress1: function () {
             this.byId("idAfterShipmentLabelDialog").close();
@@ -12663,6 +12682,7 @@ sap.ui.define([
             oController.oSelectObj = aSelectedItems[0].getBindingContext("eshipjetModel").getObject(); 
             oEshipjetModel.setProperty("/ShipNowShipMethodSelectedKey", oController.oSelectObj.Carrier);
             oEshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey", oController.oSelectObj.serviceCode);
+            oEshipjetModel.setProperty("/ShipNowSelectedServiceName", oController.oSelectObj.serviceName);
             oEshipjetModel.setProperty("/accountNumber", oController.oSelectObj.AccountNumber);                     
         }
         oController.onCloseShipNowShippinRateDialog();

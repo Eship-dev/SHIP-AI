@@ -739,7 +739,7 @@
 														<Text text="{eshipjetModel>/ShipNowShipMethodSelectedKey}" ></Text>
 													</HBox>
 													<HBox height="3rem" width="20%" alignItems="Center" visible="{= ${eshipjetModel>/ShipNowShipMethodSelectedKey} ? true : false }" class="blueBackground" >
-														<Text text="{eshipjetModel>/ShipNowShipMethodSelectedKey} - {eshipjetModel>/ShipNowShipsrvNameSelectedKey}" class="packScreenCarrier" ></Text>
+														<Text text="{eshipjetModel>/ShipNowShipMethodSelectedKey} - {eshipjetModel>/ShipNowSelectedServiceName}" class="packScreenCarrier" ></Text>
 													</HBox>
 												</HBox>
 										

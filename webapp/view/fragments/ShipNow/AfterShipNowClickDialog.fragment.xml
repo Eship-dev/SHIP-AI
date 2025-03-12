@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
     <Dialog id="idAfterShipmentLabelDialog"
-            contentWidth="400px"
+            contentWidth="200px"
             contentHeight="95%"
             verticalScrolling="false"
             horizontalScrolling="false"
@@ -17,7 +17,7 @@
             </Toolbar>
         </customHeader>
 
-        <VBox alignItems="Center" justifyContent="Start">
+        <VBox alignItems="Center" justifyContent="Center" >
             <Image id="shipmentLabelImage"
                    width="400px"
                    height="95%"
@@ -29,14 +29,13 @@
                 <Button
                     text="Cancel"
                     class="save1-btn sapUiTinayMarginTop"
-                    press=""
-                />
+                    press="onShipmentLabelDialogClosePress" />
+                    
                 <ToolbarSpacer />
                 <Button
                     type="Ghost"
                     class="scan-ship-toolbar1__button sapUiTinayMarginTop"
                     text="Print"
-                    press=""
                 />
             </OverflowToolbar>
         </footer>
