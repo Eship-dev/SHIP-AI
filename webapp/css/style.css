@@ -847,7 +847,7 @@ button {
 }
 
 .save-btn:hover {
-  background-color: #086301;
+  background-color: #4ea732;
   color: #fff !important;
   span:before {
     display: none !important;
@@ -1673,7 +1673,7 @@ button {
 .sapdShipTocolor{
   text-align: center !important;
     color: #4ea732 !important;
-    font-weight: 800 !important;
+    font-weight: bold !important;
 }
 
 

@@ -39,7 +39,8 @@
 								<items >
 									<!-- Ship From / To Tab Starts here -->
 									<IconTabFilter text="Ship From / To" key="ShipFromTo" class="shipNow-IconTabBar-Width" >
-										<VBox>
+										<HBox width="100%">
+										<VBox width="55%" >
 											<f:SimpleForm id="SimpleFormChangeColumn_threeGroups346" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
 												<f:content>
 													<Toolbar ariaLabelledBy="idShipFrom" >
@@ -95,8 +96,13 @@
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</ComboBox>
-
-													<Toolbar ariaLabelledBy="idShipTo" class="scan-ship-toolbar1">
+														</f:content>
+													</f:SimpleForm>
+												</VBox>
+											<VBox width="55%" class="sapUiTinyMarginBegin">
+												<f:SimpleForm id="SimpleFormChangeColumn_threeGroups346ee" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
+														<f:content>
+														<Toolbar ariaLabelledBy="idShipTo" class="scan-ship-toolbar1">
 														<Title id="idShipTo" text="Ship To" class="sapUiTinyMarginTop sapdShipTocolor " />
 														<Button icon="sap-icon://customer-briefing" press="ShipToPickAnAddressPopoverPress" id="idShipToAddressBtn" />
 														<Button icon="sap-icon://add" press="onShipNowAddIconPress"></Button>
@@ -118,7 +124,6 @@
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													
 													<Label text="Email" />
 													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/EMAIL}" />
 													<Label text="Company Name" />
@@ -152,12 +157,11 @@
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</ComboBox>
-
-												</f:content>
-											</f:SimpleForm>
-											</VBox>
-
-											<ui:Table id="idBusinessPartnersTable111"
+                </f:content>
+            </f:SimpleForm>
+        </VBox>
+    </HBox>
+					<ui:Table id="idBusinessPartnersTable111"
 												rows="{eshipjetModel>/BusinessPartners}"
 												class="sapUiTinyMarginTop"
 												selectionMode="None"
@@ -249,7 +253,7 @@
 													</ui:template>
 												</ui:Column>
 											</ui:columns>
-										</ui:Table>
+										</ui:Table>					
 
 										
 									</IconTabFilter>
