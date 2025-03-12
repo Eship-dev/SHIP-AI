@@ -2,7 +2,7 @@
 	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
 	    		<Toolbar class="" height="3rem" >
-					<Button icon="sap-icon://past" id="shipNowRecentShips" press="onOpenRecentShipmentPopover sapUiSmallMarginBegin"/>
+					<Button icon="sap-icon://past" id="shipNowRecentShips" press="onOpenRecentShipmentPopover" />
 					<Text text="Ship Now"/>
 					<ToolbarSpacer/>
 						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn" />
@@ -1214,7 +1214,7 @@
 								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/6/visible}" >
 									<Label text="Dimensions (IN)" />
 									<ui:template>
-										<Text text="{eshipjetModel>HandlingUnitLength} X {eshipjetModel>HandlingUnitWidth} X {eshipjetModel>HandlingUnitHeight}" visible="{= !!${eshipjetModel>HandlingUnitLength} }" wrapping="false" />
+										<Text text="10 X 12 X 12" visible="{= !!${eshipjetModel>HandlingUnitLength} }" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/7/visible}" >

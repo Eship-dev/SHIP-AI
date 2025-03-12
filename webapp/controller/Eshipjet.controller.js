@@ -98,7 +98,7 @@ sap.ui.define([
                 if(HandlingUnits[i].SAPHUID !== ""){
                     HandlingUnitsLength += 1
                 }
-            }
+            };
             eshipjetModel.setProperty("/HandlingUnitsLength", HandlingUnitsLength);
         },
 
@@ -1231,9 +1231,9 @@ sap.ui.define([
             myPromise.then(
                 function(response) {
                     oController.onOpenBusyDialog();
-                    oController.FreightQuoteUpdatedSrvData();
-                    oController.ApiOutboundDeliverySrvData(response);
-                    // oController.createRecentShipments(response);
+                    // oController.FreightQuoteUpdatedSrvData();
+                    // oController.ApiOutboundDeliverySrvData(response);
+                    oController.createRecentShipments(response);
                     oController._pBusyDialog.then(function (oBusyDialog) {
                         oBusyDialog.close();
                     });
@@ -1377,8 +1377,8 @@ sap.ui.define([
                 "Chargweight": "10.000",
                 "Codamount": "100.000",
                 "Customs": "0.000",
-                "Freightamt": response.shippingCharges[0].amount,
-                "Discountamt": response.shippingCharges[1].amount,
+                "Freightamt": response.shippingCharges[0].amount.toString(),
+                "Discountamt": response.shippingCharges[1].amount.toString(),
                 "Insurance": "0.000",
                 "Dryweight": "0.000",
                 "Vbeln": response.HeaderInfo.DocumentNumber,
@@ -1791,6 +1791,8 @@ sap.ui.define([
             var sDeveliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
             eshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey","");
             
+            eshipjetModel.setProperty("/shippingCharges", []);
+            eshipjetModel.setProperty("/shippingDocuments", []);
             eshipjetModel.setProperty("/ShipNowShipMethodSelectedKey","");
             eshipjetModel.setProperty("/accountNumber","");                 
             let myPromise = new Promise(function(myResolve, myReject) {
@@ -1888,6 +1890,9 @@ sap.ui.define([
                 oFilter = [];
                 oFilter.push(new Filter("HandlingUnitReferenceDocument", "EQ", sDeveliveryNumber));
                 oHandlingUnitModel.read("/HandlingUnit",{
+                    urlParameters: {
+                        "$expand": "to_HandlingUnitItem"
+                    },
                     filters: oFilter,
                     success:function(oData){
                         if(oData && oData.results && oData.results.length > 0){
@@ -1939,7 +1944,7 @@ sap.ui.define([
                     if(oData && oData.results && oData.results.length > 0){
                         var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
                         eshipjetModel.setProperty("/HandlingUnitItems",oData.results);
-                        oController.onPackSectionEmptyRows();
+                        
                         // var oShipNowHandlingUnitTable = oView.byId("idShipNowHandlingUnitTable");
                         // if(oShipNowHandlingUnitTable){
                         //     oShipNowHandlingUnitTable.setModel(eshipjetModel);
@@ -1951,6 +1956,7 @@ sap.ui.define([
                     var err = oErr;
                 }
             });
+            oController.onPackSectionEmptyRows();
         },
         getSalesOrder:function(aProductTable){
             var oSalesOrderModel = oController.getOwnerComponent().getModel("SalesOrderModel");            
@@ -12700,7 +12706,8 @@ sap.ui.define([
         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
         oRouter.navTo("ShipRequestLabel"); // Replace with your actual route name
     },
-    onViewNowPressBackToShipNow: function(){
+    onViewNowPressBackToShipNow: function(oEvent){
+        var oCurrentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
         var sKey = "ShipNow";
         var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         eshipjetModel.setSizeLimit(9999999);
@@ -12715,13 +12722,14 @@ sap.ui.define([
         // oController._handleDisplayShipNowPackTable();
         if (sKey === "ShipNow") {
             eshipjetModel.setProperty("/toolPageHeader", false);
-            eshipjetModel.setProperty("/allViewsFooter", true);
-            eshipjetModel.setProperty("/shipNowViewFooter", false);
+            eshipjetModel.setProperty("/allViewsFooter", false);
+            eshipjetModel.setProperty("/shipNowViewFooter", true);
             eshipjetModel.setProperty("/createShipReqViewFooter", false);
             eshipjetModel.setProperty("/routingGuidFooter", false);
             eshipjetModel.setProperty("/showDarkThemeSwitch", false);
             eshipjetModel.setProperty("/darkTheme", false);
             document.body.classList.remove("dark-theme");
+            oController.onPackSectionEmptyRows();
         }
         eshipjetModel.setProperty("/SideNavigation", false);
         this.byId("pageContainer").to(this.getView().createId(sKey));

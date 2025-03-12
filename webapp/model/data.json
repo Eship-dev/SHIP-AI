@@ -8,6 +8,7 @@
     "toolPageDarkHeader": false,
     "toolPageHeader":true,
     "shipNowGetBtn": true,
+    "HandlingUnitsLength":0,
     
     "shipNowGanderWhiteSelect": false,
     "shipNowABFSelect": false,
