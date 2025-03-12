@@ -2076,3 +2076,7 @@ button, input, optgroup, select, textarea {
 }
 
 
+.custom-input2:focus {
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 8px rgba(44, 160, 28) !important;
+}

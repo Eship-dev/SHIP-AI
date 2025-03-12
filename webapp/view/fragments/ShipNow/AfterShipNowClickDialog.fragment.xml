@@ -1,13 +1,13 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
     <Dialog id="idAfterShipmentLabelDialog"
-            contentWidth="200px"
+            contentWidth="40vh"
             contentHeight="95%"
             verticalScrolling="false"
             horizontalScrolling="false"
              
        
         showHeader="false" 
-        class="rightSidePopoverShipNowsideLabel">
+        class="rightSidePopoverShipNowsideLabel1">
             
         <customHeader>
             <Toolbar>
@@ -19,8 +19,8 @@
 
         <VBox alignItems="Center" justifyContent="Center" >
             <Image id="shipmentLabelImage"
-                   width="400px"
-                   height="95%"
+                   width="60vh"
+                   height="100vh"
                    class="sapUiLargeMarginTop "
                    densityAware="false" />
         </VBox>
