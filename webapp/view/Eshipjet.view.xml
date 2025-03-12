@@ -326,8 +326,8 @@
 		<OverflowToolbar class="eship-footer1 ship-now-footer" visible="{eshipjetModel>/shipNowViewFooter}">
 			<ToolbarSpacer/>
 				<!-- <Button text="Get Shipping Rates" class="ship-now-footer_ship-rates"/> -->
-				<Button text="Get Shipping Rates" type="" class="btngetshipments"  press="onShipRatePress" />
-				<ComboBox class="create-ship-req_input" items="{}">
+				<Button text="Get Shipping Rates" class="btngetshipments" press="onShipRatePress" />
+				<ComboBox class="create-ship-req_input" items="" placeholder="More Actions" >
 					<core:Item key="postGoodsIssue" text="Post Goods Issue" />
 					<core:Item key="reversePGI" text="Reverse PGI" />
 				</ComboBox>

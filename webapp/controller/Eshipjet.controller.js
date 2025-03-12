@@ -42,23 +42,6 @@ sap.ui.define([
             this.getView().setModel(oShipperCopilotModel, "ShipperCopilotModel");
             oResourceBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
             this._setToggleButtonTooltip(!Device.system.desktop);
-
-            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var aHandlingUnits = eshipjetModel.getProperty("/HandlingUnits") || [];
-            var aPackAddProductTable = eshipjetModel.getProperty("/packAddProductTable") || [];
-            // If HandlingUnits has less than 6 items, add empty rows
-            while (aPackAddProductTable.length < 4) {
-                aPackAddProductTable.push({ SerialNo: "" });
-            }
-
-            while (aHandlingUnits.length < 6) {
-                aHandlingUnits.push(
-                    { SerialNumber: "", SAPHUID: "" }
-                );
-            }
-            
-            eshipjetModel.setProperty("/packAddProductTable", aPackAddProductTable);
-            eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
             
             var ShipNowDataModel = {
                 "sapShipmentID": "",
@@ -78,11 +61,26 @@ sap.ui.define([
             this.getOwnerComponent().setModel(ShipNowDataModel, "ShipNowDataModel");
             oController.oBusyDialog = new sap.m.BusyDialog({});
             this.getOwnerComponent().getRouter().getRoute("RouteEshipjet").attachPatternMatched(this._handleRouteMatched, this);
-            oController.handlingUnitLength();
         },
 
-        handlingUnitLength:function(){
+        onPackSectionEmptyRows:function(){
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var aHandlingUnits = eshipjetModel.getProperty("/HandlingUnits") || [];
+            var aPackAddProductTable = eshipjetModel.getProperty("/packAddProductTable") || [];
+            // If HandlingUnits has less than 6 items, add empty rows
+            while (aPackAddProductTable.length < 4) {
+                aPackAddProductTable.push({ SerialNo: "" });
+            }
+
+            while (aHandlingUnits.length < 6) {
+                aHandlingUnits.push(
+                    { SerialNumber: "", SAPHUID: "" }
+                );
+            }
+            
+            eshipjetModel.setProperty("/packAddProductTable", aPackAddProductTable);
+            eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
+
             var HandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
             var HandlingUnitsLength = 0;
             for(var i=0; i<HandlingUnits.length; i++){
@@ -218,6 +216,7 @@ sap.ui.define([
                 var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
                 ShipNowDataModel.setProperty("/ShipFromAddress", "");
                 ShipNowDataModel.setProperty("/ShipToAddress", "");
+                oController.onPackSectionEmptyRows();
                 // oController._handleDisplayShipNowPackTable();
                 // this._handleDisplayShipNowProductsTable();
                 // this._handleDisplayShipNowHandlingUnitTable();
@@ -1567,7 +1566,8 @@ sap.ui.define([
         },
         
         onShipmentLabelDialogClosePress: function () {
-             oController.onOpenBusyDialog(); 
+            oController.onOpenBusyDialog(); 
+            this.byId("idAfterShipmentLabelDialog").close();
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             var shipFromObj = {
                 "ShipFromCONTACT": "",
@@ -1601,14 +1601,15 @@ sap.ui.define([
             eshipjetModel.setProperty("/HandlingUnitItems",[]);
             eshipjetModel.setProperty("/HandlingUnits",[]);
             eshipjetModel.setProperty("/toolPageHeader", true);
-            eshipjetModel.setProperty("/allViewsFooter", true);
-            eshipjetModel.setProperty("/shipNowViewFooter", false);
+            eshipjetModel.setProperty("/allViewsFooter", false);
+            eshipjetModel.setProperty("/shipNowViewFooter", true);
             eshipjetModel.setProperty("/createShipReqViewFooter", false);
             eshipjetModel.setProperty("/routingGuidFooter", false);
             eshipjetModel.setProperty("/showDarkThemeSwitch", false);
             eshipjetModel.setProperty("/darkTheme", false);
             
-            this.byId("idAfterShipmentLabelDialog").close();
+            oController.onPackSectionEmptyRows();
+            
             oController._pBusyDialog.then(function (oBusyDialog) {
                             oBusyDialog.close();
                         });
@@ -1910,7 +1911,7 @@ sap.ui.define([
                     if(oData && oData.results && oData.results.length > 0){
                         var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
                         eshipjetModel.setProperty("/HandlingUnitItems",oData.results);
-                        oController.handlingUnitLength();
+                        oController.onPackSectionEmptyRows();
                         // var oShipNowHandlingUnitTable = oView.byId("idShipNowHandlingUnitTable");
                         // if(oShipNowHandlingUnitTable){
                         //     oShipNowHandlingUnitTable.setModel(eshipjetModel);
@@ -3125,6 +3126,7 @@ sap.ui.define([
                 ShipNowDataModel.setProperty("/ShipFromAddress", "");
                 ShipNowDataModel.setProperty("/ShipToAddress", "");
                 eshipjetModel.setProperty("/BusinessPartners", []);
+                oController.onPackSectionEmptyRows();
                 // oController._handleDisplayShipNowPackTable();
 
             } else if (tileTitle === "Track Now") {
