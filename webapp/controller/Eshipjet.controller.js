@@ -856,7 +856,7 @@ sap.ui.define([
         },
 
         onShipNowNewPress:function(){
-             oController.onOpenBusyDialog(); 
+            oController.onOpenBusyDialog();
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             var shipFromObj = {
                 "ShipFromCONTACT": "",
@@ -889,16 +889,19 @@ sap.ui.define([
             eshipjetModel.setProperty("/shippingDocuments",[]);
             eshipjetModel.setProperty("/HandlingUnitItems",[]);
             eshipjetModel.setProperty("/HandlingUnits",[]);
-            eshipjetModel.setProperty("/toolPageHeader", true);
-            eshipjetModel.setProperty("/allViewsFooter", true);
-            eshipjetModel.setProperty("/shipNowViewFooter", false);
+            eshipjetModel.setProperty("/toolPageHeader", false);
+            eshipjetModel.setProperty("/allViewsFooter", false);
+            eshipjetModel.setProperty("/shipNowViewFooter", true);
             eshipjetModel.setProperty("/createShipReqViewFooter", false);
             eshipjetModel.setProperty("/routingGuidFooter", false);
             eshipjetModel.setProperty("/showDarkThemeSwitch", false);
             eshipjetModel.setProperty("/darkTheme", false);
+            
+            oController.onPackSectionEmptyRows();
+            
             oController._pBusyDialog.then(function (oBusyDialog) {
-                            oBusyDialog.close();
-                        });
+                oBusyDialog.close();
+            });
         },
        
         onShipNowPress: function () {            
@@ -908,6 +911,12 @@ sap.ui.define([
             eshipjetModel.setProperty("/shipNowGetBtn", true);
             var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
             var carrier = eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey");
+            if(carrier === "FedEx"){
+                var serviceName = "GROUND_HOME_DELIVERY";
+            }else{
+                var serviceName = eshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey");
+            }
+            
             if(carrier === "UPS"){
                 var id = "6ljUpEbuu1OlOk7ow932lsxXHISUET0WKjTn59GzQ5MRdEbA";
                 var password = "ioZmsfcbrzlWfGh7wGMhqHL6sY4EAaKzZObullipni0cEGJGChjFmGpkcdCWQynK";
@@ -940,7 +949,7 @@ sap.ui.define([
                     "AddressType": "Residential",
                     "UpdatedDate": "2024-10-23T13:29:39.574Z",
                     "UpdatedUser": "info@eshipjet.ai",
-                    "ADDRESS_TYPE": "residential",
+                    "ADDRESS_TYPE": "Residential",
                     "LocationType": "",
                     "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipToAddress/StreetName"),
                     "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipToAddress/HouseNumber"),
@@ -1091,7 +1100,7 @@ sap.ui.define([
                     "costCenter": "",
                     "CarrierType": "Parcel",
                     "PaymentType": "Sender",
-                    "ServiceName": eshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey"),
+                    "ServiceName": serviceName,
                     "ERPCarrierID": carrier,
                     "ShipToCountry": "",
                     "BillingAccount": "",
@@ -1224,7 +1233,7 @@ sap.ui.define([
                     oController.onOpenBusyDialog();
                     oController.FreightQuoteUpdatedSrvData();
                     oController.ApiOutboundDeliverySrvData(response);
-                    oController.createRecentShipments(response);
+                    // oController.createRecentShipments(response);
                     oController._pBusyDialog.then(function (oBusyDialog) {
                         oBusyDialog.close();
                     });
