@@ -88,7 +88,7 @@
 														</layoutData>
 													</Input>
 													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" 
-														selectedKey="{ShipNowDataModel>/ShipFromAddress/LocationType}" 
+														selectedKey="Commercial"
 														items="{eshipjetModel>/shipNowAddressType}" 
 														placeholder="Address Type">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
@@ -1145,7 +1145,7 @@
 								<HBox height="3rem" width="33%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="SpaceBetween" >																
 									<FlexBox alignItems="Center" >
 										<Text text="No of Packages:" class="sapUiTinyMargin text-primary" ></Text>
-										<Text text="{eshipjetModel>/HandlingUnitsLength}" class="numberData" ></Text>
+										<Text text="{eshipjetModel>/HandlingUnitsLength}" class="numberData" width="auto" ></Text>
 									</FlexBox>
 									<FlexBox alignItems="Center" >
 										<Text text="Master Tracking #" class="sapUiTinyMargin" ></Text>

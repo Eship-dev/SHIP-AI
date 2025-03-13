@@ -911,11 +911,12 @@ sap.ui.define([
             eshipjetModel.setProperty("/shipNowGetBtn", true);
             var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
             var carrier = eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey");
-            if(carrier === "FedEx"){
-                var serviceName = "GROUND_HOME_DELIVERY";
-            }else{
-                var serviceName = eshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey");
-            }
+            var serviceName = eshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey");
+            // if(carrier === "FedEx"){
+            //     var serviceName = "GROUND_HOME_DELIVERY";
+            // }else{
+            //     var serviceName = eshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey");
+            // }
             
             if(carrier === "UPS"){
                 var id = "6ljUpEbuu1OlOk7ow932lsxXHISUET0WKjTn59GzQ5MRdEbA";
@@ -946,10 +947,10 @@ sap.ui.define([
                     "RFIDTag": true,
                     "ZIPCODE": oShipNowDataModel.getProperty("/ShipToAddress/PostalCode"),
                     "IsActive": true,
-                    "AddressType": "Residential",
+                    "AddressType": "Commercial",
                     "UpdatedDate": "2024-10-23T13:29:39.574Z",
                     "UpdatedUser": "info@eshipjet.ai",
-                    "ADDRESS_TYPE": "Residential",
+                    "ADDRESS_TYPE": "Commercial",
                     "LocationType": "",
                     "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipToAddress/StreetName"),
                     "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipToAddress/HouseNumber"),
@@ -5238,12 +5239,16 @@ sap.ui.define([
                         eshipjetModel.setProperty("/RecentShipmentSet",last10Records);
                     }
                     resolve();
-                    oController.oBusyDialog.close();
+                    oController._pBusyDialog.then(function (oBusyDialog) {
+                        oBusyDialog.close();
+                    });
                 },
                 error: function(error){
                     resolve();
                     MessageBox.warning(error.responseText);
-                    oController.oBusyDialog.close();
+                    oController._pBusyDialog.then(function (oBusyDialog) {
+                        oBusyDialog.close();
+                    });
                 }
             });
 
