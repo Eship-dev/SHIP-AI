@@ -11220,6 +11220,9 @@ sap.ui.define([
         onCloseDialog: function () {
             this.byId("idShipmentWorkflowDialog").close();
         },
+        saveSelectPopover: function () {
+            this.byId("idShipmentWorkflowDialog").close();
+        },
 
 
         handleAddProductRowPress:function(oEvent){

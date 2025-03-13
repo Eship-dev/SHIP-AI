@@ -24,7 +24,7 @@
     <VBox class="customSimpleFormShadow">
   <!-- Delivery Image & Info -->
   <VBox justifyContent="Center" alignItems="Center" class="sapUiTinyMarginTop">
-    <Image src="https://dev.eshipjet.site/assets/images/statusProgress.png" width="100%" height="100%"></Image>
+    <Image src="ttps://dev.eshipjet.site/assets/images/statusProgress.png" width="100%" height="100%"></Image>
     <Text text="Delivered" class="GreenandCenter sapUiTinyMarginTop"/>
   </VBox>
 

@@ -1713,4 +1713,7 @@ button {
     font-weight: bold !important;
 }
 
+.sapMComboBoxPopover11 {
+  z-index: 99999999999 !important; /* Ensure it appears above the footer */
+}
 

@@ -147,7 +147,10 @@
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/11/visible}" >
 									<Label text="Ship Method Description" />
 									<ui:template>
-										<Text text="{eshipjetModel>CarrierCode}" wrapping="false" />
+											<HBox justifyContent="SpaceBetween" alignItems="Center">
+												<Text text="{eshipjetModel>CarrierCode}" wrapping="false" />
+												<Button icon="sap-icon://add" press="onShipMethodUpdate" />
+											</HBox>
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/12/visible}" >
@@ -269,7 +272,11 @@
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/27/visible}" >
 									<Label text="Shipment Workflow" />
 									<ui:template>
-										<Text text="{eshipjetModel>Shipmenttype}" wrapping="false" />
+									<VBox justifyContent="Center" alignItems="Center">
+											<Button icon="sap-icon://notes" press="onShipmentWorkflowPress"></Button>
+									</VBox>
+									
+										<!-- <Text text="{eshipjetModel>Shipmenttype}" wrapping="false" /> -->
 									</ui:template>
 								</ui:Column>
 								<ui:Column visible="true" width="4rem" >

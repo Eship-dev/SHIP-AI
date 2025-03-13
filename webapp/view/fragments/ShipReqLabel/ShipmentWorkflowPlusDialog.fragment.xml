@@ -52,7 +52,7 @@
                     class="btnSave"
                     type="Emphasized"
                     text="Save"
-                    press="AddLocSelectPopover"
+                    press="saveSelectPopover"
                 />
             </OverflowToolbar>
         </footer>
