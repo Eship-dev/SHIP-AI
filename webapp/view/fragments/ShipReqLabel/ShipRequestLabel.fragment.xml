@@ -279,10 +279,11 @@
 										<!-- <Text text="{eshipjetModel>Shipmenttype}" wrapping="false" /> -->
 									</ui:template>
 								</ui:Column>
-								<ui:Column visible="true" width="4rem" >
+								<ui:Column visible="true" width="auto" >
 									<Label text="Actions" />
 									<ui:template>
 										<HBox>
+											<!-- <Button text="{eshipjetModel>DeliveryStatus}" type="Transparent" press="onViewNowPressBackToShipNow" ></Button> -->
 											<Button text="View Now" type="Transparent" press="onViewNowPressBackToShipNow" ></Button>
 											<Button icon="sap-icon://megamenu" type="Transparent" press="handleDownArrowPress" ></Button>
 										</HBox>

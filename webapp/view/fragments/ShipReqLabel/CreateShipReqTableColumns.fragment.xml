@@ -9,7 +9,7 @@
 					<ToolbarSpacer ></ToolbarSpacer>					
 					<Button icon="sap-icon://decline" press="onCreateShipReqColSelectClosePress" class="Decline_Btn" ></Button>
 				</Toolbar>
-				<SearchField placeholder="Search Columns"   liveChange="onCreateShipReqColNameSearch" ></SearchField>
+				<SearchField placeholder="Search Columns" class="columnConfigSearch" liveChange="onCreateShipReqColNameSearch" ></SearchField>
 			</VBox>
 		</customHeader>
 		<content>

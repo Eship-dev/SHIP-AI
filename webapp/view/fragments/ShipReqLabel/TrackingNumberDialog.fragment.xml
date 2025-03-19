@@ -24,7 +24,7 @@
     <VBox class="customSimpleFormShadow">
   <!-- Delivery Image & Info -->
   <VBox justifyContent="Center" alignItems="Center" class="sapUiTinyMarginTop">
-    <Image src="ttps://dev.eshipjet.site/assets/images/statusProgress.png" width="100%" height="100%"></Image>
+    <Image src="https://drivemedical.eshipjet.site/assets/images/statusProgress.png" width="100%" height="100%" ></Image>
     <Text text="Delivered" class="GreenandCenter sapUiTinyMarginTop"/>
   </VBox>
 
@@ -70,7 +70,7 @@
   <!-- Second Row: Service Name -->
   <HBox class="customRow" width="100%">
     <Label text="Service Name:" class="customLabel" width="15rem" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/Carriertype}" class="customTextField centerText" width="15rem" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/ERPCarrierID}" class="customTextField centerText" width="15rem" />
   </HBox>
   
   <!-- Third Row: Delivered To -->
@@ -82,13 +82,13 @@
   <!-- Fourth Row: Ship Date -->
   <HBox class="customRow" width="100%" >
     <Label text="Ship Date:" class="customLabel" width="15rem" />
-    <Text text="{path: 'eshipjetModel>/TrackingNumberTableRows/Createddate', formatter: '.formatter.formatDate'}" class="customTextField centerText" width="15rem" />
+    <Text text="{path: 'eshipjetModel>/TrackingNumberTableRows/Delivered', formatter: '.formatter.formatDate'}" class="customTextField centerText" width="15rem" />
   </HBox>
   
   <!-- Fifth Row: Standard Transit -->
   <HBox class="customRow" width="100%" >
     <Label text="Standard Transit:" class="customLabel" width="15rem" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/StandardTransit}" class="customTextField centerText" width="15rem" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/TransitDays}" class="customTextField centerText" width="15rem" />
   </HBox>
   
   <!-- Sixth Row: Delivered -->

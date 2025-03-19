@@ -10,7 +10,14 @@
 			</VBox>
 		</customHeader>
 		<content>
-        <Table	id="rencentShipmentTblId"  items="{eshipjetModel>/RecentShipmentSet}" >
+        <Table	id="rencentShipmentTblId" 
+				items="{ 
+					path: 'eshipjetModel>/RecentShipmentSet',
+					sorter: [
+						{ path: 'Createddate', descending: true },
+						{ path: 'TimeAdded', descending: true }
+					]}" >
+
 		<ColumnListItem  vAlign="Middle" press="onRecentShipmentsItemPress" type="Active" >
 			<cells>				
 			  	<Text text="{eshipjetModel>Vbeln}" class="customObjectStatus" />

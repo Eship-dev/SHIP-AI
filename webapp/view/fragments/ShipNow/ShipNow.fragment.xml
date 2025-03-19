@@ -88,7 +88,7 @@
 														</layoutData>
 													</Input>
 													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" 
-														selectedKey="Commercial"
+														selectedKey="{ShipNowDataModel>/ShipFromAddress/LocationType}"
 														items="{eshipjetModel>/shipNowAddressType}" 
 														placeholder="Address Type">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
@@ -264,16 +264,16 @@
 											<f:SimpleForm id="RoutingandBillingDetails" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4" >
 												<f:content>
 													<Label text="Ship Method" />
-													<ComboBox class="sapMComboBoxPopover11 create-ship-req_input sapMComboBoxPopover1" items="{eshipjetModel>/shipMethodTypes}" selectedKey="{eshipjetModel>/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
-														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
+													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/carrierconfiguration}" selectedKey="{eshipjetModel>/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
+														<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
 													</ComboBox>
 													<Label text="Payment Type" />
 													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/paymentType}">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Service Name" />
-													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/serviceNameDropdown}" selectedKey="{eshipjetModel>/ShipNowShipsrvNameSelectedKey}">
-														<core:Item key="{eshipjetModel>serviceCode}" text="{eshipjetModel>serviceName}" />
+													<ComboBox class="create-ship-req_input" items="{serviceNamesList>/carrierServices}" selectedKey="{eshipjetModel>/ShipNowShipsrvNameSelectedKey}">
+														<core:Item key="{serviceNamesList>ServiceCode}" text="{serviceNamesList>ServiceName}" />
 													</ComboBox>
 													<Label text="Cost Center" />
 													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/costCenter}">
@@ -1162,7 +1162,7 @@
 								<HBox height="3rem" width="33%" class="whiteBackground" alignItems="Center" justifyContent="End" >
 									<Text text="Tracking / Pro#" class="sapUiTinyMargin" ></Text>
 									<Input value="{}" class="create-ship-req_input sapUiTinyMargin" width="auto"></Input>
-									<Button text="Get" visibl="{eshipjetModel>/shipNowGetBtn}" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="6rem" ></Button>
+									<Button text="Get" visible="{eshipjetModel>/shipNowGetBtn}" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="6rem" ></Button>
 								</HBox>
 							</HBox>
 
