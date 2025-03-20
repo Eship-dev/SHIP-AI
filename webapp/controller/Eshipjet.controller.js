@@ -3627,6 +3627,33 @@ sap.ui.define([
         onOrderFilterPopoverApplyPress: function () {
             this.byId("idOrdersFilterPopover").close();
         },
+
+        onOrderNowTotalFilterPress:function(oEvent){
+            var oTable = oController.getView().byId("idOrdersTable");
+            var oBinding = oTable.getBinding("rows");
+            var oFilter = new sap.ui.model.Filter("Status", sap.ui.model.FilterOperator.Contains, "Total");
+            oBinding.filter([oFilter]);
+        },
+        onOrderNowShippedFilterPress:function(){
+            var oTable = oController.getView().byId("idOrdersTable");
+            var oBinding = oTable.getBinding("rows");
+            var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Shipped");
+            oBinding.filter([oFilter]);
+        },
+
+        onOrderNowOpenFilterPress:function(){
+            var oTable = oController.getView().byId("idOrdersTable");
+            var oBinding = oTable.getBinding("rows");
+            var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Open");
+            oBinding.filter([oFilter]);
+        },
+
+        onOrderNowCancelledFilterPress:function(){
+            var oTable = oController.getView().byId("idOrdersTable");
+            var oBinding = oTable.getBinding("rows");
+            var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Cancelled");
+            oBinding.filter([oFilter]);
+        },
         // Order Changes End
 
 
@@ -10058,29 +10085,34 @@ sap.ui.define([
         },
 
         ShipToPickAnAddressPopoverPress: function (oEvent) {
-            var oButton = oEvent.getSource(),
-                oView = this.getView();
-            var ShipNowDataModel = this.getView().getModel("ShipNowDataModel");
-            var sPath = oEvent.getSource().getId().split("--");
-            var btnId = sPath[sPath.length - 1];
-            ShipNowDataModel.setProperty("/shipNowBtnId", btnId);
-            if (!this._ShipToAddPickPopover) {
-                this._ShipToAddPickPopover = Fragment.load({
-                    id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.ShipToPickAnAddressPopover",
-                    controller: this
-                }).then(function (oShipToAddPickPopover) {
-                    oView.addDependent(oShipToAddPickPopover);
-                    return oShipToAddPickPopover;
+                var oView = this.getView();
+                var ShipNowDataModel = oView.getModel("ShipNowDataModel");
+            
+                // Get button ID
+                var sPath = oEvent.getSource().getId().split("--");
+                var btnId = sPath[sPath.length - 1];
+                ShipNowDataModel.setProperty("/shipNowBtnId", btnId);
+            
+                if (!this._ShipToAddPickDialog) {
+                    this._ShipToAddPickDialog = Fragment.load({
+                        id: oView.getId(),
+                        name:  "com.eshipjet.zeshipjet.view.fragments.ShipNow.ShipToPickAnAddressPopover",
+                        controller: this
+                    }).then(function (oShipToAddPickDialog) {
+                        oView.addDependent(oShipToAddPickDialog);
+                        return oShipToAddPickDialog;
+                    });
+                }
+            
+                this._ShipToAddPickDialog.then(function (oShipToAddPickDialog) {
+                    oShipToAddPickDialog.open();
                 });
+            },
+            
+            onShipToPickAnAddressCancelPress: function () {
+                this.byId("idShipToPickAnAddressDialog").close();
             }
-            this._ShipToAddPickPopover.then(function (oShipToAddPickPopover) {
-                oShipToAddPickPopover.openBy(oButton);
-            });
-        },
-        onShipToPickAnAddressCancelPress: function () {
-            this.byId("idShipToPickAnAddressPopover").close();
-        },
+            ,
 
         onShipToPickAnAddressSelectPress: function () {
             var ShipNowDataModel = this.getView().getModel("ShipNowDataModel");
@@ -11964,6 +11996,28 @@ sap.ui.define([
                 ADDLocImpPopover.openBy(oButton);
             });
         },
+        
+          // add location popover down arrow 
+          onImagePress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._oADDLocImpPopover) {
+                this._oADDLocImpPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.CubeDimPackPopover",
+                    controller: this
+                }).then(function (ADDLocImpPopover) {
+                    oView.addDependent(ADDLocImpPopover);
+                    // ADDLocImpPopover.bindElement("/ProductCollection/0");
+                    return ADDLocImpPopover;
+                });
+            }
+            this._oADDLocImpPopover.then(function (ADDLocImpPopover) {
+                ADDLocImpPopover.openBy(oButton);
+            });
+        },
+
+
 
          // add location popover down arrow 
          AddIMportLocPress: function (oEvent) {

@@ -29,22 +29,22 @@
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="9" class="NumberSizeTitle1"></Text>
 					<Text text="Total" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Emphasized" press="handleTrackNowFilterBtnPress" class="total-request-button request-button" icon="false" width="100%"  ></Button>
+					<Button type="Emphasized" press="onOrderNowTotalFilterPress" class="total-request-button request-button" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Success" press="handleTrackNowFilterBtnPress" class="shipped-request-button request-button" icon="false" width="100%" ></Button>
+					<Button type="Success" press="onOrderNowShippedFilterPress" class="shipped-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="9" class="NumberSizeTitle1"></Text>
 					<Text text="Open" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Critical" press="handleTrackNowFilterBtnPress"  class="cancelled-request-button request-button" icon="false" width="100%" ></Button>
+					<Button type="Critical" press="onOrderNowOpenFilterPress"  class="cancelled-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
-					<Button press="handleTrackNowFilterBtnPress" class="open-request-button request-button" icon="false" width="100%" ></Button>
+					<Button press="onOrderNowCancelledFilterPress" class="open-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 			</HBox>
 		</Toolbar>

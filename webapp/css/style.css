@@ -881,6 +881,32 @@ button {
     color: #fff;
   }
 }
+
+.save11-btn {
+  background-color: #fff;
+  color: #000;
+  margin: 13px 0 0 0.5rem !important;
+  border: 1px solid #363535;
+  width: 80px !important;
+  margin-right: 50px !important;
+  span:before {
+    display: none !important;
+  }
+  bdi {
+    color: #000;
+  }
+}
+
+.save11-btn:hover {
+  background-color: #e63b3b;
+  color: #fff !important;
+  span:before {
+    display: none !important;
+  }
+  bdi {
+    color: #fff;
+  }
+}
 /* background-color: #4E9C2D !important;
   color: #fff !important;
   border: 1px solid #4E9C2D !important;
@@ -1426,6 +1452,41 @@ button {
   max-width: 2160px;
   max-height: 1030px;
   min-width: 717px !important;
+}
+
+.rightSidePopoverShipNowPickAnAddress{
+  width: 45% !important;
+  height: 100vh !important; ;
+  overflow: auto !important;
+  position: fixed !important;
+  visibility: visible !important;
+  z-index: 99999 !important;
+  max-width: 1230px;
+  max-height: 100% !important;
+  padding-bottom: 0px !important;
+  top: 0px !important;
+  padding-top: 0px !important;
+  display: block;
+  right: 0 !important;
+  left: auto !important;
+  border-radius: 0px !important;
+  height: 95%;
+  position: absolute;
+  visibility: visible;
+  z-index: 51;
+  top: 0px;
+  left: 842px;
+  padding-top: 40px;
+  display: block;
+  width: 300px;
+  max-width: 2160px;
+  max-height: 1030px;
+  min-width: 717px !important;
+}
+
+.pickAnAddess{
+  padding-top: 60px;
+  padding-bottom: 64px;
 }
 .cnthight{
   height: 100% !important;
