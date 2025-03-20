@@ -8338,8 +8338,8 @@
     "SAPDeliveryNo":"SAP Delivery No",
     
     "moreActionsList":[
-        {"moreActionItem": "Post Goods Issue"},
-        {"moreActionItem": "Reverse PGI"}
+        {"moreActionItem": "Post Goods Issue", "moreActionIcon": "sap-icon://accept"},
+        {"moreActionItem": "Reverse PGI", "moreActionIcon": "sap-icon://refresh"}
     ],
 
     "carrierconfiguration": [

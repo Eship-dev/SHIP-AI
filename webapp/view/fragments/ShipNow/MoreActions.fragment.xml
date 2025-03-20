@@ -18,6 +18,7 @@
             itemPress="onMoreActionItemPress" >
             <StandardListItem
                 title="{moreActionItem}"
+                icon="{moreActionIcon}"
                 type="Active" />
         </List>
         </content>
