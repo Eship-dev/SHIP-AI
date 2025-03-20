@@ -884,9 +884,9 @@ button {
 
 .save11-btn {
   background-color: #fff;
-  color: #000;
+  color: #e63b3b !important;
   margin: 13px 0 0 0.5rem !important;
-  border: 1px solid #363535;
+  border: 1px solid #e45a5a;
   width: 80px !important;
   margin-right: 50px !important;
   span:before {
@@ -960,7 +960,7 @@ button {
 .customSimpleFormShadow {
   box-shadow: 0 10px 54px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  background-color: #ffffff;
+  background-color: #d8c9c9;
   margin: 30px !important;
 }
 
@@ -970,7 +970,7 @@ button {
 
 .side-navigation li {
   a {
-    background-color: #f0f0f0;
+    background-color: #ac7777;
   }
   >div {
     margin-bottom: 0;
