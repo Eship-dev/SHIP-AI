@@ -5,7 +5,7 @@
 					<Button icon="sap-icon://past" id="shipNowRecentShips" press="onOpenRecentShipmentPopover" />
 					<Text text="Ship Now"/>
 					<ToolbarSpacer/>
-						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn" />
+						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn" type="Ghost" />
 				</Toolbar>
 							<Toolbar class="sapUiTinyMarginBottom scan-ship-toolbar1 " height="15%">
 									<ComboBox class="create-ship-req_input sapUiTinyMargin sapUiSmallMarginBegin" width="20%" selectedKey="SAPS4HANAPrivate" >
@@ -31,7 +31,7 @@
 									<Label text="Ship Date" class="sapUiSmallMarginTop" labelFor="DP1" width="6%" />
 									<DatePicker class="create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd" id="DP1" width="10%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" placeholder=" " />
 									<ToolbarSpacer ></ToolbarSpacer>
-									 <Button text="Clear" class="save11-btn " press="" />
+									 <Button text="Clear" class="Ship-Now-toolbar1__button_red sapUiTinyMarginTop  sapUiLargeMarginEnd" type="Ghost"  press="" />
                     
 									<Button text="New" press="onShipNowNewPress" class="scan-ship-toolbar1__button sapUiTinyMargin" type="Ghost" width="6%" ></Button>
                             </Toolbar>

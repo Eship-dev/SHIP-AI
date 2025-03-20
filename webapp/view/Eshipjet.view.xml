@@ -326,7 +326,7 @@
 		<OverflowToolbar class="eship-footer1 ship-now-footer" visible="{eshipjetModel>/shipNowViewFooter}">
 			<ToolbarSpacer/>
 				<!-- <Button text="Get Shipping Rates" class="ship-now-footer_ship-rates btngetshipments"/> -->
-				<Button text="Get Shipping Rates" class="getShippingRates-btn" width="auto" press="onShipRatePress" />
+				<Button text="Get Shipping Rates" class="ship-now-footer_ship-now" type="Success" width="auto" press="onShipRatePress" />
 				<!-- <ComboBox class="create-ship-req_input" items="" placeholder="More Actions" editable="false" >
 					<HBox>
 						<core:Item key="postGoodsIssue" text="Post Goods Issue" />
@@ -345,8 +345,8 @@
 				<Button text="More Actions" press="onMoreActionsPress" icon="sap-icon://dropdown" class="moreActions-btn" iconFirst="false" />
 
 			<ToolbarSpacer/>
-				<Button text="Save" press="createHandlingUnits" class="scan-ship-toolbar1__button" />
-				<Button text="Ship Now" press="onShipNowPress" class="ship-now-footer_ship-now" />
+				<Button text="Save" press="createHandlingUnits" class="scan-ship-toolbar1__button sapUiTinyMargin sapUiLargeMarginEnd" type="Ghost" width="5%"  />
+				<Button text="Ship Now" press="onShipNowPress" type="Ghost" class="ship-now-footer_ship-now" />
 		</OverflowToolbar>
 
 		<Toolbar class="sapUiLargeMarginBottom eship-req-footer" visible="{eshipjetModel>/createShipReqViewFooter}" >

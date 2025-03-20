@@ -957,10 +957,54 @@ button {
   }
 }
 
+.Ship-Now-toolbar1__button_red:hover > span {
+  background-color: red !important;
+  color: #fff !important;
+  height: 69px;
+  padding-left: 18px;
+  width: 87px;
+  border: 1px solid red !important;
+  animation: animateBtn 1s infinite;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+  border-radius: 1% !important;
+}
+
+.Ship-Now-toolbar1__button_red:hover bdi {
+  color: #fff !important;
+  border-radius: 1% !important;
+}
+
+.Ship-Now-toolbar1__button_red span {
+  color: unset !important;
+  height: 100% !important;
+  padding-left: 18px;
+  border-radius: 1% !important;
+  display: flex !important;
+  align-items: center;
+  height: 80px;
+  width: 87px;
+}
+
+/* Dark Theme Styles */
+body.dark-theme {
+  .Ship-Now-toolbar1__button_red > span {
+    border-radius: 1% !important;
+    background-color: darkred !important;
+    color: #fff !important;
+  }
+
+  .Ship-Now-toolbar1__button_red:focus {
+    border: none;
+    border-radius: 1% !important;
+  }
+}
+
+
 .customSimpleFormShadow {
   box-shadow: 0 10px 54px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  background-color: #d8c9c9;
+  background-color: #F8F8F8;
   margin: 30px !important;
 }
 
