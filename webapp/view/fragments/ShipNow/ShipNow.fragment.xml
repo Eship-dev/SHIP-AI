@@ -24,7 +24,7 @@
 						type="Transparent"
 						press="onOpenSAPDeliveryList" />
 
-									<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch"   value="{eshipjetModel>/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
+									<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch" value="{eshipjetModel>/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
 									<Input id="idSapDeliveryNumber"  value="{eshipjetModel>/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle sapDeliveryNumberInptBold create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd custom-input2" width="14%" editable="true" enabled="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
 									<Button text="Get" type="Ghost" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" press="onShipNowGetPress" width="4%"></Button>
 									<!-- <Button text="Consolidation" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" type="Ghost" press="handleConsolidationPress" width="8%"></Button> -->
@@ -863,7 +863,7 @@
 														<Text text="{eshipjetModel>/ShipNowShipMethodSelectedKey}" ></Text>
 													</HBox>
 													<HBox height="3rem" width="20%" alignItems="Center" visible="{= ${eshipjetModel>/ShipNowShipMethodSelectedKey} ? true : false }" class="blueBackground" >
-														<Text text="{eshipjetModel>/ShipNowShipMethodSelectedKey} - {eshipjetModel>/ShipNowSelectedServiceName}" class="packScreenCarrier" ></Text>
+														<Text text="{eshipjetModel>/ShipNowShipMethodSelectedKey} - {eshipjetModel>/ShipNowShipsrvNameSelectedKey}" class="packScreenCarrier" ></Text>
 													</HBox>
 												</HBox>
 										

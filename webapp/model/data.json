@@ -8317,12 +8317,30 @@
         ],
 
     "shipNowSAPDeliveryItems":[
+        {"SAPDeliveryItem": "Back Order"},
+        {"SAPDeliveryItem": "Back Order"},
+        {"SAPDeliveryItem": "Consignment Order"},
+        {"SAPDeliveryItem": "Delivery Number"},
+        {"SAPDeliveryItem": "Employee Order"},
+        {"SAPDeliveryItem": "Freight Quote Order"},
+        {"SAPDeliveryItem": "Manual"},
+        {"SAPDeliveryItem": "Production Order"},
+        {"SAPDeliveryItem": "Purchase Order"},
+        {"SAPDeliveryItem": "Return Order"},
+        {"SAPDeliveryItem": "Sales Order"},
         {"SAPDeliveryItem": "SAP Delivery No"},
-        {"SAPDeliveryItem": "Freight Quote Order"}
+        {"SAPDeliveryItem": "SAP EWM Outbound Delivery"},
+        {"SAPDeliveryItem": "SAP Handling Unit"},
+        {"SAPDeliveryItem": "SAP Return Order"},
+        {"SAPDeliveryItem": "Service Order"},
+        {"SAPDeliveryItem": "Transfer Order"}
     ],
     "SAPDeliveryNo":"SAP Delivery No",
     
-
+    "moreActionsList":[
+        {"moreActionItem": "Post Goods Issue"},
+        {"moreActionItem": "Reverse PGI"}
+    ],
 
     "carrierconfiguration": [
         {

@@ -2085,3 +2085,47 @@ button, input, optgroup, select, textarea {
   padding-left: 1% !important;
   padding-top: 1% !important;
 }
+
+.getShippingRates-btn {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  width: 120px !important;
+  margin-right: 80px !important;
+  span:before {
+    display: none !important;
+  }
+  bdi {
+    color: #000;
+  }
+}
+
+.getShippingRates-btn:hover {
+  background-color: #4ea732;
+  color: #fff !important;
+  span:before {
+    display: none !important;
+  }
+  bdi {
+    color: #fff;
+  }
+}
+
+.moreActions-btn {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+  width: 120px !important;
+  margin-right: 80px !important;
+  span:before {
+    display: none !important;
+  }
+  bdi {
+    color: #000;
+  }
+}
+
+.customValueHelpIcon .sapUiIcon {
+  font-family: SAP-icons;
+  content: "\e00d"; /* Unicode for sap-icon://search */
+}

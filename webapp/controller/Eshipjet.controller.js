@@ -857,7 +857,7 @@ sap.ui.define([
         },
 
         onShipNowNewPress:function(){
-            oController.onOpenBusyDialog();
+            // oController.onOpenBusyDialog();
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             var shipFromObj = {
                 "ShipFromCONTACT": "",
@@ -901,7 +901,7 @@ sap.ui.define([
             
             oController.onPackSectionEmptyRows();
             
-            oBusyDialog.open();
+            // oBusyDialog.close();
         },
        
         onShipNowPress: function () {            
@@ -11539,9 +11539,50 @@ sap.ui.define([
             this.byId("idShipNowPickAnAddressPopover").close();
         },
 
+        onMoreActionsPress:function(oEvent){
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._moreActionsPopover) {
+                this._moreActionsPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.MoreActions",
+                    controller: this
+                }).then(function (oMoreActionsPopover) {
+                    oView.addDependent(oMoreActionsPopover);
+                    return oMoreActionsPopover;
+                });
+            }
+            this._moreActionsPopover.then(function (oMoreActionsPopover) {
+                oMoreActionsPopover.openBy(oButton);
+            });
+        },
+
+        onMoreActionItemPress:function(oEvent){
+            var oMoreActionsPopover = this.byId("idMoreActionsPopover");
+            if (oMoreActionsPopover) {
+                oMoreActionsPopover.close();
+            }
+        },
+
+        onAfterRendering: function() {
+            var oInput = this.getView().byId("idSapDeliveryNumber");
+            if (oInput) {
+                setTimeout(function () {
+                    var oVHIcon = oInput.$().find(".sapMInputValHelp .sapUiIcon");
+                    if (oVHIcon.length) {
+                        oVHIcon.removeClass("sapUiIcon-valueHelp").addClass("sapUiIcon");
+                        oVHIcon.attr("data-sap-ui-icon-content", "\ue0a8"); // Unicode for search icon
+                        oVHIcon.css("font-family", "SAP-icons"); // Ensure correct font
+                    }
+                }, 100); // Small delay to ensure UI is fully rendered
+            }
+        },
+
 
         onShopNowShipMethodTypeChange : function(oEvent){
             var selectedKey = oEvent.getSource().getSelectedKey();
+            var audio = new Audio(sap.ui.require.toUrl("yourAppNamespace/audio/click.mp3"));
+            audio.play();
 
             var eshipjetModel =  this.getOwnerComponent().getModel("eshipjetModel");
             var carrierconfiguration = eshipjetModel.getData().carrierconfiguration;
