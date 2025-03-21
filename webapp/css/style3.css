@@ -2131,3 +2131,16 @@ button, input, optgroup, select, textarea {
   font-family: SAP-icons;
   content: "\e00d"; /* Unicode for sap-icon://search */
 }
+
+.clearBtn {
+  height: 40px !important;
+  border-color: coral !important;
+  color: red !important;
+}
+
+.saveBtn {
+  height: 40px !important;
+  width: 60px !important;
+  border-color: green !important;
+  color: green !important;
+}

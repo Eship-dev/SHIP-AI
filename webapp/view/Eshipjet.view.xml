@@ -345,7 +345,7 @@
 				<Button text="More Actions" press="onMoreActionsPress" icon="sap-icon://dropdown" class="moreActions-btn" iconFirst="false" />
 
 			<ToolbarSpacer/>
-				<Button text="Save" press="createHandlingUnits" class="scan-ship-toolbar1__button sapUiTinyMargin sapUiLargeMarginEnd" type="Ghost" width="5%"  />
+				<Button text="Save" press="createHandlingUnits" class="scan-ship-toolbar1__button saveBtn sapUiTinyMargin sapUiLargeMarginEnd" type="Ghost" width="5%"  />
 				<Button text="Ship Now" press="onShipNowPress" type="Ghost" class="ship-now-footer_ship-now" />
 		</OverflowToolbar>
 

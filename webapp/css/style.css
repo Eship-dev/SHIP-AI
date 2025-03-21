@@ -789,11 +789,10 @@ button {
 
 
   .ship-now-footer_ship-now {
-    background-color: #4ea732;
-    border: 1px solid #4ea732;
+    background-color: green !important;
     font-size: 16px !important;
     margin: 0 7px 0 0 !important;
-    border-radius: 4px;
+    border-radius: 0px !important;
     padding: 4px 10px;
     span:before {
       display: none !important;
@@ -802,11 +801,12 @@ button {
       color: #fff;
     }
   }
-  .ship-now-footer_ship-now:hover{ 
-    background-color: #258f1d;
-    border: 1px solid #258f1d;
-  }
+  /* .ship-now-footer_ship-now:hover{ 
+    background-color: white !important;
+    color: green !important;
+  } */
 }
+
 .btngetshipments{
   background-color: #fff;
   color: #0066CC;
