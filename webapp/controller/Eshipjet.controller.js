@@ -2056,38 +2056,19 @@ sap.ui.define([
         },
 
         onOpenBusyDialog: function () {
-            oController.oBusyDialog = new sap.m.BusyDialog({
-                showCancelButton: false,
-                customIcon: "https://dev.eshipjet.site/assets/images/copilotlogo1.png",
-                customIconDensityAware: false,
-                contentWidth: "150px",
-                contentHeight: "150px",
-                customContent: [
-                    new sap.m.VBox({
-                        alignItems: "Center",
-                        justifyContent: "Center",
-                        items: [
-                            new sap.m.Text({
-                                text: "Please wait..."
-                            })
-                        ]
-                    }).addStyleClass("sapUiSmallMargin")
-                ]
-            }).addStyleClass("no-rotate-icon");
-
-            // var oView = this.getView();
-            // if (!this.byId("idBusyDialog")) {
-            //     Fragment.load({
-            //         id: oView.getId(),
-            //         name: "com.eshipjet.zeshipjet.view.fragments.BusyDialog",
-            //         controller: this
-            //     }).then(function (oBusyDialog) {
-            //         oView.addDependent(oBusyDialog);
-            //         oBusyDialog.open();
-            //     });
-            // } else {
-            //     this.byId("idBusyDialog").open();
-            // }
+            var oView = this.getView();
+            if (!this.byId("idBusyDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.BusyDialog",
+                    controller: this
+                }).then(function (oBusyDialog) {
+                    oView.addDependent(oBusyDialog);
+                    oBusyDialog.open();
+                });
+            } else {
+                this.byId("idBusyDialog").open();
+            }
         },
 
         onCloseBusyDialog:function(){
