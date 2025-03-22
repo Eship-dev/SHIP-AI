@@ -1433,6 +1433,24 @@ sapMPopover .sapMPopoverCont {
   border-radius: 1% !important;
 }
 
+.validateAddress__button span {
+  color: unset !important;
+  height: 90% !important;
+  border-radius: 1% !important;
+  display: flex !important;
+  align-items: center;
+}
+
+.validateAddress__button:hover > span {
+  background-color: #4E9C2D !important;
+  color: #fff !important;
+  border: 1px solid #4E9C2D !important;
+  animation: animateBtn 1s infinite;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+  border-radius: 1% !important;
+}
+
 .scan-ship-toolbar1__button_void:hover > span {
   background-color: red !important;
   border: 1px solid red !important;

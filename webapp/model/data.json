@@ -18,7 +18,7 @@
     "shipNowCrownFineArtSelect": false,
     "shipNowDHLSelect": false,
     "shipNowDTDCSelect": false,
-    "shipNowFedExSelect": true,
+    "shipNowFedExSelect": false,
     "shipNowFastFarwarderSelect": false,
     "shipNowFedExFreightSelect": false,
     "shipNowJPMorganChaseInternalSelect": false,
