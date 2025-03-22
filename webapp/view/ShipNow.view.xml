@@ -20,7 +20,7 @@
 								<ToolbarSpacer />
 							</Toolbar>
 							<!-- Icon Tab Bar Starts here -->			
-							<IconTabBar id="idIconTabBarFiori2" expanded="{device>/isNoPhone}" >
+							<IconTabBar id="idIconTabBarFiori2"  expanded="{device>/isNoPhone}" >
 								<items >
 
 									<!-- Ship From / To Tab Starts here -->

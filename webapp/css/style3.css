@@ -1968,6 +1968,14 @@ button, input, optgroup, select, textarea {
   background-color: transparent !important;
 }
 
+.customTabStyle *:focus-visible {
+  outline: none !important;
+}
+
+.customTabStyle .sapMITBText::after {
+  content: none !important;
+}
+
 .customTabStyle .sapMITBSelected {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(200, 230, 200, 0.8), rgba(78, 167, 50, 0.7)) !important;
   border-bottom: 2px solid #4ea732 !important;
@@ -2172,4 +2180,30 @@ button, input, optgroup, select, textarea {
   width: 60px !important;
   border-color: green !important;
   color: green !important;
+}
+
+
+.shipnow-icon-tabbar *:focus-visible {
+  outline: none !important
+}
+
+
+
+.ship-now-footer_ship-now span {
+  background-color: transparent !important;
+}
+.green-button span {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.sapMDialog {
+  box-shadow: none !important;
+  .sapMDialogSection {
+    background-color: transparent !important;
+  }
+}
+#sap-ui-blocklayer-popup {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  opacity: 1 !important;
 }
