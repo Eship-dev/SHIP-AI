@@ -787,6 +787,19 @@ button {
     border: 1px solid #fff;
   }
 
+  .btnSaveCss{
+    background-color: #258f1d !important;
+    color: #fff !important;
+    border-color: 1px solid #258f1d !important;
+    font-size: 16px;
+    font-family: AvenirNextCyrMedium !important;
+    transition: 0.5s !important;
+    height: 40px;
+    padding: 10px 30px;
+    line-height: 0px;
+    animation: none !important;
+}
+
 
   .ship-now-footer_ship-now {
     background-color: green !important;
@@ -907,6 +920,8 @@ button {
     color: #fff;
   }
 }
+
+
 /* background-color: #4E9C2D !important;
   color: #fff !important;
   border: 1px solid #4E9C2D !important;
