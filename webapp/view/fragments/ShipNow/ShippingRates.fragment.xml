@@ -1,7 +1,16 @@
 <core:FragmentDefinition   xmlns="sap.m"  xmlns:core="sap.ui.core"   height="100%">
-    <Dialog id="_IDGenShipNowShppindRateDialog" title="Pick a Carrier" showHeader="false" titleAlignment="Center" contentHeight="80%" contentWidth="80%">
+    <Dialog id="_IDGenShipNowShppindRateDialog" title="Pick a Carrier"
+            contentWidth="80vh"
+            contentHeight="95%"
+            verticalScrolling="false"
+            horizontalScrolling="false"
+             
+       
+        showHeader="false" 
+        class="rightSidePopoverShipNowGetShippingRates">
         <content>
             <Toolbar >
+            <Button text="BACK" icon="sap-icon://nav-back" press="onCloseShipNowShippinRateDialog" type="Transparent" class="Decline_Btn" />
                 <FlexBox justifyContent="Center" width="100%" >
                     <Title text="Pick a Carrier" />
                 </FlexBox>
@@ -42,19 +51,27 @@
                 </items>
             </Table>
         </content>
-        <footer>
-			<Toolbar>
+        
+			<!-- <Toolbar>
 				<content>	
                 	<ToolbarSpacer />				
 					<Button type="Emphasized"
 							text="Submit"
-							press=".onPickCarrierSubmit" />
+							 />
 					<Button id="Reject"
 						text="Cancel"
-						press=".onCloseShipNowShippinRateDialog"
+						
 						ariaHasPopup="Dialog" />
 				</content>
-			</Toolbar>
-		</footer>
+			</Toolbar> -->
+
+             <footer>
+            <OverflowToolbar class="p-sidebar-header sapMPopoverFooter1 shipmethod">
+                <Button text="Cancel" press=".onCloseShipNowShippinRateDialog" class="save11-btn"/>
+                <ToolbarSpacer />
+                <Button type="Ghost" text="Submit" class="scan-ship-toolbar1__button sapUiTinyMargin" press=".onPickCarrierSubmit" />
+            </OverflowToolbar>
+        </footer>
+		
     </Dialog>
 </core:FragmentDefinition>

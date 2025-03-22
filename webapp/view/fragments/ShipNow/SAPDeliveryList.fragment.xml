@@ -8,7 +8,7 @@
         showArrow="false"
         class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
         placement="Bottom" 
-        contentHeight="10rem" >
+        contentHeight="8rem" >
 		<content>
         <List
             id="ProductList"

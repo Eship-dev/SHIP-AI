@@ -1260,6 +1260,25 @@ sapMPopover .sapMPopoverCont {
     }
   }
 }
+
+.InTransitord-request-button {
+  span{
+    background-color: rgb(240, 187, 14) !important;
+    &:hover { 
+      border-bottom: 10px solid #bd851f !important;
+    }
+  }
+}
+
+.Receivedord-request-button {
+  span{
+    background-color: rgb(182, 173, 15) !important;
+    &:hover { 
+      border-bottom: 10px solid #dfd43f !important;
+    }
+  }
+}
+
 .totalProgress-request-button {
   span{
     background-color: rgb(32, 172, 246) !important;

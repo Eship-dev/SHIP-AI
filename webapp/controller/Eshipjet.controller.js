@@ -3557,7 +3557,7 @@ sap.ui.define([
 
             aColumns.map(function (oColObj) {
                 aTableItems.map(function (oItem) {
-                    if (oColObj.name === oItem.getBindingContext("OrderTableDataModel").getObject().name && oColObj.visible) {
+                    if (oColObj.name === oItem.getBindingContext("eshipjetModel").getObject().name && oColObj.visible) {
                         oItem.setSelected(true);
                     }
                 });

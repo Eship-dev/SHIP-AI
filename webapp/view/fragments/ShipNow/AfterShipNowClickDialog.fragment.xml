@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
     <Dialog id="idAfterShipmentLabelDialog"
-            contentWidth="40vh"
+            contentWidth="30vh"
             contentHeight="95%"
             verticalScrolling="false"
             horizontalScrolling="false"
