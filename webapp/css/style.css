@@ -1433,7 +1433,7 @@ body.dark-theme {
   visibility: visible !important;
   z-index: 99999 !important;
   max-width: 1230px;
-  max-height: 100% !important;
+  max-height: 95% !important;
   padding-bottom: 0px !important;
   top: 0px !important;
   padding-top: 15px !important;
@@ -1450,10 +1450,10 @@ body.dark-theme {
   visibility: visible !important;
   z-index: 99999 !important;
   max-width: 1230px;
-  max-height: 100% !important;
+  max-height: 95% !important;
   padding-bottom: 0px !important;
   top: 0px !important;
-  padding-top: 0px !important;
+  
   display: block;
   right: 0 !important;
   left: auto !important;
@@ -1467,10 +1467,9 @@ body.dark-theme {
   visibility: visible !important;
   z-index: 99999 !important;
   max-width: 1230px;
-  max-height: 100% !important;
+  max-height: 95% !important;
   padding-bottom: 0px !important;
   top: 0px !important;
-  padding-top: 0px !important;
   display: block;
   right: 0 !important;
   left: auto !important;
@@ -1492,10 +1491,9 @@ body.dark-theme {
   visibility: visible !important;
   z-index: 99999 !important;
   max-width: 1230px;
-  max-height: 100% !important;
+  max-height: 95% !important;
   padding-bottom: 0px !important;
   top: 0px !important;
-  padding-top: 0px !important;
   display: block;
   right: 0 !important;
   left: auto !important;
@@ -1506,12 +1504,15 @@ body.dark-theme {
   z-index: 51;
   top: 0px;
   left: 842px;
-  padding-top: 40px;
+ 
   display: block;
   width: 300px;
   max-width: 2160px;
   max-height: 1030px;
   min-width: 717px !important;
+}
+.rateheight{
+  height: 57px;
 }
 
 .rightSidePopoverShipNowPickAnAddress{
@@ -1522,10 +1523,9 @@ body.dark-theme {
   visibility: visible !important;
   z-index: 99999 !important;
   max-width: 1230px;
-  max-height: 100% !important;
+  max-height: 95% !important;
   padding-bottom: 0px !important;
   top: 0px !important;
-  padding-top: 0px !important;
   display: block;
   right: 0 !important;
   left: auto !important;
@@ -1565,7 +1565,7 @@ body.dark-theme {
   max-height: 95% !important;
   padding-bottom: 0px !important;
   top: 0px !important;
-  padding-top: 0px !important;
+  
   display: block;
   right: 0 !important;
   left: auto !important;
@@ -1662,6 +1662,7 @@ sidebar-header {
 }
 .rightSideDialogForTracking1{
   width: 40% !important;
+  
   height: 102% !important;  /* Adjusting height dynamically */
   position: fixed !important;
   z-index: 10002 !important;
@@ -1673,10 +1674,10 @@ sidebar-header {
   left: auto !important;
   border-radius: 3px !important; 
   visibility: visible !important;
-  max-height: 100% !important;
+  max-height: 94% !important;
   padding-bottom: 0px !important;
   top: 3px !important;
-  padding-top: 0px !important;
+  
 }
 
 .rightSideDialogForFreightQuoteStatus{
@@ -1692,10 +1693,10 @@ sidebar-header {
   left: auto !important;
   border-radius: 3px !important; 
   visibility: visible !important;
-  max-height: 100% !important;
+  max-height: 95% !important;
   padding-bottom: 0px !important;
   top: 3px !important;
-  padding-top: 0px !important;
+  
   
 }
 

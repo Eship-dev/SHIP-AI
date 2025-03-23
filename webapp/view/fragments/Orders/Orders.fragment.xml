@@ -109,7 +109,7 @@
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/2/visible}">
 									<Label text="Order Type" />
 									<ui:template>
-										<Text text="{eshipjetModel>OrderType}" wrapping="false" />
+										<Text text="{eshipjetModel>orderType}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
@@ -268,12 +268,7 @@
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/24/visible}">
-									<Label text="Master Tracking Number" />
-									<ui:template>
-										<Text text="{eshipjetModel>MasterTrackingNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
+								
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/25/visible}">
 									<Label text="Ship To Address Line 1" />
@@ -286,6 +281,17 @@
 									<Label text="Origin" />
 									<ui:template>
 										<Text text="{eshipjetModel>Origin}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="8rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/26/visible}" >
+									<Label text="Note" />
+									<ui:template>
+									<VBox justifyContent="Center" alignItems="Center">
+											<Button icon="sap-icon://notes" press="onShipmentWorkflowPress"></Button>
+									</VBox>
+									
+										<!-- <Text text="{eshipjetModel>Shipmenttype}" wrapping="false" /> -->
 									</ui:template>
 								</ui:Column>
 
@@ -302,6 +308,13 @@
 										<Text text="{eshipjetModel>Actions}" wrapping="false" />
 									</ui:template>
 								</ui:Column> -->
+
+								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/24/visible}">
+									<Label text="Master Tracking Number" />
+									<ui:template>
+										<Text text="{eshipjetModel>MasterTrackingNumber}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/27/visible}">
 									<Label text="Actions" />

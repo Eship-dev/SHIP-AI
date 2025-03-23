@@ -1,27 +1,27 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
     <Dialog id="idAfterShipmentLabelDialog"
-            
             contentWidth="30vh"
             contentHeight="95%"
             verticalScrolling="false"
             horizontalScrolling="false"
              
        
-        showHeader="true" 
+        showHeader="false"
         class="rightSidePopoverShipNowsideLabel1">
-            
+           
         <customHeader>
             <Toolbar>
-                <Title text="Shipment Label"  class=" sapUiLargeMarginBottom" />
+                <Title text="Shipment Label" level="H6" class="sapUiLargeMarginTop sapUiLargeMarginBottom" />
                 <ToolbarSpacer/>
-                <Button icon="sap-icon://decline" type="Transparent" class="Decline_Btn ship-now-decline_btn" press=".onShipmentLabelDialogClosePress" />
+                <Button icon="sap-icon://decline" type="Transparent" press=".onShipmentLabelDialogClosePress" class="Decline_Btn ship-now-decline_btn"/>
             </Toolbar>
         </customHeader>
+
 
         <VBox alignItems="Center" justifyContent="Center" >
             <Image id="shipmentLabelImage"
                    width="60vh"
-                   height="80vh"
+                   height="70vh"
                    class="sapUiLargeMarginTop "
                    densityAware="false" />
         </VBox>
@@ -31,7 +31,7 @@
                     text="Cancel"
                     class="save1-btn sapUiTinayMarginTop"
                     press="onShipmentLabelDialogClosePress" />
-                    
+                   
                 <ToolbarSpacer />
                 <Button
                     type="Ghost"

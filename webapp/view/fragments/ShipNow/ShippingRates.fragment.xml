@@ -10,7 +10,7 @@
         class="rightSidePopoverShipNowGetShippingRates">
         <content>
             <Toolbar >
-            <Button text="BACK" icon="sap-icon://nav-back" press="onCloseShipNowShippinRateDialog" type="Transparent" class="Decline_Btn ship-now-decline_btn" />
+            <Button text="BACK" icon="sap-icon://nav-back" press="onCloseShipNowShippinRateDialog" type="Transparent" class="Decline_Btn ship-now-decline_btn rateheight"  />
                 <FlexBox justifyContent="Center" width="100%" >
                     <Title text="Pick a Carrier" />
                 </FlexBox>
