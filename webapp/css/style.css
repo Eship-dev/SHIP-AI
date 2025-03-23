@@ -1030,7 +1030,7 @@ body.dark-theme {
 
 .side-navigation li {
   a {
-    background-color: #ac7777;
+    /* background-color: #ac7777; */
   }
   >div {
     margin-bottom: 0;

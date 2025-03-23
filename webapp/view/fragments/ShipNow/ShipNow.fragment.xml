@@ -836,7 +836,7 @@
 							rows="{eshipjetModel>/packAddProductTable}"
 							class="sapUiSmallMarginTop"
 							selectionMode="None"
-							visibleRowCount="3" >
+							visibleRowCount="4" >
 							<!-- <ui:extension>
 								<OverflowToolbar class="scan-ship-table__toolbar">
 									<ToolbarSpacer ></ToolbarSpacer>
@@ -1091,7 +1091,7 @@
 							rows="{eshipjetModel>/HandlingUnits}"
 							class="sapUiTinyMarginTop"
 							selectionMode="None"
-							visibleRowCount="3"
+							visibleRowCount="6"
     						visibleRowCountMode="Fixed" >
 							
 							<ui:columns>
