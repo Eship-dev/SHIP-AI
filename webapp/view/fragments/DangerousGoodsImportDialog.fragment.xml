@@ -50,7 +50,7 @@
         <!-- <endButton>
             <Button
                 icon="sap-icon://decline"
-                class="Decline_Btn"
+                class="Decline_Btn ship-now-decline_btn"
                 press="onAddImportAddressBookClosePress" />
         </endButton> -->
 

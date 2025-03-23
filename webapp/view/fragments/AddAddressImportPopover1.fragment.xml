@@ -13,7 +13,7 @@
 		<!-- <Toolbar  width="auto" height="15%" class="p-sidebar-header" >
             <Text text="Import Address Book" class="pageTitle"></Text>
 			<ToolbarSpacer ></ToolbarSpacer>
-				<Button icon="sap-icon://decline" press="onAddImportAddressBookClosePress" class="Decline_Btn" ></Button>
+				<Button icon="sap-icon://decline" press="onAddImportAddressBookClosePress" class="Decline_Btn ship-now-decline_btn" ></Button>
 		</Toolbar> -->
 
 		
@@ -27,7 +27,7 @@
                 <!-- Close Button -->
                 <Button
                     icon="sap-icon://decline"
-                    class="Decline_Btn"
+                    class="Decline_Btn ship-now-decline_btn"
                     press="onAddImportAddressBookClosePress" />
             </Toolbar>
       

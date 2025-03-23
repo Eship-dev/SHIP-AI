@@ -4,7 +4,7 @@
       <Toolbar>
         <Title text="Shipment Notes"></Title>
         <ToolbarSpacer></ToolbarSpacer>
-        <Button icon="sap-icon://decline" press="ShipmentWorkflowCancelDialog" class="Decline_Btn"></Button>
+        <Button icon="sap-icon://decline" press="ShipmentWorkflowCancelDialog" class="Decline_Btn ship-now-decline_btn"></Button>
       </Toolbar>
     </customHeader>
        <VBox class="sapUiSmallMargin shipmethod" >

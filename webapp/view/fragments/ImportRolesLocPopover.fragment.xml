@@ -14,7 +14,7 @@
 		<Toolbar height="3.1rem" >
             <Text text="Import Locations" class="pageTitle"></Text>
 			<ToolbarSpacer ></ToolbarSpacer>
-				<Button icon="sap-icon://decline" press="onAddIMportRolesClosePress" class="Decline_Btn" ></Button>
+				<Button icon="sap-icon://decline" press="onAddIMportRolesClosePress" class="Decline_Btn ship-now-decline_btn" ></Button>
 		</Toolbar>
 		<footer>
 			<OverflowToolbar class="p-sidebar-header">

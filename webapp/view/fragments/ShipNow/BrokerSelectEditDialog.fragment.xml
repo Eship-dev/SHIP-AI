@@ -14,7 +14,8 @@
             <ToolbarSpacer />
                 <Button 
                     icon="sap-icon://decline" 
-                    class="Decline_Btn"
+                    Type="Ghost"
+                    class="Decline_Btn ship-now-decline_btn"
                     press="onBrokerSelectEditDialogClosePress" />
     </Toolbar>
     </customHeader>

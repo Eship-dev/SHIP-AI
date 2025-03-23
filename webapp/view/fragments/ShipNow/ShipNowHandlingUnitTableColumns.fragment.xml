@@ -7,7 +7,7 @@
 				<Toolbar id="_IDGenShipNowHandlingUnitHBox" class="toolbarbottomborder">
 					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" id="_IDGenShipNowHandlingUnitTitle" text="Columns"></Title>
 					<ToolbarSpacer id="_IDGenShipNowHandlingUnitToolbarSpacer1" ></ToolbarSpacer>					
-					<Button id="_IDShipNowHandlingUnitCloseIconPopover" icon="sap-icon://decline" press="onShipNowHandlingUnitColSelectClosePress" class="Decline_Btn" ></Button>
+					<Button id="_IDShipNowHandlingUnitCloseIconPopover" icon="sap-icon://decline" press="onShipNowHandlingUnitColSelectClosePress" class="Decline_Btn ship-now-decline_btn" ></Button>
 				</Toolbar>
 				<SearchField id="_IDGenShipNowHandlingUnitSearchField" placeholder="Search Columns"   liveChange="onShipNowHandlingUnitColNameSearch"></SearchField>
 			</VBox>

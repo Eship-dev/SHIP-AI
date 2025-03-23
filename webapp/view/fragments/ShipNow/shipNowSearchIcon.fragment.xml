@@ -19,7 +19,7 @@
         <Toolbar >
             <Text text="Shipment History"></Text>
             <ToolbarSpacer />
-            <Button icon="sap-icon://decline" press="onShipNowSearchDialogClosePress" class="Decline_Btn" ></Button>
+            <Button icon="sap-icon://decline" press="onShipNowSearchDialogClosePress" class="Decline_Btn ship-now-decline_btn" ></Button>
         </Toolbar>
 
         

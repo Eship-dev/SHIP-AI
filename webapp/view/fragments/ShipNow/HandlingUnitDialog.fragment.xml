@@ -19,7 +19,7 @@
         <Toolbar >
             <Text text="Product Details"></Text>
             <ToolbarSpacer />
-            <Button icon="sap-icon://decline" press="onHandlingUnitDialogClosePress" class="Decline_Btn" ></Button>
+            <Button icon="sap-icon://decline" press="onHandlingUnitDialogClosePress" class="Decline_Btn ship-now-decline_btn" ></Button>
         </Toolbar>
 
            

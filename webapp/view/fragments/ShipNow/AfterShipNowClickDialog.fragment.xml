@@ -13,7 +13,7 @@
             <Toolbar>
                 <Title text="Shipment Label" level="H6" class="sapUiLargeMarginTop sapUiLargeMarginBottom" />
                 <ToolbarSpacer/>
-                <Button icon="sap-icon://decline" type="Transparent" press=".onShipmentLabelDialogClosePress"/>
+                <Button icon="sap-icon://decline" type="Transparent" class="Decline_Btn ship-now-decline_btn" press=".onShipmentLabelDialogClosePress" />
             </Toolbar>
         </customHeader>
 

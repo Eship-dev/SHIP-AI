@@ -18,7 +18,7 @@
         <Toolbar>
             <Title text="Add Carrier Configuration"></Title>
             <ToolbarSpacer></ToolbarSpacer>
-            <Button icon="sap-icon://decline" press="AddCarrierConfigurationCloseDialog" class="Decline_Btn" ></Button>
+            <Button icon="sap-icon://decline" press="AddCarrierConfigurationCloseDialog" class="Decline_Btn ship-now-decline_btn" ></Button>
         </Toolbar>
 
         <content>

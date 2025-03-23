@@ -217,18 +217,17 @@ sap.ui.define([
             } else if (sKey === "ShipNow") {
                 var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
                 var obj = {
-                    "sapShipmentID": "",
-                    "ShipToCONTACT": "Steve Marsh",
-                    "ShipToCOMPANY": "Eshipjet Software Inc.",
-                    "ShipToPHONE": "(888) 464-2360",
-                    "ShipToEMAIL": "info@eshipjet.ai",
-                    "ShipToCITY": "Plano",
-                    "ShipToSTATE": "TX",
-                    "ShipToCOUNTRY": "US",
-                    "ShipToZIPCODE": "75024",
-                    "ShipToADDRESS_LINE1": "5717 Legacy",
-                    "ShipToADDRESS_LINE2": "Suite 250",
-                    "ShipToADDRESS_LINE3": "Commercial"
+                    "ShipFromCONTACT": "Steve Marsh",
+                    "ShipFromCOMPANY": "Eshipjet Software Inc.",
+                    "ShipFromPHONE": "(888) 464-2360",
+                    "ShipFromEMAIL": "info@eshipjet.ai",
+                    "ShipFromCITY": "Plano",
+                    "ShipFromSTATE": "TX",
+                    "ShipFromCOUNTRY": "US",
+                    "ShipFromZIPCODE": "75024",
+                    "ShipFromADDRESS_LINE1": "5717 Legacy",
+                    "ShipFromADDRESS_LINE2": "Suite 250",
+                    "LocationType": "Commercial"
                 };
                 ShipNowDataModel.setProperty("/ShipFromAddress", obj);
                 ShipNowDataModel.setProperty("/ShipToAddress", "");
@@ -1260,8 +1259,9 @@ sap.ui.define([
                 function(response) {
                     // oController.FreightQuoteUpdatedSrvData();
                     // oController.ApiOutboundDeliverySrvData(response);
-                    oController.createRecentShipments(response);
+                    // oController.createRecentShipments(response);
                     // oController.createHandlingUnits();
+                    oController.createManifestHeaderSet();
                     //resolved
                 },
                 function(error) {
@@ -1269,6 +1269,234 @@ sap.ui.define([
                 }
             );
 
+        },
+
+        createManifestHeaderSet:function(){
+            var ShipReadDataSrvModel = oController.getOwnerComponent().getModel("ShipReadDataSrvModel");
+            var oPayload = {
+                "Vbeln": "0055000239",
+                "ToManifestData": [
+                    {
+                        "Saturdaydel": false,
+                        "Residentialdel": false,
+                        "Priorityalert": false,
+                        "Satpickup": false,
+                        "Insidedel": false,
+                        "Insidepickup": false,
+                        "Liftgate": false,
+                        "Hold": false,
+                        "Dghazmat": false,
+                        "CodFlag": false,
+                        "Closeout": false,
+                        "Upsoffline": false,
+                        "ArrivalNotification": false,
+                        "Bsoflag": false,
+                        "Documents": false,
+                        "LimitedAccess": false,
+                        "Fedexonerate": false,
+                        "Crossdock": false,
+                        "Ddo": false,
+                        "Isc": false,
+                        "Appointment": false,
+                        "CrossdockRecdate": "/Date(1734480000000)/",
+                        "PodDate": "/Date(1734480000000)/",
+                        "DateAdded": "/Date(1734480000000)/",
+                        "Createddate": "/Date(1734480000000)/",
+                        "CancDt": "/Date(1734480000000)/",
+                        "PackageWeight": "41.470",
+                        "Chargweight": "41.470",
+                        "Codamount": "0.00",
+                        "Customs": "0.00",
+                        "Freightamt": "4.86",
+                        "Discountamt": "4.86",
+                        "Insurance": "0.00",
+                        "Dryweight": "0.000",
+                        "Mandt": "400",
+                        "Vbeln": "0055000239",
+                        "Posnr": "000000",
+                        "Plant": "BP01",
+                        "Shipmenttype": "O",
+                        "Pkgcount": "2",
+                        "MultiSeq": "1",
+                        "MultiLegno": "0",
+                        "Totalpkg": "2",
+                        "HandlingUnit": "10006973",
+                        "SalesOrder": "10006973",
+                        "PurchaseOrder": "CANCL",
+                        "TrackingNumber": "794820169675",
+                        "Mastertracking": "794820169675",
+                        "Uspstracking": "",
+                        "Iorcode": "",
+                        "Externaldoc": "",
+                        "CarrierCode": "",
+                        "Carriertype": "FedEx",
+                        "CarrierDesc": "FEDEX_GROUND",
+                        "Paymentcode": "Sender",
+                        "Shipperacct": "740561073",
+                        "Accountnumber": "",
+                        "Dutytaxpaytype": "SENDER",
+                        "Dtaccountnumber": "",
+                        "Dimensions": "",
+                        "Aesitn": "",
+                        "Vhilm": "PALLET",
+                        "Emailaddress": "Israel@gerimedix.com",
+                        "Signaturetype": "",
+                        "RecCompany": "GERIMEDIX",
+                        "RecContact": "Vikas",
+                        "RecAddress1": "5 HOLLYWOOD CT",
+                        "RecAddress2": "ave",
+                        "RecAddress3": "null",
+                        "RecCity": "SOUTH PLAINFIELD",
+                        "RecRegion": "IL",
+                        "RecPostalcode": "07080-4204",
+                        "RecCountry": "US",
+                        "RecPhone": "7188021085",
+                        "Company": "GERIMEDIX",
+                        "Contact": "Vikas",
+                        "Address1": "5 HOLLYWOOD CT",
+                        "Address2": "ave",
+                        "Address3": "null",
+                        "City": "SOUTH PLAINFIELD",
+                        "Region": "NJ",
+                        "Postalcode": "07080-4204",
+                        "Country": "US",
+                        "Phone": "7188021085",
+                        "Stceg": "",
+                        "PodSignature": "",
+                        "PodLocation": "",
+                        "PodActivity": "",
+                        "Podstatus": "",
+                        "Podcurrentstatus": "",
+                        "Podexpstatus": "",
+                        "ReturnTrack": "",
+                        "FromCompany": "Atlanta",
+                        "FromContact": "Steve Marsh",
+                        "FromStreet": "5717 Legacy",
+                        "Fromcity": "",
+                        "FromPostalcode": "300033",
+                        "FromCountry": "US",
+                        "FromPhone": "(888) 464-2360",
+                        "EnteredBy": "dm_atla",
+                        "Sammg": "",
+                        "Lifnr": "",
+                        "Waerk": "USD",
+                        "Billoflading": "",
+                        "Ltlclass": "",
+                        "Ltlboxcount": "",
+                        "Ltlhutype": "",
+                        "Ltlpacktype": "",
+                        "Ltlnmfccode": "",
+                        "TpCompany": "",
+                        "TpContact": "",
+                        "TpStreet": "",
+                        "TpStreet2": "",
+                        "TpCity1": "",
+                        "TpRegion": "",
+                        "TpPostCode1": "",
+                        "TpCountry": "",
+                        "TpPhone": "",
+                        "EuClearance": "",
+                        "Reference1": "0010006973",
+                        "Reference2": "",
+                        "Kunnr": "100188",
+                        "Kunag": "100188",
+                        "Vkorg": "BP01",
+                        "Werks": "BP01",
+                        "Auart": "OR",
+                        "Lfart": "LF",
+                        "Description": "",
+                        "Shipprocess": "SHIP",
+                        "Venum": "123",
+                        "Gewei": "LB",
+                        "Reasonforexport": "",
+                        "Addcomments": "",
+                        "DimensionFactor": "00000",
+                        "TransitDays": "000",
+                        "Delivery": "55000231",
+                        "UpsEod": "",
+                        "Tcode": "/PWEAVER/PPS",
+                        "Packagetype": "",
+                        "Manifestid": "",
+                        "Scac": "",
+                        "Sealnumber": "",
+                        "Trailerno": "",
+                        "Door": "",
+                        "Tu": "",
+                        "Odo": "",
+                        "Returntype": "",
+                        "Volumequote": "",
+                        "Truckno": "",
+                        "Container": "",
+                        "Pallets": "",
+                        "Seal": "",
+                        "Crossdockloc": "",
+                        "Ecsid": "",
+                        "Saleterms": "FOB",
+                        "Iorpartner": "",
+                        "Iorcompany": "",
+                        "Iorcontact": "",
+                        "Ioraddress1": "",
+                        "Ioraddress2": "",
+                        "Iorcity": "",
+                        "Iorregion": "",
+                        "Iorpostalcode": "",
+                        "Iorcountry": "",
+                        "Iorphone": "",
+                        "SfOrderid": "",
+                        "CrossdockStatus": "",
+                        "CrossdockRecby": "",
+                        "CrossdockShipby": "",
+                        "EdiControlNo": "",
+                        "Edi997Status": "",
+                        "Shipmentid": "",
+                        "EodTimestamp": "",
+                        "Labelurl": "https://eshipjet-products-dev.s3.us-east-1.amazonaws.com/794820169675.PNG",
+                        "DgUrl": "",
+                        "Multi": "",
+                        "Legno": "",
+                        "Wemshipid": "",
+                        "Weshipid": "",
+                        "Wemanfid": "",
+                        "WeconsolManfid": "",
+                        "Weportcode": "",
+                        "Wecloseout": "",
+                        "WecloseBy": "",
+                        "Leg": "",
+                        "Knota": "",
+                        "Knotz": "",
+                        "DeliveryStatus": "",
+                        "Stagloc": "Z00001",
+                        "Licence": "",
+                        "Orate": "",
+                        "Ocarrier": "",
+                        "Accessorial": "",
+                        "Fuel": "",
+                        "Deliverynno": "55000231",
+                        "TimeAdded": "PT11H04M09S",
+                        "CancTim": "PT11H05M46S",
+                        "PodTime": "PT00H00M00S",
+                        "PodCurrenttime": "PT00H00M00S",
+                        "PodPickuptime": "PT00H00M00S",
+                        "Scantime": "PT00H00M00S",
+                        "EtaTime": "PT00H00M00S",
+                        "CrossdockRectime": "PT00H00M00S",
+                        "CrossdockShiptime": "PT00H00M00S",
+                        "WecloseTime": "PT00H00M00S"
+                    }
+                ]
+            };
+            ShipReadDataSrvModel.create("/ManifestHeaderSet", oPayload, {
+                success: function (oData) {
+                    MessageBox.success("Success: Successfully Created ManifestHeaderSet.");
+                    console.log("Success:", oData);
+                    oController.onCloseBusyDialog();
+                },
+                error: function (oError) {
+                    var errMsg = JSON.parse(oError.responseText).error.message.value;
+                    sap.m.MessageBox.error(errMsg);
+                    oController.onCloseBusyDialog();
+                }
+            });
         },
 
         createHandlingUnits:function(){
@@ -1947,7 +2175,7 @@ sap.ui.define([
                 }
                 var oDeclineButton = new sap.m.Button({
                     icon: "sap-icon://decline",
-                    class: "Decline_Btn",
+                    class: "Decline_Btn ship-now-decline_btn",
                     type: "Transparent",
                     press: function () {
                         this._oShippingDocumentDialog.close();
@@ -2113,7 +2341,7 @@ sap.ui.define([
             var oDeliveryModel = oController.getView().getModel("OutBoundDeliveryModel");                    
             var oHandlingUnitModel = oController.getView().getModel("HandlingUnitModel");           
             var sPath = "/A_OutbDeliveryHeader('"+ sDeveliveryNumber +"')/to_DeliveryDocumentPartner";
-            if(sDeveliveryNumber && sDeveliveryNumber.length >= 8){
+            if(sDeveliveryNumber && sDeveliveryNumber.length >= 7){
                 oController.onOpenBusyDialog();
                 
                 var path = "/A_OutbDeliveryHeader('"+ sDeveliveryNumber +"')"
@@ -11604,10 +11832,62 @@ sap.ui.define([
         },
 
         onMoreActionItemPress:function(oEvent){
+            var oSelectedPGI = oEvent.getParameter("listItem").getBindingContext().getProperty("moreActionItem");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
+            if(sapDeliveryNumber === "" || sapDeliveryNumber === undefined){
+                MessageBox.warning("Please enter valid document number.");
+            }else if(oSelectedPGI === "Post Goods Issue"){
+                oController.onOpenBusyDialog();
+                oController.createPostGoodsIssue(sapDeliveryNumber);
+            }else if(oSelectedPGI === "Reverse PGI"){
+                oController.onOpenBusyDialog();
+                oController.createReversePostGoodsIssue(sapDeliveryNumber);
+            }
             var oMoreActionsPopover = this.byId("idMoreActionsPopover");
             if (oMoreActionsPopover) {
                 oMoreActionsPopover.close();
             }
+        },
+
+        createPostGoodsIssue:function(sapDeliveryNumber){
+            var ShipReadDataSrvModel = oController.getOwnerComponent().getModel("ShipReadDataSrvModel");
+            var oPayload = {
+                "Document": sapDeliveryNumber,
+                "ResponseDataSet" : []
+            };
+            ShipReadDataSrvModel.create("/ProcessPGISet", oPayload, {
+                success: function (oData) {
+                    MessageBox.success("Success: PGI Posted without any errors.");
+                    console.log("Success:", oData);
+                    oController.onCloseBusyDialog();
+                },
+                error: function (oError) {
+                    var errMsg = JSON.parse(oError.responseText).error.message.value;
+                    sap.m.MessageBox.error(errMsg);
+                    oController.onCloseBusyDialog();
+                }
+            });
+        },
+
+        createReversePostGoodsIssue:function(sapDeliveryNumber){
+            var ShipReadDataSrvModel = oController.getOwnerComponent().getModel("ShipReadDataSrvModel");
+            var oPayload = {
+                "Document": sapDeliveryNumber,
+                "ResponseDataSet" : []
+            };
+            ShipReadDataSrvModel.create("/ReversePGISet", oPayload, {
+                success: function (oData) {
+                    MessageBox.error("Error: Reverse PGI Posted without any errors.");
+                    console.log("Success:", oData);
+                    oController.onCloseBusyDialog();
+                },
+                error: function (oError) {
+                    var errMsg = JSON.parse(oError.responseText).error.message.value;
+                    sap.m.MessageBox.error(errMsg);
+                    oController.onCloseBusyDialog();
+                }
+            });
         },
 
         onAfterRendering: function() {

@@ -18,7 +18,7 @@
             <Toolbar class="sapUiSmallMargin">
                 <Title text="Pick An Address" />
                 <ToolbarSpacer />
-                <Button icon="sap-icon://decline" class="Decline_Btn" press="onShipToPickAnAddressCancelPress" />
+                <Button icon="sap-icon://decline" class="Decline_Btn ship-now-decline_btn" press="onShipToPickAnAddressCancelPress" />
             </Toolbar>
         </customHeader>
 

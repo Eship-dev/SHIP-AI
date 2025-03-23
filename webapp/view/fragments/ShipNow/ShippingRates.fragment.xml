@@ -10,11 +10,11 @@
         class="rightSidePopoverShipNowGetShippingRates">
         <content>
             <Toolbar >
-            <Button text="BACK" icon="sap-icon://nav-back" press="onCloseShipNowShippinRateDialog" type="Transparent" class="Decline_Btn" />
+            <Button text="BACK" icon="sap-icon://nav-back" press="onCloseShipNowShippinRateDialog" type="Transparent" class="Decline_Btn ship-now-decline_btn" />
                 <FlexBox justifyContent="Center" width="100%" >
                     <Title text="Pick a Carrier" />
                 </FlexBox>
-                <Button icon="sap-icon://decline" press="onCloseShipNowShippinRateDialog" class="Decline_Btn" />
+                <Button icon="sap-icon://decline" press="onCloseShipNowShippinRateDialog" class="Decline_Btn ship-now-decline_btn" />
             </Toolbar>
             <Table id="_ShippingRateTableId" sticky="ColumnHeaders"  inset="false"  mode="SingleSelectLeft"  items="{path: 'eshipjetModel>/shipNowShippingRates'}">               
                 <columns>

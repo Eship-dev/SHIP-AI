@@ -18,7 +18,7 @@
         <Toolbar >
             <Title text="Consolidation"></Title>
             <ToolbarSpacer ></ToolbarSpacer>
-                <Button icon="sap-icon://decline" press="onConsolidationClosePress" class="Decline_Btn" ></Button>
+                <Button icon="sap-icon://decline" press="onConsolidationClosePress" class="Decline_Btn ship-now-decline_btn" ></Button>
         </Toolbar>
         <Toolbar height="8rem" class="customSimpleFormShadow" >
             <HBox width="100%" >

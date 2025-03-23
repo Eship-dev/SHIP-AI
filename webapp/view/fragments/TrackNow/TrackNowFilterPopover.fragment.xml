@@ -12,7 +12,7 @@
 		initialFocus="email">
 		<Toolbar >
 			<ToolbarSpacer ></ToolbarSpacer>
-				<Button icon="sap-icon://decline" press="onTrackNowFilterPopoverClosePress" class="Decline_Btn" ></Button>
+				<Button icon="sap-icon://decline" press="onTrackNowFilterPopoverClosePress" class="Decline_Btn ship-now-decline_btn" ></Button>
 		</Toolbar>
 		<footer>
 			<OverflowToolbar>

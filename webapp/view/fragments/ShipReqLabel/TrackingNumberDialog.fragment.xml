@@ -14,7 +14,7 @@
             <Toolbar height="3.5rem" >
                 <Title text="ShipperCopilot Tracking ID - 794817852547" />
                 <ToolbarSpacer />
-                <Button icon="sap-icon://decline" class="Decline_Btn" press="TrackingNumberCancelDialog" />
+                <Button icon="sap-icon://decline" class="Decline_Btn ship-now-decline_btn" press="TrackingNumberCancelDialog" />
             </Toolbar>
       </customHeader>
 

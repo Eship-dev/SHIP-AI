@@ -23,7 +23,7 @@
                 <!-- Close Button -->
                 <Button
                     icon="sap-icon://decline"
-                    class="Decline_Btn sapUiLargeMarginBottom"
+                    class="Decline_Btn ship-now-decline_btn sapUiLargeMarginBottom"
                     press="AddDangerousGoodsClosePress" />
             </Toolbar>
         </customHeader>

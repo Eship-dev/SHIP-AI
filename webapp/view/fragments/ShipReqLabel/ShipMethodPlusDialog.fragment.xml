@@ -14,7 +14,7 @@
       <Toolbar>
         <Title text="Freight Quote Status"></Title>
         <ToolbarSpacer></ToolbarSpacer>
-        <Button icon="sap-icon://decline" press="ShipMethodCancelDialog" class="Decline_Btn"></Button>
+        <Button icon="sap-icon://decline" press="ShipMethodCancelDialog" class="Decline_Btn ship-now-decline_btn"></Button>
       </Toolbar>
     </customHeader> -->
 
@@ -24,7 +24,7 @@
                  <ToolbarSpacer />
                 <Title text="Freight Quote Status" />
                 <ToolbarSpacer />
-                <Button icon="sap-icon://decline" class="Decline_Btn" press="ShipMethodCancelDialog" />
+                <Button icon="sap-icon://decline" class="Decline_Btn ship-now-decline_btn" press="ShipMethodCancelDialog" />
             </Toolbar>
       </customHeader>
       
