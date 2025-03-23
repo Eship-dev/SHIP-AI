@@ -24,9 +24,8 @@
 						<Toolbar width="100%" height="4rem" class="toolbarbottomborder">
 					<Text text="Order" class="sapUiTinyMarginBegin sapUiTinyMarginTop Orders_PageTitle"></Text>
 					<ToolbarSpacer></ToolbarSpacer>
-					<ComboBox id="dateFilterComboBox"
+					<ComboBox id="dateFilterComboBox" class="create-ship-req_input" placeholder="Select Date Filter"
 						selectedKey="{dateFilterModel>/selectedFilter}">
-						<core:Item key="" text="Select Date Filter" />
 						<core:Item key="today" text="Today" />
 						<core:Item key="yesterday" text="Yesterday" />
 						<core:Item key="thisWeek" text="This Week" />
@@ -150,11 +149,16 @@
 								</ui:Column>
 
 								<ui:Column width="5rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/8/visible}">
-									<Label text="PGI" />
-									<ui:template>
-										<Button icon="{= ${eshipjetModel>PGI} === true ? 'sap-icon://accept' : 'sap-icon://decline'}" type="Transparent" />
-									</ui:template>
-								</ui:Column>
+								<Label text="PGI" />
+								<ui:template>
+									<Button 
+										icon="{= ${eshipjetModel>PGI} === true ? 'sap-icon://accept' : 'sap-icon://decline'}" 
+										type="Transparent" 
+										iconColor="{= ${eshipjetModel>PGI} === true ? 'Positive' : 'Negative'}" 
+									/>
+								</ui:template>
+							</ui:Column>
+
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/9/visible}">
 									<Label text="Ship Date" />

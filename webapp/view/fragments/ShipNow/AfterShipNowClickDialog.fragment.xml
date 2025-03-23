@@ -1,17 +1,18 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
     <Dialog id="idAfterShipmentLabelDialog"
+            
             contentWidth="30vh"
             contentHeight="95%"
             verticalScrolling="false"
             horizontalScrolling="false"
              
        
-        showHeader="false" 
+        showHeader="true" 
         class="rightSidePopoverShipNowsideLabel1">
             
         <customHeader>
             <Toolbar>
-                <Title text="Shipment Label" level="H6" class="sapUiLargeMarginTop sapUiLargeMarginBottom" />
+                <Title text="Shipment Label"  class=" sapUiLargeMarginBottom" />
                 <ToolbarSpacer/>
                 <Button icon="sap-icon://decline" type="Transparent" class="Decline_Btn ship-now-decline_btn" press=".onShipmentLabelDialogClosePress" />
             </Toolbar>
@@ -20,7 +21,7 @@
         <VBox alignItems="Center" justifyContent="Center" >
             <Image id="shipmentLabelImage"
                    width="60vh"
-                   height="100vh"
+                   height="80vh"
                    class="sapUiLargeMarginTop "
                    densityAware="false" />
         </VBox>

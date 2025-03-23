@@ -1436,7 +1436,7 @@ sapMPopover .sapMPopoverCont {
 }
 
 .scan-ship-toolbar1__button {
-  color: unset !important;
+  color: #18CD1F !important;
   border-radius: 1% !important;
   height: 40px !important;
   cursor: pointer;
@@ -1453,7 +1453,7 @@ sapMPopover .sapMPopoverCont {
 }
 
 .validateAddress__button span {
-  color: unset !important;
+  color:  #18CD1F !important;
   height: 90% !important;
   border-radius: 1% !important;
   display: flex !important;

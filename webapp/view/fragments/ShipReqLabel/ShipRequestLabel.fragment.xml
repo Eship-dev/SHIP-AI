@@ -95,56 +95,56 @@
 							</ui:extension>
 
 							<ui:columns>
-								<ui:Column visible="{eshipjetModel>/ShipReqColumns/0/visible}" width="auto" >
+								<ui:Column visible="{eshipjetModel>/ShipReqColumns/0/visible}" width="8rem" >
 									<Label text="Location Id" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecCity}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/1/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/1/visible}" >
 									<Label text="Location Name" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecCity}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/2/visible}">
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/2/visible}">
 									<Label text="Consolidation Id" />
 									<ui:template>
 										<Text text="{eshipjetModel>Consolidation}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/3/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/3/visible}" >
 									<Label text="Delivery/handling Requests" />
 									<ui:template>
 										<Text text="{eshipjetModel>requestIdLabelId}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/4/visible}" >
-									<Label text="Eid" />
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/4/visible}" >
+									<Label text="EID" />
 									<ui:template>
 										<Text text="" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/5/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/5/visible}" >
 									<Label text="Created Date" />
 									<ui:template>
 										<Text text="{eshipjetModel>Createddate}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/6/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/6/visible}" >
 									<Label text="Ship Date" />
 									<ui:template>
 										<Text text="{eshipjetModel>DateAdded}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/7/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/7/visible}" >
 									<Label text="Shipment Type" />
 									<ui:template>
 										<Text value="{eshipjetModel>Carriertype}" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/11/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/11/visible}" >
 									<Label text="Ship Method Description" />
 									<ui:template>
 											<HBox justifyContent="SpaceBetween" alignItems="Center">
@@ -153,13 +153,13 @@
 											</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/12/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/12/visible}" >
 									<Label text="Ship Description" />
 									<ui:template>
 										<Text text="{eshipjetModel>CarrierDesc}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/13/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/13/visible}" >
 									<Label text="Service Name" />
 									<ui:template>
 										<Text text="{eshipjetModel>CarrierDesc}" wrapping="false" />
@@ -167,109 +167,109 @@
 								</ui:Column>
 
 
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/14/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/14/visible}" >
 									<Label text="Master Tracking Number" />
 									<ui:template>
 										<Link text="{eshipjetModel>TrackingNumber}" press="onTrackingNumberPress" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/15/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/15/visible}" >
 									<Label text="Tracking Number" />
 									<ui:template>
 										<Link text="{eshipjetModel>TrackingNumber}" press="onTrackingNumberPress" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/16/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/16/visible}" >
 									<Label text="Quote Status" />
 									<ui:template>
 										<Text text="{eshipjetModel>DeliveryStatus}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/17/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/17/visible}" >
 									<Label text="Ship To Contact" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecContact}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/18/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/18/visible}" >
 									<Label text="Ship To Company" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecCompany}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/19/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/19/visible}" >
 									<Label text="Ship To Address Line 1" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecAddress1}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/20/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/20/visible}" >
 									<Label text="Ship To State / Province" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecRegion}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/21/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/21/visible}" >
 									<Label text="Ship To City" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecCity}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/22/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/22/visible}" >
 									<Label text="Ship To Zip / Postal Code" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecPostalcode}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/23/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/23/visible}" >
 									<Label text="Ship To Country" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecCountry}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/24/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/24/visible}" >
 									<Label text="Ship To Phone No" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecPhone}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/25/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/25/visible}" >
 									<Label text="Ship To Email" />
 									<ui:template>
 										<Text text="{eshipjetModel>Emailaddress}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/26/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/26/visible}" >
 									<Label text="Requester Name" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecContact}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/27/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/27/visible}" >
 									<Label text="Connected To" />
 									<ui:template>
 										<Text text="{}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/27/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/27/visible}" >
 									<Label text="Status" />
 									<ui:template>
 										<Text text="{eshipjetModel>DeliveryStatus}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/27/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/27/visible}" >
 									<Label text="Order Type" />
 									<ui:template>
 										<Text text="{eshipjetModel>Packagetype}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/27/visible}" >
-									<Label text="Rfid" />
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/27/visible}" >
+									<Label text="RFID" />
 									<ui:template>
 										<Text text="{}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipReqColumns/27/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipReqColumns/27/visible}" >
 									<Label text="Shipment Workflow" />
 									<ui:template>
 									<VBox justifyContent="Center" alignItems="Center">
@@ -279,7 +279,7 @@
 										<!-- <Text text="{eshipjetModel>Shipmenttype}" wrapping="false" /> -->
 									</ui:template>
 								</ui:Column>
-								<ui:Column visible="true" width="auto" >
+								<ui:Column visible="true" width="8rem" >
 									<Label text="Actions" />
 									<ui:template>
 										<HBox>
