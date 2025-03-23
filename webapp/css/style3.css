@@ -2234,13 +2234,17 @@ button, input, optgroup, select, textarea {
   border: none !important;
 }
 
-.sapMDialog {
+.sapMDialog.busy-dialog {
   box-shadow: none !important;
   .sapMDialogSection {
     background-color: transparent !important;
   }
 }
-#sap-ui-blocklayer-popup {
-  background-color: rgba(255, 255, 255, 0.8) !important;
-  opacity: 1 !important;
+.ship-now-decline_btn:hover {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.ship-now-decline_btn:hover span {
+  background-color: red !important;
 }

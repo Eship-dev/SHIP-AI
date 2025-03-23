@@ -5,7 +5,7 @@
 					<Button icon="sap-icon://past" id="shipNowRecentShips" press="onOpenRecentShipmentPopover" />
 					<Text text="Ship Now"/>
 					<ToolbarSpacer/>
-						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn" type="Ghost" />
+						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn ship-now-decline_btn" type="Ghost" />
 				</Toolbar>
 							<Toolbar class="sapUiTinyMarginBottom scan-ship-toolbar1 " height="15%">
 									<ComboBox class="create-ship-req_input sapUiTinyMargin sapUiSmallMarginBegin" width="16%" selectedKey="SAPS4HANAPrivate" >
