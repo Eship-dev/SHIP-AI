@@ -9118,6 +9118,14 @@
                     "ERPServiceID": ""
                 },
                 {
+                    "ServiceName": "FedEx Corporation",
+                    "ServiceCode": "FedEx_Corporation",
+                    "ServiceCoverage": "International",
+                    "ConnectionType": "API",
+                    "IsActive": true,
+                    "ERPServiceID": "FEDPARCEL"
+                },
+                {
                     "ServiceName": "FedEx Priority Overnight",
                     "ServiceCode": "PRIORITY_OVERNIGHT",
                     "ServiceCoverage": "International",

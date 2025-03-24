@@ -837,7 +837,7 @@
 							id="idShipNowPackTable"
 							rows="{eshipjetModel>/packAddProductTable}"
 							class="sapUiSmallMarginTop"
-							selectionMode="None"
+							selectionMode="MultiToggle"
 							visibleRowCount="4" >
 							<!-- <ui:extension>
 								<OverflowToolbar class="scan-ship-table__toolbar">
@@ -850,7 +850,7 @@
 								<ui:Column visible="{eshipjetModel>/ShipNowProductsTableColumns/0/visible}" width="3%" >
 									<Label text="#" />
 									<ui:template>
-										<Text text="{eshipjetModel>SerialNo}" wrapping="false" />
+										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/1/visible}" >
@@ -1124,7 +1124,7 @@
 								<ui:Column width="8rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/4/visible}" >
 									<Label text="Weight (LB)" />
 									<ui:template>
-										<Text text="{eshipjetModel>GrossWeight}" wrapping="false" />
+										<Text text="{eshipjetModel>Weight}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="4rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/5/visible}" >
