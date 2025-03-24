@@ -3849,14 +3849,14 @@ sap.ui.define([
         },
 
         onoOrderColSelectOkPress: function () {
-            var oView = this.getView()
+            var oView = this.getView();
             var oOrderTable = oView.byId("myOrderColumnSelectId");
-            var OrderTableDataModel = oView.getModel("OrderTableDataModel");
+            var eshipjetModel = oView.getModel("eshipjetModel");
             var oOrderTblItems = oOrderTable.getItems();
-            var aColumnsData = OrderTableDataModel.getProperty("/OrderColumns");
+            var aColumnsData = eshipjetModel.getProperty("/OrderTableData/OrderColumns");
             oOrderTblItems.map(function (oTableItems) {
                 aColumnsData.map(function (oColObj) {
-                    if (oTableItems.getBindingContext("OrderTableDataModel").getObject().name === oColObj.name) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().name === oColObj.name) {
                         if (oTableItems.getSelected()) {
                             oColObj.visible = true;
                         } else {
@@ -3865,7 +3865,7 @@ sap.ui.define([
                     }
                 })
             });
-            OrderTableDataModel.updateBindings(true);
+            eshipjetModel.updateBindings(true);
             // this._handleDisplayOrdersTable();
             this._pOrderPopover.then(function (oPopover) {
                 oPopover.close();

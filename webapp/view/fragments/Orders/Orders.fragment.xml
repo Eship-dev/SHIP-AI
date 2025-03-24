@@ -127,6 +127,13 @@
 									</ui:template>
 								</ui:Column>
 
+								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/4/visible}">
+									<Label text="Carrier Code" />
+									<ui:template>
+										<Text text="{eshipjetModel>CarrierCode}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/5/visible}">
 									<Label text="Service Name" />
 									<ui:template>
@@ -161,7 +168,7 @@
 
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/9/visible}">
-									<Label text="Ship Date" />
+									<Label text="Ship Date-Time" />
 									<ui:template>
 										<Text text="{eshipjetModel>ShipDate}" wrapping="false" />
 									</ui:template>
@@ -175,13 +182,14 @@
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/11/visible}">
-									<Label text="Status" />
-									<ui:template>
-										<Text text="{eshipjetModel>status}" wrapping="false" 
-											class="{= ${eshipjetModel>status} === 'Shipped' ? 'greenText' : 
-													${eshipjetModel>status} === 'Cancelled' ? 'redText' : ''}" />
-									</ui:template>
-								</ui:Column>
+								<Label text="Status" />
+								<ui:template>
+									<Text text="{eshipjetModel>status}" wrapping="false"
+										class="{= ${eshipjetModel>status} === 'Shipped' ? 'accept' : 
+										${eshipjetModel>status} === 'Cancelled' ? 'Reject' : ''}" />
+								</ui:template>
+							</ui:Column>
+
 
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/12/visible}">

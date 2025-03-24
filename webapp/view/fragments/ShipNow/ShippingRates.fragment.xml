@@ -16,40 +16,41 @@
                 </FlexBox>
                 <Button icon="sap-icon://decline" press="onCloseShipNowShippinRateDialog" class="Decline_Btn ship-now-decline_btn" />
             </Toolbar>
-            <Table id="_ShippingRateTableId" sticky="ColumnHeaders"  inset="false"  mode="SingleSelectLeft"  items="{path: 'eshipjetModel>/shipNowShippingRates'}">               
-                <columns>
-                    <Column id="_IDGenColumn1">
-                        <Text id="_IDGenText2" text="Carrier" />
-                    </Column>
-                    <Column id="_IDGenColumn2">
-                        <Text id="_IDGenText3" text="Service Name" />
-                    </Column>
-                    <Column id="_IDGenColumn3" >
-                        <Text id="_IDGenText4" text="Published Rate $" />
-                    </Column>
-                    <Column id="_IDGenColumn4" >
-                        <Text id="_IDGenText5" text="Discount Rate $" />
-                    </Column>
-                    <Column id="_IDGenColumn5">
-                        <Text id="_IDGenText6" text="Estimated Arrival" />
-                    </Column>
-                     <Column id="_IDGenColumn6">
-                        <Text id="_IDGenText7" text="Transit Days" />
-                    </Column>
-                </columns>
-                <items>
-                    <ColumnListItem id="_IDGenColumnListItem" vAlign="Middle">
-                        <cells>
-                            <Text id="_IDGenText8" text="{eshipjetModel>Carrier}"></Text>
-                            <Text id="_IDGenText9" text="{eshipjetModel>serviceName}"></Text>
-                            <Text id="_IDGenText10" text="{= Math.floor(${eshipjetModel>publishedFreight})}"></Text>
-                            <Text id="_IDGenText11" text="{= Math.floor(${eshipjetModel>discountFreight_Cal})}"></Text>
-                            <Text id="_IDGenText12" text="{ path: 'eshipjetModel>expectedDeliveryDate', formatter: '.formatter.formatEstimatedDate' }" ></Text>
-                            <Text id="_IDGenText13" text="{ path: 'eshipjetModel>expectedDeliveryDate', formatter: '.formatter.getTransitDays' }"></Text>                          
-                        </cells>
-                    </ColumnListItem>
-                </items>
-            </Table>
+           <Table id="_ShippingRateTableId" sticky="ColumnHeaders" inset="false" mode="SingleSelectLeft" items="{path: 'eshipjetModel>/shipNowShippingRates'}">               
+    <columns>
+        <Column id="_IDGenColumn1">
+            <Text id="_IDGenText2" text="Carrier" />
+        </Column>
+        <Column id="_IDGenColumn2">
+            <Text id="_IDGenText3" text="Service Name" />
+        </Column>
+        <Column id="_IDGenColumn3" hAlign="End">
+            <Text id="_IDGenText4" text="Published Rate $" />
+        </Column>
+        <Column id="_IDGenColumn4" hAlign="End">
+            <Text id="_IDGenText5" text="Discount Rate $" />
+        </Column>
+        <Column id="_IDGenColumn5">
+            <Text id="_IDGenText6" text="Estimated Arrival" />
+        </Column>
+        <Column id="_IDGenColumn6">
+            <Text id="_IDGenText7" text="Transit Days" />
+        </Column>
+    </columns>
+    <items>
+        <ColumnListItem id="_IDGenColumnListItem" vAlign="Middle">
+            <cells>
+                <Text id="_IDGenText8" text="{eshipjetModel>Carrier}" />
+                <Text id="_IDGenText9" text="{eshipjetModel>serviceName}" />
+                <Text id="_IDGenText10" text="{= Math.floor(${eshipjetModel>publishedFreight})}" textAlign="End" />
+                <Text id="_IDGenText11" text="{= Math.floor(${eshipjetModel>discountFreight_Cal})}" textAlign="End" />
+                <Text id="_IDGenText12" text="{ path: 'eshipjetModel>expectedDeliveryDate', formatter: '.formatter.formatEstimatedDate' }" />
+                <Text id="_IDGenText13" text="{ path: 'eshipjetModel>expectedDeliveryDate', formatter: '.formatter.getTransitDays' }" />
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table>
+
         </content>
         
 			<!-- <Toolbar>
