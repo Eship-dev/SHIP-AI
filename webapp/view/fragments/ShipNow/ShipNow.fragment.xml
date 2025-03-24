@@ -318,19 +318,19 @@
 													<Label text="Packing Cost" />
 													<Input value="{eshipjetModel>/packingCost}" class="create-ship-req_input" />
 													<Label text=""></Label>
-													<CheckBox text="Priority Alert" class="sapUiSmallMarginTop"></CheckBox> 
+													<CheckBox text="Priority Alert" selected="{eshipjetModel>/PriorityAlert}" class="sapUiSmallMarginTop"></CheckBox> 
 													<Label text=""></Label>
-													<CheckBox text="Email Notifications" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Email Notifications" selected="{eshipjetModel>/EmailNotifications}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Broker Select" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Broker Select" selected="{eshipjetModel>/BrokerSelect}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="" />
-													<CheckBox text="Dry Ice" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Dry Ice" selected="{eshipjetModel>/DryIce1}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Inside Pickup" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Inside Pickup" selected="{eshipjetModel>/InsidePickup}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="" visible="false"></Label>
-													<CheckBox text="Delivery On Invoice Acceptance Detail" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Delivery On Invoice Acceptance Detail" selected="{eshipjetModel>/DeliveryOnInvoiceAcceptance}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Alcohol" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Alcohol" selected="{eshipjetModel>/Alcohol}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text="Indicia" />
 													<ComboBox items="{eshipjetModel>/indicia}" class="create-ship-req_input">
@@ -339,21 +339,21 @@
 													<Label text="Handling Cost" />
 													<Input value="{eshipjetModel>/handlingCost}" class="create-ship-req_input" />
 													<Label text=""></Label>
-													<CheckBox text="Saturday Pickup" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Saturday Pickup" selected="{eshipjetModel>/SaturdayPickup}" class="sapUiSmallMarginTop" ></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Priority Alert Plus" class="sapUiSmallMarginTop"></CheckBox> 
+													<CheckBox text="Priority Alert Plus" selected="{eshipjetModel>/PriorityAlertPlus}" class="sapUiSmallMarginTop"></CheckBox> 
 													<Label text=""></Label>
-													<CheckBox text="Delivery Notifications" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Delivery Notifications" selected="{eshipjetModel>/DeliveryNotifications}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Hold at location" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Hold at location" selected="{eshipjetModel>/HoldAtLocation}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="ETD Detail" class="sapUiSmallMarginTop"></CheckBox> 
+													<CheckBox text="ETD Detail" selected="{eshipjetModel>/EtdDetail}" class="sapUiSmallMarginTop"></CheckBox> 
 													<Label text="" />
-													<CheckBox text="Electronic Trade Document" class="sapUiSmallMarginTop"></CheckBox> 
+													<CheckBox text="Electronic Trade Document" selected="{eshipjetModel>/ElectronicTradeDocument}" class="sapUiSmallMarginTop"></CheckBox> 
 													<Label text=""></Label>
-													<CheckBox text="International Traffic InArmsRegulations Detail" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="International Traffic InArmsRegulations Detail" selected="{eshipjetModel>/InternationalTrafficInArms}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="" visible="false"></Label>
-													<CheckBox text="Battery" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Battery" selected="{eshipjetModel>/Battery}" class="sapUiSmallMarginTop"></CheckBox>
 
 
 													<Label text="Ancillary Endorsement" />
@@ -363,21 +363,21 @@
 													<Label text="Freight Charge" />
 													<Input value="{eshipjetModel>/freightCharge}" class="create-ship-req_input" />
 													<Label text=""></Label>
-													<CheckBox text="Saturday Delivery" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Saturday Delivery" selected="{eshipjetModel>/SaturdayDelivery}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Fedex One Rate" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Fedex One Rate" selected="{eshipjetModel>/FedexOneRate}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Exception Notifications" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Exception Notifications" selected="{eshipjetModel>/ExceptionNotifications}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="" />
-													<CheckBox text="Home Delivery Premium" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Home Delivery Premium" selected="{eshipjetModel>/HomeDeliveryPremium}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Email Return Label" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Email Return Label" selected="{eshipjetModel>/EmailReturnLabel}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Third Party Consignee" class="sapUiSmallMarginTop"></CheckBox>  
+													<CheckBox text="Third Party Consignee" selected="{eshipjetModel>/ThirdPartyConsignee}" class="sapUiSmallMarginTop"></CheckBox>  
 													<Label text="" />
-													<CheckBox text="Pending Shipment Detail" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Pending Shipment Detail" selected="{eshipjetModel>/PendingShipmentDetail}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="International Controlled Export" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="International Controlled Export" selected="{eshipjetModel>/InternationalControlledExport}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text="Lithium Batteries" />
 													<ComboBox items="{eshipjetModel>/lithiumBatteries}" class="create-ship-req_input" >
@@ -386,21 +386,21 @@
 													<Label text="Taxes or Misc Charges" />
 													<Input value="{eshipjetModel>/taxesOrMiscCharges}" class="create-ship-req_input" />
 													<Label text=""></Label>
-													<CheckBox text="Residential Delivery" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Residential Delivery" selected="{eshipjetModel>/ResidentialDelivery}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Event Notification" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Event Notification" selected="{eshipjetModel>/EventNotification}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Ship Alert Email" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Ship Alert Email" selected="{eshipjetModel>/ShipAlertEmail}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Print Return Label" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Print Return Label" selected="{eshipjetModel>/PrintReturnLabel}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="" visible="false" ></Label>
-													<CheckBox text="Inside Delivery" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Inside Delivery" selected="{eshipjetModel>/InsideDelivery}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Protection From Freezing" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Protection From Freezing" selected="{eshipjetModel>/ProtectionFromFreezing}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Shipment COD Detail" class="sapUiSmallMarginTop"></CheckBox> 
+													<CheckBox text="Shipment COD Detail" selected="{eshipjetModel>/ShipmentCODDetail}" class="sapUiSmallMarginTop"></CheckBox> 
 													<Label text="" visible="false"></Label>
-													<CheckBox text="Home Delivery Premium" class="sapUiSmallMarginTop"></CheckBox> 
+													<CheckBox text="Home Delivery Premium" selected="{eshipjetModel>/HomeDeliveryPremium}" class="sapUiSmallMarginTop"></CheckBox> 
 
 													
 													
@@ -413,29 +413,29 @@
 										<f:SimpleForm  visible="{eshipjetModel>/shipNowDHLSelect}"  id="RoutingandBillingDetails2ry" class="sapUiTinyMarginTop" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
 												<f:content>									
 													<Label text=""></Label>
-													<CheckBox text="Go Green Plus" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Go Green Plus" selected="{eshipjetModel>/GoGreenPlus}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Residential Delivery" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Residential Delivery" selected="{eshipjetModel>/ResidentialDelivery}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Neutral Delivery Service" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Neutral Delivery Service" selected="{eshipjetModel>/NeutralDeliveryService}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="Dry Ice Value" />
 													<ComboBox items="{eshipjetModel>/}" class="create-ship-req_input">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text=""></Label>
-													<CheckBox text="Insurance" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Insurance" selected="{eshipjetModel>/Insurance}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="Dry Ice Units" />
 													<ComboBox items="{eshipjetModel>/}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text=""></Label>
-													<CheckBox text="Paperless Invoice" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Paperless Invoice" selected="{eshipjetModel>/PaperlessInvoice}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="Signature Option Type" />
 													<ComboBox items="{eshipjetModel>/}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text=""></Label>
-													<CheckBox text="Dry Ice" class="sapUiSmallMarginTop"></CheckBox>																																																				
+													<CheckBox text="Dry Ice" selected="{eshipjetModel>/DryIce2}" class="sapUiSmallMarginTop"></CheckBox>																																																				
 												</f:content>
 											</f:SimpleForm>
 
@@ -490,13 +490,13 @@
 													</ComboBox>
 
 													<Label text=""></Label>
-													<CheckBox text="Email Notification" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Email Notification" selected="{eshipjetModel>/EmailNotification}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text=""></Label>
-													<CheckBox text="Residential Flag" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Residential Flag" selected="{eshipjetModel>/ResidentialFlag}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text=""></Label>
-													<CheckBox text="Return Shipment Only" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Return Shipment Only" selected="{eshipjetModel>/ReturnShipmentOnly}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text="Signature Type"></Label>
 													<ComboBox items="{}" class="create-ship-req_input" >
@@ -512,13 +512,13 @@
 													<Input class="create-ship-req_input" ></Input>
 
 													<Label text=""></Label>
-													<CheckBox text="Exception Notification" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Exception Notification" selected="{eshipjetModel>/ExceptionNotification}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text=""></Label>
-													<CheckBox text="Large Package Indicator" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Large Package Indicator" selected="{eshipjetModel>/LargePackageIndicator}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text=""></Label>
-													<CheckBox text="COD" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="COD" selected="{eshipjetModel>/COD}" class="sapUiSmallMarginTop"></CheckBox>
 													<Button icon="sap-icon://request" type="Transparent" class="sapUiSmallMarginTop" press="onShipNowCodEditPress" ></Button>
 
 													<Label text="Declared Amount"></Label>
@@ -533,13 +533,13 @@
 													<Input class="create-ship-req_input" ></Input>
 
 													<Label text=""></Label>
-													<CheckBox text="Delivery Notification" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Delivery Notification" selected="{eshipjetModel>/DeliveryNotification}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text=""></Label>
-													<CheckBox text="Hold at location" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Hold at location" selected="{eshipjetModel>/HoldAtLocation}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text=""></Label>
-													<CheckBox text="Return Label" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Return Label" selected="{eshipjetModel>/ReturnLabel}" class="sapUiSmallMarginTop"></CheckBox>
 													<Button icon="sap-icon://request" type="Transparent" class="sapUiSmallMarginTop" press="onShipNowCodEditPress" ></Button>
 
 													<Label text="Currency"></Label>
@@ -556,10 +556,10 @@
 													<Input class="create-ship-req_input" ></Input>
 
 													<Label text=""></Label>
-													<CheckBox text="Saturday Delivery" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Saturday Delivery" selected="{eshipjetModel>/SaturdayDelivery}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text=""></Label>
-													<CheckBox text="Hold For Pickup" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Hold For Pickup" selected="{eshipjetModel>/HoldForPickup}" class="sapUiSmallMarginTop"></CheckBox>
 
 													
 													<Label text="COD Funds Code"></Label>
@@ -576,10 +576,10 @@
 													<Input class="create-ship-req_input" ></Input>
 
 													<Label text=""></Label>
-													<CheckBox text="Saturday Pickup" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Saturday Pickup" selected="{eshipjetModel>/SaturdayPickup}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text=""></Label>
-													<CheckBox text="Neutral Delivery" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Neutral Delivery" selected="{eshipjetModel>/NeutralDelivery}" class="sapUiSmallMarginTop"></CheckBox>
 
 													
 												</f:content>
@@ -593,37 +593,37 @@
 												<Label text="Open and Distri. Mail Class Other" />
 													<Input class="create-ship-req_input" ></Input>
 												<Label text=""></Label>
-													<CheckBox text="Electronic Return Receipt" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Electronic Return Receipt" selected="{eshipjetModel>/ElectronicReturnReceipt}" class="sapUiSmallMarginTop"></CheckBox>
 												<Label text="Insured Amount" />
 													<Input class="create-ship-req_input" ></Input>
 												<Label text=""></Label>
-													<CheckBox text="No Weekend Delivery" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="No Weekend Delivery" selected="{eshipjetModel>/NoWeekendDelivery}" class="sapUiSmallMarginTop"></CheckBox>
 												<Label text=""></Label>
-													<CheckBox text="Signature Confirmation" class="sapUiSmallMarginTop"></CheckBox>																																															
+													<CheckBox text="Signature Confirmation" selected="{eshipjetModel>/SignatureConfirmation}" class="sapUiSmallMarginTop"></CheckBox>																																															
 												<Label text="Package Type" />
 													<ComboBox class="create-ship-req_input" items="{}">
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 												<Label text=""></Label>
-													<CheckBox text="Holiday Delivery" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Holiday Delivery" selected="{eshipjetModel>/HolidayDelivery}" class="sapUiSmallMarginTop"></CheckBox>
 												<Label text=""></Label>
-													<CheckBox text="Open and Distribute" class="sapUiSmallMarginTop"></CheckBox>	
+													<CheckBox text="Open and Distribute" selected="{eshipjetModel>/OpenDistribute}" class="sapUiSmallMarginTop"></CheckBox>	
 												<Label text="Open and Distri. Faci. Type" />
 													<ComboBox class="create-ship-req_input" items="{}">
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 												<Label text=""></Label>
-													<CheckBox text="Signature Waiver" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Signature Waiver" selected="{eshipjetModel>/SignatureWaiver}" class="sapUiSmallMarginTop"></CheckBox>
 												<Label text=""></Label>
-													<CheckBox text="Email Notification" class="sapUiSmallMarginTop"></CheckBox>	
+													<CheckBox text="Email Notification" selected="{eshipjetModel>/EmailNotification}" class="sapUiSmallMarginTop"></CheckBox>	
 												<Label text="Open and Distri. Mail Class Enclo" />
 													<ComboBox class="create-ship-req_input" items="{}">
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 												<Label text=""></Label>
-													<CheckBox text="certifiedMail" class="sapUiSmallMarginTop"></CheckBox>		
+													<CheckBox text="Certified Mail" selected="{eshipjetModel>/CertifiedMail1}" class="sapUiSmallMarginTop"></CheckBox>		
 												<Label text="" ></Label>
-													<CheckBox text="certifiedMail" class="sapUiSmallMarginTop" ></CheckBox>																																															
+													<CheckBox text="Certified Mail" selected="{eshipjetModel>/CertifiedMail2}" class="sapUiSmallMarginTop" ></CheckBox>																																															
 												</f:content>
 											</f:SimpleForm>
 											</VBox>

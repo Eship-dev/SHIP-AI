@@ -1272,19 +1272,22 @@ sap.ui.define([
         },
 
         createManifestHeaderSet:function(){
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
+
             var ShipReadDataSrvModel = oController.getOwnerComponent().getModel("ShipReadDataSrvModel");
             var oPayload = {
-                "Vbeln": "0055000239",
+                "Vbeln": sapDeliveryNumber,
                 "ToManifestData": [
                     {
-                        "Saturdaydel": false,
-                        "Residentialdel": false,
-                        "Priorityalert": false,
-                        "Satpickup": false,
-                        "Insidedel": false,
-                        "Insidepickup": false,
+                        "Saturdaydel": eshipjetModel.getProperty("/SaturdayDelivery"),
+                        "Residentialdel": eshipjetModel.getProperty("/ResidentialDelivery"),
+                        "Priorityalert": eshipjetModel.getProperty("/PriorityAlert"),
+                        "Satpickup": eshipjetModel.getProperty("/SaturdayPickup"),
+                        "Insidedel": eshipjetModel.getProperty("/InsideDelivery"),
+                        "Insidepickup": eshipjetModel.getProperty("/InsidePickup"),
                         "Liftgate": false,
-                        "Hold": false,
+                        "Hold": eshipjetModel.getProperty("/HoldAtLocation"),
                         "Dghazmat": false,
                         "CodFlag": false,
                         "Closeout": false,
