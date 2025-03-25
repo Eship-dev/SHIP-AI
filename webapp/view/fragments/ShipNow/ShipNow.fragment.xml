@@ -886,7 +886,7 @@
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/6/visible}" >
 									<Label text="Balance Qty" />
 									<ui:template>
-										<Text text="{eshipjetModel>ItemNetWeight}" wrapping="false" />
+										<Text text="{eshipjetModel>BalanceQty}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/7/visible}" >

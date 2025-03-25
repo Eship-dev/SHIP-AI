@@ -2414,50 +2414,64 @@ sap.ui.define([
                         oController.oBusyDialog.close();
                     }
                 });
-                let oFilter, aHandlingUnits = [];
-                oFilter = [];
-                oFilter.push(new Filter("HandlingUnitReferenceDocument", "EQ", sDeveliveryNumber));
-                oHandlingUnitModel.read("/HandlingUnit",{
-                    urlParameters: {
-                        "$expand": "to_HandlingUnitItem"
-                    },
-                    filters: oFilter,
-                    success:function(oData){
-                        if(oData && oData.results && oData.results.length > 0){
-                            for(var i = 0; i < oData.results.length; i++){
-                                oData.results[i]["SerialNumber"] = i + 1;
-                                aHandlingUnits.push(oData.results[i]);
+
+                // let oFilter, aHandlingUnits = [];
+                // oFilter = [];
+                // oFilter.push(new Filter("HandlingUnitReferenceDocument", "EQ", sDeveliveryNumber));
+                // oHandlingUnitModel.read("/HandlingUnit",{
+                //     urlParameters: {
+                //         "$expand": "to_HandlingUnitItem"
+                //     },
+                //     filters: oFilter,
+                //     success:function(oData){
+                //         if(oData && oData.results && oData.results.length > 0){
+                //             for(var i = 0; i < oData.results.length; i++){
+                //                 oData.results[i]["SerialNumber"] = i + 1;
+                //                 aHandlingUnits.push(oData.results[i]);
+                //             }
+                //             eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
+                //             oController.getHandlingUnit(aHandlingUnits);
+                //         }
+                //     },
+                //     error: function(oErr){
+                //         console.log(oErr);                        
+                //         oController.oBusyDialog.close();
+                //     }
+                // });
+                //var promise = new promise(function(resolved, rejected){
+                    var aOutBoundDelveryFilter = [], aProductTable = [];
+                    aOutBoundDelveryFilter.push(new Filter("DeliveryDocument", "EQ", sDeveliveryNumber));
+                    oDeliveryModel.read("/A_OutbDeliveryItem",{
+                        filters: aOutBoundDelveryFilter,
+                        success:function(oData){
+                            if(oData && oData.results && oData.results.length > 0){
+                                for(var i = 0; i < oData.results.length; i++){
+                                    oData.results[i]["SerialNumber"] = i+1;
+                                    oData.results[i]["ItemWeightUnit"] = "10X12X12";
+                                    oData.results[i]["BalanceQty"] = oData.results[i].DeliveryDocumentItem;
+                                    aProductTable.push(oData.results[i]);
+                                };
+                                var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+                                eshipjetModel.setProperty("/packAddProductTable",aProductTable);
+                                oController.getSalesOrder(aProductTable);
+                                oController.readHUDataSet(sDeveliveryNumber);
                             }
-                            eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
-                            oController.getHandlingUnit(aHandlingUnits);
+                            resolved(oData);
+                        },
+                        error: function(oErr){
+                            console.log(oErr);
+                            oController.oBusyDialog.close();
+                            rejected(oErr);
                         }
-                    },
-                    error: function(oErr){
-                        console.log(oErr);                        
-                        oController.oBusyDialog.close();
-                    }
-                });
-                var aOutBoundDelveryFilter = [], aProductTable = [];
-                aOutBoundDelveryFilter.push(new Filter("DeliveryDocument", "EQ", sDeveliveryNumber));
-                oDeliveryModel.read("/A_OutbDeliveryItem",{
-                    filters: aOutBoundDelveryFilter,
-                    success:function(oData){
-                        if(oData && oData.results && oData.results.length > 0){
-                            for(var i = 0; i < oData.results.length; i++){
-                                oData.results[i]["SerialNumber"] = i+1;
-                                oData.results[i]["ItemWeightUnit"] = "10X12X12";
-                                aProductTable.push(oData.results[i]);
-                            };
-                            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-                            eshipjetModel.setProperty("/packAddProductTable",aProductTable);
-                            oController.getSalesOrder(aProductTable);
-                        }
-                    },
-                    error: function(oErr){
-                        console.log(oErr);
-                        oController.oBusyDialog.close();
-                    }
-                });            
+                    });
+                //});
+
+                // promise.then(function(data){
+                    
+                // }).catch(function(error){
+
+                // });
+                            
             }
         },
         getHandlingUnit:function(aHanlingUnits){            
@@ -2473,6 +2487,18 @@ sap.ui.define([
                     if(oData && oData.results && oData.results.length > 0){
                         var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
                         eshipjetModel.setProperty("/HandlingUnitItems",oData.results);
+                        var aProductTableData = eshipjetModel.getProperty("/packAddProductTable");
+                        aProductTableData.forEach(function(obj){
+                            var count = 0;
+                            oData.results.forEach(function(huObj){
+                                if(obj.DeliveryDocumentItem === huObj.HandlingUnitRefDocumentItem){
+                                    count += parseInt(huObj.HandlingUnitQuantity);
+                                }
+                            });
+                            obj.BalanceQty = count;
+                        });
+
+                        eshipjetModel.updateBindings(true);
                         
                         // var oShipNowHandlingUnitTable = oView.byId("idShipNowHandlingUnitTable");
                         // if(oShipNowHandlingUnitTable){
