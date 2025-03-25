@@ -12,11 +12,7 @@
 		<content>
         <Table	id="rencentShipmentTblId" 
 				items="{ 
-					path: 'eshipjetModel>/RecentShipmentSet',
-					sorter: [
-						{ path: 'Createddate', descending: true },
-						{ path: 'TimeAdded', descending: true }
-					]}" >
+					path: 'eshipjetModel>/RecentShipmentSet'}" >
 
 		<ColumnListItem  vAlign="Middle" press="onRecentShipmentsItemPress" type="Active" >
 			<cells>				
