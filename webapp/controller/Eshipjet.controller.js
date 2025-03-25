@@ -782,6 +782,7 @@ sap.ui.define([
         },
 
         onConfirmShipNowHandlingUnitDelPress:function(oEvent){
+            oController.onOpenBusyDialog();
             var oCurrObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
             var oPayload = {
                 "Vbeln" : oCurrObj.HandlingUnitReferenceDocument,
@@ -794,12 +795,13 @@ sap.ui.define([
                 success:function(oData){
                     console.log("Success:", oData);
                     sap.m.MessageToast.show("Handling unit deleted successfully.");
-                    oController.readHUDataSet(oCurrObj.HandlingUnitReferenceDocument);
+                    oController.readProductsData(oCurrObj.HandlingUnitReferenceDocument);
+                    oController.onCloseBusyDialog();
                 },
                 error:function(oError){
                     var errMsg = JSON.parse(oError.responseText).error.message.value;
                     sap.m.MessageBox.error(errMsg);
-                    console.log(oError)
+                    oController.onCloseBusyDialog();
                 }
             });
             // var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
@@ -825,6 +827,32 @@ sap.ui.define([
             // eshipjetModel.updateBindings(true);
         },
 
+        readProductsData:function(sDeveliveryNumber){
+            var oDeliveryModel = oController.getView().getModel("OutBoundDeliveryModel");
+            var aOutBoundDelveryFilter = [], aProductTable = [];
+            aOutBoundDelveryFilter.push(new Filter("DeliveryDocument", "EQ", sDeveliveryNumber));
+            oDeliveryModel.read("/A_OutbDeliveryItem",{
+                filters: aOutBoundDelveryFilter,
+                success:function(oData){
+                    if(oData && oData.results && oData.results.length > 0){
+                        for(var i = 0; i < oData.results.length; i++){
+                            oData.results[i]["SerialNumber"] = i+1;
+                            oData.results[i]["ItemWeightUnit"] = "10X12X12";
+                            oData.results[i]["BalanceQty"] = oData.results[i].ActualDeliveryQuantity;
+                            aProductTable.push(oData.results[i]);
+                        };
+                        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+                        eshipjetModel.setProperty("/packAddProductTable",aProductTable);
+                        oController.getSalesOrder(aProductTable);
+                        oController.readHUDataSet(sDeveliveryNumber);
+                    }
+                },
+                error: function(oErr){
+                    console.log(oErr);
+                    oController.oBusyDialog.close();
+                }
+            });
+        },
 
         onShipNowAllHandlingUnitDelPress:function(oEvent){
             MessageBox.warning("Are you sure you want to delete all packed items?", {
@@ -2519,7 +2547,7 @@ console.log("SAP Duration:", SAPDuration);
                                 for(var i = 0; i < oData.results.length; i++){
                                     oData.results[i]["SerialNumber"] = i+1;
                                     oData.results[i]["ItemWeightUnit"] = "10X12X12";
-                                    oData.results[i]["BalanceQty"] = oData.results[i].DeliveryDocumentItem;
+                                    oData.results[i]["BalanceQty"] = oData.results[i].ActualDeliveryQuantity;
                                     aProductTable.push(oData.results[i]);
                                 };
                                 var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
@@ -2527,12 +2555,10 @@ console.log("SAP Duration:", SAPDuration);
                                 oController.getSalesOrder(aProductTable);
                                 oController.readHUDataSet(sDeveliveryNumber);
                             }
-                            resolved(oData);
                         },
                         error: function(oErr){
                             console.log(oErr);
                             oController.oBusyDialog.close();
-                            rejected(oErr);
                         }
                     });
                 //});
@@ -2559,14 +2585,21 @@ console.log("SAP Duration:", SAPDuration);
                         var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
                         eshipjetModel.setProperty("/HandlingUnitItems",oData.results);
                         var aProductTableData = eshipjetModel.getProperty("/packAddProductTable");
-                        aProductTableData.forEach(function(obj){
-                            var count = 0;
-                            oData.results.forEach(function(huObj){
-                                if(obj.DeliveryDocumentItem === huObj.HandlingUnitRefDocumentItem){
-                                    count += parseInt(huObj.HandlingUnitQuantity);
+                        aProductTableData.forEach(function(obj, idx){
+                            if(obj.DeliveryDocumentItem !== undefined){
+                                var count = 0;
+                                oData.results.forEach(function(huObj){
+                                    if(parseInt(obj.DeliveryDocumentItem) === parseInt(huObj.HandlingUnitRefDocumentItem)){
+                                        count += parseInt(huObj.HandlingUnitQuantity);
+                                    }
+                                });
+                                var qty = parseInt(obj.ActualDeliveryQuantity) - count;
+                                if(qty === 0){
+                                    aProductTableData.splice(idx, 1);
+                                }else{
+                                    obj.BalanceQty = qty;
                                 }
-                            });
-                            obj.BalanceQty = count;
+                            }
                         });
 
                         eshipjetModel.updateBindings(true);
@@ -2682,6 +2715,7 @@ console.log("SAP Duration:", SAPDuration);
         },
 
         onPackPress:function(){
+            oController.onOpenBusyDialog();
             var productTable = this.byId("idShipNowPackTable");
             var selectedItems = productTable.getSelectedIndices();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
@@ -2712,16 +2746,20 @@ console.log("SAP Duration:", SAPDuration);
                             "Qty": currentObj.partialQty,
                             "Humatnr": selectedPackageMat
                         };
-
+                        
                         var ShipReadDataSrvModel = oController.getOwnerComponent().getModel("ShipReadDataSrvModel");
                         ShipReadDataSrvModel.create("/HuDataSet", oPayload, {
                             success: function (oData) {
                                 oController.readHUDataSet(sapDeliveryNumber);
+                                MessageToast.show("Handling Unit Created Successfully");
+                                currentObj.partialQty = "";
+                                eshipjetModel.updateBindings(true);
+                                oController.onCloseBusyDialog();
                             },
                             error: function (oError) {
                                 var errMsg = JSON.parse(oError.responseText).error.message.value;
                                 sap.m.MessageBox.error(errMsg);
-                                oController.oBusyDialog.close();
+                                oController.onCloseBusyDialog();
                             }
                         });
                     }        
@@ -2730,6 +2768,7 @@ console.log("SAP Duration:", SAPDuration);
         },
 
         readHUDataSet:function(sapDeliveryNumber){
+            oController.onOpenBusyDialog();
             let oFilter, aHandlingUnits = [];
             oFilter = [];
             oFilter.push(new Filter("HandlingUnitReferenceDocument", "EQ", sapDeliveryNumber));
@@ -2748,11 +2787,15 @@ console.log("SAP Duration:", SAPDuration);
                         }
                         eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
                         oController.getHandlingUnit(aHandlingUnits);
+                    }else{
+                        eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
+                        oController.onPackSectionEmptyRows();
                     }
+                    oController.onCloseBusyDialog();
                 },
                 error: function(oErr){
                     console.log(oErr);                        
-                    oController.oBusyDialog.close();
+                    oController.onCloseBusyDialog();
                 }
             });
         },
