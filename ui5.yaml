@@ -9,7 +9,7 @@ server:
     - name: fiori-tools-proxy
       afterMiddleware: compression
       configuration:
-        ignoreCertError: true # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
+        ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
         ui5:
           path:
             - /resources
@@ -36,6 +36,10 @@ server:
             client: '200'
             destination: Eshipjet-ESJ
             authenticationType: BasicAuthentication
+          - url: https://sapdemo.eshipjet.com:44300
+            client: '200'
+            authenticationType: BasicAuthentication
+            path: /sap
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

@@ -708,9 +708,8 @@
 
 													<HBox height="3rem" width="55%" class="whiteBackground sapUiTinyMarginEnd sapUiSmallPadding" justifyContent="Start" alignItems="Center" >
 															<Label text="Package Material" class="sapUiTinyMargin" width="auto" />
-															<ComboBox items="" selectedKey="pallet" class="create-ship-req_input" width="auto" >
-																<core:Item key="pallet" text="PALLET" />
-																<core:Item key="YourPackage" text="Your Package" />
+															<ComboBox items="{eshipjetModel>/packageMaterial}" selectedKey="{eshipjetModel>/selectedPackageMat}" class="create-ship-req_input" width="auto" >
+																<core:Item key="{eshipjetModel>Product}" text="{eshipjetModel>Product}" />
 															</ComboBox>
 
 															<!-- <Label text="Dimensions" class="sapUiTinyMargin" />
@@ -880,7 +879,7 @@
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/5/visible}" >
 									<Label text="Total Qty" />
 									<ui:template>
-										<Text text="{eshipjetModel>ItemGrossWeight}" wrapping="false" />
+										<Text text="{eshipjetModel>ActualDeliveryQuantity}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/6/visible}" >
@@ -893,6 +892,12 @@
 									<Label text="Partial Qty" />
 									<ui:template>
 										<Input value="{eshipjetModel>partialQty}" liveChange="onPartialQtyChange" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/7/visible}" >
+									<Label text="Weight (LB)" />
+									<ui:template>
+										<Text text="{eshipjetModel>ItemGrossWeight}" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/8/visible}">
@@ -1124,7 +1129,7 @@
 								<ui:Column width="8rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/4/visible}" >
 									<Label text="Weight (LB)" />
 									<ui:template>
-										<Text text="{eshipjetModel>Weight}" wrapping="false" />
+										<Text text="{eshipjetModel>GrossWeight}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="4rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/5/visible}" >

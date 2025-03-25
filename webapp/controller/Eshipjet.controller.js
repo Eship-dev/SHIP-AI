@@ -61,6 +61,23 @@ sap.ui.define([
             this.getOwnerComponent().setModel(ShipNowDataModel, "ShipNowDataModel");
             oController.oBusyDialog = new sap.m.BusyDialog({});
             this.getOwnerComponent().getRouter().getRoute("RouteEshipjet").attachPatternMatched(this._handleRouteMatched, this);
+            oController.readAPIProductSrvModel();
+        },
+
+        readAPIProductSrvModel:function(){
+            var APIProductSrvModel = oController.getOwnerComponent().getModel("APIProductSrvModel");
+            var oFilter = new sap.ui.model.Filter("ProductType", sap.ui.model.FilterOperator.EQ, "VERP");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+
+            APIProductSrvModel.read("/A_Product", {
+                filters: [oFilter],
+                success:function(oResult){
+                    eshipjetModel.setProperty("/packageMaterial", oResult.results)
+                },
+                error:function(oError){
+                    console.log(oError);
+                }
+            })
         },
 
         onPackSectionEmptyRows:function(){
@@ -712,7 +729,7 @@ sap.ui.define([
         },
 
         onShipNowPrdctDltPress:function(oEvent){
-            MessageBox.warning("Are you sure you want to delete this product?", {
+            MessageBox.warning("Are you sure you want to delete HU?", {
                 actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
                 emphasizedAction: MessageBox.Action.OK,
                 onClose: function (sAction) {
@@ -1284,18 +1301,71 @@ sap.ui.define([
             );
 
         },
+        addDurationToCurrentTime:function(durationStr, baseDate = new Date()) {
+            const match = durationStr.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+            if (!match) return null;
+        
+            const hours = Number(match[1] || 0);
+            const minutes = Number(match[2] || 0);
+            const seconds = Number(match[3] || 0);
+        
+            baseDate.setHours(baseDate.getHours() + hours);
+            baseDate.setMinutes(baseDate.getMinutes() + minutes);
+            baseDate.setSeconds(baseDate.getSeconds() + seconds);
+        
+            return baseDate.getFullYear() + "-" +
+                String(baseDate.getMonth() + 1).padStart(2, '0') + "-" +
+                String(baseDate.getDate()).padStart(2, '0') + "T" +
+                String(baseDate.getHours()).padStart(2, '0') + ":" +
+                String(baseDate.getMinutes()).padStart(2, '0') + ":" +
+                String(baseDate.getSeconds()).padStart(2, '0');
+        },
 
         createManifestHeaderSet:function(){
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
 
             var ShipReadDataSrvModel = oController.getOwnerComponent().getModel("ShipReadDataSrvModel");
-            var Discountamt =  eshipjetModel.getProperty("/shippingCharges/1/amount") + (eshipjetModel.getProperty("/shippingCharges/1/amount") * 0.20);
-            // let time = new Date();
-            // let SAPFormattedTime = addDurationToCurrentTime(time);
-            // var toDayDate = toMicrosoftJsonDate(time);
+            var amount = eshipjetModel.getProperty("/shippingCharges/0/amount");
+            // let total = eshipjetModel.getProperty("/shippingCharges/1/amount");
+            let percentage = (20 / 100) * amount; // 20% of 200
+            let Discountamt = amount - percentage;
+           // Get the current date-time
+let time = new Date();
+time.setMinutes(time.getMinutes() + 10); // Adds 10 minutes
 
+// Convert to SAP Date format (Milliseconds since Epoch)
+let SAPDate = "/Date(" + time.getTime() + ")/";
+
+// Define duration components
+let hours = 2;
+let minutes = 30;
+let seconds = 45;
+
+// Construct SAP Duration format (PTxHxMxS)
+let SAPDuration = "PT";
+if (hours > 0) SAPDuration += hours + "H";
+if (minutes > 0) SAPDuration += minutes + "M";
+if (seconds > 0) SAPDuration += seconds + "S";
+
+// Print outputs
+console.log("SAP Date:", SAPDate);
+console.log("SAP Duration:", SAPDuration);
+
+
+            
             var packAddProductTable = eshipjetModel.getProperty("/packAddProductTable")
+
+            var HandlingUnitsLength = eshipjetModel.getProperty("/HandlingUnitsLength");
+            if(HandlingUnitsLength === "0" || HandlingUnitsLength === 0){
+                HandlingUnitsLength = 1
+            };
+            var grossWeight = eshipjetModel.getProperty("/HandlingUnits/0/GrossWeight");
+            if(grossWeight === 0 || grossWeight === "0"){
+                grossWeight = eshipjetModel.getProperty("ShipNowProductsTableColumns/0/ItemGrossWeight");
+            };
+            var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
+
             var oPayload = {
                 "Vbeln": sapDeliveryNumber,
                 "ToManifestData": [
@@ -1321,17 +1391,17 @@ sap.ui.define([
                         "Ddo": false,
                         "Isc": false,
                         "Appointment": false,
-                        "CrossdockRecdate": toDayDate,
-                        "PodDate": toDayDate,
-                        "DateAdded": toDayDate,
-                        "Createddate": toDayDate,
+                        "CrossdockRecdate": SAPDate,
+                        "PodDate": SAPDate,
+                        "DateAdded": SAPDate,
+                        "Createddate": SAPDate,
                         // "CancDt": "/Date(1734480000000)/",
-                        "PackageWeight": "41.470",
-                        "Chargweight": "41.470",
+                        "PackageWeight": grossWeight,
+                        "Chargweight": grossWeight,
                         "Codamount": "0.00",
                         "Customs": "0.00",
-                        "Freightamt": eshipjetModel.getProperty("/shippingCharges/0/amount"),
-                        "Discountamt": Discountamt,
+                        "Freightamt": amount.toString(),
+                        "Discountamt": Discountamt.toString(),
                         "Insurance": "0.00",
                         "Dryweight": "0.000",
                         "Mandt": "200",
@@ -1339,10 +1409,10 @@ sap.ui.define([
                         "Posnr": "000000",
                         "Plant": "BP01",
                         "Shipmenttype": "O",
-                        "Pkgcount": "2",
+                        "Pkgcount": HandlingUnitsLength.toString(),
                         "MultiSeq": "1",
                         "MultiLegno": "0",
-                        "Totalpkg": "2",
+                        "Totalpkg": HandlingUnitsLength.toString(),
                         "HandlingUnit": "10006973",
                         "SalesOrder": "10006973",
                         "PurchaseOrder": "CANCL",
@@ -1359,31 +1429,31 @@ sap.ui.define([
                         "Accountnumber": eshipjetModel.getProperty("/accountNumber"),
                         "Dutytaxpaytype": "SENDER",
                         "Dtaccountnumber": "",
-                        "Dimensions": "",
+                        "Dimensions": "10X12X12",
                         "Aesitn": "",
                         "Vhilm": "PALLET",
                         "Emailaddress": "Israel@gerimedix.com",
                         "Signaturetype": "",
-                        "RecCompany": "GERIMEDIX",
-                        "RecContact": "Vikas",
-                        "RecAddress1": "5 HOLLYWOOD CT",
-                        "RecAddress2": "ave",
+                        "RecCompany": ShipNowDataModel.getProperty("/ShipToAddress/BusinessPartnerName1"),
+                        "RecContact": ShipNowDataModel.getProperty("/ShipToAddress/FullName"),
+                        "RecAddress1": ShipNowDataModel.getProperty("/ShipToAddress/StreetName"),
+                        "RecAddress2": ShipNowDataModel.getProperty("/ShipToAddress/HouseNumber"),
                         "RecAddress3": "null",
-                        "RecCity": "SOUTH PLAINFIELD",
-                        "RecRegion": "IL",
-                        "RecPostalcode": "07080-4204",
-                        "RecCountry": "US",
-                        "RecPhone": "7188021085",
-                        "Company": "GERIMEDIX",
-                        "Contact": "Vikas",
-                        "Address1": "5 HOLLYWOOD CT",
-                        "Address2": "ave",
+                        "RecCity": ShipNowDataModel.getProperty("/ShipToAddress/CityName"),
+                        "RecRegion": ShipNowDataModel.getProperty("/ShipToAddress/Region"),
+                        "RecPostalcode": ShipNowDataModel.getProperty("/ShipToAddress/PostalCode"),
+                        "RecCountry": ShipNowDataModel.getProperty("/ShipToAddress/Country"),
+                        "RecPhone": ShipNowDataModel.getProperty("/ShipToAddress/PhoneNumber"),
+                        "Company": ShipNowDataModel.getProperty("/ShipToAddress/BusinessPartnerName1"),
+                        "Contact": ShipNowDataModel.getProperty("/ShipToAddress/FullName"),
+                        "Address1": ShipNowDataModel.getProperty("/ShipToAddress/StreetName"),
+                        "Address2": ShipNowDataModel.getProperty("/ShipToAddress/HouseNumber"),
                         "Address3": "null",
-                        "City": "SOUTH PLAINFIELD",
-                        "Region": "NJ",
-                        "Postalcode": "07080-4204",
-                        "Country": "US",
-                        "Phone": "7188021085",
+                        "City": ShipNowDataModel.getProperty("/ShipToAddress/CityName"),
+                        "Region": ShipNowDataModel.getProperty("/ShipToAddress/Region"),
+                        "Postalcode": ShipNowDataModel.getProperty("/ShipToAddress/PostalCode"),
+                        "Country": ShipNowDataModel.getProperty("/ShipToAddress/Country"),
+                        "Phone": ShipNowDataModel.getProperty("/ShipToAddress/PhoneNumber"),
                         "Stceg": "",
                         "PodSignature": "",
                         "PodLocation": "",
@@ -1392,13 +1462,13 @@ sap.ui.define([
                         "Podcurrentstatus": "",
                         "Podexpstatus": "",
                         "ReturnTrack": "",
-                        "FromCompany": "Atlanta",
-                        "FromContact": "Steve Marsh",
-                        "FromStreet": "5717 Legacy",
-                        "Fromcity": "",
-                        "FromPostalcode": "300033",
-                        "FromCountry": "US",
-                        "FromPhone": "(888) 464-2360",
+                        "FromCompany": ShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOMPANY"),
+                        "FromContact": ShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCONTACT"),
+                        "FromStreet": ShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE1"),
+                        "Fromcity": ShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCITY"),
+                        "FromPostalcode": ShipNowDataModel.getProperty("/ShipFromAddress/ShipFromZIPCODE"),
+                        "FromCountry": ShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOUNTRY"),
+                        "FromPhone": ShipNowDataModel.getProperty("/ShipFromAddress/ShipFromPHONE"),
                         "EnteredBy": "dm_atla",
                         "Sammg": "",
                         "Lifnr": "",
@@ -1435,7 +1505,7 @@ sap.ui.define([
                         "Addcomments": "",
                         "DimensionFactor": "00000",
                         "TransitDays": "000",
-                        "Delivery": "55000231",
+                        "Delivery": sapDeliveryNumber,
                         "UpsEod": "",
                         "Tcode": "/PWEAVER/PPS",
                         "Packagetype": "",
@@ -1495,8 +1565,7 @@ sap.ui.define([
                         "Accessorial": "",
                         "Fuel": "",
                         "Deliverynno": sapDeliveryNumber,
-                        "TimeAdded": SAPFormattedTime,
-                        "CancTim": "PT11H05M46S",
+                        "TimeAdded": SAPDuration,
                     
                     }
                 ]
@@ -1519,24 +1588,8 @@ sap.ui.define([
             return `/Date(${date.getTime()})/`;
         },
 
-        addDurationToCurrentTime:function(durationStr) {
-            // Extract hours, minutes, and seconds using regex
-            const match = durationStr.match(/PT(\d+)H(\d+)M(\d+)S/);
-            if (!match) return null;
+       
         
-            const [, hours, minutes, seconds] = match.map(Number);
-            
-            // Get current time
-            const now = new Date();
-            
-            // Add extracted values
-            now.setHours(now.getHours() + hours);
-            now.setMinutes(now.getMinutes() + minutes);
-            now.setSeconds(now.getSeconds() + seconds);
-        
-            // Format the time as HH:mm:ss
-            return now.toTimeString().split(" ")[0]; 
-        },
         
 
         createHandlingUnits:function(){
@@ -2337,7 +2390,25 @@ sap.ui.define([
         onShipNowGetPress: async function () {            
             var sDeveliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
             eshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey","");
-            
+            eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
+                eshipjetModel.setProperty("/shipNowABFSelect", false );
+                eshipjetModel.setProperty("/shipNowARTEXFineArtSrvSelect", false );
+                eshipjetModel.setProperty("/shipNowATLASFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowBrinksFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowCrownFineArtSelect", false ); 
+                eshipjetModel.setProperty("/shipNowDHLSelect", false );
+                eshipjetModel.setProperty("/shipNowDTDCSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExSelect", false );
+                eshipjetModel.setProperty("/shipNowFastFarwarderSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExFreightSelect", false );
+                eshipjetModel.setProperty("/shipNowJPMorganChaseInternalSelect", false );
+                eshipjetModel.setProperty("/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/shipNowMoviGroupSelect", false );
+                eshipjetModel.setProperty("/shipNowOtherSelect", false );
+                eshipjetModel.setProperty("/shipNowRLSelect", false );
+                eshipjetModel.setProperty("/shipNowTheArmorySelect", false );
+                eshipjetModel.setProperty("/shipNowUPSSelect", false );
+                eshipjetModel.setProperty("/shipNowUSPSSelect", false );
             eshipjetModel.setProperty("/shippingCharges", []);
             eshipjetModel.setProperty("/shippingDocuments", []);
             eshipjetModel.setProperty("/trackingArray", []);
@@ -2541,7 +2612,9 @@ sap.ui.define([
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var sPath = "";
             promise1 = new Promise((resolve, reject) => {    
-                aResults.sort((a, b) => b.PartnerFunction.localeCompare(a.PartnerFunction));            
+                aResults.sort((a, b) => b.PartnerFunction.localeCompare(a.PartnerFunction));      
+                eshipjetModel.setProperty("/ShipNowShipMethodSelectedKey", aResults[2].Supplier);
+                oController.onShopNowShipMethodAfterChange(aResults[2].Supplier);
                 for (var i = 0; i < aResults.length; i++) {               
                     sPath = "/A_OutbDeliveryHeader('"+ sDocNumber +"')/to_DeliveryDocumentPartner(PartnerFunction='"+ aResults[i].PartnerFunction + "',SDDocument='"+ sDocNumber +"')/to_Address";
                     oDeliveryModel.read(sPath,{ "groupId":"addressDefferedgroupID", "merge":false});                               
@@ -2554,8 +2627,17 @@ sap.ui.define([
                             oData.__batchResponses.map(function(currentValue, index, arr){
                                 if(index == 0){
                                     currentValue.data["PartnerType"]  = "ShipFrom";
+                                    currentValue.data["FullName"]  = "Steve Mars";
+                                    currentValue.data["BusinessPartnerName1"]  = "Eshipjet Software Inc.";
+                                    currentValue.data["StreetName"]  = "5717 Legacy";
+                                    currentValue.data["HouseNumber"]  = "Suite 250";
+                                    currentValue.data["Region"]  = "TX";
+                                    currentValue.data["CityName"]  = "Plano";
+                                    currentValue.data["PostalCode"]  = "75024";
+                                    currentValue.data["Country"]  = "US";
+                                    currentValue.data["email"]  = "info@eshipjet.ai";
                                 }else if(index == 1){
-                                    currentValue.data["PartnerType"]  = "Shipper";
+                                    currentValue.data["PartnerType"]  = "Shipper To";
                                 }else {
                                     currentValue.data["PartnerType"]  = "Freight Forwarder";
                                 }
@@ -2602,7 +2684,11 @@ sap.ui.define([
         onPackPress:function(){
             var productTable = this.byId("idShipNowPackTable");
             var selectedItems = productTable.getSelectedIndices();
-            if(selectedItems.length === 0){
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var selectedPackageMat = eshipjetModel.getProperty("/selectedPackageMat");
+            if(selectedPackageMat === ""){
+                MessageBox.warning("Please Select Package Material");
+            }else if(selectedItems.length === 0){
                 MessageBox.warning("Please Select atleast one record from Product Table");
             }else{
                 var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
@@ -2624,38 +2710,13 @@ sap.ui.define([
                             "Posnr": "000010",
                             "Matnr": currentObj.Material,
                             "Qty": currentObj.partialQty,
-                            "Humatnr": "EWMS4-WBTRO00"
+                            "Humatnr": selectedPackageMat
                         };
 
                         var ShipReadDataSrvModel = oController.getOwnerComponent().getModel("ShipReadDataSrvModel");
                         ShipReadDataSrvModel.create("/HuDataSet", oPayload, {
                             success: function (oData) {
                                 oController.readHUDataSet(sapDeliveryNumber);
-                                // MessageToast.show("Handling Unit Created Successfully");
-                                // var oTableLength = eshipjetModel.getProperty("/HandlingUnits").length
-                                // var obj = {
-                                //     "SpecialServices": {},
-                                //     "Weightunits": "",
-                                //     "Weight": parseInt(oData.Qty).toFixed(2),
-                                //     "DimensionUnits": "10X10X12",
-                                //     // "SerialNumber": oTableLength+1,
-                                //     "IsInternal": true,
-                                //     "ItemsInfo": ItemsInfo,
-                                //     "HandlingUnitExternalID": oData.HuNo
-                                // };
-                                // var HandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
-                                // var serialNoCheck = false;
-                                // for(var i=0; i<HandlingUnits.length; i++){
-                                //     if(HandlingUnits[i].SerialNumber === ""){
-                                //         serialNoCheck = true;
-                                //         HandlingUnits.splice(i, 1, obj);
-                                //         eshipjetModel.updateBindings(true);
-                                //         break;
-                                //     }
-                                // }
-                                // if(!serialNoCheck){
-                                //     HandlingUnits.push(obj);
-                                // }
                             },
                             error: function (oError) {
                                 var errMsg = JSON.parse(oError.responseText).error.message.value;
@@ -11927,6 +11988,10 @@ sap.ui.define([
 
         onShopNowShipMethodTypeChange : function(oEvent){
             var selectedKey = oEvent.getSource().getSelectedKey();
+            oController.onShopNowShipMethodAfterChange(selectedKey);
+        },
+
+        onShopNowShipMethodAfterChange:function(selectedKey){
             var eshipjetModel =  this.getOwnerComponent().getModel("eshipjetModel");
             var carrierconfiguration = eshipjetModel.getData().carrierconfiguration;
             for(var i=0; i<carrierconfiguration.length; i++){
@@ -11934,11 +11999,11 @@ sap.ui.define([
                     var serviceNamesList = new JSONModel(carrierconfiguration[i]);
                     this.getView().setModel(serviceNamesList, "serviceNamesList");
                 }
-            }
+            };
             var ShipNowShipMethodSelectedKey =  eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey");
             eshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey","");
             eshipjetModel.setProperty("/accountNumber","");
-            if (ShipNowShipMethodSelectedKey === "FedEx"){
+            if (ShipNowShipMethodSelectedKey === "FEDEX"){
                 eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
                 eshipjetModel.setProperty("/shipNowABFSelect", false );
                 eshipjetModel.setProperty("/shipNowARTEXFineArtSrvSelect", false );
@@ -13017,13 +13082,11 @@ sap.ui.define([
             MessageBox.warning("Please Enter Ship To Company Name");
         }else if(shipToCountry !== "" && shipToAddressLine1 !== "" && shipToCity !== "" && shipToZipCode !== "" && shipToState !== "" && shipToCompanyName !== "" && shipToContactName === ""){
             MessageBox.warning("Please Enter Ship To Contact Name");
-        }else if(shipToCountry !== "" && shipToAddressLine1 !== "" && shipToCity !== "" && shipToZipCode !== "" && shipToState !== "" && shipToCompanyName !== "" && shipToContactName !== "" && shipToAddressLine2 === ""){
-            MessageBox.warning("Please Enter Ship To Address Line 2");
-        }else if(shipToCountry !== "" && shipToAddressLine1 !== "" && shipToCity !== "" && shipToZipCode !== "" && shipToState !== "" && shipToCompanyName !== "" && shipToContactName !== "" && shipToAddressLine2 !== "" && shipToEmail === ""){
+        }else if(shipToCountry !== "" && shipToAddressLine1 !== "" && shipToCity !== "" && shipToZipCode !== "" && shipToState !== "" && shipToCompanyName !== "" && shipToContactName !== "" && shipToEmail === ""){
             MessageBox.warning("Please Enter Ship To Email");
-        }else if(shipToCountry !== "" && shipToAddressLine1 !== "" && shipToCity !== "" && shipToZipCode !== "" && shipToState !== "" && shipToCompanyName !== "" && shipToContactName !== "" && shipToAddressLine2 !== "" && shipToEmail !== "" && shipToPhone === ""){
+        }else if(shipToCountry !== "" && shipToAddressLine1 !== "" && shipToCity !== "" && shipToZipCode !== "" && shipToState !== "" && shipToCompanyName !== "" && shipToContactName !== "" && shipToEmail !== "" && shipToPhone === ""){
             MessageBox.warning("Please Enter Ship To Phone No");
-        }else if(shipToCountry !== "" && shipToAddressLine1 !== "" && shipToCity !== "" && shipToZipCode !== "" && shipToState !== "" && shipToCompanyName !== "" && shipToContactName !== "" && shipToAddressLine2 !== "" && shipToEmail !== "" && shipToPhone !== "" && oTableItemsLength <= 0){
+        }else if(shipToCountry !== "" && shipToAddressLine1 !== "" && shipToCity !== "" && shipToZipCode !== "" && shipToState !== "" && shipToCompanyName !== "" && shipToContactName !== "" && shipToEmail !== "" && shipToPhone !== "" && oTableItemsLength <= 0){
             MessageBox.warning("Please create package");
         }else{
             oController.onShipRateRequest();

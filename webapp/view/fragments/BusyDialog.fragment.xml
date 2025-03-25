@@ -2,7 +2,7 @@
     <Dialog id="idBusyDialog" class="busy-dialog" busyIndicatorDelay="0" showHeader="false" type="Message">
         <content>
             <VBox alignItems="Center" justifyContent="Center" width="100%" >
-                <Image src="https://dev.eshipjet.site/assets/images/copilotlogo1.png" width="60px" height="60px"/>
+                <Image src="{value: 'com/eshipjet/zeshipjet/css/images/image.png',formatter: 'sap.ui.require.toUrl'}" width="60px" height="60px"/>
                 <Text text="Please wait..." class="sapUiSmallMarginTop"/>
             </VBox>
         </content>

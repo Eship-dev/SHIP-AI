@@ -9,6 +9,7 @@
     "toolPageHeader":true,
     "shipNowGetBtn": true,
     "HandlingUnitsLength":0,
+    "selectedPackageMat": "",
     
     "shipNowGanderWhiteSelect": false,
     "shipNowABFSelect": false,
@@ -8666,26 +8667,8 @@
 
     "carrierconfiguration": [
         {
-            "LocationId": "BP01",
-            "CostCenterName": "",
-            "ShipfromCountry": "",
-            "ShipToCountry": "",
             "CarrierName": "ADUIEPYLE",
-            "ShipURL": "",
-            "VoidURL": "",
-            "RateURL": "",
-            "TrackURL": "",
-            "Environment": "Test",
             "CarrierType": "LTL",
-            "Account": "",
-            "UserId": "",
-            "Password": "",
-            "AccessKey": "",
-            "MeterId": "",
-            "HubId": "",
-            "FuelCharges": "",
-            "LabelType": "",
-            "ConnectionType": "",
             "carrierServices": [
                 {
                     "ServiceName": "ADUIEPYLE",
@@ -8723,26 +8706,8 @@
             "id": 59
         },
         {
-            "LocationId": "BP01",
-            "CostCenterName": "",
-            "ShipfromCountry": "",
-            "ShipToCountry": "",
             "CarrierName": "ATS",
-            "ShipURL": "",
-            "VoidURL": "",
-            "RateURL": "",
-            "TrackURL": "",
-            "Environment": "Test",
             "CarrierType": "LTL",
-            "Account": "",
-            "UserId": "",
-            "Password": "",
-            "AccessKey": "",
-            "MeterId": "",
-            "HubId": "",
-            "FuelCharges": "",
-            "LabelType": "",
-            "ConnectionType": "",
             "carrierServices": [
                 {
                     "ServiceName": "ATS",
@@ -8780,26 +8745,8 @@
             "LocationName": "Atlanta"
         },
         {
-            "LocationId": "BP01",
-            "CostCenterName": "",
-            "ShipfromCountry": "",
-            "ShipToCountry": "",
             "CarrierName": "CONWAY FREIGHT",
-            "ShipURL": "",
-            "VoidURL": "",
-            "RateURL": "",
-            "TrackURL": "",
-            "Environment": "Test",
             "CarrierType": "LTL",
-            "Account": "",
-            "UserId": "",
-            "Password": "",
-            "AccessKey": "",
-            "MeterId": "",
-            "HubId": "",
-            "FuelCharges": "",
-            "LabelType": "",
-            "ConnectionType": "",
             "carrierServices": [
                 {
                     "ServiceName": "CONWAY",
@@ -8837,26 +8784,8 @@
             "id": 52
         },
         {
-            "LocationId": "BP01",
-            "CostCenterName": "",
-            "ShipfromCountry": "",
-            "ShipToCountry": "",
             "CarrierName": "DOHRN",
-            "ShipURL": "",
-            "VoidURL": "",
-            "RateURL": "",
-            "TrackURL": "",
-            "Environment": "Test",
             "CarrierType": "LTL",
-            "Account": "",
-            "UserId": "",
-            "Password": "",
-            "AccessKey": "",
-            "MeterId": "",
-            "HubId": "",
-            "FuelCharges": "",
-            "LabelType": "",
-            "ConnectionType": "",
             "carrierServices": [
                 {
                     "ServiceName": "DOHRN",
@@ -8894,26 +8823,8 @@
             "id": 55
         },
         {
-            "LocationId": "BP01",
-            "CostCenterName": "",
-            "ShipfromCountry": "",
-            "ShipToCountry": "",
             "CarrierName": "DRIVETRUCK",
-            "ShipURL": "",
-            "VoidURL": "",
-            "RateURL": "",
-            "TrackURL": "",
-            "Environment": "Test",
             "CarrierType": "LTL",
-            "Account": "",
-            "UserId": "",
-            "Password": "",
-            "AccessKey": "",
-            "MeterId": "",
-            "HubId": "",
-            "FuelCharges": "",
-            "LabelType": "",
-            "ConnectionType": "",
             "carrierServices": [
                 {
                     "ServiceName": "DRIVETRUCK",
@@ -8951,26 +8862,8 @@
             "LocationName": "Atlanta"
         },
         {
-            "LocationId": "BP01",
-            "CostCenterName": "",
-            "ShipfromCountry": "",
-            "ShipToCountry": "",
             "CarrierName": "ESTES",
-            "ShipURL": "",
-            "VoidURL": "",
-            "RateURL": "",
-            "TrackURL": "",
-            "Environment": "Test",
             "CarrierType": "LTL",
-            "Account": "",
-            "UserId": "",
-            "Password": "",
-            "AccessKey": "",
-            "MeterId": "",
-            "HubId": "",
-            "FuelCharges": "",
-            "LabelType": "",
-            "ConnectionType": "",
             "carrierServices": [
                 {
                     "ServiceName": "ESTES",
@@ -9008,30 +8901,17 @@
             "id": 56
         },
         {
-            "LocationId": "BP01",
-            "CostCenterName": "",
-            "ShipfromCountry": "",
-            "ShipToCountry": "",
-            "CarrierName": "FedEx",
+            "CarrierName": "FEDEX",
             "ShipURL": "",
             "VoidURL": "",
             "RateURL": "",
             "TrackURL": "",
             "Environment": "Test",
             "CarrierType": "Parcel",
-            "Account": "740561073",
-            "UserId": "l70c717f3eaf284dc9af42169e93874b6e",
-            "Password": "7f271bf486084e8f8073945bb7e6a020",
-            "AccessKey": "",
-            "MeterId": "",
-            "HubId": "5531",
-            "FuelCharges": "",
-            "LabelType": "",
-            "ConnectionType": "API",
             "carrierServices": [
                 {
                     "ServiceName": "FedEx 2Day",
-                    "ServiceCode": "FEDEX_2_DAY",
+                    "ServiceCode": "FedEx 2Day",
                     "ServiceCoverage": "International",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9039,7 +8919,7 @@
                 },
                 {
                     "ServiceName": "FedEx 2Day AM",
-                    "ServiceCode": "FEDEX_2_DAY_AM",
+                    "ServiceCode": "FedEx 2Day AM",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9047,7 +8927,7 @@
                 },
                 {
                     "ServiceName": "FedEx First Overnight",
-                    "ServiceCode": "FIRST_OVERNIGHT",
+                    "ServiceCode": "FedEx First Overnight",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9055,7 +8935,7 @@
                 },
                 {
                     "ServiceName": "FedEx Freight Economy",
-                    "ServiceCode": "FEDEX_FREIGHT_ECONOMY",
+                    "ServiceCode": "FedEx Freight Economy",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": false,
@@ -9063,7 +8943,7 @@
                 },
                 {
                     "ServiceName": "FedEx Freight Priority",
-                    "ServiceCode": "FEDEX_FREIGHT_PRIORITY",
+                    "ServiceCode": "FedEx Freight Priority",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": false,
@@ -9071,7 +8951,7 @@
                 },
                 {
                     "ServiceName": "Fedex Ground",
-                    "ServiceCode": "FEDEX_GROUND",
+                    "ServiceCode": "Fedex Ground",
                     "ServiceCoverage": "International",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9079,7 +8959,7 @@
                 },
                 {
                     "ServiceName": "FedEx International Economy",
-                    "ServiceCode": "INTERNATIONAL_ECONOMY",
+                    "ServiceCode": "FedEx International Economy",
                     "ServiceCoverage": "International",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9087,7 +8967,7 @@
                 },
                 {
                     "ServiceName": "FedEx International First",
-                    "ServiceCode": "INTERNATIONAL_FIRST",
+                    "ServiceCode": "FedEx International First",
                     "ServiceCoverage": "International",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9095,7 +8975,7 @@
                 },
                 {
                     "ServiceName": "FedEx International Priority",
-                    "ServiceCode": "FEDEX_INTERNATIONAL_PRIORITY",
+                    "ServiceCode": "FedEx International Priority",
                     "ServiceCoverage": "International",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9103,7 +8983,7 @@
                 },
                 {
                     "ServiceName": "FedEx SameDay",
-                    "ServiceCode": "SAME_DAY",
+                    "ServiceCode": "FedEx SameDay",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": false,
@@ -9111,7 +8991,7 @@
                 },
                 {
                     "ServiceName": "FedEx First Overnight EH",
-                    "ServiceCode": "FEDEX_FIRST_OVERNIGHT_EXTRA_HOURS",
+                    "ServiceCode": "FedEx First Overnight EH",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": false,
@@ -9119,7 +8999,7 @@
                 },
                 {
                     "ServiceName": "FedEx Corporation",
-                    "ServiceCode": "FedEx_Corporation",
+                    "ServiceCode": "FedEx Corporation",
                     "ServiceCoverage": "International",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9127,7 +9007,7 @@
                 },
                 {
                     "ServiceName": "FedEx Priority Overnight",
-                    "ServiceCode": "PRIORITY_OVERNIGHT",
+                    "ServiceCode": "FedEx Priority Overnight",
                     "ServiceCoverage": "International",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9135,7 +9015,7 @@
                 },
                 {
                     "ServiceName": "FedEx Priority Overnight EH",
-                    "ServiceCode": "FEDEX_PRIORITY_OVERNIGHT_EXTRA_HOURS",
+                    "ServiceCode": "FedEx Priority Overnight EH",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": false,
@@ -9143,7 +9023,7 @@
                 },
                 {
                     "ServiceName": "FedEx Standard Overnight EH",
-                    "ServiceCode": "FEDEX_STANDARD_OVERNIGHT_EXTRA_HOURS",
+                    "ServiceCode": "FedEx Standard Overnight EH",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": false,
@@ -9151,7 +9031,7 @@
                 },
                 {
                     "ServiceName": "FedEx Standard Overnight",
-                    "ServiceCode": "STANDARD_OVERNIGHT",
+                    "ServiceCode": "FedEx Standard Overnight",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9159,7 +9039,7 @@
                 },
                 {
                     "ServiceName": "FedEx Express Saver",
-                    "ServiceCode": "FEDEX_EXPRESS_SAVER",
+                    "ServiceCode": "FedEx Express Saver",
                     "ServiceCoverage": "Both",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9167,7 +9047,7 @@
                 },
                 {
                     "ServiceName": "FedEx Home Delivery",
-                    "ServiceCode": "GROUND_HOME_DELIVERY",
+                    "ServiceCode": "FedEx Home Delivery",
                     "ServiceCoverage": "Both",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9175,7 +9055,7 @@
                 },
                 {
                     "ServiceName": "Smart post",
-                    "ServiceCode": "SMART_POST",
+                    "ServiceCode": "Smart post",
                     "ServiceCoverage": "Both",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9460,7 +9340,7 @@
             "carrierServices": [
                 {
                     "ServiceName": "Pickup",
-                    "ServiceCode": "PU",
+                    "ServiceCode": "Pickup",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "MNL",
                     "IsActive": true,
@@ -9688,7 +9568,7 @@
             "carrierServices": [
                 {
                     "ServiceName": "SpotQuote",
-                    "ServiceCode": "ZY",
+                    "ServiceCode": "SpotQuote",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9802,7 +9682,7 @@
             "carrierServices": [
                 {
                     "ServiceName": "UPS Standard",
-                    "ServiceCode": "11",
+                    "ServiceCode": "UPS Standard",
                     "ServiceCoverage": "International",
                     "ConnectionType": "API",
                     "IsActive": false,
@@ -9810,7 +9690,7 @@
                 },
                 {
                     "ServiceName": "UPS Worldwide Express",
-                    "ServiceCode": "07",
+                    "ServiceCode": "UPS Worldwide Express",
                     "ServiceCoverage": "International",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9818,7 +9698,7 @@
                 },
                 {
                     "ServiceName": "UPS Ground",
-                    "ServiceCode": "03",
+                    "ServiceCode": "UPS Ground",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9826,7 +9706,7 @@
                 },
                 {
                     "ServiceName": "UPS 2nd Day Air",
-                    "ServiceCode": "02",
+                    "ServiceCode": "UPS 2nd Day Air",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9834,7 +9714,7 @@
                 },
                 {
                     "ServiceName": "UPS Next Day Air",
-                    "ServiceCode": "01",
+                    "ServiceCode": "UPS Next Day Air",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9842,7 +9722,7 @@
                 },
                 {
                     "ServiceName": "UPS Next Day Air Early",
-                    "ServiceCode": "14",
+                    "ServiceCode": "UPS Next Day Air Early",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": false,
@@ -9850,7 +9730,7 @@
                 },
                 {
                     "ServiceName": "UPS Next Day Air Saver",
-                    "ServiceCode": "13",
+                    "ServiceCode": "UPS Next Day Air Saver",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9858,7 +9738,7 @@
                 },
                 {
                     "ServiceName": "UPS 2nd Day Air A.M.",
-                    "ServiceCode": "59",
+                    "ServiceCode": "UPS 2nd Day Air A.M.",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9866,7 +9746,7 @@
                 },
                 {
                     "ServiceName": "UPS 3 Day Select",
-                    "ServiceCode": "12",
+                    "ServiceCode": "UPS 3 Day Select",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9874,7 +9754,7 @@
                 },
                 {
                     "ServiceName": "UPS Worldwide Expedited",
-                    "ServiceCode": "08",
+                    "ServiceCode": "UPS Worldwide Expedited",
                     "ServiceCoverage": "International",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -9882,7 +9762,7 @@
                 },
                 {
                     "ServiceName": "UPS Worldwide Express Plus",
-                    "ServiceCode": "54",
+                    "ServiceCode": "UPS Worldwide Express Plus",
                     "ServiceCoverage": "International",
                     "ConnectionType": "API",
                     "IsActive": false,
@@ -9890,7 +9770,7 @@
                 },
                 {
                     "ServiceName": "UPS Worldwide Saver",
-                    "ServiceCode": "65",
+                    "ServiceCode": "UPS Worldwide Saver",
                     "ServiceCoverage": "International",
                     "ConnectionType": "API",
                     "IsActive": false,
@@ -10004,7 +9884,7 @@
             "carrierServices": [
                 {
                     "ServiceName": "First-Class Package Service",
-                    "ServiceCode": "First",
+                    "ServiceCode": "First-Class Package Service",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -10012,21 +9892,21 @@
                 },
                 {
                     "ServiceName": "First-Class Package Service",
-                    "ServiceCode": "First",
+                    "ServiceCode": "First-Class Package Service",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": true
                 },
                 {
                     "ServiceName": "Library Mail",
-                    "ServiceCode": "LibraryMail",
+                    "ServiceCode": "Library Mail",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": true
                 },
                 {
                     "ServiceName": "Media Mail",
-                    "ServiceCode": "MediaMail",
+                    "ServiceCode": "Media Mail",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": true
@@ -10040,7 +9920,7 @@
                 },
                 {
                     "ServiceName": "Priority Mail",
-                    "ServiceCode": "Priority",
+                    "ServiceCode": "Priority Mail",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": true,
@@ -10048,14 +9928,14 @@
                 },
                 {
                     "ServiceName": "Priority Mail Express",
-                    "ServiceCode": "PriorityExpress",
+                    "ServiceCode": "Priority Mail Express",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": true
                 },
                 {
                     "ServiceName": "Retail Ground",
-                    "ServiceCode": "RetailGround",
+                    "ServiceCode": "Retail Ground",
                     "ServiceCoverage": "Domestic",
                     "ConnectionType": "API",
                     "IsActive": true
