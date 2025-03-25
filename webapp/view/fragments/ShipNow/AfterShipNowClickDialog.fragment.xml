@@ -1,13 +1,8 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
     <Dialog id="idAfterShipmentLabelDialog"
-            contentWidth="30vh"
-            contentHeight="95%"
-            verticalScrolling="false"
-            horizontalScrolling="false"
-             
-       
-        showHeader="false"
-        class="rightSidePopoverShipNowsideLabel1">
+            contentWidth="50vh"
+            contentHeight="70%"
+            >
            
         <customHeader>
             <Toolbar>
@@ -16,26 +11,26 @@
                 <Button icon="sap-icon://decline" type="Transparent" press=".onShipmentLabelDialogClosePress" class="Decline_Btn ship-now-decline_btn"/>
             </Toolbar>
         </customHeader>
-
-
+ 
+ 
         <VBox alignItems="Center" justifyContent="Center" >
             <Image id="shipmentLabelImage"
-                   width="60vh"
-                   height="70vh"
-                   class="sapUiLargeMarginTop "
+                   width="45vh"
+                   height="60vh"
+                   class="sapUiSmallMarginTop "
                    densityAware="false" />
         </VBox>
         <footer >
             <OverflowToolbar class="p-sidebar-header sapMPopoverFooter1" >
                 <Button
                     text="Cancel"
-                    class="save1-btn sapUiTinayMarginTop"
+                    class="Decline_Btn ship-now-decline_btn"
                     press="onShipmentLabelDialogClosePress" />
                    
                 <ToolbarSpacer />
                 <Button
                     type="Ghost"
-                    class="scan-ship-toolbar1__button sapUiTinayMarginTop"
+                    class="scan-ship-toolbar1__button"
                     text="Print"
                 />
             </OverflowToolbar>

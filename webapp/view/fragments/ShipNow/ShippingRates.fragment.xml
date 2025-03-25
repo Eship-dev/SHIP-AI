@@ -68,7 +68,7 @@
 
              <footer>
             <OverflowToolbar class="p-sidebar-header sapMPopoverFooter1 shipmethod">
-                <Button text="Cancel" press=".onCloseShipNowShippinRateDialog" class="save11-btn"/>
+                <Button text="Cancel" press=".onCloseShipNowShippinRateDialog" class="save11-btn Decline_Btn ship-now-decline_btn"/>
                 <ToolbarSpacer />
                 <Button type="Ghost" text="Submit" class="scan-ship-toolbar1__button sapUiTinyMargin" press=".onPickCarrierSubmit" />
             </OverflowToolbar>

@@ -1600,7 +1600,7 @@ console.log("SAP Duration:", SAPDuration);
             };
             ShipReadDataSrvModel.create("/ManifestHeaderSet", oPayload, {
                 success: function (oData) {
-                    MessageBox.success("Success: Successfully Created ManifestHeaderSet.");
+                    MessageToast.show("Success: Successfully Created ManifestHeaderSet.");
                     console.log("Success:", oData);
                     oController.onCloseBusyDialog();
                 },
@@ -2721,7 +2721,6 @@ console.log("SAP Duration:", SAPDuration);
         },
 
         onPackPress:function(){
-            oController.onOpenBusyDialog();
             var productTable = this.byId("idShipNowPackTable");
             var selectedItems = productTable.getSelectedIndices();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
@@ -2739,6 +2738,7 @@ console.log("SAP Duration:", SAPDuration);
                     if(currentObj.partialQty === "" || currentObj.partialQty === undefined){
                         MessageBox.warning("Please add partial quantity for at least one valid product.");
                     }else{
+                        oController.onOpenBusyDialog();
                         var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
                         var HandlingUnits = eshipjetModel.getData().HandlingUnits;
                         var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");

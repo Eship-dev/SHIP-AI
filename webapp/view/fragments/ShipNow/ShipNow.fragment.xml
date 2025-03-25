@@ -1147,31 +1147,36 @@
 								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/7/visible}" >
 									<Label text="Package Type" />
 									<ui:template>
-										<Text text="{eshipjetModel>PackagingMaterialType}" wrapping="false" />
+										<!-- <Text text="{eshipjetModel>PackagingMaterialType}" wrapping="false" /> -->
+										<Text text="" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/8/visible}" >
 									<Label text="Box Count" />
 									<ui:template>
-										<Text text="{eshipjetModel>ShippingPoint}" wrapping="false" />
+										<!-- <Text text="{eshipjetModel>ShippingPoint}" wrapping="false" /> -->
+										<Text text="" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/9/visible}" >
 									<Label text="Tracking #" />
 									<ui:template>
-										<Text text="{eshipjetModel>HandlingUnitPackingObjectKey}" wrapping="false" />
+										<!-- <Text text="{eshipjetModel>HandlingUnitPackingObjectKey}" wrapping="false" /> -->
+										<Text text="" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="12rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/10/visible}" >
 									<Label text="Return Tracking #" />
 									<ui:template>
-										<Text text="{eshipjetModel>HandlingUnitPackingObjectKey}" wrapping="false" />
+										<!-- <Text text="{eshipjetModel>HandlingUnitPackingObjectKey}" wrapping="false" /> -->
+										<Text text="" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="12rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/11/visible}" >
 									<Label text="Return Shipment" />
 									<ui:template>
-										<Text text="{eshipjetModel>HandlingUnitPackingObjectKey}" wrapping="false" />
+										<!-- <Text text="{eshipjetModel>HandlingUnitPackingObjectKey}" wrapping="false" /> -->
+										<Text text="" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="12rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/12/visible}" >

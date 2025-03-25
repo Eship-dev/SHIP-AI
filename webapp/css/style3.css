@@ -1436,7 +1436,7 @@ sapMPopover .sapMPopoverCont {
 }
 
 .scan-ship-toolbar1__button {
-  color: unset !important;
+  /* color: unset !important; */
   border-radius: 1% !important;
   height: 40px !important;
   cursor: pointer;
