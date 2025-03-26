@@ -1350,7 +1350,7 @@ sap.ui.define([
                 String(baseDate.getSeconds()).padStart(2, '0');
         },
 
-        createManifestHeaderSet:function(){
+        createManifestHeaderSet: function () {
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
 
@@ -1359,38 +1359,44 @@ sap.ui.define([
             // let total = eshipjetModel.getProperty("/shippingCharges/1/amount");
             let percentage = (20 / 100) * amount; // 20% of 200
             let Discountamt = amount - percentage;
-           // Get the current date-time
-let time = new Date();
-time.setMinutes(time.getMinutes() + 10); // Adds 10 minutes
+            // Get the current date-time
+            let time = new Date();
+            time.setMinutes(time.getMinutes() + 10); // Adds 10 minutes
 
-// Convert to SAP Date format (Milliseconds since Epoch)
-let SAPDate = "/Date(" + time.getTime() + ")/";
+            // Convert to SAP Date format (Milliseconds since Epoch)
+            let SAPDate = "/Date(" + time.getTime() + ")/";
 
-// Define duration components
-let hours = 2;
-let minutes = 30;
-let seconds = 45;
+            // Define duration components
+            // let hours = 2;
+            // let minutes = 30;
+            // let seconds = 45;
 
-// Construct SAP Duration format (PTxHxMxS)
-let SAPDuration = "PT";
-if (hours > 0) SAPDuration += hours + "H";
-if (minutes > 0) SAPDuration += minutes + "M";
-if (seconds > 0) SAPDuration += seconds + "S";
+            // Construct SAP Duration format (PTxHxMxS)
+            // let SAPDuration = "PT";
+            // if (hours > 0) SAPDuration += hours + "H";
+            // if (minutes > 0) SAPDuration += minutes + "M";
+            // if (seconds > 0) SAPDuration += seconds + "S";
 
-// Print outputs
-console.log("SAP Date:", SAPDate);
-console.log("SAP Duration:", SAPDuration);
+            var date = new Date();
+            let hours = String(date.getHours()).padStart(2, '0');
+            let minutes = String(date.getMinutes()).padStart(2, '0');
+            let seconds = String(date.getSeconds()).padStart(2, '0');
+            var timeAdded = `PT${hours}H${minutes}M${seconds}S`;
+
+            // Print outputs
+            console.log("SAP Date:", SAPDate);
+            //console.log("SAP Duration:", SAPDuration);
 
 
-            
+
             var packAddProductTable = eshipjetModel.getProperty("/packAddProductTable")
 
             var HandlingUnitsLength = eshipjetModel.getProperty("/HandlingUnitsLength");
-            if(HandlingUnitsLength === "0" || HandlingUnitsLength === 0){
+            if (HandlingUnitsLength === "0" || HandlingUnitsLength === 0) {
                 HandlingUnitsLength = 1
             };
             var grossWeight = eshipjetModel.getProperty("/HandlingUnits/0/GrossWeight");
-            if(grossWeight === 0 || grossWeight === "0"){
+            if (grossWeight === 0 || grossWeight === "0") {
                 grossWeight = eshipjetModel.getProperty("ShipNowProductsTableColumns/0/ItemGrossWeight");
             };
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
@@ -1594,8 +1600,8 @@ console.log("SAP Duration:", SAPDuration);
                         "Accessorial": "",
                         "Fuel": "",
                         "Deliverynno": sapDeliveryNumber,
-                        "TimeAdded": SAPDuration,
-                    
+                        "TimeAdded": timeAdded,
+
                     }
                 ]
             };
@@ -5906,8 +5912,22 @@ console.log("SAP Duration:", SAPDuration);
                         // 
                         // eshipjetModel.setProperty("/RecentShipmentSet",last10Records);
                         //response.results.sort((a, b) => oController.extractTimestamp(a.DateAdded) - oController.extractTimestamp(b.DateAdded));
-                        response.results.sort((a, b) => new Date(b.DateAdded) - new Date(a.DateAdded));
+                        //response.results.sort((a, b) => (new Date(b.DateAdded) && new Date(b.TimeAdded.ms))  - (new Date(a.DateAdded) && new Date(a.TimeAdded.ms)));
+                        
+                        response.results.sort((a, b) => {
+                            let dateA = new Date(a.DateAdded).getTime();
+                            let dateB = new Date(b.DateAdded).getTime();
+                        
+                            // Compare dateAdded first (Descending order)
+                            if (dateA !== dateB) {
+                                return dateB - dateA; // Reverse order
+                            }
+                        
+                            // If dates are the same, compare timeAdded (Descending order)
+                            return b.TimeAdded.ms - a.TimeAdded.ms; // Reverse order
+                        });
                         var firstTenRecords = response.results.slice(0, 10);
+                        //var lastTenReversed = response.results.slice(-10).reverse();
                         eshipjetModel.setProperty("/RecentShipmentSet", firstTenRecords);
                     }
                     resolve();
@@ -5960,7 +5980,7 @@ console.log("SAP Duration:", SAPDuration);
                 // },
                 success:function(response){
                     if(RecentShipmentTab === "shipNowRecentShips" && response && response.results.length > 0){
-                        response.results.sort((a, b) => new Date(b.DateAdded) - new Date(a.DateAdded));
+                        response.results.sort((a, b) => (new Date(b.DateAdded) && new Date(b.TimeAdded)) - (new Date(a.DateAdded) && new Date(a.TimeAdded)));
                         eshipjetModel.setProperty("/allOrders", response.results);
                     }
                     oController.onCloseBusyDialog();
