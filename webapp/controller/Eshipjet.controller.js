@@ -2797,6 +2797,7 @@ sap.ui.define([
                         for(var i = 0; i < oData.results.length; i++){
                             oData.results[i]["SerialNumber"] = i + 1;
                             aHandlingUnits.push(oData.results[i]);
+                            oData.results[i]["boxCount"] = "1";
                         }
                         eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
                         oController.getHandlingUnit(aHandlingUnits);
@@ -11754,6 +11755,20 @@ sap.ui.define([
               
               ShipperDataUpdateSrvModel.create("/HeaderSet", oPayload, {
                 success: function(oResponse) {
+                    // var chargesObj = {
+                    //     "freightConditionId": "",
+                    //     "sapFreightConditionId": "",
+                    //     "Description": oResponse.Carrier,
+                    //     "Charges":
+
+                    //     "Delivery": oResponse.Delivery,
+                    //     "Carrier": oResponse.Carrier,
+                    //     "SerName": oResponse.SerName,
+                    //     "FreightAmt": oResponse.PubFrt,
+                    //     "DiscountAmt": oResponse.DiscFrt,
+                    //     "Currency": oResponse.Currency,
+                    //     "TotPack": oResponse.TotPack
+                    // };
                     sap.m.MessageToast.show("FreightQuote Updated successful!");
                 },
                 error: function(oError) {
@@ -13513,6 +13528,14 @@ sap.ui.define([
 
     onRecentShipmentsItemPress:function(oEvent){
         var oCurrentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
+        var shippingCharges = eshipjetModel.getProperty("/shippingCharges");
+        var aShippingCharges = [
+            { "description": "Freight Amount", "amount": oCurrentObj.Freightamt, "currency": oCurrentObj.Waerk },
+            { "description": "Discount Amount", "amount": oCurrentObj.Discountamt, "currency": oCurrentObj.Waerk },
+            { "description": "Fuel", "amount": oCurrentObj.Fuel, "currency": oCurrentObj.Waerk }
+        ];
+        var shippingCharges = eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
+
         var sDocumentNumber = oCurrentObj.Vbeln;
         var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
         oController.getOwnerComponent().getModel("eshipjetModel").setProperty("/sapDeliveryNumber",sDocumentNumber);

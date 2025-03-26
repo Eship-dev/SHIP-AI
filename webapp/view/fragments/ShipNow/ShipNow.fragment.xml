@@ -1155,7 +1155,7 @@
 									<Label text="Box Count" />
 									<ui:template>
 										<!-- <Text text="{eshipjetModel>ShippingPoint}" wrapping="false" /> -->
-										<Text text="" wrapping="false" />
+										<Text text="{eshipjetModel>boxCount}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/9/visible}" >
