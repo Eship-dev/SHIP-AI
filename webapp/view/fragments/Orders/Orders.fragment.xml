@@ -88,42 +88,42 @@
 
 						<ui:Table
 							id="idOrdersTable"
-							rows="{eshipjetModel>/OrderTableData/orderRows}"
+							rows="{eshipjetModel>/allOrders}"
 							class="sapUiSmallMarginTop"
 							selectionMode="None"
 							visibleRowCount="14" >
 										<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/0/visible}">
 									<Label text="Plant ID"  />
 									<ui:template>
-										<Text text="{eshipjetModel>PlantID}" wrapping="false" />
+										<Text text="{eshipjetModel>Plant}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/1/visible}">
 									<Label text="Order ID" />
 									<ui:template>
-										<Text text="{eshipjetModel>orderID}" wrapping="false" />
+										<Text text="{eshipjetModel>Vbeln}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/2/visible}">
 									<Label text="Order Type" />
 									<ui:template>
-										<Text text="{eshipjetModel>orderType}" wrapping="false" />
+										<Text text="{eshipjetModel>Packagetype}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/3/visible}">
 									<Label text="Ship Method" />
 									<ui:template>
-										<Text text="{eshipjetModel>shipMethod}" wrapping="false" />
+										<Text text="{eshipjetModel>Carriertype}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/4/visible}">
 									<Label text="Service ID" />
 									<ui:template>
-										<Text text="{eshipjetModel>ServiceID}" wrapping="false" />
+										<Text text="{eshipjetModel>CarrierCode}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
@@ -137,32 +137,31 @@
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/5/visible}">
 									<Label text="Service Name" />
 									<ui:template>
-										<Text text="{eshipjetModel>ServiceName}" wrapping="false" />
+										<Text text="{eshipjetModel>CarrierDesc}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/6/visible}">
 									<Label text="Type" />
 									<ui:template>
-										<Text text="{eshipjetModel>Type}" wrapping="false" />
+										<Text text="{eshipjetModel>Shipmenttype}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="5rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/7/visible}">
 									<Label text="Pkgs" />
 									<ui:template>
-										<Text text="{eshipjetModel>Pkgs}" wrapping="false" />
+										<Text text="{eshipjetModel>Totalpkg}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="5rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/8/visible}">
 								<Label text="PGI" />
 								<ui:template>
-									<Button 
+									<!-- <Button 
 										icon="{= ${eshipjetModel>PGI} === true ? 'sap-icon://accept' : 'sap-icon://decline'}" 
-										type="Transparent" 
-										iconColor="{= ${eshipjetModel>PGI} === true ? 'Positive' : 'Negative'}" 
-									/>
+										type="{= ${eshipjetModel>PGI} === true ? 'Success' : 'Error'}" /> -->
+										<Button icon="{= ${eshipjetModel>PGI} === true ? 'sap-icon://accept' : 'sap-icon://decline'}" />
 								</ui:template>
 							</ui:Column>
 
@@ -170,23 +169,23 @@
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/9/visible}">
 									<Label text="Ship Date-Time" />
 									<ui:template>
-										<Text text="{eshipjetModel>ShipDate}" wrapping="false" />
+										<Text text="{eshipjetModel>DateAdded}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/10/visible}">
 									<Label text="Tracking/Pro Number" />
 									<ui:template>
-										<Text text="{eshipjetModel>TrackingProNumber}" wrapping="false" />
+										<Text text="{eshipjetModel>TrackingNumber}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/11/visible}">
 								<Label text="Status" />
 								<ui:template>
-									<Text text="{eshipjetModel>status}" wrapping="false"
-										class="{= ${eshipjetModel>status} === 'Shipped' ? 'accept' : 
-										${eshipjetModel>status} === 'Cancelled' ? 'Reject' : ''}" />
+									<Text text="{eshipjetModel>DeliveryStatus}" wrapping="false"
+										class="{= ${eshipjetModel>DeliveryStatus} === 'Shipped' ? 'accept' : 
+										${eshipjetModel>DeliveryStatus} === 'Cancelled' ? 'Reject' : ''}" />
 								</ui:template>
 							</ui:Column>
 
@@ -195,84 +194,84 @@
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/12/visible}">
 									<Label text="Delivered Date" />
 									<ui:template>
-										<Text text="{eshipjetModel>DeliveredDate}" wrapping="false" />
+										<Text text="{eshipjetModel>ExpDelDate}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/13/visible}">
 									<Label text="Ship To Contact" />
 									<ui:template>
-										<Text text="{eshipjetModel>ShipToContact}" wrapping="false" />
+										<Text text="{eshipjetModel>RecContact}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/14/visible}">
 									<Label text="Ship To Company" />
 									<ui:template>
-										<Text text="{eshipjetModel>ShipToCompany}" wrapping="false" />
+										<Text text="{eshipjetModel>RecCompany}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/15/visible}">
 									<Label text="Ship To City" />
 									<ui:template>
-										<Text text="{eshipjetModel>shipToCity}" wrapping="false" />
+										<Text text="{eshipjetModel>RecCity}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/16/visible}">
 									<Label text="Ship To State" />
 									<ui:template>
-										<Text text="{eshipjetModel>shipToState}" wrapping="false" />
+										<Text text="{eshipjetModel>RecRegion}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/17/visible}">
 									<Label text="Ship To Country" />
 									<ui:template>
-										<Text text="{eshipjetModel>shipToCountry}" wrapping="false" />
+										<Text text="{eshipjetModel>RecCountry}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/18/visible}">
 									<Label text="Ship To Postal Code" />
 									<ui:template>
-										<Text text="{eshipjetModel>shipToZipcode}" wrapping="false" />
+										<Text text="{eshipjetModel>RecPostalcode}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/19/visible}">
 									<Label text="Ship To Phone" />
 									<ui:template>
-										<Text text="{eshipjetModel>shipToPhone}" wrapping="false" />
+										<Text text="{eshipjetModel>RecPhone}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/20/visible}">
 									<Label text="Ship To Email" />
 									<ui:template>
-										<Text text="{eshipjetModel>shipToEmail}" wrapping="false" />
+										<Text text="{eshipjetModel>Emailaddress}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/21/visible}">
 									<Label text="User ID" />
 									<ui:template>
-										<Text text="{eshipjetModel>UserID}" wrapping="false" />
+										<Text text="" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/22/visible}">
 									<Label text="SAP User ID" />
 									<ui:template>
-										<Text text="{eshipjetModel>SAPUserID}" wrapping="false" />
+										<Text text="" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/23/visible}">
 									<Label text="Shipment Type" />
 									<ui:template>
-										<Text text="{eshipjetModel>ShipmentType}" wrapping="false" />
+										<Text text="{eshipjetModel>Shipmenttype}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
@@ -281,14 +280,14 @@
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/25/visible}">
 									<Label text="Ship To Address Line 1" />
 									<ui:template>
-										<Text text="{eshipjetModel>ShipToAddressLine1}" wrapping="false" />
+										<Text text="{eshipjetModel>RecAddress1}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/26/visible}">
 									<Label text="Origin" />
 									<ui:template>
-										<Text text="{eshipjetModel>Origin}" wrapping="false" />
+										<Text text="{eshipjetModel>Vkorg}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
@@ -306,7 +305,7 @@
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/27/visible}">
 									<Label text="Destination" />
 									<ui:template>
-										<Text text="{eshipjetModel>Destination}" wrapping="false" />
+										<Text text="{eshipjetModel>Dimensions}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
@@ -320,7 +319,7 @@
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/24/visible}">
 									<Label text="Master Tracking Number" />
 									<ui:template>
-										<Text text="{eshipjetModel>MasterTrackingNumber}" wrapping="false" />
+										<Text text="{eshipjetModel>Mastertracking}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
@@ -329,7 +328,7 @@
 									<ui:template>
 										<HBox>
 											<!-- <Button text="{eshipjetModel>DeliveryStatus}" type="Transparent" press="onViewNowPressBackToShipNow" ></Button> -->
-											<Button text="View Now" type="Transparent" press="onViewNowPressBackToShipNow" ></Button>
+											<Button text="{eshipjetModel>DeliveryStatus}" type="Transparent" press="onViewNowPressBackToShipNow" ></Button>
 											<Button icon="sap-icon://megamenu" type="Transparent" press="handleDownArrowPress" ></Button>
 										</HBox>
 									</ui:template>

@@ -220,6 +220,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
+                oController.getOrdersHistoryShipments();
                 // this._handleDisplayOrdersTable();
             } else if (sKey === "ShipRequestLabel") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
@@ -2665,8 +2666,8 @@ console.log("SAP Duration:", SAPDuration);
                         if(oData &&  oData.__batchResponses &&  oData.__batchResponses.length > 0){
                             oData.__batchResponses.map(function(currentValue, index, arr){
                                 if(index == 0){
-                                    currentValue.data["PartnerType"]  = "ShipFrom";
-                                    currentValue.data["FullName"]  = "Steve Mars";
+                                    currentValue.data["PartnerType"]  = "Ship From";
+                                    currentValue.data["FullName"]  = "Steve Marsh";
                                     currentValue.data["BusinessPartnerName1"]  = "Eshipjet Software Inc.";
                                     currentValue.data["StreetName"]  = "5717 Legacy";
                                     currentValue.data["HouseNumber"]  = "Suite 250";
@@ -2676,7 +2677,7 @@ console.log("SAP Duration:", SAPDuration);
                                     currentValue.data["Country"]  = "US";
                                     currentValue.data["email"]  = "info@eshipjet.ai";
                                 }else if(index == 1){
-                                    currentValue.data["PartnerType"]  = "Shipper To";
+                                    currentValue.data["PartnerType"]  = "Ship To";
                                 }else {
                                     currentValue.data["PartnerType"]  = "Freight Forwarder";
                                 }
@@ -5893,6 +5894,7 @@ console.log("SAP Duration:", SAPDuration);
             oController.onOpenBusyDialog();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var ManifestSrvModel = oController.getOwnerComponent().getModel("ManifestSrvModel");
+            var RecentShipmentTab = eshipjetModel.getProperty("/RecentShipmentTab");
             ManifestSrvModel.read("/EshipjetManfestSet",{
                 // urlParameters: {
                 //     "$expand": "to_DeliveryDocumentItem,to_DeliveryDocumentPartner"
@@ -5945,6 +5947,29 @@ console.log("SAP Duration:", SAPDuration);
             //         oController.oBusyDialog.close();
             //     }
             // });
+        },
+
+        getOrdersHistoryShipments:function(){
+            oController.onOpenBusyDialog();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var ManifestSrvModel = oController.getOwnerComponent().getModel("ManifestSrvModel");
+            var RecentShipmentTab = eshipjetModel.getProperty("/RecentShipmentTab");
+            ManifestSrvModel.read("/EshipjetManfestSet",{
+                // urlParameters: {
+                //     "$expand": "to_DeliveryDocumentItem,to_DeliveryDocumentPartner"
+                // },
+                success:function(response){
+                    if(RecentShipmentTab === "shipNowRecentShips" && response && response.results.length > 0){
+                        response.results.sort((a, b) => new Date(b.DateAdded) - new Date(a.DateAdded));
+                        eshipjetModel.setProperty("/allOrders", response.results);
+                    }
+                    oController.onCloseBusyDialog();
+                },
+                error: function(error){
+                    MessageBox.warning(error.responseText);
+                    oController.onCloseBusyDialog();
+                }
+            });
         },
 
         getShipReqLabelHistoryShipments:function(){
