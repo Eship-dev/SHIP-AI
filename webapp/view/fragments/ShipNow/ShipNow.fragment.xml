@@ -267,7 +267,7 @@
 											<f:SimpleForm id="RoutingandBillingDetails"  editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4" >
 												<f:content>
 													<Label text="Ship Method" />
-													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/carrierconfiguration}" selectedKey="{eshipjetModel>/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
+													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
 														<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
 													</ComboBox>
 													<Label text="Payment Type" />

@@ -10024,6 +10024,124 @@
             "CompanyId": "CP000000001",
             "id": 58
         }
+    ],
+
+    "carrierconfiguration1": [
+        {
+            "CarrierName": "FEDEX",
+            "carrierServices": [
+                {
+                    "ServiceName": "FedEx Ground®",
+                    "ServiceCode": "FEDEX_GROUND",
+                    "ShippingType": "FG"
+                },
+                {
+                    "ServiceName": "FedEx 2Day ® AM",
+                    "ServiceCode": "FEDEX_2_DAY_AM",
+                    "ShippingType": "F2"
+                },
+                {
+                    "ServiceName": "FedEx First Overnight®",
+                    "ServiceCode": "FIRST_OVERNIGHT",
+                    "ShippingType": "FO"
+                },
+                {
+                    "ServiceName": "FedEx 2Day®",
+                    "ServiceCode": "FEDEX_2_DAY",
+                    "ShippingType": "FA"
+                },
+                {
+                    "ServiceName": "FedEx® International Economy",
+                    "ServiceCode": "INTERNATIONAL_ECONOMY",
+                    "ShippingType": "FI"
+                },
+                {
+                    "ServiceName": "FedEx International First®",
+                    "ServiceCode": "INTERNATIONAL_FIRST",
+                    "ShippingType": "FF"
+                },
+                {
+                    "ServiceName": "FedEx International Priority®",
+                    "ServiceCode": "FEDEX_INTERNATIONAL_PRIORITY",
+                    "ShippingType": "FP"
+                },
+                {
+                    "ServiceName": "FedEx SameDay®",
+                    "ServiceCode": "SAME_DAY",
+                    "ShippingType": "FS"
+                },
+                {
+                    "ServiceName": "FedEx Priority Overnight®",
+                    "ServiceCode": "PRIORITY_OVERNIGHT",
+                    "ShippingType": "OG"
+                },
+                {
+                    "ServiceName": "FedEx Standard Overnight®",
+                    "ServiceCode": "STANDARD_OVERNIGHT",
+                    "ShippingType": "FV"
+                },
+                {
+                    "ServiceName": "FedEx Express Saver®",
+                    "ServiceCode": "FEDEX_EXPRESS_SAVER",
+                    "ShippingType": "FX"
+                }
+            ]
+        },
+        {
+            "CarrierName": "UPS",
+            "carrierServices": [
+                {
+                    "ServiceName": "UPS Standard®",
+                    "ServiceCode": "11",
+                    "ShippingType": "US"
+                },
+                {
+                    "ServiceName": "UPS Worldwide Express®",
+                    "ServiceCode": "07",
+                    "ShippingType": "UW"
+                },
+                {
+                    "ServiceName": "UPS Ground®",
+                    "ServiceCode": "03",
+                    "ShippingType": "UG"
+                },
+                {
+                    "ServiceName": "UPS 2nd Day Air®",
+                    "ServiceCode": "02",
+                    "ShippingType": "U2"
+                },
+                {
+                    "ServiceName": "UPS Next Day Air® Early",
+                    "ServiceCode": "14",
+                    "ShippingType": "UN"
+                },
+                {
+                    "ServiceName": "UPS Next Day Air Saver®",
+                    "ServiceCode": "13",
+                    "ShippingType": "UD"
+                },
+                {
+                    "ServiceName": "UPS 2nd Day Air A.M.®",
+                    "ServiceCode": "59",
+                    "ShippingType": "UA"
+                },
+                {
+                    "ServiceName": "UPS 3 Day Select®",
+                    "ServiceCode": "12",
+                    "ShippingType": "U3"
+                },
+                {
+                    "ServiceName": "UPS Worldwide Express Plus®",
+                    "ServiceCode": "08",
+                    "ShippingType": "UE"
+                },
+                {
+                    "ServiceName": "UPS Next Day Air®",
+                    "ServiceCode": "01",
+                    "ShippingType": "UP"
+                }
+            ]
+        }
     ]
       
 }
