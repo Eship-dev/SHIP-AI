@@ -864,7 +864,7 @@
 										<Text text="{eshipjetModel>Material}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/2/visible}">
+								<ui:Column width="20%" visible="{eshipjetModel>/ShipNowProductsTableColumns/2/visible}">
 									<Label text="Product Description" />
 									<ui:template>
 										<Text text="{eshipjetModel>DeliveryDocumentItemText}" wrapping="false" />
@@ -876,7 +876,7 @@
 										<Text text="{eshipjetModel>epcRfidNo}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/4/visible}" >
+								<ui:Column width="auto"   hAlign="End"  visible="{eshipjetModel>/ShipNowProductsTableColumns/4/visible}" >
 									<Label text="Dimensions" />
 									<ui:template>
 									<HBox justifyContent="End" alignItems="End">
@@ -884,13 +884,13 @@
 									</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/5/visible}" >
-									<Label text="Total Qty" />
+								<ui:Column width="auto" hAlign="End" visible="{eshipjetModel>/ShipNowProductsTableColumns/5/visible}" >
+									<Label text="Total Qty"  />
 									<ui:template>
-										<Text text="{eshipjetModel>ActualDeliveryQuantity}" wrapping="false" />
+										<Text text="{eshipjetModel>ActualDeliveryQuantity}" wrapping="false" textAlign="End"/>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/6/visible}" >
+								<ui:Column width="auto" hAlign="End" visible="{eshipjetModel>/ShipNowProductsTableColumns/6/visible}" >
 									<Label text="Balance Qty" />
 									<ui:template>
 										<Text text="{eshipjetModel>BalanceQty}" wrapping="false" />
@@ -899,10 +899,10 @@
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/7/visible}" >
 									<Label text="Partial Qty" />
 									<ui:template>
-										<Input value="{eshipjetModel>partialQty}" liveChange="onPartialQtyChange" />
+										<Input value="{eshipjetModel>partialQty}" type="Number" liveChange="onPartialQtyChange" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/7/visible}" >
+								<ui:Column width="auto"   hAlign="End" visible="{eshipjetModel>/ShipNowProductsTableColumns/7/visible}" >
 									<Label text="Weight (LB)" />
 									<ui:template>
 									<HBox justifyContent="End" alignItems="End">
@@ -1149,7 +1149,7 @@
 										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/4/visible}" >
+								<ui:Column width="10rem" hAlign="End" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/4/visible}" >
 									<Label text="Weight (LB)" />
 									<ui:template>
 									<HBox justifyContent="End" alignItems="End">
@@ -1163,7 +1163,7 @@
 										<Button class="customBlueYellowIcon" tooltip="Get weight and dims" icon="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAeCAYAAAA/xX6fAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFtSURBVHgB7ZbhcQIhEIXfWEE6kBKSCkIqSEqgA9PB0YFJBdrBpQPtwBIsQVNBsjfCzLLH4SLnP9/Mm0GP4+PYhQWo0xO5I5/IR7LDncRBf8ID+AMzygnQIQC8+L8nGzTIhsHjgCeMl9CQt0i/eINKsCXvBMjjsqxTMhnwGlfAJsyOv/R1BZSb7BFpfJ3slEuIHdri4UrgXoAs5pMTYLdAmtIGjZnGNKzcEmlIXoE0OeZa0pUYL7Y3HGjRnuIW+dj5HHAZXjKoT3GL8lYqAsHABzHbz0yfXkzOY7yVVMAoh/wydQJUOtp8DXAKXLOVfAQuoNeW/EL+Dr/P5LfgvXIM1AAj5Ie196hULbBZD+BdgOfQ9pjv4Oay5PfQ/o0gvqk7xQCxb0kG4+POxIcOikqtBA7H2hrKIuAUYIs8cOrmYKGQF2BeH20GuLoVxGWQr4+OAS30oWgCS2uuktV6RlofS/VvVjlcYjTcWQ0q9Q9p4tga7BXjNQAAAABJRU5ErkJggg==" type="Transparent" ></Button>
 									</ui:template>
 								</ui:Column> -->
-								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/5/visible}" >
+								<ui:Column width="10rem" hAlign="End" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/5/visible}" >
 									<HBox justifyContent="Start" alignItems="Start">
 									<Label text="Dimensions (IN)"  />
 									</HBox>

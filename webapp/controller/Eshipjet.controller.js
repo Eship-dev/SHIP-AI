@@ -1318,10 +1318,10 @@ sap.ui.define([
             myPromise.then(
                 function(response) {
                     oController.FreightQuoteUpdatedSrvData();
-                    // oController.ApiOutboundDeliverySrvData(response);
+                    oController.ApiOutboundDeliverySrvData(response);
                     //oController.createRecentShipments(response);
                     // oController.createHandlingUnits();
-                    // oController.createManifestHeaderSet();
+                    oController.createManifestHeaderSet();
                     //resolved
                 },
                 function(error) {
@@ -2603,14 +2603,15 @@ sap.ui.define([
                         var aFilteredData = response.results.filter(function (item) {
                             return item.Vbeln === sDeveliveryNumber;
                         });
-
-                        var aShippingCharges = [
-                            { "description": "Freight Amount", "amount": aFilteredData[0].Freightamt, "currency": "USD" },
-                            { "description": "Discount Amount", "amount": aFilteredData[0].Discountamt, "currency": "USD" },
-                            { "description": "Fuel", "amount": aFilteredData[0].Fuel, "currency": "USD" }
-                        ];
-                        eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
-                        eshipjetModel.updateBindings(true);
+                        if(aFilteredData && aFilteredData.length > 0){
+                            var aShippingCharges = [
+                                { "description": "Freight Amount", "amount": aFilteredData[0].Freightamt, "currency": "USD" },
+                                { "description": "Discount Amount", "amount": aFilteredData[0].Discountamt, "currency": "USD" },
+                                { "description": "Fuel", "amount": aFilteredData[0].Fuel, "currency": "USD" }
+                            ];
+                            eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
+                            eshipjetModel.updateBindings(true);
+                        }
                     }
                     oController.onCloseBusyDialog();
                 },
@@ -12163,7 +12164,7 @@ sap.ui.define([
             eshipjetModel.setProperty("/accountNumber", "740561073");
             for(var i=0; i<serviceNamesList.getProperty("/carrierServices").length; i++){
                 if(serviceNamesList.getProperty("/carrierServices")[i].ShippingType === oController.ShippingType){
-                    eshipjetModel.setProperty("/carrierServiceName_dis", serviceNamesList.getProperty("/carrierServices")[i].ServiceCode )
+                    eshipjetModel.setProperty("/carrierServiceName_dis", serviceNamesList.getProperty("/carrierServices")[i].ServiceName)
                 }
             }
 
@@ -13619,7 +13620,8 @@ sap.ui.define([
             oEshipjetModel.setProperty("/ShipNowShipMethodSelectedKey", oController.oSelectObj.Carrier);
             oEshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey", oController.oSelectObj.serviceCode);
             oEshipjetModel.setProperty("/ShipNowSelectedServiceName", oController.oSelectObj.serviceName);
-            oEshipjetModel.setProperty("/accountNumber", oController.oSelectObj.AccountNumber);                     
+            oEshipjetModel.setProperty("/accountNumber", oController.oSelectObj.AccountNumber); 
+            oEshipjetModel.setProperty("/carrierServiceName_dis",oController.oSelectObj.serviceName);                    
         }
         oController.onCloseShipNowShippinRateDialog();
     },
