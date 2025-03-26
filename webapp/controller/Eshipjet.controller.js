@@ -5980,7 +5980,19 @@ sap.ui.define([
                 // },
                 success:function(response){
                     if(RecentShipmentTab === "shipNowRecentShips" && response && response.results.length > 0){
-                        response.results.sort((a, b) => (new Date(b.DateAdded) && new Date(b.TimeAdded)) - (new Date(a.DateAdded) && new Date(a.TimeAdded)));
+                        //response.results.sort((a, b) => (new Date(b.DateAdded) && new Date(b.TimeAdded)) - (new Date(a.DateAdded) && new Date(a.TimeAdded)));
+                        response.results.sort((a, b) => {
+                            let dateA = new Date(a.DateAdded).getTime();
+                            let dateB = new Date(b.DateAdded).getTime();
+                        
+                            // Compare dateAdded first (Descending order)
+                            if (dateA !== dateB) {
+                                return dateB - dateA; // Reverse order
+                            }
+                        
+                            // If dates are the same, compare timeAdded (Descending order)
+                            return b.TimeAdded.ms - a.TimeAdded.ms; // Reverse order
+                        });
                         eshipjetModel.setProperty("/allOrders", response.results);
                     }
                     oController.onCloseBusyDialog();
