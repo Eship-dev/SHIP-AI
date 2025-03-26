@@ -38,10 +38,11 @@
 		<Toolbar height="7rem" >
 			<HBox width="100%">
 				<VBox class="sapUiTinyMargin" width="25%">
-					<Text text="9" class="NumberSizeTitle1"></Text>
+					<Text text="{eshipjetModel>/totalOrders}" class="NumberSizeTitle1"></Text>
 					<Text text="Total" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Emphasized" press="onOrderNowTotalFilterPress" class="total-request-button request-button" icon="false" width="100%"  ></Button>
+					<Button type="Emphasized" press="onOrderNowTotalFilterPress" class="total-request-button request-button" icon="false" width="100%"></Button>
 				</VBox>
+
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
