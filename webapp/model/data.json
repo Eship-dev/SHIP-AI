@@ -963,7 +963,7 @@
 			{
 				"name": "HU",
 				"label": "H.u.",
-				"visible": false
+				"visible": true
 			},
 			{
 				"name": "WeightLB",

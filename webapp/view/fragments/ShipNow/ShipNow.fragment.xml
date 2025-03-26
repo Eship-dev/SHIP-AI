@@ -281,8 +281,8 @@
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Service Name" />
-													<ComboBox class="create-ship-req_input" items="{serviceNamesList>/carrierServices}" selectedKey="{eshipjetModel>/ShipNowShipsrvNameSelectedKey}">
-														<core:Item key="{serviceNamesList>ServiceCode}" text="{serviceNamesList>ServiceName}" />
+													<ComboBox class="create-ship-req_input" id="idServiceName" showSecondaryValues= "true" items="{serviceNamesList>/carrierServices}" selectedKey="{eshipjetModel>/ShipNowShipsrvNameSelectedKey}">
+														<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
 													</ComboBox>
 													<Label text="Cost Center" />
 													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/costCenter}">
@@ -755,7 +755,7 @@
 														<Text text="{eshipjetModel>/ShipNowShipMethodSelectedKey}" ></Text>
 													</HBox>
 													<HBox height="3rem" width="20%" alignItems="Center" visible="{= ${eshipjetModel>/ShipNowShipMethodSelectedKey} ? true : false }" class="blueBackground" >
-														<Text text="{eshipjetModel>/ShipNowShipMethodSelectedKey} - {eshipjetModel>/ShipNowShipsrvNameSelectedKey}" class="packScreenCarrier" ></Text>
+														<Text text="{eshipjetModel>/ShipNowShipMethodSelectedKey} - {eshipjetModel>/carrierServiceName_dis}" class="packScreenCarrier" ></Text>
 													</HBox>
 												</HBox>
 										

@@ -1008,17 +1008,17 @@ sap.ui.define([
             // }else{
             //     var serviceName = eshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey");
             // }
-            
-            if(carrier === "UPS"){
+
+            if(carrier.toUpperCase() === "UPS"){
                 var id = "6ljUpEbuu1OlOk7ow932lsxXHISUET0WKjTn59GzQ5MRdEbA";
                 var password = "ioZmsfcbrzlWfGh7wGMhqHL6sY4EAaKzZObullipni0cEGJGChjFmGpkcdCWQynK";
-            }else if(carrier === "FedEx"){
+            }else if(carrier.toUpperCase() === "FEDEX"){
                 var id = "l70c717f3eaf284dc9af42169e93874b6e";
                 var password = "7f271bf486084e8f8073945bb7e6a020";
-            }else if(carrier === "DHL"){
+            }else if(carrier.toUpperCase() === "DHL"){
                 var id = "apT2vB7mV1qR1b";
                 var password = "U#3mO^1vY!5mT@0j";
-            }else if(carrier === "USPS"){
+            }else if(carrier.toUpperCase() === "USPS"){
                 var id = "3087617";
                 var password = "October2024!";
             }
@@ -1174,7 +1174,7 @@ sap.ui.define([
                     "Note": "",
                     "PoNo": "",
                     "UserId": id,
-                    "Carrier": carrier,
+                    "Carrier": carrier === 'FEDEX' ? 'FedEx' : carrier ,
                     "MeterId": "",
                     "RateURL": "",
                     "ShipURL": "",
@@ -1192,8 +1192,8 @@ sap.ui.define([
                     "costCenter": "",
                     "CarrierType": "Parcel",
                     "PaymentType": "Sender",
-                    "ServiceName": serviceName,
-                    "ERPCarrierID": carrier,
+                    "ServiceName": eshipjetModel.getProperty("/carrierServiceName_dis"),
+                    "ERPCarrierID":  carrier === 'FEDEX' ? 'FedEx' : carrier ,
                     "ShipToCountry": "",
                     "BillingAccount": "",
                     "BillingCountry": "",
@@ -1201,7 +1201,7 @@ sap.ui.define([
                     "ConnectionType": "API",
                     "CostCenterName": "Cost Center 2",
                     "ShipfromCountry": "",
-                    "ShippingAccount": eshipjetModel.getProperty("/accountNumber")
+                    "ShippingAccount": "740561073"
                 },
                 "shiprequest_id": 5348,
                 "InternationalDetails": [],
@@ -1441,7 +1441,7 @@ sap.ui.define([
                         "Dryweight": "0.000",
                         "Mandt": "200",
                         "Vbeln": sapDeliveryNumber,
-                        "Posnr": "000000",
+                        "Posnr": "",
                         "Plant": "BP01",
                         "Shipmenttype": "O",
                         "Pkgcount": HandlingUnitsLength.toString(),
@@ -2493,6 +2493,7 @@ sap.ui.define([
             var oDeliveryModel = oController.getView().getModel("OutBoundDeliveryModel");                    
             var oHandlingUnitModel = oController.getView().getModel("HandlingUnitModel");           
             var sPath = "/A_OutbDeliveryHeader('"+ sDeveliveryNumber +"')/to_DeliveryDocumentPartner";
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             if(sDeveliveryNumber && sDeveliveryNumber.length >= 7){
                 oController.onOpenBusyDialog();
                 
@@ -2503,6 +2504,7 @@ sap.ui.define([
                     },
                     success:function(oData){                        
                         oController.etag = oData.__metadata.etag;
+                        oController.ShippingType = oData.ShippingType;
                         oController.onCloseBusyDialog();
                     },
                     error: function(oErr){
@@ -11800,8 +11802,8 @@ sap.ui.define([
                     oController.createManifestHeaderSet();
                 },
                 error: function(oError) {
-                    var errMsg = JSON.parse(oError.responseText).error.message.value
-                    sap.m.MessageBox.error(errMsg);
+                    // var errMsg = JSON.parse(oError.responseText).error.message.value
+                    // sap.m.MessageBox.error(errMsg);
                 }
             });
         },
@@ -12157,9 +12159,16 @@ sap.ui.define([
                     this.getView().setModel(serviceNamesList, "serviceNamesList");
                 }
             };
+            eshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey", oController.ShippingType);
+            eshipjetModel.setProperty("/accountNumber", "740561073");
+            for(var i=0; i<serviceNamesList.getProperty("/carrierServices").length; i++){
+                if(serviceNamesList.getProperty("/carrierServices")[i].ShippingType === oController.ShippingType){
+                    eshipjetModel.setProperty("/carrierServiceName_dis", serviceNamesList.getProperty("/carrierServices")[i].ServiceCode )
+                }
+            }
+
             var ShipNowShipMethodSelectedKey =  eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey");
-            eshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey","");
-            eshipjetModel.setProperty("/accountNumber","");
+            // eshipjetModel.setProperty("/accountNumber","");
             if (ShipNowShipMethodSelectedKey === "FEDEX"){
                 eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
                 eshipjetModel.setProperty("/shipNowABFSelect", false );

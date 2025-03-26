@@ -38,7 +38,7 @@
 		<Toolbar height="7rem" >
 			<HBox width="100%">
 				<VBox class="sapUiTinyMargin" width="25%">
-					<Text text="{eshipjetModel>/totalOrders}" class="NumberSizeTitle1"></Text>
+					<Text text="20" class="NumberSizeTitle1"></Text>
 					<Text text="Total" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Emphasized" press="onOrderNowTotalFilterPress" class="total-request-button request-button" icon="false" width="100%"></Button>
 				</VBox>
