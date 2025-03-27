@@ -193,17 +193,10 @@
 											<Text text="{eshipjetModel>PartnerType}" />
 										</ui:template>
 									</ui:Column>
-									<!-- <ui:Column>
+									<ui:Column width="5rem">
 										<Label text="Partner ID" />
 										<ui:template>
-											<Text text="{eshipjetModel>}" />
-										</ui:template>
-									</ui:Column> -->
-
-									<ui:Column>
-										<Label text="Contact Name" />
-										<ui:template>
-											<Text text="{eshipjetModel>FullName}" />
+											<Text text="" />
 										</ui:template>
 									</ui:Column>
 
@@ -211,6 +204,13 @@
 										<Label text="Company Name" />
 										<ui:template>
 											<Text text="{eshipjetModel>BusinessPartnerName1}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="6rem">
+										<Label text="Contact Name" />
+										<ui:template>
+											<Text text="{eshipjetModel>FullName}" />
 										</ui:template>
 									</ui:Column>
 
@@ -227,18 +227,18 @@
 											<Text text="{eshipjetModel>HouseNumber}" />
 										</ui:template>
 									</ui:Column>
+									
+									<ui:Column>
+										<Label text="City" />
+										<ui:template>
+											<Text text="{eshipjetModel>CityName}" />
+										</ui:template>
+									</ui:Column>
 
 									<ui:Column>
 										<Label text="State / Province" />
 										<ui:template>
 											<Text text="{eshipjetModel>Region}" />
-										</ui:template>
-									</ui:Column>
-
-									<ui:Column>
-										<Label text="City" />
-										<ui:template>
-											<Text text="{eshipjetModel>CityName}" />
 										</ui:template>
 									</ui:Column>
 
@@ -282,7 +282,7 @@
 										<VBox class="shipnowcustomSimpleFormShadow" >
 											<f:SimpleForm id="RoutingandBillingDetails"  editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4" >
 												<f:content>
-													<Label text="Ship Method" />
+													<Label text="Ship Method Description" />
 													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
 														<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
 													</ComboBox>
@@ -291,8 +291,8 @@
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Service Name" />
-													<ComboBox class="create-ship-req_input" id="idServiceName" showSecondaryValues= "true" items="{serviceNamesList>/carrierServices}" selectedKey="{eshipjetModel>/ShipNowShipsrvNameSelectedKey}">
-														<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
+													<ComboBox class="create-ship-req_input" items="{serviceNamesList>/carrierServices}" selectedKey="{eshipjetModel>/ShipNowShipsrvNameSelectedKey}">
+														<core:Item key="{serviceNamesList>ServiceCode}" text="{serviceNamesList>ServiceName}" />
 													</ComboBox>
 													<Label text="Cost Center" />
 													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/costCenter}">
@@ -874,7 +874,7 @@
 										<Text text="{eshipjetModel>Material}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="20%" visible="{eshipjetModel>/ShipNowProductsTableColumns/2/visible}">
+								<ui:Column width="15rem" visible="{eshipjetModel>/ShipNowProductsTableColumns/2/visible}">
 									<Label text="Product Description" />
 									<ui:template>
 										<Text text="{eshipjetModel>DeliveryDocumentItemText}" wrapping="false" />
@@ -896,26 +896,40 @@
 									</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" hAlign="End" visible="{eshipjetModel>/ShipNowProductsTableColumns/5/visible}" >
-									<Label text="Total Qty"  />
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/5/visible}" >
+									<HBox justifyContent="End" alignItems="End" width="100%">
+									<Label text="Total Qty" />
+									</HBox>
 									<ui:template>
-										<Text text="{eshipjetModel>ActualDeliveryQuantity}" wrapping="false" textAlign="End"/>
+									<HBox justifyContent="End" alignItems="End" width="100%">
+										<Text text="{eshipjetModel>ActualDeliveryQuantity}" wrapping="false" />
+									</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" hAlign="End" visible="{eshipjetModel>/ShipNowProductsTableColumns/6/visible}" >
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/6/visible}" >
+									<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="Balance Qty" />
+									</HBox>
 									<ui:template>
+									<HBox justifyContent="End" alignItems="End" width="100%">
 										<Text text="{eshipjetModel>BalanceQty}" wrapping="false" />
+									</HBox>
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/7/visible}" >
+									<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="Partial Qty" />
+									</HBox>
 									<ui:template>
-										<Input value="{eshipjetModel>partialQty}" type="Number" liveChange="onPartialQtyChange" />
+									<HBox justifyContent="End" alignItems="End" width="100%">
+										<Input value="{eshipjetModel>partialQty}" liveChange="onPartialQtyChange" />
+									</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto"   hAlign="End" visible="{eshipjetModel>/ShipNowProductsTableColumns/7/visible}" >
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/7/visible}" >
+								<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="Weight (LB)" />
+								</HBox>
 									<ui:template>
 									<HBox justifyContent="End" alignItems="End">
 										<Text text="{eshipjetModel>ItemGrossWeight}" />
@@ -1130,7 +1144,7 @@
 							id="idShipNowHandlingUnitTable"
 							rows="{eshipjetModel>/HandlingUnits}"
 							class="sapUiTinyMarginTop"
-							selectionMode="None"
+							selectionMode="MultiToggle"
 							visibleRowCount="6"
     						visibleRowCountMode="Fixed" >
 							
@@ -1156,7 +1170,9 @@
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/3/visible}" >
+									<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="HU ID" />
+									</HBox>
 									<ui:template>
 									<HBox justifyContent="End" alignItems="End">
 										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
@@ -1164,7 +1180,9 @@
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/4/visible}" >
+								<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="Weight (LB)" />
+								</HBox>
 									<ui:template>
 									<HBox justifyContent="End" alignItems="End">
 										<Text text="{eshipjetModel>GrossWeight}"  />
@@ -1178,7 +1196,7 @@
 									</ui:template>
 								</ui:Column> -->
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/5/visible}" >
-									<HBox justifyContent="Start" alignItems="Start">
+									<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="Dimensions (IN)"  />
 									</HBox>
 									<ui:template>
@@ -1188,17 +1206,25 @@
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/6/visible}" >
+									<HBox justifyContent="Center" alignItems="Center" width="100%">
 									<Label text="Package Type" />
+									</HBox>
 									<ui:template>
+									<HBox justifyContent="Center" alignItems="Center" width="100%">
 										<!-- <Text text="{eshipjetModel>PackagingMaterialType}" wrapping="false" /> -->
 										<Text text="" wrapping="false" />
+										</HBox>
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/7/visible}" >
+								<HBox justifyContent="Center" alignItems="Center" width="100%">
 									<Label text="Box Count" />
+								</HBox>
 									<ui:template>
+									<HBox justifyContent="Center" alignItems="Center" width="100%">
 										<!-- <Text text="{eshipjetModel>ShippingPoint}" wrapping="false" /> -->
 										<Text text="{eshipjetModel>boxCount}" wrapping="false" />
+									</HBox>
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/8/visible}" >

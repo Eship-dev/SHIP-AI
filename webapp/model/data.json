@@ -954,7 +954,7 @@
 			},
             {
 				"name": "SAPHUID",
-				"label": "SAP HU ID.",
+				"label": "Material /SAP HU ID.",
 				"visible": true
 			},
 			{
@@ -964,17 +964,12 @@
 			},
 			{
 				"name": "HU",
-				"label": "H.u.",
+				"label": "HU ID",
 				"visible": true
 			},
 			{
 				"name": "WeightLB",
 				"label": "Weight (LB)",
-				"visible": true
-			},
-			{
-				"name": "WDS",
-				"label": "WDS",
 				"visible": true
 			},
 			{
@@ -1002,15 +997,15 @@
 				"label": "Return Tracking #",
 				"visible": false
 			},
-			{
-				"name": "SN",
-				"label": "SN #",
-				"visible": true
-			},
             {
 				"name": "ReturnShipment",
 				"label": "Return Shipment",
 				"visible": false
+			},
+            {
+				"name": "SN",
+				"label": "SN #",
+				"visible": true
 			},
 			{
 				"name": "PackageMaterial",
