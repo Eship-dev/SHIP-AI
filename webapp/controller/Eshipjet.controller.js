@@ -12176,6 +12176,7 @@ sap.ui.define([
                 success: function (oData) {
                     MessageBox.success("Success: PGI Posted without any errors.");
                     console.log("Success:", oData);
+                    oController.getShippingDataAfterPGI(sapDeliveryNumber);
                     oController.onCloseBusyDialog();
                 },
                 error: function (oError) {
@@ -12184,6 +12185,32 @@ sap.ui.define([
                     sap.m.MessageBox.error(errMsg);
                 }
             });
+        },
+
+        getShippingDataAfterPGI:function(sDeveliveryNumber){
+            var oDeliveryModel = oController.getView().getModel("OutBoundDeliveryModel");                    
+            var oHandlingUnitModel = oController.getView().getModel("HandlingUnitModel");           
+            var sPath = "/A_OutbDeliveryHeader('"+ sDeveliveryNumber +"')/to_DeliveryDocumentPartner";
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            if(sDeveliveryNumber && sDeveliveryNumber.length >= 7){
+                oController.onOpenBusyDialog();
+                
+                var path = "/A_OutbDeliveryHeader('"+ sDeveliveryNumber +"')"
+                oDeliveryModel.read(path,{
+                    urlParameters: {
+                        "$expand": "to_DeliveryDocumentItem,to_DeliveryDocumentPartner"
+                    },
+                    success:function(oData){                        
+                        oController.etag = oData.__metadata.etag;
+                        oController.ShippingType = oData.ShippingType;
+                        eshipjetModel.setProperty("/OverallGoodsMovementStatus", oData.OverallGoodsMovementStatus);
+                        oController.onCloseBusyDialog();
+                    },
+                    error: function(oErr){
+                        oController.onCloseBusyDialog();
+                    }
+                });
+            }
         },
 
         createReversePostGoodsIssue:function(sapDeliveryNumber){
