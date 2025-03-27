@@ -1396,7 +1396,8 @@ sap.ui.define([
             var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
 
             var ShipReadDataSrvModel = oController.getOwnerComponent().getModel("ShipReadDataSrvModel");
-            var amount = eshipjetModel.getProperty("/shippingCharges/0/amount");
+            var amount = eshipjetModel.getProperty("/shippingCharges/0/amount") ? eshipjetModel.getProperty("/shippingCharges/0/amount") : "0" ;
+
             let percentage = (20 / 100) * amount; // 20% of 200
             // var Discountamt = amount - percentage;
             var Discountamt = eshipjetModel.getProperty("/shippingCharges/1/amount");
@@ -1474,8 +1475,8 @@ sap.ui.define([
                     "Chargweight": grossWeight,
                     "Codamount": "0.00",
                     "Customs": "0.00",
-                    "Freightamt": amount.toString(),
-                    "Discountamt": Discountamt.toString(),
+                    "Freightamt": amount ? amount.toString() : "0.00" ,
+                    "Discountamt": Discountamt ?  Discountamt.toString() : "0.00",
                     "Insurance": "0.00",
                     "Dryweight": "0.000",
                     "Mandt": "200",
@@ -1483,10 +1484,10 @@ sap.ui.define([
                     "Posnr": "",
                     "Plant": "BP01",
                     "Shipmenttype": "O",
-                    "Pkgcount": HandlingUnitsLength.toString(),
+                    "Pkgcount": HandlingUnitsLength ? HandlingUnitsLength.toString() : "0",
                     "MultiSeq": "1",
                     "MultiLegno": "0",
-                    "Totalpkg": HandlingUnitsLength.toString(),
+                    "Totalpkg": HandlingUnitsLength ? HandlingUnitsLength.toString() : "0",
                     "HandlingUnit": "10006973",
                     "SalesOrder": "10006973",
                     "PurchaseOrder": "CANCL",
@@ -1579,7 +1580,7 @@ sap.ui.define([
                     "Addcomments": "",
                     "DimensionFactor": "00000",
                     "TransitDays": "000",
-                    "Delivery": sapDeliveryNumber,
+                    "Delivery": sapDeliveryNumber ? sapDeliveryNumber : "",
                     "UpsEod": "",
                     "Tcode": "/PWEAVER/PPS",
                     "Packagetype": "",
@@ -1617,7 +1618,7 @@ sap.ui.define([
                     "Edi997Status": "",
                     "Shipmentid": "",
                     "EodTimestamp": "",
-                    "Labelurl": shippingDocName,
+                    "Labelurl": shippingDocName ? shippingDocName : "",
                     "DgUrl": "",
                     "Multi": "",
                     "Legno": "",
@@ -1638,8 +1639,8 @@ sap.ui.define([
                     "Ocarrier": "",
                     "Accessorial": "",
                     "Fuel": "",
-                    "Deliverynno": sapDeliveryNumber,
-                    "TimeAdded": timeAdded,
+                    "Deliverynno": sapDeliveryNumber ? sapDeliveryNumber : "",
+                    "TimeAdded": timeAdded ? timeAdded : "",
 
                 };
                 aManifestData.push(oManifestDataObj);
