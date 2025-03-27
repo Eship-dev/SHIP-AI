@@ -67,6 +67,12 @@ sap.ui.define([
 
         getHBoxStyleClass: function(sMethod, sService) {
             return (sMethod || sService) ? "blueBackground" : "whiteBackground";
+        },
+
+        carrierDisplay:function(sCarrier){
+            if(sCarrier.toUpperCase() === "FEDEX"){
+                return "FedEx";
+            }
         }
 	};
 });

@@ -765,7 +765,7 @@
 														<Text text="{eshipjetModel>/ShipNowShipMethodSelectedKey}" ></Text>
 													</HBox>
 													<HBox height="3rem" width="20%" alignItems="Center" visible="{= ${eshipjetModel>/ShipNowShipMethodSelectedKey} ? true : false }" class="blueBackground" >
-														<Text text="{eshipjetModel>/ShipNowShipMethodSelectedKey} - {eshipjetModel>/carrierServiceName_dis}" class="packScreenCarrier" ></Text>
+														<Text text="{path:'eshipjetModel>/ShipNowShipMethodSelectedKey', formatter: '.formatter.carrierDisplay' } - {eshipjetModel>/carrierServiceName_dis}" class="packScreenCarrier" ></Text>
 													</HBox>
 												</HBox>
 										
@@ -1487,7 +1487,7 @@
 										<items>
 											<ColumnListItem vAlign="Middle">
 												<cells>
-													<Text  text="" />
+													<Text  text="{eshipjetModel>srNo}" />
 													<Text  text="{eshipjetModel>docProvider}" />
 													<Text  text="{eshipjetModel>docType}" />
 													<Text  text="{eshipjetModel>contentType}" />

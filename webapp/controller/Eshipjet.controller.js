@@ -1014,7 +1014,14 @@ sap.ui.define([
         onShipNowPress: function () {       
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var packAddProductTable = eshipjetModel.getProperty("/packAddProductTable");
-            if(packAddProductTable.length !== 0){
+            
+            var productCheck = false;
+            packAddProductTable.forEach(function(itm, idx){
+                if(itm.Material && itm.Material.length > 0){
+                    productCheck = true;
+                }
+            });
+            if(productCheck){
                 MessageBox.information("Please Pack all Products.");
                 return;
             }
@@ -1641,7 +1648,7 @@ sap.ui.define([
                 success: function (oData) {
                     MessageToast.show("Success: Successfully Created ManifestHeaderSet.");
                     console.log("Success:", oData);
-                    oController.onCloseBusyDialog();
+                    // oController.onCloseBusyDialog();
                 },
                 error: function (oError) {
                     var errMsg = JSON.parse(oError.responseText).error.message.value;
@@ -2629,15 +2636,45 @@ sap.ui.define([
                                 ashippingDocuments.push(
                                     {
                                         "srNo": i+1,
-                                        "contentType": aFilteredData[0].Labelurl.split(".")[aFilteredData[0].Labelurl.split(".").length-1],
-                                        "copiesToPrint": "",
-                                        "docName": aFilteredData[0].Labelurl.split(".")[aFilteredData[0].Labelurl.split(".").length-2].split("/")[1],
-                                        "docProvider": "",
+                                        "contentType": "Label",
+                                        "copiesToPrint": 1,
+                                        "encodedLabel": "",
+                                        "docProvider": aFilteredData[0].Carriertype,
                                         "docType": aFilteredData[0].Labelurl.split(".")[aFilteredData[0].Labelurl.split(".").length-1],
-                                        "encodedLabel": aFilteredData[0].Labelurl,
+                                        "docName": aFilteredData[0].Labelurl,
                                 })
                             }
                             eshipjetModel.setProperty("/shippingDocuments", ashippingDocuments);
+
+                            var trackingArray = [];
+                            for(var i=0; i<aFilteredData.length; i++){
+                                var trackingObj = {
+                                    "COMPANY":aFilteredData[i].Company,
+                                    "ConsolidationId": aFilteredData[i].Consolidation,
+                                    "DocumentNumber": aFilteredData[i].Delivery,
+                                    "CreatedDate": aFilteredData[i].Createddate,
+                                    "ShipDate": aFilteredData[i].DateAdded,
+                                    "ShipmentType": aFilteredData[i].Shipmenttype,
+                                    "CarrierCode": aFilteredData[i].CarrierCode,
+                                    "ERPCarrierID": aFilteredData[i].CarrierCode,
+                                    "TrackingNumber": aFilteredData[i].TrackingNumber,
+                                    "TrackingStatus": aFilteredData[i].DeliveryStatus,
+                                    "SHIP_TO_CONTACT": aFilteredData[i].Contact,
+                                    "SHIP_TO_COMPANY": aFilteredData[i].Company,
+                                    "SHIP_TO_ADDRESS_LINE1": aFilteredData[i].Address1,
+                                    "SHIP_TO_STATE": aFilteredData[i].RecRegion,
+                                    "SHIP_TO_CITY": aFilteredData[i].City,
+                                    "SHIP_TO_ZIPCODE": aFilteredData[i].RecPostalcode,
+                                    "SHIP_TO_COUNTRY": aFilteredData[i].Country,
+                                    "SHIP_TO_EMAIL": aFilteredData[i].Emailaddress,
+                                    "RequesterName": "",
+                                    "ConnectedTo": "SAP ECC 6.0",
+                                    "orderType": "Delivery Number"
+                                };
+                                trackingArray.push(trackingObj);
+                                eshipjetModel.setProperty("/trackingArray", trackingArray);
+                            }
+
                             eshipjetModel.updateBindings(true);
                         }
                     }
