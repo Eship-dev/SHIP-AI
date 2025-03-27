@@ -24,7 +24,7 @@
 						<Toolbar width="100%" height="4rem" class="toolbarbottomborder">
 					<Text text="Order" class="sapUiTinyMarginBegin sapUiTinyMarginTop Orders_PageTitle"></Text>
 					<ToolbarSpacer></ToolbarSpacer>
-					<ComboBox id="dateFilterComboBox" class="create-ship-req_input" placeholder="Select Date Filter"
+					<ComboBox id="dateFilterComboBox" class="create-ship-req_input sapUiMediumMarginEnd" placeholder="Select Date Filter"
 						selectedKey="{dateFilterModel>/selectedFilter}">
 						<core:Item key="today" text="Today" />
 						<core:Item key="yesterday" text="Yesterday" />
