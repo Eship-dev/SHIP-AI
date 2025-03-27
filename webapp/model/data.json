@@ -10,6 +10,7 @@
     "shipNowGetBtn": true,
     "HandlingUnitsLength":0,
     "selectedPackageMat": "",
+    "OverallGoodsMovementStatus": "",
     
     "shipNowGanderWhiteSelect": false,
     "shipNowABFSelect": false,

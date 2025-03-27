@@ -5,6 +5,16 @@
 					<Button icon="sap-icon://past" id="shipNowRecentShips" press="onOpenRecentShipmentPopover" />
 					<Text text="Ship Now"/>
 					<ToolbarSpacer/>
+
+				<Button text="PGI Successful." type="Ghost"
+					visible="{= ${eshipjetModel>/OverallGoodsMovementStatus} === 'C' }"
+					icon="sap-icon://accept" iconFirst="true"
+					enabled="false" class="sapUiSmallMarginEnd pgiSuccess" />
+				<Button text="PGI Failed." type="Ghost"
+					visible="{= ${eshipjetModel>/OverallGoodsMovementStatus} === 'A' }"
+					icon="sap-icon://decline" iconFirst="true"
+					enabled="false" class="sapUiSmallMarginEnd pgiFailed" />
+
 						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn ship-now-decline_btn" type="Ghost" />
 				</Toolbar>
 							<Toolbar class="sapUiTinyMarginBottom scan-ship-toolbar1 " height="15%">

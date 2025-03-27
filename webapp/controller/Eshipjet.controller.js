@@ -272,6 +272,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
                 eshipjetModel.setProperty("/shipNowGetBtn", true);
+                eshipjetModel.setProperty("/OverallGoodsMovementStatus", ""); 
                 oController.onPackSectionEmptyRows();
                 // oController._handleDisplayShipNowPackTable();
                 // this._handleDisplayShipNowProductsTable();
@@ -984,7 +985,8 @@ sap.ui.define([
             eshipjetModel.setProperty("/showDarkThemeSwitch", false);
             eshipjetModel.setProperty("/darkTheme", false);
             eshipjetModel.setProperty("/shipNowGetBtn", true);
-            
+            eshipjetModel.setProperty("/OverallGoodsMovementStatus", ""); 
+
             eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
             eshipjetModel.setProperty("/shipNowABFSelect", false );
             eshipjetModel.setProperty("/shipNowARTEXFineArtSrvSelect", false );
@@ -1009,10 +1011,16 @@ sap.ui.define([
             // oBusyDialog.close();
         },
        
-        onShipNowPress: function () {            
+        onShipNowPress: function () {       
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var packAddProductTable = eshipjetModel.getProperty("/packAddProductTable");
+            if(packAddProductTable.length !== 0){
+                MessageBox.information("Please Pack all Products.");
+                return;
+            }
             oController.onOpenBusyDialog();
             var oShipNowDataModel = this.getOwnerComponent().getModel("ShipNowDataModel");
-            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            
             eshipjetModel.setProperty("/shipNowGetBtn", true);
             var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
             var carrier = eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey");
@@ -2303,6 +2311,7 @@ sap.ui.define([
             eshipjetModel.setProperty("/routingGuidFooter", false);
             eshipjetModel.setProperty("/showDarkThemeSwitch", false);
             eshipjetModel.setProperty("/darkTheme", false);
+            eshipjetModel.setProperty("/OverallGoodsMovementStatus", ""); 
             oController.onPackSectionEmptyRows();
 
             oController.onCloseBusyDialog();
@@ -2478,7 +2487,8 @@ sap.ui.define([
             eshipjetModel.setProperty("/shippingDocuments", []);
             eshipjetModel.setProperty("/trackingArray", []);
             eshipjetModel.setProperty("/ShipNowShipMethodSelectedKey","");
-            eshipjetModel.setProperty("/accountNumber","");                 
+            eshipjetModel.setProperty("/accountNumber","");    
+            eshipjetModel.setProperty("/OverallGoodsMovementStatus", "");             
             let myPromise = new Promise(function(myResolve, myReject) {
                 oController.shipNowData(sDeveliveryNumber, "ShipNow", myResolve);                                                    
             });           
@@ -2529,6 +2539,7 @@ sap.ui.define([
                     success:function(oData){                        
                         oController.etag = oData.__metadata.etag;
                         oController.ShippingType = oData.ShippingType;
+                        eshipjetModel.setProperty("/OverallGoodsMovementStatus", oData.OverallGoodsMovementStatus);
                         oController.onCloseBusyDialog();
                     },
                     error: function(oErr){
@@ -3857,6 +3868,7 @@ sap.ui.define([
                 ShipNowDataModel.setProperty("/ShipToAddress", "");
                 eshipjetModel.setProperty("/BusinessPartners", []);
                 eshipjetModel.setProperty("/shipNowGetBtn", true);
+                eshipjetModel.setProperty("/OverallGoodsMovementStatus", ""); 
                 oController.onPackSectionEmptyRows();
                 // oController._handleDisplayShipNowPackTable();
 

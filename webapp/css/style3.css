@@ -2248,3 +2248,29 @@ button, input, optgroup, select, textarea {
 .ship-now-decline_btn:hover span {
   background-color: red !important;
 }
+
+.pgiSuccess {
+  background-color: green !important; /* Set button background to green */
+}
+
+.pgiSuccess .sapMBtnContent {
+  color: white !important; /* Ensure text color is white */
+  font-weight: 500 !important;
+}
+
+.pgiSuccess .sapMBtnIcon {
+  color: white !important; /* Ensure icon color is white */
+}
+
+.pgiFailed {
+  background-color: red !important;
+}
+
+.pgiFailed .sapMBtnContent {
+  color: white !important; /* Ensure text color is white */
+  font-weight: 500 !important;
+}
+
+.pgiFailed .sapMBtnIcon {
+  color: white !important;
+}
