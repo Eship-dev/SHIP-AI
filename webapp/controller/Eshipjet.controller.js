@@ -1438,7 +1438,10 @@ sap.ui.define([
             var shippingDocuments = eshipjetModel.getProperty("/shippingDocuments");
             var aHandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
             let oManifestDataObj = {}, aManifestData = [];
-            aHandlingUnits.forEach(function(item, index){
+            var aHUnitsFilterData = aHandlingUnits.filter(function (item) {
+                 return item.HandlingUnitReferenceDocument === sapDeliveryNumber;
+            });
+            aHUnitsFilterData.forEach(function(item, index){
                 grossWeight = item.GrossWeight;
                 if (grossWeight === 0 || grossWeight === "0") {
                     grossWeight = eshipjetModel.getProperty("ShipNowProductsTableColumns/0/ItemGrossWeight");
@@ -13360,7 +13363,10 @@ sap.ui.define([
         }else if(shipToCountry !== "" && shipToAddressLine1 !== "" && shipToCity !== "" && shipToZipCode !== "" && shipToState !== "" && shipToCompanyName !== "" && shipToContactName !== "" && shipToEmail !== "" && shipToPhone !== "" && oTableItemsLength <= 0){
             MessageBox.warning("Please create package");
         }else{
-            oController.onShipRateRequest("", "", "ShipRates");
+           
+            var myShipRatePromise = new Promise((resolve, reject) => {
+                oController.onShipRateRequest(resolve, reject, "ShipRates");
+            });
         }        
     },
     onShipRateRequest:function(resolve, reject, sRequestFrom){
