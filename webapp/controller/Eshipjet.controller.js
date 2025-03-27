@@ -1339,6 +1339,7 @@ sap.ui.define([
                                     }
                                     sap.m.MessageBox.error(sError);
                                 }
+                                // oController.onCloseBusyDialog();
                             },
                             error: function (error) {
                                 reject(error);
@@ -1355,9 +1356,11 @@ sap.ui.define([
                             });
                             myOutbounddeliveryPromise.then(function(){
                                 oController.updateManifestHeaderSet();
+                                oController.onCloseBusyDialog();
                             });                                              
                         },
                         function(error) {
+                            oController.onCloseBusyDialog();
                         // myDisplayer(error);
                         }
                     );                  
@@ -1388,6 +1391,7 @@ sap.ui.define([
         },
 
         updateManifestHeaderSet: function () {
+            // oController.onOpenBusyDialog();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
 
@@ -11876,6 +11880,7 @@ sap.ui.define([
         },
 
         ApiOutboundDeliverySrvData:function(resolve, reject, response){
+            // oController.onOpenBusyDialog();
             var BillOfLading = response.Packages[0].TrackingNumber;
             var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
             var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
@@ -11894,11 +11899,13 @@ sap.ui.define([
                 success: function(oResponse) {
                     resolve();
                     sap.m.MessageToast.show("OutBoundDelivery Updated successful!");
+                    // oController.onCloseBusyDialog();
                 },
                 error: function(oError) {
                     reject();
                     var errMsg = JSON.parse(oError.responseText).error.message.value
                     sap.m.MessageBox.error(errMsg);
+                    oController.onCloseBusyDialog();
                 }
             })
         },
@@ -13329,7 +13336,6 @@ sap.ui.define([
         }        
     },
     onShipRateRequest:function(resolve, reject, sRequestFrom){
-        oController.onOpenBusyDialog();
         var oEshipjetModel  = oController.getOwnerComponent().getModel("eshipjetModel");
         var oShipDataModel  = oController.getView().getModel("ShipNowDataModel");
         var oPayload = {
@@ -13623,7 +13629,7 @@ sap.ui.define([
                         oEshipjetModel.setProperty("/shipRateSelectItem", oCarrier);
                     }
                 }
-                oController.onCloseBusyDialog();
+                // oController.onCloseBusyDialog();
             },
             error: function (oError) {
                 // Handle error            
