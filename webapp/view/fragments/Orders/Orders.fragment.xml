@@ -145,7 +145,7 @@
 								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/6/visible}">
 									<Label text="Type" />
 									<ui:template>
-										<Text text="{eshipjetModel>Shipmenttype}" wrapping="false" />
+										<Text text="{eshipjetModel>ShipmentType}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 

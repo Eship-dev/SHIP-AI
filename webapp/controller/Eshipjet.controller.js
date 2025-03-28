@@ -6078,6 +6078,15 @@ sap.ui.define([
                             return b.TimeAdded.ms - a.TimeAdded.ms; // Reverse order
                         });
                         eshipjetModel.setProperty("/allOrders", response.results);
+                        response.results.forEach(item => {
+                            let shipmentValue = item.Type || item.Shipmenttype || item.ShipmentType; // Try different keys
+                            if (shipmentValue && typeof shipmentValue === "string") {
+                                shipmentValue = shipmentValue.trim().toUpperCase(); // Normalize the value
+                                item.ShipmentType = shipmentValue === 'O' ? "Parcel" : "LTL";
+                            } else {
+                                item.ShipmentType = "LTL"; // Default
+                            }
+                });
                     }
                     oController.onCloseBusyDialog();
                 },

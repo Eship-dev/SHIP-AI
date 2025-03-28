@@ -647,7 +647,7 @@
 
 										</VBox>
 									</IconTabFilter>
-									<!-- Additional Info Tab Starts here -->
+									<!-- Additional Info Tab Starts here
 									<IconTabFilter text="Additional Info" key="Additional Info">
 										<VBox >
 											<f:SimpleForm id="AdditionalInfo" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
@@ -706,7 +706,7 @@
 												</VBox>
 											</Toolbar>									
 										</VBox>
-									</IconTabFilter>
+									</IconTabFilter> -->
 
 
 									<!-- Pack Tab Starts here -->
