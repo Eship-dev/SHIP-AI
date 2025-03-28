@@ -22,7 +22,7 @@ sap.ui.define([
 
     var ButtonType = library.ButtonType,
         PlacementType = library.PlacementType,
-        oController, oResourceBundle, eshipjetModel, iTimeoutId;
+        oController, oResourceBundle, eshipjetModel;
     const SortOrder = CoreLibrary.SortOrder;
 
     return Controller.extend("com.eshipjet.zeshipjet.controller.Eshipjet", {
@@ -1032,11 +1032,6 @@ sap.ui.define([
             var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
             var carrier = eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey");
             var serviceName = eshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey");
-            // if(carrier === "FedEx"){
-            //     var serviceName = "GROUND_HOME_DELIVERY";
-            // }else{
-            //     var serviceName = eshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey");
-            // }
 
             if(carrier.toUpperCase() === "UPS"){
                 var id = "6ljUpEbuu1OlOk7ow932lsxXHISUET0WKjTn59GzQ5MRdEbA";
@@ -1328,7 +1323,7 @@ sap.ui.define([
                                     //post to manifest service
                                     // oController.getManifestData(response);
                                     
-                                    oController.showLabelAfterShipmentSuccess(response);                      
+                                                          
 
                                 }else if(response && response.status === "Error"){
                                     var sError = "Shipment process failed reasons:\n";
@@ -1339,7 +1334,6 @@ sap.ui.define([
                                     }
                                     sap.m.MessageBox.error(sError);
                                 }
-                                // oController.onCloseBusyDialog();
                             },
                             error: function (error) {
                                 reject(error);
@@ -1392,43 +1386,22 @@ sap.ui.define([
         },
 
         updateManifestHeaderSet: function () {
-            // oController.onOpenBusyDialog();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
 
             var ShipReadDataSrvModel = oController.getOwnerComponent().getModel("ShipReadDataSrvModel");
             var amount = eshipjetModel.getProperty("/shippingCharges/0/amount") ? eshipjetModel.getProperty("/shippingCharges/0/amount") : "0" ;
 
-            let percentage = (20 / 100) * amount; // 20% of 200
-            // var Discountamt = amount - percentage;
+            let percentage = (20 / 100) * amount;
             var Discountamt = eshipjetModel.getProperty("/shippingCharges/1/amount");
             let time = new Date();
-            time.setMinutes(time.getMinutes() + 10); // Adds 10 minutes
-
-            // Convert to SAP Date format (Milliseconds since Epoch)
+            time.setMinutes(time.getMinutes() + 10);
             let SAPDate = "/Date(" + time.getTime() + ")/";
-
-            // Define duration components
-            // let hours = 2;
-            // let minutes = 30;
-            // let seconds = 45;
-
-            // Construct SAP Duration format (PTxHxMxS)
-            // let SAPDuration = "PT";
-            // if (hours > 0) SAPDuration += hours + "H";
-            // if (minutes > 0) SAPDuration += minutes + "M";
-            // if (seconds > 0) SAPDuration += seconds + "S";
-
             var date = new Date();
             let hours = String(date.getHours()).padStart(2, '0');
             let minutes = String(date.getMinutes()).padStart(2, '0');
             let seconds = String(date.getSeconds()).padStart(2, '0');
             var timeAdded = `PT${hours}H${minutes}M${seconds}S`;
-
-            // Print outputs
-            console.log("SAP Date:", SAPDate);
-            //console.log("SAP Duration:", SAPDuration);
-
             var packAddProductTable = eshipjetModel.getProperty("/packAddProductTable");
             var HandlingUnitsLength = eshipjetModel.getProperty("/HandlingUnitsLength");
             if (HandlingUnitsLength === "0" || HandlingUnitsLength === 0) {
@@ -1655,9 +1628,16 @@ sap.ui.define([
             };
             ShipReadDataSrvModel.create("/ManifestHeaderSet", oPayload, {
                 success: function (oData) {
-                    MessageToast.show("Success: Successfully Created ManifestHeaderSet.");
+                    MessageBox.success("Shipment processed successfully.", {
+                        actions: [MessageBox.Action.OK],
+                        emphasizedAction: MessageBox.Action.OK,
+                        onClose: function (sAction) {
+                            oController.showLabelAfterShipmentSuccess(eshipjetModel.getProperty("/ShipNowPostResponse"));
+                        },
+                        dependentOn: oController.getView()
+                    });
                     console.log("Success:", oData);
-                    // oController.onCloseBusyDialog();
+                    oController.onCloseBusyDialog();
                 },
                 error: function (oError) {
                     var errMsg = JSON.parse(oError.responseText).error.message.value;
@@ -2507,15 +2487,7 @@ sap.ui.define([
             eshipjetModel.setProperty("/OverallGoodsMovementStatus", "");             
             let myPromise = new Promise(function(myResolve, myReject) {
                 oController.shipNowData(sDeveliveryNumber, "ShipNow", myResolve);                                                    
-            });           
-            myPromise.then(
-                function(value) {
-                    //resolved
-                },
-                function(error) {
-                   // myDisplayer(error);
-                }
-            );
+            });
         },
 
         onOpenBusyDialog: function () {
@@ -2531,22 +2503,12 @@ sap.ui.define([
 			}
 
 			oController._pBusyDialog.then(function(oBusyDialog) {
-				oBusyDialog.open();
-                oController.simulateServerRequest();				
+				oBusyDialog.open();				
 			}.bind(oController));
         },
-        simulateServerRequest: function () {
-			// simulate a longer running operation
-			iTimeoutId = setTimeout(function() {
-				oController._pBusyDialog.then(function(oBusyDialog) {
-					oBusyDialog.close();
-				});
-			}.bind(oController), 3000);
-		},
 
         onCloseBusyDialog:function(oEvent){
             //this.byId("idBusyDialog").close();
-            clearTimeout(iTimeoutId);
             oController._pBusyDialog.then(function(oBusyDialog) {
                 oBusyDialog.close();
             });
@@ -2569,7 +2531,6 @@ sap.ui.define([
                         oController.etag = oData.__metadata.etag;
                         oController.ShippingType = oData.ShippingType;
                         eshipjetModel.setProperty("/OverallGoodsMovementStatus", oData.OverallGoodsMovementStatus);
-                        oController.onCloseBusyDialog();
                     },
                     error: function(oErr){
                         oController.onCloseBusyDialog();
@@ -2589,7 +2550,7 @@ sap.ui.define([
                     error: function(oErr){                        
                         console.log(oErr);
                         myResolve();
-                        oController.oBusyDialog.close();
+                        oController.onCloseBusyDialog();
                     }
                 });
 
@@ -2615,16 +2576,9 @@ sap.ui.define([
                         },
                         error: function(oErr){
                             console.log(oErr);
-                            oController.oBusyDialog.close();
+                            oController.onCloseBusyDialog();
                         }
                     });
-                //});
-
-                // promise.then(function(data){
-                    
-                // }).catch(function(error){
-
-                // });
                 oController.getManifestHeaderForCharges(sDeveliveryNumber);
             }
         },
@@ -2645,6 +2599,12 @@ sap.ui.define([
                         var aFilteredData = response.results.filter(function (item) {
                             return item.Vbeln === sDeveliveryNumber;
                         });
+                        var OverallGoodsMovementStatus = eshipjetModel.getProperty("/OverallGoodsMovementStatus");
+                        var shipNowStatus = true;
+                        if(OverallGoodsMovementStatus === "C" && response.results.length > 0){
+                            shipNowStatus = false;
+                        };
+                        eshipjetModel.setProperty("/shipNowBtnStatus", shipNowStatus);
                         if(aFilteredData && aFilteredData.length > 0){
                             var aShippingCharges = [
                                 { "description": "Freight Amount", "amount": aFilteredData[0].Freightamt, "currency": "USD" },
@@ -2696,7 +2656,6 @@ sap.ui.define([
                                 trackingArray.push(trackingObj);
                                 eshipjetModel.setProperty("/trackingArray", trackingArray);
                             }
-
                             eshipjetModel.updateBindings(true);
                         }
                     }
@@ -2841,7 +2800,7 @@ sap.ui.define([
                     eshipjetModel.setProperty("/shipNowGetBtn", false);      
                 }, error: function(oErr){
                     resolve();
-                    oController.oBusyDialog.close();
+                    oController.onCloseBusyDialog();
                     console.log(oErr);
                 }});                
             });  
@@ -2892,7 +2851,7 @@ sap.ui.define([
                                 MessageToast.show("Handling Unit Created Successfully");
                                 currentObj.partialQty = "";
                                 eshipjetModel.updateBindings(true);
-                                oController.onCloseBusyDialog();
+                                // oController.onCloseBusyDialog();
                             },
                             error: function (oError) {
                                 var errMsg = JSON.parse(oError.responseText).error.message.value;
@@ -2906,7 +2865,6 @@ sap.ui.define([
         },
 
         readHUDataSet:function(sapDeliveryNumber){
-            oController.onOpenBusyDialog();
             let oFilter, aHandlingUnits = [];
             oFilter = [];
             oFilter.push(new Filter("HandlingUnitReferenceDocument", "EQ", sapDeliveryNumber));
@@ -2930,7 +2888,6 @@ sap.ui.define([
                         eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
                         oController.onPackSectionEmptyRows();
                     }
-                    oController.onCloseBusyDialog();
                 },
                 error: function(oErr){
                     console.log(oErr);                        

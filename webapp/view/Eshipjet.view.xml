@@ -346,7 +346,7 @@
 
 			<ToolbarSpacer/>
 				<Button text="Save" press="createHandlingUnits" class="scan-ship-toolbar1__button sapUiTinyMargin sapUiLargeMarginEnd" type="Ghost" width="5%"  />
-				<Button text="Ship Now" press="onShipNowPress" enabled="{= ${eshipjetModel>/OverallGoodsMovementStatus} === 'A' || ${eshipjetModel>/OverallGoodsMovementStatus} === '' }" type="Ghost" class="green-button sapUiMediumMarginEnd" />
+				<Button text="Ship Now" press="onShipNowPress" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Ghost" class="green-button sapUiMediumMarginEnd" />
 		</OverflowToolbar>
 
 		<Toolbar class="sapUiLargeMarginBottom eship-req-footer" visible="{eshipjetModel>/createShipReqViewFooter}" >
