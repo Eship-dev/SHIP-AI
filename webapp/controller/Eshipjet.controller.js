@@ -2671,7 +2671,7 @@ sap.ui.define([
                             eshipjetModel.updateBindings(true);
                         }
                     }
-                    oController.onCloseBusyDialog();
+                    // oController.onCloseBusyDialog();
                 },
                 error: function(error){
                     MessageBox.warning(error.responseText);
