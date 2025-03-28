@@ -12192,7 +12192,7 @@ sap.ui.define([
             };
             ShipReadDataSrvModel.create("/ProcessPGISet", oPayload, {
                 success: function (oData) {
-                    MessageBox.success("Success: PGI Posted without any errors.");
+                    MessageBox.success(oData.ResponseDataSet.results[0].Message);
                     console.log("Success:", oData);
                     oController.getShippingDataAfterPGI(sapDeliveryNumber);
                     oController.onCloseBusyDialog();
@@ -12239,7 +12239,7 @@ sap.ui.define([
             };
             ShipReadDataSrvModel.create("/ReversePGISet", oPayload, {
                 success: function (oData) {
-                    MessageBox.error("Error: Reverse PGI Posted without any errors.");
+                    MessageBox.error(oData.ResponseDataSet.results[0].Message);
                     console.log("Success:", oData);
                     oController.onCloseBusyDialog();
                 },
