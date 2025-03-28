@@ -292,7 +292,7 @@
 													</ComboBox>
 													<Label text="Service Name" />
 													<ComboBox class="create-ship-req_input" items="{serviceNamesList>/carrierServices}" selectedKey="{eshipjetModel>/ShipNowShipsrvNameSelectedKey}">
-														<core:Item key="{serviceNamesList>ServiceCode}" text="{serviceNamesList>ServiceName}" />
+														<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
 													</ComboBox>
 													<Label text="Cost Center" />
 													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/costCenter}">

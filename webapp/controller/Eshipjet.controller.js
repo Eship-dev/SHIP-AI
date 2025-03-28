@@ -1459,7 +1459,7 @@ sap.ui.define([
                     "Mandt": "200",
                     "Vbeln": sapDeliveryNumber,
                     "Posnr": "",
-                    "Plant": "BP01",
+                    "Plant": eshipjetModel.getProperty("/PlantCode"),
                     "Shipmenttype": "O",
                     "Pkgcount": HandlingUnitsLength ? HandlingUnitsLength.toString() : "0",
                     "MultiSeq": "1",
@@ -2530,6 +2530,8 @@ sap.ui.define([
                     success:function(oData){                        
                         oController.etag = oData.__metadata.etag;
                         oController.ShippingType = oData.ShippingType;
+                        eshipjetModel.setProperty("/PlantCode",oData.ShippingPoint);
+                        //eshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey", oData.ShippingType);
                         eshipjetModel.setProperty("/OverallGoodsMovementStatus", oData.OverallGoodsMovementStatus);
                         oController.getManifestHeaderForCharges(sDeveliveryNumber);
                     },
@@ -2602,7 +2604,7 @@ sap.ui.define([
                         });
                         var OverallGoodsMovementStatus = eshipjetModel.getProperty("/OverallGoodsMovementStatus");
                         var shipNowStatus = true;
-                        if(OverallGoodsMovementStatus === "C" && response.results.length > 0){
+                        if(response.results.length > 0){
                             shipNowStatus = false;
                         };
                         eshipjetModel.setProperty("/shipNowBtnStatus", shipNowStatus);
@@ -2877,6 +2879,7 @@ sap.ui.define([
                 },
                 filters: oFilter,
                 success:function(oData){
+                    
                     if(oData && oData.results && oData.results.length > 0){
                         for(var i = 0; i < oData.results.length; i++){
                             oData.results[i]["SerialNumber"] = i + 1;
@@ -2889,6 +2892,7 @@ sap.ui.define([
                         eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
                         oController.onPackSectionEmptyRows();
                     }
+                    oController.onCloseBusyDialog();
                 },
                 error: function(oErr){
                     console.log(oErr);                        
@@ -13649,6 +13653,11 @@ sap.ui.define([
                             { "description": "Fuel", "amount": fuelAmount, "currency": "USD" }
                         ];
                         eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
+                        oEshipjetModel.setProperty("/ShipNowShipMethodSelectedKey", oCarrier.Carrier);
+                        oEshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey", oCarrier.serviceCode);
+                        oEshipjetModel.setProperty("/ShipNowSelectedServiceName", oCarrier.serviceName);
+                        oEshipjetModel.setProperty("/accountNumber", oCarrier.AccountNumber); 
+                        oEshipjetModel.setProperty("/carrierServiceName_dis",oCarrier.serviceName);
 
                     }
                 }
