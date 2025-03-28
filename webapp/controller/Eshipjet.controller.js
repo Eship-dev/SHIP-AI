@@ -2531,6 +2531,7 @@ sap.ui.define([
                         oController.etag = oData.__metadata.etag;
                         oController.ShippingType = oData.ShippingType;
                         eshipjetModel.setProperty("/OverallGoodsMovementStatus", oData.OverallGoodsMovementStatus);
+                        oController.getManifestHeaderForCharges(sDeveliveryNumber);
                     },
                     error: function(oErr){
                         oController.onCloseBusyDialog();
@@ -2579,7 +2580,7 @@ sap.ui.define([
                             oController.onCloseBusyDialog();
                         }
                     });
-                oController.getManifestHeaderForCharges(sDeveliveryNumber);
+                
             }
         },
 
