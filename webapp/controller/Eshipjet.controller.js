@@ -22,7 +22,7 @@ sap.ui.define([
 
     var ButtonType = library.ButtonType,
         PlacementType = library.PlacementType,
-        oController, oResourceBundle, eshipjetModel;
+        oController, oResourceBundle, eshipjetModel, iTimeoutId;
     const SortOrder = CoreLibrary.SortOrder;
 
     return Controller.extend("com.eshipjet.zeshipjet.controller.Eshipjet", {
@@ -1350,14 +1350,15 @@ sap.ui.define([
                     });
                     myPromise.then(
                         function(response) {
+                            oController.updateManifestHeaderSet();
                              //oController.FreightQuoteUpdatedSrvData();
-                            var myOutbounddeliveryPromise = new Promise((resolve, reject) => {                            
-                                oController.ApiOutboundDeliverySrvData(resolve, reject, response);
-                            });
-                            myOutbounddeliveryPromise.then(function(){
-                                oController.updateManifestHeaderSet();
-                                oController.onCloseBusyDialog();
-                            });                                              
+                            // var myOutbounddeliveryPromise = new Promise((resolve, reject) => {                            
+                            //     oController.ApiOutboundDeliverySrvData(resolve, reject, response);
+                            // });
+                            // myOutbounddeliveryPromise.then(function(){
+                              
+                            //     oController.onCloseBusyDialog();
+                            // });                                              
                         },
                         function(error) {
                             oController.onCloseBusyDialog();
@@ -2518,25 +2519,38 @@ sap.ui.define([
         },
 
         onOpenBusyDialog: function () {
-            var oView = this.getView();
-            if (!this.byId("idBusyDialog")) {
-                Fragment.load({
-                    id: oView.getId(),
+            if (!oController._pBusyDialog) {
+				oController._pBusyDialog = Fragment.load({
                     name: "com.eshipjet.zeshipjet.view.fragments.BusyDialog",
-                    controller: this
-                }).then(function (oBusyDialog) {
-                    oView.addDependent(oBusyDialog);
-                    oBusyDialog.open();
-                });
-            } else {
-                this.byId("idBusyDialog").open();
-            }
-        },
+					controller: oController
+				}).then(function (oBusyDialog) {
+					oController.getView().addDependent(oBusyDialog);
+					//syncStyleClass("sapUiSizeCompact", this.getView(), oBusyDialog);
+					return oBusyDialog;
+				}.bind(oController));
+			}
 
-        onCloseBusyDialog:function(){
-            this.byId("idBusyDialog").close();
+			oController._pBusyDialog.then(function(oBusyDialog) {
+				oBusyDialog.open();
+                oController.simulateServerRequest();				
+			}.bind(oController));
         },
-        
+        simulateServerRequest: function () {
+			// simulate a longer running operation
+			iTimeoutId = setTimeout(function() {
+				oController._pBusyDialog.then(function(oBusyDialog) {
+					oBusyDialog.close();
+				});
+			}.bind(oController), 3000);
+		},
+
+        onCloseBusyDialog:function(oEvent){
+            //this.byId("idBusyDialog").close();
+            clearTimeout(iTimeoutId);
+            oController._pBusyDialog.then(function(oBusyDialog) {
+                oBusyDialog.close();
+            });
+        },     
 
         shipNowData:function(sDeveliveryNumber ,sFromMenu, myResolve){
             var oDeliveryModel = oController.getView().getModel("OutBoundDeliveryModel");                    
@@ -13651,7 +13665,7 @@ sap.ui.define([
                     if(sRequestFrom === "ShipRates"){
                         oController.onOpenShipNowShippinRateDialog();
                     }else{
-                        var sKey = oEshipjetModel.getProperty("/ShipNowShipMethodSelectedKey"), oCarrier;
+                        var sKey = oEshipjetModel.getProperty("/ShipNowShipMethodSelectedKey"), oCarrier = {};
                         var sServiceKeyName = oEshipjetModel.getProperty("/carrierServiceName_dis");
                         if(response && response.RateServices &&  response.RateServices.length > 0){
                             response.RateServices.forEach(function(item, idx){
@@ -13661,6 +13675,14 @@ sap.ui.define([
                             })
                         }
                         oEshipjetModel.setProperty("/shipRateSelectItem", oCarrier);
+                        let fuelAmount = (oCarrier && oCarrier.surCharges && oCarrier.surCharges.length > 0 ) ? oCarrier.surCharges[0].amount : "";
+                        var aShippingCharges = [
+                            { "description": "Freight Amount", "amount": oCarrier.publishedFreight, "currency": "USD" },
+                            { "description": "Discount Amount", "amount": oCarrier.discountFreight_Cal, "currency": "USD" },
+                            { "description": "Fuel", "amount": fuelAmount, "currency": "USD" }
+                        ];
+                        eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
+
                     }
                 }
                 // oController.onCloseBusyDialog();
