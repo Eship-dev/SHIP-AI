@@ -272,7 +272,8 @@ sap.ui.define([
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
                 eshipjetModel.setProperty("/shipNowGetBtn", true);
-                eshipjetModel.setProperty("/OverallGoodsMovementStatus", ""); 
+                eshipjetModel.setProperty("/OverallGoodsMovementStatus", "");
+                eshipjetModel.setProperty("/shipNowBtnStatus", true);
                 oController.onPackSectionEmptyRows();
                 // oController._handleDisplayShipNowPackTable();
                 // this._handleDisplayShipNowProductsTable();
@@ -1006,6 +1007,7 @@ sap.ui.define([
             eshipjetModel.setProperty("/shipNowTheArmorySelect", false );
             eshipjetModel.setProperty("/shipNowUPSSelect", false );
             eshipjetModel.setProperty("/shipNowUSPSSelect", false );
+            eshipjetModel.setProperty("/shipNowBtnStatus", true);
             oController.onPackSectionEmptyRows();
             
             // oBusyDialog.close();
@@ -2493,7 +2495,8 @@ sap.ui.define([
             eshipjetModel.setProperty("/trackingArray", []);
             eshipjetModel.setProperty("/ShipNowShipMethodSelectedKey","");
             eshipjetModel.setProperty("/accountNumber","");    
-            eshipjetModel.setProperty("/OverallGoodsMovementStatus", "");             
+            eshipjetModel.setProperty("/OverallGoodsMovementStatus", "");
+            eshipjetModel.setProperty("/shipNowBtnStatus", true);
             let myPromise = new Promise(function(myResolve, myReject) {
                 oController.shipNowData(sDeveliveryNumber, "ShipNow", myResolve);                                                    
             });
@@ -3899,6 +3902,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/BusinessPartners", []);
                 eshipjetModel.setProperty("/shipNowGetBtn", true);
                 eshipjetModel.setProperty("/OverallGoodsMovementStatus", ""); 
+                eshipjetModel.setProperty("/shipNowBtnStatus", true);
                 oController.onPackSectionEmptyRows();
                 // oController._handleDisplayShipNowPackTable();
 

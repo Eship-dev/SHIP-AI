@@ -35,8 +35,8 @@
 						press="onOpenSAPDeliveryList" />
 
 									<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch" value="{eshipjetModel>/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
-									<Input id="idSapDeliveryNumber"  value="{eshipjetModel>/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle sapDeliveryNumberInptBold create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd custom-input2" width="14%" editable="true" enabled="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
-									<Button text="Get" type="Ghost" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" press="onShipNowGetPress" width="4%"></Button>
+									<Input id="idSapDeliveryNumber" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{eshipjetModel>/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle sapDeliveryNumberInptBold create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd custom-input2" width="14%" editable="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
+									<Button text="Get" type="Ghost" enabled="{eshipjetModel>/shipNowBtnStatus}" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" press="onShipNowGetPress" width="4%"></Button>
 									<!-- <Button text="Consolidation" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" type="Ghost" press="handleConsolidationPress" width="8%"></Button> -->
 									<Label text="Ship Date" class="sapUiSmallMarginTop sapUiLargeMarginBegin" labelFor="DP1" width="6%" />
 									<DatePicker class="create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd" id="DP1" width="10%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" placeholder=" " />
