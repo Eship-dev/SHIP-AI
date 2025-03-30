@@ -11,8 +11,7 @@
     "HandlingUnitsLength":0,
     "selectedPackageMat": "CARTON BOX",
     "OverallGoodsMovementStatus": "",
-    "shipNowBtnStatus": true,
-    
+    "shipNowBtnStatus": true,    
     "shipNowGanderWhiteSelect": false,
     "shipNowABFSelect": false,
     "shipNowARTEXFineArtSrvSelect": false,
