@@ -10038,7 +10038,7 @@
                     "ShippingType": "FG"
                 },
                 {
-                    "ServiceName": "FedEx 2Day ® AM",
+                    "ServiceName": "FedEx 2Day® AM",
                     "ServiceCode": "FEDEX_2_DAY_AM",
                     "ShippingType": "F2"
                 },
@@ -10093,12 +10093,12 @@
             "CarrierName": "UPS",
             "carrierServices": [
                 {
-                    "ServiceName": "UPS Standard®",
+                    "ServiceName": "UPS Standard",
                     "ServiceCode": "11",
                     "ShippingType": "US"
                 },
                 {
-                    "ServiceName": "UPS Worldwide Express®",
+                    "ServiceName": "UPS Worldwide Express",
                     "ServiceCode": "07",
                     "ShippingType": "UW"
                 },
@@ -10108,37 +10108,37 @@
                     "ShippingType": "UG"
                 },
                 {
-                    "ServiceName": "UPS 2nd Day Air®",
+                    "ServiceName": "UPS 2nd Day Air",
                     "ServiceCode": "02",
                     "ShippingType": "U2"
                 },
                 {
-                    "ServiceName": "UPS Next Day Air® Early",
+                    "ServiceName": "UPS Next Day Air Early",
                     "ServiceCode": "14",
                     "ShippingType": "UN"
                 },
                 {
-                    "ServiceName": "UPS Next Day Air Saver®",
+                    "ServiceName": "UPS Next Day Air Saver",
                     "ServiceCode": "13",
                     "ShippingType": "UD"
                 },
                 {
-                    "ServiceName": "UPS 2nd Day Air A.M.®",
+                    "ServiceName": "UPS 2nd Day Air A.M.",
                     "ServiceCode": "59",
                     "ShippingType": "UA"
                 },
                 {
-                    "ServiceName": "UPS 3 Day Select®",
+                    "ServiceName": "UPS 3 Day Select",
                     "ServiceCode": "12",
                     "ShippingType": "U3"
                 },
                 {
-                    "ServiceName": "UPS Worldwide Express Plus®",
+                    "ServiceName": "UPS Worldwide Express Plus",
                     "ServiceCode": "08",
                     "ShippingType": "UE"
                 },
                 {
-                    "ServiceName": "UPS Next Day Air®",
+                    "ServiceName": "UPS Next Day Air",
                     "ServiceCode": "01",
                     "ShippingType": "UP"
                 }
