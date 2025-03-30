@@ -70,8 +70,10 @@ sap.ui.define([
         },
 
         carrierDisplay:function(sCarrier){
-            if(sCarrier.toUpperCase() === "FEDEX"){
+            if(sCarrier && sCarrier.toUpperCase() === "FEDEX"){
                 return "FedEx";
+            }else{
+                return sCarrier;
             }
         }
 	};

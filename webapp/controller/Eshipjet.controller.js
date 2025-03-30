@@ -1032,19 +1032,26 @@ sap.ui.define([
             var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
             var carrier = eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey");
             var serviceName = eshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey");
-
-            if(carrier.toUpperCase() === "UPS"){
-                var id = "6ljUpEbuu1OlOk7ow932lsxXHISUET0WKjTn59GzQ5MRdEbA";
-                var password = "ioZmsfcbrzlWfGh7wGMhqHL6sY4EAaKzZObullipni0cEGJGChjFmGpkcdCWQynK";
-            }else if(carrier.toUpperCase() === "FEDEX"){
-                var id = "l70c717f3eaf284dc9af42169e93874b6e";
-                var password = "7f271bf486084e8f8073945bb7e6a020";
-            }else if(carrier.toUpperCase() === "DHL"){
-                var id = "apT2vB7mV1qR1b";
-                var password = "U#3mO^1vY!5mT@0j";
-            }else if(carrier.toUpperCase() === "USPS"){
-                var id = "3087617";
-                var password = "October2024!";
+            var id, password, accountNumber;            
+          
+            if(carrier && carrier.toUpperCase() === "UPS"){
+                //old Credentials
+                id = "6ljUpEbuu1OlOk7ow932lsxXHISUET0WKjTn59GzQ5MRdEbA";  
+                password = "ioZmsfcbrzlWfGh7wGMhqHL6sY4EAaKzZObullipni0cEGJGChjFmGpkcdCWQynK";
+                //New Credentials
+                // id = "ujH6kAsuiDUETIVH66WQNzHG0YAcnEK4eX9qXna7R9A7BSCv";
+                // password = "Y9DwLg6bAnqjARxGnGkSUmCe2MG93FHu5G2unNYF85SHQ5AeR6BzrGEV6uS44tu7";
+                accountNumber = "B24W72";
+            }else if(carrier && carrier.toUpperCase() === "FEDEX"){
+                 id = "l70c717f3eaf284dc9af42169e93874b6e";
+                 password = "7f271bf486084e8f8073945bb7e6a020";
+                 accountNumber = "740561073";
+            }else if(carrier && carrier.toUpperCase() === "DHL"){
+                 id = "apT2vB7mV1qR1b";
+                 password = "U#3mO^1vY!5mT@0j";
+            }else if(carrier && carrier.toUpperCase() === "USPS"){
+                id = "3087617";
+                password = "October2024!";
             }
             var obj = {
                 "ShipTo": {
@@ -1225,7 +1232,7 @@ sap.ui.define([
                     "ConnectionType": "API",
                     "CostCenterName": "Cost Center 2",
                     "ShipfromCountry": "",
-                    "ShippingAccount": "740561073"
+                    "ShippingAccount": accountNumber
                 },
                 "shiprequest_id": 5348,
                 "InternationalDetails": [],
@@ -1477,7 +1484,7 @@ sap.ui.define([
                     "Carriertype": eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey"),
                     "CarrierDesc": eshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey"),
                     "Paymentcode": "Sender",
-                    "Shipperacct": "740561073",
+                    "Shipperacct": eshipjetModel.getProperty("/accountNumber"),
                     "Accountnumber": eshipjetModel.getProperty("/accountNumber"),
                     "Dutytaxpaytype": "SENDER",
                     "Dtaccountnumber": "",
@@ -2245,9 +2252,11 @@ sap.ui.define([
         showLabelAfterShipmentSuccess: function (response) {
             var oView = this.getView();
             var localModel = oView.getModel();
-            var encodedLabel = response.shippingDocuments[0].docName;
-            localModel.setProperty("/encodedLabel", encodedLabel);
-        
+            var sDocName, encodedLabel;
+            if(response && response.shippingDocuments && response.shippingDocuments.length > 0){
+                encodedLabel = response.shippingDocuments[0].docName;
+            }            
+            localModel.setProperty("/encodedLabel", encodedLabel);        
             if (!this.byId("idAfterShipmentLabelDialog")) {
                 Fragment.load({
                     id: oView.getId(),
@@ -12244,7 +12253,7 @@ sap.ui.define([
 
         onShopNowShipMethodAfterChange:function(selectedKey){
             var eshipjetModel =  this.getOwnerComponent().getModel("eshipjetModel");
-            var carrierconfiguration = eshipjetModel.getData().carrierconfiguration1;
+            var carrierconfiguration = eshipjetModel.getProperty("/carrierconfiguration1");
             for(var i=0; i<carrierconfiguration.length; i++){
                 if(carrierconfiguration[i].CarrierName === selectedKey){
                     var serviceNamesList = new JSONModel(carrierconfiguration[i]);
@@ -12252,13 +12261,30 @@ sap.ui.define([
                 }
             };
             eshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey", oController.ShippingType);
-            eshipjetModel.setProperty("/accountNumber", "740561073");
             for(var i=0; i<serviceNamesList.getProperty("/carrierServices").length; i++){
                 if(serviceNamesList.getProperty("/carrierServices")[i].ShippingType === oController.ShippingType){
                     eshipjetModel.setProperty("/carrierServiceName_dis", serviceNamesList.getProperty("/carrierServices")[i].ServiceName);
                     eshipjetModel.setProperty("/carrierServiceCode_display", serviceNamesList.getProperty("/carrierServices")[i].ServiceCode);
                 }
             }
+
+            if(selectedKey === "UPS"){
+                //eshipjetModel.setProperty("/accountNumber", "J95K52");
+                eshipjetModel.setProperty("/accountNumber", "B24W72");   
+                var ServiceDropdown = oController.getView().getModel("serviceNamesList").getProperty("/carrierServices");
+                var serviceObj = {};
+                ServiceDropdown.forEach(function(item, Idx){
+                    if(item.ShippingType === "UG"){
+                        serviceObj = item;
+                    }
+                });                
+                eshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey", "UG");
+                eshipjetModel.setProperty("/carrierServiceName_dis", serviceObj.ServiceName);
+                eshipjetModel.setProperty("/carrierServiceCode_display", serviceObj.ServiceCode);
+                
+            }else{
+                eshipjetModel.setProperty("/accountNumber", "740561073");                
+            }          
 
             var ShipNowShipMethodSelectedKey =  eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey");
             // eshipjetModel.setProperty("/accountNumber","");
@@ -13356,7 +13382,8 @@ sap.ui.define([
     },
     onShipRateRequest:function(resolve, reject, sRequestFrom){
         var oEshipjetModel  = oController.getOwnerComponent().getModel("eshipjetModel");
-        var oShipDataModel  = oController.getView().getModel("ShipNowDataModel");
+        var oShipDataModel  = oController.getView().getModel("ShipNowDataModel");  
+       
         var oPayload = {
             "HeaderInfo": {
                 "FeederSystem": "Manual",
