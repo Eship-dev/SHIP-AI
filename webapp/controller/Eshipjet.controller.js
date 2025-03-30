@@ -1416,7 +1416,7 @@ sap.ui.define([
             if (HandlingUnitsLength === "0" || HandlingUnitsLength === 0) {
                 HandlingUnitsLength = 1
             };
-            var grossWeight, shippingDocName;
+            var grossWeight, shippingDocName, packingSlip;
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             var shippingDocuments = eshipjetModel.getProperty("/shippingDocuments");
             var aHandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
@@ -1427,6 +1427,7 @@ sap.ui.define([
             grossWeight = eshipjetModel.getProperty("/packAddProductTable/0/ItemGrossWeight");
             
             shippingDocName = (shippingDocuments && shippingDocuments.length > 0) ? shippingDocuments[0].docName : "";
+            packingSlip = (shippingDocuments && shippingDocuments.length > 0) ? shippingDocuments[1].docName : "";
             oManifestDataObj =  {
                 "Saturdaydel": eshipjetModel.getProperty("/SaturdayDelivery"),
                 "Residentialdel": eshipjetModel.getProperty("/ResidentialDelivery"),
@@ -1601,7 +1602,8 @@ sap.ui.define([
                 "Edi997Status": "",
                 "Shipmentid": "",
                 "EodTimestamp": "",
-                "Labelurl": shippingDocName ? shippingDocName : "",
+                "Labelurl": shippingDocName,
+                "PackURL" : packingSlip,
                 "DgUrl": "",
                 "Multi": "",
                 "Legno": "",
@@ -2342,7 +2344,7 @@ sap.ui.define([
                 this._contentType = "Carrier Label";
             }
             this._dialogContent;
-                if(currentObj.docType === "PDF"){
+                if(currentObj.docType.toUpperCase() === "PDF"){
                     this._dialogContent = new sap.ui.core.HTML({
                         content: "<iframe src='"+docName+"' width='500px' height='600px'></iframe>"
                     })
@@ -2636,18 +2638,29 @@ sap.ui.define([
                             eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
                             var shippingDocuments = response.shippingDocuments;
                             var ashippingDocuments = [];
-                            for(var i=0; i<aFilteredData.length; i++){
+                            //for(var i=0; i<aFilteredData.length; i++){
                                 ashippingDocuments.push(
                                     {
-                                        "srNo": i+1,
+                                        "srNo": 1,
                                         "contentType": "Label",
                                         "copiesToPrint": 1,
                                         "encodedLabel": "",
                                         "docProvider": aFilteredData[0].Carriertype,
                                         "docType": aFilteredData[0].Labelurl.split(".")[aFilteredData[0].Labelurl.split(".").length-1],
                                         "docName": aFilteredData[0].Labelurl,
-                                })
-                            }
+                                });
+                                ashippingDocuments.push(
+                                    {
+                                        "srNo": 2,
+                                        "contentType": "Packing Slip",
+                                        "copiesToPrint": 1,
+                                        "encodedLabel": "",
+                                        "docProvider": "Eshipjet",
+                                        "docType": aFilteredData[0].PackURL.split(".")[aFilteredData[0].PackURL.split(".").length-1],
+                                        "docName": aFilteredData[0].PackURL,
+                                });
+
+                            //}
                             eshipjetModel.setProperty("/shippingDocuments", ashippingDocuments);
 
                             var trackingArray = [];
