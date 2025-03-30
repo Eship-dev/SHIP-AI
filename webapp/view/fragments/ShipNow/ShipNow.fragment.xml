@@ -6,14 +6,14 @@
 					<Text text="Ship Now"/>
 					<ToolbarSpacer/>
 
-				<Button text="PGI Successful." type="Ghost"
+				<!-- <Button text="PGI Successful." type="Ghost"
 					visible="{= ${eshipjetModel>/OverallGoodsMovementStatus} === 'C' }"
 					icon="sap-icon://accept" iconFirst="true"
 					enabled="false" class="sapUiSmallMarginEnd pgiSuccess" />
 				<Button text="PGI Failed." type="Ghost"
 					visible="{= ${eshipjetModel>/OverallGoodsMovementStatus} === 'A' }"
 					icon="sap-icon://decline" iconFirst="true"
-					enabled="false" class="sapUiSmallMarginEnd pgiFailed" />
+					enabled="false" class="sapUiSmallMarginEnd pgiFailed" /> -->
 
 						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn ship-now-decline_btn" type="Ghost" />
 				</Toolbar>
@@ -291,7 +291,7 @@
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Service Name" />
-													<ComboBox class="create-ship-req_input" items="{serviceNamesList>/carrierServices}" selectedKey="{eshipjetModel>/ShipNowShipsrvNameSelectedKey}">
+													<ComboBox class="create-ship-req_input" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/ShipNowShipsrvNameSelectedKey}">
 														<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
 													</ComboBox>
 													<Label text="Cost Center" />
