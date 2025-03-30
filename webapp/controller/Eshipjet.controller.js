@@ -1632,6 +1632,8 @@ sap.ui.define([
                 aHUnitsFilterData.forEach(function(item, index){
                     grossWeight = item.GrossWeight;                
                     oManifestDataObj["HandlingUnit"] = item.HandlingUnitExternalID;
+                    oManifestDataObj["PackageWeight"] = grossWeight;
+                    oManifestDataObj["Chargweight"]   = grossWeight;                
                     aManifestData.push(oManifestDataObj);
                 });
             }else{
