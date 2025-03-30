@@ -727,6 +727,11 @@
 															<ComboBox items="{eshipjetModel>/packageMaterial}" selectedKey="{eshipjetModel>/selectedPackageMat}" class="create-ship-req_input" width="auto" >
 																<core:Item key="{eshipjetModel>Product}" text="{eshipjetModel>Product}" />
 															</ComboBox>
+															<!-- <ComboBox selectedKey="{eshipjetModel>/selectedPackageMat}" class="create-ship-req_input" width="auto" >
+																<core:Item key="Your Package" text="Your Package" />
+																<core:Item key="Pallet" text="Pallet" />
+															</ComboBox> -->
+
 
 															<!-- <Label text="Dimensions" class="sapUiTinyMargin" />
 															<ComboBox items="{eshipjetModel>/packDimensions}" class=" create-ship-req_input" selectedKey="{eshipjetModel>/Packages/Dimension}">

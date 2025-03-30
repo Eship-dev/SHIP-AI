@@ -24,7 +24,8 @@
     <VBox class="customSimpleFormShadow">
   <!-- Delivery Image & Info -->
   <VBox justifyContent="Center" alignItems="Center" class="sapUiTinyMarginTop">
-    <Image src="https://drivemedical.eshipjet.site/assets/images/statusProgress.png" width="100%" height="100%" ></Image>
+    <!-- <Image src="https://drivemedical.eshipjet.site/assets/images/statusProgress.png" width="100%" height="100%" ></Image> -->
+    <Image src="{value: 'com/eshipjet/zeshipjet/css/images/statusProgress.png',formatter: 'sap.ui.require.toUrl'}" width="100%" height="100%" />
     <Text text="Delivered" class="GreenandCenter sapUiTinyMarginTop"/>
   </VBox>
 
@@ -104,8 +105,9 @@
   </HBox>
 
   <HBox class="customRow sapUiTinyMarginTop" width="100%" >
-    <core:Icon src="sap-icon://download" class="obtainProofOfDelivery" ></core:Icon>
-    <Text text="Obtain proof of delivery" class="obtainProofOfDelivery sapUiTinyMarginBegin" width="15rem" />
+    <!-- <core:Icon src="sap-icon://download" class="obtainProofOfDelivery" ></core:Icon>
+    <Text text="Obtain proof of delivery" class="obtainProofOfDelivery sapUiTinyMarginBegin" width="15rem" /> -->
+    <Button text="Obtain proof of delivery" icon="sap-icon://download" iconFirst="true" press="onObtainProofOfDeliveryPress" ></Button>
   </HBox>
 </VBox>
 

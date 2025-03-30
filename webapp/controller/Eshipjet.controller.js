@@ -1017,16 +1017,16 @@ sap.ui.define([
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var packAddProductTable = eshipjetModel.getProperty("/packAddProductTable");
             
-            var productCheck = false;
-            packAddProductTable.forEach(function(itm, idx){
-                if(itm.Material && itm.Material.length > 0){
-                    productCheck = true;
-                }
-            });
-            if(productCheck){
-                MessageBox.information("Please Pack all Products.");
-                return;
-            }
+            // var productCheck = false;
+            // packAddProductTable.forEach(function(itm, idx){
+            //     if(itm.Material && itm.Material.length > 0){
+            //         productCheck = true;
+            //     }
+            // });
+            // if(productCheck){
+            //     MessageBox.information("Please Pack all Products.");
+            //     return;
+            // }
             oController.onOpenBusyDialog();
             var oShipNowDataModel = this.getOwnerComponent().getModel("ShipNowDataModel");
             
@@ -1225,7 +1225,7 @@ sap.ui.define([
                     "costCenter": "",
                     "CarrierType": "Parcel",
                     "PaymentType": "Sender",
-                    "ServiceName": eshipjetModel.getProperty("/carrierServiceCode_display"),
+                    "ServiceName": eshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey"),
                     "ERPCarrierID":  carrier === 'FEDEX' ? 'FedEx' : carrier ,
                     "ShipToCountry": "",
                     "BillingAccount": "",
@@ -1420,7 +1420,7 @@ sap.ui.define([
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             var shippingDocuments = eshipjetModel.getProperty("/shippingDocuments");
             var aHandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
-            let oManifestDataObj = {}, aManifestData = [];
+            var oManifestDataObj = {}, aManifestData = [];
             var aHUnitsFilterData = aHandlingUnits.filter(function (item) {
                  return item.HandlingUnitReferenceDocument === sapDeliveryNumber;
             });
@@ -1474,7 +1474,7 @@ sap.ui.define([
                     "MultiSeq": "1",
                     "MultiLegno": "0",
                     "Totalpkg": HandlingUnitsLength ? HandlingUnitsLength.toString() : "0",
-                    "HandlingUnit": "10006973",
+                    "HandlingUnit": item.HandlingUnitExternalID,
                     "SalesOrder": "10006973",
                     "PurchaseOrder": "CANCL",
                     "TrackingNumber": eshipjetModel.getProperty("/trackingArray/0/TrackingNumber"),
@@ -1484,7 +1484,7 @@ sap.ui.define([
                     "Externaldoc": "",
                     "CarrierCode": eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey"),
                     "Carriertype": eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey"),
-                    "CarrierDesc": eshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey"),
+                    "CarrierDesc": eshipjetModel.getProperty("/carrierServiceName_dis"),
                     "Paymentcode": "Sender",
                     "Shipperacct": eshipjetModel.getProperty("/accountNumber"),
                     "Accountnumber": eshipjetModel.getProperty("/accountNumber"),
@@ -1492,8 +1492,8 @@ sap.ui.define([
                     "Dtaccountnumber": "",
                     "Dimensions": "10X12X12",
                     "Aesitn": "",
-                    "Vhilm": "PALLET",
-                    "Emailaddress": "Israel@gerimedix.com",
+                    "Vhilm": eshipjetModel.getProperty("/selectedPackageMat"),
+                    "Emailaddress": "",
                     "Signaturetype": "",
                     "RecCompany": ShipNowDataModel.getProperty("/ShipToAddress/BusinessPartnerName1"),
                     "RecContact": ShipNowDataModel.getProperty("/ShipToAddress/FullName"),
@@ -1637,15 +1637,18 @@ sap.ui.define([
             };
             ShipReadDataSrvModel.create("/ManifestHeaderSet", oPayload, {
                 success: function (oData) {
-                    MessageBox.success("Shipment processed successfully.", {
-                        actions: [MessageBox.Action.OK],
-                        emphasizedAction: MessageBox.Action.OK,
-                        onClose: function (sAction) {
-                            oController.showLabelAfterShipmentSuccess(eshipjetModel.getProperty("/ShipNowPostResponse"));
-                        },
-                        dependentOn: oController.getView()
-                    });
-                    console.log("Success:", oData);
+                    // MessageBox.success("Shipment processed successfully.", {
+                    //     actions: [MessageBox.Action.OK],
+                    //     emphasizedAction: MessageBox.Action.OK,
+                    //     onClose: function (sAction) {
+                    //         oController.showLabelAfterShipmentSuccess(eshipjetModel.getProperty("/ShipNowPostResponse"));
+                    //     },
+                    //     dependentOn: oController.getView()
+                    // });
+                    // console.log("Success:", oData);
+                    // oController.onCloseBusyDialog();
+                    MessageToast.show("Shipment processed successfully.");
+                    oController.showLabelAfterShipmentSuccess(eshipjetModel.getProperty("/ShipNowPostResponse"));
                     oController.onCloseBusyDialog();
                 },
                 error: function (oError) {
@@ -2543,7 +2546,7 @@ sap.ui.define([
                         oController.etag = oData.__metadata.etag;
                         oController.ShippingType = oData.ShippingType;
                         eshipjetModel.setProperty("/PlantCode",oData.ShippingPoint);
-                        //eshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey", oData.ShippingType);
+                        eshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey", oData.ShippingType);
                         eshipjetModel.setProperty("/OverallGoodsMovementStatus", oData.OverallGoodsMovementStatus);
                         oController.getManifestHeaderForCharges(sDeveliveryNumber);
                     },
@@ -2757,9 +2760,13 @@ sap.ui.define([
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var sPath = "";
             promise1 = new Promise((resolve, reject) => {    
-                aResults.sort((a, b) => b.PartnerFunction.localeCompare(a.PartnerFunction));      
-                eshipjetModel.setProperty("/ShipNowShipMethodSelectedKey", aResults[2].Supplier);
-                oController.onShopNowShipMethodAfterChange(aResults[2].Supplier);
+                var Supplier;
+                aResults.sort((a, b) => b.PartnerFunction.localeCompare(a.PartnerFunction)); 
+                if(aResults && aResults.length > 0){
+                    Supplier = aResults[2].Supplier
+                }
+                eshipjetModel.setProperty("/ShipNowShipMethodSelectedKey", Supplier);
+                oController.onShopNowShipMethodAfterChange(Supplier);
                 for (var i = 0; i < aResults.length; i++) {               
                     sPath = "/A_OutbDeliveryHeader('"+ sDocNumber +"')/to_DeliveryDocumentPartner(PartnerFunction='"+ aResults[i].PartnerFunction + "',SDDocument='"+ sDocNumber +"')/to_Address";
                     oDeliveryModel.read(sPath,{ "groupId":"addressDefferedgroupID", "merge":false});                               
@@ -2869,7 +2876,8 @@ sap.ui.define([
                                 // oController.onCloseBusyDialog();
                             },
                             error: function (oError) {
-                                var errMsg = JSON.parse(oError.responseText).error.message.value;
+                                // var errMsg = JSON.parse(oError.responseText).error.message.value;
+                                var errMsg = new DOMParser().parseFromString(oError.responseText, "text/xml").getElementsByTagName("message")[0].textContent;
                                 sap.m.MessageBox.error(errMsg);
                                 oController.onCloseBusyDialog();
                             }
@@ -13855,6 +13863,28 @@ sap.ui.define([
             if (oShipNowSAPDeliveryPopover) {
                 oShipNowSAPDeliveryPopover.close();
             }
+        },
+
+        onObtainProofOfDeliveryPress:function(oEvent){
+            var TrackingNumberTableRows = eshipjetModel.getProperty("/TrackingNumberTableRows");
+            if(TrackingNumberTableRows.CarrierCode.toUpperCase() === "UPS"){
+                var sFilePath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/css/pdfs/TrackingUPS.pdf"); // Adjust namespace
+                var oLink = document.createElement("a");
+                oLink.href = sFilePath;
+                oLink.download = "UPS_Tracking.pdf"; // Set the downloaded filename
+                document.body.appendChild(oLink);
+                oLink.click();
+                document.body.removeChild(oLink);
+            }else if(TrackingNumberTableRows.CarrierCode.toUpperCase() === "FEDEX"){
+                var sFilePath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/css/pdfs/TrackingFedex.pdf"); // Adjust namespace
+                var oLink = document.createElement("a");
+                oLink.href = sFilePath;
+                oLink.download = "FedEx_Tracking.pdf"; // Set the downloaded filename
+                document.body.appendChild(oLink);
+                oLink.click();
+                document.body.removeChild(oLink);
+            }
+            
         }
     
     });
