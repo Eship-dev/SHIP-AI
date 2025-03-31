@@ -10961,8 +10961,12 @@ sap.ui.define([
         handleHULinkPress: function (oEvent) {
             var oView = this.getView();
             var currentObj = oEvent.getSource().getBindingContext('eshipjetModel').getObject();
-            var ItemsInfoModel = new JSONModel(currentObj);
-            oController.getView().setModel(ItemsInfoModel, "ItemsInfoModel");
+            var handlingUnitItems = currentObj.to_HandlingUnitItem.results;
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel")
+            eshipjetModel.setProperty("/handlingUnitItems", handlingUnitItems);
+
+            // var ItemsInfoModel = new JSONModel(currentObj);
+            // oController.getView().setModel(ItemsInfoModel, "ItemsInfoModel");
 
             oController.HandlingUnitDlg = oController.byId("idHandlingUnitDialog1");
             if (!oController.HandlingUnitDlg) {

@@ -23,7 +23,7 @@
         </Toolbar>
 
            
-            <Table id="HandlingUnitTableId" items="{ItemsInfoModel>/ItemsInfo}">
+            <Table id="HandlingUnitTableId" items="{eshipjetModel>/handlingUnitItems}">
                 <columns>
                     <Column>
                         <Text text="Product"/>
@@ -38,9 +38,9 @@
                 <items>
                     <ColumnListItem>
                         <cells>
-                            <Text text="{ItemsInfoModel>Material}"/>
-                            <Text text="{ItemsInfoModel>DeliveryDocumentItemText}"/>
-                            <Text text="{ItemsInfoModel>ItemWeight}"/>
+                            <Text text="{eshipjetModel>HandlingUnitExternalID}"/>
+                            <Text text="{eshipjetModel>Material}"/>
+                            <Text text="{eshipjetModel>HandlingUnitQuantity}"/>
                         </cells>
                     </ColumnListItem>
                 </items>
