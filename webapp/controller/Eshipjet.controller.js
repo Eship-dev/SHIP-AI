@@ -12043,6 +12043,19 @@ sap.ui.define([
             oCurrentObject["SignedBy"] = "Stephen";
             oCurrentObject["ServiceName"] =  eshipjetModel.getProperty("/carrierServiceName_dis");
             eshipjetModel.setProperty("/TrackingNumberTableRows",oCurrentObject);
+            //Hardcoding values
+            var aTravelHistoryData = eshipjetModel.getProperty("/ShipmentTravelHistoryRows");
+            if(oCurrentObject.CarrierCode.toUpperCase() === "FEDEX"){
+                aTravelHistoryData.forEach(function(item, idx){
+                    item.Status = item.Status.replace("UPS", oCurrentObject.CarrierCode);
+                });                
+            }else if(oCurrentObject.CarrierCode.toUpperCase() === "UPS"){
+                aTravelHistoryData.forEach(function(item, idx){
+                    item.Status = item.Status.replace("FedEx", oCurrentObject.CarrierCode);
+                });
+            }
+            eshipjetModel.setProperty("/ShipmentTravelHistoryRows", aTravelHistoryData);
+           
             if (!this.byId("idTrackingNumberDialog")) {
                 Fragment.load({
                     id: oView.getId(),
