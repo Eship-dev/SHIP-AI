@@ -13720,27 +13720,31 @@ sap.ui.define([
                         oController.onOpenShipNowShippinRateDialog();
                     }else{
                         var sKey = oEshipjetModel.getProperty("/ShipNowShipMethodSelectedKey"), oCarrier = {};
-                        var sServiceKeyName = oEshipjetModel.getProperty("/carrierServiceName_dis");
-                        if(response && response.RateServices &&  response.RateServices.length > 0){
-                            response.RateServices.forEach(function(item, idx){
-                                if(sServiceKeyName === item.serviceName){
-                                    oCarrier = item;
-                                }
-                            })
+                        if(sKey !== "ABFS"){
+                            
+                            var sServiceKeyName = oEshipjetModel.getProperty("/carrierServiceName_dis");
+                            if(response && response.RateServices &&  response.RateServices.length > 0){
+                                response.RateServices.forEach(function(item, idx){
+                                    if(sServiceKeyName === item.serviceName){
+                                        oCarrier = item;
+                                    }
+                                })
+                            }
+                            oEshipjetModel.setProperty("/shipRateSelectItem", oCarrier);
+                            let fuelAmount = (oCarrier && oCarrier.surCharges && oCarrier.surCharges.length > 0 ) ? oCarrier.surCharges[0].amount : "";
+                            var aShippingCharges = [
+                                { "description": "Freight Amount", "amount": oCarrier.publishedFreight, "currency": "USD" },
+                                { "description": "Discount Amount", "amount": oCarrier.discountFreight_Cal, "currency": "USD" },
+                                { "description": "Fuel", "amount": fuelAmount, "currency": "USD" }
+                            ];
+                            eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
+                            oEshipjetModel.setProperty("/ShipNowShipMethodSelectedKey", oCarrier.Carrier);
+                            oEshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey", oCarrier.serviceCode);
+                            oEshipjetModel.setProperty("/ShipNowSelectedServiceName", oCarrier.serviceName);
+                            oEshipjetModel.setProperty("/accountNumber", oCarrier.AccountNumber); 
+                            oEshipjetModel.setProperty("/carrierServiceName_dis",oCarrier.serviceName);
                         }
-                        oEshipjetModel.setProperty("/shipRateSelectItem", oCarrier);
-                        let fuelAmount = (oCarrier && oCarrier.surCharges && oCarrier.surCharges.length > 0 ) ? oCarrier.surCharges[0].amount : "";
-                        var aShippingCharges = [
-                            { "description": "Freight Amount", "amount": oCarrier.publishedFreight, "currency": "USD" },
-                            { "description": "Discount Amount", "amount": oCarrier.discountFreight_Cal, "currency": "USD" },
-                            { "description": "Fuel", "amount": fuelAmount, "currency": "USD" }
-                        ];
-                        eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
-                        oEshipjetModel.setProperty("/ShipNowShipMethodSelectedKey", oCarrier.Carrier);
-                        oEshipjetModel.setProperty("/ShipNowShipsrvNameSelectedKey", oCarrier.serviceCode);
-                        oEshipjetModel.setProperty("/ShipNowSelectedServiceName", oCarrier.serviceName);
-                        oEshipjetModel.setProperty("/accountNumber", oCarrier.AccountNumber); 
-                        oEshipjetModel.setProperty("/carrierServiceName_dis",oCarrier.serviceName);
+                        
 
                     }
                 }
