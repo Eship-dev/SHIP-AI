@@ -1291,6 +1291,7 @@ sap.ui.define([
                                                 "ShipmentType": response.HeaderInfo.ShipmentType,
                                                 "CarrierCode": response.CarrierDetails.Carrier,
                                                 "ERPCarrierID": serviceName,
+                                                "ServiceName" : eshipjetModel.getProperty("/carrierServiceName_dis"),
                                                 "TrackingNumber": response.Packages[i].TrackingNumber,
                                                 "TrackingStatus": response.TrackingStatus,
                                                 "SHIP_TO_CONTACT": response.ShipTo.CONTACT,
@@ -2676,6 +2677,7 @@ sap.ui.define([
                                     "ShipmentType": aFilteredData[i].Shipmenttype,
                                     "CarrierCode": aFilteredData[i].CarrierCode,
                                     "ERPCarrierID": aFilteredData[i].CarrierCode,
+                                    "ServiceName": aFilteredData[i].CarrierDesc,
                                     "TrackingNumber": aFilteredData[i].TrackingNumber,
                                     "TrackingStatus": aFilteredData[i].DeliveryStatus,
                                     "SHIP_TO_CONTACT": aFilteredData[i].Contact,
@@ -12039,7 +12041,7 @@ sap.ui.define([
             oCurrentObject["StandardTransit"]= "01/31/25 before 2:39 PM";
             oCurrentObject["Delivered"] = "01/31/25 at 2:39 PM";
             oCurrentObject["SignedBy"] = "Stephen";
-            oCurrentObject["ServiceName"] = eshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey");
+            oCurrentObject["ServiceName"] =  eshipjetModel.getProperty("/carrierServiceName_dis");
             eshipjetModel.setProperty("/TrackingNumberTableRows",oCurrentObject);
             if (!this.byId("idTrackingNumberDialog")) {
                 Fragment.load({
@@ -13890,29 +13892,21 @@ sap.ui.define([
 
         onObtainProofOfDeliveryPress:function(oEvent){
             var TrackingNumberTableRows = eshipjetModel.getProperty("/TrackingNumberTableRows");
-            if(TrackingNumberTableRows.CarrierCode.toUpperCase() === "UPS"){
-                var sFilePath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/css/pdfs/TrackingUPS.pdf"); // Adjust namespace
-                var oLink = document.createElement("a");
-                oLink.href = sFilePath;
-                oLink.download = "UPS_Tracking.pdf"; // Set the downloaded filename
-                document.body.appendChild(oLink);
-                oLink.click();
-                document.body.removeChild(oLink);
+            var sFilePath, oLink, sDownloadFileName; 
+            if(TrackingNumberTableRows.CarrierCode.toUpperCase() === "UPS"){    
+                sFilePath = "https://eshipjet-products-dev.s3.us-east-1.amazonaws.com/Tracking+_+UPS+-+India.pdf";			
+                sDownloadFileName = "UPS_Tracking.pdf";             
             }else if(TrackingNumberTableRows.CarrierCode.toUpperCase() === "FEDEX"){
-                var sFilePath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/css/pdfs/TrackingFedex.pdf"); // Adjust namespace
-                var oLink = document.createElement("a");
-                oLink.href = sFilePath;
-                oLink.download = "FedEx_Tracking.pdf"; // Set the downloaded filename
-                document.body.appendChild(oLink);
-                oLink.click();
-                document.body.removeChild(oLink);
-            }
-            
-        }
-        // ,
-        // _getServiceNameDesc:function(){
-
-        // }
-    
+                sFilePath = "https://eshipjet-products-dev.s3.us-east-1.amazonaws.com/Fedex+POD.pdf";
+                sDownloadFileName = "FedEx_Tracking.pdf";
+            }   
+            oLink = document.createElement("a");
+            oLink.href = sFilePath;
+            oLink.target = "_blank";
+            oLink.download = sDownloadFileName; // Set the downloaded filename
+            document.body.appendChild(oLink);
+            oLink.click();
+            document.body.removeChild(oLink);             
+        }   
     });
 });

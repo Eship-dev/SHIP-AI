@@ -12,7 +12,7 @@
 
     <customHeader>
             <Toolbar height="3.5rem" >
-                <Title text="ShipperCopilot Tracking ID - 794817852547" />
+                <Title text="ShipperCopilot Tracking ID - {eshipjetModel>/TrackingNumberTableRows/TrackingNumber}" />
                 <ToolbarSpacer />
                 <Button icon="sap-icon://decline" class="Decline_Btn ship-now-decline_btn" press="TrackingNumberCancelDialog" />
             </Toolbar>
@@ -71,25 +71,25 @@
   <!-- Second Row: Service Name -->
   <HBox class="customRow" width="100%">
     <Label text="Service Name:" class="customLabel" width="15rem" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/ERPCarrierID}" class="customTextField centerText" width="15rem" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/ServiceName}" class="customTextField centerText" width="15rem" />
   </HBox>
   
   <!-- Third Row: Delivered To -->
   <HBox class="customRow" width="100%" >
     <Label text="Delivered To:" class="customLabel" width="15rem" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/RecCompany}" class="customTextField centerText" width="15rem" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/COMPANY}" class="customTextField centerText" width="15rem" />
   </HBox>
   
   <!-- Fourth Row: Ship Date -->
   <HBox class="customRow" width="100%" >
-    <Label text="Ship Date:" class="customLabel" width="15rem" />
-    <Text text="{path: 'eshipjetModel>/TrackingNumberTableRows/Delivered', formatter: '.formatter.formatDate'}" class="customTextField centerText" width="15rem" />
+    <Label text="Ship Date:" class="customLabel" width="15rem" />  
+    <Text text="{path: 'eshipjetModel>/TrackingNumberTableRows/ShipDate', formatter: '.formatter.formatDate'}" class="customTextField centerText" width="15rem" />
   </HBox>
   
   <!-- Fifth Row: Standard Transit -->
   <HBox class="customRow" width="100%" >
     <Label text="Standard Transit:" class="customLabel" width="15rem" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/TransitDays}" class="customTextField centerText" width="15rem" />
+    <Text text="{eshipjetModel>/TrackingNumberTableRows/StandardTransit}" class="customTextField centerText" width="15rem" />
   </HBox>
   
   <!-- Sixth Row: Delivered -->

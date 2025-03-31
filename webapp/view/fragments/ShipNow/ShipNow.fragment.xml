@@ -1619,8 +1619,8 @@
 														<Text text="{path: 'eshipjetModel>CreatedDate', formatter: '.formatter.formatDate'}" />
 														<Text text="{path: 'eshipjetModel>ShipDate', formatter: '.formatter.formatDate'}" />
 														<Text text="{eshipjetModel>ShipmentType}" />
-														<Text text="{eshipjetModel>Carrier}" />
-														<Text text="{eshipjetModel>ERPCarrierID}" />
+														<Text text="{eshipjetModel>CarrierCode}" />
+														<Text text="{eshipjetModel>ServiceName}" />
 														<Link text="{eshipjetModel>TrackingNumber}" press="onTrackingNumberPress" />
 														<Text text="{eshipjetModel>TrackingStatus}" />
 														<Text text="{eshipjetModel>SHIP_TO_CONTACT}" />
