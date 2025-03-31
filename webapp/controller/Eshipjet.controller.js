@@ -1627,6 +1627,7 @@ sap.ui.define([
                 "EodTimestamp": "",
                 "Labelurl": shippingDocName,
                 "PackURL" : packingSlip,
+                "BOLURL": billOfLading,
                 "DgUrl": "",
                 "Multi": "",
                 "Legno": "",
@@ -2737,6 +2738,19 @@ sap.ui.define([
                                         "docType": aFilteredData[0].PackURL.split(".")[aFilteredData[0].PackURL.split(".").length-1],
                                         "docName": aFilteredData[0].PackURL,
                                 });
+
+                                if(aFilteredData[0].BolURL !== "" && aFilteredData[0].BolURL !== undefined){    
+                                    ashippingDocuments.push(
+                                        {
+                                            "srNo": 3,
+                                            "contentType": "Bill Of lading",
+                                            "copiesToPrint": 1,
+                                            "encodedLabel": "",
+                                            "docProvider": "Eshipjet",
+                                            "docType": aFilteredData[0].BolURL.split(".")[aFilteredData[0].BolURL.split(".").length-1],
+                                            "docName": aFilteredData[0].BolURL,
+                                    });
+                                }
 
                             //}
                             eshipjetModel.setProperty("/shippingDocuments", ashippingDocuments);
@@ -13743,6 +13757,13 @@ sap.ui.define([
                             oEshipjetModel.setProperty("/ShipNowSelectedServiceName", oCarrier.serviceName);
                             oEshipjetModel.setProperty("/accountNumber", oCarrier.AccountNumber); 
                             oEshipjetModel.setProperty("/carrierServiceName_dis",oCarrier.serviceName);
+                        }else{
+                            var aShippingCharges = [
+                                { "description": "Freight Amount", "amount": "100.00", "currency": "USD" },
+                                { "description": "Discount Amount", "amount": "80.00", "currency": "USD" },
+                                { "description": "Fuel", "amount": "10.00", "currency": "USD" }
+                            ];
+                            eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
                         }
                         
 
