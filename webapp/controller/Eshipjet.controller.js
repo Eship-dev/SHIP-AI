@@ -946,6 +946,7 @@ sap.ui.define([
 
         onShipNowNewPress:function(){
             // oController.onOpenBusyDialog();
+            oController.getView().setBusy(true);
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             var shipFromObj = {
                 "ShipFromCONTACT": "",
@@ -1010,7 +1011,8 @@ sap.ui.define([
             eshipjetModel.setProperty("/shipNowBtnStatus", true);
             oController.onPackSectionEmptyRows();
             
-            // oBusyDialog.close();
+            // oController.onCloseBusyDialog();
+            oController.getView().setBusy(false);
         },
        
         onShipNowPress: function () {       

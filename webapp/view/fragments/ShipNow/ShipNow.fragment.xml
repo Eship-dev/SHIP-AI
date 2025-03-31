@@ -119,7 +119,7 @@
 														<Button icon="sap-icon://customer-briefing" enabled="{eshipjetModel>/shipNowBtnStatus}" press="ShipToPickAnAddressPopoverPress" id="idShipToAddressBtn" />
 														<Button icon="sap-icon://add" enabled="{eshipjetModel>/shipNowBtnStatus}" press="onShipNowAddIconPress" ></Button>
 														<ToolbarSpacer ></ToolbarSpacer>
-														<Button text="Validate Address" class="validateAddress__button" type="Ghost" width="auto" />
+														<Button text="Validate Address" enabled="{eshipjetModel>/shipNowBtnStatus}" class="validateAddress__button" type="Ghost" width="auto" />
 													</Toolbar>
 													<Label text="Contact Name" />
 													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/FullName}" />
@@ -1091,7 +1091,7 @@
 
 							<ui:footer>
 								<Toolbar height="3rem" class="toolbarbottomborder" >
-									<Button text="Add Product" id="idShipNowAddProduct" press="onPressAddProduct" class="scan-ship-toolbar1__button" width="145px" type="Ghost" ></Button>
+									<Button text="Add Product" enabled="{eshipjetModel>/shipNowBtnStatus}" id="idShipNowAddProduct" press="onPressAddProduct" class="scan-ship-toolbar1__button" width="145px" type="Ghost" ></Button>
 								</Toolbar>
 								
 							</ui:footer>
