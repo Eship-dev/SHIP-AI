@@ -35,8 +35,8 @@
 						press="onOpenSAPDeliveryList" />
 
 									<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch" value="{eshipjetModel>/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
-									<Input id="idSapDeliveryNumber" value="{eshipjetModel>/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle sapDeliveryNumberInptBold create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd custom-input2" width="14%" editable="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
-									<Button text="Get" type="Ghost" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" press="onShipNowGetPress" width="4%"></Button>
+									<Input id="idSapDeliveryNumber" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{eshipjetModel>/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle sapDeliveryNumberInptBold create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd custom-input2" width="14%" editable="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
+									<Button text="Get" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Ghost" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" press="onShipNowGetPress" width="4%"></Button>
 									<!-- <Button text="Consolidation" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" type="Ghost" press="handleConsolidationPress" width="8%"></Button> -->
 									<Label text="Ship Date" class="sapUiSmallMarginTop sapUiLargeMarginBegin" labelFor="DP1" width="6%" />
 									<DatePicker class="create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd" id="DP1" width="10%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" placeholder=" " />
@@ -55,50 +55,51 @@
 												<f:content>
 													<Toolbar ariaLabelledBy="idShipFrom" class="customLine" >
 														<Title id="idShipFrom" text="Ship From" />
-														<Button icon="sap-icon://customer-briefing" press="ShipNowPickAnAddressPopoverPress" id="idShipFromAddressBtn" />
+														<Button icon="sap-icon://customer-briefing" enabled="{eshipjetModel>/shipNowBtnStatus}" press="ShipNowPickAnAddressPopoverPress" id="idShipFromAddressBtn" />
 													</Toolbar>
 													
 													<Label text="Contact Name" class="sapUiTinyMarginTop" />
-													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromCONTACT}" class="sapUiSmallMarginBottom create-ship-req_input" />
+													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromCONTACT}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="sapUiSmallMarginBottom create-ship-req_input" />
 													<Label text="Address Line 1" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE1}"></Input>
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE1}"></Input>
 													<Label text="City" />													
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromCITY}" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromCITY}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
 													<!-- <Label text="State / Province" /> -->
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" maxLength="3" value="{ShipNowDataModel>/ShipFromAddress/ShipFromSTATE}" placeholder="State" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" maxLength="3" value="{ShipNowDataModel>/ShipFromAddress/ShipFromSTATE}" placeholder="State" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
 													<Label text="Email" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromEMAIL}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromEMAIL}" />
 													<Label text="Company Name" class="sapUiTinyMarginTop" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromCOMPANY}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromCOMPANY}" />
 													<Label text="Address Line 2" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE2}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE2}" />
 													<Label text="Zip / Postal Code" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromZIPCODE}" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromZIPCODE}" >
 													<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipFromAddress/ShipFromCOUNTRY}" placeholder="Country" >
+													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipFromAddress/ShipFromCOUNTRY}" placeholder="Country" >
 														<core:Item key="{eshipjetModel>code}" text="{eshipjetModel>name}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>													
 													</ComboBox>
 													<Label text="Phone No" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipFromAddress/ShipFromPHONE}" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromPHONE}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" 
+													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input"
+														enabled="{eshipjetModel>/shipNowBtnStatus}" 
 														selectedKey="{ShipNowDataModel>/ShipFromAddress/LocationType}"
 														items="{eshipjetModel>/shipNowAddressType}" 
 														placeholder="Address Type">
@@ -115,51 +116,52 @@
 														<f:content>
 													<Toolbar ariaLabelledBy="idShipTo" class="customLine" >
 														<Title id="idShipTo" text="Ship To" class="sapdShipTocolor" />
-														<Button icon="sap-icon://customer-briefing" press="ShipToPickAnAddressPopoverPress" id="idShipToAddressBtn" />
-														<Button icon="sap-icon://add" press="onShipNowAddIconPress" ></Button>
+														<Button icon="sap-icon://customer-briefing" enabled="{eshipjetModel>/shipNowBtnStatus}" press="ShipToPickAnAddressPopoverPress" id="idShipToAddressBtn" />
+														<Button icon="sap-icon://add" enabled="{eshipjetModel>/shipNowBtnStatus}" press="onShipNowAddIconPress" ></Button>
 														<ToolbarSpacer ></ToolbarSpacer>
 														<Button text="Validate Address" class="validateAddress__button" type="Ghost" width="auto" />
 													</Toolbar>
 													<Label text="Contact Name" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/FullName}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/FullName}" />
 													<Label text="Address Line 1" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/StreetName}"></Input>
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/StreetName}"></Input>
 													<Label text="City" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/Region}" maxLength="3" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/Region}" maxLength="3" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>									
 													</Input>
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/CityName}" placeholder="State" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/CityName}" placeholder="State" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
 													<Label text="Email" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/EMAIL}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/EMAIL}" />
 													<Label text="Company Name" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/BusinessPartnerName1}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/BusinessPartnerName1}" />
 													<Label text="Address Line 2" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/HouseNumber}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/HouseNumber}" />
 													<Label text="Zip / Postal Code" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/PostalCode}" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/PostalCode}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" selectedKey="{ShipNowDataModel>/ShipToAddress/Country}" items="{eshipjetModel>/countriesList}" placeholder="Country">
+													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" selectedKey="{ShipNowDataModel>/ShipToAddress/Country}" items="{eshipjetModel>/countriesList}" placeholder="Country">
 														<core:Item key="{eshipjetModel>code}" text="{eshipjetModel>name}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</ComboBox>
 													<Label text="Phone No" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" value="{ShipNowDataModel>/ShipToAddress/PhoneNumber}" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/PhoneNumber}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
 													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" 
+														enabled="{eshipjetModel>/shipNowBtnStatus}"
 														selectedKey="{ShipNowDataModel>/ShipToAddress/LocationType}" 
 														items="{eshipjetModel>/shipNowAddressType}" 
 														placeholder="Address Type">
@@ -183,7 +185,7 @@
 									<ui:Column width="3rem">
 										<Label text="" />
 										<ui:template>
-											<Button icon="sap-icon://search" type="Transparent" press="handleSearchPickAnAddressPress" />
+											<Button icon="sap-icon://search" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" press="handleSearchPickAnAddressPress" />
 										</ui:template>
 									</ui:Column>
 
@@ -283,42 +285,42 @@
 											<f:SimpleForm id="RoutingandBillingDetails"  editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4" >
 												<f:content>
 													<Label text="Ship Method Description" />
-													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/ShipNowShipMethodSelectedKey}"   selectionChange="onShopNowShipMethodTypeChange"  >
+													<ComboBox class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/ShipNowShipMethodSelectedKey}"   selectionChange="onShopNowShipMethodTypeChange"  >
 														<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
 													</ComboBox>
 													<Label text="Payment Type" />
-													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/paymentType}">
+													<ComboBox class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" items="{eshipjetModel>/paymentType}">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Service Name" />
-													<ComboBox class="create-ship-req_input" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/ShipNowShipsrvNameSelectedKey}">
+													<ComboBox class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/ShipNowShipsrvNameSelectedKey}">
 														<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
 													</ComboBox>
 													<Label text="Cost Center" />
-													<ComboBox class="create-ship-req_input" items="{eshipjetModel>/costCenter}">
+													<ComboBox class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" items="{eshipjetModel>/costCenter}">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Ship Method ID" />
-													<Input value="{eshipjetModel>/shipMethodId}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/shipMethodId}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text="PO No" />
-													<Input value="{eshipjetModel>/poNo}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/poNo}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text="Account No" class="LabelPadClass" />
-													<Button text="Get Carrier" class="scan-ship-toolbar1__button" type="Ghost" >
+													<Button text="Get Carrier" class="scan-ship-toolbar1__button" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Ghost" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="4" cellsLarge="4" />
 														</layoutData>
 													</Button>
-													<Input value="{eshipjetModel>/accountNumber}" class="create-ship-req_input" >
+													<Input value="{eshipjetModel>/accountNumber}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" >
 														
 													</Input>
 													<Label text="Invoice No" />
-													<Input value="{eshipjetModel>/invoiceNo}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/invoiceNo}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" />
 												</f:content>
 											</f:SimpleForm>
 											<!-- <Toolbar class="toolbarbottomborder" height="10%" width="100%">		 -->
 												<VBox width="99%">					
 													<Label text="Special Instructions" class="sapUiTinyMarginBegin"></Label>
-													<TextArea value="{eshipjetModel>/specialInstructions}" width="100%"  class="sapUiTinyMargin"></TextArea>
+													<TextArea value="{eshipjetModel>/specialInstructions}" enabled="{eshipjetModel>/shipNowBtnStatus}" width="100%"  class="sapUiTinyMargin"></TextArea>
 												</VBox>
 											<!-- </Toolbar>	 -->
 										</VBox>
@@ -327,97 +329,97 @@
 											<f:SimpleForm visible="{eshipjetModel>/shipNowFedExSelect}"  id="RoutingandBillingDetails2" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
 												<f:content>
 													<Label text="Signature Option" class="create-ship-req_input" />
-													<ComboBox items="{eshipjetModel>/signatureOption}" class="create-ship-req_input" >
+													<ComboBox items="{eshipjetModel>/signatureOption}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Insurance Charge" />
-													<Input value="{eshipjetModel>/insuranceChange}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/insuranceChange}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text="Packing Cost" />
-													<Input value="{eshipjetModel>/packingCost}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/packingCost}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text=""></Label>
-													<CheckBox text="Priority Alert" selected="{eshipjetModel>/PriorityAlert}" class="sapUiSmallMarginTop"></CheckBox> 
+													<CheckBox text="Priority Alert" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/PriorityAlert}" class="sapUiSmallMarginTop"></CheckBox> 
 													<Label text=""></Label>
-													<CheckBox text="Email Notifications" selected="{eshipjetModel>/EmailNotifications}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Email Notifications" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/EmailNotifications}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Broker Select" selected="{eshipjetModel>/BrokerSelect}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Broker Select" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/BrokerSelect}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="" />
-													<CheckBox text="Dry Ice" selected="{eshipjetModel>/DryIce1}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Dry Ice" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/DryIce1}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Inside Pickup" selected="{eshipjetModel>/InsidePickup}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Inside Pickup" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/InsidePickup}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="" visible="false"></Label>
-													<CheckBox text="Delivery On Invoice Acceptance Detail" selected="{eshipjetModel>/DeliveryOnInvoiceAcceptance}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Delivery On Invoice Acceptance Detail" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/DeliveryOnInvoiceAcceptance}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Alcohol" selected="{eshipjetModel>/Alcohol}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Alcohol" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/Alcohol}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text="Indicia" />
-													<ComboBox items="{eshipjetModel>/indicia}" class="create-ship-req_input">
+													<ComboBox items="{eshipjetModel>/indicia}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Handling Cost" />
-													<Input value="{eshipjetModel>/handlingCost}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/handlingCost}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text=""></Label>
-													<CheckBox text="Saturday Pickup" selected="{eshipjetModel>/SaturdayPickup}" class="sapUiSmallMarginTop" ></CheckBox>
+													<CheckBox text="Saturday Pickup" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/SaturdayPickup}" class="sapUiSmallMarginTop" ></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Priority Alert Plus" selected="{eshipjetModel>/PriorityAlertPlus}" class="sapUiSmallMarginTop"></CheckBox> 
+													<CheckBox text="Priority Alert Plus" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/PriorityAlertPlus}" class="sapUiSmallMarginTop"></CheckBox> 
 													<Label text=""></Label>
-													<CheckBox text="Delivery Notifications" selected="{eshipjetModel>/DeliveryNotifications}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Delivery Notifications" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/DeliveryNotifications}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Hold at location" selected="{eshipjetModel>/HoldAtLocation}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Hold at location" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/HoldAtLocation}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="ETD Detail" selected="{eshipjetModel>/EtdDetail}" class="sapUiSmallMarginTop"></CheckBox> 
+													<CheckBox text="ETD Detail" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/EtdDetail}" class="sapUiSmallMarginTop"></CheckBox> 
 													<Label text="" />
-													<CheckBox text="Electronic Trade Document" selected="{eshipjetModel>/ElectronicTradeDocument}" class="sapUiSmallMarginTop"></CheckBox> 
+													<CheckBox text="Electronic Trade Document" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/ElectronicTradeDocument}" class="sapUiSmallMarginTop"></CheckBox> 
 													<Label text=""></Label>
-													<CheckBox text="International Traffic InArmsRegulations Detail" selected="{eshipjetModel>/InternationalTrafficInArms}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="International Traffic InArmsRegulations Detail" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/InternationalTrafficInArms}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="" visible="false"></Label>
-													<CheckBox text="Battery" selected="{eshipjetModel>/Battery}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Battery" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/Battery}" class="sapUiSmallMarginTop"></CheckBox>
 
 
 													<Label text="Ancillary Endorsement" />
-													<ComboBox items="{eshipjetModel>/ancillaryEndorsement}" class="create-ship-req_input">
+													<ComboBox items="{eshipjetModel>/ancillaryEndorsement}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>	
 													<Label text="Freight Charge" />
-													<Input value="{eshipjetModel>/freightCharge}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/freightCharge}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text=""></Label>
-													<CheckBox text="Saturday Delivery" selected="{eshipjetModel>/SaturdayDelivery}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Saturday Delivery" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/SaturdayDelivery}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Fedex One Rate" selected="{eshipjetModel>/FedexOneRate}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Fedex One Rate" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/FedexOneRate}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Exception Notifications" selected="{eshipjetModel>/ExceptionNotifications}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Exception Notifications" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/ExceptionNotifications}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="" />
-													<CheckBox text="Home Delivery Premium" selected="{eshipjetModel>/HomeDeliveryPremium}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Home Delivery Premium" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/HomeDeliveryPremium}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Email Return Label" selected="{eshipjetModel>/EmailReturnLabel}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Email Return Label" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/EmailReturnLabel}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Third Party Consignee" selected="{eshipjetModel>/ThirdPartyConsignee}" class="sapUiSmallMarginTop"></CheckBox>  
+													<CheckBox text="Third Party Consignee" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/ThirdPartyConsignee}" class="sapUiSmallMarginTop"></CheckBox>  
 													<Label text="" />
-													<CheckBox text="Pending Shipment Detail" selected="{eshipjetModel>/PendingShipmentDetail}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Pending Shipment Detail" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/PendingShipmentDetail}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="International Controlled Export" selected="{eshipjetModel>/InternationalControlledExport}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="International Controlled Export" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/InternationalControlledExport}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text="Lithium Batteries" />
-													<ComboBox items="{eshipjetModel>/lithiumBatteries}" class="create-ship-req_input" >
+													<ComboBox items="{eshipjetModel>/lithiumBatteries}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Taxes or Misc Charges" />
-													<Input value="{eshipjetModel>/taxesOrMiscCharges}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/taxesOrMiscCharges}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text=""></Label>
-													<CheckBox text="Residential Delivery" selected="{eshipjetModel>/ResidentialDelivery}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Residential Delivery" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/ResidentialDelivery}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Event Notification" selected="{eshipjetModel>/EventNotification}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Event Notification" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/EventNotification}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Ship Alert Email" selected="{eshipjetModel>/ShipAlertEmail}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Ship Alert Email" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/ShipAlertEmail}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Print Return Label" selected="{eshipjetModel>/PrintReturnLabel}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Print Return Label" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/PrintReturnLabel}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="" visible="false" ></Label>
-													<CheckBox text="Inside Delivery" selected="{eshipjetModel>/InsideDelivery}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Inside Delivery" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/InsideDelivery}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Protection From Freezing" selected="{eshipjetModel>/ProtectionFromFreezing}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Protection From Freezing" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/ProtectionFromFreezing}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Shipment COD Detail" selected="{eshipjetModel>/ShipmentCODDetail}" class="sapUiSmallMarginTop"></CheckBox> 
+													<CheckBox text="Shipment COD Detail" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/ShipmentCODDetail}" class="sapUiSmallMarginTop"></CheckBox> 
 													<Label text="" visible="false"></Label>
-													<CheckBox text="Home Delivery Premium" selected="{eshipjetModel>/HomeDeliveryPremium}" class="sapUiSmallMarginTop"></CheckBox> 
+													<CheckBox text="Home Delivery Premium" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/HomeDeliveryPremium}" class="sapUiSmallMarginTop"></CheckBox> 
 
 													
 													
@@ -430,29 +432,29 @@
 										<f:SimpleForm  visible="{eshipjetModel>/shipNowDHLSelect}"  id="RoutingandBillingDetails2ry" class="sapUiTinyMarginTop" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
 												<f:content>									
 													<Label text=""></Label>
-													<CheckBox text="Go Green Plus" selected="{eshipjetModel>/GoGreenPlus}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Go Green Plus" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/GoGreenPlus}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Residential Delivery" selected="{eshipjetModel>/ResidentialDelivery}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Residential Delivery" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/ResidentialDelivery}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
-													<CheckBox text="Neutral Delivery Service" selected="{eshipjetModel>/NeutralDeliveryService}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Neutral Delivery Service" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/NeutralDeliveryService}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="Dry Ice Value" />
-													<ComboBox items="{eshipjetModel>/}" class="create-ship-req_input">
+													<ComboBox items="{eshipjetModel>/}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text=""></Label>
-													<CheckBox text="Insurance" selected="{eshipjetModel>/Insurance}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Insurance" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/Insurance}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="Dry Ice Units" />
-													<ComboBox items="{eshipjetModel>/}" class="create-ship-req_input" >
+													<ComboBox items="{eshipjetModel>/}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text=""></Label>
-													<CheckBox text="Paperless Invoice" selected="{eshipjetModel>/PaperlessInvoice}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Paperless Invoice" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/PaperlessInvoice}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text="Signature Option Type" />
-													<ComboBox items="{eshipjetModel>/}" class="create-ship-req_input" >
+													<ComboBox items="{eshipjetModel>/}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text=""></Label>
-													<CheckBox text="Dry Ice" selected="{eshipjetModel>/DryIce2}" class="sapUiSmallMarginTop"></CheckBox>																																																				
+													<CheckBox text="Dry Ice" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/DryIce2}" class="sapUiSmallMarginTop"></CheckBox>																																																				
 												</f:content>
 											</f:SimpleForm>
 
@@ -460,30 +462,30 @@
 										<f:SimpleForm   visible="{eshipjetModel>/shipNowFastFarwarderSelect}" id="RoutingandBillingDetails2ry1" class="sapUiTinyMarginTop" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
 												<f:content>									
 												<Label text="Approve Freight" />
-													<ComboBox items="{eshipjetModel>/}" class="create-ship-req_input" >
+													<ComboBox items="{eshipjetModel>/}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>	
 												<Label text="Freight Approval Status" />
-													<ComboBox items="{eshipjetModel>/}" class="create-ship-req_input" >
+													<ComboBox items="{eshipjetModel>/}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 												<Label text="Reason" />
-												<TextArea ></TextArea>																																																	
+												<TextArea enabled="{eshipjetModel>/shipNowBtnStatus}" ></TextArea>																																																	
 												</f:content>
 											</f:SimpleForm>
 
 									    <f:SimpleForm  visible="{eshipjetModel>/shipNowOtherSelect}" id="RoutingandBillingDetails2r2y" class="sapUiTinyMarginTop" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
 												<f:content>									
 												<Label text="Approve Freight" />
-													<ComboBox items="{eshipjetModel>/}" class="create-ship-req_input" >
+													<ComboBox items="{eshipjetModel>/}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>	
 												<Label text="Freight Approval Status" />
-													<ComboBox items="{eshipjetModel>/}" class="create-ship-req_input" >
+													<ComboBox items="{eshipjetModel>/}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 												<Label text="Reason" />
-												<TextArea ></TextArea>																																																		
+												<TextArea enabled="{eshipjetModel>/shipNowBtnStatus}" ></TextArea>																																																		
 												</f:content>
 											</f:SimpleForm>
 
@@ -496,107 +498,107 @@
 														columnsXL="5">
 												<f:content>
 													<Label text="Discount/Rebate"></Label>
-													<Input class="create-ship-req_input" ></Input>
+													<Input class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" ></Input>
 
 													<Label text="COD Amount"></Label>
-													<Input class="create-ship-req_input" ></Input>
+													<Input class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" ></Input>
 
 													<Label text="Endorsement"></Label>
-													<ComboBox items="{eshipjetModel>/}" class="create-ship-req_input" >
+													<ComboBox items="{eshipjetModel>/}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 
 													<Label text=""></Label>
-													<CheckBox text="Email Notification" selected="{eshipjetModel>/EmailNotification}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Email Notification" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/EmailNotification}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text=""></Label>
-													<CheckBox text="Residential Flag" selected="{eshipjetModel>/ResidentialFlag}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Residential Flag" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/ResidentialFlag}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text=""></Label>
-													<CheckBox text="Return Shipment Only" selected="{eshipjetModel>/ReturnShipmentOnly}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Return Shipment Only" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/ReturnShipmentOnly}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text="Signature Type"></Label>
-													<ComboBox items="{}" class="create-ship-req_input" >
+													<ComboBox items="{}" class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 
 													<Label text="Currency"></Label>
-													<ComboBox items="{}" class="create-ship-req_input" >
+													<ComboBox items="{}" class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 
 													<Label text="Freight Charge"></Label>
-													<Input class="create-ship-req_input" ></Input>
+													<Input class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" ></Input>
 
 													<Label text=""></Label>
-													<CheckBox text="Exception Notification" selected="{eshipjetModel>/ExceptionNotification}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Exception Notification" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/ExceptionNotification}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text=""></Label>
 													<CheckBox text="Large Package Indicator" selected="{eshipjetModel>/LargePackageIndicator}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text=""></Label>
-													<CheckBox text="COD" selected="{eshipjetModel>/COD}" class="sapUiSmallMarginTop"></CheckBox>
-													<Button icon="sap-icon://request" type="Transparent" class="sapUiSmallMarginTop" press="onShipNowCodEditPress" ></Button>
+													<CheckBox text="COD" selected="{eshipjetModel>/COD}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="sapUiSmallMarginTop"></CheckBox>
+													<Button icon="sap-icon://request" type="Transparent" enabled="{eshipjetModel>/shipNowBtnStatus}" class="sapUiSmallMarginTop" press="onShipNowCodEditPress" ></Button>
 
 													<Label text="Declared Amount"></Label>
-													<Input class="create-ship-req_input" ></Input>
+													<Input class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" ></Input>
 
 													<Label text="Return Shipment Type"></Label>
-													<ComboBox items="{}">
+													<ComboBox items="{}" enabled="{eshipjetModel>/shipNowBtnStatus}" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 
 													<Label text="Insurance Charge"></Label>
-													<Input class="create-ship-req_input" ></Input>
+													<Input class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" ></Input>
 
 													<Label text=""></Label>
-													<CheckBox text="Delivery Notification" selected="{eshipjetModel>/DeliveryNotification}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Delivery Notification" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/DeliveryNotification}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text=""></Label>
-													<CheckBox text="Hold at location" selected="{eshipjetModel>/HoldAtLocation}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Hold at location" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/HoldAtLocation}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text=""></Label>
-													<CheckBox text="Return Label" selected="{eshipjetModel>/ReturnLabel}" class="sapUiSmallMarginTop"></CheckBox>
-													<Button icon="sap-icon://request" type="Transparent" class="sapUiSmallMarginTop" press="onShipNowCodEditPress" ></Button>
+													<CheckBox text="Return Label" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/ReturnLabel}" class="sapUiSmallMarginTop"></CheckBox>
+													<Button icon="sap-icon://request" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" class="sapUiSmallMarginTop" press="onShipNowCodEditPress" ></Button>
 
 													<Label text="Currency"></Label>
-													<ComboBox items="{}" class="create-ship-req_input" >
+													<ComboBox items="{}" class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 
 													<Label text="Return Service Name"></Label>
-													<ComboBox items="{}" class="create-ship-req_input" >
+													<ComboBox items="{}" class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 
 													<Label text="Other Charges"></Label>
-													<Input class="create-ship-req_input" ></Input>
+													<Input class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" ></Input>
 
 													<Label text=""></Label>
-													<CheckBox text="Saturday Delivery" selected="{eshipjetModel>/SaturdayDelivery}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Saturday Delivery" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/SaturdayDelivery}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text=""></Label>
-													<CheckBox text="Hold For Pickup" selected="{eshipjetModel>/HoldForPickup}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Hold For Pickup" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/HoldForPickup}" class="sapUiSmallMarginTop"></CheckBox>
 
 													
 													<Label text="COD Funds Code"></Label>
-													<ComboBox items="{}" class="create-ship-req_input" >
+													<ComboBox items="{}" class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 
 													<Label text="Misc Options"></Label>
-													<ComboBox items="{}" class="create-ship-req_input" >
+													<ComboBox items="{}" class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 
 													<Label text="Other Charges Description"></Label>
-													<Input class="create-ship-req_input" ></Input>
+													<Input class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" ></Input>
 
 													<Label text=""></Label>
-													<CheckBox text="Saturday Pickup" selected="{eshipjetModel>/SaturdayPickup}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Saturday Pickup" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/SaturdayPickup}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text=""></Label>
-													<CheckBox text="Neutral Delivery" selected="{eshipjetModel>/NeutralDelivery}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Neutral Delivery" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/NeutralDelivery}" class="sapUiSmallMarginTop"></CheckBox>
 
 													
 												</f:content>
@@ -606,41 +608,41 @@
 											<f:SimpleForm visible="{eshipjetModel>/shipNowUSPSSelect}" id="RoutingandBillingDetails2r2y33" class="sapUiTinyMarginTop" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
 												<f:content>									
 												<Label text="COD Amount" />
-													<Input class="create-ship-req_input" ></Input>
+													<Input class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" ></Input>
 												<Label text="Open and Distri. Mail Class Other" />
-													<Input class="create-ship-req_input" ></Input>
+													<Input class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" ></Input>
 												<Label text=""></Label>
 													<CheckBox text="Electronic Return Receipt" selected="{eshipjetModel>/ElectronicReturnReceipt}" class="sapUiSmallMarginTop"></CheckBox>
 												<Label text="Insured Amount" />
-													<Input class="create-ship-req_input" ></Input>
+													<Input class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" ></Input>
 												<Label text=""></Label>
-													<CheckBox text="No Weekend Delivery" selected="{eshipjetModel>/NoWeekendDelivery}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="No Weekend Delivery" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/NoWeekendDelivery}" class="sapUiSmallMarginTop"></CheckBox>
 												<Label text=""></Label>
-													<CheckBox text="Signature Confirmation" selected="{eshipjetModel>/SignatureConfirmation}" class="sapUiSmallMarginTop"></CheckBox>																																															
+													<CheckBox text="Signature Confirmation" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/SignatureConfirmation}" class="sapUiSmallMarginTop"></CheckBox>																																															
 												<Label text="Package Type" />
-													<ComboBox class="create-ship-req_input" items="{}">
+													<ComboBox class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" items="{}">
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 												<Label text=""></Label>
-													<CheckBox text="Holiday Delivery" selected="{eshipjetModel>/HolidayDelivery}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Holiday Delivery" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/HolidayDelivery}" class="sapUiSmallMarginTop"></CheckBox>
 												<Label text=""></Label>
-													<CheckBox text="Open and Distribute" selected="{eshipjetModel>/OpenDistribute}" class="sapUiSmallMarginTop"></CheckBox>	
+													<CheckBox text="Open and Distribute" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/OpenDistribute}" class="sapUiSmallMarginTop"></CheckBox>	
 												<Label text="Open and Distri. Faci. Type" />
-													<ComboBox class="create-ship-req_input" items="{}">
+													<ComboBox class="create-ship-req_input" items="{}" enabled="{eshipjetModel>/shipNowBtnStatus}" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 												<Label text=""></Label>
-													<CheckBox text="Signature Waiver" selected="{eshipjetModel>/SignatureWaiver}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Signature Waiver" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/SignatureWaiver}" class="sapUiSmallMarginTop"></CheckBox>
 												<Label text=""></Label>
-													<CheckBox text="Email Notification" selected="{eshipjetModel>/EmailNotification}" class="sapUiSmallMarginTop"></CheckBox>	
+													<CheckBox text="Email Notification" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/EmailNotification}" class="sapUiSmallMarginTop"></CheckBox>	
 												<Label text="Open and Distri. Mail Class Enclo" />
-													<ComboBox class="create-ship-req_input" items="{}">
+													<ComboBox class="create-ship-req_input" items="{}" enabled="{eshipjetModel>/shipNowBtnStatus}" >
 														<core:Item key="{}" text="{}" />
 													</ComboBox>
 												<Label text=""></Label>
-													<CheckBox text="Certified Mail" selected="{eshipjetModel>/CertifiedMail1}" class="sapUiSmallMarginTop"></CheckBox>		
+													<CheckBox text="Certified Mail" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/CertifiedMail1}" class="sapUiSmallMarginTop"></CheckBox>		
 												<Label text="" ></Label>
-													<CheckBox text="Certified Mail" selected="{eshipjetModel>/CertifiedMail2}" class="sapUiSmallMarginTop" ></CheckBox>																																															
+													<CheckBox text="Certified Mail" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/CertifiedMail2}" class="sapUiSmallMarginTop" ></CheckBox>																																															
 												</f:content>
 											</f:SimpleForm>
 											</VBox>
@@ -715,16 +717,16 @@
 											<HBox alignContent="Center" >
 												<HBox height="3%" width="25%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" >
 															<Label text="Scan Product" class="sapUiTinyMargin" />
-															<Input class="create-ship-req_input" width="auto" value="" ></Input>
+															<Input class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" width="auto" value="" ></Input>
 
 															<Label text="Quantity" class="sapUiTinyMargin"  width="auto" />
 															<!-- <StepInput id="quantityInput1" value="{eshipjetModel>/Packages/Quantity}" class=" create-ship-req_input" min="0" max="100" step="1" width="8%" valueState="None" /> -->
-															<Input class=" create-ship-req_input" value="{eshipjetModel>/Packages/Quantity}" width="auto" ></Input>
+															<Input class=" create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{eshipjetModel>/Packages/Quantity}" width="auto" ></Input>
 													</HBox>
 
 													<HBox height="3rem" width="55%" class="whiteBackground sapUiTinyMarginEnd sapUiSmallPadding" justifyContent="Start" alignItems="Center" >
 															<Label text="Package Material" class="sapUiTinyMargin" width="auto" />
-															<ComboBox items="{eshipjetModel>/packageMaterial}" selectedKey="{eshipjetModel>/selectedPackageMat}" class="create-ship-req_input" width="auto" >
+															<ComboBox items="{eshipjetModel>/packageMaterial}" enabled="{eshipjetModel>/shipNowBtnStatus}" selectedKey="{eshipjetModel>/selectedPackageMat}" class="create-ship-req_input" width="auto" >
 																<core:Item key="{eshipjetModel>Product}" text="{eshipjetModel>Product}" />
 															</ComboBox>
 															<!-- <ComboBox selectedKey="{eshipjetModel>/selectedPackageMat}" class="create-ship-req_input" width="auto" >
@@ -743,13 +745,14 @@
 															<!-- <StepInput id="stepDownInput1" class=" create-ship-req_input" value="{eshipjetModel>/Packages/Weight1}" min="0" max="100" step="1"  width="6rem"  valueState="None" /> -->
 														
 															<HBox width="10%" alignItems="Center" >
-																<Input class="create-ship-req_input" value="{eshipjetModel>/Packages/Weight1}" width="5%" />
+																<Input class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{eshipjetModel>/Packages/Weight1}" width="5%" />
 																<Text text="/" class="sapUiTinyMargin packageWeightsDevideText" width="auto" />
-																<Input class="create-ship-req_input" value="{eshipjetModel>/Packages/Weight2}" width="5%" />
+																<Input class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{eshipjetModel>/Packages/Weight2}" width="5%" />
 															</HBox>
 
 													<Button
 														type="Transparent"
+														enabled="{eshipjetModel>/shipNowBtnStatus}"
 														icon="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAeCAYAAAA/xX6fAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFtSURBVHgB7ZbhcQIhEIXfWEE6kBKSCkIqSEqgA9PB0YFJBdrBpQPtwBIsQVNBsjfCzLLH4SLnP9/Mm0GP4+PYhQWo0xO5I5/IR7LDncRBf8ID+AMzygnQIQC8+L8nGzTIhsHjgCeMl9CQt0i/eINKsCXvBMjjsqxTMhnwGlfAJsyOv/R1BZSb7BFpfJ3slEuIHdri4UrgXoAs5pMTYLdAmtIGjZnGNKzcEmlIXoE0OeZa0pUYL7Y3HGjRnuIW+dj5HHAZXjKoT3GL8lYqAsHABzHbz0yfXkzOY7yVVMAoh/wydQJUOtp8DXAKXLOVfAQuoNeW/EL+Dr/P5LfgvXIM1AAj5Ie196hULbBZD+BdgOfQ9pjv4Oay5PfQ/o0gvqk7xQCxb0kG4+POxIcOikqtBA7H2hrKIuAUYIs8cOrmYKGQF2BeH20GuLoVxGWQr4+OAS30oWgCS2uuktV6RlofS/VvVjlcYjTcWQ0q9Q9p4tga7BXjNQAAAABJRU5ErkJggg=="
 														press="onImagePress"
 														class="customBlueYellowIcon sapUiTinyMargin"
@@ -759,11 +762,11 @@
 
 													<!-- <image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAeCAYAAAA/xX6fAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFtSURBVHgB7ZbhcQIhEIXfWEE6kBKSCkIqSEqgA9PB0YFJBdrBpQPtwBIsQVNBsjfCzLLH4SLnP9/Mm0GP4+PYhQWo0xO5I5/IR7LDncRBf8ID+AMzygnQIQC8+L8nGzTIhsHjgCeMl9CQt0i/eINKsCXvBMjjsqxTMhnwGlfAJsyOv/R1BZSb7BFpfJ3slEuIHdri4UrgXoAs5pMTYLdAmtIGjZnGNKzcEmlIXoE0OeZa0pUYL7Y3HGjRnuIW+dj5HHAZXjKoT3GL8lYqAsHABzHbz0yfXkzOY7yVVMAoh/wydQJUOtp8DXAKXLOVfAQuoNeW/EL+Dr/P5LfgvXIM1AAj5Ie196hULbBZD+BdgOfQ9pjv4Oay5PfQ/o0gvqk7xQCxb0kG4+POxIcOikqtBA7H2hrKIuAUYIs8cOrmYKGQF2BeH20GuLoVxGWQr4+OAS30oWgCS2uuktV6RlofS/VvVjlcYjTcWQ0q9Q9p4tga7BXjNQAAAABJRU5ErkJggg==" ></image> -->
 															<!-- <Button icon="sap-icon://dimension" type="Transparent" class="sapUiTinyMarginBegin" ></Button> -->
-															<ComboBox items="" class=" create-ship-req_input" width="auto" selectedKey="">
+															<ComboBox items="" enabled="{eshipjetModel>/shipNowBtnStatus}" class=" create-ship-req_input" width="auto" selectedKey="">
 																<core:Item key="" text="" />
 															</ComboBox>
-															<Button icon="sap-icon://add" class="onImagePress" type="Transparent" ></Button>
-															<Button text="Auto Pack" class="scan-ship-toolbar1__button" width="auto" press="handleAutoPackPress" type="Ghost" ></Button>
+															<Button icon="sap-icon://add" enabled="{eshipjetModel>/shipNowBtnStatus}" class="onImagePress" type="Transparent" ></Button>
+															<Button text="Auto Pack" enabled="{eshipjetModel>/shipNowBtnStatus}" class="scan-ship-toolbar1__button" width="auto" press="handleAutoPackPress" type="Ghost" ></Button>
 													</HBox>
 
 													<HBox height="3rem" width="20%" alignItems="Center" visible="{= ${eshipjetModel>/ShipNowShipMethodSelectedKey} ? false : true }" class="whiteBackground" >
@@ -927,7 +930,7 @@
 									</HBox>
 									<ui:template>
 									<HBox justifyContent="End" alignItems="End" width="100%">
-										<Input value="{eshipjetModel>partialQty}" liveChange="onPartialQtyChange" />
+										<Input value="{eshipjetModel>partialQty}" enabled="{eshipjetModel>/shipNowBtnStatus}" liveChange="onPartialQtyChange" />
 									</HBox>
 									</ui:template>
 								</ui:Column>
@@ -947,7 +950,7 @@
 										</HBox>
 										<ui:template>
 											<HBox justifyContent="Center" alignItems="Center">
-												<CheckBox selected="{eshipjetModel>isSerialSelected}" select="onCheckBoxSelect"/>
+												<CheckBox selected="{eshipjetModel>isSerialSelected}" enabled="{eshipjetModel>/shipNowBtnStatus}" select="onCheckBoxSelect"/>
 											</HBox>
 										</ui:template>
 									</ui:Column>
@@ -958,7 +961,7 @@
 										</HBox>
 										<ui:template>
 											<HBox justifyContent="Center" alignItems="Center">
-												<Button icon="sap-icon://tag" ></Button>
+												<Button icon="sap-icon://tag" enabled="{eshipjetModel>/shipNowBtnStatus}" ></Button>
 											</HBox>
 										</ui:template>
 									</ui:Column>
@@ -969,7 +972,7 @@
 										</HBox>
 										<ui:template>
 											<HBox justifyContent="Center" alignItems="Center">
-												<CheckBox selected="{eshipjetModel>isDGSelected}" select="onCheckBoxSelect"/>
+												<CheckBox selected="{eshipjetModel>isDGSelected}" enabled="{eshipjetModel>/shipNowBtnStatus}" select="onCheckBoxSelect"/>
 											</HBox>
 										</ui:template>
 									</ui:Column>
@@ -1081,7 +1084,7 @@
 								<ui:Column visible="true" width="4rem" >
 									<Button icon="sap-icon://action-settings" type="Transparent" press="openShipNowPrdctColNamesPopover" ></Button>
 									<ui:template>
-										<Button icon="sap-icon://delete" type="Transparent" tooltip="Delete" press="onShipNowPrdctDltPress" class="customDeleteButton" ></Button>
+										<Button icon="sap-icon://delete" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" tooltip="Delete" press="onShipNowPrdctDltPress" class="customDeleteButton" ></Button>
 									</ui:template>
 								</ui:Column>
 							</ui:columns>
@@ -1128,20 +1131,20 @@
 									</FlexBox>
 									<FlexBox alignItems="Center" >
 										<Text text="Master Tracking #" class="sapUiTinyMargin" ></Text>
-										<Input value="{}" class="create-ship-req_input" width="auto"></Input>
+										<Input value="{}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" width="auto"></Input>
 									</FlexBox>
 								</HBox>
 								<HBox height="3rem" width="34%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="Center" >
-										<Button text="Pack" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="auto" press="onPackPress" ></Button>
-										<Button text="Pack All" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="auto" press="onPackAllPress" ></Button>
-										<Button text="DG Pack" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="auto" ></Button>
-										<Button text="DG Pack All" class="scan-ship-toolbar1__button" type="Ghost" width="auto" ></Button>
+										<Button text="Pack" enabled="{eshipjetModel>/shipNowBtnStatus}" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="auto" press="onPackPress" ></Button>
+										<Button text="Pack All" enabled="{eshipjetModel>/shipNowBtnStatus}" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="auto" press="onPackAllPress" ></Button>
+										<Button text="DG Pack" enabled="{eshipjetModel>/shipNowBtnStatus}" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="auto" ></Button>
+										<Button text="DG Pack All" enabled="{eshipjetModel>/shipNowBtnStatus}" class="scan-ship-toolbar1__button" type="Ghost" width="auto" ></Button>
 								</HBox>
 
 								<HBox height="3rem" width="33%" class="whiteBackground" alignItems="Center" justifyContent="End" >
 									<Text text="Tracking / Pro#" class="sapUiTinyMargin" ></Text>
-									<Input value="{}" class="create-ship-req_input sapUiTinyMargin" width="auto"></Input>
-									<Button text="Get" visible="{eshipjetModel>/shipNowGetBtn}" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="6rem" ></Button>
+									<Input value="{}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input sapUiTinyMargin" width="auto"></Input>
+									<Button text="Get" enabled="{eshipjetModel>/shipNowBtnStatus}" visible="{eshipjetModel>/shipNowGetBtn}" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="6rem" ></Button>
 								</HBox>
 							</HBox>
 
@@ -1149,7 +1152,7 @@
 							id="idShipNowHandlingUnitTable"
 							rows="{eshipjetModel>/HandlingUnits}"
 							class="sapUiTinyMarginTop"
-							selectionMode="MultiToggle"
+							selectionMode="Single"
 							visibleRowCount="6"
     						visibleRowCountMode="Fixed" >
 							
@@ -1259,7 +1262,7 @@
 										</HBox>
 									<ui:template>
 										<HBox justifyContent="Center" alignItems="Center">
-												<Button icon="sap-icon://tag" ></Button>
+												<Button icon="sap-icon://tag" enabled="{eshipjetModel>/shipNowBtnStatus}" ></Button>
 											</HBox>
 									</ui:template>
 								</ui:Column>
@@ -1278,7 +1281,7 @@
 								<ui:Column visible="true" width="4rem" >
 									<Button icon="sap-icon://action-settings" type="Transparent" press="onShipNowHUColumnConfigPress" ></Button>
 									<ui:template>
-										<Button icon="sap-icon://delete" type="Transparent" tooltip="Delete" press="onShipNowHandlingUnitDelPress" class="customDeleteButton" ></Button>
+										<Button icon="sap-icon://delete" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" tooltip="Delete" press="onShipNowHandlingUnitDelPress" class="customDeleteButton" ></Button>
 									</ui:template>
 								</ui:Column>
 							</ui:columns>
@@ -1360,52 +1363,52 @@
 											<f:SimpleForm id="InternationalDetails" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="6">
 												<f:content>
 													<Label text="INT Duties/Taxes" />
-													<ComboBox items="{eshipjetModel>/Packages/Weight}" class="create-ship-req_input" >
+													<ComboBox items="{eshipjetModel>/Packages/Weight}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Payor Country Code" />
-													<Input value="{eshipjetModel>/payorCountryCode}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/payorCountryCode}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text="Permit No" />
-													<Input value="{eshipjetModel>/permitNo}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/permitNo}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" />
 
 													<Label text="Payor Zip Code" />
-													<Input value="{eshipjetModel>/payorZipCode}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/payorZipCode}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text="Ship From Tax No" />
-													<Input value="{eshipjetModel>/InternationalDetails/shipFromTaxNo}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/InternationalDetails/shipFromTaxNo}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text="B13A Filing Option" />
-													<ComboBox items="{eshipjetModel>/B13AFillingOption}" class="create-ship-req_input" >
+													<ComboBox items="{eshipjetModel>/B13AFillingOption}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 
 													<Label text="ITN/XTN (SED/EEI)" />
-													<Input value="{eshipjetModel>/itn_xtn}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/itn_xtn}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text="Booking Confirm No" />
-													<Input value="{eshipjetModel>/bookingConfirmNo}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/bookingConfirmNo}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text="Customs Declared Value" />
-													<Input value="{eshipjetModel>/customsDeclaredValue}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/customsDeclaredValue}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" />
 
 													<Label text="ATLAS MRN No" />
-													<Input value="{eshipjetModel>/atlasMRNNo}" class="create-ship-req_input" ></Input>
+													<Input value="{eshipjetModel>/atlasMRNNo}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" ></Input>
 													<Label text="Ship To Tax No" />
-													<Input value="{eshipjetModel>/InternationalDetails/shipFromTaxNo}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/InternationalDetails/shipFromTaxNo}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text="Currency" />
-													<Input value="{eshipjetModel>/Currency}"  maxLength="3" class="create-ship-req_input" ></Input>
+													<Input value="{eshipjetModel>/Currency}" enabled="{eshipjetModel>/shipNowBtnStatus}"  maxLength="3" class="create-ship-req_input" ></Input>
 
 													<Label text="Documents Content Type"></Label>
-													<ComboBox items="{eshipjetModel>/documentContentType}" class="create-ship-req_input" >
+													<ComboBox items="{eshipjetModel>/documentContentType}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Reason for Export" />
-													<ComboBox items="{eshipjetModel>/reasonForExport}" class="create-ship-req_input" >
+													<ComboBox items="{eshipjetModel>/reasonForExport}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Compli. Statement" />
-													<Input value="{eshipjetModel>/compilStatement}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/compilStatement}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" />
 
 													<Label text="Duties Account No" />
-													<Input value="{eshipjetModel>/dutiesAccountNo}" class="create-ship-req_input" ></Input>
+													<Input value="{eshipjetModel>/dutiesAccountNo}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" ></Input>
 													<Label text="Freight Forwarder Tax No" />
-													<Input value="{eshipjetModel>/freightForwordTaxNo}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/freightForwordTaxNo}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" />
 													
 												</f:content>
 											</f:SimpleForm>
