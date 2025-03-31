@@ -1029,6 +1029,9 @@ sap.ui.define([
             // }
             oController.onOpenBusyDialog();
             var oShipNowDataModel = this.getOwnerComponent().getModel("ShipNowDataModel");
+
+            var currentDate = new Date();
+            var shipDate = currentDate.toISOString();
             
             eshipjetModel.setProperty("/shipNowGetBtn", true);
             var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
@@ -1036,6 +1039,7 @@ sap.ui.define([
             var serviceName = eshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey");
             var id, password, accountNumber;            
           
+            var AccessKey = "";
             if(carrier && carrier.toUpperCase() === "UPS"){
                 //old Credentials
                 id = "6ljUpEbuu1OlOk7ow932lsxXHISUET0WKjTn59GzQ5MRdEbA";  
@@ -1054,6 +1058,10 @@ sap.ui.define([
             }else if(carrier && carrier.toUpperCase() === "USPS"){
                 id = "3087617";
                 password = "October2024!";
+            }else if(carrier && carrier.toUpperCase() === "ABFS"){
+                id = "ABFESHIPJET";
+                password = "Legacy!@3";
+                AccessKey= "JVG9SX85";
             }
             var obj = {
                 "ShipTo": {
@@ -1178,7 +1186,7 @@ sap.ui.define([
                 "HeaderInfo": {
                     "Status": "Open",
                     "Location": "1001",
-                    "ShipDate": "2025-02-10T11:59:00.720Z",
+                    "ShipDate": shipDate,
                     "category": "P1",
                     "Requester": "Myself",
                     "requester": "",
@@ -1214,7 +1222,7 @@ sap.ui.define([
                     "VoidURL": "",
                     "Password": password,
                     "TrackURL": "",
-                    "AccessKey": "",
+                    "AccessKey": AccessKey,
                     "InvoiceNo": "",
                     "CostCenter": null,
                     "LocationId": "1001",
@@ -1257,8 +1265,13 @@ sap.ui.define([
                 oController.onShipRateRequest(resolve, reject, "ShipNow");
             });
             myShipRatePromise.then(function(response) {
+                var sPath;
+                if(carrier === "ABFS"){
+                    sPath = "https://carrier-api-v1.eshipjet.site/ABF";
+                }else{
+                    sPath = "https://carrier-api-v1.eshipjet.site/"+carrier;
+                }
                       // var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/FedEx";
-                    var sPath = "https://carrier-api-v1.eshipjet.site/"+eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey");
                     let myPromise =  new Promise((resolve, reject) => {
                         $.ajax({
                             url: sPath,
@@ -1417,7 +1430,7 @@ sap.ui.define([
             if (HandlingUnitsLength === "0" || HandlingUnitsLength === 0) {
                 HandlingUnitsLength = 1
             };
-            var grossWeight, shippingDocName, packingSlip;
+            var grossWeight, shippingDocName, packingSlip, billOfLading;
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             var shippingDocuments = eshipjetModel.getProperty("/shippingDocuments");
             var aHandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
@@ -1427,8 +1440,17 @@ sap.ui.define([
             });            
             grossWeight = eshipjetModel.getProperty("/packAddProductTable/0/ItemGrossWeight");
             
-            shippingDocName = (shippingDocuments && shippingDocuments.length > 0) ? shippingDocuments[0].docName : "";
-            packingSlip = (shippingDocuments && shippingDocuments.length > 0) ? shippingDocuments[1].docName : "";
+            for(var i=0; i<shippingDocuments.length; i++){
+                if(shippingDocuments[i].contentType === "Label"){
+                    shippingDocName = shippingDocuments[i].docName;
+                }else if(shippingDocuments[i].contentType === "Packing Slip"){
+                    packingSlip = shippingDocuments[i].docName;
+                }else if(shippingDocuments[i].contentType === "Bill Of Lading"){
+                    billOfLading = shippingDocuments[i].docName;
+                }
+            }
+            
+            
             oManifestDataObj =  {
                 "Saturdaydel": eshipjetModel.getProperty("/SaturdayDelivery"),
                 "Residentialdel": eshipjetModel.getProperty("/ResidentialDelivery"),
@@ -2266,31 +2288,84 @@ sap.ui.define([
         showLabelAfterShipmentSuccess: function (response) {
             var oView = this.getView();
             var localModel = oView.getModel();
-            var sDocName, encodedLabel;
+            var sDocName, encodedLabel, currentObj;
             if(response && response.shippingDocuments && response.shippingDocuments.length > 0){
-                encodedLabel = response.shippingDocuments[0].docName;
+                for(var i=0; i<response.shippingDocuments.length; i++){
+                    if(response.shippingDocuments[i].contentType === "Label"){
+                        currentObj = response.shippingDocuments[i];
+                    }
+                }
+                // encodedLabel = response.shippingDocuments[0].docName;
             }            
-            localModel.setProperty("/encodedLabel", encodedLabel);        
-            if (!this.byId("idAfterShipmentLabelDialog")) {
-                Fragment.load({
-                    id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.AfterShipNowClickDialog",
-                    controller: this
-                }).then(function (oDialog) {
-                    oView.addDependent(oDialog);
-                    oDialog.getContent()[0].getItems()[0].setSrc(encodedLabel);
-                    oDialog.open();
-                });
-            } else {
-                this.byId("idAfterShipmentLabelDialog").getContent()[0].getItems()[0].setSrc(encodedLabel);
-                this.byId("idAfterShipmentLabelDialog").open();
+            // localModel.setProperty("/encodedLabel", encodedLabel);        
+            // if (!this.byId("idAfterShipmentLabelDialog")) {
+            //     Fragment.load({
+            //         id: oView.getId(),
+            //         name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.AfterShipNowClickDialog",
+            //         controller: this
+            //     }).then(function (oDialog) {
+            //         oView.addDependent(oDialog);
+            //         oDialog.getContent()[0].getItems()[0].setSrc(encodedLabel);
+            //         oDialog.open();
+            //     });
+            // } else {
+            //     this.byId("idAfterShipmentLabelDialog").getContent()[0].getItems()[0].setSrc(encodedLabel);
+            //     this.byId("idAfterShipmentLabelDialog").open();
+            // }
+            // oController.onCloseBusyDialog();
+            
+
+            // var currentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
+            var docName = currentObj.docName;
+            this._contentType = currentObj.contentType;
+            if (this._contentType === "Label") {
+                this._contentType = "Carrier Label";
             }
-            oController.onCloseBusyDialog();
+            this._dialogContent;
+                if(currentObj.docType.toUpperCase() === "PDF"){
+                    this._dialogContent = new sap.ui.core.HTML({
+                        content: "<iframe src='"+docName+"' width='500px' height='600px'></iframe>"
+                    })
+                }else{
+                    this._dialogContent = new sap.m.Image({
+                        class: "sapUiSmallMargin",
+                        src: docName,
+                        width: "500px",
+                        height: "620px"
+                    });
+                }
+                var oDeclineButton = new sap.m.Button({
+                    icon: "sap-icon://decline",
+                    class: "Decline_Btn ship-now-decline_btn",
+                    type: "Transparent",
+                    press: function () {
+                        this.onShipmentLabelDialogClosePress();
+                    }.bind(this)
+                });
+                // **Create a toolbar as a custom header**
+                var oCustomHeader = new sap.m.Toolbar({
+                    content: [
+                        new sap.m.Title({ text: this._contentType, level: "H2" }),
+                        new sap.m.ToolbarSpacer(), // Pushes the Decline button to the right
+                        oDeclineButton
+                    ]
+                });
+            //if (!this._oShippingDocumentDialog) {
+                this._oShipmentSuccessLabelDialog = new Dialog({
+                    customHeader: oCustomHeader,
+                    contentWidth: "500px",
+                    contentHeight: "620px",
+                    content: [this._dialogContent]
+                });
+                this.getView().addDependent(this._oShipmentSuccessLabelDialog);
+            //}
+            this._oShipmentSuccessLabelDialog.open();
         },
         
         onShipmentLabelDialogClosePress: function () {
+            oController._oShipmentSuccessLabelDialog.close();
             oController.onOpenBusyDialog(); 
-            this.byId("idAfterShipmentLabelDialog").close();
+            // this.byId("idAfterShipmentLabelDialog").close();
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             var shipFromObj = {
                 "ShipFromCONTACT": "",
@@ -13539,8 +13614,8 @@ sap.ui.define([
                     "AccessKey": "ItO0YzFzIxZ1Q0MWQtZWNlZi00MDVkLTgxYzNGNiQlMzMTkTC"
                 },
                 {
-                    "Carrier": "ABF",
-                    "ServiceName": "07",
+                    "Carrier": "ABFS",
+                    "ServiceName": "",
                     "PaymentType": "Sender",
                     "ShippingAccount": "B24W72",
                     "BillingAccount": "",

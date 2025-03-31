@@ -10142,6 +10142,16 @@
                     "ShippingType": "UP"
                 }
             ]
+        },
+        {
+            "CarrierName": "ABFS",
+            "carrierServices": [
+                {
+                    "ServiceName": "Standard",
+                    "ServiceCode": "STND",
+                    "ShippingType": "AB"
+                }
+            ]
         }
     ]
       
