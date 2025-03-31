@@ -2943,128 +2943,59 @@ sap.ui.define([
         },
 
         onPackAllPress:function(){
-             oController.onOpenBusyDialog();
+            var productTable = this.byId("idShipNowPackTable");
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var packAddProductTable = eshipjetModel.getProperty("/packAddProductTable");
-            var totalWeight = 0;
-            for(var i=0; i<packAddProductTable.length; i++){
-                totalWeight += parseInt(packAddProductTable[i].ItemNetWeight);
-                if(packAddProductTable[i].partialQty === ""){
-                    packAddProductTable[i]["partialQty"] = packAddProductTable[i].ItemNetWeight;
-                    packAddProductTable[i]["ItemWeight"] = packAddProductTable[i].ItemNetWeight;
+            var selectedPackageMat = eshipjetModel.getProperty("/selectedPackageMat");
+            if(selectedPackageMat === ""){
+                MessageBox.warning("Please Select Package Material");
+                return;
+            }
+                var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+                var totalWeight = 0;
+                var ItemsInfo = [];
+                for (var i = 0; i < packAddProductTable.length; i++) {
+                    var currentObj = packAddProductTable[i];
+                    // if(currentObj.partialQty === "" || currentObj.partialQty === undefined){
+                    //     MessageBox.warning("Please add partial quantity for at least one valid product.");
+                    // }else{
+                        if(currentObj.DeliveryDocument !== undefined){
+                            oController.onOpenBusyDialog();
+                            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+                            var HandlingUnits = eshipjetModel.getData().HandlingUnits;
+                            var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
+                            var partialQty = eshipjetModel.getProperty("/partialQty");
+                            var Material = eshipjetModel.getProperty("/Material");
+
+                            var oPayload = {
+                                "Vbeln": sapDeliveryNumber,
+                                "Posnr": "000010",
+                                "Matnr": currentObj.Material,
+                                "Qty": currentObj.BalanceQty,
+                                "Humatnr": selectedPackageMat
+                            };
+                            
+                            var ShipReadDataSrvModel = oController.getOwnerComponent().getModel("ShipReadDataSrvModel");
+                            ShipReadDataSrvModel.create("/HuDataSet", oPayload, {
+                                success: function (oData) {
+                                    oController.readHUDataSet(sapDeliveryNumber);
+                                    MessageToast.show("Handling Unit Created Successfully");
+                                    currentObj.partialQty = "";
+                                    eshipjetModel.updateBindings(true);
+                                    // oController.onCloseBusyDialog();
+                                },
+                                error: function (oError) {
+                                    // var errMsg = JSON.parse(oError.responseText).error.message.value;
+                                    var errMsg = new DOMParser().parseFromString(oError.responseText, "text/xml").getElementsByTagName("message")[0].textContent;
+                                    sap.m.MessageBox.error(errMsg);
+                                    oController.onCloseBusyDialog();
+                                }
+                            });
+                        }
+                        
+                    //}        
                 }
-            };
-            var oTable = oController.getView().byId("idShipNowHandlingUnitTable");
-            var oTableLength = oTable.getBinding("items").iLength;
-            var obj = {
-                "SpecialServices": {},
-                "Weightunits": "",
-                "Weight": totalWeight.toFixed(2),
-                "DimensionUnits": "",
-                "SerialNumber": oTableLength+1,
-                "IsInternal": true,
-                "ItemsInfo": packAddProductTable,
-                "HandlingUnitExternalID": 1530 + oTableLength + 1
-            };
-            var HandlingUnits = eshipjetModel.getData().HandlingUnits
-            HandlingUnits.push(obj);
-            eshipjetModel.updateBindings(true);
-            eshipjetModel.setProperty("/packAddProductTable", []);
-            oController.oBusyDialog.close();
-
-            // var productTable = this.byId("idShipNowPackTable");
-            // var selectedItems = productTable.getSelectedItems();
-            // var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
-            // var pickAddProductTable = eshipjetModel.getData().pickAddProductTable;
-            // var OutBoundDeliveryModel = this.getOwnerComponent().getModel("OutBoundDeliveryModel");
-            // var aDeferredGroups = OutBoundDeliveryModel.getDeferredGroups();
-            // if (!aDeferredGroups.includes("isProjectCreateBatch")) {
-            //     aDeferredGroups.push("isProjectCreateBatch");
-            // }
-            // OutBoundDeliveryModel.setDeferredGroups(aDeferredGroups);
-            // var createDataArray = [];
-            // for (var i = 0; i < pickAddProductTable.length; i++) {
-            //     var currentObj = pickAddProductTable[i];
-            //     var creationDate = new Date(currentObj.CreationDate);
-            //     var hours = String(creationDate.getHours()).padStart(2, '0');
-            //     var minutes = String(creationDate.getMinutes()).padStart(2, '0');
-            //     var seconds = String(creationDate.getSeconds()).padStart(2, '0');
-            //     var creationTime = `PT${hours}H${minutes}M${seconds}S`;
-            //     var oData = {
-            //         "CreatedByUser": "",
-            //         "CreationDate": null,
-            //         "CreationTime": creationTime,
-            //         "DeliveryDocument": currentObj.DeliveryDocument,
-            //         "GrossVolume": currentObj.ItemVolume,
-            //         "GrossWeight": currentObj.ItemGrossWeight,
-            //         "HandlingUnitBaseUnitOfMeasure": "",
-            //         "HandlingUnitContentDescription": "",
-            //         "HandlingUnitExternalId": currentObj.OrderID,
-            //         "HandlingUnitExternalIdType": "",
-            //         "HandlingUnitGroup1": "",
-            //         "HandlingUnitGroup2": "",
-            //         "HandlingUnitGroup3": "",
-            //         "HandlingUnitGroup4": "",
-            //         "HandlingUnitGroup5": "",
-            //         "HandlingUnitHeight": "0.000",
-            //         "HandlingUnitInternalId": "",
-            //         "HandlingUnitInternalStatus": "",
-            //         "HandlingUnitLength": "0.000",
-            //         "HandlingUnitLowerLevelRefer": "",
-            //         "HandlingUnitMaxVolume": "0.000",
-            //         "HandlingUnitMaxWeight": "0.000",
-            //         "HandlingUnitNetVolume": "0.000",
-            //         "HandlingUnitSecondExternalId": "",
-            //         "HandlingUnitTareVolume": "0.000",
-            //         "HandlingUnitTareVolumeUnit": "",
-            //         "HandlingUnitTareWeight": "0.000",
-            //         "HandlingUnitTareWeightUnit": "",
-            //         "HandlingUnitUoMDimension": "",
-            //         "HandlingUnitWidth": "0.000",
-            //         "LastChangeDate": null,
-            //         "LastChangedByUser": "",
-            //         "LastChangeTime": "PT00H00M00S",
-            //         "NetWeight": currentObj.ItemNetWeight,
-            //         "PackagingMaterial": "EWMS4-WBTRO00",
-            //         "PackagingMaterialCategory": "",
-            //         "PackagingMaterialGroup": "",
-            //         "PackagingMaterialType": "",
-            //         "PackingInstructionNumber": "",
-            //         "ShippingPoint": "",
-            //         "VolumeUnit": "",
-            //         "WeightUnit": "",
-            //         "Warehouse": "",
-            //     };
-            //     createDataArray.push(oData);
-            // }
-            // OutBoundDeliveryModel.refreshSecurityToken();
-            // OutBoundDeliveryModel.setUseBatch(true);
-            // for (var i = 0; i < createDataArray.length; i++) {
-            //     OutBoundDeliveryModel.create("/A_HandlingUnitHeaderDelivery", createDataArray[i], {
-            //         method: "POST",
-            //         groupId: "isProjectCreateBatch",
-            //         merge: false
-            //     });
-            // }
-            // OutBoundDeliveryModel.submitChanges({
-            //     groupId: "isProjectCreateBatch",
-            //     success: function (oData) {
-            //         var HandlingUnits = eshipjetModel.getData().HandlingUnits;
-            //         // for(var i=0; i<oData.__batchResponses[0].__changeResponses.length; i++){
-            //         //     var oResponse = oData.__batchResponses[0].__changeResponses[i].data;
-            //         //     HandlingUnits.push(oResponse);
-            //         //     eshipjetModel.updateBindings(true);
-            //         // };
-
-            //         var pickAddProductTable = eshipjetModel.getData().pickAddProductTable;
-            //         eshipjetModel.setProperty("/pickAddProductTable", []);
-            //         oController.oBusyDialog.close();
-            //     },
-            //     error: function (oError) {
-            //         oController.oBusyDialog.close();
-            //         MessageBox.error("Batch request failed");
-            //     }
-            // });
+            //}
         },
 
         onShipNowCodEditPress:function(){
