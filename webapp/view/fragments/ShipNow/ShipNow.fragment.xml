@@ -534,7 +534,7 @@
 													<CheckBox text="Exception Notification" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/ExceptionNotification}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text=""></Label>
-													<CheckBox text="Large Package Indicator" selected="{eshipjetModel>/LargePackageIndicator}" class="sapUiSmallMarginTop"></CheckBox>
+													<CheckBox text="Large Package Indicator" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/LargePackageIndicator}" class="sapUiSmallMarginTop"></CheckBox>
 
 													<Label text=""></Label>
 													<CheckBox text="COD" selected="{eshipjetModel>/COD}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="sapUiSmallMarginTop"></CheckBox>
