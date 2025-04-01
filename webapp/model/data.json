@@ -353,7 +353,41 @@
         { "key": "USPS", "text": "USPS" }
     ],
     "shipMethodKey": "FedEx",
+        "signatureOption": [
+            { "key": "NO SIGNATURE REQUIRED", "text": "No Signature Required" },
+            { "key": "Indrect", "text": "indrect" },
+            { "key": "Direct", "text": "Direct" },
+            { "key": "Service Default", "text": "ServiceDefault" }
+        ],
+    "SignatureType": [
+        { "key": "Delivery Confirmation", "text": "Delivery Confirmation" },
+        { "key": "Signature Required", "text": "Signature Required" },
+        { "key": "AdultSignature Required", "text": "Adult Signature Required" },
+        { "key": "NoSignature Required", "text": "No Signature Required" }
+        ],
     
+        "indicia": [
+          { "key": "MediaMail", "text": "Media Mail" },
+          { "key": "ParcelSelect", "text": "Parcel Select" },
+          { "key": "PresortedBoundPrinted", "text": "Presorted Bound Printed" },
+          { "key": "PresortedStandard", "text": "Presorted Standard" },
+          { "key": "ParcelReturn", "text": "Parcel Return" }
+        ],
+
+        "ancillaryEndorsement": [
+            { "key": "AddressCorrection", "text": "Address Correction" },
+            { "key": "CarrierLeaveIfNoResponse", "text": "Carrier Leave If No Response" },
+            { "key": "ChangeService", "text": "Change Service" },
+            { "key": "ForwardingService", "text": "Forwarding Service" },
+            { "key": "ReturnService", "text": "Return Service" }
+        ],
+        
+
+        "LithiumBatteries": [
+            { "key": "Lithium", "text": "Lithium" }
+        ],
+      
+      
     "PaymentTypes": [
         { "key": "Collect", "text": "Collect" },
         { "key": "Recipient", "text": "Recipient" },
@@ -361,12 +395,8 @@
         { "key": "ThirdParty", "text": "Third Party" }
     ],
     "CostCenters": [
-        { "key": "AdminCC", "text": "Administrative Cost Center" },
-        { "key": "FinanceCC", "text": "Finance & Accounting Cost Center" },
-        { "key": "HRCC", "text": "Human Resources Cost Center" },
-        { "key": "ITCC", "text": "IT Cost Center" },
-        { "key": "MarketingCC", "text": "Marketing Cost Center" },
-        { "key": "ProductionCC", "text": "Production Cost Center" }
+        { "key": "WarehouseCostCenter", "text": "Warehouse Cost Center" }
+        
     ],
     "ShipmentTypes": [
         {
@@ -391,7 +421,6 @@
         }
     ],
     "ServiceNameSelectedKeys":"",
-
      "countriesList":[ 
         {"name": "United Kingdom", "code": "GB"}, 
         {"name": "United States", "code": "US"}, 
@@ -10154,5 +10183,6 @@
             ]
         }
     ]
+    
       
 }

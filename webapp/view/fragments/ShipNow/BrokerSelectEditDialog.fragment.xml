@@ -1,47 +1,173 @@
 <core:FragmentDefinition
     xmlns="sap.m"
+    xmlns:core="sap.ui.core"
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
-    xmlns:core="sap.ui.core">
-    <Dialog
-        id="idBrokerSelectEditDialog"
-        contentWidth="40%"
-        contentHeight="80%"
-        class="rightSideDialogForTracking" >
-     <customHeader>
-    <Toolbar>
-        <Title text="Broker Information" />
-            <ToolbarSpacer />
-                <Button 
-                    icon="sap-icon://decline" 
-                    Type="Ghost"
+    height="100%"
+    modal="false"
+>
+    <Popover
+        id="addBrokerselectPopover123"
+        placement="Bottom"
+        contentHeight="100%"
+        showHeader="false"
+        class="rightSidePopoverGare"
+    >
+        <!-- Custom Header -->
+        <customHeader>
+            <Toolbar >
+                <!-- Title -->
+                <Title text="Broker Information" />
+
+                <!-- Spacer to push close button to the right -->
+                <ToolbarSpacer />
+
+                <!-- Close Button -->
+                <Button
+                    icon="sap-icon://decline"
                     class="Decline_Btn ship-now-decline_btn"
-                    press="onBrokerSelectEditDialogClosePress" />
-    </Toolbar>
-    </customHeader>
-        <f:SimpleForm 
-            class="customSimpleFormShadow"
-            width="auto"
-			editable="true"
-			layout="ResponsiveGridLayout"
-			labelSpanXL="4"
-			labelSpanL="4"
-			labelSpanM="12"
-			labelSpanS="12"
-			adjustLabelSpan="false"
-			emptySpanXL="0"
-			emptySpanL="0"
-			emptySpanM="0"
-			emptySpanS="0"
-			columnsXL="2"
-			columnsL="2"
-			columnsM="1"
-			singleContainerFullSize="false" >
-			<f:content>
-				<core:Title text="Contact Info" icon="sap-icon://customer-briefing" />
-				<Label text="ID" />
-				<Input value="{}" width="50%" class="sapUiSmallMarginBottom create-ship-req_input"/>
-			</f:content>
-		</f:SimpleForm>
-    </Dialog>
+                    press="onBrokerSelectEditDialogClosePress"
+                />
+            </Toolbar>
+        </customHeader>
+        
+        <footer>
+            <OverflowToolbar class="p-sidebar-header sapMPopoverFooter1">
+                <Button
+                    text="Cancel"
+                    class="Cancel_Btn"
+                    type=""
+                    press="onBrokerSelectEditDialogClosePress"
+                />
+                <ToolbarSpacer />
+                <Button
+                    class="btnSave"
+                    type="Emphasized"
+                    text="Save"
+                    press="onBrokerSelectEditDialogClosePress"
+                />
+            </OverflowToolbar>
+        </footer>
+
+        <content>
+            <f:SimpleForm
+                editable="true"
+                class="customSimpleFormShadow"
+                width="auto"
+                layout="ColumnLayout"
+                columnsM="2"
+                columnsL="2"
+                columnsXL="2"
+            >
+                <f:content>
+                    <Toolbar ariaLabelledBy="idShipFrom">
+                        <Button
+                            icon="sap-icon://customer-briefing"
+                            press="handleAddLocPress"
+                        />
+                        <Title
+                            id="idAddBrokerSelect123"
+                            text="Name and Contact"
+                        />
+                    </Toolbar>
+                    <Label text="Contact Name" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Address Line 1" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Address Line 3" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="City" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                     <Label text="Country" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Email" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                     <Label text="Company Name" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Address Line 2" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="State" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Postal Code" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Phone No" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Fax No" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                </f:content>
+            </f:SimpleForm>
+
+            <f:SimpleForm
+                editable="true"
+                class="customSimpleFormShadow"
+                width="auto"
+                layout="ColumnLayout"
+                columnsM="2"
+                columnsL="2"
+                columnsXL="2"
+            >
+                <f:content>
+                    <Toolbar ariaLabelledBy="idShipFrom">
+                        <Button
+                            icon="sap-icon://customer-briefing"
+                            press="handleAddLocPress"
+                        />
+                        <Title
+                            id="idAddLocaTionFrom1123"
+                            text="Additional Information"
+                        />
+                    </Toolbar>
+                    
+                    <Label text="Tin Number" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Page No" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Clearence Brokerage" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Account No" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Broker Type" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Tin Type" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                </f:content>
+            </f:SimpleForm>
+        </content>
+    </Popover>
 </core:FragmentDefinition>

@@ -3111,26 +3111,31 @@ sap.ui.define([
             this.byId("idCodEditDialog").close();
         },
 
-        onBrokerSelectEditPress: function () {
+        onBrokerSelectEditPress: function (oEvent) {
             var oView = this.getView();
-            if (!this.byId("idBrokerSelectEditDialog")) {
+            var oSource = oEvent.getSource(); // The button triggering the popover
+        
+            if (!this._oBrokerSelectEditDialog) {
                 Fragment.load({
                     id: oView.getId(),
                     name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.BrokerSelectEditDialog",
-                    controller: this // Pass the controller for binding
-                }).then(function (oBrokerSelectEditDialog) {
-                    oView.addDependent(oBrokerSelectEditDialog);
-                    oBrokerSelectEditDialog.open();
-                });
+                    controller: this
+                }).then(function (oPopover) {
+                    this._oBrokerSelectEditDialog = oPopover;
+                    oView.addDependent(this._oBrokerSelectEditDialog);
+                    this._oBrokerSelectEditDialog.openBy(oSource); // Open by the clicked button
+                }.bind(this));
             } else {
-                this.byId("idBrokerSelectEditDialog").open(); // Open existing dialog
+                this._oBrokerSelectEditDialog.openBy(oSource); // Open popover by event source
             }
         },
-
+        
         onBrokerSelectEditDialogClosePress: function () {
-            this.byId("idBrokerSelectEditDialog").close();
+            if (this._oBrokerSelectEditDialog) {
+                this._oBrokerSelectEditDialog.close();
+            }
         },
-
+        
         onHoldAtLocationEditPress: function () {
             var oView = this.getView();
             if (!this.byId("idHoldAtLocationEditDialog")) {
@@ -12760,6 +12765,28 @@ sap.ui.define([
                 eshipjetModel.setProperty("/shipNowUPSSelect", false );
                 eshipjetModel.setProperty("/shipNowUSPSSelect", false );
              }else if(ShipNowShipMethodSelectedKey === "The Armory"){
+                
+                eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
+                eshipjetModel.setProperty("/shipNowABFSelect", false );
+                eshipjetModel.setProperty("/shipNowARTEXFineArtSrvSelect", false );
+                eshipjetModel.setProperty("/shipNowATLASFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowBrinksFineArtSelect", false );
+                eshipjetModel.setProperty("/shipNowCrownFineArtSelect", false ); 
+                eshipjetModel.setProperty("/shipNowDHLSelect", false );
+                eshipjetModel.setProperty("/shipNowDTDCSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExSelect", false );
+                eshipjetModel.setProperty("/shipNowFastFarwarderSelect", false );
+                eshipjetModel.setProperty("/shipNowFedExFreightSelect", false );
+                eshipjetModel.setProperty("/shipNowJPMorganChaseInternalSelect", false );
+                eshipjetModel.setProperty("/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/shipNowMoviGroupSelect", false );
+                eshipjetModel.setProperty("/shipNowOtherSelect", false );
+                eshipjetModel.setProperty("/shipNowRLSelect", false );
+                eshipjetModel.setProperty("/shipNowTheArmorySelect", false );
+                eshipjetModel.setProperty("/shipNowUPSSelect", false );
+                eshipjetModel.setProperty("/shipNowUSPSSelect", false );
+             }
+             else if(ShipNowShipMethodSelectedKey === "ABFS"){
                 
                 eshipjetModel.setProperty("/shipNowGanderWhiteSelect", false );
                 eshipjetModel.setProperty("/shipNowABFSelect", false );

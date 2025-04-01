@@ -1427,7 +1427,7 @@ body.dark-theme {
 
 .rightSidePopoverGare {
   width: 45% !important;
-  height: 100% !important; ;
+  height: 95vh !important;  /* Ensure height is 95% of the viewport */
   overflow: auto !important;
   position: fixed !important;
   visibility: visible !important;
@@ -1436,12 +1436,21 @@ body.dark-theme {
   max-height: 95% !important;
   padding-bottom: 0px !important;
   top: 0px !important;
-  padding-top: 15px !important;
+  padding-top: 15px !important;  /* Space for any header or margin */
   display: block;
-  right: 0 !important;
-  left: auto !important;
+  right: 0 !important;  /* Align to the right side */
+  left: auto !important;  /* Don't allow left alignment */
   border-radius: 0px !important;
+  z-index: 51;  /* Ensure it appears on top of other elements */
 }
+
+/* Ensure popover content takes the full height */
+#application-comeshipjetzeshipjet-display-component---Eshipjet--addBrokerselectPopover123-cont {
+  height: 100vh !important;
+}
+
+
+
 .rightSidePopoverShipNow {
   width: 45% !important;
   height: auto !important; ;
@@ -1931,6 +1940,28 @@ button {
   text-align: center !important;
     color: #4ea732 !important;
     font-weight: bold !important;
+}
+
+.custom-spot-input {
+  width: 220px !important;
+  background: #156082 !important;
+  color: white !important;
+  font-weight: bold !important;
+  outline: none !important;
+  transition: all 0.3s ease-in-out;
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.2), 0px 4px 12px rgba(0, 0, 0, 0.25) !important;
+}
+
+.p-inputtext {
+  color: #514f4f !important;
+  font-size: 15px !important;
+  height: 40px !important;
+  border: 1px solid #8e9096 !important;
+  border-radius: 4px !important;
+  font-weight: 400 !important;
+  line-height: 25px !important;
+  text-align: left !important;
+  font-family: AvenirNextCyrMedium !important;
 }
 
 .sapMComboBoxPopover11 {
