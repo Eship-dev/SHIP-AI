@@ -1,0 +1,74 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core" 
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m">
+
+    <Dialog id="_IDGenFedExHoldAtLoctionEditDialog"
+            title="FedExHoldAtLoctionIncAccept"
+            contentWidth="60vh"
+            contentHeight="95%"
+            verticalScrolling="false"
+            horizontalScrolling="false"
+            class="rightSideDialogSpecialOptions">
+
+            <Toolbar>
+                <Title text="Hold At Location Detail" />
+                <ToolbarSpacer />
+                <Button icon="sap-icon://decline" press="onCloseHoldAtLoctionDialog" />
+            </Toolbar>
+
+        <content>
+            <f:SimpleForm editable="true"
+                          class="customSimpleFormShadow"
+                          width="auto"
+                          layout="ColumnLayout"
+                          columnsM="2"
+                          columnsL="2"
+                          columnsXL="2">
+                <f:content>
+                   <Toolbar ariaLabelledBy="idShipFrom" class="customLine" >
+						<Button icon="sap-icon://customer-briefing" id="idShipFrggomAddressBtnww" />
+                        <Title id="idShipFromuuww" text="Address" />
+					</Toolbar>
+                    <Label text="Location ID" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />      
+                    <Label text="Contact Name" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <Label text="Address Line 1" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Address Line 3" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="City" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Country" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Email" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Location Type" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Company Name" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <Label text="Address Line 2" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="State" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Postal Code" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Phone No" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />   
+                </f:content>
+            </f:SimpleForm>
+        </content>
+
+        <footer>
+            <OverflowToolbar class="sapMPopoverFooter1">
+                <Button text="Cancel" press="onCloseHoldAtLoctionDialog" />
+                <ToolbarSpacer />
+                <Button text="Save" type="Emphasized" press="onCloseHoldAtLoctionDialog" />
+            </OverflowToolbar>
+        </footer>
+
+    </Dialog>
+</core:FragmentDefinition>

@@ -3650,6 +3650,179 @@ sap.ui.define([
         onCloseBatteryDialog: function() {
             this.byId("_IDGenBatteryEditDialog").close();
         },
+
+        onOpenFedExDeliveryIncAcceptDialog: function() {
+            var oView = this.getView();
+
+            if (!this.byId("_IDGenFedExDeliveryIncAcceptEditDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.FedExDeliveryIncAcceptEditDialog",
+                    controller: this
+                }).then(function(oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("_IDGenFedExDeliveryIncAcceptEditDialog").open();
+            }
+        },
+
+        onCloseFedExDeliveryIncAcceptDialog: function() {
+            this.byId("_IDGenFedExDeliveryIncAcceptEditDialog").close();
+        },
+
+
+        onOpenAlcoholDialog: function() {
+            var oView = this.getView();
+
+            if (!this.byId("_IDGenAlcoholEditDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.FedExAlcoholEditDialog",
+                    controller: this
+                }).then(function(oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("_IDGenAlcoholEditDialog").open();
+            }
+        },
+
+        onCloseAlcoholDialog: function() {
+            this.byId("_IDGenAlcoholEditDialog").close();
+        },
+
+
+        onOpenFedExHoldAtLoctionEditDialog: function() {
+            var oView = this.getView();
+
+            if (!this.byId("_IDGenFedExHoldAtLoctionEditDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.FedExHoldAtLoctionEditDialog",
+                    controller: this
+                }).then(function(oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("_IDGenFedExHoldAtLoctionEditDialog").open();
+            }
+        },
+
+        onCloseHoldAtLoctionDialog: function() {
+            this.byId("_IDGenFedExHoldAtLoctionEditDialog").close();
+        },
+
+        onOpenFedExETDDetailEditDialog: function() {
+            var oView = this.getView();
+
+            if (!this.byId("_IDGenFedExETDDetailEditDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.FedExETDDetailEditDialog",
+                    controller: this
+                }).then(function(oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("_IDGenFedExETDDetailEditDialog").open();
+            }
+        },
+
+        onCloseETDDetailDialog: function() {
+            this.byId("_IDGenFedExETDDetailEditDialog").close();
+        },
+
+        onOpenFedexInternationalTrafficInArmsRegulationsDetailEditDialog: function() {
+            var oView = this.getView();
+
+            if (!this.byId("_IDGenFedexInternationalTrafficInArmsRegulationsDetailEditDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.FedexInternationalTrafficInArmsRegulationsDetailEditDialog",
+                    controller: this
+                }).then(function(oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("_IDGenFedexInternationalTrafficInArmsRegulationsDetailEditDialog").open();
+            }
+        },
+
+        onCloseFedexInternationalTrafficInArmsRegulationsDetailEditDialog: function() {
+            this.byId("_IDGenFedexInternationalTrafficInArmsRegulationsDetailEditDialog").close();
+        },
+
+
+        onOpenFedexEmailReturnLabelEditDialog: function() {
+            var oView = this.getView();
+
+            if (!this.byId("_IDGenFedExEmailReturnLabelEditDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.FedExEmailReturnLabelEditDialog",
+                    controller: this
+                }).then(function(oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("_IDGenFedExEmailReturnLabelEditDialog").open();
+            }
+        },
+
+        onCloseFedexEmailReturnLabelEditDialog: function() {
+            this.byId("_IDGenFedExEmailReturnLabelEditDialog").close();
+        },
+
+        onOpenFedexHomeDeliveryEditDialog: function() {
+            var oView = this.getView();
+
+            if (!this.byId("_IDGenFedExHomeDeliveryEditDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.FedExHomeDeliveryEditDialog",
+                    controller: this
+                }).then(function(oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("_IDGenFedExHomeDeliveryEditDialog").open();
+            }
+        },
+
+        onCloseFedexHomeDeliveryEditDialog: function() {
+            this.byId("_IDGenFedExHomeDeliveryEditDialog").close();
+        },
+
+        onOpenFedexPendingShipmentDetailEditDialog: function() {
+            var oView = this.getView();
+
+            if (!this.byId("_IDGenFedExPendingShipmentDetailEditDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.FedExPendingShipmentDetailEditDialog",
+                    controller: this
+                }).then(function(oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("_IDGenFedExPendingShipmentDetailEditDialog").open();
+            }
+        },
+
+        onCloseFedexPendingShipmentDetailEditDialog: function() {
+            this.byId("_IDGenFedExEmailReturnLabelEditDialog").close();
+        },
+
+
  
         
         onHoldAtLocationEditPress: function () {

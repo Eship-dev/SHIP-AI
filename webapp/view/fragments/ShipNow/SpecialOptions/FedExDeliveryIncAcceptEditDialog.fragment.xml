@@ -1,0 +1,90 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core" 
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m">
+
+    <Dialog id="_IDGenFedExDeliveryIncAcceptEditDialog"
+            title="FedExDeliveryIncAccept"
+            contentWidth="60vh"
+            contentHeight="95%"
+            verticalScrolling="false"
+            horizontalScrolling="false"
+            class="rightSideDialogSpecialOptions">
+        
+       
+            <Toolbar>
+                <Title text="FedExDeliveryIncAccept" />
+                <ToolbarSpacer />
+                <Button icon="sap-icon://decline" press="onCloseFedExDeliveryIncAcceptDialog" />
+            </Toolbar>
+      
+
+        <content>
+            <f:SimpleForm editable="true"
+                          class="customSimpleFormShadow"
+                          width="auto"
+                          layout="ColumnLayout"
+                          columnsM="2"
+                          columnsL="2"
+                          columnsXL="2">
+                <f:content>
+                    <Label text="Street Line 1" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                    
+                    <Label text="City" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                    
+                    <Label text="Postal Code" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Residential" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Email" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Phone Number" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Number" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Usage" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Expiration Date" />
+                    <DatePicker class="sapUiSmallMarginBottom create-ship-req_input" ></DatePicker>
+                     <Label text="Street Line 2" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="State/Province Code" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Country Code" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Name" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Phone Extension" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Company Name" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Tin Type" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Effective Date" labelFor="DdfP1" />
+                    <DatePicker
+                        id="DdfP1"
+                        placeholder="Enter Date"
+                        change="handleChange"
+                        class="sapUiSmallMarginBottom create-ship-req_input"/>
+
+                    <Label text="Delivery Instructions" />
+                    <DatePicker class="sapUiSmallMarginBottom create-ship-req_input" ></DatePicker>
+                    
+                </f:content>
+            </f:SimpleForm>
+        </content>
+
+        <footer>
+            <OverflowToolbar class="sapMPopoverFooter1">
+                <Button text="Cancel" press="onCloseFedExDeliveryIncAcceptDialog" />
+                <ToolbarSpacer />
+                <Button text="Save" type="Emphasized" press="onSaveFedExDeliveryIncAcceptData" />
+            </OverflowToolbar>
+        </footer>
+
+    </Dialog>
+</core:FragmentDefinition>

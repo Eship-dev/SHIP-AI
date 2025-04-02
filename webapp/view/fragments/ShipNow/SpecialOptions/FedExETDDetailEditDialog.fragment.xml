@@ -1,0 +1,63 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core" 
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m">
+
+    <Dialog id="_IDGenFedExETDDetailEditDialog"
+            title="ETD Detail"
+            contentWidth="60vh"
+            contentHeight="95%"
+            verticalScrolling="false"
+            horizontalScrolling="false"
+            class="rightSideDialogSpecialOptions">
+            
+            <Toolbar>
+                <Title text="ETD Detail" />
+                <ToolbarSpacer />
+                <Button icon="sap-icon://decline" press="onCloseETDDetailDialog" />
+            </Toolbar>
+
+        <content>
+            <f:SimpleForm editable="true"
+                          class="customSimpleFormShadow"
+                          width="auto"
+                          layout="ColumnLayout"
+                          columnsM="2"
+                          columnsL="2"
+                          columnsXL="2">
+                <f:content>
+                   <!-- <Toolbar ariaLabelledBy="idShipFrom" class="customLine" >
+						<Button icon="sap-icon://customer-briefing" id="idShipFrggomAddressBtn" />
+                        <Title id="idShipFromuu" text="Address" />
+					</Toolbar> -->
+                    <Label text="Attributes" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />      
+                    <Label text="Document Reference" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <Label text="Document ID" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Requested Document Type 2" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Document Type" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Description" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Requested Document Type 1" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     
+                </f:content>
+            </f:SimpleForm>
+        </content>
+
+        <footer>
+            <OverflowToolbar class="sapMPopoverFooter1">
+                <Button text="Cancel" press="onCloseETDDetailDialog" />
+                <ToolbarSpacer />
+                <Button text="Save" type="Emphasized" press="onCloseETDDetailDialog" />
+            </OverflowToolbar>
+        </footer>
+
+    </Dialog>
+</core:FragmentDefinition>
