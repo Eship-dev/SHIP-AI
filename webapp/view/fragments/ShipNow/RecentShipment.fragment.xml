@@ -18,7 +18,7 @@
 			<cells>				
 			  	<Text text="{eshipjetModel>Vbeln}" class="customObjectStatus" />
                 <Text text="{ path: 'eshipjetModel>Createddate', formatter: '.formatter.formatDate' }" />	
-                <Text text="{eshipjetModel>TpCompany}"  wrapping="false" />	
+                <Text text="{eshipjetModel>Company}"  wrapping="false" />	
                 <Text text="{eshipjetModel>Carriertype}" />
 			</cells>
 		</ColumnListItem>

@@ -329,7 +329,7 @@
 											<f:SimpleForm visible="{eshipjetModel>/shipNowFedExSelect}"  id="RoutingandBillingDetails2" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
 												<f:content>
 													<Label text="Signature Option" class="create-ship-req_input" />
-													<ComboBox items="{eshipjetModel>/signatureOption}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" >
+													<ComboBox items="{eshipjetModel>/signatureOption}" enabled="{eshipjetModel>/shipNowBtnStatus}" selectedKey="{eshipjetModel>/Signature_optionType}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
 													<Label text="Insurance Charge" />

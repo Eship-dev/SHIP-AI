@@ -32,6 +32,8 @@
     "shipNowUPSSelect": false,
     "shipNowUSPSSelect": false,
 
+    "Signature_optionType":"",
+
     "DgUpdate":false,
     "DgAdd":false,
 

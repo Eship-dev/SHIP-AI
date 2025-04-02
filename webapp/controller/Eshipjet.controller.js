@@ -1039,21 +1039,490 @@ sap.ui.define([
             var sapDeliveryNumber = eshipjetModel.getProperty("/sapDeliveryNumber");
             var carrier = eshipjetModel.getProperty("/ShipNowShipMethodSelectedKey");
             var serviceName = eshipjetModel.getProperty("/ShipNowShipsrvNameSelectedKey");
-            var id, password, accountNumber;            
+            var id, password, accountNumber, oPayload;            
           
             var AccessKey = "";
             if(carrier && carrier.toUpperCase() === "UPS"){
-                //old Credentials
                 id = "6ljUpEbuu1OlOk7ow932lsxXHISUET0WKjTn59GzQ5MRdEbA";  
                 password = "ioZmsfcbrzlWfGh7wGMhqHL6sY4EAaKzZObullipni0cEGJGChjFmGpkcdCWQynK";
-                //New Credentials
-                // id = "ujH6kAsuiDUETIVH66WQNzHG0YAcnEK4eX9qXna7R9A7BSCv";
-                // password = "Y9DwLg6bAnqjARxGnGkSUmCe2MG93FHu5G2unNYF85SHQ5AeR6BzrGEV6uS44tu7";
                 accountNumber = "B24W72";
+                oPayload = {
+                    "HeaderInfo": {
+                        "FeederSystem": "",
+                        "DocumentNumber": sapDeliveryNumber,
+                        "DocumentType": "Delivery",
+                        "ShipDate": shipDate,
+                        "ShipmentType": "Business",
+                        "Location": "1",
+                        "ERP": "SAP",
+                        "TotalWeight": 16
+                    },
+                    "Shipper": {
+                        "COMPANY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOMPANY"),
+                        "CONTACT": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCONTACT"),
+                        "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE1"),
+                        "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE2"),
+                        "ADDRESS_LINE3": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE3"),
+                        "CITY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCITY"),
+                        "STATE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromSTATE"),
+                        "ZIPCODE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromZIPCODE"),
+                        "COUNTRY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOUNTRY"),
+                        "PHONE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromPHONE"),
+                        "EMAIL": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromEMAIL")
+                    },
+                    "ShipTo": {
+                        "COMPANY": oShipNowDataModel.getProperty("/ShipToAddress/BusinessPartnerName1"),
+                        "CONTACT": oShipNowDataModel.getProperty("/ShipToAddress/FullName"),
+                        "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipToAddress/StreetName"),
+                        "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipToAddress/HouseNumber"),
+                        "ADDRESS_LINE3": "",
+                        "CITY": oShipNowDataModel.getProperty("/ShipToAddress/CityName"),
+                        "STATE": oShipNowDataModel.getProperty("/ShipToAddress/Region"),
+                        "ZIPCODE": oShipNowDataModel.getProperty("/ShipToAddress/PostalCode"),
+                        "COUNTRY": oShipNowDataModel.getProperty("/ShipToAddress/Country"),
+                        "PHONE": oShipNowDataModel.getProperty("/ShipToAddress/PhoneNumber"),
+                        "EMAIL": oShipNowDataModel.getProperty("/ShipToAddress/EMAIL"),
+                        "AddressType": oShipNowDataModel.getProperty("/ShipToAddress/LocationType")
+                    },
+                    "ShipFrom": {
+                        "COMPANY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOMPANY"),
+                        "CONTACT": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCONTACT"),
+                        "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE1"),
+                        "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE2"),
+                        "ADDRESS_LINE3": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE3"),
+                        "CITY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCITY"),
+                        "STATE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromSTATE"),
+                        "ZIPCODE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromZIPCODE"),
+                        "COUNTRY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOUNTRY"),
+                        "PHONE": "4088380699",
+                        "EMAIL": "ulli@imail.com"
+                    },
+                    "SoldTo": {
+                        "COMPANY": oShipNowDataModel.getProperty("/ShipToAddress/BusinessPartnerName1"),
+                        "CONTACT": oShipNowDataModel.getProperty("/ShipToAddress/FullName"),
+                        "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipToAddress/StreetName"),
+                        "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipToAddress/HouseNumber"),
+                        "ADDRESS_LINE3": "",
+                        "CITY": oShipNowDataModel.getProperty("/ShipToAddress/CityName"),
+                        "STATE": oShipNowDataModel.getProperty("/ShipToAddress/Region"),
+                        "ZIPCODE": oShipNowDataModel.getProperty("/ShipToAddress/PostalCode"),
+                        "COUNTRY": oShipNowDataModel.getProperty("/ShipToAddress/Country"),
+                        "PHONE": oShipNowDataModel.getProperty("/ShipToAddress/PhoneNumber"),
+                        "EMAIL": oShipNowDataModel.getProperty("/ShipToAddress/EMAIL")
+                    },
+                    "CarrierDetails": {
+                        "Carrier": "UPS",
+                        "ServiceName": eshipjetModel.getProperty("/carrierServiceCode_display"),
+                        "PaymentType": "Sender",
+                        "ShippingAccount": accountNumber,
+                        "BillingAccount": "",
+                        "BillingCountry": "",
+                        "BillingZipCode": "",
+                        "Reference1": "EWM17-CU02",
+                        "Reference2": "",
+                        "Reference3": "",
+                        "Reference4": "",
+                        "Note": "",
+                        "UserId": id,
+                        "Password": password,
+                        "AccessKey": ""
+                    },
+                    "Packages": [
+                        {
+                            "ItemsInfo": [],
+                            "Weightunits": "LB",
+                            "DimensionUnits": "IN",
+                            "Sno": 1,
+                            "HU": "7000001514",
+                            "Weight": 20,
+                            "Dimension": "10x10x10",
+                            "PackagingMaterial": eshipjetModel.getProperty("/selectedPackageMat"),
+                            "PackingType": "CARTON",
+                            "PackageLevelSpecialServices": {
+                                "Signature_optionType": "2 - Delivery Confirmation Signature Required", //1 - Unsupported ;2 - Delivery Confirmation Signature Required;3 - Delivery Confirmation Adult Signature Required
+                                "COD": {
+                                    "Amount": "10",
+                                    "Currency": "USD",
+                                    "CollectionType": "0" //0 Check, Cash Cashier's Check Money Order ;8 Cashier's Check Money Order
+                                },
+                                "DryIce": {
+                                    "WeightUnits": "KG",
+                                    "Weight": "1"
+                                },
+                                "HazMat": {
+                                    "PackageIdentifier": "123",
+                                    "PackagingTypeQuantity": "1",
+                                    "SubClass": "3",
+                                    "TechnicalName": "ACID",
+                                    "Class": "8",
+                                    "Quantity": "4.0",
+                                    "UOM": "L",
+                                    "PackagingType": "LASTIC JERRICAN",
+                                    "UNIDNumber": "1779",
+                                    "ProperShippingName": "FORMIC ACID",
+                                    "PackagingGroupType": "II",
+                                    "PackagingInstructionCode": "855",
+                                    "EmergencyPhone": "9253702575",
+                                    "EmergencyContact": "Shipping Dept.",
+                                    "RegulationSet": "CFR",
+                                    "TransportationMode": "CAO",
+                                    "CommodityRegulatedLevelCode": "FR",
+                                    "TransportCategory": "xyz",
+                                    "TunnelRestrictionCode": "xyz",
+                                    "ChemicalRecordIdentifier": "40",
+                                    "CargoAircraft": true
+                                }
+                            }
+                        }
+                    ],
+                    "InternationalDetails": {
+                        "ItemInfo": [
+                            {
+                                "ItemNo": "IT0001",
+                                "ProductNo": "PRD0001",
+                                "Description": "ITEM 1 Description",
+                                "IsDG": null,
+                                "UnitCost": "3.22",
+                                "UnitWeight": "0.5",
+                                "Dimension": "10X10X10",
+                                "HTSCode": "HTSCODE IT0001",
+                                "ECCN": "ECCN IT 0001",
+                                "UN": "UN IT0001",
+                                "Class": "III",
+                                "NMFC": "NMFC 0001",
+                                "Category": "CAT01",
+                                "IsSerial": null,
+                                "IsBatch": null,
+                                "IsStackable": null,
+                                "IsActive": true,
+                                "LocationId": "1",
+                                "id": 1,
+                                "Sno": 1,
+                                "Quantity": "10",
+                                "Partial": "10",
+                                "Balance": "10",
+                                "UOM": "EA"
+                            }
+                        ],
+                        "TermsofShipment": "Delivered Duty Paid",
+                        "ReasonforExport": "Sold",
+                        "CustomDecVal": "6",
+                        "DocumentsContentType": "Non_Documents",
+                        "INTDutiesTaxesPaymentType": "",
+                        "DutiesAccountnumber": "",
+                        "Permitnumber": "123456",
+                        "ITN": "12345",
+                        "ExportComplianceStatement": "compli",
+                        "PayorCountryCode": "CA"
+                    },
+                    "ShipmentLevelSpecialServices": {
+                        "Signature_optionType": "2 - Delivery Confirmation Adult Signature Required", //1 - Delivery Confirmation Signature Required,
+                        "ImportControl": {
+                            "Code": "01" // 01 = ImportControl Print and Mail 02 = ImportControl One-Attempt 03 = ImportControl Three-Attempt 04 = ImportControl Electronic Label 05 = ImportControl Print Label
+                        },
+                        "RemoveCommercialInvoice": false,
+                        "NeutralDelivery": false,
+                        "LiftGatePickUp": false,
+                        "LiftGateDelivery": false,
+                        "DropoffAtFacility": false,
+                        "ExchangeForwardShipment": false,
+                        "SaturdayDelivery": false,
+                        "InsideDelivery": false,
+                        "InsidePickup": false,
+                        "SaturdayPickup": false,
+                        "HoldForPickup": false,
+                        "EmailNotification": {
+                            "RecipientTypes": "SHIPPER",
+                            "EventTypes": [
+                                "8"
+                            ], //5 - QV In-transit Notification;6 - QV Ship Notification;7 - QV Exception Notification;8 - QV Delivery Notification;2 - Return Notification or Label Creation Notification;012 - Alternate Delivery Location Notification;013 - UAP Shipper Notification."
+                            "CONTACT": "",
+                            "EMAIL": "ulli@imail.com"
+                        },
+                        "ReturnShip": {
+                            "PHONE": "7207239720",
+                            "Reason": "Reason",
+                            "SpecialService": "",
+                            "ExpiryDate": "2025-03-18",
+                            "ReturnType": "", // 2 = UPS Print and Mail (PNM)3 = UPS Return Service 1-Attempt (RS1)5 = UPS Return Service 3-Attempt (RS3)8 = UPS Electronic Return Label (ERL)9 = UPS Print Return Label (PRL)10 = UPS Exchange Print Return Label;11 = UPS Pack & 
+                            "EMAIL": "ulli@imayl.com",
+                            "CustomsOption": "TRIAL",
+                            "TrackingNumber": "794862627576",
+                            "ShipDate": "2025-03-21"
+                        },
+                        "COD": {
+                            "Amount": "10",
+                            "Currency": "USD",
+                            "CollectionType": "9"
+                        }
+                    }
+                };
             }else if(carrier && carrier.toUpperCase() === "FEDEX"){
                  id = "l70c717f3eaf284dc9af42169e93874b6e";
                  password = "7f271bf486084e8f8073945bb7e6a020";
                  accountNumber = "740561073";
+                 oPayload = {
+                    "HeaderInfo": {
+                        "FeederSystem": "SAP ECC 6.0",
+                        "DocumentNumber": sapDeliveryNumber,
+                        "DocumentType": "Delivery",
+                        "ShipDate": shipDate,
+                        "ShipmentType": "Business",
+                        "Location": "1001",
+                        "ERP": "SAP",
+                        "TotalWeight": 16
+                    },
+                    "Shipper": {
+                        "COMPANY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOMPANY"),
+                        "CONTACT": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCONTACT"),
+                        "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE1"),
+                        "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE2"),
+                        "ADDRESS_LINE3": oShipNowDataModel.getProperty("/ShipFromAddress/LocationType"),
+                        "CITY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCITY"),
+                        "STATE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromSTATE"),
+                        "ZIPCODE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromZIPCODE"),
+                        "COUNTRY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOUNTRY"),
+                        "PHONE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromPHONE"),
+                        "EMAIL": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromEMAIL")
+                    },
+                    "ShipTo": {
+                        "COMPANY": oShipNowDataModel.getProperty("/ShipToAddress/BusinessPartnerName1"),
+                        "CONTACT": oShipNowDataModel.getProperty("/ShipToAddress/FullName"),
+                        "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipToAddress/StreetName"),
+                        "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipToAddress/HouseNumber"),
+                        "ADDRESS_LINE3":  "",
+                        "CITY": oShipNowDataModel.getProperty("/ShipToAddress/CityName"),
+                        "STATE": oShipNowDataModel.getProperty("/ShipToAddress/Region"),
+                        "ZIPCODE": oShipNowDataModel.getProperty("/ShipToAddress/PostalCode"),
+                        "COUNTRY": oShipNowDataModel.getProperty("/ShipToAddress/Country"),
+                        "PHONE": oShipNowDataModel.getProperty("/ShipToAddress/PhoneNumber"),
+                        "EMAIL": oShipNowDataModel.getProperty("/ShipToAddress/EMAIL"),
+                        "AddressType": oShipNowDataModel.getProperty("/ShipToAddress/LocationType")
+                    },
+                    "ShipFrom": {
+                        "COMPANY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOMPANY"),
+                        "CONTACT": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCONTACT"),
+                        "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE1"),
+                        "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE2"),
+                        "ADDRESS_LINE3": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE3"),
+                        "CITY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCITY"),
+                        "STATE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromSTATE"),
+                        "ZIPCODE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromZIPCODE"),
+                        "COUNTRY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOUNTRY"),
+                        "PHONE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromPHONE"),
+                        "EMAIL": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromEMAIL")
+                    },
+                    "SoldTo": {
+                        "COMPANY": oShipNowDataModel.getProperty("/ShipToAddress/BusinessPartnerName1"),
+                        "CONTACT": oShipNowDataModel.getProperty("/ShipToAddress/FullName"),
+                        "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipToAddress/StreetName"),
+                        "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipToAddress/HouseNumber"),
+                        "ADDRESS_LINE3": "",
+                        "CITY": oShipNowDataModel.getProperty("/ShipToAddress/CityName"),
+                        "STATE": oShipNowDataModel.getProperty("/ShipToAddress/Region"),
+                        "ZIPCODE": oShipNowDataModel.getProperty("/ShipToAddress/PostalCode"),
+                        "COUNTRY": oShipNowDataModel.getProperty("/ShipToAddress/Country"),
+                        "PHONE": oShipNowDataModel.getProperty("/ShipToAddress/PhoneNumber"),
+                        "EMAIL": oShipNowDataModel.getProperty("/ShipToAddress/EMAIL")
+                    },
+                    "CarrierDetails": {
+                        "Carrier": carrier === 'FEDEX' ? 'FedEx' : carrier,
+                        "ServiceName": eshipjetModel.getProperty("/carrierServiceCode_display"),
+                        "PackingType": "FEDEX_LARGE_BOX",
+                        "PaymentType": "Sender",
+                        "ShippingAccount": accountNumber,
+                        "BillingAccount": accountNumber,
+                        "BillingCountry": "",
+                        "BillingZipCode": "",
+                        "Reference1": "",
+                        "Reference2": "",
+                        "Reference3": "",
+                        "Reference4": "",
+                        "Note": "",
+                        "UserId": id,
+                        "Password": password,
+                        "AccessKey": ""
+                    },
+                    "Packages": [
+                        {
+                            "ItemsInfo": [],
+                            "Weightunits": "LB",
+                            "DimensionUnits": "",
+                            "Sno": 1,
+                            "HU": "7000001514",
+                            "Weight": 20,
+                            "Dimension": "10x12x12",
+                            "PackagingMaterial": eshipjetModel.getProperty("/selectedPackageMat"),
+                            "PackingType": "CARTON",
+                            "PackageLevelSpecialServices": {
+                                "Signature_optionType": eshipjetModel.getProperty("/Signature_optionType"),
+                                "PriorityAlert": eshipjetModel.getProperty("/PriorityAlert"),
+                                "PriorityAlertPlus": eshipjetModel.getProperty("/PriorityAlertPlus"),
+                                "Alcohol": {
+                                    "RecipientType": "LICENSEE",
+                                    "ShipperAgreementType": "Retailer"
+                                },
+                                "COD": {
+                                    "Amount": "10",
+                                    "Currency": "USD"
+                                },
+                                "DryIce": {
+                                    "WeightUnits": "KG",
+                                    "Weight": "1"
+                                },
+                                "Battery": {
+                                    "PackingType": "CONTAINED_IN_EQUIPMENT",
+                                    "RegulatoryType": "IATA_SECTION_II",
+                                    "MaterialType": "LITHIUM_METAL"
+                                },
+                                "HazMat": {
+                                    "PackagingTypeQuantity": "1",
+                                    "SubClass": "3",
+                                    "TechnicalName": "ACID",
+                                    "Class": "8",
+                                    "Quantity": "4.0",
+                                    "UOM": "L",
+                                    "PackagingType": "LASTIC JERRICAN",
+                                    "UNIDNumber": "1779",
+                                    "ProperShippingName": "FORMIC ACID",
+                                    "PackagingGroupType": "II",
+                                    "PackagingInstructionCode": "855",
+                                    "EmergencyPhone": "9253702575",
+                                    "EmergencyContact": "Shipping Dept.",
+                                    "RegulationSet": "CFR",
+                                    "TransportationMode": "CAO",
+                                    "CommodityRegulatedLevelCode": "FR",
+                                    "TransportCategory": "xyz",
+                                    "TunnelRestrictionCode": "xyz",
+                                    "ChemicalRecordIdentifier": "40",
+                                    "CargoAircraft": true
+                                }
+                            }
+                        }
+                    ],
+                    "InternationalDetails": {
+                        "ItemInfo": [
+                            {
+                                "ItemNo": "IT0001",
+                                "ProductNo": "PRD0001",
+                                "Description": "ITEM 1 Description",
+                                "IsDG": null,
+                                "UnitCost": "3.22",
+                                "UnitWeight": "0.5",
+                                "Dimension": "10X10X10",
+                                "HTSCode": "HTSCODE IT0001",
+                                "ECCN": "ECCN IT 0001",
+                                "UN": "UN IT0001",
+                                "Class": "III",
+                                "NMFC": "NMFC 0001",
+                                "Category": "CAT01",
+                                "IsSerial": null,
+                                "IsBatch": null,
+                                "IsStackable": null,
+                                "IsActive": true,
+                                "LocationId": "1",
+                                "id": 1,
+                                "Sno": 1,
+                                "Quantity": "10",
+                                "Partial": "10",
+                                "Balance": "10",
+                                "UOM": "EA"
+                            }
+                        ],
+                        "TermsofShipment": "Delivered Duty Paid",
+                        "ReasonforExport": "Sold",
+                        "CustomDecVal": "6",
+                        "DocumentsContentType": "Non_Documents",
+                        "INTDutiesTaxesPaymentType": "",
+                        "DutiesAccountnumber": "",
+                        "Permitnumber": "123456",
+                        "ITN": "12345",
+                        "ExportComplianceStatement": "compli",
+                        "PayorCountryCode": "CA",
+                        "BrokerAddress": {
+                            "COMPANY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOMPANY"),
+                            "CONTACT": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCONTACT"),
+                            "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE1"),
+                            "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE2"),
+                            "ADDRESS_LINE3": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE2"),
+                            "CITY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCITY"),
+                            "STATE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromSTATE"),
+                            "ZIPCODE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromZIPCODE"),
+                            "COUNTRY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOUNTRY"),
+                            "PHONE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromPHONE"),
+                            "EMAIL": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromEMAIL")
+                        },
+                        "ImporterAddress": {
+                            "COMPANY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOMPANY"),
+                            "CONTACT": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCONTACT"),
+                            "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE1"),
+                            "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE2"),
+                            "ADDRESS_LINE3": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE2"),
+                            "CITY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCITY"),
+                            "STATE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromSTATE"),
+                            "ZIPCODE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromZIPCODE"),
+                            "COUNTRY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOUNTRY"),
+                            "PHONE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromPHONE"),
+                            "EMAIL": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromEMAIL"),
+                            "TinNumber": "",
+                            "TinType": "",
+                            "AccountNumber": ""
+                        }
+                    },
+                    "ShipmentLevelSpecialServices": {
+                        "FedExOneRate": true,
+                        "BrokerSelect": true,
+                        "ReturnClearance": false,
+                        "PharmacyDelivery": false,
+                        "SaturdayDelivery": false,
+                        "InsideDelivery": false,
+                        "InsidePickup": false,
+                        "SaturdayPickup": false,
+                        "EmailNotification": {
+                            "RecipientTypes": "SHIPPER",
+                            "EventTypes": [
+                                "ON_DELIVERY"
+                            ], //""ON_DELIVERY""""ON_EXCEPTION"" ""ON_SHIPMENT"" ""ON_TENDER""  ""ON_ESTIMATED_DELIVERY"" ""ON_PICKUP_DRIVER_ARRIVED""  ""ON_PICKUP_DRIVER_ASSIGNED""  ""ON_PICKUP_DRIVER_DEPARTED"" ""ON_PICKUP_DRIVER_EN_ROUTE"""
+                            "CONTACT": "",
+                            "EMAIL": ""
+                        },
+                        "ReturnShip": {
+                            "PHONE": "7207239720",
+                            "Reason": "Reason",
+                            "SpecialService": "",
+                            "ExpiryDate": "2025-03-18",
+                            "ReturnType": "PENDING", //"PRINT_RETURN_LABEL"
+                            "EMAIL": "ulli@imayl.com",
+                            "CustomsOption": "TRIAL",
+                            "TrackingNumber": "794862627576",
+                            "ShipDate": "2025-03-21"
+                        },
+                        "HomeDelivery": {
+                            "PremiumType": "APPOINTMENT", //"APPOINTMENT" "DATE_CERTAIN" "EVENING"
+                            "PHONE": "",
+                            "DeliveryDate": ""
+                        },
+                        "Indicia": {
+                            "Indicia": "" //"MEDIA_MAIL" "PARCEL_RETURN" "PARCEL_SELECT"(1 LB through 70 LB) "PRESORTED_BOUND_PRINTED_MATTER" "PRESORTED_STANDARD"(less than 1 LB)
+                        },
+                        "HoldAtLocation": {
+                            "LocationId": "NQAKE",
+                            "COMPANY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOMPANY"),
+                            "CONTACT": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCONTACT"),
+                            "ADDRESS_LINE1": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE1"),
+                            "ADDRESS_LINE2": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE2"),
+                            "ADDRESS_LINE3": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE3"),
+                            "CITY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCITY"),
+                            "STATE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromSTATE"),
+                            "ZIPCODE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromZIPCODE"),
+                            "COUNTRY": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOUNTRY"),
+                            "PHONE": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromPHONE"),
+                            "EMAIL": oShipNowDataModel.getProperty("/ShipFromAddress/ShipFromEMAIL"),
+                            "LocationType": "FEDEX_OFFICE" //"FEDEX_AUTHORIZED_SHIP_CENTER" "FEDEX_OFFICE" "FEDEX_SELF_SERVICE_LOCATION" "FEDEX_STAFFED" "RETAIL_ALLICANCE_LOCATION" "FEDEX_GROUND_TERMINAL" "FEDEX_ONSITE"
+                        }
+                    }
+                };
+                
             }else if(carrier && carrier.toUpperCase() === "DHL"){
                  id = "apT2vB7mV1qR1b";
                  password = "U#3mO^1vY!5mT@0j";
