@@ -1,0 +1,92 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    height="100%"
+    modal="false"
+>
+    <Popover
+        id="addDryIcePopover123"
+        placement="Bottom"
+        contentHeight="100%"
+        showHeader="false"
+        class="rightSidePopoverGare"
+    >
+        <!-- Custom Header -->
+        <customHeader>
+            <Toolbar >
+                <!-- Title -->
+                <Title text="DryIce" />
+
+                <!-- Spacer to push close button to the right -->
+                <ToolbarSpacer />
+
+                <!-- Close Button -->
+                <Button
+                    icon="sap-icon://decline"
+                    class="Decline_Btn ship-now-decline_btn"
+                    press="onDryIceEditDialogClosePress"
+                />
+            </Toolbar>
+        </customHeader>
+        
+        <footer>
+            <OverflowToolbar class="p-sidebar-header sapMPopoverFooter1">
+                <Button
+                    text="Cancel"
+                    class="Cancel_Btn"
+                    
+                    press="onDryIceEditDialogClosePress"
+                />
+                <ToolbarSpacer />
+                <Button
+                    class="btnSave"
+                    type="Emphasized"
+                    text="Save"
+                    press="onDryIceEditDialogClosePress"
+                />
+            </OverflowToolbar>
+        </footer>
+
+        <content>
+            <f:SimpleForm
+                editable="true"
+                class="customSimpleFormShadow"
+                width="auto"
+                layout="ColumnLayout"
+                columnsM="2"
+                columnsL="2"
+                columnsXL="2"
+            >
+                <f:content>
+                    <Toolbar ariaLabelledBy="idShipFrom">
+                        <Button
+                            icon="sap-icon://customer-briefing"
+                            press="handleAddLocPress"
+                        />
+                        <Title
+                            id="idAddDryIce123"
+                            text="Name and Contact"
+                        />
+                    </Toolbar>
+                    <Label text="Weight Units" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Number Of Packages" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Weight" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                </f:content>
+            </f:SimpleForm>
+
+           
+                
+        </content>
+    </Popover>
+</core:FragmentDefinition>

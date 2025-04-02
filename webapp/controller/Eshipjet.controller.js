@@ -3582,20 +3582,20 @@ sap.ui.define([
 
         onBrokerSelectEditPress: function (oEvent) {
             var oView = this.getView();
-            var oSource = oEvent.getSource(); // The button triggering the popover
+            var oSource = oEvent.getSource(); 
         
             if (!this._oBrokerSelectEditDialog) {
                 Fragment.load({
                     id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.BrokerSelectEditDialog",
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.BrokerSelectEditDialog",
                     controller: this
                 }).then(function (oPopover) {
                     this._oBrokerSelectEditDialog = oPopover;
                     oView.addDependent(this._oBrokerSelectEditDialog);
-                    this._oBrokerSelectEditDialog.openBy(oSource); // Open by the clicked button
+                    this._oBrokerSelectEditDialog.openBy(oSource); 
                 }.bind(this));
             } else {
-                this._oBrokerSelectEditDialog.openBy(oSource); // Open popover by event source
+                this._oBrokerSelectEditDialog.openBy(oSource);
             }
         },
         
@@ -3604,6 +3604,53 @@ sap.ui.define([
                 this._oBrokerSelectEditDialog.close();
             }
         },
+
+        onDryIceEditPress: function (oEvent) {
+            var oView = this.getView();
+            var oSource = oEvent.getSource(); 
+        
+            if (!this._oDryIceEditDialog) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.DryIceEditDialog",
+                    controller: this
+                }).then(function (oPopover) {
+                    this._oDryIceEditDialog = oPopover;
+                    oView.addDependent(this._oDryIceEditDialog);
+                    this._oDryIceEditDialog.openBy(oSource); 
+                }.bind(this));
+            } else {
+                this._oDryIceEditDialog.openBy(oSource);
+            }
+        },
+        
+        onDryIceEditDialogClosePress: function () {
+            if (this._oDryIceEditDialog) {
+                this._oDryIceEditDialog.close();
+            }
+        },
+
+        onOpenBatteryDialog: function() {
+            var oView = this.getView();
+
+            if (!this.byId("_IDGenBatteryEditDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.BatteryEditDialog",
+                    controller: this
+                }).then(function(oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("_IDGenBatteryEditDialog").open();
+            }
+        },
+
+        onCloseBatteryDialog: function() {
+            this.byId("_IDGenBatteryEditDialog").close();
+        },
+ 
         
         onHoldAtLocationEditPress: function () {
             var oView = this.getView();

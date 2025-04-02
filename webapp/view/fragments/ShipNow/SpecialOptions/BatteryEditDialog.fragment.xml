@@ -1,0 +1,51 @@
+<core:FragmentDefinition xmlns="sap.m" 
+    xmlns:core="sap.ui.core" 
+    xmlns:f="sap.ui.layout.form">
+
+    <Dialog id="_IDGenBatteryEditDialog"
+            title="Battery"
+            contentWidth="60vh"
+            contentHeight="95%"
+            verticalScrolling="false"
+            horizontalScrolling="false"
+            class="rightSideDialogSpecialOptions">
+        
+       
+            <Toolbar>
+                <Title text="Battery" />
+                <ToolbarSpacer />
+                <Button icon="sap-icon://decline" press="onCloseBatteryDialog" />
+            </Toolbar>
+      
+
+        <content>
+            <f:SimpleForm editable="true"
+                          class="customSimpleFormShadow"
+                          width="auto"
+                          layout="ColumnLayout"
+                          columnsM="2"
+                          columnsL="2"
+                          columnsXL="2">
+                <f:content>
+                    <Label text="Packing Type" />
+                    <Input id="idPackingType" class="sapUiSmallMarginBottom create-ship-req_input" />
+                    
+                    <Label text="Regulatory Type" />
+                    <Input id="idRegulatoryType" class="sapUiSmallMarginBottom create-ship-req_input" />
+                    
+                    <Label text="Material Type" />
+                    <Input id="idMaterialType" class="sapUiSmallMarginBottom create-ship-req_input" />
+                </f:content>
+            </f:SimpleForm>
+        </content>
+
+        <footer>
+            <OverflowToolbar class="sapMPopoverFooter1">
+                <Button text="Cancel" press="onCloseBatteryDialog" />
+                <ToolbarSpacer />
+                <Button text="Save" type="Emphasized" press="onSaveBatteryData" />
+            </OverflowToolbar>
+        </footer>
+
+    </Dialog>
+</core:FragmentDefinition>

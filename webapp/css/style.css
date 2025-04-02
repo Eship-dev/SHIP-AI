@@ -1427,13 +1427,13 @@ body.dark-theme {
 
 .rightSidePopoverGare {
   width: 45% !important;
-  height: 95vh !important;  /* Ensure height is 95% of the viewport */
+  height: 100vh !important;  /* Ensure height is 95% of the viewport */
   overflow: auto !important;
   position: fixed !important;
   visibility: visible !important;
   z-index: 99999 !important;
   max-width: 1230px;
-  max-height: 95% !important;
+  max-height: 100% !important;
   padding-bottom: 0px !important;
   top: 0px !important;
   padding-top: 15px !important;  /* Space for any header or margin */
@@ -1446,6 +1446,10 @@ body.dark-theme {
 
 /* Ensure popover content takes the full height */
 #application-comeshipjetzeshipjet-display-component---Eshipjet--addBrokerselectPopover123-cont {
+  height: 100vh !important;
+}
+/* Ensure popover content takes the full height */
+#application-comeshipjetzeshipjet-display-component---Eshipjet--addDryIcePopover123-cont {
   height: 100vh !important;
 }
 
@@ -1562,7 +1566,35 @@ body.dark-theme {
   font-weight: bold;
 }
 
-
+.rightSideDialogSpecialOptions{
+  width: 40% !important;
+  height: 100vh !important; ;
+  overflow: auto !important;
+  position: fixed !important;
+  visibility: visible !important;
+  z-index: 99999 !important;
+  max-width: 1230px;
+  max-height: 100% !important;
+  padding-bottom: 0px !important;
+  top: 0px !important;
+  
+  display: block;
+  right: 0 !important;
+  left: auto !important;
+  border-radius: 0px !important;
+  height: 95%;
+  position: absolute;
+  visibility: visible;
+  z-index: 51;
+  top: 0px;
+  left: 842px;
+  padding-top: 0px !important;
+  display: block;
+  width: 300px;
+  max-width: 2160px;
+  max-height: 1000px;
+  min-width: 717px !important;
+}
 
 .rightSidePopoverShipNowGetShippingRates{
   width: 55% !important;
