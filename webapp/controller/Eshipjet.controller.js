@@ -1445,6 +1445,7 @@ sap.ui.define([
                  return item.HandlingUnitReferenceDocument === sapDeliveryNumber;
             });            
             grossWeight = eshipjetModel.getProperty("/packAddProductTable/0/ItemGrossWeight");
+            var trackingArray = eshipjetModel.getProperty("/trackingArray");
             
             for(var i=0; i<shippingDocuments.length; i++){
                 if(shippingDocuments[i].contentType === "Label"){
@@ -1658,13 +1659,18 @@ sap.ui.define([
                 "TimeAdded": timeAdded ? timeAdded : "",
 
             };
+            // var packCount = 0;
+            var Count  = 0
             if(aHUnitsFilterData && aHUnitsFilterData.length > 0) {
                 aHUnitsFilterData.forEach(function(item, index){
+                    Count = Count  + 1 
                     grossWeight = item.GrossWeight;                
                     oManifestDataObj["HandlingUnit"] = item.HandlingUnitExternalID;
                     oManifestDataObj["PackageWeight"] = grossWeight;
                     oManifestDataObj["Chargweight"]   = grossWeight;   
                     oManifestDataObj["Labelurl"] = shippingDocuments[index].docName;
+                    oManifestDataObj["Pkgcount"] = Count.toString();
+                    oManifestDataObj["TrackingNumber"] = trackingArray[index].TrackingNumber;
                     if(shippingDocuments[shippingDocuments.length - 1].contentType === "Packing Slip"){
                         oManifestDataObj["PackURL"] = shippingDocuments[shippingDocuments.length - 1].docName;
                     }
@@ -1691,7 +1697,7 @@ sap.ui.define([
                     // oController.onCloseBusyDialog();
                     MessageToast.show("Shipment processed successfully.");
                     oController.showLabelAfterShipmentSuccess(eshipjetModel.getProperty("/ShipNowPostResponse"));
-                    oController.createReversePostGoodsIssue(sapDeliveryNumber);
+                    oController.createPostGoodsIssue(sapDeliveryNumber);
                     oController.onCloseBusyDialog();
                 },
                 error: function (oError) {
@@ -2342,9 +2348,7 @@ sap.ui.define([
                         content: "<iframe src='"+docName+"' width='500px' height='600px'></iframe>"
                     })
                 }else{
-                    var oCarousel = new sap.m.Carousel({
-                        id: "dynamicCarousel"
-                    });
+                    var oCarousel = new sap.m.Carousel({});
                     for(var i=0; i<shippingDocuments.length-1; i++) {
                         var oImage = new sap.m.Image({
                             src: shippingDocuments[i].docName,
@@ -2438,6 +2442,8 @@ sap.ui.define([
         
         onShippingDocumentsViewPress:function(oEvent){
             var currentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
+            var shippingDocuments = eshipjetModel.getProperty("/shippingDocuments");
+            var tepmShippingDocs = eshipjetModel.getProperty("/tepmShippingDocs");
             var docName = currentObj.docName;
             this._contentType = currentObj.contentType;
             if (this._contentType === "Label") {
@@ -2449,12 +2455,17 @@ sap.ui.define([
                         content: "<iframe src='"+docName+"' width='500px' height='600px'></iframe>"
                     })
                 }else{
-                    this._dialogContent = new sap.m.Image({
+                    var oCarousel = new sap.m.Carousel({});
+                    for(var i=0; i<tepmShippingDocs.length-1; i++) {
+                        var oImage = new sap.m.Image({
                         class: "sapUiSmallMargin",
                         src: docName,
                         width: "500px",
                         height: "620px"
                     });
+                    oCarousel.addPage(oImage);
+                };
+                this._dialogContent = oCarousel;
                 }
                 var oDeclineButton = new sap.m.Button({
                     icon: "sap-icon://decline",
@@ -2738,31 +2749,31 @@ sap.ui.define([
                             eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
                             var shippingDocuments = response.shippingDocuments;
                             var ashippingDocuments = [];
-                            //for(var i=0; i<aFilteredData.length; i++){
-                                ashippingDocuments.push(
-                                    {
-                                        "srNo": 1,
+                            var tepmShippingDocs = [];
+                            tepmShippingDocs.push({
+                                "srNo": 1,
+                                "contentType": "Label",
+                                "copiesToPrint": 1,
+                                "encodedLabel": "",
+                                "docProvider": aFilteredData[0].Carriertype,
+                                "docType": aFilteredData[0].Labelurl.split(".")[aFilteredData[0].Labelurl.split(".").length-1],
+                                "docName": aFilteredData[0].Labelurl,
+                            });
+                            
+                            for(var i=0; i<aFilteredData.length; i++){
+                                var obj = {
+                                        "srNo": i+1,
                                         "contentType": "Label",
                                         "copiesToPrint": 1,
                                         "encodedLabel": "",
-                                        "docProvider": aFilteredData[0].Carriertype,
-                                        "docType": aFilteredData[0].Labelurl.split(".")[aFilteredData[0].Labelurl.split(".").length-1],
-                                        "docName": aFilteredData[0].Labelurl,
-                                });
-                                ashippingDocuments.push(
-                                    {
-                                        "srNo": 2,
-                                        "contentType": "Packing Slip",
-                                        "copiesToPrint": 1,
-                                        "encodedLabel": "",
-                                        "docProvider": "Eshipjet",
-                                        "docType": aFilteredData[0].PackURL.split(".")[aFilteredData[0].PackURL.split(".").length-1],
-                                        "docName": aFilteredData[0].PackURL,
-                                });
-
+                                        "docProvider": aFilteredData[i].Carriertype,
+                                        "docType": aFilteredData[i].Labelurl.split(".")[aFilteredData[i].Labelurl.split(".").length-1],
+                                        "docName": aFilteredData[i].Labelurl,
+                                };
+                                
+                                ashippingDocuments.push(obj);
                                 if(aFilteredData[0].BolURL !== "" && aFilteredData[0].BolURL !== undefined){    
-                                    ashippingDocuments.push(
-                                        {
+                                    var billOfLading = {
                                             "srNo": 3,
                                             "contentType": "Bill Of lading",
                                             "copiesToPrint": 1,
@@ -2770,11 +2781,27 @@ sap.ui.define([
                                             "docProvider": "Eshipjet",
                                             "docType": aFilteredData[0].BolURL.split(".")[aFilteredData[0].BolURL.split(".").length-1],
                                             "docName": aFilteredData[0].BolURL,
-                                    });
+                                    }
+                                    ashippingDocuments.push(billOfLading);
+                                    tepmShippingDocs.push(billOfLading);
                                 }
 
-                            //}
-                            eshipjetModel.setProperty("/shippingDocuments", ashippingDocuments);
+                            }
+
+
+                                var packObj = {
+                                        "srNo": aFilteredData.length+1,
+                                        "contentType": "Packing Slip",
+                                        "copiesToPrint": 1,
+                                        "encodedLabel": "",
+                                        "docProvider": "Eshipjet",
+                                        "docType": aFilteredData[0].PackURL.split(".")[aFilteredData[0].PackURL.split(".").length-1],
+                                        "docName": aFilteredData[0].PackURL,
+                                };
+                                ashippingDocuments.push(packObj);
+                                tepmShippingDocs.push(packObj);
+                            eshipjetModel.setProperty("/shippingDocuments", tepmShippingDocs);
+                            eshipjetModel.setProperty("/tepmShippingDocs", ashippingDocuments );
 
                             var trackingArray = [];
                             for(var i=0; i<aFilteredData.length; i++){
@@ -3081,7 +3108,7 @@ sap.ui.define([
                                 "Vbeln": sapDeliveryNumber,
                                 "Posnr": "000010",
                                 "Matnr": currentObj.Material,
-                                "Qty": currentObj.BalanceQty,
+                                "Qty": currentObj.BalanceQty.toString(),
                                 "Humatnr": selectedPackageMat
                             };
                             

@@ -995,7 +995,7 @@
 			{
 				"name": "HU",
 				"label": "HU ID",
-				"visible": true
+				"visible": false
 			},
 			{
 				"name": "WeightLB",
