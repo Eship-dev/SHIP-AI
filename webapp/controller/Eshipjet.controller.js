@@ -3558,52 +3558,29 @@ sap.ui.define([
             //}
         },
 
-        onShipNowCodEditPress:function(){
-            var oView = this.getView();
-            if (!this.byId("idCodEditDialog")) {
-                Fragment.load({
-                    id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.CodEditDialog",
-                    controller: this // Pass the controller for binding
-                }).then(function (oCodEditDialog) {
-                    oView.addDependent(oCodEditDialog);
-                    oCodEditDialog.open();
-                });
-            } else {
-                this.byId("idCodEditDialog").open(); // Open existing dialog
-            }
+        // onShipNowCodEditPress:function(){
+        //     var oView = this.getView();
+        //     if (!this.byId("idCodEditDialog")) {
+        //         Fragment.load({
+        //             id: oView.getId(),
+        //             name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.CodEditDialog",
+        //             controller: this // Pass the controller for binding
+        //         }).then(function (oCodEditDialog) {
+        //             oView.addDependent(oCodEditDialog);
+        //             oCodEditDialog.open();
+        //         });
+        //     } else {
+        //         this.byId("idCodEditDialog").open(); // Open existing dialog
+        //     }
 
             
-        },
+        // },
 
-        onCodEditDialogCancelPress: function () {
-            this.byId("idCodEditDialog").close();
-        },
+        // onCodEditDialogCancelPress: function () {
+        //     this.byId("idCodEditDialog").close();
+        // },
 
-        onBrokerSelectEditPress: function (oEvent) {
-            var oView = this.getView();
-            var oSource = oEvent.getSource(); 
-        
-            if (!this._oBrokerSelectEditDialog) {
-                Fragment.load({
-                    id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.BrokerSelectEditDialog",
-                    controller: this
-                }).then(function (oPopover) {
-                    this._oBrokerSelectEditDialog = oPopover;
-                    oView.addDependent(this._oBrokerSelectEditDialog);
-                    this._oBrokerSelectEditDialog.openBy(oSource); 
-                }.bind(this));
-            } else {
-                this._oBrokerSelectEditDialog.openBy(oSource);
-            }
-        },
-        
-        onBrokerSelectEditDialogClosePress: function () {
-            if (this._oBrokerSelectEditDialog) {
-                this._oBrokerSelectEditDialog.close();
-            }
-        },
+       
 
         onDryIceEditPress: function (oEvent) {
             var oView = this.getView();
@@ -3636,7 +3613,7 @@ sap.ui.define([
             if (!this.byId("_IDGenBatteryEditDialog")) {
                 Fragment.load({
                     id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.BatteryEditDialog",
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.FedExBatteryEditDialog",
                     controller: this
                 }).then(function(oDialog) {
                     oView.addDependent(oDialog);
@@ -3670,6 +3647,27 @@ sap.ui.define([
 
         onCloseFedExDeliveryIncAcceptDialog: function() {
             this.byId("_IDGenFedExDeliveryIncAcceptEditDialog").close();
+        },
+
+        onOpenFedExBrokerSelectDialog: function() {
+            var oView = this.getView();
+
+            if (!this.byId("_IDGenFedExBrokerSelectEditDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.FedExBrokerSelectEditDialog",
+                    controller: this
+                }).then(function(oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("_IDGenFedExBrokerSelectEditDialog").open();
+            }
+        },
+
+        onCloseFedExBrokerSelectDialog: function() {
+            this.byId("_IDGenFedExBrokerSelectEditDialog").close();
         },
 
 
@@ -3928,7 +3926,69 @@ sap.ui.define([
             this.byId("_IDGenFedExShipmentCODDetailEditDialog").close();
         },
 
+         onOpenUPSHazMatEditDialog: function() {
+            var oView = this.getView();
 
+            if (!this.byId("_IDGenUPSHazMatEditDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.UPSHazMatEditDialog",
+                    controller: this
+                }).then(function(oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("_IDGenUPSHazMatEditDialog").open();
+            }
+        },
+
+        onCloseUPSHazMatEditDialog: function() {
+            this.byId("_IDGenUPSHazMatEditDialog").close();
+        },
+
+
+        onOpenUPSImportControlEditDialog: function() {
+            var oView = this.getView();
+
+            if (!this.byId("_IDGenUPSImportControlEditDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.UPSImportControlEditDialog",
+                    controller: this
+                }).then(function(oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("_IDGenUPSImportControlEditDialog").open();
+            }
+        },
+
+        onCloseUPSImportControlEditDialog: function() {
+            this.byId("_IDGenUPSImportControlEditDialog").close();
+        },
+
+        onOpenUPSCODInformationEditDialog: function() {
+            var oView = this.getView();
+
+            if (!this.byId("_IDGenUPSCODInformationEditDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.UPSCODInformationEditDialog",
+                    controller: this
+                }).then(function(oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("_IDGenUPSCODInformationEditDialog").open();
+            }
+        },
+
+        onCloseUPSCODInformationEditDialog: function() {
+            this.byId("_IDGenUPSCODInformationEditDialog").close();
+        },
  
         
         onHoldAtLocationEditPress: function () {

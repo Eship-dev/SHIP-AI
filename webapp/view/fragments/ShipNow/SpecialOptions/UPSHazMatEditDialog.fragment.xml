@@ -1,0 +1,84 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core" 
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m">
+
+    <Dialog id="_IDGenUPSHazMatEditDialog"
+            title="HazMat Information"
+            contentWidth="60vh"
+            contentHeight="95%"
+            verticalScrolling="false"
+            horizontalScrolling="false"
+            class="rightSideDialogSpecialOptions">
+            
+            <Toolbar>
+                <Title text="HazMat Information" />
+                <ToolbarSpacer />
+                <Button icon="sap-icon://decline" press="onCloseUPSHazMatEditDialog" />
+            </Toolbar>
+
+        <content>
+            <f:SimpleForm editable="true"
+                          class="customSimpleFormShadow"
+                          width="auto"
+                          layout="ColumnLayout"
+                          columnsM="2"
+                          columnsL="2"
+                          columnsXL="2">
+                <f:content>
+                   <Toolbar ariaLabelledBy="idShipFromsdsddd" class="customLine" >
+						<Button icon="sap-icon://customer-briefing" id="idShipFrggomAddressBtn" />
+                        <Title id="idShipFdfgdromuuqwq" text="Contact Information" />
+					</Toolbar>
+                    <Label text="Packaging Type Quantity" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />      
+                    <Label text="Technical Name" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <Label text="UOM" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="UNID Number" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <Label text="Packaging Group Type" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />      
+                    <Label text="Emergency Phone" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <Label text="Regulation Set" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Commodity Regulated Leve lCode" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <Label text="Tunnel Restriction Code" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />      
+                    <Label text="SubClass" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <Label text="Class" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Packaging Type" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <Label text="Proper Shipping Name" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />      
+                    <Label text="Packaging Instruction Code" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <Label text="Emergency Contact" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Transportation Mode" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <Label text="Transport Category" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />      
+                    <Label text="Chemical Record Identifier" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                </f:content>
+            </f:SimpleForm>
+        </content>
+
+        <footer>
+            <OverflowToolbar class="sapMPopoverFooter1">
+                <Button text="Cancel" press="onCloseUPSHazMatEditDialog" />
+                <ToolbarSpacer />
+                <Button text="Save" type="Emphasized" press="onCloseUPSHazMatEditDialog" />
+            </OverflowToolbar>
+        </footer>
+
+    </Dialog>
+</core:FragmentDefinition>

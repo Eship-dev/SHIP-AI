@@ -342,7 +342,7 @@
 													<CheckBox text="Email Notifications" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/EmailNotifications}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
 													<CheckBox text="Broker Select" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/BrokerSelect}" class="sapUiSmallMarginTop"></CheckBox>
-													<Button icon="sap-icon://request" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" class="sapUiSmallMarginTop" press="onBrokerSelectEditPress" ></Button>
+													<Button icon="sap-icon://request" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" class="sapUiSmallMarginTop" press="onOpenFedExBrokerSelectDialog" ></Button>
 
 													<Label text="" />
 													<CheckBox text="Dry Ice" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/DryIce1}" class="sapUiSmallMarginTop"></CheckBox>
@@ -534,7 +534,7 @@
 
 													<Label text=""></Label>
 													<CheckBox text="HazMat" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/NeutralDelivery}" class="sapUiSmallMarginTop"></CheckBox>
-													<Button icon="sap-icon://request" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" class="sapUiSmallMarginTop" press="onShipNowCodEditPress" ></Button>
+													<Button icon="sap-icon://request" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" class="sapUiSmallMarginTop" press="onOpenUPSHazMatEditDialog" ></Button>
 
 
 													<Label text=""></Label>
@@ -545,7 +545,7 @@
 
 													<Label text=""></Label>
 													<CheckBox text="Import Control" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/NeutralDelivery}" class="sapUiSmallMarginTop"></CheckBox>
-													<Button icon="sap-icon://request" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" class="sapUiSmallMarginTop" press="onShipNowCodEditPress" ></Button>
+													<Button icon="sap-icon://request" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" class="sapUiSmallMarginTop" press="onOpenUPSImportControlEditDialog" ></Button>
 
 
 													<Label text=""></Label>
@@ -559,7 +559,7 @@
 
 													<Label text=""></Label>
 													<CheckBox text="COD" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/NeutralDelivery}" class="sapUiSmallMarginTop"></CheckBox>
-													<Button icon="sap-icon://request" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" class="sapUiSmallMarginTop" press="onShipNowCodEditPress" ></Button>
+													<Button icon="sap-icon://request" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" class="sapUiSmallMarginTop" press="onOpenUPSCODInformationEditDialog" ></Button>
 													
 													<Label text=""></Label>
 													<CheckBox text="Saturday Pickup" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/NeutralDelivery}" class="sapUiSmallMarginTop"></CheckBox>

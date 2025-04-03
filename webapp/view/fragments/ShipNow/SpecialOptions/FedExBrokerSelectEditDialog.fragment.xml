@@ -1,53 +1,25 @@
+
+
 <core:FragmentDefinition
-    xmlns="sap.m"
-    xmlns:core="sap.ui.core"
-    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core" 
     xmlns:f="sap.ui.layout.form"
-    height="100%"
-    modal="false"
->
-    <Popover
-        id="addBrokerselectPopover123"
-        placement="Bottom"
-        contentHeight="100%"
-        showHeader="false"
-        class="rightSidePopoverGare"
-    >
-        <!-- Custom Header -->
-        <customHeader>
-            <Toolbar >
-                <!-- Title -->
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m">
+
+    <Dialog id="_IDGenFedExBrokerSelectEditDialog"
+            title="ETD Detail"
+            contentWidth="60vh"
+            contentHeight="95%"
+            verticalScrolling="false"
+            horizontalScrolling="false"
+            class="rightSideDialogSpecialOptions">
+            
+            <Toolbar>
                 <Title text="Broker Information" />
-
-                <!-- Spacer to push close button to the right -->
                 <ToolbarSpacer />
-
-                <!-- Close Button -->
-                <Button
-                    icon="sap-icon://decline"
-                    class="Decline_Btn ship-now-decline_btn"
-                    press="onBrokerSelectEditDialogClosePress"
-                />
+                <Button icon="sap-icon://decline" press="onCloseFedExBrokerSelectDialog" />
             </Toolbar>
-        </customHeader>
-        
-        <footer>
-            <OverflowToolbar class="p-sidebar-header sapMPopoverFooter1">
-                <Button
-                    text="Cancel"
-                    class="Cancel_Btn"
-                  
-                    press="onBrokerSelectEditDialogClosePress"
-                />
-                <ToolbarSpacer />
-                <Button
-                    class="btnSave"
-                    type="Emphasized"
-                    text="Save"
-                    press="onBrokerSelectEditDialogClosePress"
-                />
-            </OverflowToolbar>
-        </footer>
 
         <content>
             <f:SimpleForm
@@ -169,5 +141,39 @@
                 </f:content>
             </f:SimpleForm>
         </content>
-    </Popover>
+
+        <footer>
+            <OverflowToolbar class="sapMPopoverFooter1">
+                <Button text="Cancel" press="onCloseFedExBrokerSelectDialog" />
+                <ToolbarSpacer />
+                <Button text="Save" type="Emphasized" press="onCloseFedExBrokerSelectDialog" />
+            </OverflowToolbar>
+        </footer>
+
+    </Dialog>
 </core:FragmentDefinition>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

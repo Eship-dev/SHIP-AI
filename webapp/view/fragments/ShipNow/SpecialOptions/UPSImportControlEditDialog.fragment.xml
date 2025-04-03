@@ -1,0 +1,54 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core" 
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m">
+
+    <Dialog id="_IDGenUPSImportControlEditDialog"
+            title="COD Information"
+            contentWidth="60vh"
+            contentHeight="95%"
+            verticalScrolling="false"
+            horizontalScrolling="false"
+            class="rightSideDialogSpecialOptions">
+            
+            <Toolbar>
+                <Title text="COD Information" />
+                <ToolbarSpacer />
+                <Button icon="sap-icon://decline" press="onCloseUPSImportControlEditDialog" />
+            </Toolbar>
+
+        <content>
+            <f:SimpleForm editable="true"
+                          class="customSimpleFormShadow"
+                          width="auto"
+                          layout="ColumnLayout"
+                          columnsM="2"
+                          columnsL="2"
+                          columnsXL="2">
+                <f:content>
+                   <Toolbar ariaLabelledBy="idShipFromsccdsddd" class="customLine" >
+						<Button icon="sap-icon://customer-briefing" id="idShipFrggomttAddressBtn" />
+                        <Title id="idShipFdfgdrccomuuqwttq" text="Contact Information" />
+					</Toolbar>
+                     <Label text="Amount" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" /> 
+                    <Label text="Collection Type" />
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input"></ComboBox>
+                    <Label text="Currency" />
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input"></ComboBox>
+                </f:content>
+            </f:SimpleForm>
+        </content>
+
+        <footer>
+            <OverflowToolbar class="sapMPopoverFooter1">
+                <Button text="Cancel" press="onCloseUPSImportControlEditDialog" />
+                <ToolbarSpacer />
+                <Button text="Save" type="Emphasized" press="onCloseUPSImportControlEditDialog" />
+            </OverflowToolbar>
+        </footer>
+
+    </Dialog>
+</core:FragmentDefinition>
