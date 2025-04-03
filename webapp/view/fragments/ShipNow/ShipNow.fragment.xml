@@ -410,7 +410,7 @@
 													<Button icon="sap-icon://request" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" class="sapUiSmallMarginTop" press="onOpenFedexPendingShipmentDetailEditDialog" ></Button>
 													<Label text=""></Label>
 													<CheckBox text="International Controlled Export" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/InternationalControlledExport}" class="sapUiSmallMarginTop"></CheckBox>
-													<Button icon="sap-icon://request" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" class="sapUiSmallMarginTop" press="onShipNowCodEditPress" ></Button>
+													<Button icon="sap-icon://request" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" class="sapUiSmallMarginTop" press="onOpenFedexInternationalControlledExportEditDialog" ></Button>
 													
 
 													<Label text="Lithium Batteries" />
@@ -427,17 +427,17 @@
 													<CheckBox text="Ship Alert Email" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/ShipAlertEmail}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
 													<CheckBox text="Print Return Label" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/PrintReturnLabel}" class="sapUiSmallMarginTop"></CheckBox>
-													<Button icon="sap-icon://request" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" class="sapUiSmallMarginTop" press="onShipNowCodEditPress" ></Button>
+													<Button icon="sap-icon://request" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" class="sapUiSmallMarginTop" press="onOpenFedexPrintReturnLabelEditDialog" ></Button>
 													<Label text="" visible="false" ></Label>
 													<CheckBox text="Inside Delivery" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/InsideDelivery}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
 													<CheckBox text="Protection From Freezing" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/ProtectionFromFreezing}" class="sapUiSmallMarginTop"></CheckBox>
 													<Label text=""></Label>
 													<CheckBox text="Shipment COD Detail" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/ShipmentCODDetail}" class="sapUiSmallMarginTop"></CheckBox>
-													<Button icon="sap-icon://request" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" class="sapUiSmallMarginTop" press="onShipNowCodEditPress" ></Button> 
+													<Button icon="sap-icon://request" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" class="sapUiSmallMarginTop" press="onOpenFedexShipmentCODDetailEditDialog" ></Button> 
 													<Label text="" visible="false"></Label>
 													<CheckBox text="Home Delivery Premium" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/HomeDeliveryPremium}" class="sapUiSmallMarginTop"></CheckBox>
-													<Button icon="sap-icon://request" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" class="sapUiSmallMarginTop" press="onShipNowCodEditPress" ></Button> 
+													<Button icon="sap-icon://request" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Transparent" class="sapUiSmallMarginTop" press="onOpenFedexHomeDeliveryPremiumEditDialog" ></Button> 
 
 												</f:content>
 											</f:SimpleForm>

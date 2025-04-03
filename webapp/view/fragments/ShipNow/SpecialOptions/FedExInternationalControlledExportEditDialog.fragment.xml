@@ -5,7 +5,7 @@
 	xmlns:l="sap.ui.layout"
 	xmlns="sap.m">
 
-    <Dialog id="_IDGenFedExHomeDeliveryEditDialog"
+    <Dialog id="_IDGenFedExInternationalControlledExportEditDialog"
             title="ETD Detail"
             contentWidth="60vh"
             contentHeight="95%"
@@ -14,9 +14,9 @@
             class="rightSideDialogSpecialOptions">
             
             <Toolbar>
-                <Title text="ETD Detail" />
+                <Title text="International Controlled Export" />
                 <ToolbarSpacer />
-                <Button icon="sap-icon://decline" press="onCloseFedexHomeDeliveryEditDialog" />
+                <Button icon="sap-icon://decline" press="onCloseFedexInternationalControlledExportEditDialog" />
             </Toolbar>
 
         <content>
@@ -32,23 +32,25 @@
 						<Button icon="sap-icon://customer-briefing" id="idShipFrggomAddressBtn" />
                         <Title id="idShipFromuu" text="Address" />
 					</Toolbar> -->
-                    <Label text="Phone number" />
-                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />      
-                    <Label text="Premium type" />
-                    <ComboBox  class="sapUiSmallMarginBottom create-ship-req_input" ></ComboBox>
-                    <Label text="Area Code" />
+                    <Label text="License or Permit Expiration Date" />
+                    <DatePicker class="sapUiSmallMarginBottom create-ship-req_input" ></DatePicker>   
+                    <Label text="Entry Number" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <Label text="Type" />
                     <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
-                    <Label text="Delivery Date" />
-                    <DatePicker class="sapUiSmallMarginBottom create-ship-req_input" ></DatePicker>
+                     <Label text="License or Permit Number" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Foreign Trade Zone Code" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
                 </f:content>
             </f:SimpleForm>
         </content>
 
         <footer>
             <OverflowToolbar class="sapMPopoverFooter1">
-                <Button text="Cancel" press="onCloseFedexHomeDeliveryEditDialog" />
+                <Button text="Cancel" press="onCloseFedexInternationalControlledExportEditDialog" />
                 <ToolbarSpacer />
-                <Button text="Save" type="Emphasized" press="onCloseFedexHomeDeliveryEditDialog" />
+                <Button text="Save" type="Emphasized" press="onCloseFedexInternationalControlledExportEditDialog" />
             </OverflowToolbar>
         </footer>
 

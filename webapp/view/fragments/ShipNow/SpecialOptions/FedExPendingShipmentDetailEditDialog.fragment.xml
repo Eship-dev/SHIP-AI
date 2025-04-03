@@ -14,7 +14,7 @@
             class="rightSideDialogSpecialOptions">
             
             <Toolbar>
-                <Title text="ETD Detail" />
+                <Title text="Pending Shipment Detail" />
                 <ToolbarSpacer />
                 <Button icon="sap-icon://decline" press="onCloseFedexPendingShipmentDetailEditDialog" />
             </Toolbar>
@@ -32,20 +32,30 @@
 						<Button icon="sap-icon://customer-briefing" id="idShipFrggomAddressBtn" />
                         <Title id="idShipFromuu" text="Address" />
 					</Toolbar> -->
-                    <Label text="Attributes" />
+                    <Label text="Email" />
                     <Input class="sapUiSmallMarginBottom create-ship-req_input" />      
-                    <Label text="Document Reference" />
+                    <Label text="Email Address" />
                     <Input class="sapUiSmallMarginBottom create-ship-req_input" />
-                    <Label text="Document ID" />
-                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
-                     <Label text="Requested Document Type 2" />
+                    <Label text="Locale" />
                     <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
                      <Label text="Document Type" />
                     <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
                      <Label text="Description" />
                     <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
-                     <Label text="Requested Document Type 1" />
+                    <Label text="Expiration TimeStamp" />
+                    <DatePicker class="sapUiSmallMarginBottom create-ship-req_input" ></DatePicker>
+
+                     <Label text="Allow Notifications" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />      
+                    <Label text="Role" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <Label text="Message" />
                     <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Document Reference" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Document Id" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+        
                      
                 </f:content>
             </f:SimpleForm>

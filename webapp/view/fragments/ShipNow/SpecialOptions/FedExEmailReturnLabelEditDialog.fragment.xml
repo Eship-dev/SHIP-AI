@@ -14,7 +14,7 @@
             class="rightSideDialogSpecialOptions">
             
             <Toolbar>
-                <Title text="ETD Detail" />
+                <Title text="Email Return Label" />
                 <ToolbarSpacer />
                 <Button icon="sap-icon://decline" press="onCloseFedexEmailReturnLabelEditDialog" />
             </Toolbar>
@@ -32,19 +32,19 @@
 						<Button icon="sap-icon://customer-briefing" id="idShipFrggomAddressBtn" />
                         <Title id="idShipFromuu" text="Address" />
 					</Toolbar> -->
-                    <Label text="Attributes" />
+                    <Label text="Merchant Phone Number" />
                     <Input class="sapUiSmallMarginBottom create-ship-req_input" />      
-                    <Label text="Document Reference" />
+                    <Label text="Allowed Special Service" />
                     <Input class="sapUiSmallMarginBottom create-ship-req_input" />
-                    <Label text="Document ID" />
+                    <Label text="Ship Date stamp" />
                     <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
-                     <Label text="Requested Document Type 2" />
+                     <Label text="Return Type" />
                     <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
-                     <Label text="Document Type" />
+                     <Label text="Email" />
                     <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
-                     <Label text="Description" />
+                     <Label text="Reason" />
                     <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
-                     <Label text="Requested Document Type 1" />
+                     <Label text="Tracking Number" />
                     <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
                      
                 </f:content>

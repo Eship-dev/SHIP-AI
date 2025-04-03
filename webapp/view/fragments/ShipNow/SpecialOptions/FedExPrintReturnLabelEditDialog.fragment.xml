@@ -5,7 +5,7 @@
 	xmlns:l="sap.ui.layout"
 	xmlns="sap.m">
 
-    <Dialog id="_IDGenFedExHomeDeliveryEditDialog"
+    <Dialog id="_IDGenFedExPrintReturnLabelEditDialog"
             title="ETD Detail"
             contentWidth="60vh"
             contentHeight="95%"
@@ -14,9 +14,9 @@
             class="rightSideDialogSpecialOptions">
             
             <Toolbar>
-                <Title text="ETD Detail" />
+                <Title text="Pending Shipment Detail" />
                 <ToolbarSpacer />
-                <Button icon="sap-icon://decline" press="onCloseFedexHomeDeliveryEditDialog" />
+                <Button icon="sap-icon://decline" press="onCloseFedexPrintReturnLabelEditDialog" />
             </Toolbar>
 
         <content>
@@ -32,23 +32,30 @@
 						<Button icon="sap-icon://customer-briefing" id="idShipFrggomAddressBtn" />
                         <Title id="idShipFromuu" text="Address" />
 					</Toolbar> -->
-                    <Label text="Phone number" />
+                    <Label text="Merchant Phone Number" />
                     <Input class="sapUiSmallMarginBottom create-ship-req_input" />      
-                    <Label text="Premium type" />
-                    <ComboBox  class="sapUiSmallMarginBottom create-ship-req_input" ></ComboBox>
-                    <Label text="Area Code" />
+                    <Label text="Allowed Special Service" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <Label text="Ship Date stamp" />
                     <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
-                    <Label text="Delivery Date" />
-                    <DatePicker class="sapUiSmallMarginBottom create-ship-req_input" ></DatePicker>
+                    <Label text="Return Type" />
+                    <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" ></ComboBox>
+                     <Label text="Email" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Reason" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     <Label text="Tracking Number" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                     
                 </f:content>
             </f:SimpleForm>
         </content>
 
         <footer>
             <OverflowToolbar class="sapMPopoverFooter1">
-                <Button text="Cancel" press="onCloseFedexHomeDeliveryEditDialog" />
+                <Button text="Cancel" press="onCloseFedexPrintReturnLabelEditDialog" />
                 <ToolbarSpacer />
-                <Button text="Save" type="Emphasized" press="onCloseFedexHomeDeliveryEditDialog" />
+                <Button text="Save" type="Emphasized" press="onCloseFedexPrintReturnLabelEditDialog" />
             </OverflowToolbar>
         </footer>
 

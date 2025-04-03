@@ -5,7 +5,7 @@
 	xmlns:l="sap.ui.layout"
 	xmlns="sap.m">
 
-    <Dialog id="_IDGenFedExHomeDeliveryEditDialog"
+    <Dialog id="_IDGenFedExHomeDeliveryPremiumEditDialog"
             title="ETD Detail"
             contentWidth="60vh"
             contentHeight="95%"
@@ -14,9 +14,9 @@
             class="rightSideDialogSpecialOptions">
             
             <Toolbar>
-                <Title text="ETD Detail" />
+                <Title text="Home Delivery Premium" />
                 <ToolbarSpacer />
-                <Button icon="sap-icon://decline" press="onCloseFedexHomeDeliveryEditDialog" />
+                <Button icon="sap-icon://decline" press="onCloseFedexHomeDeliveryPremiumEditDialog" />
             </Toolbar>
 
         <content>
@@ -32,23 +32,29 @@
 						<Button icon="sap-icon://customer-briefing" id="idShipFrggomAddressBtn" />
                         <Title id="idShipFromuu" text="Address" />
 					</Toolbar> -->
-                    <Label text="Phone number" />
-                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />      
-                    <Label text="Premium type" />
-                    <ComboBox  class="sapUiSmallMarginBottom create-ship-req_input" ></ComboBox>
                     <Label text="Area Code" />
-                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />      
+                    <Label text="Extension" />
+                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
                     <Label text="Delivery Date" />
                     <DatePicker class="sapUiSmallMarginBottom create-ship-req_input" ></DatePicker>
+                    <Label text="Local Number" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <Label text="Personal Identification Number" />
+                    <Input  class="sapUiSmallMarginBottom create-ship-req_input" />
+                    <Label text="Home Delivery Premium Type" />
+                    <DatePicker class="sapUiSmallMarginBottom create-ship-req_input" ></DatePicker>
+                    
+                     
                 </f:content>
             </f:SimpleForm>
         </content>
 
         <footer>
             <OverflowToolbar class="sapMPopoverFooter1">
-                <Button text="Cancel" press="onCloseFedexHomeDeliveryEditDialog" />
+                <Button text="Cancel" press="onCloseFedexHomeDeliveryPremiumEditDialog" />
                 <ToolbarSpacer />
-                <Button text="Save" type="Emphasized" press="onCloseFedexHomeDeliveryEditDialog" />
+                <Button text="Save" type="Emphasized" press="onCloseFedexHomeDeliveryPremiumEditDialog" />
             </OverflowToolbar>
         </footer>
 
