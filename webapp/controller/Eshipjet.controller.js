@@ -1049,6 +1049,7 @@ sap.ui.define([
                  id = "l70c717f3eaf284dc9af42169e93874b6e";
                  password = "7f271bf486084e8f8073945bb7e6a020";
                  accountNumber = "740561073";
+                 billingAccNumber = "740561073";
                  Signature_optionType = eshipjetModel.getProperty("/fedExSignature_optionType");
             }else if(carrier && carrier.toUpperCase() === "DHL"){
                  id = "apT2vB7mV1qR1b";
@@ -1247,7 +1248,7 @@ sap.ui.define([
                 },
                 "shiprequest_id": 5348,
                 "InternationalDetails": [],
-                "ShipmentLevelServices": {},
+                "ShipmentLevelSpecialServices": {},
                 "id": 5445,
                 "Notes": [
                     {
@@ -2445,6 +2446,11 @@ sap.ui.define([
             eshipjetModel.setProperty("/showDarkThemeSwitch", false);
             eshipjetModel.setProperty("/darkTheme", false);
             eshipjetModel.setProperty("/OverallGoodsMovementStatus", ""); 
+
+            jQuery.sap.delayedCall(500, oController, function() {
+                oController.getView().byId("idSapDeliveryNumber").focus();
+            });
+            
             oController.onPackSectionEmptyRows();
 
             oController.onCloseBusyDialog();

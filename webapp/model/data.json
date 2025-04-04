@@ -32,7 +32,6 @@
     "shipNowUPSSelect": false,
     "shipNowUSPSSelect": false,
 
-    "fedExSignature_optionType":"",
 
     "DgUpdate":false,
     "DgAdd":false,
@@ -355,6 +354,7 @@
         { "key": "USPS", "text": "USPS" }
     ],
     "shipMethodKey": "FedEx",
+    "fedExSignature_optionType":"NO_SIGNATURE_REQUIRED",
         "signatureOption": [
             { "key": "NO_SIGNATURE_REQUIRED", "text": "No Signature Required" },
             { "key": "INDIRECT", "text": "Indrect" },
@@ -362,7 +362,7 @@
             { "key": "SERVICE_DEFAULT", "text": "Service Default" },
             { "key": "ADULT", "text": "ADULT" }
         ],
-    "UpsSignatureSelectedKey": "",
+    "UpsSignatureSelectedKey": "1",
     "SignatureType": [
         { "key": "1", "text": "No Signature Required" },
         { "key": "2", "text": "Signature Required" },
@@ -390,11 +390,11 @@
             { "key": "Lithium", "text": "Lithium" }
         ],
       
-      
+    "selectPaymentType":"Sender",
     "PaymentTypes": [
         { "key": "COLLECT", "text": "Collect" },
         { "key": "RECIPIENT", "text": "Recipient" },
-        { "key": "SENDER", "text": "Sender" },
+        { "key": "Sender", "text": "Sender" },
         { "key": "THIRD_PARTY", "text": "Third Party" }
     ],
     "CostCenters": [
