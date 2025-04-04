@@ -32,7 +32,7 @@
     "shipNowUPSSelect": false,
     "shipNowUSPSSelect": false,
 
-    "Signature_optionType":"",
+    "fedExSignature_optionType":"",
 
     "DgUpdate":false,
     "DgAdd":false,
@@ -356,16 +356,17 @@
     ],
     "shipMethodKey": "FedEx",
         "signatureOption": [
-            { "key": "NO SIGNATURE REQUIRED", "text": "No Signature Required" },
-            { "key": "Indrect", "text": "indrect" },
-            { "key": "Direct", "text": "Direct" },
-            { "key": "Service Default", "text": "ServiceDefault" }
+            { "key": "NO_SIGNATURE_REQUIRED", "text": "No Signature Required" },
+            { "key": "INDIRECT", "text": "Indrect" },
+            { "key": "DIRECT", "text": "Direct" },
+            { "key": "SERVICE_DEFAULT", "text": "Service Default" },
+            { "key": "ADULT", "text": "ADULT" }
         ],
+    "UpsSignatureSelectedKey": "",
     "SignatureType": [
-        { "key": "Delivery Confirmation", "text": "Delivery Confirmation" },
-        { "key": "Signature Required", "text": "Signature Required" },
-        { "key": "AdultSignature Required", "text": "Adult Signature Required" },
-        { "key": "NoSignature Required", "text": "No Signature Required" }
+        { "key": "1", "text": "No Signature Required" },
+        { "key": "2", "text": "Signature Required" },
+        { "key": "3", "text": "Adult Signature Required" }
         ],
     
         "indicia": [
@@ -391,10 +392,10 @@
       
       
     "PaymentTypes": [
-        { "key": "Collect", "text": "Collect" },
-        { "key": "Recipient", "text": "Recipient" },
-        { "key": "Sender", "text": "Sender" },
-        { "key": "ThirdParty", "text": "Third Party" }
+        { "key": "COLLECT", "text": "Collect" },
+        { "key": "RECIPIENT", "text": "Recipient" },
+        { "key": "SENDER", "text": "Sender" },
+        { "key": "THIRD_PARTY", "text": "Third Party" }
     ],
     "CostCenters": [
         { "key": "WarehouseCostCenter", "text": "Warehouse Cost Center" }
@@ -1020,7 +1021,7 @@
 			{
 				"name": "Tracking",
 				"label": "Tracking #",
-				"visible": false
+				"visible": true
 			},
 			{
 				"name": "ReturnTracking",

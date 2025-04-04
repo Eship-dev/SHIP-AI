@@ -6,14 +6,14 @@
 					<Text text="Ship Now"/>
 					<ToolbarSpacer/>
 
-				<Button text="PGI Successful." type="Ghost"
+				<!-- <Button text="PGI Successful." type="Ghost"
 					visible="{= ${eshipjetModel>/OverallGoodsMovementStatus} === 'C' }"
 					icon="sap-icon://accept" iconFirst="true"
 					enabled="false" class="sapUiSmallMarginEnd pgiSuccess" />
 				<Button text="PGI Failed." type="Ghost"
 					visible="{= ${eshipjetModel>/OverallGoodsMovementStatus} === 'A' }"
 					icon="sap-icon://decline" iconFirst="true"
-					enabled="false" class="sapUiSmallMarginEnd pgiFailed" />
+					enabled="false" class="sapUiSmallMarginEnd pgiFailed" /> -->
 
 						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn ship-now-decline_btn" type="Ghost" />
 				</Toolbar>
@@ -289,8 +289,8 @@
 														<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
 													</ComboBox>
 													<Label text="Payment Type" />
-													<ComboBox class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" items="{eshipjetModel>/PaymentTypes}">
-														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													<ComboBox class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" items="{eshipjetModel>/PaymentTypes}" selectedKey="{eshipjetModel>/selectPaymentType}" >
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
 													</ComboBox>
 													<Label text="Service Name" />
 													<ComboBox class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/ShipNowShipsrvNameSelectedKey}">
@@ -329,8 +329,8 @@
 											<f:SimpleForm visible="{eshipjetModel>/shipNowFedExSelect}"  id="RoutingandBillingDetails2" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
 												<f:content>
 													<Label text="Signature Option" class="create-ship-req_input" />
-													<ComboBox items="{eshipjetModel>/signatureOption}" enabled="{eshipjetModel>/shipNowBtnStatus}" selectedKey="{eshipjetModel>/Signature_optionType}" class="create-ship-req_input" >
-														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													<ComboBox items="{eshipjetModel>/signatureOption}" enabled="{eshipjetModel>/shipNowBtnStatus}" selectedKey="{eshipjetModel>/fedExSignature_optionType}" class="create-ship-req_input" >
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
 													</ComboBox>
 													<Label text="Insurance Charge" />
 													<Input value="{eshipjetModel>/insuranceChange}" enabled="{eshipjetModel>/shipNowBtnStatus}" class="create-ship-req_input" />
@@ -514,8 +514,8 @@
 													
 													
 													<Label text="Signature Type"></Label>
-													<ComboBox items="{eshipjetModel>/SignatureType}" class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" >
-														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													<ComboBox items="{eshipjetModel>/SignatureType}" class="create-ship-req_input" selectedKey="{eshipjetModel>/UpsSignatureSelectedKey}"  enabled="{eshipjetModel>/shipNowBtnStatus}" >
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
 													</ComboBox>
 													<Label text=""></Label>
 													<CheckBox text="Return Label" enabled="{eshipjetModel>/shipNowBtnStatus}" selected="{eshipjetModel>/NeutralDelivery}" class="sapUiSmallMarginTop"></CheckBox>
@@ -1206,7 +1206,7 @@
 									<Label text="Tracking #" />
 									<ui:template>
 										<!-- <Text text="{eshipjetModel>HandlingUnitPackingObjectKey}" wrapping="false" /> -->
-										<Text text="" wrapping="false" />
+										<Link text="{eshipjetModel>Tracking}" press="onTrackingNumberPress" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="12rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/9/visible}" >
