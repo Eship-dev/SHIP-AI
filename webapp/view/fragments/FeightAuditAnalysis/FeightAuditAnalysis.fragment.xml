@@ -28,31 +28,246 @@
 				</VBox>
 			</HBox>
 		</Toolbar>
-    		<ui:Table
-                id="idFeightAuditAnalysisTable"
-				rows="{eshipjetModel>/FeightAuditAnalysisRows}"
-				class="sapUiTinyMargin"
-				selectionMode="None"
-				visibleRowCount="12">
+			<ui:Table
+							id="idFeightAuditAnalysisTable"
+							rows="{eshipjetModel>/FeightAuditAnalysisRows}"
+							class="sapUiSmallMarginTop"
+							selectionMode="None"
+							visibleRowCount="12" >
+									<ui:extension>
+										<OverflowToolbar style="Clear">
+											<Button icon="sap-icon://filter" press="onFeightAuditAnalysisFilterPress"></Button>
+											
+											<ToolbarSpacer />
+												<Button icon="sap-icon://action"></Button>
+												<Button icon="sap-icon://action-settings" press="openFeightAuditAnalysisColNamesPopover"></Button>
+										</OverflowToolbar>
+									</ui:extension>
 
-				<ui:extension>
-					<OverflowToolbar style="Clear">
-                        <Button icon="sap-icon://filter" press="onFeightAuditAnalysisFilterPress"></Button>
+									 <ui:Column width="13rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/0/visible} }">
+										<Label text="Location Name" />
+										<ui:template>
+											<Text text="{eshipjetModel>LocationName}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/1/visible} }" >
+										<Label text="Ship Method" />
+										<ui:template>
+											<Text text="{eshipjetModel>shipMethod}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/2/visible} }">
+										<Label text="Invoice Number" />
+										<ui:template>
+											<Text text="{eshipjetModel>invoicenumber}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/3/visible} }">
+										<Label text="Invoice Date" />
+										<ui:template>
+											<Text text="{eshipjetModel>invoicedate}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/4/visible} }">
+										<Label text="Invoice Amount" />
+										<ui:template>
+											<Text text="{eshipjetModel>invoiceamount}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/5/visible} }">
+										<Label text="TMS Amount" />
+										<ui:template>
+											<Text text="{eshipjetModel>tmsamount}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/6/visible} }">
+										<Label text="Difference Amount" />
+										<ui:template>
+											<Text text="{eshipjetModel>DifferenceAmount}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/7/visible} }">
+										<Label text="Po Amount" />
+										<ui:template>
+											<Text text="{eshipjetModel>PoAmount}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/8/visible} }">
+										<Label text="Status" />
+										<ui:template>
+											<Text text="{eshipjetModel>Status}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/9/visible} }">
+										<Label text="Consolidation Id" />
+										<ui:template>
+											<Text text="{eshipjetModel>ConsolidationId}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/10/visible} }">
+										<Label text="Request Id/ Label Id" />
+										<ui:template>
+											<Text text="{eshipjetModel>RequestId_LabelId}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/11/visible} }">
+										<Label text="Created Date" />
+										<ui:template>
+											<Text text="{eshipjetModel>CreatedDate}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/12/visible} }">
+										<Label text="Ship Date" />
+										<ui:template>
+											<Text text="{eshipjetModel>ShipDate}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/13/visible} }">
+										<Label text="Shipment Type" />
+										<ui:template>
+											<Text text="{eshipjetModel>ShipmentType}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/14/visible} }">
+										<Label text="Service Name" />
+										<ui:template>
+											<Text text="{eshipjetModel>ServiceName}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/15/visible} }">
+										<Label text="Tracking Number" />
+										<ui:template>
+											<Text text="{eshipjetModel>TrackingNumber}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/16/visible} }">
+										<Label text="Ship To Contact" />
+										<ui:template>
+											<Text text="{eshipjetModel>ShipToContact}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/17/visible} }">
+										<Label text="Ship To Company" />
+										<ui:template>
+											<Text text="{eshipjetModel>ShipToCompany}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="12rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/18/visible} }">
+										<Label text="Ship To Address Line 1" />
+										<ui:template>
+											<Text text="{eshipjetModel>ShipToAddressLine1}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/19/visible} }">
+										<Label text="Ship To State / Province" />
+										<ui:template>
+											<Text text="{eshipjetModel>ShipToStateProvince}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/20/visible} }">
+										<Label text="Ship To City" />
+										<ui:template>
+											<Text text="{eshipjetModel>ShipToCity}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="12rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/21/visible} }">
+										<Label text="Ship To Zip / Postal Code" />
+										<ui:template>
+											<Text text="{eshipjetModel>ShipToZipPostalCode}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/22/visible} }">
+										<Label text="Ship To Country" />
+										<ui:template>
+											<Text text="{eshipjetModel>ShipToCountry}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/23/visible} }">
+										<Label text="Ship To Phone No" />
+										<ui:template>
+											<Text text="{eshipjetModel>ShipToPhoneNo}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="12rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/24/visible} }">
+										<Label text="Ship To Email" />
+										<ui:template>
+											<Text text="{eshipjetModel>ShipToEmail}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/25/visible} }">
+										<Label text="Requester Name" />
+										<ui:template>
+											<Text text="{eshipjetModel>RequesterName}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/26/visible} }">
+										<Label text="Connected To" />
+										<ui:template>
+											<Text text="{eshipjetModel>ConnectedTo}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/27/visible} }">
+										<Label text="Order Type" />
+										<ui:template>
+											<Text text="{eshipjetModel>OrderType}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/28/visible} }">
+										<Label text="RFID" />
+										<ui:template>
+											<Text text="{eshipjetModel>Rfid}" />
+										</ui:template>
+									</ui:Column>
+
+									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/29/visible} }" >
+									<Label text="Actions" />
+									<ui:template>
+										<HBox>
+											<!-- <Button text="{eshipjetModel>DeliveryStatus}" type="Transparent" press="onViewNowPressBackToShipNow" ></Button> -->
+											<Button text="Edit" type="Transparent" press="onViewNowPressBackToShipNow" ></Button>
+											<Button icon="sap-icon://megamenu" type="Transparent" press="handleDownArrowPress" ></Button>
+										</HBox>
+									</ui:template>
+								</ui:Column>
 						
-                        <ToolbarSpacer />
-                            <Button icon="sap-icon://action"></Button>
-                            <Button icon="sap-icon://action-settings" press="openFeightAuditAnalysisColNamesPopover"></Button>
-					</OverflowToolbar>
-				</ui:extension>
-				<ui:footer>
-					<Toolbar >
-						<ToolbarSpacer/>
-						<Button  text="First" enabled="false" />
-						<Button  text="Previous" enabled="false"/>
-						<Text    text="1-50 of 74"/>
-						<Button  text="Next" />
-						<Button  text="Last" />
-					</Toolbar>
-				</ui:footer>
-		</ui:Table>
+						
+								<ui:footer>
+									<Toolbar >
+										<ToolbarSpacer/>
+										<Button  text="First" enabled="false" />
+										<Button  text="Previous" enabled="false"/>
+										<Text    text="1-50 of 74"/>
+										<Button  text="Next" />
+										<Button  text="Last" />
+									</Toolbar>
+								</ui:footer>
+						</ui:Table>
 </core:FragmentDefinition>

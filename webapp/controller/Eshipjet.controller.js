@@ -6029,9 +6029,7 @@ sap.ui.define([
         },
         // Manifest Changes End here
 
-        // Batch Ship Changes Starts
-
-        // Track Now changes start
+       
 
         _handleDisplayFeightAuditAnalysisTable: function () {
             var that = this;
@@ -6102,54 +6100,7 @@ sap.ui.define([
             });
             oTable.bindRows("/FeightAuditAnalysisRows");
         },
-
-        handleFeightAuditAnalysisFilterBtnPress: function (oEvent) {
-            var oButton = oEvent.getSource();
-            var sButtonId = oButton.getId(); // Get the button's ID
         
-            // Trim namespace prefix if exists (e.g., "__component0---idShippedBtn")
-            sButtonId = sButtonId.split("---").pop();  
-        
-            var sStatus = "";  
-        
-            switch (sButtonId) {  
-                case "idShippedBtn":  
-                    sStatus = "Shipped";  
-                    break;  
-                case "idInTransitBtn":  
-                    sStatus = "In-Transit";  
-                    break;  
-                case "idCancelledBtn":  
-                    sStatus = "Cancelled";  
-                    break;  
-                case "idDeliveredBtn":  
-                    sStatus = "Delivered";  
-                    break;  
-                default:  
-                    console.error(" Unknown Button Clicked:", sButtonId);  
-                    return;  
-            }  
-        
-            // Get the model
-            var oModel = this.getView().getModel("FeightAuditAnalysisTableDataModel");
-        
-            // Store the original dataset if not already saved
-            if (!this._aOriginalData) {
-                this._aOriginalData = JSON.parse(JSON.stringify(oModel.getProperty("/FeightAuditAnalysisRows")));  
-            }
-        
-            // Filter the data
-            var aFilteredData = this._aOriginalData.filter(function (oItem) {
-                return oItem.Status === sStatus;
-            });
-        
-            console.log(" Filtered Data:", aFilteredData); // Debugging Output
-        
-            // Update the model with filtered data
-            oModel.setProperty("/FeightAuditAnalysisRows", aFilteredData);
-        },
-        
-
         openFeightAuditAnalysisColNamesPopover: function (oEvent) {
             var oButton = oEvent.getSource(),
                 oView = this.getView();
