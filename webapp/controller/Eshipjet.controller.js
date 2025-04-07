@@ -228,7 +228,7 @@ sap.ui.define([
                 document.body.classList.remove("dark-theme");
                 this._handleDisplayScanShipTable();
             } else if (sKey === "Orders") {
-                eshipjetModel.setProperty("/allViewsFooter", true);
+                eshipjetModel.setProperty("/allViewsFooter", false);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
                 eshipjetModel.setProperty("/createShipReqViewFooter", false);
                 eshipjetModel.setProperty("/routingGuidFooter", false);
@@ -4601,17 +4601,21 @@ sap.ui.define([
             var eshipjetModel = oView.getModel("eshipjetModel");
             var oOrderTblItems = oOrderTable.getItems();
             var aColumnsData = eshipjetModel.getProperty("/OrderTableData/OrderColumns");
+            var orderColSelectedCount = 0;
             oOrderTblItems.map(function (oTableItems) {
                 aColumnsData.map(function (oColObj) {
                     if (oTableItems.getBindingContext("eshipjetModel").getObject().name === oColObj.name) {
                         if (oTableItems.getSelected()) {
                             oColObj.visible = true;
+                            orderColSelectedCount += 1;
                         } else {
                             oColObj.visible = false;
                         }
                     }
                 })
             });
+            console.log(orderColSelectedCount);
+            eshipjetModel.setProperty("/orderColSelectedCount", orderColSelectedCount);
             eshipjetModel.updateBindings(true);
             // this._handleDisplayOrdersTable();
             this._pOrderPopover.then(function (oPopover) {
@@ -6558,6 +6562,7 @@ sap.ui.define([
                             return b.TimeAdded.ms - a.TimeAdded.ms; // Reverse order
                         });
                         eshipjetModel.setProperty("/allOrders", response.results);
+                        eshipjetModel.setProperty("/allOrdersLength", response.results.length);
                         response.results.forEach(item => {
                             let shipmentValue = item.Type || item.Shipmenttype || item.ShipmentType; // Try different keys
                             if (shipmentValue && typeof shipmentValue === "string") {

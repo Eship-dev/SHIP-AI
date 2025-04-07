@@ -1263,9 +1263,11 @@ sapMPopover .sapMPopoverCont {
 
 .InTransitord-request-button {
   span{
-    background-color: rgb(240, 187, 14) !important;
+    background-color: rgb(14, 51, 240) !important;
+    border-color: rgb(14, 51, 240) !important;
     &:hover { 
-      border-bottom: 10px solid #bd851f !important;
+      border-bottom: 10px solid #677cd2 !important;
+      /* border-bottom: 10px solid #939A99 !important; */
     }
   }
 }
@@ -1291,9 +1293,9 @@ sapMPopover .sapMPopoverCont {
 
 .inTransit-request-button {
   span{
-    background-color: rgb(237, 138, 17) !important;
+    background-color: rgb(14, 51, 240) !important;
     &:hover { 
-      border-bottom: 10px solid #a6610c !important;
+      border-bottom: 10px solid #939A99 !important;
     }
   }
 }
@@ -2273,4 +2275,56 @@ button, input, optgroup, select, textarea {
 
 .pgiFailed .sapMBtnIcon {
   color: white !important;
+}
+
+.ordersDarkThemeToolbar {
+  width: 100%;
+  height: 4rem;
+  background-color: #2E3545 !important;
+  color: white !important;
+}
+
+.ordersTextColor {
+  text-align: left;
+  color: white !important;
+}
+
+
+.rowRightLine .sapUiTableCell {
+  position: relative;
+  box-sizing: border-box;
+  border-bottom: .0625rem solid #e5e5e5;
+}
+
+.ordersTableFooter{
+  padding: 20px !important;
+}
+
+.ordersIcons .sapUiIcon::before {
+  content: attr(data-sap-ui-icon-content);
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  color: black;
+  font-weight: bold !important;
+}
+
+.greenColorForIcon .sapUiIcon::before {
+  content: attr(data-sap-ui-icon-content);
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  color: greenyellow !important;
+}
+
+.redColorForIcon .sapUiIcon::before {
+  content: attr(data-sap-ui-icon-content);
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  color: red !important;
+}
+
+.yellowColorForIcon .sapUiIcon::before {
+  content: attr(data-sap-ui-icon-content);
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  color: rgb(255, 251, 0) !important;
 }

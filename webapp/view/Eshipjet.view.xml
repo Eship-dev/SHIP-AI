@@ -143,7 +143,7 @@
 
 					
 					<!-- Orders Starts here -->
-					<ScrollContainer id="Orders" horizontal="false" vertical="true" height="calc(100% - 50px)" class="sapUiContentPadding">
+					<ScrollContainer id="Orders" horizontal="false" vertical="true" height="calc(100% - 0px)" class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Orders.Orders" type="XML" />
 						<!-- <mvc:XMLView viewName="com.eshipjet.zeshipjet.view.Orders"/> -->
 					</ScrollContainer>

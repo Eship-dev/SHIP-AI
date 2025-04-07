@@ -1163,6 +1163,8 @@
 		"ScanShipTableLength": 0
 	},
 
+    "orderColSelectedCount":15,
+
 	"OrderTableData":{
 		"OrderColumns": [
 			{
@@ -1178,7 +1180,7 @@
               {
                 "name": "orderType",
                 "label": "Order Type",
-                "visible": false
+                "visible": true
               },
               {
                 "name": "shipMethod",
@@ -1186,13 +1188,13 @@
                 "visible": true
               },
               {
-                "name": "ServiceID",
-                "label": "Service ID",
+                "name": "ErpServiceID",
+                "label": " ERP Service ID",
                 "visible": true
               },
               {
-                "name": "CarrierCode",
-                "label": "Carrier Code",
+                "name": "shipType",
+                "label": "Ship Type",
                 "visible": true
               },
               {
@@ -1216,14 +1218,14 @@
                 "visible": true
               },
               {
-                "name": "ShipDate",
-                "label": "Ship Date",
-                "visible": false
+                "name": "ShipDateTime",
+                "label": "Ship Date-Time",
+                "visible": true
               },
               {
-                "name": "TrackingNumber",
-                "label": "Tracking/Pro Number",
-                "visible": false
+                "name": "TrackingPro",
+                "label": "Tracking/Pro #",
+                "visible": true
               },
               {
                 "name": "status",
@@ -1231,39 +1233,39 @@
                 "visible": true
               },
               {
-                "name": "DeliveredDate",
-                "label": "Delivered Date",
-                "visible": true
+                "name": "DeldDateTime",
+                "label": "Del'd Date-Time",
+                "visible": false
               },
               {
                 "name": "ShipToContact",
                 "label": "Ship To Contact",
-                "visible": true
+                "visible": false
               },
               {
                 "name": "ShipToCompany",
                 "label": "Ship To Company",
-                "visible": true
+                "visible": false
               },
               {
                 "name": "shipToCity",
                 "label": "Ship To City",
-                "visible": true
+                "visible": false
               },
               {
                 "name": "shipToState",
                 "label": "Ship To State",
-                "visible": true
+                "visible": false
+              },
+              {
+                "name": "ShipToPostal",
+                "label": "Ship To Postal",
+                "visible": false
               },
               {
                 "name": "shipToCountry",
                 "label": "Ship To Country",
-                "visible": true
-              },
-              {
-                "name": "shipToZipcode",
-                "label": "Ship To Postal Code",
-                "visible": true
+                "visible": false
               },
               {
                 "name": "shipToPhone",
@@ -1286,34 +1288,14 @@
                 "visible": false
               },
               {
-                "name": "ShipmentType",
-                "label": "Shipment Type",
+                "name": "Notes",
+                "label": "Notes",
                 "visible": true
               },
               {
                 "name": "MasterTrackingNumber",
                 "label": "Master Tracking Number",
-                "visible": true
-              },
-              {
-                "name": "ShipToAddressLine1",
-                "label": "Ship To Address Line 1",
-                "visible": true
-              },
-              {
-                "name": "Origin",
-                "label": "Origin",
-                "visible": true
-              },
-              {
-                "name": "Destination",
-                "label": "Destination",
-                "visible": true
-              },
-              {
-                "name": "actions",
-                "label": "Actions",
-                "visible": true
+                "visible": false
               }
 		],
 		"orderRows": [
