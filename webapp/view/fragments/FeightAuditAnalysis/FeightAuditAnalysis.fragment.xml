@@ -103,7 +103,8 @@
 									<ui:Column width="10rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/8/visible} }">
 										<Label text="Status" />
 										<ui:template>
-											<Text text="{eshipjetModel>Status}" />
+										<Button text="{eshipjetModel>Status}" press="OnPressFeightAuditAnalysisStatusButton"> </Button>
+											
 										</ui:template>
 									</ui:Column>
 

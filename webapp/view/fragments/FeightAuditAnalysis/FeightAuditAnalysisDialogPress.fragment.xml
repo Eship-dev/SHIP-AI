@@ -1,0 +1,85 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc">
+
+    <Dialog id="shipmentDialog" title="" class="sapUiResponsivePadding" stretch="true">
+        <VBox class="sapUiSmallMargin">
+            <!-- Header -->
+            <HBox justifyContent="SpaceBetween" alignItems="Center">
+                <HBox>
+                    <Image src="path_to_fedex_logo.png" width="70px" />
+                    <ObjectStatus text="Approved" state="Success" class="sapUiTinyMarginBegin" />
+                </HBox>
+                <VBox>
+                    <Text text="Tracking/PRO#: 070973963" />
+                    <Text text="Shipment ID: DN000004061" />
+                    <Text text="PO#: L6T1K5" />
+                </VBox>
+            </HBox>
+
+            <Toolbar>
+                <ToolbarSpacer/>
+                <Text text="Additional Handling Charges: $25.00" />
+            </Toolbar>
+
+            <HBox justifyContent="End">
+                <VBox class="sapUiTinyMarginEnd">
+                    <Text text="Total Freight Charges" design="Bold" />
+                    <Text text="Auto Approval Threshold Amount $ : 20" />
+                    <Text text="$ 153.51" />
+                    <Text text="Approved by Shiva Kumar D 12/31/2024" />
+                </VBox>
+            </HBox>
+
+            <!-- Shipment Details -->
+            <Title text="Shipment Details" level="H3"/>
+            <Panel expandable="true" expanded="false" headerText="Ship To"/>
+            <Panel expandable="true" expanded="false" headerText="Ship From"/>
+            <Panel expandable="true" expanded="false" headerText="Shipper"/>
+
+            <!-- Packages Table -->
+            <Title text="Packages" level="H4"/>
+            <Table inset="false">
+                <columns>
+                    <Column><Text text="HU"/></Column>
+                    <Column><Text text="Weight"/></Column>
+                    <Column><Text text="Dimension"/></Column>
+                    <Column><Text text="Tracking Number"/></Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="11933"/>
+                            <Text text="49.20 LB"/>
+                            <Text text="5X3X2"/>
+                            <Text text="070973963"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+
+            <!-- Header Info & Carrier Details -->
+            <HBox justifyContent="SpaceBetween" class="sapUiSmallMarginTop">
+                <VBox>
+                    <Title text="Header Info" level="H5"/>
+                    <Text text="Invoice Number: 998624"/>
+                    <Text text="Ship Date: Dec 30, 2024"/>
+                </VBox>
+                <VBox>
+                    <Title text="Carrier Details" level="H5"/>
+                    <Text text="Carrier: ABF"/>
+                    <Text text="Service Name: STND"/>
+                    <Text text="Payment Type: Sender"/>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <!-- Footer -->
+        <endButton>
+            <Button text="Close" press="onCloseDialog"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

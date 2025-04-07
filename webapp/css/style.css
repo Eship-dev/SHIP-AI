@@ -1565,6 +1565,10 @@ body.dark-theme {
   color: red !important;
   font-weight: bold;
 }
+.trackbgcolor{
+  background-color: #2E3545;
+  color: white !important;
+}
 
 .rightSideDialogSpecialOptions{
   width: 40% !important;

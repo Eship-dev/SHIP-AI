@@ -296,7 +296,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/showDarkThemeSwitch", false);
                 eshipjetModel.setProperty("/darkTheme", false);
                 document.body.classList.remove("dark-theme");
-                this._handleDisplayTrackNowTable();
+                // this._handleDisplayTrackNowTable();
             } else if (sKey === "Manifest") {
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
@@ -4426,7 +4426,8 @@ sap.ui.define([
                 // oController._handleDisplayShipNowPackTable();
 
             } else if (tileTitle === "Track Now") {
-                this._handleDisplayTrackNowTable();
+                // this._handleDisplayTrackNowTable();
+                this.getOrdersHistoryShipments();
                 var sKey = "TrackNow";
                 eshipjetModel.setProperty("/allViewsFooter", true);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
@@ -5781,7 +5782,8 @@ sap.ui.define([
                 })
             });
             TrackNowTableDataModel.updateBindings(true);
-            this._handleDisplayTrackNowTable();
+            // this._handleDisplayTrackNowTable();
+            this.getOrdersHistoryShipments();
             this._pTrackNowPopover.then(function (oPopover) {
                 oPopover.close();
             });
@@ -6130,6 +6132,32 @@ sap.ui.define([
                 oController.FeightAuditAnalysisColumnsVisiblity();
                 oPopover.openBy(oButton);
             });
+        },
+        
+
+        OnPressFeightAuditAnalysisStatusButton: function () {
+            var oView = this.getView();
+            if (!this.byId("shipmentDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.FeightAuditAnalysis.FeightAuditAnalysisTableColumns",
+                    controller: this // Pass the controller for binding
+                }).then(function (oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("shipmentDialog").open(); // Open existing dialog
+            }
+        },
+        DefaultCancelDialog: function () {
+            this.byId("shipmentDialog").close();
+        },
+        DefaultSaveDialog: function () {
+            this.byId("shipmentDialog").close();
+        },
+        onDefaultConfigurationClosePress: function () {
+            this.byId("shipmentDialog").close();
         },
 
         FeightAuditAnalysisColumnsVisiblity: function () {
