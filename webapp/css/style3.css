@@ -1253,6 +1253,8 @@ sapMPopover .sapMPopoverCont {
 .shippedProgress-request-button {
   span{
     background-color: rgb(8, 117, 28) !important;
+    height: 20px !important;
+    border-radius: 3px !important;
     &:hover { 
       border-bottom: 10px solid #346d12 !important;
     }
@@ -1321,7 +1323,7 @@ sapMPopover .sapMPopoverCont {
     height: 20px !important;
     border-radius: 3px !important;
     &:hover { 
-      border-bottom: 10px solid #939A99 !important;
+      border-bottom: 10px solid #4d59c7 !important;
     }
   }
 }

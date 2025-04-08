@@ -5,7 +5,7 @@
 					<Button icon="sap-icon://show-edit" id="TrackNowRecentShipsww" press="onOpenRecentShipmentPopove" />
 					<Text text="Track Shipment"/>
 					<ToolbarSpacer/>
-						<Button  icon="sap-icon://decline" press="onTrackNowClosePress" class="Decline_Btn ship-now-decline_btn" type="Ghost" />
+						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn ship-now-decline_btn" type="Ghost" />
 	</Toolbar>
 
 	    <Toolbar width="auto"  height="15%" class="toolbarbottomborder ordersDarkThemeToolbar" >
