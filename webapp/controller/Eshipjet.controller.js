@@ -228,6 +228,7 @@ sap.ui.define([
                 document.body.classList.remove("dark-theme");
                 this._handleDisplayScanShipTable();
             } else if (sKey === "Orders") {
+                eshipjetModel.setProperty("/toolPageHeader", false);
                 eshipjetModel.setProperty("/allViewsFooter", false);
                 eshipjetModel.setProperty("/shipNowViewFooter", false);
                 eshipjetModel.setProperty("/createShipReqViewFooter", false);
@@ -943,6 +944,13 @@ sap.ui.define([
             }
             eshipjetModel.setProperty("/SideNavigation", false);
             this.byId("pageContainer").to(this.getView().createId(sKey));
+        },
+
+        onOrdersClosePress:function(){
+            var sKey = "Dashboard";
+            eshipjetModel.setProperty("/SideNavigation", false);
+            this.byId("pageContainer").to(this.getView().createId(sKey));
+            eshipjetModel.setProperty("/toolPageHeader", true);
         },
 
         onShipNowNewPress:function(){
@@ -6547,31 +6555,44 @@ sap.ui.define([
                 //     "$expand": "to_DeliveryDocumentItem,to_DeliveryDocumentPartner"
                 // },
                 success:function(response){
-                    if(response && response.results.length > 0){
-                        //response.results.sort((a, b) => (new Date(b.DateAdded) && new Date(b.TimeAdded)) - (new Date(a.DateAdded) && new Date(a.TimeAdded)));
-                        response.results.sort((a, b) => {
+                    if (response && response.results.length > 0) {
+                        // Get today's date info
+                        const today = new Date();
+                        const currentMonth = today.getMonth(); // 0-based index
+                        const currentYear = today.getFullYear();
+                
+                        // Filter to only include current month entries
+                        const filteredResults = response.results.filter(item => {
+                            const itemDate = new Date(item.DateAdded);
+                            return itemDate.getMonth() === currentMonth && itemDate.getFullYear() === currentYear;
+                        });
+                
+                        // Sort filtered results by date and time
+                        filteredResults.sort((a, b) => {
                             let dateA = new Date(a.DateAdded).getTime();
                             let dateB = new Date(b.DateAdded).getTime();
-                        
-                            // Compare dateAdded first (Descending order)
+                
                             if (dateA !== dateB) {
-                                return dateB - dateA; // Reverse order
+                                return dateB - dateA; // Descending by date
                             }
-                        
-                            // If dates are the same, compare timeAdded (Descending order)
-                            return b.TimeAdded.ms - a.TimeAdded.ms; // Reverse order
+                
+                            return b.TimeAdded.ms - a.TimeAdded.ms; // Descending by time
                         });
-                        eshipjetModel.setProperty("/allOrders", response.results);
-                        eshipjetModel.setProperty("/allOrdersLength", response.results.length);
-                        response.results.forEach(item => {
-                            let shipmentValue = item.Type || item.Shipmenttype || item.ShipmentType; // Try different keys
+                
+                        // Normalize ShipmentType
+                        filteredResults.forEach(item => {
+                            let shipmentValue = item.Type || item.Shipmenttype || item.ShipmentType;
                             if (shipmentValue && typeof shipmentValue === "string") {
-                                shipmentValue = shipmentValue.trim().toUpperCase(); // Normalize the value
+                                shipmentValue = shipmentValue.trim().toUpperCase();
                                 item.ShipmentType = shipmentValue === 'O' ? "Parcel" : "LTL";
                             } else {
-                                item.ShipmentType = "LTL"; // Default
+                                item.ShipmentType = "LTL";
                             }
-                });
+                        });
+                
+                        // Set the filtered, sorted data to the model
+                        eshipjetModel.setProperty("/allOrders", filteredResults);
+                        eshipjetModel.setProperty("/allOrdersLength", filteredResults.length);
                     }
                     oController.onCloseBusyDialog();
                 },
@@ -6580,6 +6601,65 @@ sap.ui.define([
                     oController.onCloseBusyDialog();
                 }
             });
+        },
+
+        onOrdersDateFilterChange: function (oEvent) {
+            const selectedKey = oEvent.getSource().getSelectedKey();
+            // oController.getOrdersHistoryShipments();
+            const eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            const allOrders = eshipjetModel.getProperty("/allOrders");
+        
+            if (!allOrders || allOrders.length === 0) return;
+        
+            const today = new Date();
+            const startOfWeek = new Date(today);
+            startOfWeek.setDate(today.getDate() - today.getDay()); // Sunday
+        
+            const filteredOrders = allOrders.filter(order => {
+                const orderDate = new Date(order.DateAdded);
+                orderDate.setHours(0, 0, 0, 0); // Normalize
+        
+                switch (selectedKey) {
+                    case "today":
+                        return this._isSameDate(orderDate, today);
+                    case "yesterday":
+                        const yesterday = new Date(today);
+                        yesterday.setDate(today.getDate() - 1);
+                        return this._isSameDate(orderDate, yesterday);
+                    case "thisWeek":
+                        const dayOfWeek = today.getDay(); // Sunday = 0
+                        const thisWeekStart = new Date(today);
+                        thisWeekStart.setDate(today.getDate() - dayOfWeek);
+                        thisWeekStart.setHours(0, 0, 0, 0);
+                        return orderDate >= thisWeekStart;
+                    case "lastWeek":
+                        const lastWeekStart = new Date(today);
+                        lastWeekStart.setDate(today.getDate() - today.getDay() - 7);
+                        lastWeekStart.setHours(0, 0, 0, 0);
+                        const lastWeekEnd = new Date(lastWeekStart);
+                        lastWeekEnd.setDate(lastWeekStart.getDate() + 6);
+                        return orderDate >= lastWeekStart && orderDate <= lastWeekEnd;
+                    case "thisMonth":
+                        return (
+                            orderDate.getMonth() === today.getMonth() &&
+                            orderDate.getFullYear() === today.getFullYear()
+                        );
+                    default:
+                        return true;
+                }
+            });
+        
+            // Update table binding path or model property to reflect filter
+            eshipjetModel.setProperty("/allOrders", filteredOrders);
+            eshipjetModel.setProperty("/allOrdersLength", filteredOrders.length);
+        },
+
+        _isSameDate: function (d1, d2) {
+            return (
+                d1.getDate() === d2.getDate() &&
+                d1.getMonth() === d2.getMonth() &&
+                d1.getFullYear() === d2.getFullYear()
+            );
         },
 
         getShipReqLabelHistoryShipments:function(){

@@ -10167,7 +10167,16 @@
                 }
             ]
         }
-    ]
+    ],
+
+    "ordersFilterData":[
+        { "key": "today", "text": "Today" },
+        { "key": "yesterday", "text": "Yesterday" },
+        { "key": "thisWeek", "text": "This Week" },
+        { "key": "lastWeek", "text": "Last Week" },
+        { "key": "thisMonth", "text": "This Month" }
+    ],
+    "ordersSelectedFilter":""
     
       
 }

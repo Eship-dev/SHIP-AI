@@ -109,6 +109,15 @@ sap.ui.define([
               case "ABFS":
                 return "yellowColorForIcon";
             }
-          }
+          },
+
+          getDeliveryStatusClass: function (sStatus) {
+			if (sStatus === "Shipped") {
+				return "greenColorForIcon";
+			} else if (sStatus === "Cancelled") {
+				return "redColorForIcon";
+			}
+			return "";
+		}
 	};
 });
