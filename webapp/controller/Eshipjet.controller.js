@@ -5714,6 +5714,13 @@ sap.ui.define([
             var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Delivered");
             oBinding.filter([oFilter]);
         },
+        formatPriorityAlert: function(value) {
+            if (value === false) {
+                return "";
+            }
+            return value;
+        },
+        
     
        
 

@@ -90,7 +90,7 @@
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/4/visible}">
+								<ui:Column width="6rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/4/visible}">
 									<Label text="Carrier ID" />
 									<ui:template>
 										<Text text="{eshipjetModel>Carriertype}" wrapping="false" />
@@ -113,10 +113,10 @@
 										${eshipjetModel>DeliveryStatus} === 'Cancelled' ? 'Reject' : ''}" />
 								</ui:template>
 							</ui:Column> -->
-							<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/6/visible}">
+							<ui:Column width="5rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/6/visible}">
 								<Label text="Status" />
 								<ui:template>
-									<Text text="Shipped" class="accept" />
+									<Text text="Shipped" wrapping="false" class="greenColorForIcon ordersSmallText" />
 								</ui:template>
 							</ui:Column>
 
@@ -152,7 +152,7 @@
 								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/11/visible}">
 									<Label text="Order Type" />
 									<ui:template>
-										<Text text="{eshipjetModel>CarrierCode}" wrapping="false" />
+										<Text text="SAP Delivery Number" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
@@ -225,7 +225,8 @@
 								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/21/visible}">
 									<Label text="Priority Level" />
 									<ui:template>
-										<Text text="{eshipjetModel>CarrierCode}" wrapping="false" />
+										<Text text="{path: 'eshipjetModel>Priorityalert', formatter: '.formatPriorityAlert'}" wrapping="false" />
+
 									</ui:template>
 								</ui:Column>
 
