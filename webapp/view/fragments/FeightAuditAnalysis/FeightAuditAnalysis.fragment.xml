@@ -40,7 +40,7 @@
 											
 											<ToolbarSpacer />
 												<Button icon="sap-icon://action"></Button>
-												<Button icon="sap-icon://action-settings" press="openFeightAuditAnalysisColNamesPopover"></Button>
+												<Button icon="sap-icon://action-settings" press="onFeightAuditAnalysisFilterPress"></Button>
 										</OverflowToolbar>
 									</ui:extension>
 

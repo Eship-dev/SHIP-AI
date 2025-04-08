@@ -8,168 +8,168 @@
   xmlns:ui="sap.ui.table" 
   xmlns:u="sap.ui.unified" 
   xmlns:c="sap.ui.core">
-  <Dialog id="idTrackingNumberDialog" showHeader="false" class="rightSideDialogForTracking" contentHeight="100vh" >
+  <Dialog id="idTrackingNumberDialog" showHeader="false" class="rightSideDialogSpecialOptions" contentWidth="45%" contentHeight="100vh" >
 
-    <customHeader>
-            <Toolbar height="3.5rem" >
-                <Title text="ShipperCopilot Tracking ID - {eshipjetModel>/TrackingNumberTableRows/TrackingNumber}" />
-                <ToolbarSpacer />
-                <Button icon="sap-icon://decline" class="Decline_Btn ship-now-decline_btn" press="TrackingNumberCancelDialog" />
-            </Toolbar>
-      </customHeader>
+                     
+                              <Toolbar height="3.5rem" >
+                                  <Title text="ShipperCopilot Tracking ID - {eshipjetModel>/TrackingNumberTableRows/TrackingNumber}" />
+                                  <ToolbarSpacer />
+                                  <Button icon="sap-icon://decline" class="Decline_Btn ship-now-decline_btn" press="TrackingNumberCancelDialog" />
+                              </Toolbar>
+                      
 
-    <content>
-        <!-- Existing Delivery Table -->
-    
-    <VBox class="customSimpleFormShadow">
-  <!-- Delivery Image & Info -->
-  <VBox justifyContent="Center" alignItems="Center" class="sapUiTinyMarginTop">
-    <!-- <Image src="https://drivemedical.eshipjet.site/assets/images/statusProgress.png" width="100%" height="100%" ></Image> -->
-    <Image src="{value: 'com/eshipjet/zeshipjet/css/images/statusProgress.png',formatter: 'sap.ui.require.toUrl'}" width="100%" height="100%" />
-    <Text text="Delivered" class="GreenandCenter sapUiTinyMarginTop"/>
-  </VBox>
+                      <content>
+                          <!-- Existing Delivery Table -->
+                      
+                      <VBox class="customSimpleFormShadow">
+                    <!-- Delivery Image & Info -->
+                    <VBox justifyContent="Center" alignItems="Center" class="sapUiTinyMarginTop">
+                      <!-- <Image src="https://drivemedical.eshipjet.site/assets/images/statusProgress.png" width="100%" height="100%" ></Image> -->
+                      <Image src="{value: 'com/eshipjet/zeshipjet/css/images/statusProgress.png',formatter: 'sap.ui.require.toUrl'}" width="100%" height="100%" />
+                      <Text text="Delivered" class="GreenandCenter sapUiTinyMarginTop"/>
+                    </VBox>
 
-<!-- SimpleForm for Delivery Details -->
-  <!-- <f:SimpleForm id="SimpleFormDisplay354"
-  editable="false"
-  layout="ResponsiveGridLayout"
-  columnsM="2"
-  columnsL="3"
-  columnsXL="4"
-  class="customSimpleForm">
-  <f:content>
-    <Label text="Ship Method" class="customLabel grayBackgroundColor" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/ERPCarrierID}" class="customTextField grayBackgroundColor" />
-    
-    <Label text="Service Name" class="customLabel" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/Carrier}" class="customTextField" />
-    
-    <Label text="Delivered To" class="customLabel grayBackgroundColor" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/COMPANY}" class="customTextField grayBackgroundColor" />
-    
-    <Label text="Ship Date" class="customLabel" />
-    <Text text="{path: 'eshipjetModel>/TrackingNumberTableRows/0/ShipDate', formatter: '.formatter.formatDate'}" class="customTextField" />
-    
-    <Label text="Standard Transit" class="customLabel grayBackgroundColor" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/StandardTransit}" class="customTextField grayBackgroundColor" />
-    
-    <Label text="Delivered" class="customLabel" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/Delivered}" class="customTextField" />
-    
-    <Label text="Signed By" class="customLabel grayBackgroundColor" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/0/SignedBy}" class="customTextField grayBackgroundColor" />
-  </f:content>
-</f:SimpleForm> -->
+                  <!-- SimpleForm for Delivery Details -->
+                    <!-- <f:SimpleForm id="SimpleFormDisplay354"
+                    editable="false"
+                    layout="ResponsiveGridLayout"
+                    columnsM="2"
+                    columnsL="3"
+                    columnsXL="4"
+                    class="customSimpleForm">
+                    <f:content>
+                      <Label text="Ship Method" class="customLabel grayBackgroundColor" />
+                      <Text text="{eshipjetModel>/TrackingNumberTableRows/0/ERPCarrierID}" class="customTextField grayBackgroundColor" />
+                      
+                      <Label text="Service Name" class="customLabel" />
+                      <Text text="{eshipjetModel>/TrackingNumberTableRows/0/Carrier}" class="customTextField" />
+                      
+                      <Label text="Delivered To" class="customLabel grayBackgroundColor" />
+                      <Text text="{eshipjetModel>/TrackingNumberTableRows/0/COMPANY}" class="customTextField grayBackgroundColor" />
+                      
+                      <Label text="Ship Date" class="customLabel" />
+                      <Text text="{path: 'eshipjetModel>/TrackingNumberTableRows/0/ShipDate', formatter: '.formatter.formatDate'}" class="customTextField" />
+                      
+                      <Label text="Standard Transit" class="customLabel grayBackgroundColor" />
+                      <Text text="{eshipjetModel>/TrackingNumberTableRows/0/StandardTransit}" class="customTextField grayBackgroundColor" />
+                      
+                      <Label text="Delivered" class="customLabel" />
+                      <Text text="{eshipjetModel>/TrackingNumberTableRows/0/Delivered}" class="customTextField" />
+                      
+                      <Label text="Signed By" class="customLabel grayBackgroundColor" />
+                      <Text text="{eshipjetModel>/TrackingNumberTableRows/0/SignedBy}" class="customTextField grayBackgroundColor" />
+                    </f:content>
+                  </f:SimpleForm> -->
 
-  <VBox class="customVBox">
-  <!-- First Row: Ship Method -->
-  <HBox class="customRow" width="100%" >
-    <Label text="Ship Method:" class="customLabel" width="15rem" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/CarrierCode}" class="customTextField centerText" width="15rem" />
-  </HBox>
-  
-  <!-- Second Row: Service Name -->
-  <HBox class="customRow" width="100%">
-    <Label text="Service Name:" class="customLabel" width="15rem" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/ServiceName}" class="customTextField centerText" width="15rem" />
-  </HBox>
-  
-  <!-- Third Row: Delivered To -->
-  <HBox class="customRow" width="100%" >
-    <Label text="Delivered To:" class="customLabel" width="15rem" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/COMPANY}" class="customTextField centerText" width="15rem" />
-  </HBox>
-  
-  <!-- Fourth Row: Ship Date -->
-  <HBox class="customRow" width="100%" >
-    <Label text="Ship Date:" class="customLabel" width="15rem" />  
-    <Text text="{path: 'eshipjetModel>/TrackingNumberTableRows/ShipDate', formatter: '.formatter.formatDate'}" class="customTextField centerText" width="15rem" />
-  </HBox>
-  
-  <!-- Fifth Row: Standard Transit -->
-  <HBox class="customRow" width="100%" >
-    <Label text="Standard Transit:" class="customLabel" width="15rem" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/StandardTransit}" class="customTextField centerText" width="15rem" />
-  </HBox>
-  
-  <!-- Sixth Row: Delivered -->
-  <HBox class="customRow" width="100%" >
-    <Label text="Delivered:" class="customLabel" width="15rem" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/Delivered}" class="customTextField centerText" width="15rem" />
-  </HBox>
-  
-  <!-- Seventh Row: Signed By -->
-  <HBox class="customRow" width="100%" >
-    <Label text="Signed By:" class="customLabel" width="15rem" />
-    <Text text="{eshipjetModel>/TrackingNumberTableRows/SignedBy}" class="customTextField centerText" width="15rem" />
-  </HBox>
+                    <VBox class="customVBox">
+                    <!-- First Row: Ship Method -->
+                    <HBox class="customRow" width="100%" >
+                      <Label text="Ship Method:" class="customLabel" width="15rem" />
+                      <Text text="{eshipjetModel>/TrackingNumberTableRows/CarrierCode}" class="customTextField centerText" width="15rem" />
+                    </HBox>
+                    
+                    <!-- Second Row: Service Name -->
+                    <HBox class="customRow" width="100%">
+                      <Label text="Service Name:" class="customLabel" width="15rem" />
+                      <Text text="{eshipjetModel>/TrackingNumberTableRows/ServiceName}" class="customTextField centerText" width="15rem" />
+                    </HBox>
+                    
+                    <!-- Third Row: Delivered To -->
+                    <HBox class="customRow" width="100%" >
+                      <Label text="Delivered To:" class="customLabel" width="15rem" />
+                      <Text text="{eshipjetModel>/TrackingNumberTableRows/COMPANY}" class="customTextField centerText" width="15rem" />
+                    </HBox>
+                    
+                    <!-- Fourth Row: Ship Date -->
+                    <HBox class="customRow" width="100%" >
+                      <Label text="Ship Date:" class="customLabel" width="15rem" />  
+                      <Text text="{path: 'eshipjetModel>/TrackingNumberTableRows/ShipDate', formatter: '.formatter.formatDate'}" class="customTextField centerText" width="15rem" />
+                    </HBox>
+                    
+                    <!-- Fifth Row: Standard Transit -->
+                    <HBox class="customRow" width="100%" >
+                      <Label text="Standard Transit:" class="customLabel" width="15rem" />
+                      <Text text="{eshipjetModel>/TrackingNumberTableRows/StandardTransit}" class="customTextField centerText" width="15rem" />
+                    </HBox>
+                    
+                    <!-- Sixth Row: Delivered -->
+                    <HBox class="customRow" width="100%" >
+                      <Label text="Delivered:" class="customLabel" width="15rem" />
+                      <Text text="{eshipjetModel>/TrackingNumberTableRows/Delivered}" class="customTextField centerText" width="15rem" />
+                    </HBox>
+                    
+                    <!-- Seventh Row: Signed By -->
+                    <HBox class="customRow" width="100%" >
+                      <Label text="Signed By:" class="customLabel" width="15rem" />
+                      <Text text="{eshipjetModel>/TrackingNumberTableRows/SignedBy}" class="customTextField centerText" width="15rem" />
+                    </HBox>
 
-  <HBox class="customRow sapUiTinyMarginTop" width="100%" >
-    <!-- <core:Icon src="sap-icon://download" class="obtainProofOfDelivery" ></core:Icon>
-    <Text text="Obtain proof of delivery" class="obtainProofOfDelivery sapUiTinyMarginBegin" width="15rem" /> -->
-    <Button text="Obtain proof of delivery" icon="sap-icon://download" iconFirst="true" press="onObtainProofOfDeliveryPress" ></Button>
-  </HBox>
-</VBox>
+                    <HBox class="customRow sapUiTinyMarginTop" width="100%" >
+                      <!-- <core:Icon src="sap-icon://download" class="obtainProofOfDelivery" ></core:Icon>
+                      <Text text="Obtain proof of delivery" class="obtainProofOfDelivery sapUiTinyMarginBegin" width="15rem" /> -->
+                      <Button text="Obtain proof of delivery" icon="sap-icon://download" iconFirst="true" press="onObtainProofOfDeliveryPress" ></Button>
+                    </HBox>
+                  </VBox>
 
 
-</VBox>
+                  </VBox>
 
-<!-- Scrollable Table -->
-<ScrollContainer
-  class="customSimpleFormShadow"
-  height="300px"
-  width="auto"
-  vertical="true">
-  <Table id="idShipmentHistoryTable" 
-    class="backgroundForTrackTableColumns"
-    inset="false"
-    sticky="ColumnHeaders,HeaderToolbar"
-    alternateRowColors="true" 
-    items="{eshipjetModel>/ShipmentTravelHistoryRows}" >
-    <headerToolbar>
-      <OverflowToolbar>
-        <Text text="Shipment Travel History" class="ShipmentTravelHistory"/>
-      </OverflowToolbar>
-    </headerToolbar>
-    <columns>
-      <Column width="10rem" >
-        <Text text="Date" />
-      </Column>
-      <Column width="6rem" >
-        <Text text="Time" />
-      </Column>
-      <!-- <Column width="10px" hAlign="Center" >
-        <Text />
-      </Column> -->
-      <Column width="2rem" hAlign="Center" >
-        <Text />
-      </Column>
-      <Column>
-        <Text text="Status" />
-      </Column>
-      <Column>
-        <Text text="Location" />
-      </Column>
-    </columns>
-    <items>
-      <ColumnListItem vAlign="Middle">
-        <cells>
-          <Text text="{eshipjetModel>Date}" />
-          <Text text="{eshipjetModel>Time}" />
-          <!-- <Text class="timeline-line" visible="{= ${Status} === 'DELIVERED' ? false : true }" /> -->
-          <HBox class="timeline-container" alignItems="Center" >
-              <!-- <Text class="timeline-line" visible="{= ${Status} === 'DELIVERED' ? false : true }" /> -->
-              <Text class="timeline-icon" visible="{= ${eshipjetModel>Status} === 'DELIVERED' ? false : true }" />
-              <Text text="{= ${eshipjetModel>Status} === 'DELIVERED' ? '✔' : '' }" visible="{= ${eshipjetModel>Status} === 'DELIVERED' ? true : false }" />
-          </HBox>
-          <Text text="{eshipjetModel>Status}" />
-          <Text text="{eshipjetModel>Location}" />
-        </cells>
-      </ColumnListItem>
-    </items>
-  </Table>
-</ScrollContainer>
-        
+                  <!-- Scrollable Table -->
+                  <ScrollContainer
+                    class="customSimpleFormShadow"
+                    height="300px"
+                    width="auto"
+                    vertical="true">
+                    <Table id="idShipmentHistoryTable" 
+                      class="backgroundForTrackTableColumns"
+                      inset="false"
+                      sticky="ColumnHeaders,HeaderToolbar"
+                      alternateRowColors="true" 
+                      items="{eshipjetModel>/ShipmentTravelHistoryRows}" >
+                      <headerToolbar>
+                        <OverflowToolbar>
+                          <Text text="Shipment Travel History" class="ShipmentTravelHistory"/>
+                        </OverflowToolbar>
+                      </headerToolbar>
+                      <columns>
+                        <Column width="10rem" >
+                          <Text text="Date" />
+                        </Column>
+                        <Column width="6rem" >
+                          <Text text="Time" />
+                        </Column>
+                        <!-- <Column width="10px" hAlign="Center" >
+                          <Text />
+                        </Column> -->
+                        <Column width="2rem" hAlign="Center" >
+                          <Text />
+                        </Column>
+                        <Column>
+                          <Text text="Status" />
+                        </Column>
+                        <Column>
+                          <Text text="Location" />
+                        </Column>
+                      </columns>
+                      <items>
+                        <ColumnListItem vAlign="Middle">
+                          <cells>
+                            <Text text="{eshipjetModel>Date}" />
+                            <Text text="{eshipjetModel>Time}" />
+                            <!-- <Text class="timeline-line" visible="{= ${Status} === 'DELIVERED' ? false : true }" /> -->
+                            <HBox class="timeline-container" alignItems="Center" >
+                                <!-- <Text class="timeline-line" visible="{= ${Status} === 'DELIVERED' ? false : true }" /> -->
+                                <Text class="timeline-icon" visible="{= ${eshipjetModel>Status} === 'DELIVERED' ? false : true }" />
+                                <Text text="{= ${eshipjetModel>Status} === 'DELIVERED' ? '✔' : '' }" visible="{= ${eshipjetModel>Status} === 'DELIVERED' ? true : false }" />
+                            </HBox>
+                            <Text text="{eshipjetModel>Status}" />
+                            <Text text="{eshipjetModel>Location}" />
+                          </cells>
+                        </ColumnListItem>
+                      </items>
+                    </Table>
+                  </ScrollContainer>
+                          
     </content>
   </Dialog>
 </core:FragmentDefinition>

@@ -13,10 +13,10 @@
 			</VBox>
 		</customHeader>
 		<content>
-        <Table	id="myFeightAuditAnalysisColumnSelectId" mode="MultiSelect" items="{path : 'FeightAuditAnalysisTableDataModel>/FeightAuditAnalysisColumns'}" >
+        <Table	id="myFeightAuditAnalysisColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns'}" >
 		<ColumnListItem id="_IDGenFeightAuditAnalysisColumnListItem1" vAlign="Middle">
 			<cells>				
-				<Text text="{FeightAuditAnalysisTableDataModel>label}" />				
+				<Text text="{eshipjetModel>label}" />				
 			</cells>
 		</ColumnListItem>
 		<columns>

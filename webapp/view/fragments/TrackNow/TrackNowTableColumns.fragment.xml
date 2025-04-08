@@ -13,10 +13,10 @@
 			</VBox>
 		</customHeader>
 		<content>
-        <Table	id="myTrackNowColumnSelectId" mode="MultiSelect" items="{path : 'TrackNowTableDataModel>/TrackNowColumns'}" >
+        <Table	id="myTrackNowColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/TrackNowTableData/TrackNowColumns'}" >
 		<ColumnListItem id="_IDGenTrackNowColumnListItem1" vAlign="Middle">
 			<cells>				
-				<Text text="{TrackNowTableDataModel>label}" />				
+				<Text text="{eshipjetModel>label}" visible="{= ${eshipjetModel>label} === 'Actions' ? false : true }" />				
 			</cells>
 		</ColumnListItem>
 		<columns>

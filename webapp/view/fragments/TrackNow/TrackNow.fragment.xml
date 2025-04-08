@@ -1,19 +1,26 @@
   <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
-	    <Toolbar width="auto"  height="15%" class="toolbarbottomborder fixedLayout ordersDarkThemeToolbar ordersTextColor" >
+	<Toolbar class="" height="4rem" >
+					<Button icon="sap-icon://show-edit" id="TrackNowRecentShipsww" press="onOpenRecentShipmentPopove" />
+					<Text text="Track Shipment"/>
+					<ToolbarSpacer/>
+						<Button  icon="sap-icon://decline" press="onTrackNowClosePress" class="Decline_Btn ship-now-decline_btn" type="Ghost" />
+	</Toolbar>
+
+	    <Toolbar width="auto"  height="15%" class="toolbarbottomborder ordersDarkThemeToolbar" >
 				<HBox class="sapUiTinyMarginBegin toolBarHeader">
-					<Text text="Track Shipments: " class="toolBarHeader"/>
-					<Text text=" 99 " class="highlightedText toolBarHeader" />
-					<Text text=" in Last " class="toolBarHeader" />
-					<Text text=" 7 " class="highlightedText toolBarHeader" />
-					<Text text=" Days" class="toolBarHeader"/>
+					<Text text="Track Shipments: " class="sapUiTinyMarginBegin sapUiTinyMarginTop Orders_PageTitle ordersTextColor"/>
+					<Text text="{eshipjetModel>/allOrdersLength}" class="highlightedText sapUiTinyMarginBegin sapUiTinyMarginTop TrackNowColor_PageTitle TrackNowTextColor" />
+					<Text text=" in Last " class="sapUiTinyMarginBegin sapUiTinyMarginTop Orders_PageTitle ordersTextColor" />
+					<Text text=" 7 " class="highlightedText sapUiTinyMarginBegin sapUiTinyMarginTop TrackNowColor_PageTitle TrackNowTextColor" />
+					<Text text=" Days" class="sapUiTinyMarginBegin sapUiTinyMarginTop Orders_PageTitle ordersTextColor"/>
 				</HBox>
 				<ToolbarSpacer />
-					<Text text="11/23/2024 - 11/29/2024" class="toolBarHeader1 sapUiTinyMarginBottom sapUiTinyMarginTop sapUiTinyMarginEnd " width="270px"></Text>
+					<Text text="11/23/2024 - 11/29/2024" class=" sapUiTinyMarginBottom sapUiTinyMarginTop sapUiTinyMarginEnd TrackNowColor_PageTitle TrackNowTextColor " width="270px"></Text>
 		</Toolbar>
 
-		<Toolbar height="15%" >
+		<Toolbar height="15%" class="sapUiTinyMarginTop" >
 			<HBox width="100%" >
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="3" class="NumberSizeTitle1"></Text>
@@ -22,18 +29,19 @@
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="3" class="NumberSizeTitle1"></Text>
-					<Text text="In-Transit" class="sapUiTinyMarginBottom"></Text>
-					<Button  press="onTrackNowInTransitFilterPress" class="cancelled-request-button request-button" id="idInTransitBtn" icon="false" width="100%"  ></Button>
+					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Negative" press="onTrackNowCancelledFilterPress" id="idCancelledBtn" class="cancelled-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="3" class="NumberSizeTitle1"></Text>
-					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Negative" press="onTrackNowCancelledFilterPress" id="idCancelledBtn" class="shippedProgress-request-button request-button" icon="false" width="100%" ></Button>
+					<Text text="In-Transit" class="sapUiTinyMarginBottom"></Text>
+					<Button  press="onTrackNowInTransitFilterPress" class="inTransit-request-button request-button" id="idInTransitBtn" icon="false" width="100%"  ></Button>
 				</VBox>
+				
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="3" class="NumberSizeTitle1"></Text>
 					<Text text="Delivered" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Success" press="onTrackNowDeliveredFilterPress" id="idDeliveredBtn" class="inTransit-request-button request-button" icon="false" width="100%" ></Button>
+					<Button type="Success" press="onTrackNowDeliveredFilterPress" id="idDeliveredBtn" class="shippedProgress-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 			</HBox>
 		</Toolbar>
@@ -48,40 +56,41 @@
 									<OverflowToolbar style="Clear">
 										<Button icon="sap-icon://filter" press="onTrackNowFilterPress"></Button>
 										<ToolbarSpacer />
+										<Button icon="sap-icon://synchronize"></Button>
 										<Button icon="sap-icon://action"></Button>
 									<Button icon="sap-icon://action-settings" press="openTrackNowColNamesPopover"></Button>
 								</OverflowToolbar>
 							</ui:extension>  
 
-										<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/0/visible}">
+										<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/0/visible}">
 									<Label text="Location Name"  />
 									<ui:template>
 										<Text text="{eshipjetModel>FromCompany}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/1/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/1/visible}">
 									<Label text="Request Id/ Label Id" />
 									<ui:template>
 										<Text text="{eshipjetModel>Vbeln}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/2/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/2/visible}">
 									<Label text="Created Date" />
 									<ui:template>
-										<Text text="{eshipjetModel>Packagetype}" wrapping="false" />
+										<Text text="{path: 'eshipjetModel>Createddate', formatter: '.formatter.formatCustomDateTimeForOrders'}" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/3/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/3/visible}">
 									<Label text="Ship Date" />
 									<ui:template>
-										<Text text="{eshipjetModel>Packagetype}" wrapping="false" />
+										<Text text="{path: 'eshipjetModel>PodDate', formatter: '.formatter.formatCustomDateTimeForOrders'}" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/4/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/4/visible}">
 									<Label text="Carrier ID" />
 									<ui:template>
 										<Text text="{eshipjetModel>Carriertype}" wrapping="false" />
@@ -89,121 +98,131 @@
 								</ui:Column>
 
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/5/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/5/visible}">
 									<Label text="Service Name" />
 									<ui:template>
 										<Text text="{eshipjetModel>CarrierDesc}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/6/visible}">
+								<!-- <ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/6/visible}">
 								<Label text="Status" />
 								<ui:template>
 									<Text text="{eshipjetModel>DeliveryStatus}" wrapping="false"
 										class="{= ${eshipjetModel>DeliveryStatus} === 'Shipped' ? 'accept' : 
 										${eshipjetModel>DeliveryStatus} === 'Cancelled' ? 'Reject' : ''}" />
 								</ui:template>
+							</ui:Column> -->
+							<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/6/visible}">
+								<Label text="Status" />
+								<ui:template>
+									<Text text="Shipped" class="accept" />
+								</ui:template>
 							</ui:Column>
 
-							<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/7/visible}">
-									<Label text="Tracking/Pro Number" />
+
+							<ui:Column width="13rem" sortProperty="TrackingNumber" visible="{eshipjetModel>/OrderTableData/TrackNowColumns/7/visible}">
+									<Label text="Tracking/Pro #" />
 									<ui:template>
-										<Text text="{eshipjetModel>TrackingNumber}" wrapping="false" />
+										<Link text="{eshipjetModel>TrackingNumber}" press="onTrackingNumberPress" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/8/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/8/visible}">
 									<Label text="Ship To Contact" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecContact}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/9/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/9/visible}">
 									<Label text="Ship To Company" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecCompany}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/10/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/10/visible}">
 									<Label text="Connected To" />
 									<ui:template>
 										<Text text="{eshipjetModel>CarrierCode}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/11/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/11/visible}">
 									<Label text="Order Type" />
 									<ui:template>
 										<Text text="{eshipjetModel>CarrierCode}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/12/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/12/visible}">
 									<Label text="Ship To Address Line 1" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecAddress1}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/13/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/13/visible}">
 									<Label text="Ship To City" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecCity}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/14/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/14/visible}">
 									<Label text="Ship To State" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecRegion}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/15/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/15/visible}">
 									<Label text="Ship To Country" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecCountry}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/16/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/16/visible}">
 									<Label text="Ship To Postal Code" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecPostalcode}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/17/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/17/visible}">
 									<Label text="Ship To Phone" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecPhone}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/18/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/18/visible}">
 									<Label text="Ship To Email" />
 									<ui:template>
 										<Text text="{eshipjetModel>Emailaddress}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/19/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/19/visible}">
 									<Label text="Requester Name" />
 									<ui:template>
 										<Text text="{eshipjetModel>CarrierCode}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/20/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/20/visible}">
 									<Label text="Shipment Type" />
 									<ui:template>
-										<Text text="{eshipjetModel>Shipmenttype}" wrapping="false" />
+										<Text 
+											text="{= ${eshipjetModel>Shipmenttype} === 'O' ? 'Business' : ${eshipjetModel>Shipmenttype} }" 
+											wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/21/visible}">
+
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/21/visible}">
 									<Label text="Priority Level" />
 									<ui:template>
 										<Text text="{eshipjetModel>CarrierCode}" wrapping="false" />
@@ -211,7 +230,7 @@
 								</ui:Column>
 
 
-								<ui:Column width="10rem" visible="{eshipjetModel>/OrderTableData/OrderColumns/22/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/22/visible}">
 									<Label text="Actions" />
 									<ui:template>
 										<HBox>
