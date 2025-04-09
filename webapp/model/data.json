@@ -6179,7 +6179,7 @@
                     }
                 ],
                     
- "FeightAuditAnalysisTableColumns": [
+ "FeightAuditAnalysisColumns": [
             {
                 "key": "LocationName",
                 "label": "Location Name",

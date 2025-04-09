@@ -1,10 +1,10 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
-	    <Toolbar   width="auto" height="15%" class="toolbarbottomborder fixedLayout sapUiTinyMarginBegin sapUiTinyMarginEnd sapUiTinyMarginTop" >
+	    <Toolbar   width="auto" height="15%" class="toolbarbottomborder fixedLayout sapUiTinyMarginBegin sapUiTinyMarginEnd sapUiTinyMarginTop whiteBackground" >
 			<Text text="Invoice Auditing" class="sapUiTinyMarginBegin  sapUiTinyMarginTop pageTitle" ></Text>
            		</Toolbar>
-		<Toolbar height="15%" class="sapUiTinyMarginBegin sapUiTinyMarginEnd" >
+		<Toolbar height="15%" class="sapUiTinyMarginBegin sapUiTinyMarginEnd whiteBackground" >
 			<HBox width="100%">
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="$ 582" class="NumberSizeTitle1"></Text>
@@ -28,21 +28,21 @@
 				</VBox>
 			</HBox>
 		</Toolbar>
+
+		<VBox class="whiteBackground sapUiTinyMarginTop" >
+								<Toolbar class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd" >
+											<Button icon="sap-icon://filter" press="onFeightAuditAnalysisFilterPress"></Button>
+											<ToolbarSpacer />
+												<Button icon="sap-icon://action"></Button>
+												<Button icon="sap-icon://action-settings" press="openFeightAuditAnalysisColNamesPopover"></Button>			
+		    					</Toolbar>
 			<ui:Table
 							id="idFeightAuditAnalysisTable"
 							rows="{eshipjetModel>/FeightAuditAnalysisRows}"
 							class="sapUiSmallMarginTop"
 							selectionMode="None"
 							visibleRowCount="12" >
-									<ui:extension>
-										<OverflowToolbar style="Clear">
-											<Button icon="sap-icon://filter" press="onFeightAuditAnalysisFilterPress"></Button>
-											
-											<ToolbarSpacer />
-												<Button icon="sap-icon://action"></Button>
-												<Button icon="sap-icon://action-settings" press="onFeightAuditAnalysisFilterPress"></Button>
-										</OverflowToolbar>
-									</ui:extension>
+									
 
 									 <ui:Column width="13rem" visible="{= ${eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns/0/visible} }">
 										<Label text="Location Name" />
@@ -271,4 +271,5 @@
 									</Toolbar>
 								</ui:footer>
 						</ui:Table>
+						</VBox>
 </core:FragmentDefinition>

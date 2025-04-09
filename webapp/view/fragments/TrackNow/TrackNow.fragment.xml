@@ -2,7 +2,7 @@
 	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
 	<Toolbar class="" height="4rem" >
-					<Button icon="sap-icon://show-edit" id="TrackNowRecentShipsww" press="onOpenRecentShipmentPopove" />
+					<core:Icon src="sap-icon://show-edit" class="orderItem sapUiTinyMarginTop sapUiTinyMarginBegin" ></core:Icon>
 					<Text text="Track Shipment"/>
 					<ToolbarSpacer/>
 						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn ship-now-decline_btn" type="Ghost" />

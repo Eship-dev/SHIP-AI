@@ -6064,13 +6064,13 @@ sap.ui.define([
             var that = this;
             const oView = oController.getView();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
-            var FeightAuditAnalysisTableData = eshipjetModel.getData().FeightAuditAnalysisTableData;
-            var FeightAuditAnalysisTableDataModel = new JSONModel(FeightAuditAnalysisTableData);
-            this.getView().setModel(FeightAuditAnalysisTableDataModel, "FeightAuditAnalysisTableDataModel");
+            // var FeightAuditAnalysisTableData = eshipjetModel.getData().FeightAuditAnalysisTableData;
+            // var FeightAuditAnalysisTableDataModel = new JSONModel(FeightAuditAnalysisTableData);
+            // this.getView().setModel(FeightAuditAnalysisTableDataModel, "FeightAuditAnalysisTableDataModel");
             const oTable = oView.byId("idFeightAuditAnalysisTable");
-            oTable.setModel(FeightAuditAnalysisTableDataModel);
-            var FeightAuditAnalysisTableDataModel = this.getView().getModel("FeightAuditAnalysisTableDataModel");
-            var FeightAuditAnalysisColumns = FeightAuditAnalysisTableDataModel.getData().FeightAuditAnalysisColumns;
+            oTable.setModel(eshipjetModel);
+            var eshipjetModel = this.getView().getModel("eshipjetModel");
+            var FeightAuditAnalysisColumns = eshipjetModel.getData().FeightAuditAnalysisColumns;
             var count = 0;
             for (var i = 0; i < FeightAuditAnalysisColumns.length; i++) {
                 if (FeightAuditAnalysisColumns[i].visible === true) {
@@ -6105,7 +6105,7 @@ sap.ui.define([
                 } else if (columnName === "CreatedDate" || columnName === "ShipDate") {
                     var DateTxt = new sap.m.Text({
                         text: {
-                            path: 'FeightAuditAnalysisTableDataModel>ShipDate',
+                            path: 'eshipjetModel>ShipDate',
                             formatter: formatter.formatDate  // Attach the formatter dynamically
                         },
                         wrapping: false
@@ -6151,7 +6151,7 @@ sap.ui.define([
         FeightAuditAnalysisColumnsVisiblity: function () {
             var oView = oController.getView();
             var oFeightAuditAnalysisTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var aColumns = oFeightAuditAnalysisTableModel.getProperty("/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns");
+            var aColumns = oFeightAuditAnalysisTableModel.getProperty("/FeightAuditAnalysisColumns");
             var oFeightAuditAnalysisTable = oView.byId("myFeightAuditAnalysisColumnSelectId");
             var aTableItems = oFeightAuditAnalysisTable.getItems();
 
@@ -6183,14 +6183,15 @@ sap.ui.define([
             var oFeightAuditAnalysisTable = oView.byId("myFeightAuditAnalysisColumnSelectId");
             var eshipjetModel = oView.getModel("eshipjetModel");
             var oFeightAuditAnalysisTblItems = oFeightAuditAnalysisTable.getItems();
-            var aColumnsData = eshipjetModel.getProperty("/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns");
-            var orderColSelectedCount = 0;
+            var aColumnsData = eshipjetModel.getProperty("/FeightAuditAnalysisColumns");
+            var FeightAuditAnalysisColSelectedCount = 0;
 
             oFeightAuditAnalysisTblItems.map(function (oTableItems) {
                 aColumnsData.map(function (oColObj) {
-                    if (oTableItems.getBindingContext("eshipjetModel").getObject().name === oColObj.name) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
                         if (oTableItems.getSelected()) {
                             oColObj.visible = true;
+                            FeightAuditAnalysisColSelectedCount +=1;
                         } else {
                             oColObj.visible = false;
                         }
@@ -6198,11 +6199,11 @@ sap.ui.define([
                 })
             });
             
-            eshipjetModel.setProperty("/FeightAuditAnalysisSelectedCount", FeightAuditAnalysisSelectedCount);
+            eshipjetModel.setProperty("/FeightAuditAnalysisColSelectedCount", FeightAuditAnalysisColSelectedCount);
             eshipjetModel.updateBindings(true);
 
-            // this._handleDisplayFeightAuditAnalysisTable();
-            this.getOrdersHistoryShipments();
+            this._handleDisplayFeightAuditAnalysisTable();
+            // this.getOrdersHistoryShipments();
             this._pFeightAuditAnalysisPopover.then(function (oPopover) {
                 oPopover.close();
             });

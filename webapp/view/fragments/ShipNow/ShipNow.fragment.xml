@@ -198,7 +198,7 @@
 									<ui:Column width="5rem">
 										<Label text="Partner ID" />
 										<ui:template>
-											<Text text="" />
+											<Text text="{eshipjetModel>Kunner}" />
 										</ui:template>
 									</ui:Column>
 

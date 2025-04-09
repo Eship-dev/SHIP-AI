@@ -13,7 +13,7 @@
 			</VBox>
 		</customHeader>
 		<content>
-        <Table	id="myFeightAuditAnalysisColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/FeightAuditAnalysisTableData/FeightAuditAnalysisColumns'}" >
+        <Table	id="myFeightAuditAnalysisColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/FeightAuditAnalysisColumns'}" >
 		<ColumnListItem id="_IDGenFeightAuditAnalysisColumnListItem1" vAlign="Middle">
 			<cells>				
 				<Text text="{eshipjetModel>label}" />				
@@ -31,7 +31,7 @@
         <footer>
             <Toolbar >
                 <ToolbarSpacer />
-                <Button text="Apply" press="onFeightAuditAnalysisColSelectOkPress" type="Emphasized"></Button>               
+                <Button text="Apply" press="onoFeightAuditAnalysisColSelectOkPress" type="Emphasized"></Button>               
             </Toolbar>
         </footer>      
 	</Popover>   
