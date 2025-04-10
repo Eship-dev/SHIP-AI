@@ -1571,7 +1571,7 @@ body.dark-theme {
 }
 
 .rightSideDialogSpecialOptions{
-  width: 40% !important;
+  width: 80% !important;
   height: 100vh !important; ;
   overflow: auto !important;
   position: fixed !important;

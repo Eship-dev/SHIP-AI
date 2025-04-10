@@ -3,7 +3,7 @@
 	<App id="app">
 	<tnt:ToolPage id="toolPage" sideExpanded="false" >
 		<tnt:header >
-			<tnt:ToolHeader id="myToolbar" visible="{eshipjetModel>/toolPageHeader}" >
+			<tnt:ToolHeader id="myToolbar" visible="{eshipjetModel>/commonValues/toolPageHeader}" >
 				<!-- <Button		id="sideNavigationToggleButton"		icon="{value:'com/eshipjet/zeshipjet/css/images/menu.png', formatter:'sap.ui.require.toUrl'}"
 					type="Transparent"		press=".onSideNavButtonPress"> -->
 				<Button id="sideNavigationToggleButton"  icon="sap-icon://customfont/menuIcon"
@@ -14,7 +14,7 @@
 				</Button>
 				<Text text="SAP ShipperCopilot 6.4"/>
 				<ToolbarSpacer/>
-				<Switch state="{eshipjetModel>/darkTheme}"  change="onThemeChange" visible="{eshipjetModel>/showDarkThemeSwitch}" >
+				<Switch state="{eshipjetModel>/commonValues/darkTheme}"  change="onThemeChange" visible="{eshipjetModel>/commonValues/showDarkThemeSwitch}" >
 					<layoutData>
 						<FlexItemData growFactor="1" />
 					</layoutData>
@@ -317,13 +317,13 @@
 	    
 	  </App>
 
-	  <OverflowToolbar class="eship-footer" visible="{eshipjetModel>/allViewsFooter}">
+	  <OverflowToolbar class="eship-footer" visible="{eshipjetModel>/commonValues/allViewsFooter}">
 			<ToolbarSpacer/>
 				<Text text="© copyright 2024 eshipjet.ai, Inc. All rights reserved."/>
 			<ToolbarSpacer/>
 		</OverflowToolbar>
 
-		<OverflowToolbar class="eship-footer1 ship-now-footer" visible="{eshipjetModel>/shipNowViewFooter}">
+		<OverflowToolbar class="eship-footer1 ship-now-footer" visible="{eshipjetModel>/commonValues/shipNowViewFooter}">
 			<ToolbarSpacer/>
 				<!-- <Button text="Get Shipping Rates" class="ship-now-footer_ship-rates btngetshipments"/> -->
 				<Button text="Get Shipping Rates" class="ship-now-footer_ship-now" type="Success" width="auto" press="onShipRatePress" />
@@ -346,13 +346,13 @@
 
 			<ToolbarSpacer/>
 				<Button text="Save" press="createHandlingUnits" class="scan-ship-toolbar1__button sapUiTinyMargin sapUiLargeMarginEnd" type="Ghost" width="5%"  />
-				<Button text="Ship Now" press="onShipNowPress" enabled="{eshipjetModel>/shipNowBtnStatus}" type="Ghost" class="green-button sapUiMediumMarginEnd" />
+				<Button text="Ship Now" press="onShipNowPress" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" type="Ghost" class="green-button sapUiMediumMarginEnd" />
 		</OverflowToolbar>
 
-		<Toolbar class="sapUiLargeMarginBottom eship-req-footer" visible="{eshipjetModel>/createShipReqViewFooter}" >
+		<Toolbar class="sapUiLargeMarginBottom eship-req-footer" visible="{eshipjetModel>/commonValues/createShipReqViewFooter}" >
 			<Button text="Next" ></Button>
 		</Toolbar>
-		<OverflowToolbar class="eship-footer ship-now-footer" visible="{eshipjetModel>/createShipReqViewFooter}">
+		<OverflowToolbar class="eship-footer ship-now-footer" visible="{eshipjetModel>/commonValues/createShipReqViewFooter}">
 			
 				<Button text="Clear"  class="ship-now-footer_ship-rates" />
 			<ToolbarSpacer />
@@ -372,7 +372,7 @@
 				<Button text="Ship Now" press="onShipNowPress" class="create-ship-req-footer sapUiSmallMarginEnd" />
 		</OverflowToolbar>
 
-		<OverflowToolbar class="eship-footer ship-now-footer" visible="{eshipjetModel>/routingGuidFooter}">
+		<OverflowToolbar class="eship-footer ship-now-footer" visible="{eshipjetModel>/commonValues/routingGuidFooter}">
 			<ToolbarSpacer/>
 				<HBox >
 					<Button text="Save" press="onRoutingGuidSavePress" class="ship-now-footer_ship-now" />

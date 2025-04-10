@@ -1,41 +1,52 @@
 {
-    "allViewsFooter": true,
-    "shipNowViewFooter": false,
-    "createShipReqViewFooter": false,
+    "commonValues":{
+        "sapDeliveryNumber":"",
+        "ShipNowShipMethodSelectedKey":"",
+        "ShipNowShipsrvNameSelectedKey":"",
+        "ShipNowSelectedServiceName":"",
+        "accountNumber":"",
+        "packAddProductTable":[],
+        "shipNowGanderWhiteSelect": false,
+        "toolPageHeader":true,
+        "allViewsFooter": true,
+        "shipNowViewFooter": false,
+        "routingGuidFooter": false,
+        "showDarkThemeSwitch": false,
+        "createShipReqViewFooter": false,
+        "shipNowGetBtn": true,
+        "OverallGoodsMovementStatus": "",
+        "shipNowABFSelect": false,
+        "shipNowARTEXFineArtSrvSelect": false,
+        "shipNowATLASFineArtSelect": false,
+        "shipNowBrinksFineArtSelect": false,
+        "shipNowCrownFineArtSelect": false,
+        "shipNowDHLSelect": false,
+        "shipNowDTDCSelect": false,
+        "darkTheme": true,
+        "shipNowFedExFreightSelect": false,
+        "shipNowFastFarwarderSelect": false,
+        "shipNowJPMorganChaseInternalSelect": false,
+        "shipNowFedExSelect": false,
+        "shipNowMalca-AmitSelect": false,
+        "shipNowOtherSelect": false,
+        "shipNowRLSelect": false,
+        "shipNowTheArmorySelect": false,
+        "shipNowMoviGroupSelect": false,
+        "shipNowUSPSSelect": false,
+        "shipNowBtnStatus": true, 
+        "shipNowUPSSelect": false
+    },        
+    
     "createShipReqBusinessSelect": true,
-    "createShipReqPersonalSelect": false,
-    "routingGuidFooter": false,
-    "toolPageDarkHeader": false,
-    "toolPageHeader":true,
-    "shipNowGetBtn": true,
+    "createShipReqPersonalSelect": false,    
+    "toolPageDarkHeader": false,       
     "HandlingUnitsLength":0,
-    "selectedPackageMat": "CARTON BOX",
-    "OverallGoodsMovementStatus": "",
-    "shipNowBtnStatus": true,    
-    "shipNowGanderWhiteSelect": false,
-    "shipNowABFSelect": false,
-    "shipNowARTEXFineArtSrvSelect": false,
-    "shipNowATLASFineArtSelect": false,
-    "shipNowBrinksFineArtSelect": false,
-    "shipNowCrownFineArtSelect": false,
-    "shipNowDHLSelect": false,
-    "shipNowDTDCSelect": false,
-    "shipNowFedExSelect": false,
-    "shipNowFastFarwarderSelect": false,
-    "shipNowFedExFreightSelect": false,
-    "shipNowJPMorganChaseInternalSelect": false,
-    "shipNowMalca-AmitSelect": false,
-    "shipNowMoviGroupSelect": false,
-    "shipNowOtherSelect": false,
-    "shipNowRLSelect": false,
-    "shipNowTheArmorySelect": false,
-    "shipNowUPSSelect": false,
-    "shipNowUSPSSelect": false,
-
-
+    "selectedPackageMat": "CARTON BOX",    
+      
+    
+    
     "DgUpdate":false,
     "DgAdd":false,
-
     "PriorityAlert": false,
     "EmailNotifications": false,
     "BrokerSelect": false,
@@ -89,8 +100,8 @@
     "CertifiedMail1": false,
     "CertifiedMail2": false,
 
-    "showDarkThemeSwitch": false,
-    "darkTheme": true,
+    
+   
     "sShipAndScan":"",
     "selectedKey": "page2",
     "image": "css/images/image.png",
@@ -296,10 +307,7 @@
             "key":"USPS",
             "text":"USPS"
         }
-    ],
-    "ShipNowShipMethodSelectedKey":"",
-    "ShipNowShipsrvNameSelectedKey":"",
-    "ShipNowSelectedServiceName":"",
+    ],   
 
     "shipRequests": [
         { "key": "d365fo", "text": "Microsoft Dynamics 365 Finance & Operations" },
@@ -829,9 +837,7 @@
     "shipNowAddressType": [
         { "key": "Residential", "text": "Residential" },
         { "key": "Commercial", "text": "Commercial" }
-      ],
-
-    "packAddProductTable":[],
+      ],  
     "HandlingUnits": [],
 	"ShipNowProductsTableColumns": [
 			{
