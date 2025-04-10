@@ -2395,3 +2395,24 @@ button, input, optgroup, select, textarea {
   padding-right: 0.4375rem;
   font-size: 10px !important;
 }
+
+.shipNowShipToHeader{
+  background-color: #0CAFFF !important;
+  padding: 5px 10px !important;
+  border-radius: 5px !important;
+  color: white !important;
+  margin-bottom: 3px !important;
+  font-size: 15px !important;
+  font-weight: 600;
+  text-align: left;
+  padding-top: 2px;
+}
+
+.shipNowShipFromHeader{
+  color: rgb(0, 0, 0) !important;
+  margin-bottom: 3px !important;
+  font-size: 15px !important;
+  font-weight: 600;
+  text-align: left;
+  padding-top: 2px;
+}

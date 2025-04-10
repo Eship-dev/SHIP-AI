@@ -8208,7 +8208,7 @@
         {"SAPDeliveryItem": "SAP Delivery Number"},
         {"SAPDeliveryItem": "SAP Return Order"}
     ],
-    "SAPDeliveryNo":"SAP Delivery No",
+    "SAPDeliveryNo":"SAP Delivery Number",
     
     "moreActionsList":[
         {"moreActionItem": "Post Goods Issue", "moreActionIcon": "sap-icon://accept"},
