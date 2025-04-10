@@ -11198,30 +11198,28 @@ sap.ui.define([
         // add location popover changes end
 
         // add ShipNowPickAnAddressPopover changes start
-        ShipNowPickAnAddressPopoverPress: function (oEvent) {
-            var oButton = oEvent.getSource(),
-                oView = this.getView();
-            var ShipNowDataModel = this.getView().getModel("ShipNowDataModel");
-            var sPath = oEvent.getSource().getId().split("--");
-            var btnId = sPath[sPath.length - 1];
-            ShipNowDataModel.setProperty("/shipNowBtnId", btnId);
-            if (!this._AddPickPopover) {
-                this._AddPickPopover = Fragment.load({
+        ShipNowPickAnAddressPopoverPress: function() {
+            var oView = this.getView();
+
+            if (!this.byId("_IDGenAlcoholEditDialogshipnow")) {
+                Fragment.load({
                     id: oView.getId(),
                     name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.ShipNowPickAnAddressPopover",
                     controller: this
-                }).then(function (oAddPickPopover) {
-                    oView.addDependent(oAddPickPopover);
-                    return oAddPickPopover;
+                }).then(function(oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
                 });
+            } else {
+                this.byId("_IDGenAlcoholEditDialogshipnow").open();
             }
-            this._AddPickPopover.then(function (oAddPickPopover) {
-                oAddPickPopover.openBy(oButton);
-            });
         },
-        onShipNowPickAnAddressCancelPress: function () {
-            this.byId("idShipNowPickAnAddressPopover").close();
+
+        onShipNowPickAnAddressCancelPress1: function() {
+            this.byId("_IDGenAlcoholEditDialogshipnow").close();
         },
+
+        
 
 
         onShipNowPickAnAddressSelectPress: function () {
@@ -11241,7 +11239,7 @@ sap.ui.define([
 
            
             oTable.removeSelections(true);
-            oController.byId("idShipNowPickAnAddressPopover").close();
+            oController.byId("_IDGenAlcoholEditDialogshipnow").close();
         },
         
 
@@ -11260,40 +11258,34 @@ sap.ui.define([
             this.byId("idShipToPickAnAddressPopover").close();
         },
 
-        ShipToPickAnAddressPopoverPress: function (oEvent) {
+      
+
+            ShipToPickAnAddressPopoverPress: function() {
                 var oView = this.getView();
-                var ShipNowDataModel = oView.getModel("ShipNowDataModel");
-            
-                // Get button ID
-                var sPath = oEvent.getSource().getId().split("--");
-                var btnId = sPath[sPath.length - 1];
-                ShipNowDataModel.setProperty("/shipNowBtnId", btnId);
-            
-                if (!this._ShipToAddPickDialog) {
-                    this._ShipToAddPickDialog = Fragment.load({
+    
+                if (!this.byId("_IDGenAlcoholEditDialogshipnowTo")) {
+                    Fragment.load({
                         id: oView.getId(),
-                        name:  "com.eshipjet.zeshipjet.view.fragments.ShipNow.ShipToPickAnAddressPopover",
+                        name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.ShipToPickAnAddressPopover",
                         controller: this
-                    }).then(function (oShipToAddPickDialog) {
-                        oView.addDependent(oShipToAddPickDialog);
-                        return oShipToAddPickDialog;
+                    }).then(function(oDialog) {
+                        oView.addDependent(oDialog);
+                        oDialog.open();
                     });
+                } else {
+                    this.byId("_IDGenAlcoholEditDialogshipnowTo").open();
                 }
-            
-                this._ShipToAddPickDialog.then(function (oShipToAddPickDialog) {
-                    oShipToAddPickDialog.open();
-                });
             },
-            
-            onShipToPickAnAddressCancelPress: function () {
-                this.byId("idShipToPickAnAddressDialog").close();
-            }
-            ,
+    
+            onShipNowPickAnAddressCancelPress123: function() {
+                this.byId("_IDGenAlcoholEditDialogshipnowTo").close();
+            },
+    
 
         onShipToPickAnAddressSelectPress: function () {
             var ShipNowDataModel = this.getView().getModel("ShipNowDataModel");
             var shipNowBtnId = ShipNowDataModel.getProperty("/shipNowBtnId");
-            var oShipToTable = this.getView().byId("idShipToAddressTable");
+            var oShipToTable = this.getView().byId("idShipTOPickAnAddressTable");
             
 
             var oSelectedItem = oShipToTable.getSelectedItem();
@@ -11307,7 +11299,7 @@ sap.ui.define([
 
            
             oShipToTable.removeSelections(true);
-            oController.byId("idShipToPickAnAddressPopover").close();
+            oController.byId("_IDGenAlcoholEditDialogshipnowTo").close();
         },
 
 

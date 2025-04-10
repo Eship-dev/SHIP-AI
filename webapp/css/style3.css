@@ -1218,12 +1218,12 @@ sapMPopover .sapMPopoverCont {
 .request-button {
   span {
     height: 25px !important;
-    border-radius: 6px !important;
+    border-radius: 10px !important;
     &::before {
       content: none !important;
     }
     &:hover {
-      translate: 0 -6px;
+      translate: 0 -10px;
       transition: 0.3s;
       height: 32px !important;
     }
@@ -1233,18 +1233,34 @@ sapMPopover .sapMPopoverCont {
   span{
     background-color: rgb(31, 152, 222) !important;
     height: 20px !important;
-    border-radius: 3px !important;
+    border-radius: 6px !important;
     &:hover { 
       border-bottom: 10px solid #166a9b !important;
     }
   }
 }
 
+.ship-type-value {
+  display: inline-block !important;
+  background-color: #E3F2FD !important;
+  color: #007ad9 !important;
+  font-weight: bold !important;
+  padding: 8px 16px !important;
+  border-radius: 12px !important;
+  border: 2px solid #007ad9 !important;
+  text-align: center !important;
+  min-width: 120px !important;
+  font-size: 14px !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 2px 2px 8px rgba(0, 122, 217, 0.2) !important;
+  transition: all 0.3s ease-in-out !important;
+}
+
 .shipped-request-button {
   span{
     background-color: rgb(74, 156, 26) !important;
     height: 20px !important;
-    border-radius: 3px !important;
+    border-radius: 6px !important;
     &:hover { 
       border-bottom: 10px solid #346d12 !important;
     }
@@ -1254,7 +1270,7 @@ sapMPopover .sapMPopoverCont {
   span{
     background-color: rgb(8, 117, 28) !important;
     height: 20px !important;
-    border-radius: 3px !important;
+    border-radius: 6px !important;
     &:hover { 
       border-bottom: 10px solid #346d12 !important;
     }
@@ -1264,7 +1280,7 @@ sapMPopover .sapMPopoverCont {
   span{
     background-color: rgb(0, 174, 255) !important;
     height: 20px !important;
-    border-radius: 3px !important;
+    border-radius: 6px !important;
     &:hover { 
       border-bottom: 10px solid #007ab3 !important;
     }
@@ -1274,7 +1290,7 @@ sapMPopover .sapMPopoverCont {
   span{
     background-color: rgb(232, 32, 32) !important;
     height: 20px !important;
-    border-radius: 3px !important;
+    border-radius: 6px !important;
     &:hover { 
       border-bottom: 10px solid #a21616 !important;
     }
@@ -1286,7 +1302,7 @@ sapMPopover .sapMPopoverCont {
     background-color: rgb(14, 51, 240) !important;
     border-color: rgb(14, 51, 240) !important;
     height: 20px !important;
-    border-radius: 3px !important;
+    border-radius: 6px !important;
     &:hover { 
       border-bottom: 10px solid #677cd2 !important;
       /* border-bottom: 10px solid #939A99 !important; */
@@ -1298,7 +1314,7 @@ sapMPopover .sapMPopoverCont {
   span{
     background-color: rgb(182, 173, 15) !important;
     height: 20px !important;
-    border-radius: 3px !important;
+    border-radius: 6px !important;
     &:hover { 
       border-bottom: 10px solid #dfd43f !important;
     }
@@ -1309,7 +1325,7 @@ sapMPopover .sapMPopoverCont {
   span{
     background-color: rgb(32, 172, 246) !important;
     height: 20px !important;
-    border-radius: 3px !important;
+    border-radius: 6px !important;
     &:hover { 
       border-bottom: 10px solid #166a9b !important;
     }
@@ -1321,7 +1337,7 @@ sapMPopover .sapMPopoverCont {
   span{
     background-color: rgb(14, 51, 240) !important;
     height: 20px !important;
-    border-radius: 3px !important;
+    border-radius: 6px !important;
     &:hover { 
       border-bottom: 10px solid #4d59c7 !important;
     }
@@ -1473,6 +1489,23 @@ sapMPopover .sapMPopoverCont {
 }
 
 .scan-ship-toolbar1__button:hover > span {
+  background-color: #4E9C2D !important;
+  color: #fff !important;
+  border: 1px solid #4E9C2D !important;
+  animation: animateBtn 1s infinite;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+  border-radius: 1% !important;
+}
+
+.shiptype-ship-toolbar1__button {
+  /* color: unset !important; */
+  border-radius: 1% !important;
+  height: 40px !important;
+  cursor: pointer;
+}
+
+.shiptype-ship-toolbar1__button:hover > span {
   background-color: #4E9C2D !important;
   color: #fff !important;
   border: 1px solid #4E9C2D !important;

@@ -1,38 +1,37 @@
-<core:FragmentDefinition 
-    xmlns="sap.m"
-    xmlns:core="sap.ui.core"
-    height="100%"
-    xmlns:l="sap.ui.layout"
+<core:FragmentDefinition xmlns="sap.m" 
+    xmlns:core="sap.ui.core" 
     xmlns:f="sap.ui.layout.form">
 
-    <Popover id="idShipNowPickAnAddressPopover"  
-        placement="Bottom"
-        contentHeight="100%"
-        showHeader="false" 
-        class="rightSidePopoverShipNow"
-    >
+    <Dialog id="_IDGenAlcoholEditDialogshipnow"
+            title="Alcohol"
+            contentWidth="60vh"
+            contentHeight="95%"
+            verticalScrolling="false"
+            horizontalScrolling="false"
+            class="rightSideDialogSpecialOptionsshipnow">
         
-        <customHeader>
+       
             <Toolbar>
                 <Title text="Pick An Address" />
                 <ToolbarSpacer />
-                <Button icon="sap-icon://decline" class="Decline_Btn ship-now-decline_btn" press="onShipNowPickAnAddressCancelPress" />
+                <Button icon="sap-icon://decline" 
+                        class="Decline_Btn ship-now-decline_btn" 
+                        press="onShipNowPickAnAddressCancelPress1" />
             </Toolbar>
-        </customHeader>
-
-    <ScrollContainer
-        class=""
-        height="100%"
-        width="100%"
-   
-        horizontal="true"
-        vertical="true">
+       
+        <content>
+        <ScrollContainer
+            height="100%"
+            width="100%"
+            horizontal="true"
+            vertical="true"
+        >
             <Table id="idShipNowPickAnAddressTable"
                    class="sapUiTinyMarginTop cnthight"
                    growing="true"
                    mode="SingleSelectLeft"
-                   items="{/shipFromAddresses}" >
-                <columns>
+                   items="{/shipFromAddresses}">
+                 <columns>
                     <Column width="10rem" >
                         <Text text="Contact Name" ></Text>
                     </Column>
@@ -90,13 +89,14 @@
                 </items>
             </Table>
         </ScrollContainer>
-
-		<footer>
-            <Toolbar class="p-sidebar-header sapMPopoverFooter1">
-                <Button text="Cancel" press="onShipNowPickAnAddressCancelPress" />
+        </content>
+ <footer>
+            <OverflowToolbar class="sapMPopoverFooter1">
+                  <Button text="Cancel" press="onShipNowPickAnAddressCancelPress1" />
                 <ToolbarSpacer />
-                <Button type="Emphasized" text="Submit" press="onShipNowPickAnAddressSelectPress" />
-            </Toolbar>
+                 <Button type="Emphasized" text="Submit" press="onShipNowPickAnAddressSelectPress" />
+            </OverflowToolbar>
         </footer>
-    </Popover>
+
+    </Dialog>
 </core:FragmentDefinition>

@@ -1,36 +1,39 @@
-<core:FragmentDefinition 
-    xmlns="sap.m"
-    xmlns:core="sap.ui.core"
-    height="100%">
+<core:FragmentDefinition xmlns="sap.m" 
+    xmlns:core="sap.ui.core" 
+    xmlns:f="sap.ui.layout.form">
 
-    <Dialog id="idShipToPickAnAddressDialog"  
-            contentWidth="40vh"
+    <Dialog id="_IDGenAlcoholEditDialogshipnowTo"
+            title="Alcohol"
+            contentWidth="60vh"
             contentHeight="95%"
             verticalScrolling="false"
             horizontalScrolling="false"
-             
-       
-        showHeader="false" 
-        class="rightSidePopoverShipNowPickAnAddress">
+            class="rightSideDialogSpecialOptionsshipnow">
 
         <!-- Custom Header -->
-        <customHeader>
-            <Toolbar class="sapUiSmallMargin">
+       
+            <Toolbar >
                 <Title text="Pick An Address" />
                 <ToolbarSpacer />
-                <Button icon="sap-icon://decline" class="Decline_Btn ship-now-decline_btn" press="onShipToPickAnAddressCancelPress" />
+                <Button icon="sap-icon://decline" class="Decline_Btn ship-now-decline_btn" press="onShipNowPickAnAddressCancelPress123" />
             </Toolbar>
-        </customHeader>
+       
 
         <content >
-            <ScrollContainer class="sapUiSmallMargin pickAnAddess"
-                             width="100%"
-                             horizontal="true"
-                             vertical="true">
-                <Table id="idShipToAddressTable"
-                       inset="false"
+        <ScrollContainer
+            height="100%"
+            width="100%"
+            horizontal="true"
+            vertical="true"
+        >
+            <Table id="idShipTOPickAnAddressTable"
+                   class="sapUiTinyMarginTop cnthight"
+                   growing="true"
+                  
                        mode="SingleSelectLeft"
                        items="{ path: '/shipToAddresses' }">
+            
+                      
                     <columns>
                         <Column width="10rem"><Text text="Contact Name" /></Column>
                         <Column width="10rem"><Text text="Company Name" /></Column>
@@ -69,10 +72,10 @@
 
         <!-- Footer -->
         <footer>
-            <OverflowToolbar class="p-sidebar-header sapMPopoverFooter1 shipmethod">
-                <Button text="Cancel" press="onShipToPickAnAddressCancelPress" class="save11-btn"/>
+            <OverflowToolbar class="sapMPopoverFooter1">
+                <Button text="Cancel" press="onShipNowPickAnAddressCancelPress123" />
                 <ToolbarSpacer />
-                <Button type="Ghost" text="Select" class="scan-ship-toolbar1__button sapUiTinyMargin" press="onShipToPickAnAddressSelectPress" />
+                <Button type="Emphasized" text="Submit" press="onShipToPickAnAddressSelectPress" />
             </OverflowToolbar>
         </footer>
 

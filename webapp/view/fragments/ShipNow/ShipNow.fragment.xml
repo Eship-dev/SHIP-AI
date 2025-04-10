@@ -37,6 +37,8 @@
 									<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch" value="{eshipjetModel>/commonValues/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
 									<Input id="idSapDeliveryNumber" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{eshipjetModel>/commonValues/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle sapDeliveryNumberInptBold create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd custom-input2" width="14%" editable="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
 									<Button text="Get" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" type="Ghost" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" press="onShipNowGetPress" width="4%"></Button>
+									<Label text="ShipType"  class="sapUiSmallMarginTop sapUiLargeMarginBegin"></Label>
+									<Text text="ZA" class="ship-type-value sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" ></Text>
 									<!-- <Button text="Consolidation" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" type="Ghost" press="handleConsolidationPress" width="8%"></Button> -->
 									<Label text="Ship Date" class="sapUiSmallMarginTop sapUiLargeMarginBegin" labelFor="DP1" width="6%" />
 									<DatePicker class="create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd" id="DP1" width="10%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" placeholder=" " />
