@@ -864,12 +864,14 @@
 											</items>
 										</Table> -->
 
+					<!-- Product Table -->
 						<ui:Table
 							id="idShipNowPackTable"
 							rows="{eshipjetModel>/commonValues/packAddProductTable}"
 							class="sapUiSmallMarginTop"
 							selectionMode="MultiToggle"
 							visibleRowCount="4" >
+
 							<!-- <ui:extension>
 								<OverflowToolbar class="scan-ship-table__toolbar">
 									<ToolbarSpacer ></ToolbarSpacer>
