@@ -9,7 +9,11 @@
   xmlns:ui="sap.ui.table" 
   xmlns:u="sap.ui.unified" 
   xmlns:c="sap.ui.core">
-  <Dialog id="idTrackingNumberDialog1" showHeader="false"  class="rightSideDialogSpecialOptions" contentWidth="100%" contentHeight="100%" >
+  <Dialog id="idTrackingNumberDialog1" showHeader="false"  title="Alcohol"
+            contentWidth="60vh"
+            contentHeight="95%"
+            verticalScrolling="false"
+            horizontalScrolling="false" class="rightSideDialogSpecialOptions"  >
                      
     <Toolbar height="3.5rem" >
         <Title text="ShipperCopilot Tracking ID - {eshipjetModel>/TrackingNumberTableRows/TrackingNumber}" />
@@ -19,11 +23,11 @@
     <content>
 
       <VBox visible="{=%{eshipjetModel>/TrackingNumberTableRows/CarrierCode}.toUpperCase() === 'FEDEX'}">
-         <html:iframe src="https://drivemedical.eshipjet.site/next-gen-tracking?Carrier=Fedex&amp;TrackingNumber=794953238770" height="700px" width="100%"/>
+         <html:iframe src="https://drivemedical.eshipjet.site/next-gen-tracking?Carrier=Fedex&amp;TrackingNumber=794953238770" height="1000px" width="100%"/>
       </VBox>
 
       <VBox  visible="{=%{eshipjetModel>/TrackingNumberTableRows/CarrierCode}.toUpperCase() === 'UPS'}">
-         <html:iframe src="https://drivemedical.eshipjet.site/next-gen-tracking?Carrier=UPS&amp;TrackingNumber%3D1ZXXXXXXXXXXXXXXXX=" height="700px" width="100%"/>
+         <html:iframe src="https://drivemedical.eshipjet.site/next-gen-tracking?Carrier=UPS&amp;TrackingNumber%3D1ZXXXXXXXXXXXXXXXX=" height="900px" width="100%"/>
       </VBox>
 
       <!-- <VBox>

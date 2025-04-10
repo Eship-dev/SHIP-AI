@@ -1453,6 +1453,13 @@ body.dark-theme {
   height: 100vh !important;
 }
 
+/* Ensure scroll area takes full height */
+#application-comeshipjetzeshipjet-display-component---Eshipjet--idTrackingNumberDialog1-scroll {
+  height: 100vh !important;
+}
+
+
+
 
 
 .rightSidePopoverShipNow {
