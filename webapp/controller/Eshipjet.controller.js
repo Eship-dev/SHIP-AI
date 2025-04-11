@@ -956,18 +956,18 @@ sap.ui.define([
             oController.getView().setBusy(true);
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             var shipFromObj = {
-                "ShipFromCONTACT": "",
-                "ShipFromCOMPANY": "",
-                "ShipFromPHONE": "",
-                "ShipFromEMAIL": "",
-                "ShipFromCITY": "",
-                "ShipFromSTATE": "",
-                "ShipFromCOUNTRY": "",
-                "ShipFromZIPCODE": "",
-                "ShipFromADDRESS_LINE1": "",
-                "ShipFromADDRESS_LINE2": "",
-                "ShipFromADDRESS_LINE3": ""
-            }
+                "ShipFromCONTACT": "Steve Marsh",
+                "ShipFromCOMPANY": "Eshipjet Software Inc.",
+                "ShipFromPHONE": "(888) 464-2360",
+                "ShipFromEMAIL": "info@eshipjet.ai",
+                "ShipFromCITY": "Plano",
+                "ShipFromSTATE": "TX",
+                "ShipFromCOUNTRY": "US",
+                "ShipFromZIPCODE": "75024",
+                "ShipFromADDRESS_LINE1": "5717 Legacy",
+                "ShipFromADDRESS_LINE2": "Suite 250",
+                "LocationType": "Commercial"
+            };
             ShipNowDataModel.setProperty("/ShipFromAddress", shipFromObj);            
             ShipNowDataModel.setProperty("/ShipFromAddressType", "");
             ShipNowDataModel.setProperty("/ShipToAddress", {});
@@ -3083,15 +3083,22 @@ sap.ui.define([
                 filters: oFilter,
                 success:function(oData){
                     var getManifestHeader = eshipjetModel.getProperty("/getManifestHeader");
-                    if(oData && oData.results && oData.results.length > 0){
+                    var length;
+                    if(oData.results.length < getManifestHeader.length){
+                        length = oData.results.length;
+                    }else{
+                        length = getManifestHeader.length;
+                    };
+                    if(oData && oData.results && length > 0){
                         for(var i = 0; i < oData.results.length; i++){
                             oData.results[i]["SerialNumber"] = i + 1;
                             aHandlingUnits.push(oData.results[i]);
                             oData.results[i]["boxCount"] = "1";
-                            if(getManifestHeader.length > 0){
+                            if(oData.results.length > 0){
                                 oData.results[i]["Tracking"] = getManifestHeader[i].TrackingNumber;
                             }
                         };
+                        oController.onCloseBusyDialog();
                         eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
                         oController.getHandlingUnit(aHandlingUnits);
                     }else{

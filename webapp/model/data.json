@@ -841,24 +841,14 @@
     "HandlingUnits": [],
 	"ShipNowProductsTableColumns": [
 			{
-				"name": "SerialNo",
-				"label": "#",
-				"visible": true
-			},
-			{
 				"name": "Material",
 				"label": "Product Code",
 				"visible": true
 			},
 			{
 				"name": "DeliveryDocumentItemText",
-				"label": "Description",
+				"label": "Product Description",
 				"visible": true
-			},
-			{
-				"name": "epcRfidNo",
-				"label": "EPC-RFID No",
-				"visible": false
 			},
 			{
 				"name": "ItemWeightUnit",
@@ -881,24 +871,14 @@
 				"visible": true
 			},
 			{
-				"name": "IsSerial",
-				"label": "Is Serial",
+				"name": "PackageMaterial",
+				"label": "Pkg Material",
 				"visible": true
 			},
 			{
-				"name": "IsDG",
-				"label": "Is DG",
-				"visible": false
-			},
-			{
-				"name": "PackageMaterial",
-				"label": "Package Material",
-				"visible": false
-			},
-			{
 				"name": "UnitWeight",
-				"label": "Unit Weight",
-				"visible": false
+				"label": "Weight (LB)",
+				"visible": true
 			},
 			{
 				"name": "UnitCost",
@@ -906,92 +886,22 @@
 				"visible": false
 			},
 			{
-				"name": "HarmonizedCode",
-				"label": "Harmonized Code",
-				"visible": false
+				"name": "IsSerial",
+				"label": "Is Serial",
+				"visible": true
 			},
-			{
-				"name": "CountryOfMfr",
-				"label": "Country Of Mfr",
-				"visible": false
-			},
-			{
-				"name": "Uom",
-				"label": "Uom",
-				"visible": false
-			},
-			{
-				"name": "Currency",
-				"label": "Currency",
-				"visible": false
-			},
-			{
-				"name": "LicenseNo",
-				"label": "License No",
-				"visible": false
-			},
-			{
-				"name": "Eccn",
-				"label": "Eccn",
-				"visible": false
-			},
-			{
-				"name": "UnNo",
-				"label": "Un No",
-				"visible": false
-			},
-			{
-				"name": "MaxQtyPerInnerReceptacle",
-				"label": "Max Quantity Per Inner Receptacle",
-				"visible": false
-			},
-			{
-				"name": "HazardId",
-				"label": "Hazard Id",
-				"visible": false
-			},
-			{
-				"name": "ErgGuideNumber",
-				"label": "Erg Guide Number",
-				"visible": false
-			},
-			{
-				"name": "HazardClass",
-				"label": "Hazard Class",
-				"visible": false
-			},
-			{
-				"name": "LabelsRequired",
-				"label": "Labels Required",
-				"visible": false
-			},
-			{
-				"name": "AdditionalInfo",
-				"label": "Additional Info",
-				"visible": false
-			},
-			{
-				"name": "PackingGroup",
-				"label": "Packing Group",
-				"visible": false
-			},
-			{
-				"name": "PassengerCargoMaxNetQty",
-				"label": "Passenger / Cargo Max Net Qty",
-				"visible": false
+            {
+				"name": "SN",
+				"label": "SN",
+				"visible": true
 			}
 		],
         "pickAddProductTable":[],
         
         "ShipNowHandlingUnitTableColumns": [
-			{
-				"name": "SerialNumber",
-				"label": "#",
-				"visible": true
-			},
             {
 				"name": "SAPHUID",
-				"label": "Material /SAP HU ID.",
+				"label": "Material/SAP HU ID.",
 				"visible": true
 			},
 			{
@@ -1002,7 +912,7 @@
 			{
 				"name": "HU",
 				"label": "HU ID",
-				"visible": false
+				"visible": true
 			},
 			{
 				"name": "WeightLB",
@@ -1024,20 +934,25 @@
 				"label": "Box Count",
 				"visible": true
 			},
-			{
-				"name": "Tracking",
-				"label": "Tracking #",
+            {
+				"name": "class",
+				"label": "Class",
 				"visible": true
 			},
-			{
-				"name": "ReturnTracking",
-				"label": "Return Tracking #",
-				"visible": false
+            {
+				"name": "NMFC",
+				"label": "NMFC",
+				"visible": true
 			},
             {
-				"name": "ReturnShipment",
-				"label": "Return Shipment",
+				"name": "CommodityDescription",
+				"label": "Commodity Description",
 				"visible": false
+			},
+			{
+				"name": "Tracking",
+				"label": "Tracking/Pro #",
+				"visible": true
 			},
             {
 				"name": "SN",
@@ -1046,13 +961,8 @@
 			},
 			{
 				"name": "PackageMaterial",
-				"label": "Package Material",
+				"label": "Pkg Material",
 				"visible": true
-			},
-			{
-				"name": "PackageImage",
-				"label": "Package Image",
-				"visible": false
 			}
 		],
         "HandlingUnitItems":[],

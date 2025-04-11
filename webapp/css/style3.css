@@ -1483,7 +1483,7 @@ sapMPopover .sapMPopoverCont {
 
 .scan-ship-toolbar1__button {
   /* color: unset !important; */
-  border-radius: 1% !important;
+  border-radius: 6px !important;
   height: 40px !important;
   cursor: pointer;
 }
@@ -1495,7 +1495,7 @@ sapMPopover .sapMPopoverCont {
   animation: animateBtn 1s infinite;
   transform: scale(1.05);
   transition: all 0.3s ease;
-  border-radius: 1% !important;
+  border-radius: 6px !important;
 }
 
 .shiptype-ship-toolbar1__button {
@@ -1536,7 +1536,7 @@ sapMPopover .sapMPopoverCont {
 .scan-ship-toolbar1__button_void:hover > span {
   background-color: red !important;
   border: 1px solid red !important;
-  border-radius: 1% !important;
+  border-radius: 6px !important;
 }
 
 
@@ -2142,7 +2142,7 @@ button, input, optgroup, select, textarea {
   padding-top: 15% !important;
 }
 
-.customBlueYellowIcon .sapMBtnIcon:hover {
+/* .customBlueYellowIcon .sapMBtnIcon:hover {
   height: 22px !important;
   background-color: transparent !important;
   border: none !important;
@@ -2150,7 +2150,7 @@ button, input, optgroup, select, textarea {
   filter: brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(2000%)
             hue-rotate(20deg) brightness(100%) contrast(100%); /* Orange */
   padding-top: 15% !important;
-}
+} */
 
 .customOrdersIcon .sapUiIcon::before {
   content: "";
@@ -2448,4 +2448,8 @@ button, input, optgroup, select, textarea {
   font-weight: 600;
   text-align: left;
   padding-top: 2px;
+}
+
+.packScreenPadding{
+  padding: 13px !important;
 }

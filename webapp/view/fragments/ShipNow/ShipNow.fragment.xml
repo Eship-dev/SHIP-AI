@@ -2,7 +2,7 @@
 	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
 	    		<Toolbar class="" height="3rem" >
-					<Button icon="sap-icon://past" id="shipNowRecentShips" press="onOpenRecentShipmentPopover" />
+					<Button icon="sap-icon://past" id="shipNowRecentShips" type="Transparent" press="onOpenRecentShipmentPopover" />
 					<Text text="Ship Now"/>
 					<ToolbarSpacer/>
 
@@ -77,13 +77,13 @@
 														</layoutData>
 													</Input>
 													<Label text="Email Address" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromEMAIL}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromEMAIL}" />
 													<Label text="Company Name" class="sapUiTinyMarginTop" />
 													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromCOMPANY}" />
 													<Label text="Address Line 2" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE2}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE2}" />
 													<Label text="Postal Code" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromZIPCODE}" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromZIPCODE}" >
 													<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
@@ -95,7 +95,7 @@
 														</layoutData>													
 													</ComboBox>
 													<Label text="Phone Number" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromPHONE}" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromPHONE}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
@@ -118,8 +118,8 @@
 														<f:content>
 													<Toolbar ariaLabelledBy="idShipTo" class="customLine" >
 														<Title id="idShipTo1" text="Ship To" class="shipNowShipToHeader" />
-														<Button icon="sap-icon://customer-briefing" enabled="{eshipjetModel>/shipNowBtnStatus}" press="ShipToPickAnAddressPopoverPress" id="idShipToAddressBtn" />
-														<Button icon="sap-icon://add" enabled="{eshipjetModel>/shipNowBtnStatus}" press="onShipNowAddIconPress" ></Button>
+														<Button icon="sap-icon://customer-briefing" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" press="ShipToPickAnAddressPopoverPress" id="idShipToAddressBtn" />
+														<Button icon="sap-icon://add" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" press="onShipNowAddIconPress" ></Button>
 														<ToolbarSpacer ></ToolbarSpacer>
 														<Button text="Validate Address" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="validateAddress__button" type="Ghost" width="auto" />
 													</Toolbar>
@@ -139,13 +139,13 @@
 														</layoutData>
 													</Input>
 													<Label text="Email Address" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/EMAIL}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/EMAIL}" />
 													<Label text="Company Name" />
 													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/BusinessPartnerName1}" />
 													<Label text="Address Line 2" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/HouseNumber}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/HouseNumber}" />
 													<Label text="Postal Code" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/PostalCode}" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/PostalCode}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
@@ -157,7 +157,7 @@
 														</layoutData>
 													</ComboBox>
 													<Label text="Phone Number" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/PhoneNumber}" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/PhoneNumber}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
@@ -296,7 +296,7 @@
 											<f:SimpleForm id="RoutingandBillingDetails"  editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4" >
 												<f:content>
 													<Label text="Carrier Description" />
-													<ComboBox class="create-ship-req_input" enabled="{eshipjetModel>/shipNowBtnStatus}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/ShipNowShipMethodSelectedKey}"   selectionChange="onShopNowShipMethodTypeChange"  >
+													<ComboBox class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
 														<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
 													</ComboBox>
 													<Label text="Payment Type" />
@@ -304,7 +304,7 @@
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
 													</ComboBox>
 													<Label text="Service Name" />
-													<ComboBox class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
+													<ComboBox class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange" selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
 														<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
 													</ComboBox>
 													<Label text="Cost Center" />
@@ -693,16 +693,16 @@
 									<IconTabFilter text="Pack" key="Pack">
 
 											<HBox alignContent="Center" >
-												<HBox height="4rem" width="25%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" >
+												<HBox height="4.5rem" width="25%" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" >
 													<VBox >
 														<Label text="Carrier Description" />
-														<ComboBox class="create-ship-req_input sapUiTinyMarginEnd" width="13rem" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
+														<ComboBox class="create-ship-req_input sapUiTinyMarginEnd" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
 															<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
 														</ComboBox>
 													</VBox>
 													<VBox >
 														<Label text="Service Name" />
-														<ComboBox class="create-ship-req_input" width="10rem" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
+														<ComboBox class="create-ship-req_input" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
 															<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
 														</ComboBox>
 													</VBox>
@@ -740,28 +740,28 @@
 															<Button text="Auto Pack" enabled="{eshipjetModel>/shipNowBtnStatus}" class="scan-ship-toolbar1__button" width="auto" press="handleAutoPackPress" type="Ghost" ></Button>
 													</HBox> -->
 
-												<HBox height="4rem" width="25%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" >
+												<HBox height="4.5rem" width="25%" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" >
 													<VBox class="sapUiTinyMarginEnd" >
 														<Label text="Payment Type" />
-														<ComboBox class="create-ship-req_input" width="13rem" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/PaymentTypes}" selectedKey="{eshipjetModel>/commonValues/selectPaymentType}" >
+														<ComboBox class="create-ship-req_input" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/PaymentTypes}" selectedKey="{eshipjetModel>/commonValues/selectPaymentType}" >
 															<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
 														</ComboBox>
 													</VBox>
 													<VBox >
 														<Label text="Sender / 3rd Party" />
-														<Input value="" width="10rem" class="create-ship-req_input" ></Input>
+														<Input value="" width="auto" class="create-ship-req_input" ></Input>
 													</VBox>
 												</HBox>
-												<HBox height="4rem" width="25%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" >
+												<HBox height="4.5rem" width="25%" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" >
 													<VBox class="sapUiTinyMarginEnd" >
 														<Label text="Postal Code" />
-														<ComboBox class="create-ship-req_input" width="13rem" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
+														<ComboBox class="create-ship-req_input" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
 															<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
 														</ComboBox>
 													</VBox>
 													<VBox class="sapUiTinyMarginTop" >
 														<Label text="Country" />
-														<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" width="10rem" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipFromAddress/ShipFromCOUNTRY}" >
+														<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipFromAddress/ShipFromCOUNTRY}" >
 															<core:Item key="{eshipjetModel>code}" text="{eshipjetModel>name}" />												
 														</ComboBox>
 													</VBox>
@@ -774,14 +774,14 @@
 														<Text text="{path:'eshipjetModel>/ShipNowShipMethodSelectedKey', formatter: '.formatter.carrierDisplay' } - {eshipjetModel>/carrierServiceName_dis}" class="packScreenCarrier" ></Text>
 													</HBox> -->
 
-													<HBox height="4rem" width="25%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" >
+													<HBox height="4.5rem" width="25%" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" >
 														<VBox class="sapUiTinyMarginEnd" >
 															<Label text="Group ID / Cust Grp2" />
-															<Input value="" width="10rem" class="create-ship-req_input" ></Input>
+															<Input value="" width="auto" class="create-ship-req_input" ></Input>
 														</VBox>
 														<VBox >
 															<Label text="Stage Location" />
-															<Input value="" width="10rem" class="create-ship-req_input" ></Input>
+															<Input value="" width="auto" class="create-ship-req_input" ></Input>
 														</VBox>
 													</HBox>
 
@@ -882,31 +882,25 @@
 							</ui:extension> -->
 
 							<ui:columns>
-								<ui:Column visible="{eshipjetModel>/ShipNowProductsTableColumns/0/visible}" width="3%" >
+								<ui:Column visible="true" width="3%" >
 									<Label text="#" />
 									<ui:template>
 										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/1/visible}" >
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/0/visible}" >
 									<Label text="Product Code" />
 									<ui:template>
 										<Text text="{eshipjetModel>Material}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="15rem" visible="{eshipjetModel>/ShipNowProductsTableColumns/2/visible}">
+								<ui:Column width="15rem" visible="{eshipjetModel>/ShipNowProductsTableColumns/1/visible}">
 									<Label text="Product Description" />
 									<ui:template>
 										<Text text="{eshipjetModel>DeliveryDocumentItemText}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/3/visible}" >
-									<Label text="EPC-RFID No" />
-									<ui:template>
-										<Text text="{eshipjetModel>epcRfidNo}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/4/visible}" >
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/2/visible}" >
 								<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="Dimensions" />
 								</HBox>
@@ -916,7 +910,7 @@
 									</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/5/visible}" >
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/3/visible}" >
 									<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="Total Qty" />
 									</HBox>
@@ -926,7 +920,7 @@
 									</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/6/visible}" >
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/4/visible}" >
 									<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="Balance Qty" />
 									</HBox>
@@ -936,13 +930,23 @@
 									</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/7/visible}" >
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/5/visible}" >
 									<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="Partial Qty" />
 									</HBox>
 									<ui:template>
 									<HBox justifyContent="End" alignItems="End" width="100%">
 										<Input value="{eshipjetModel>partialQty}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" liveChange="onPartialQtyChange" />
+									</HBox>
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/6/visible}" >
+								<HBox justifyContent="End" alignItems="End" width="100%">
+									<Label text="Pkg Material" />
+								</HBox>
+									<ui:template>
+									<HBox justifyContent="End" alignItems="End">
+										<Text text="{eshipjetModel>ItemGrossWeight}" />
 									</HBox>
 									</ui:template>
 								</ui:Column>
@@ -956,7 +960,17 @@
 									</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/8/visible}">
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/8/visible}" >
+								<HBox justifyContent="End" alignItems="End" width="100%">
+									<Label text="Unit Cost" />
+								</HBox>
+									<ui:template>
+									<HBox justifyContent="End" alignItems="End">
+										<Text text="{eshipjetModel>ItemGrossWeight}" />
+									</HBox>
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/9/visible}">
 										<HBox justifyContent="Center" alignItems="Center" width="100%">
 											<Label text="Is Serial"/>
 										</HBox>
@@ -967,7 +981,7 @@
 										</ui:template>
 									</ui:Column>
 
-									<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/8/visible}">
+									<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/10/visible}">
 										<HBox justifyContent="Center" alignItems="Center" width="100%">
 											<Label text="SN #"/>
 										</HBox>
@@ -977,122 +991,6 @@
 											</HBox>
 										</ui:template>
 									</ui:Column>
-
-									<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/9/visible}">
-										<HBox justifyContent="Center" alignItems="Center" width="100%">
-											<Label text="Is DG"/>
-										</HBox>
-										<ui:template>
-											<HBox justifyContent="Center" alignItems="Center">
-												<CheckBox selected="{eshipjetModel>isDGSelected}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" select="onCheckBoxSelect"/>
-											</HBox>
-										</ui:template>
-									</ui:Column>
-
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/11/visible}" >
-									<Label text="Unit Weight" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/12/visible}" >
-									<Label text="Unit Cost" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/13/visible}" >
-									<Label text="Harmonized Code" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-
-
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/14/visible}" >
-									<Label text="Country Of Mfr" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/15/visible}" >
-									<Label text="Uom" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/16/visible}" >
-									<Label text="Currency" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/17/visible}" >
-									<Label text="License No" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/18/visible}" >
-									<Label text="Eccn" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/19/visible}" >
-									<Label text="Un No" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/20/visible}" >
-									<Label text="Max Quantity Per Inner Receptacle" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/21/visible}" >
-									<Label text="Hazard Id" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/22/visible}" >
-									<Label text="Erg Guide Number" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/23/visible}" >
-									<Label text="Hazard Class" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/24/visible}" >
-									<Label text="Labels Required" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/25/visible}" >
-									<Label text="Additional Info" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/26/visible}" >
-									<Label text="Packing Group" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/27/visible}" >
-									<Label text="Passenger / Cargo Max Net Qty" />
-									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
 								<ui:Column visible="true" width="4rem" >
 									<Button icon="sap-icon://action-settings" type="Transparent" press="openShipNowPrdctColNamesPopover" ></Button>
 									<ui:template>
@@ -1138,25 +1036,39 @@
 							<HBox class="sapUiTinyMarginTop" >													
 								<HBox height="3rem" width="33%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="SpaceBetween" >																
 									<FlexBox alignItems="Center" >
-										<Text text="No of Packages:" class="sapUiTinyMargin text-primary" ></Text>
+										<core:Icon
+											src="sap-icon://dimension"
+											class="customBlueYellowIcon sapUiTinyMargin"
+											width="20px" ></core:Icon>
+										<Text text="No of Packages" class="sapUiTinyMargin" ></Text>
 										<Text text="{eshipjetModel>/HandlingUnitsLength}" class="numberData" width="auto" ></Text>
+										
 									</FlexBox>
 									<FlexBox alignItems="Center" >
 										<Text text="Master Tracking #" class="sapUiTinyMargin" ></Text>
 										<Input value="{}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" width="auto"></Input>
+										<Button text="Get" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" visible="{eshipjetModel>/commonValues/shipNowGetBtn}" class="scan-ship-toolbar1__button sapUiTinyMargin" type="Ghost" width="3rem" ></Button>
 									</FlexBox>
 								</HBox>
-								<HBox height="3rem" width="34%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="Center" >
+								<HBox height="3rem" width="37%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="SpaceBetween" >
+									<FlexBox>
+										<Label text="Package Material" class="sapUiSmallMarginTop" width="auto" />
+										<ComboBox items="{eshipjetModel>/packageMaterial}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" selectedKey="{eshipjetModel>/selectedPackageMat}" class="create-ship-req_input" width="7rem" >
+											<core:Item key="{eshipjetModel>Product}" text="{eshipjetModel>Product}" />
+										</ComboBox>
+									</FlexBox>
+									<FlexBox>
 										<Button text="Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="auto" press="onPackPress" ></Button>
 										<Button text="Pack All" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="auto" press="onPackAllPress" ></Button>
 										<Button text="DG Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="auto" ></Button>
 										<Button text="DG Pack All" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="scan-ship-toolbar1__button" type="Ghost" width="auto" ></Button>
+									</FlexBox>
 								</HBox>
 
-								<HBox height="3rem" width="33%" class="whiteBackground" alignItems="Center" justifyContent="End" >
+								<HBox height="3rem" width="30%" class="whiteBackground" alignItems="Center" justifyContent="Start" >
 									<Text text="Tracking / Pro#" class="sapUiTinyMargin" ></Text>
 									<Input value="{}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input sapUiTinyMargin" width="auto"></Input>
-									<Button text="Get" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" visible="{eshipjetModel>/commonValues/shipNowGetBtn}" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="6rem" ></Button>
+									<Button text="Get" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" visible="{eshipjetModel>/commonValues/shipNowGetBtn}" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="3rem" ></Button>
 								</HBox>
 							</HBox>
 
@@ -1169,13 +1081,13 @@
     						visibleRowCountMode="Fixed" >
 							
 							<ui:columns>
-								<ui:Column visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/0/visible}" width="3rem" >
+								<ui:Column visible="true" width="4rem" >
 									<Label text="#" />
 									<ui:template>
 										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/1/visible}" >
+								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/0/visible}" >
 									<Label text="Material / SAP HU ID" />
 									<ui:template>
 									<HBox justifyContent="End" alignItems="End">
@@ -1183,13 +1095,13 @@
 									</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="12rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/2/visible}">
+								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/1/visible}">
 									<Label text="HU Type" />
 									<ui:template>
 										<Text text="{eshipjetModel>PackagingMaterial}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/3/visible}" >
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/2/visible}" >
 									<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="HU ID" />
 									</HBox>
@@ -1199,7 +1111,7 @@
 									</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/4/visible}" >
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/3/visible}" >
 								<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="Weight (LB)" />
 								</HBox>
@@ -1215,7 +1127,7 @@
 										<Button class="customBlueYellowIcon" tooltip="Get weight and dims" icon="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAeCAYAAAA/xX6fAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFtSURBVHgB7ZbhcQIhEIXfWEE6kBKSCkIqSEqgA9PB0YFJBdrBpQPtwBIsQVNBsjfCzLLH4SLnP9/Mm0GP4+PYhQWo0xO5I5/IR7LDncRBf8ID+AMzygnQIQC8+L8nGzTIhsHjgCeMl9CQt0i/eINKsCXvBMjjsqxTMhnwGlfAJsyOv/R1BZSb7BFpfJ3slEuIHdri4UrgXoAs5pMTYLdAmtIGjZnGNKzcEmlIXoE0OeZa0pUYL7Y3HGjRnuIW+dj5HHAZXjKoT3GL8lYqAsHABzHbz0yfXkzOY7yVVMAoh/wydQJUOtp8DXAKXLOVfAQuoNeW/EL+Dr/P5LfgvXIM1AAj5Ie196hULbBZD+BdgOfQ9pjv4Oay5PfQ/o0gvqk7xQCxb0kG4+POxIcOikqtBA7H2hrKIuAUYIs8cOrmYKGQF2BeH20GuLoVxGWQr4+OAS30oWgCS2uuktV6RlofS/VvVjlcYjTcWQ0q9Q9p4tga7BXjNQAAAABJRU5ErkJggg==" type="Transparent" ></Button>
 									</ui:template>
 								</ui:Column> -->
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/5/visible}" >
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/4/visible}" >
 									<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="Dimensions (IN)"  />
 									</HBox>
@@ -1225,18 +1137,18 @@
 										</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/6/visible}" >
+								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/5/visible}" >
 									<HBox justifyContent="Center" alignItems="Center" width="100%">
 									<Label text="Package Type" />
 									</HBox>
 									<ui:template>
 									<HBox justifyContent="Center" alignItems="Center" width="100%">
 										<!-- <Text text="{eshipjetModel>PackagingMaterialType}" wrapping="false" /> -->
-										<Text text="" wrapping="false" />
+										<Text text="{eshipjetModel>PackagingMaterial}" wrapping="false" />
 										</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/7/visible}" >
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/6/visible}" >
 								<HBox justifyContent="Center" alignItems="Center" width="100%">
 									<Label text="Box Count" />
 								</HBox>
@@ -1247,28 +1159,35 @@
 									</HBox>
 									</ui:template>
 								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/7/visible}" >
+									<Label text="LTL Class" />
+									<ui:template>
+										<!-- <Text text="{eshipjetModel>HandlingUnitPackingObjectKey}" wrapping="false" /> -->
+										<Text text="" wrapping="false" />
+									</ui:template>
+								</ui:Column>
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/8/visible}" >
-									<Label text="Tracking #" />
+									<Label text="NMFC Code" />
+									<ui:template>
+										<!-- <Text text="{eshipjetModel>HandlingUnitPackingObjectKey}" wrapping="false" /> -->
+										<Text text="" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/9/visible}" >
+									<Label text="Commodity Description" />
+									<ui:template>
+										<!-- <Text text="{eshipjetModel>HandlingUnitPackingObjectKey}" wrapping="false" /> -->
+										<Text text="" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/10/visible}" >
+									<Label text="Tracking/Pro #" />
 									<ui:template>
 										<!-- <Text text="{eshipjetModel>HandlingUnitPackingObjectKey}" wrapping="false" /> -->
 										<Link text="{eshipjetModel>Tracking}" press="onTrackingNumberPress" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="12rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/9/visible}" >
-									<Label text="Return Tracking #" />
-									<ui:template>
-										<!-- <Text text="{eshipjetModel>HandlingUnitPackingObjectKey}" wrapping="false" /> -->
-										<Text text="" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="12rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/10/visible}" >
-									<Label text="Return Shipment" />
-									<ui:template>
-										<!-- <Text text="{eshipjetModel>HandlingUnitPackingObjectKey}" wrapping="false" /> -->
-										<Text text="" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="6rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/11/visible}" >
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/11/visible}" >
 									<HBox justifyContent="Center" alignItems="Center" width="100%">
 											<Label text="SN #"/>
 										</HBox>
@@ -1278,16 +1197,10 @@
 											</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="12rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/12/visible}" >
-									<Label text="Package Material" />
+								<ui:Column width="8rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/12/visible}" >
+									<Label text="Pkg Material" />
 									<ui:template>
 										<Text text="{eshipjetModel>PackagingMaterial}" wrapping="false" />
-									</ui:template>
-								</ui:Column>
-								<ui:Column width="12rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/13/visible}" >
-									<Label text="Package Image" />
-									<ui:template>
-										<Text text="" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column visible="true" width="4rem" >
@@ -1421,7 +1334,8 @@
 													<Input value="{eshipjetModel>/dutiesAccountNo}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" ></Input>
 													<Label text="Freight Forwarder Tax No" />
 													<Input value="{eshipjetModel>/freightForwordTaxNo}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
-													
+													<Label text=" " visible="false" />
+													<CheckBox text="Dutiable" selected="" class="sapUiSmallMarginTop" />
 												</f:content>
 											</f:SimpleForm>
 
