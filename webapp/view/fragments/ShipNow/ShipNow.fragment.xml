@@ -293,7 +293,10 @@
 									<IconTabFilter text="Routing and Billing Details" key="Routing and Billing Details">
 										<VBox class="scan-ship-toolbar1">
 										<VBox class="shipnowcustomSimpleFormShadow" >
-											<f:SimpleForm id="RoutingandBillingDetails"  editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4" >
+											<f:SimpleForm id="RoutingandBillingDetails"
+												 editable="true" 
+												 layout="ColumnLayout" 
+												 columnsM="2" columnsL="3" columnsXL="6" >
 												<f:content>
 													<Label text="Carrier Description" />
 													<ComboBox class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
@@ -307,25 +310,33 @@
 													<ComboBox class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange" selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
 														<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
 													</ComboBox>
-													<Label text="Cost Center" />
+													<Label text="Shipper Account No" />
+													<Input value="{eshipjetModel>/accountNumber}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
+													<Label text="Postal Code" />
+													<Input value="" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
+													<Label text="Country" />
 													<ComboBox class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/CostCenters}">
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
-													<Label text="Ship Method ID" />
-													<Input value="{eshipjetModel>/shipMethodId}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
-													<Label text="PO No" />
-													<Input value="{eshipjetModel>/poNo}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
-													<Label text="Account No" class="LabelPadClass" />
-													<Button text="Get Carrier" class="scan-ship-toolbar1__button" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" type="Ghost" >
-														<layoutData>
-															<f:ColumnElementData cellsSmall="4" cellsLarge="4" />
-														</layoutData>
-													</Button>
-													<Input value="{eshipjetModel>/accountNumber}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" >
-														
-													</Input>
+													<Label text="Group ID / Cust Grp2" />
+													<Input value="" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
+													<Label text="Reference1" />
+													<Input value="" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
+													<Label text="Stage Location" />
+													<Input value="" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
+													<Label text="Reference2" />
+													<Input value="" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
+													<Label text="Sales Order No" />
+													<Input value="" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text="Invoice No" />
 													<Input value="{eshipjetModel>/invoiceNo}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
+													<!-- <Label text="Purchase Order No" />
+													<Input value="" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
+													<Label text="Cost Center" />
+													<ComboBox class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/CostCenters}">
+														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
+													</ComboBox> -->
+
 												</f:content>
 											</f:SimpleForm>
 											<!-- <Toolbar class="toolbarbottomborder" height="10%" width="100%">		 -->
