@@ -740,17 +740,17 @@
 									<!-- Pack Tab Starts here -->
 									<IconTabFilter text="Pack" key="Pack">
 
-											<HBox alignContent="Center" width="100%" justifyContent="Start" >
+											<HBox alignContent="Center" >
 												<HBox height="4.5rem" width="25%" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" >
 													<VBox >
 														<Label text="Carrier Name" />
-														<ComboBox class="create-ship-req_input sapUiTinyMarginEnd" width="100%" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
+														<ComboBox class="create-ship-req_input sapUiTinyMarginEnd" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
 															<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
 														</ComboBox>
 													</VBox>
 													<VBox >
 														<Label text="Service Name" />
-														<ComboBox class="create-ship-req_input" width="100%" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
+														<ComboBox class="create-ship-req_input" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
 															<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
 														</ComboBox>
 													</VBox>
