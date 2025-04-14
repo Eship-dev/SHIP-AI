@@ -105,7 +105,7 @@
 							rows="{eshipjetModel>/allOrders}"
 							class="sapUiSmallMarginBegin sapUiSmallMarginEnd rowRightLine ordersTableRightBorder"
 							selectionMode="None"
-							visibleRowCount="11" >
+							visibleRowCount="14" >
 										<ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '5rem' : 'auto' }" sortProperty="Plant" class="whiteBackground" visible="{eshipjetModel>/OrderTableData/OrderColumns/0/visible}">
 									<Label text="Plant ID" />
 									<ui:template>
@@ -132,7 +132,7 @@
 									<ui:template>
 										<HBox justifyContent="SpaceBetween" width="100%" >
 											<Text text="{eshipjetModel>Carriertype}" wrapping="false" class="ordersSmallText sapUiSmallMarginTop" />
-											<Button icon="sap-icon://add" type="Transparent" ></Button>
+											<!-- <Button icon="sap-icon://add" type="Transparent" ></Button> -->
 										</HBox>
 									</ui:template>
 								</ui:Column>
