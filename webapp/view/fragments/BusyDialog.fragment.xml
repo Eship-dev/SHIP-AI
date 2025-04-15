@@ -3,7 +3,7 @@
         <content>
             <VBox alignItems="Center" justifyContent="Center" width="100%" >
                 <Image src="{value: 'com/eshipjet/zeshipjet/css/images/image.png',formatter: 'sap.ui.require.toUrl'}" width="60px" height="60px"/>
-                <Text text="Please wait..." class="sapUiSmallMarginTop"/>
+                <Text text="Please wait..." class="sapUiSmallMarginTop BusyDialogColor"/>
             </VBox>
         </content>
     </Dialog>

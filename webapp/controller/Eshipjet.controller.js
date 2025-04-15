@@ -14520,6 +14520,27 @@ sap.ui.define([
             document.body.appendChild(oLink);
             oLink.click();
             document.body.removeChild(oLink);             
-        }   
+        },
+        onOpenValidateAddressDialog: function() {
+            var oView = this.getView();
+
+            if (!this.byId("addressVerificationDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.ValidateAddressDialog",
+                    controller: this
+                }).then(function(oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("addressVerificationDialog").open();
+            }
+        },
+
+        onCloseValidateAddressDialog: function() {
+            this.byId("addressVerificationDialog").close();
+        },   
+
     });
 });

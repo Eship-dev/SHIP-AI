@@ -121,7 +121,7 @@
 														<Button icon="sap-icon://customer-briefing" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" press="ShipToPickAnAddressPopoverPress" id="idShipToAddressBtn" />
 														<Button icon="sap-icon://add" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" press="onShipNowAddIconPress" ></Button>
 														<ToolbarSpacer ></ToolbarSpacer>
-														<Button text="Validate Address" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="validateAddress__button" type="Ghost" width="auto" />
+														<Button text="Validate Address" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="validateAddress__button" type="Ghost" width="auto" press="onOpenValidateAddressDialog" />
 													</Toolbar>
 													<Label text="Contact Name" />
 													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipToAddress/FullName}" />
