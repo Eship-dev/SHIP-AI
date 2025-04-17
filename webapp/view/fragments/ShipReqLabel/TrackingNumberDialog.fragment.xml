@@ -14,7 +14,7 @@
                               <Toolbar height="3.5rem" >
                                   <Title text="ShipperCopilot Tracking ID - {eshipjetModel>/TrackingNumberTableRows/TrackingNumber}" />
                                   <ToolbarSpacer />
-                                  <Button icon="sap-icon://decline" class="Decline_Btn ship-now-decline_btn" press="TrackingNumberCancelDialog" />
+                                  <Button icon="sap-icon://decline" class="Decline_Btn ship-now-decline_btn" press="TrackingNumberWithOutUrlCancelDialog" />
                               </Toolbar>
                       
 

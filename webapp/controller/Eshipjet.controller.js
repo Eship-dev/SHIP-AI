@@ -1692,12 +1692,19 @@ sap.ui.define([
                     oManifestDataObj["HandlingUnit"] = item.HandlingUnitExternalID;
                     oManifestDataObj["PackageWeight"] = grossWeight;
                     oManifestDataObj["Chargweight"]   = grossWeight;   
-                    oManifestDataObj["Labelurl"] = shippingDocuments[index].docName;
+                    // oManifestDataObj["Labelurl"] = shippingDocuments[index].docName;
                     oManifestDataObj["Pkgcount"] = Count.toString();
                     oManifestDataObj["TrackingNumber"] = trackingArray[index].TrackingNumber;
-                    if(shippingDocuments[shippingDocuments.length - 1].contentType === "Packing Slip"){
-                        oManifestDataObj["PackURL"] = shippingDocuments[shippingDocuments.length - 1].docName;
-                    }
+                    for(var i=0; i<shippingDocuments.length; i++){
+                        if(shippingDocuments[i].contentType === "Label" || shippingDocuments[i].contentType === "Carrier Label"){
+                            oManifestDataObj["Labelurl"] = shippingDocuments[i].docName;
+                        }else if(shippingDocuments[i].contentType === "Packing Slip"){
+                            oManifestDataObj["PackURL"] = shippingDocuments[i].docName;
+                        }
+                    };
+                    // if(shippingDocuments[shippingDocuments.length - 1].contentType === "Packing Slip"){
+                    //     oManifestDataObj["PackURL"] = shippingDocuments[shippingDocuments.length - 1].docName;
+                    // }
                     aManifestData.push(jQuery.extend(true, {}, oManifestDataObj));
                 });
             }else{
@@ -2373,7 +2380,7 @@ sap.ui.define([
                 if(currentObj.docType.toUpperCase() === "PDF"){
                     this._dialogContent = new sap.ui.core.HTML({
                         content: "<iframe src='"+docName+"' width='500px' height='600px'></iframe>"
-                    })
+                    });
                 }else{
                     var oCarousel = new sap.m.Carousel({});
                     for(var i=0; i<shippingDocuments.length-1; i++) {
@@ -2775,9 +2782,9 @@ sap.ui.define([
                         eshipjetModel.setProperty("/commonValues/shipNowBtnStatus", shipNowStatus);
                         if(aFilteredData && aFilteredData.length > 0){
                             var aShippingCharges = [
-                                { "description": "Freight Amount", "amount": aFilteredData[0].Freightamt, "currency": "USD" },
-                                { "description": "Discount Amount", "amount": aFilteredData[0].Discountamt, "currency": "USD" },
-                                { "description": "Fuel", "amount": aFilteredData[0].Fuel, "currency": "USD" }
+                                { "description": "Freight Amount", "amount": parseInt(aFilteredData[0].Freightamt).toFixed(2), "currency": "USD" },
+                                { "description": "Discount Amount", "amount": parseInt(aFilteredData[0].Discountamt).toFixed(2), "currency": "USD" },
+                                { "description": "Fuel", "amount": parseInt(aFilteredData[0].Fuel).toFixed(2) === "" ? "amount" : "0.00", "currency": "USD" }
                             ];
                             eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
                             var shippingDocuments = response.shippingDocuments;
@@ -12473,8 +12480,8 @@ sap.ui.define([
               ShipperDataUpdateSrvModel.create("/HeaderSet", oPayload, {
                 success: function(oResponse) {
                     var aShippingCharges = [
-                        { "description": "Freight Amount", "amount": oResponse.PubFrt, "currency": "USD" },
-                        { "description": "Discount Amount", "amount": oResponse.DiscFrt, "currency": "USD" },
+                        { "description": "Freight Amount", "amount": parseInt(oResponse.PubFrt).toFixed(2), "currency": "USD" },
+                        { "description": "Discount Amount", "amount": parseInt(oResponse.DiscFrt).toFixed(2), "currency": "USD" },
                         { "description": "Fuel", "amount": "", "currency": "USD" }
                     ];
                     eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
@@ -12624,16 +12631,23 @@ sap.ui.define([
                 sUrl = "https://drivemedical.eshipjet.site/next-gen-tracking?Carrier=Fedex&TrackingNumber="+oCurrentObject.TrackingNumber;
                 aTravelHistoryData.forEach(function(item, idx){
                     item.Status = item.Status.replace("UPS", oCurrentObject.CarrierCode);
-                });                
+                });   
+                oController.TrackDialogWithUrl();             
             }else if(oCurrentObject.CarrierCode.toUpperCase() === "UPS"){
                 sUrl = "https://drivemedical.eshipjet.site/next-gen-tracking?Carrier=UPS&TrackingNumber="+oCurrentObject.TrackingNumber;
                 aTravelHistoryData.forEach(function(item, idx){
                     item.Status = item.Status.replace("FedEx", oCurrentObject.CarrierCode);
                 });
-            }
+                oController.TrackDialogWithUrl();
+            }else{
+                oController.TrackDialogWithOutUrl();
+            };
             eshipjetModel.setProperty("/ShipmentTravelHistoryRows", aTravelHistoryData);
             eshipjetModel.setProperty("TrackingdisplayUrl", sUrl);
-           
+        },
+
+        TrackDialogWithUrl:function(){
+            var oView = this.getView();
             if (!this.byId("idTrackingNumberDialog1")) {
                 Fragment.load({
                     id: oView.getId(),
@@ -12647,10 +12661,30 @@ sap.ui.define([
                 this.byId("idTrackingNumberDialog1").open(); // Open existing dialog
             }
         },
+
         TrackingNumberCancelDialog: function () {
             this.byId("idTrackingNumberDialog1").close();
         },
 
+        TrackDialogWithOutUrl:function(){
+            var oView = this.getView();
+            if (!this.byId("idTrackingNumberDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.TrackingNumberDialog",
+                    controller: this // Pass the controller for binding
+                }).then(function (oTrackingNumberDialog) {
+                    oView.addDependent(oTrackingNumberDialog);
+                    oTrackingNumberDialog.open();
+                });
+            } else {
+                this.byId("idTrackingNumberDialog").open(); // Open existing dialog
+            }
+        },
+
+        TrackingNumberWithOutUrlCancelDialog: function () {
+            this.byId("idTrackingNumberDialog").close();
+        },
 
         onShipMethodUpdate: function () {
             var oView = this.getView();
@@ -14326,8 +14360,8 @@ sap.ui.define([
                             oEshipjetModel.setProperty("/shipRateSelectItem", oCarrier);
                             let fuelAmount = (oCarrier && oCarrier.surCharges && oCarrier.surCharges.length > 0 ) ? oCarrier.surCharges[0].amount : "";
                             var aShippingCharges = [
-                                { "description": "Freight Amount", "amount": oCarrier.publishedFreight, "currency": "USD" },
-                                { "description": "Discount Amount", "amount": oCarrier.discountFreight_Cal, "currency": "USD" },
+                                { "description": "Freight Amount", "amount": parseInt(oCarrier.publishedFreight).toFixed(2), "currency": "USD" },
+                                { "description": "Discount Amount", "amount": parseInt(oCarrier.discountFreight_Cal).toFixed(2), "currency": "USD" },
                                 { "description": "Fuel", "amount": fuelAmount, "currency": "USD" }
                             ];
                             eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
