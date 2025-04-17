@@ -324,9 +324,10 @@
 												<HBox height="4.5rem" width="25%" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" >
 													<VBox class="sapUiTinyMarginEnd" >
 														<Label text="Postal Code" />
-														<ComboBox class="create-ship-req_input" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
+														<!-- <ComboBox class="create-ship-req_input" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
 															<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
-														</ComboBox>
+														</ComboBox> -->
+														<Input value="{ShipNowDataModel>/ShipToAddress/PostalCode}" width="auto" class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Input>
 													</VBox>
 													<VBox class="sapUiTinyMarginTop" >
 														<Label text="Country" />
@@ -803,9 +804,7 @@
 												<HBox height="4.5rem" width="25%" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" >
 													<VBox class="sapUiTinyMarginEnd" >
 														<Label text="Postal Code" />
-														<ComboBox class="create-ship-req_input" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
-															<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
-														</ComboBox>
+														<Input value="{ShipNowDataModel>/ShipToAddress/PostalCode}" width="auto" class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Input>
 													</VBox>
 													<VBox class="sapUiTinyMarginTop" >
 														<Label text="Country" />
