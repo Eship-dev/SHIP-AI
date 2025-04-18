@@ -1292,10 +1292,10 @@ sap.ui.define([
             }
 
 
-            var getShipRatePromise = new Promise((resolve, reject) => {
-                oController.onShipRateRequest(resolve, reject, "ShipNow");
-            });
-            getShipRatePromise.then(function(response) {
+            // var getShipRatePromise = new Promise((resolve, reject) => {
+            //     oController.onShipRateRequest(resolve, reject, "ShipNow");
+            // });
+            // getShipRatePromise.then(function(response) {
                 var sPath;
                 if(carrier === "ABFS"){
                     sPath = "https://carrier-api-v1.eshipjet.site/ABF";
@@ -1374,10 +1374,36 @@ sap.ui.define([
                                         }
                                         eshipjetModel.setProperty("/shippingDocuments", ashippingDocuments);
                                     }
+
+                                    if(response && response.shippingCharges && response.shippingCharges.length > 0 ){
+                                        var shippingCharges = response.shippingCharges;
+                                        var oShippingCharges = [];
+                                        for(var i=0; i<shippingCharges.length; i++){
+                                            if(shippingCharges[i].description === "Discount Freight"){
+                                                var discount = shippingCharges[i].amount * 0.20;
+                                                var discountFreightAmount = shippingCharges[i].amount - discount;
+                                                var obj = {
+                                                    "description": shippingCharges[i].description,
+                                                    "amount": discountFreightAmount,
+                                                    "currency": shippingCharges[i].currency
+                                                };
+                                            }else{
+                                                var obj = {
+                                                    "description": shippingCharges[i].description,
+                                                    "amount": shippingCharges[i].amount,
+                                                    "currency": shippingCharges[i].currency
+                                                };
+                                            }
+                                            oShippingCharges.push(obj);
+                                        }
+                                        eshipjetModel.setProperty("/shippingCharges", oShippingCharges);
+                                    }
+
+
                                     //post to manifest service
                                     // oController.getManifestData(response);
                                     
-                                                          
+                                    oController.updateManifestHeaderSet();         
 
                                 }else if(response && response.status === "Error"){
                                     var sError = "Shipment process failed reasons:\n";
@@ -1395,24 +1421,25 @@ sap.ui.define([
                                 oController.onCloseBusyDialog();
                             }
                         });
-                    });
-                    myPromise.then(
-                        function(response) {
-                            oController.updateManifestHeaderSet();
-                             //oController.FreightQuoteUpdatedSrvData();
-                            // var myOutbounddeliveryPromise = new Promise((resolve, reject) => {                            
-                            //     oController.ApiOutboundDeliverySrvData(resolve, reject, response);
-                            // });
-                            // myOutbounddeliveryPromise.then(function(){
+                    // });
+                    
+                    // myPromise.then(
+                    //     function(response) {
+                    //         oController.updateManifestHeaderSet();
+                    //          //oController.FreightQuoteUpdatedSrvData();
+                    //         // var myOutbounddeliveryPromise = new Promise((resolve, reject) => {                            
+                    //         //     oController.ApiOutboundDeliverySrvData(resolve, reject, response);
+                    //         // });
+                    //         // myOutbounddeliveryPromise.then(function(){
                               
-                            //     oController.onCloseBusyDialog();
-                            // });                                              
-                        },
-                        function(error) {
-                            oController.onCloseBusyDialog();
-                        // myDisplayer(error);
-                        }
-                    );                  
+                    //         //     oController.onCloseBusyDialog();
+                    //         // });                                              
+                    //     },
+                    //     function(error) {
+                    //         oController.onCloseBusyDialog();
+                    //     // myDisplayer(error);
+                    //     }
+                    // );                  
             },
             function(error) {
                    
@@ -1440,13 +1467,22 @@ sap.ui.define([
         },
 
         updateManifestHeaderSet: function () {
-
+            var amount, Discountamt, Fuel;
             var sapDeliveryNumber = eshipjetModel.getProperty("/commonValues/sapDeliveryNumber");
             var ShipReadDataSrvModel = oController.getOwnerComponent().getModel("ShipReadDataSrvModel");
-            var amount = eshipjetModel.getProperty("/shippingCharges/0/amount") ? eshipjetModel.getProperty("/shippingCharges/0/amount") : "0" ;
-
-            let percentage = (20 / 100) * amount;
-            var Discountamt = eshipjetModel.getProperty("/shippingCharges/1/amount");
+            var shippingCharges = eshipjetModel.getProperty("/shippingCharges");
+            shippingCharges.forEach(function(item, idx){
+                if(item.description === "Published Freight"){
+                    amount = item.amount;
+                }else if(item.description === "Discount Freight"){
+                    Discountamt = item.amount;
+                }else {
+                    Fuel = item.amount;
+                }
+            })
+            // var amount = eshipjetModel.getProperty("/shippingCharges/0/amount") ? eshipjetModel.getProperty("/shippingCharges/0/amount") : "0" ;
+            // let percentage = (20 / 100) * amount;
+            // var Discountamt = eshipjetModel.getProperty("/shippingCharges/1/amount");
             let time = new Date();
             time.setMinutes(time.getMinutes() + 10);
             let SAPDate = "/Date(" + time.getTime() + ")/";
@@ -1471,15 +1507,6 @@ sap.ui.define([
             grossWeight = eshipjetModel.getProperty("/commonValues/packAddProductTable/0/ItemGrossWeight");
             var trackingArray = eshipjetModel.getProperty("/trackingArray");
             
-            for(var i=0; i<shippingDocuments.length; i++){
-                if(shippingDocuments[i].contentType === "Label"){
-                    shippingDocName = shippingDocuments[i].docName;
-                }else if(shippingDocuments[i].contentType === "Packing Slip"){
-                    packingSlip = shippingDocuments[i].docName;
-                }else if(shippingDocuments[i].contentType === "Bill Of Lading"){
-                    billOfLading = shippingDocuments[i].docName;
-                }
-            }
             
             
             oManifestDataObj =  {
@@ -1678,7 +1705,7 @@ sap.ui.define([
                 "Orate": "",
                 "Ocarrier": "",
                 "Accessorial": "",
-                "Fuel": "",
+                "Fuel": Fuel ?  Fuel.toString() : "0.00",
                 "Deliverynno": sapDeliveryNumber ? sapDeliveryNumber : "",
                 "TimeAdded": timeAdded ? timeAdded : "",
 
@@ -1695,11 +1722,12 @@ sap.ui.define([
                     // oManifestDataObj["Labelurl"] = shippingDocuments[index].docName;
                     oManifestDataObj["Pkgcount"] = Count.toString();
                     oManifestDataObj["TrackingNumber"] = trackingArray[index].TrackingNumber;
+                    oManifestDataObj["Labelurl"] = shippingDocuments[index].docName;
                     for(var i=0; i<shippingDocuments.length; i++){
-                        if(shippingDocuments[i].contentType === "Label" || shippingDocuments[i].contentType === "Carrier Label"){
-                            oManifestDataObj["Labelurl"] = shippingDocuments[i].docName;
-                        }else if(shippingDocuments[i].contentType === "Packing Slip"){
+                        if(shippingDocuments[i].contentType === "Packing Slip"){
                             oManifestDataObj["PackURL"] = shippingDocuments[i].docName;
+                        }else if(shippingDocuments[i].contentType === "Bill Of Lading"){
+                            oManifestDataObj["BOLURL"] = shippingDocuments[i].docName;
                         }
                     };
                     // if(shippingDocuments[shippingDocuments.length - 1].contentType === "Packing Slip"){

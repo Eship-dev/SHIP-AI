@@ -789,7 +789,7 @@
 															<Button text="Auto Pack" enabled="{eshipjetModel>/shipNowBtnStatus}" class="scan-ship-toolbar1__button" width="auto" press="handleAutoPackPress" type="Ghost" ></Button>
 													</HBox> -->
 
-												<HBox height="4.5rem" width="25%" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" >
+												<HBox height="4.5rem" width="20%" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" >
 													<VBox class="sapUiTinyMarginEnd" >
 														<Label text="Payment Type" />
 														<ComboBox class="create-ship-req_input" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/PaymentTypes}" selectedKey="{eshipjetModel>/selectPaymentType}" >
@@ -801,7 +801,7 @@
 														<Input value="" width="auto" class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Input>
 													</VBox>
 												</HBox>
-												<HBox height="4.5rem" width="25%" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" >
+												<HBox height="4.5rem" width="20%" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" >
 													<VBox class="sapUiTinyMarginEnd" >
 														<Label text="Postal Code" />
 														<Input value="{ShipNowDataModel>/ShipToAddress/PostalCode}" width="auto" class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Input>
@@ -821,7 +821,7 @@
 														<Text text="{path:'eshipjetModel>/ShipNowShipMethodSelectedKey', formatter: '.formatter.carrierDisplay' } - {eshipjetModel>/carrierServiceName_dis}" class="packScreenCarrier" ></Text>
 													</HBox> -->
 
-													<HBox height="4.5rem" width="25%" class="whiteBackground packScreenPadding" alignItems="Center" >
+													<HBox height="4.5rem" width="20%" class="whiteBackground packScreenPadding" alignItems="Center" >
 														<VBox class="sapUiTinyMarginEnd" >
 															<Label text="Group ID / Cust Grp2" />
 															<Input value="" width="auto" class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Input>
@@ -830,6 +830,19 @@
 															<Label text="Stage Location" />
 															<Input value="" width="auto" class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Input>
 														</VBox>
+													</HBox>
+
+													<HBox height="4.5rem" width="20%" class="whiteBackground packScreenPadding" alignItems="Center" >
+														<!-- <VBox class="sapUiTinyMarginEnd" >
+															<Label text="Group ID / Cust Grp2" />
+															<Input value="" width="auto" class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Input>
+														</VBox>
+														<VBox >
+															<Label text="Stage Location" />
+															<Input value="" width="auto" class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Input>
+														</VBox> -->
+														<Text text="# No of Packages" class="sapUiTinyMargin" ></Text>
+														<Text text="{eshipjetModel>/HandlingUnitsLength}" class="numberData" width="auto" ></Text>
 													</HBox>
 
 												</HBox>
@@ -1081,25 +1094,22 @@
 					</ui:extension>
 				</ui:Table> -->
 							<HBox class="sapUiTinyMarginTop" >													
-								<HBox height="3rem" width="33%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="SpaceBetween" >																
-									<FlexBox alignItems="Center" >
+								<HBox height="3rem" width="33%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="Start" >																
+									<!-- <FlexBox alignItems="Center" >
 										<core:Icon
 											src="sap-icon://sap-box"
 											class="customBlueYellowIcon sapUiTinyMargin"
 											width="20px" ></core:Icon>
-										<Text text="No of Packages" class="sapUiTinyMargin" ></Text>
-										<Text text="{eshipjetModel>/HandlingUnitsLength}" class="numberData" width="auto" ></Text>
-										
-									</FlexBox>
+									</FlexBox> -->
 									<FlexBox alignItems="Center" >
-										<Text text="Master Tracking #" class="sapUiTinyMargin" ></Text>
+										<Text text="Master Tracking/Pro #" class="sapUiTinyMargin" ></Text>
 										<Input value="{}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" width="auto"></Input>
 										<Button text="Get" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" visible="{eshipjetModel>/commonValues/shipNowGetBtn}" class="scan-ship-toolbar1__button sapUiTinyMargin" type="Ghost" width="3rem" ></Button>
 									</FlexBox>
 								</HBox>
 								<HBox height="3rem" width="37%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="SpaceBetween" >
 									<FlexBox>
-										<Label text="Package Material" class="sapUiSmallMarginTop" width="auto" />
+										<Label text="Pkg Material" class="sapUiSmallMarginTop" width="auto" />
 										<ComboBox items="{eshipjetModel>/packageMaterial}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" selectedKey="{eshipjetModel>/selectedPackageMat}" class="create-ship-req_input sapUiTinyMarginBegin" width="7rem" >
 											<core:Item key="{eshipjetModel>Product}" text="{eshipjetModel>Product}" />
 										</ComboBox>
