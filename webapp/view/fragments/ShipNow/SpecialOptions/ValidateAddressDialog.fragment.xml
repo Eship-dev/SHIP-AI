@@ -18,26 +18,26 @@
     </customHeader>
         <VBox>
             <Text text="Please verify your address to ensure a timely delivery." class="sapUiSmallMarginBottom sapUiSmallMarginBegin sapUiSmallMarginTop" />
-
             <HBox justifyContent="SpaceBetween" >
                 <!-- Use As Entered -->
-                <VBox class="sapUiSmallMargin verifiedAddressBox  shipnowAddressValidate greenBox"  width="250px" >
+                <VBox class="sapUiSmallMargin    stat-card1"  width="250px" >
                     <HBox alignItems="Center">
                         <CheckBox id="checkBoxUseEntered" text="Use As Entered" />
                     </HBox>
                     <Text text="{ShipNowDataModel>/ShipToAddress/BusinessPartnerName1}" />
                     <Text text="{ShipNowDataModel>/ShipToAddress/StreetName}" />
                     <Text text="{ShipNowDataModel>/ShipToAddress/CityName}" class="sapUiSmallMarginTop" />
+                    
                 </VBox>
 
                 <!-- Verified Address -->
-                <VBox class="sapUiSmallMargin  verifiedAddressBox shipnowAddressValidate greenBox" width="250px">
+                <VBox class="sapUiSmallMargin   stat-card1" width="250px">
                     <HBox alignItems="Center">
                          <CheckBox id="checkBoxUseEnteredsd" text="Verified Address" />
                     </HBox>
-                    <Text text="{ShipNowDataModel>/ShipToAddress/BusinessPartnerName1}" />
-                    <Text text="{ShipNowDataModel>/ShipToAddress/StreetName}" />
-                    <Text text="{ShipNowDataModel>/ShipToAddress/CityName}" class="sapUiSmallMarginTop" />
+                    <Text text="{ShipNowDataModel>/VerifiedAddress/COMPANY}" />
+                    <Text text="{ShipNowDataModel>/VerifiedAddress/ADDRESS_LINE1}" />
+                    <Text text="{ShipNowDataModel>/VerifiedAddress/CITY}" class="sapUiSmallMarginTop" />
                 </VBox>
             </HBox>
         </VBox>
@@ -46,7 +46,7 @@
             <OverflowToolbar class="sapMPopoverFooter1">
                 <Button text="Cancel" press="onCloseValidateAddressDialog" />
                 <ToolbarSpacer />
-                <Button text="Update Address" type="Emphasized" press="onCloseValidateAddressDialog" />
+                <Button text="Update Address" type="Emphasized" press="onUpdateValidateAddressDialog" />
             </OverflowToolbar>
         </footer>
 

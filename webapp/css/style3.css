@@ -1674,8 +1674,7 @@ body.dark-theme {
   transform: translateY(-4px);
 }
 .stat-card {
-  display: flex
-;
+  display: flex;
   align-items: center;
   background: #f9f9f9;
   border: 1px solid #e0e0e0;

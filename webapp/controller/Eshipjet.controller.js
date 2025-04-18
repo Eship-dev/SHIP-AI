@@ -14565,7 +14565,81 @@ sap.ui.define([
         },
         onOpenValidateAddressDialog: function() {
             var oView = this.getView();
+            var ShipNowDataModel =  oController.getView().getModel("ShipNowDataModel");
+            var eshipjetModel =  oController.getView().getModel("eshipjetModel");
 
+            var that = this;
+            var idServiceName = oController.getView().byId("idServiceName");
+            var carrier = eshipjetModel.getProperty("/commonValues/ShipNowShipMethodSelectedKey");
+            var id,password,accountNumber;
+            if(carrier && carrier.toUpperCase() === "UPS"){
+                id = "6ljUpEbuu1OlOk7ow932lsxXHISUET0WKjTn59GzQ5MRdEbA";
+                password = "ioZmsfcbrzlWfGh7wGMhqHL6sY4EAaKzZObullipni0cEGJGChjFmGpkcdCWQynK";
+                accountNumber = "B24W72";
+            }else if(carrier && carrier.toUpperCase() === "FEDEX"){
+                 id = "l70c717f3eaf284dc9af42169e93874b6e";
+                 password = "7f271bf486084e8f8073945bb7e6a020";
+                 accountNumber = "740561073";
+            }else if(carrier && carrier.toUpperCase() === "DHL"){
+                 id = "apT2vB7mV1qR1b";
+                 password = "U#3mO^1vY!5mT@0j";
+            }else if(carrier && carrier.toUpperCase() === "USPS"){
+                id = "3087617";
+                password = "October2024!";
+            }else if(carrier && carrier.toUpperCase() === "ABFS"){
+                id = "ABFESHIPJET";
+                password = "Legacy!@3";
+            }
+
+        
+            var fnCallAddressValidationAPI = function() {
+                var oPayload = {
+                    "ShipTo": {
+                        "COMPANY": ShipNowDataModel.getProperty("/ShipToAddress/BusinessPartnerName1"),
+                        "CONTACT": ShipNowDataModel.getProperty("/ShipToAddress/FullName"),
+                        "ADDRESS_LINE1": ShipNowDataModel.getProperty("/ShipToAddress/StreetName"),
+                        "ADDRESS_LINE2": ShipNowDataModel.getProperty("/ShipToAddress/HouseNumber"),
+                        "ADDRESS_LINE3": "",
+                        "AddressType": ShipNowDataModel.getProperty("/ShipToAddress/LocationType"),
+                        "CITY": ShipNowDataModel.getProperty("/ShipToAddress/CityName"),
+                        "STATE": ShipNowDataModel.getProperty("/ShipToAddress/Region"),
+                        "ZIPCODE":ShipNowDataModel.getProperty("/ShipToAddress/PostalCode"),
+                        "COUNTRY": ShipNowDataModel.getProperty("/ShipToAddress/Country"),
+                        "PHONE": ShipNowDataModel.getProperty("/ShipToAddress/PhoneNumber"),
+                        "EMAIL": ShipNowDataModel.getProperty("/ShipToAddress/EMAIL"),
+                    },
+                    "CarrierDetails": {
+                        "Carrier": carrier,
+                        "ServiceName": idServiceName.getSelectedItem().getText(),
+                        "PaymentType": eshipjetModel.getProperty("/CarrierDetails/PaymentType"),
+                        "ShippingAccount":accountNumber,
+                        "UserId": id,
+                        "Password": password,
+                    }
+                };
+        
+                $.ajax({
+                    url: "https://drivemedical-carrier-api-v1.eshipjet.site/AddressValidation",
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(oPayload),
+                    success: function(oResponse) {
+                        console.log("API Success:", oResponse);
+                         // Get the existing model or create one
+                            var oModel = that.getView().getModel("ShipNowDataModel");
+                            if (!oModel) {
+                                oModel = new sap.ui.model.json.JSONModel();
+                                that.getView().setModel(oModel, "ShipNowDataModel");
+                            }
+                            // Set the VerifiedAddress part of the model
+                            oModel.setProperty("/VerifiedAddress", oResponse.VerifiedAddress);
+                    },
+                    error: function(err) {
+                        sap.m.MessageToast.show("Address validation failed.");
+                    }
+                });
+            };
+        
             if (!this.byId("addressVerificationDialog")) {
                 Fragment.load({
                     id: oView.getId(),
@@ -14574,15 +14648,35 @@ sap.ui.define([
                 }).then(function(oDialog) {
                     oView.addDependent(oDialog);
                     oDialog.open();
+                    fnCallAddressValidationAPI(); // Call API after dialog opens
                 });
             } else {
                 this.byId("addressVerificationDialog").open();
+                fnCallAddressValidationAPI(); // Call API immediately
             }
         },
-
         onCloseValidateAddressDialog: function() {
             this.byId("addressVerificationDialog").close();
-        },   
+        },
 
+        onUpdateValidateAddressDialog: function () {
+            var oModel = this.getView().getModel("ShipNowDataModel");
+            var oVerified = oModel.getProperty("/VerifiedAddress");
+        
+            if (oVerified) {
+                oModel.setProperty("/ShipToAddress/BusinessPartnerName1", oVerified.COMPANY || "");
+                oModel.setProperty("/ShipToAddress/StreetName", oVerified.ADDRESS_LINE1 || "");
+                oModel.setProperty("/ShipToAddress/CityName", oVerified.CITY || "");
+        
+                sap.m.MessageToast.show("Ship To Address updated from verified address.");
+                this.onCloseValidateAddressDialog();
+            } else {
+                sap.m.MessageToast.show("Verified address not found.");
+            }
+        }
+        
+        
+        
+        
     });
 });

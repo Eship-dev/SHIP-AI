@@ -303,7 +303,7 @@
 													</VBox>
 													<VBox >
 														<Label text="Service Name" />
-														<ComboBox class="create-ship-req_input" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
+														<ComboBox class="create-ship-req_input" id="idServiceName" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
 															<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
 														</ComboBox>
 													</VBox>

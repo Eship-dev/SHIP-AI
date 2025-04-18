@@ -1867,6 +1867,12 @@ sidebar-header {
   font-weight: bold;
 }
 
+.RedBox {
+  border: 2px solid rgb(201, 46, 19) !important;
+  background-color: #e4b194 !important;
+  border-radius: 8px;
+  padding: 8px;
+}
 .greenBox {
   border: 2px solid green !important;
   background-color: #e6f9e6 !important;
@@ -1874,6 +1880,39 @@ sidebar-header {
   padding: 8px;
 }
 
+/* .card-success{
+  background-color: #e6ffed;
+  border-color: #28a745 !important;
+}
+.selected-box{
+  border-color: #1976d2;
+  box-shadow: 0 0 8px #1976d2;
+}
+.address-card{
+  flex: 1;
+  padding: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+} */
+
+.stat-card1:hover {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+}
+.stat-card1 {
+  background-color: #e6ffed;
+  border-color: #28a745 !important;
+  display: flex;
+  align-items: start;
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
 
 
 .shipnowcustomSimpleFormShadow {
