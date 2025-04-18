@@ -14637,12 +14637,18 @@ sap.ui.define([
                         "EMAIL": ShipNowDataModel.getProperty("/ShipToAddress/EMAIL"),
                     },
                     "CarrierDetails": {
-                        "Carrier": carrier,
-                        "ServiceName": idServiceName.getSelectedItem().getText(),
-                        "PaymentType": eshipjetModel.getProperty("/CarrierDetails/PaymentType"),
-                        "ShippingAccount":accountNumber,
-                        "UserId": id,
-                        "Password": password,
+                        // "Carrier": carrier,
+                        // "ServiceName": idServiceName.getSelectedItem().getText(),
+                        // "PaymentType": eshipjetModel.getProperty("/CarrierDetails/PaymentType"),
+                        // "ShippingAccount":accountNumber,
+                        // "UserId": id,
+                        // "Password": password,
+                        "Carrier": "FedEx",
+                        "ServiceName": "FEDEX_GROUND",
+                        "PaymentType": "Sender",
+                        "ShippingAccount": "740561073",
+                        "UserId": "l70c717f3eaf284dc9af42169e93874b6e",
+                        "Password": "7f271bf486084e8f8073945bb7e6a020"
                     }
                 };
         
