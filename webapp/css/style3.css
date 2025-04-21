@@ -1663,6 +1663,17 @@ body.dark-theme {
   color: green;
   font-weight: bold;
 }
+.textRed {
+  color: #e74c3c !important; /* red */
+  font-weight: bold;
+}
+.mismatch {
+  background-color: #FFF1F1;
+  color: #D32F2F;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-weight: 500;
+}
 
 .quote-status {
   margin-top: 0.5rem;

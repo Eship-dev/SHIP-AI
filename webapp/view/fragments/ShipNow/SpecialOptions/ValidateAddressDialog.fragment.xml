@@ -24,9 +24,9 @@
                     <HBox alignItems="Center">
                         <CheckBox id="checkBoxUseEntered" text="Use As Entered" />
                     </HBox>
-                    <Text text="{ShipNowDataModel>/ShipToAddress/BusinessPartnerName1}" />
-                    <Text text="{ShipNowDataModel>/ShipToAddress/StreetName}" />
-                    <Text text="{ShipNowDataModel>/ShipToAddress/CityName}" class="sapUiSmallMarginTop" />
+                    <Text id="idEnteredCOMPANY" text="{ShipNowDataModel>/ShipToAddress/BusinessPartnerName1}" />
+                    <Text id="idEnteredStreet" text="{ShipNowDataModel>/ShipToAddress/StreetName}" />
+                    <Text id="idEnteredCity" text="{ShipNowDataModel>/ShipToAddress/CityName}" class="sapUiSmallMarginTop" />
                     
                 </VBox>
 
@@ -35,9 +35,9 @@
                     <HBox alignItems="Center">
                          <CheckBox id="checkBoxUseEnteredsd" text="Verified Address" />
                     </HBox>
-                    <Text text="{ShipNowDataModel>/VerifiedAddress/COMPANY}" />
-                    <Text text="{ShipNowDataModel>/VerifiedAddress/ADDRESS_LINE1}" />
-                    <Text text="{ShipNowDataModel>/VerifiedAddress/CITY}" class="sapUiSmallMarginTop" />
+                    <Text id="idVerifiedCOMPANY" text="{ShipNowDataModel>/VerifiedAddress/COMPANY}" />
+                    <Text id="idVerifiedStreet" text="{ShipNowDataModel>/VerifiedAddress/ADDRESS_LINE1}" />
+                    <Text id="idVerifiedCity" text="{ShipNowDataModel>/VerifiedAddress/CITY}" class="sapUiSmallMarginTop" />
                 </VBox>
             </HBox>
         </VBox>

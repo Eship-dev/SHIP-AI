@@ -14667,12 +14667,83 @@ sap.ui.define([
                             }
                             // Set the VerifiedAddress part of the model
                             oModel.setProperty("/VerifiedAddress", oResponse.VerifiedAddress);
+                           // COMPANY
+                            var oEnterCompany = oController.byId("idEnteredCOMPANY");
+                            var EnterCompany = oEnterCompany.getText();
+
+                            var oVerifiedCompany = oController.byId("idVerifiedCOMPANY");
+                            var VerifiedCompany = oVerifiedCompany.getText();
+
+                            oEnterCompany.removeStyleClass("mismatch");
+                            oVerifiedCompany.removeStyleClass("mismatch");
+                            oEnterCompany.removeStyleClass("normal");
+                            oVerifiedCompany.removeStyleClass("normal");
+
+                            if (EnterCompany === VerifiedCompany) {
+                                oEnterCompany.addStyleClass("normal");
+                                oVerifiedCompany.addStyleClass("normal");
+                            } else {
+                                oEnterCompany.addStyleClass("mismatch");
+                                oVerifiedCompany.addStyleClass("mismatch");
+                            }
+
+                            // STREET
+                            var oEnterStreet = oController.byId("idEnteredStreet");
+                            var EnterStreet = oEnterStreet.getText();
+
+                            var oVerifiedStreet = oController.byId("idVerifiedStreet");
+                            var VerifiedStreet = oVerifiedStreet.getText();
+
+                            oEnterStreet.removeStyleClass("mismatch");
+                            oVerifiedStreet.removeStyleClass("mismatch");
+                            oEnterStreet.removeStyleClass("normal");
+                            oVerifiedStreet.removeStyleClass("normal");
+
+                            if (EnterStreet === VerifiedStreet) {
+                                oEnterStreet.addStyleClass("normal");
+                                oVerifiedStreet.addStyleClass("normal");
+                            } else {
+                                oEnterStreet.addStyleClass("mismatch");
+                                oVerifiedStreet.addStyleClass("mismatch");
+                            }
+
+                            // CITY
+                            var oEnterCity = oController.byId("idEnteredCity");
+                            var EnterCity = oEnterCity.getText();
+
+                            var oVerifiedCity = oController.byId("idVerifiedCity");
+                            var VerifiedCity = oVerifiedCity.getText();
+
+                            oEnterCity.removeStyleClass("mismatch");
+                            oVerifiedCity.removeStyleClass("mismatch");
+                            oEnterCity.removeStyleClass("normal");
+                            oVerifiedCity.removeStyleClass("normal");
+
+                            if (EnterCity === VerifiedCity) {
+                                oEnterCity.addStyleClass("normal");
+                                oVerifiedCity.addStyleClass("normal");
+                            } else {
+                                oEnterCity.addStyleClass("mismatch");
+                                oVerifiedCity.addStyleClass("mismatch");
+                            }
+
+                            
                     },
                     error: function(err) {
                         sap.m.MessageToast.show("Address validation failed.");
                     }
                 });
             };
+            // var oModel = this.getView().getModel("ShipNowDataModel");
+
+            // var oEntered = oModel.getProperty("/ShipToAddress");
+            // var oVerified = oModel.getProperty("/VerifiedAddress");
+            
+            // oModel.setProperty("/UI/IsDifferentCompany", oEntered?.BusinessPartnerName1 !== oVerified?.COMPANY);
+            // oModel.setProperty("/UI/IsDifferentStreet", oEntered?.StreetName !== oVerified?.ADDRESS_LINE1);
+            // oModel.setProperty("/UI/IsDifferentCity", oEntered?.CityName !== oVerified?.CITY);
+            
+
         
             if (!this.byId("addressVerificationDialog")) {
                 Fragment.load({
