@@ -292,6 +292,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/darkTheme", true);
                 document.body.classList.remove("dark-theme");
             } else if (sKey === "TrackNow") {
+                this.getOrdersHistoryShipments();
                 eshipjetModel.setProperty("/commonValues/allViewsFooter", true);
                 eshipjetModel.setProperty("/commonValues/shipNowViewFooter", false);
                 eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
@@ -1774,7 +1775,12 @@ sap.ui.define([
             return `/Date(${date.getTime()})/`;
         },
 
-       
+    //    for order tables TotalPkg
+    formatTotalPkg: function (sValue) {
+        if (!sValue) return "";
+        return parseInt(sValue, 10).toString();
+    },
+    
         
         
 
@@ -2773,7 +2779,7 @@ sap.ui.define([
                                 var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
                                 eshipjetModel.setProperty("/commonValues/packAddProductTable",aProductTable);
                                 oController.getSalesOrder(aProductTable);
-                                oController.readHUDataSet(sDeveliveryNumber);
+                                oController.readHUDataSet(sDeveliveryNumber)
                             }
                         },
                         error: function(oErr){
@@ -6524,7 +6530,52 @@ sap.ui.define([
             var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Cancelled");
             oBinding.filter([oFilter]);
         },
-        
+        onBatchShipExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/BatchShipTableData/BatchShipRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Batch ID", property: "batchId", visible: true },
+                        { label: "Batch Description", property: "batchDescription", visible: true },
+                        { label: "Batch-Request ID", property: "BatchRequestId", visible: true },
+                        { label: "Created Date", property: "CreatedDate", visible: true },
+                        { label: "Ship Date", property: "ShipDate", visible: true },
+                        { label: "Shipment Type", property: "ShipmentType", visible: true },
+                        { label: "Ship Method", property: "shipMethod", visible: true },
+                        { label: "Service Name", property: "ServiceName", visible: true },
+                        { label: "Tracking Number", property: "TrackingNumber", visible: true },
+                        { label: "Status", property: "status", visible: true },
+                        { label: "Ship To Contact", property: "ShipToContact", visible: false },
+                        { label: "Ship To Company", property: "ShipToCompany", visible: false },
+                        { label: "Ship To AddressLine1", property: "ShipToAddressLine1", visible: false },
+                        { label: "Ship To City", property: "shipToCity", visible: false },
+                        { label: "Ship To State", property: "shipToState", visible: false },
+                        { label: "Ship To Country", property: "shipToCountry", visible: false },
+                        { label: "Ship To Zipcode", property: "shipToZipcode", visible: false },
+                        { label: "Ship To Phone", property: "shipToPhone", visible: false },
+                        { label: "Ship To Email", property: "shipToEmail", visible: false },
+                        { label: "Requestor Name", property: "requesterName", visible: false },
+                        { label: "Connected To", property: "connectedTo", visible: false },
+                        { label: "Order Type", property: "orderType", visible: false },
+                        { label: "Priority Level", property: "priorityLevel", visible: true },
+                        { label: "RFID", property: "RFID", visible: true },
+                        { label: "Updated", property: "Updated", visible: true },
+                        { label: "Notes", property: "Notes", visible: true },
+                        { label: "Actions", property: "actions", visible: true }
+                    ]
+                },
+                
+                dataSource: rows,
+                fileName: 'BatchShip_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
 
         
     
@@ -11943,6 +11994,41 @@ sap.ui.define([
         onCreateBatchShipClosePress: function () {
             this.byId("idCreateBatchShipPopover").close();
         },
+        onExcelUploadChange: function (oEvent) {
+            var that = this;
+            var oFileUploader = oEvent.getSource();
+            var oFile = oEvent.getParameter("files")[0];
+        
+            if (oFile && window.FileReader) {
+                var reader = new FileReader();
+        
+                reader.onload = function (e) {
+                    var data = e.target.result;
+                    var workbook = XLSX.read(data, {
+                        type: 'binary'
+                    });
+        
+                    // Assuming the first sheet
+                    var sheetName = workbook.SheetNames[0];
+                    var sheet = workbook.Sheets[sheetName];
+        
+                    // Convert to JSON
+                    var jsonData = XLSX.utils.sheet_to_json(sheet, { defval: "" });
+        
+                    // Optional: log the parsed Excel data
+                    console.log("Excel Data", jsonData);
+        
+                    // Set to eshipjetModel
+                    var oModel = that.getView().getModel("eshipjetModel");
+                    oModel.setProperty("/BatchShipItems", jsonData);
+                };
+        
+                reader.readAsBinaryString(oFile);
+            } else {
+                sap.m.MessageToast.show("This browser does not support FileReader.");
+            }
+        },
+        
 
 
         // add onAddProductPress popover changes start
@@ -14515,6 +14601,56 @@ sap.ui.define([
         }
         eshipjetModel.setProperty("/SideNavigation", false);
         this.byId("pageContainer").to(this.getView().createId(sKey));
+
+        var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
+            var shipFromObj = {
+                "ShipFromCONTACT": oCurrentObj.FromContact,
+                "ShipFromCOMPANY": oCurrentObj.FromCompany,
+                "ShipFromPHONE": oCurrentObj.FromPhone,
+                "ShipFromEMAIL": oCurrentObj.Emailaddress,
+                "ShipFromCITY": oCurrentObj.Fromcity,
+                "ShipFromSTATE": oCurrentObj.FromRegion,
+                "ShipFromCOUNTRY": oCurrentObj.FromCountry,
+                "ShipFromZIPCODE": oCurrentObj.FromPostalcode,
+                "ShipFromADDRESS_LINE1": oCurrentObj.FromStreet,
+                "ShipFromADDRESS_LINE2": oCurrentObj.FromStreet2,
+                "ShipFromADDRESS_LINE3": ""
+            };
+            var shipToObj = {
+                "FullName": oCurrentObj.RecContact,
+                "BusinessPartnerName1": oCurrentObj.RecCompany,
+                "PhoneNumber": oCurrentObj.RecPhone,
+                "EMAIL": oCurrentObj.Emailaddress,
+                "CityName": oCurrentObj.RecCity,
+                "Region": oCurrentObj.RecRegion,
+                "Country": oCurrentObj.RecCountry,
+                "PostalCode": oCurrentObj.RecPostalcode,
+                "StreetName": oCurrentObj.RecAddress1,
+                "HouseNumber": oCurrentObj.RecAddress2,
+                "ShipFromADDRESS_LINE3": ""
+            };
+            // var oBusinessPartner = {
+            //     PartnerType: oCurrentObj.PartnerType || "",
+            //     PartnerType: oCurrentObj.RecPartnerType || "", 
+            //     Kunner: oCurrentObj.Kunnr || "",
+            //     BusinessPartnerName1: oCurrentObj.RecCompany || "",
+            //     FullName: oCurrentObj.RecContact || "",
+            //     StreetName: oCurrentObj.RecAddress1 || "",
+            //     HouseNumber: oCurrentObj.RecAddress2 || "", // if using Address Line 2
+            //     CityName: oCurrentObj.RecCity || "",
+            //     Region: oCurrentObj.RecRegion || "",
+            //     PostalCode: oCurrentObj.RecPostalcode || "",
+            //     Country: oCurrentObj.RecCountry || "",
+            //     PhoneNumber: oCurrentObj.RecPhone || "",
+            //     email: oCurrentObj.Emailaddress || ""
+            // };
+            // eshipjetModel.setProperty("/BusinessPartners", [oBusinessPartner]);
+
+            ShipNowDataModel.setProperty("/ShipFromAddress", shipFromObj);
+            ShipNowDataModel.setProperty("/ShipToAddress", shipToObj);
+
+            
+
     },
     // add onAddAddPaymentTypes popover changes start
     onAddAddDangerousGoodsPress: function (oEvent) {

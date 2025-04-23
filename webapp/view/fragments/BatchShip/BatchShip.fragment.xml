@@ -47,11 +47,11 @@
 								items="{}">
 								<core:Item key="{key}" text="{text}" />
 							</ComboBox>
-							<Button text="Ship Batch Now" width="12rem" class="batch-ship-table__button" ></Button>
+							<Button text="Ship Batch Now" width="12rem" class="batch-ship-table__button" press=""></Button>
 							<Button text="Viod Batch Now" type="Ghost" width="12rem" class="sapUiSmallMarginBegin batch-ship-void__button" ></Button>
 						<ToolbarSpacer />
                         <ToolbarSpacer />
-                            <Button icon="sap-icon://action"></Button>
+                            <Button icon="sap-icon://action" press="onBatchShipExportToExcel"></Button>
                             <Button icon="sap-icon://action-settings" press="openBatchShipColNamesPopover"></Button>
 					</OverflowToolbar>
 				</ui:extension>

@@ -13,7 +13,7 @@
             contentWidth="60vh"
             contentHeight="95%"
             verticalScrolling="false"
-            horizontalScrolling="false" class="rightSideDialogSpecialOptions"  >
+            horizontalScrolling="false" class="rightSideDialogSpecialOptionsFedExUps"  >
                      
     <Toolbar height="3.5rem" >
         <Title text="ShipperCopilot Tracking ID - {eshipjetModel>/TrackingNumberTableRows/TrackingNumber}" />

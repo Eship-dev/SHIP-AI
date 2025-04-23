@@ -1587,9 +1587,37 @@ body.dark-theme {
   background-color: #2E3545;
   color: white !important;
 }
-
-.rightSideDialogSpecialOptions{
+.rightSideDialogSpecialOptionsFedExUps{
   width: 80% !important;
+  height: 100vh !important; ;
+  overflow: auto !important;
+  position: fixed !important;
+  visibility: visible !important;
+  z-index: 99999 !important;
+  max-width: 1230px;
+  max-height: 100% !important;
+  padding-bottom: 0px !important;
+  top: 0px !important;
+  
+  display: block;
+  right: 0 !important;
+  left: auto !important;
+  border-radius: 0px !important;
+  height: 95%;
+  position: absolute;
+  visibility: visible;
+  z-index: 51;
+  top: 0px;
+  left: 842px;
+  padding-top: 0px !important;
+  display: block;
+  width: 300px;
+  max-width: 2160px;
+  max-height: 1000px;
+  min-width: 717px !important;
+}
+.rightSideDialogSpecialOptions{
+  width: 50% !important;
   height: 100vh !important; ;
   overflow: auto !important;
   position: fixed !important;
@@ -1795,7 +1823,7 @@ sidebar-header {
 }
 
 .shipmethod{
-  margin-top: 69px !important;
+  margin-top: 28px !important;
  
 }
 .section-header {

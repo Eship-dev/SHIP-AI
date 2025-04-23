@@ -6,7 +6,7 @@
 	<Popover
 		showHeader="false"
 		id="idCreateBatchShipPopover"
-		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer rightSideDialogForTracking"
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer rightSideDialogSpecialOptions"
 		placement="Left"
 		initialFocus="email">
 		<Toolbar height="3.1rem" >

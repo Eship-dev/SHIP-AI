@@ -55,7 +55,7 @@
 				</VBox>
 
 				<VBox class="sapUiTinyMargin" width="25%">
-					<Text text="0" class="NumberSizeTitle1"></Text>
+					<Text text="{eshipjetModel>/allOrdersLength}" class="NumberSizeTitle1"></Text>
 					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Success" press="onOrderNowShippedFilterPress" class="shipped-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
@@ -66,7 +66,7 @@
 					
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
-					<Text text="9" class="NumberSizeTitle1"></Text>
+					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Open" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Critical" press="onOrderNowInTransitFilterPress"  class="InTransitord-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
@@ -74,7 +74,6 @@
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="In-Transit" class="sapUiTinyMarginBottom"></Text>
 					<Button press="onOrderNowCancelledFilterPress" class="open-request-button request-button" icon="false" width="100%" ></Button>
-					
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
@@ -123,17 +122,17 @@
 								<ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="Packagetype" visible="{eshipjetModel>/OrderTableData/OrderColumns/2/visible}">
 									<Label text="Order Type" />
 									<ui:template>
-										<Text text="{eshipjetModel>Packagetype}" wrapping="false" class="ordersSmallText" />
+										<Text text="SAP Delivery Number" wrapping="false" class="ordersSmallText" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '7rem' : 'auto' }" sortProperty="Carriertype" visible="{eshipjetModel>/OrderTableData/OrderColumns/3/visible}">
 									<Label text="Ship Method" />
 									<ui:template>
-										<HBox justifyContent="SpaceBetween" width="100%" >
-											<Text text="{eshipjetModel>Carriertype}" wrapping="false" class="ordersSmallText sapUiSmallMarginTop" />
+										<!-- <HBox justifyContent="SpaceBetween" width="100%" > -->
+											<Text text="{eshipjetModel>Carriertype}" wrapping="false" class="ordersSmallText" />
 											<!-- <Button icon="sap-icon://add" type="Transparent" ></Button> -->
-										</HBox>
+										<!-- </HBox> -->
 									</ui:template>
 								</ui:Column>
 
@@ -168,7 +167,9 @@
 								<ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '4rem' : 'auto' }" sortProperty="Totalpkg" visible="{eshipjetModel>/OrderTableData/OrderColumns/8/visible}">
 									<Label text="Pkgs" />
 									<ui:template>
-										<Text text="{eshipjetModel>Totalpkg}" wrapping="false" class="ordersSmallText" />
+									<HBox justifyContent="Center" width="100%" >
+										<Text text="{= parseInt(${eshipjetModel>Totalpkg}, 10) }" wrapping="false" class="ordersSmallText" />
+									</HBox>
 									</ui:template>
 								</ui:Column>
 
@@ -292,7 +293,7 @@
 									</ui:template>
 								</ui:Column>
 
-								<ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '4rem' : 'auto' }" sortProperty="" visible="{eshipjetModel>/OrderTableData/OrderColumns/24/visible}" >
+								<ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '4rem' : 'auto' }" sortProperty="" visible="{eshipjetModel>/OrderTableData/OrderColumns/24/visible}" hAlign="Center" >
 									<Label text="Note" />
 									<ui:template>
 										<VBox justifyContent="Center" alignItems="Center">
