@@ -29,9 +29,11 @@ sap.ui.define([
         formatter: formatter,
         onInit: function () {
             // this.getMasterData();
-            var sAudioPath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/audio/Lock.mp3");
-            var audio = new Audio(sAudioPath);
-            audio.play();
+
+            // var sAudioPath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/audio/Lock.mp3");
+            // var audio = new Audio(sAudioPath);
+            // audio.play();
+
             var oModel = new JSONModel(sap.ui.require.toUrl("com/eshipjet/zeshipjet/model/data.json"));
             this.getView().setModel(oModel);
             oController = this;
@@ -1031,9 +1033,10 @@ sap.ui.define([
             oController.onPackSectionEmptyRows();            
             // oController.onCloseBusyDialog();
             oController.getView().setBusy(false);
-            var sAudioPath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/audio/clearSound.mp3");
-            var audio = new Audio(sAudioPath);
-            audio.play();
+
+            // var sAudioPath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/audio/clearSound.mp3");
+            // var audio = new Audio(sAudioPath);
+            // audio.play();
         },
        
         onShipNowPress: function () {       
@@ -1761,9 +1764,10 @@ sap.ui.define([
                     MessageToast.show("Shipment processed successfully.");
                     oController.showLabelAfterShipmentSuccess(eshipjetModel.getProperty("/ShipNowPostResponse"));
                     oController.createPostGoodsIssue(sapDeliveryNumber);
-                    var sAudioPath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/audio/ShipNow.mp3");
-                    var audio = new Audio(sAudioPath);
-                    audio.play();
+                    
+                    // var sAudioPath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/audio/ShipNow.mp3");
+                    // var audio = new Audio(sAudioPath);
+                    // audio.play();
                     oController.onCloseBusyDialog();
                 },
                 error: function (oError) {
@@ -3110,9 +3114,10 @@ sap.ui.define([
                                 currentObj.partialQty = "";
                                 eshipjetModel.updateBindings(true);
                                 // oController.onCloseBusyDialog();
-                                var sAudioPath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/audio/PackToHU.mp3");
-                                var audio = new Audio(sAudioPath);
-                                audio.play();
+
+                                // var sAudioPath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/audio/PackToHU.mp3");
+                                // var audio = new Audio(sAudioPath);
+                                // audio.play();
                             },
                             error: function (oError) {
                                 // var errMsg = JSON.parse(oError.responseText).error.message.value;
@@ -3202,9 +3207,11 @@ sap.ui.define([
                                     MessageToast.show("Handling Unit Created Successfully");
                                     currentObj.partialQty = "";
                                     eshipjetModel.updateBindings(true);
-                                    var sAudioPath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/audio/PackToHU.mp3");
-                                    var audio = new Audio(sAudioPath);
-                                    audio.play();
+
+                                    // var sAudioPath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/audio/PackToHU.mp3");
+                                    // var audio = new Audio(sAudioPath);
+                                    // audio.play();
+                                    
                                     // oController.onCloseBusyDialog();
                                 },
                                 error: function (oError) {
