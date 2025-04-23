@@ -11,12 +11,12 @@
 				</Toolbar>
 				<SearchField id="_IDGenSearchField" placeholder="Search Columns"   liveChange="onScanShipColNameSearch"></SearchField>
 			</VBox>
-		</customHeader>zz
+		</customHeader>
 		<content>
-        <Table	id="myScanColumnSelectId" mode="MultiSelect" items="{path : 'ScanShipTableDataModel>/columns'}" >
+        <Table	id="myScanColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/scanShipTableData1/scanShipColumns'}" >
 		<ColumnListItem id="_IDGenColumnListItem1" vAlign="Middle">
 			<cells>				
-				<Text id="_IDGenText" text="{ScanShipTableDataModel>label}" />				
+				<Text id="_IDGenText" text="{eshipjetModel>label}" />				
 			</cells>
 		</ColumnListItem>
 		<columns>

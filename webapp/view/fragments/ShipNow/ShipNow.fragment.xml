@@ -337,7 +337,7 @@
 													</VBox>
 												</HBox>
 
-												<HBox height="4.5rem" width="25%" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" >
+												<HBox height="4.5rem" width="25%" class="whiteBackground packScreenPadding" alignItems="Center" >
 													<VBox class="sapUiTinyMarginEnd" >
 														<Label text="Group ID / Cust Grp2" />
 														<Input value="" width="auto" class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Input>
@@ -349,7 +349,7 @@
 												</HBox>
 											</HBox>
 
-										<VBox class="shipnowcustomSimpleFormShadow sapUiTinyMarginEnd" >
+										<VBox class="shipnowcustomSimpleFormShadow" >
 											<f:SimpleForm id="RoutingandBillingDetails"
 												 editable="true" 
 												 layout="ColumnLayout" 
@@ -821,7 +821,7 @@
 														<Text text="{path:'eshipjetModel>/ShipNowShipMethodSelectedKey', formatter: '.formatter.carrierDisplay' } - {eshipjetModel>/carrierServiceName_dis}" class="packScreenCarrier" ></Text>
 													</HBox> -->
 
-													<HBox height="4.5rem" width="20%" class="whiteBackground packScreenPadding" alignItems="Center" >
+													<HBox height="4.5rem" width="20%" class="whiteBackground packScreenPadding sapUiTinyMarginEnd" alignItems="Center" >
 														<VBox class="sapUiTinyMarginEnd" >
 															<Label text="Group ID / Cust Grp2" />
 															<Input value="" width="auto" class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Input>

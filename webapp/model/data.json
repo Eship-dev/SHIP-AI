@@ -1722,6 +1722,117 @@
               }
         ]
 	},
+
+
+    "scanShipColSelectedCount":15,
+
+	"scanShipTableData1":{
+		"scanShipColumns": [
+			{
+                "name": "SAPShipmentID",
+                "label": "SAP Shipment ID",
+                "visible": true
+              },
+              {
+                "name": "CreatedDate",
+                "label": "Created Date",
+                "visible": true
+              },
+              {
+                "name": "ShipDate",
+                "label": "Ship Date",
+                "visible": true
+              },
+              {
+                "name": "ShipmentType",
+                "label": "Shipment Type",
+                "visible": true
+              },
+              {
+                "name": "CarrierName",
+                "label": "Carrier Name",
+                "visible": true
+              },
+              {
+                "name": "ServiceName",
+                "label": "Service Name",
+                "visible": true
+              },
+              {
+                "name": "TrackingNumber",
+                "label": "Tracking Number",
+                "visible": true
+              },
+              {
+                "name": "Status",
+                "label": "Status",
+                "visible": true
+              },
+              {
+                "name": "ShipToContact",
+                "label": "Ship To Contact",
+                "visible": true
+              },
+              {
+                "name": "ShipToCompany",
+                "label": "Ship To Company",
+                "visible": true
+              },
+              {
+                "name": "ShipToAddressLine1",
+                "label": "Ship To Address Line 1",
+                "visible": false
+              },
+              {
+                "name": "ShipToCity",
+                "label": "Ship To City",
+                "visible": false
+              },
+              {
+                "name": "ShipToState",
+                "label": "Ship To State",
+                "visible": false
+              },
+              {
+                "name": "ShipToCountry",
+                "label": "Ship To Country",
+                "visible": false
+              },
+              {
+                "name": "ShipToZipcode",
+                "label": "Ship To Zipcode",
+                "visible": false
+              },
+              {
+                "name": "ShipToPhone",
+                "label": "Ship To Phone",
+                "visible": false
+              },
+              {
+                "name": "ShipToEmail",
+                "label": "Ship To Email",
+                "visible": false
+              },
+              {
+                "name": "RequesterName",
+                "label": "Requester Name",
+                "visible": false
+              },
+              {
+                "name": "ConnectedTo",
+                "label": "Connected To",
+                "visible": false
+              },
+              {
+                "name": "OrderType",
+                "label": "Order Type",
+                "visible": false
+              }
+		]
+    },
+
+
+
     "RoutingGuideTableData":{
 		"RoutingGuideColumns": [
 			{

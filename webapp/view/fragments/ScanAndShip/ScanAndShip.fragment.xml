@@ -3,9 +3,9 @@
     <VBox class="scan-ship-page">
 	<Toolbar class="sapUiTinyMargin scan-ship-toolbar">
         <Title text="Scan and Ship" class="scan-ship-toolbar__title"/>
-        <Input class="scan-ship-toolbar__input" id="userscanShipInput"  value="{eshipjetModel>/sShipAndScan}" submit="onScanShipSearchPress"   placeholder="Enter SAP DN, Handing Unit or ODO" ></Input>
+        <Input class="scan-ship-toolbar__input" id="userscanShipInput"  value="{eshipjetModel>/sShipAndScan}" submit="getManifestHeaderForScanShip"   placeholder="Enter SAP DN, Handing Unit or ODO" ></Input>
         <!-- <TextArea width="20rem" rows="2" id="userInput" placeholder="Enter SAP DN, Handing Unit or ODO" ></TextArea> -->
-        <Button  class="scan-ship-toolbar__button" text="Ship Now" type="Accept" press="onScanShipSearchPress"  ></Button>
+        <Button  class="scan-ship-toolbar__button" text="Ship Now" type="Accept" press="getManifestHeaderForScanShip"  ></Button>
         <!-- <ToolbarSpacer />
             <HBox >
                 <Input  width="80px"  placeholder="L" class="text-dark lwdw mx-2 form-control inputField ng-pristine ng-valid ng-touched" ></Input>
@@ -20,14 +20,14 @@
         
 	</Toolbar>
     
-        <ui:Table class="sapUiTinyMargin scan-ship-table" fixedColumnCount="1"  	rowActionCount="0"	id="idScanAndShipTable"
+        <!-- <ui:Table class="sapUiTinyMargin scan-ship-table" fixedColumnCount="1"  	rowActionCount="0"	id="idScanAndShipTable"
 					selectionMode="None"	paste="onPaste"		ariaLabelledBy="title"   visibleRowCount="18">
 					<ui:extension>
 						<OverflowToolbar class="scan-ship-table__toolbar">
-							<Button icon="sap-icon://filter" press="scanShipFilterPopoverPress"></Button>
+							<Button icon="sap-icon://filter" press="scanShipFilterPopoverPress" type="Transparent" ></Button>
 							<ToolbarSpacer ></ToolbarSpacer>
-							<Button icon="sap-icon://action" press="onScanShipExportToExcel"></Button>
-                            <Button icon="sap-icon://action-settings" press="openScanShipColNamesPopover" >
+							<Button icon="sap-icon://action" press="onScanShipExportToExcel" type="Transparent" ></Button>
+                            <Button icon="sap-icon://action-settings" press="openScanShipColNamesPopover" type="Transparent" >
                                 <customData>
                                     <core:CustomData key="remember" value="true" />
                                     <core:CustomData key="showClearButton" value="true" />
@@ -40,29 +40,207 @@
                 <Toolbar class="scan-ship-table_footer_toolbar">
                     <Text text="Total Shipped by John Marsh: {ScanShipTableDataModel>/ScanShipTableLength}" ></Text>
                     <ToolbarSpacer/>
-                    <Button  text="First" enabled="false" />
-                    <Button  text="Previous" enabled="false"/>
+                    <Button  text="First" enabled="false" type="Transparent" />
+                    <Button  text="Previous" enabled="false" type="Transparent" />
                     <Text    text="1-0 of 0"/>
-                    <Button  text="Next" />
-                    <Button  text="Last" />
+                    <Button  text="Next" enabled="false" type="Transparent" />
+                    <Button  text="Last" enabled="false" type="Transparent" />
 				</Toolbar>
 		    </ui:footer>
-		</ui:Table>
+		</ui:Table> -->
 
+
+        <ui:Table
+							id="idScanAndShipTable"
+							rows="{eshipjetModel>/scanShipTableData2}"
+							class="sapUiSmallMarginBegin sapUiSmallMarginEnd rowRightLine ordersTableRightBorder"
+							selectionMode="None"
+							visibleRowCount="14" >
+
+                    <ui:extension>
+						<OverflowToolbar class="scan-ship-table__toolbar">
+							<Button icon="sap-icon://filter" press="scanShipFilterPopoverPress" type="Transparent" ></Button>
+							<ToolbarSpacer ></ToolbarSpacer>
+							<Button icon="sap-icon://action" press="onScanShipExportToExcel" type="Transparent" ></Button>
+                            <Button icon="sap-icon://action-settings" press="openScanShipColNamesPopover" type="Transparent" >
+                                <customData>
+                                    <core:CustomData key="remember" value="true" />
+                                    <core:CustomData key="showClearButton" value="true" />
+                                    <core:CustomData key="confirmButtonText" value="Ok" />
+                                </customData>
+							</Button>										
+						</OverflowToolbar>
+					</ui:extension>		
+							<ui:columns>
+										<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="Deliverynno" class="whiteBackground" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/0/visible}">
+									<Label text="SAP Shipment ID" />
+									<ui:template>
+										<Text text="{eshipjetModel>Deliverynno}" wrapping="false" class="ordersSmallText" />
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="DateAdded" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/1/visible}">
+									<Label text="Created Date" />
+									<ui:template>
+										<Text text="{path: 'eshipjetModel>DateAdded', formatter: '.formatter.formatCustomDateTimeForOrders'}" class="ordersSmallText" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="DateAdded" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/2/visible}">
+									<Label text="Ship Date" />
+									<ui:template>
+										<Text text="{path: 'eshipjetModel>DateAdded', formatter: '.formatter.formatCustomDateTimeForOrders'}" class="ordersSmallText" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="Shipmenttype" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/3/visible}">
+									<Label text="Shipment Type" />
+									<ui:template>
+										<HBox justifyContent="SpaceBetween" width="100%" >
+											<Text text="{eshipjetModel>Shipmenttype}" wrapping="false" class="ordersSmallText sapUiSmallMarginTop" />
+											<!-- <Button icon="sap-icon://add" type="Transparent" ></Button> -->
+										</HBox>
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="CarrierCode" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/4/visible}">
+									<Label text="Carrier Name" />
+									<ui:template>
+										<Text text="{eshipjetModel>CarrierCode}" wrapping="false" class="ordersSmallText" />
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="CarrierDesc" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/5/visible}">
+									<Label text="Service Name" />
+									<ui:template>
+										<Text text="{eshipjetModel>CarrierDesc}" wrapping="false" class="ordersSmallText" />
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="TrackingNumber" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/6/visible}">
+									<Label text="Tracking Number" />
+									<ui:template>
+										<Link text="{eshipjetModel>TrackingNumber}" press="onTrackingNumberPress" class="ordersSmallText" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="Shipprocess" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/7/visible}">
+									<Label text="Status" />
+									<ui:template>
+										<Text text="{eshipjetModel>Shipprocess}" wrapping="false" class="ordersSmallText" />
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="Contact" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/8/visible}">
+									<Label text="Ship To Contact" />
+									<ui:template>
+										<Text text="{eshipjetModel>Contact}" wrapping="false" class="ordersSmallText" />
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="Company" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/9/visible}">
+								<Label text="Ship To Company" />
+								<ui:template>
+										<Text text="{eshipjetModel>Company}" wrapping="false" class="ordersSmallText" />
+									</ui:template>
+							</ui:Column>
+
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="RecAddress1" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/10/visible}">
+									<Label text="Ship To Address Line 1" />
+									<ui:template>
+										<Text text="{eshipjetModel>RecAddress1}" wrapping="false" class="ordersSmallText" />
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="RecCity" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/11/visible}">
+									<Label text="Ship To City" />
+									<ui:template>
+										<Link text="{eshipjetModel>RecCity}" press="onTrackingNumberPress" class="ordersSmallText" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="Shipped" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/12/visible}">
+								<Label text="Ship To State" />
+								<ui:template>
+									<!-- <Text text="Shipped" wrapping="false"
+										class="{path: 'Shipped', formatter: '.formatter.getDeliveryStatusClass'} ordersSmallText" /> -->
+									<Text text="Shipped" wrapping="false" class="greenColorForIcon ordersSmallText" />
+								</ui:template>
+							</ui:Column>
+
+
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="RecCountry" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/13/visible}">
+									<Label text="Ship To Country" />
+									<ui:template>
+										<Text text="{path: 'eshipjetModel>RecCountry'}" class="ordersSmallText" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="RecPostalcode" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/14/visible}">
+									<Label text="Ship To Zipcode" />
+									<ui:template>
+										<Text text="{eshipjetModel>RecPostalcode}" class="ordersSmallText" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="RecPhone" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/15/visible}">
+									<Label text="Ship To Phone" />
+									<ui:template>
+										<Text text="{eshipjetModel>RecPhone}" class="ordersSmallText" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/16/visible}">
+									<Label text="Ship To Email" />
+									<ui:template>
+										<Text text="" class="ordersSmallText" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="RecContact" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/17/visible}">
+									<Label text="Requester Name" />
+									<ui:template>
+										<Text text="{eshipjetModel>RecContact}" class="ordersSmallText" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/18/visible}">
+									<Label text="Connected To" />
+									<ui:template>
+										<Text text="" class="ordersSmallText" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="RecCountry" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/19/visible}">
+									<Label text="Order Type" />
+									<ui:template>
+										<Text text="" class="ordersSmallText" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+
+								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" hAlign="End" >
+									<Label text="Actions"/>
+									<ui:template>
+										<HBox>
+											<Button text="View Now" class="ordersSmallButton" type="Transparent" press="onScanShipViewPressBackToShipNow" ></Button>
+											<Button icon="sap-icon://megamenu" class="ordersSmallButton" type="Transparent" press="handleDownArrowPress" ></Button>
+										</HBox>
+									</ui:template>
+								</ui:Column>
+							</ui:columns>
+						</ui:Table>
     </VBox>
 
-    <!-- <OverflowToolbar class="eship-footer ship-now-footer" >
-			<Toolbar class="scan-ship-table_footer_toolbar eship-footer sapUiSmallMarginBegin sapUiSmallMarginEnd" width="98%" >
-                    <Text text="Total Shipped by John Marsh: 1"></Text>
-                    <ToolbarSpacer/>
-                    <Button  text="First" enabled="false" />
-                    <Button  text="Previous" enabled="false"/>
-                    <Text    text="1-0 of 0"/>
-                    <Button  text="Next" />
-                    <Button  text="Last" />
-				</Toolbar>
-		</OverflowToolbar> -->
-
+		<Toolbar class="whiteBackground sapUiTinyMarginTop ordersTableFooter" >
+			<ToolbarSpacer/>
+				<Button  text="First" enabled="false" type="Transparent" />
+				<Button  text="Previous" enabled="false" type="Transparent" />
+				<Text    text="1-50 of 74" />
+				<Button  text="Next" type="Transparent" />
+				<Button  text="Last" type="Transparent" />
+		</Toolbar>
 
 
 </core:FragmentDefinition>
