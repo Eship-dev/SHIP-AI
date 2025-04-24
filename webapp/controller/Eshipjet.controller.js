@@ -4519,6 +4519,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", ""); 
                 eshipjetModel.setProperty("/commonValues/shipNowBtnStatus", true);
                 oController.onPackSectionEmptyRows();
+                oController.getTodayShipments();
                 // oController._handleDisplayShipNowPackTable();
 
             } else if (tileTitle === "Track Now") {

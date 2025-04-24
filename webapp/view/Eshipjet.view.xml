@@ -328,7 +328,7 @@
 				<Text text="Today’s Shipments by " class="todayscss sapUiTinyMarginEnd sapUiSmallMarginBegin" />
 				<Text text=" Kumar Vidadala" class="greenTexttoday" />
 				<Text text=":" class="todayscss" />
-				<Text text="{eshipjetModel>/todaysShipmentCount}" />
+				<Text text="{eshipjetModel>/TodayShipmentsLength}" />
 			</HBox>
 
 			<ToolbarSpacer/>
