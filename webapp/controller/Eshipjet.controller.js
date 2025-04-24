@@ -285,6 +285,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", "");
                 eshipjetModel.setProperty("/commonValues/shipNowBtnStatus", true);
                 oController.onPackSectionEmptyRows();
+                oController.getTodayShipments();
                 // oController._handleDisplayShipNowPackTable();
                 // this._handleDisplayShipNowProductsTable();
                 // this._handleDisplayShipNowHandlingUnitTable();
@@ -4764,14 +4765,14 @@ sap.ui.define([
 
         onOrderNowTotalFilterPress:function(oEvent){
             var oTable = oController.getView().byId("idOrdersTable");
-            var oBinding = oTable.getBinding("rows");
-            var oFilter = new sap.ui.model.Filter("Status", sap.ui.model.FilterOperator.Contains, "Total");
-            oBinding.filter([oFilter]);
+            var oBindings = oTable.getBinding("rows");
+            oBindings.filter([]);
         },
+        
         onOrderNowShippedFilterPress:function(){
             var oTable = oController.getView().byId("idOrdersTable");
             var oBinding = oTable.getBinding("rows");
-            var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Shipped");
+            var oFilter = new sap.ui.model.Filter("Status", sap.ui.model.FilterOperator.EQ, "Shipped");
             oBinding.filter([oFilter]);
         },
 
@@ -6797,54 +6798,71 @@ sap.ui.define([
         },
 
         onOrdersDateFilterChange: function (oEvent) {
-            const selectedKey = oEvent.getSource().getSelectedKey();
-            // oController.getOrdersHistoryShipments();
-            const eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
-            const allOrders = eshipjetModel.getProperty("/allOrders");
-        
-            if (!allOrders || allOrders.length === 0) return;
-        
-            const today = new Date();
-            const startOfWeek = new Date(today);
-            startOfWeek.setDate(today.getDate() - today.getDay()); // Sunday
-        
-            const filteredOrders = allOrders.filter(order => {
-                const orderDate = new Date(order.DateAdded);
-                orderDate.setHours(0, 0, 0, 0); // Normalize
-        
-                switch (selectedKey) {
-                    case "today":
-                        return this._isSameDate(orderDate, today);
-                    case "yesterday":
-                        const yesterday = new Date(today);
-                        yesterday.setDate(today.getDate() - 1);
-                        return this._isSameDate(orderDate, yesterday);
-                    case "thisWeek":
-                        const dayOfWeek = today.getDay(); // Sunday = 0
-                        const thisWeekStart = new Date(today);
-                        thisWeekStart.setDate(today.getDate() - dayOfWeek);
-                        thisWeekStart.setHours(0, 0, 0, 0);
-                        return orderDate >= thisWeekStart;
-                    case "lastWeek":
-                        const lastWeekStart = new Date(today);
-                        lastWeekStart.setDate(today.getDate() - today.getDay() - 7);
-                        lastWeekStart.setHours(0, 0, 0, 0);
-                        const lastWeekEnd = new Date(lastWeekStart);
-                        lastWeekEnd.setDate(lastWeekStart.getDate() + 6);
-                        return orderDate >= lastWeekStart && orderDate <= lastWeekEnd;
-                    case "thisMonth":
-                        return (
-                            orderDate.getMonth() === today.getMonth() &&
-                            orderDate.getFullYear() === today.getFullYear()
-                        );
-                    default:
-                        return true;
-                }
-            });
-        
-            // Update table binding path or model property to reflect filter
-            eshipjetModel.setProperty("/allOrders", filteredOrders);
-            eshipjetModel.setProperty("/allOrdersLength", filteredOrders.length);
+            var selectedKey = oEvent.getSource().getSelectedKey();
+            var today = new Date();
+            var aFilter = [];
+
+            function toODataDate(date) {
+                return `/Date(${date.getTime()})/`;
+            }
+
+            if (selectedKey === "today") {
+                var dateFilter = new Filter("DateAdded", FilterOperator.EQ, toODataDate(today));
+                aFilter.push(dateFilter);
+            }
+
+            else if (selectedKey === "yesterday") {
+                var yesterday = new Date(today);
+                yesterday.setDate(yesterday.getDate() - 1);
+                var dateFilter = new Filter("DateAdded", FilterOperator.EQ, toODataDate(yesterday));
+                aFilter.push(dateFilter);
+            }
+
+            else if (selectedKey === "thisWeek") {
+                var firstDay = new Date(today);
+                firstDay.setDate(today.getDate() - today.getDay() + 1); // Monday
+                var lastDay = new Date(firstDay);
+                lastDay.setDate(firstDay.getDate() + 6); // Sunday
+                var dateFilter = new Filter({
+                    path: "DateAdded",
+                    operator: FilterOperator.BT,
+                    value1: toODataDate(firstDay),
+                    value2: toODataDate(lastDay)
+                });
+                aFilter.push(dateFilter);
+            }
+
+            else if (selectedKey === "lastWeek") {
+                var firstDay = new Date(today);
+                firstDay.setDate(today.getDate() - today.getDay() - 6); // Previous Monday
+                var lastDay = new Date(firstDay);
+                lastDay.setDate(firstDay.getDate() + 6); // Previous Sunday
+                var dateFilter = new Filter({
+                    path: "DateAdded",
+                    operator: FilterOperator.BT,
+                    value1: toODataDate(firstDay),
+                    value2: toODataDate(lastDay)
+                });
+                aFilter.push(dateFilter);
+            }
+
+            else if (selectedKey === "thisMonth") {
+                var firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+                var lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+                var dateFilter = new Filter({
+                    path: "DateAdded",
+                    operator: FilterOperator.BT,
+                    value1: toODataDate(firstDay),
+                    value2: toODataDate(lastDay)
+                });
+                aFilter.push(dateFilter);
+            }
+
+            // Apply filter
+            var orderTable = this.byId("idOrdersTable");
+            var oBindings = orderTable.getBinding("rows");
+            oBindings.filter(aFilter);
+            eshipjetModel.setProperty("/ordersSelectedFilter");
         },
 
         _isSameDate: function (d1, d2) {
@@ -15047,6 +15065,61 @@ sap.ui.define([
             eshipjetModel.setProperty("/commonValues/ShipNowShipMethodSelectedKey", oCurrentObj.Carriertype);
             eshipjetModel.setProperty("/commonValues/ShipNowShipsrvNameSelectedKey", oCurrentObj.CarrierDesc);
             eshipjetModel.setProperty("/accountNumber", oCurrentObj.Accountnumber);
+        },
+
+
+        getTodayShipments: function () {
+            oController.onOpenBusyDialog();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var ManifestSrvModel = oController.getOwnerComponent().getModel("ManifestSrvModel");
+        
+            ManifestSrvModel.read("/EshipjetManfestSet", {
+                success: function (response) {
+                    if (response && response.results.length > 0) {
+                        const today = new Date();
+        
+                        // Filter to only include today's entries
+                        const filteredResults = response.results.filter(item => {
+                            const itemDate = new Date(item.DateAdded);
+                            return (
+                                itemDate.getDate() === today.getDate() &&
+                                itemDate.getMonth() === today.getMonth() &&
+                                itemDate.getFullYear() === today.getFullYear()
+                            );
+                        });
+        
+                        // Sort by date & time
+                        filteredResults.sort((a, b) => {
+                            let dateA = new Date(a.DateAdded).getTime();
+                            let dateB = new Date(b.DateAdded).getTime();
+        
+                            if (dateA !== dateB) {
+                                return dateB - dateA; // Descending by date
+                            }
+        
+                            return b.TimeAdded.ms - a.TimeAdded.ms; // Descending by time
+                        });
+        
+                        // Normalize ShipmentType
+                        filteredResults.forEach(item => {
+                            let shipmentValue = item.Type || item.Shipmenttype || item.ShipmentType;
+                            if (shipmentValue && typeof shipmentValue === "string") {
+                                shipmentValue = shipmentValue.trim().toUpperCase();
+                                item.ShipmentType = shipmentValue === 'O' ? "Parcel" : "LTL";
+                            } else {
+                                item.ShipmentType = "LTL";
+                            }
+                        });
+        
+                        eshipjetModel.setProperty("/TodayShipmentsLength", filteredResults.length);
+                    }
+                    oController.onCloseBusyDialog();
+                },
+                error: function (error) {
+                    MessageBox.warning(error.responseText);
+                    oController.onCloseBusyDialog();
+                }
+            });
         }
         
         

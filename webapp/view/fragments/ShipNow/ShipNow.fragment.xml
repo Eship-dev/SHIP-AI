@@ -1608,7 +1608,7 @@
 														<Text text="{eshipjetModel>CarrierCode}" />
 														<Text text="{eshipjetModel>ServiceName}" />
 														<Link text="{eshipjetModel>TrackingNumber}" press="onTrackingNumberPress" />
-														<Text text="{eshipjetModel>TrackingStatus}" />
+														<Text text="{path: 'eshipjetModel>TrackingStatus', formatter: '.formatter.formatShipmentType'}" />
 														<Text text="{eshipjetModel>SHIP_TO_CONTACT}" />
 														<Text text="{eshipjetModel>SHIP_TO_COMPANY}" />
 														<Text text="{eshipjetModel>SHIP_TO_ADDRESS_LINE1}" />

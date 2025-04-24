@@ -210,7 +210,7 @@
 								<ui:template>
 									<!-- <Text text="Shipped" wrapping="false"
 										class="{path: 'Shipped', formatter: '.formatter.getDeliveryStatusClass'} ordersSmallText" /> -->
-									<Text text="Shipped" wrapping="false" class="greenColorForIcon ordersSmallText" />
+									<Text text="{path: 'eshipjetModel>Shipprocess', formatter: '.formatter.formatShipmentType'}" wrapping="false" class="greenColorForIcon ordersSmallText" />
 								</ui:template>
 							</ui:Column>
 

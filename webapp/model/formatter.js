@@ -118,6 +118,12 @@ sap.ui.define([
 				return "redColorForIcon";
 			}
 			return "";
-		}
+		},
+
+        formatShipmentType:function(shipType){
+            if(shipType === "SHIP"){
+                return "Shipped";
+            }
+        }
 	};
 });
