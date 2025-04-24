@@ -1023,7 +1023,10 @@ sap.ui.define([
                 shipNowTheArmorySelect :false,
                 shipNowUPSSelect:false,
                 shipNowBtnStatus :true,
-                shipNowUSPSSelect:false                
+                shipNowUSPSSelect:false,
+                shipNowVoidSelect: false,
+                shipNowVoidSelectSave:true,
+                shipNowVoidSelectShipNow: true               
             };
             eshipjetModel.setProperty("/commonValues", oCommonValues);        
 
@@ -2817,10 +2820,19 @@ sap.ui.define([
                         });
                         var OverallGoodsMovementStatus = eshipjetModel.getProperty("/commonValues/OverallGoodsMovementStatus");
                         var shipNowStatus = true;
+                        var shipNowVoidStatus = false;
+                        var shipNowVoidStatusSave = true;
+                        var shipNowVoidStatusShipNow = true;
                         if(response.results.length > 0){
                             shipNowStatus = false;
+                            shipNowVoidStatus = true;
+                            shipNowVoidStatusSave = false;
+                            shipNowVoidStatusShipNow = false;
                         };
                         eshipjetModel.setProperty("/commonValues/shipNowBtnStatus", shipNowStatus);
+                        eshipjetModel.setProperty("/commonValues/shipNowVoidSelect", shipNowVoidStatus);
+                        eshipjetModel.setProperty("/commonValues/shipNowVoidSelectSave", shipNowVoidStatusSave);
+                        eshipjetModel.setProperty("/commonValues/shipNowVoidSelectShipNow", shipNowVoidStatusShipNow);
                         if(aFilteredData && aFilteredData.length > 0){
                             var aShippingCharges = [
                                 { "description": "Freight Amount", "amount": parseInt(aFilteredData[0].Freightamt).toFixed(2), "currency": "USD" },

@@ -34,7 +34,10 @@
         "shipNowMoviGroupSelect": false,
         "shipNowUSPSSelect": false,
         "shipNowBtnStatus": true, 
-        "shipNowUPSSelect": false
+        "shipNowUPSSelect": false,
+        "shipNowVoidSelect": false,
+        "shipNowVoidSelectSave":true,
+        "shipNowVoidSelectShipNow": true
     },        
     
     "createShipReqBusinessSelect": true,

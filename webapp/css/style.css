@@ -1821,6 +1821,14 @@ sidebar-header {
   
   
 }
+.todayscss{
+  font-weight: 500 !important;
+  color: #444 !important;
+}
+.greenTexttoday {
+  color: green !important;
+  font-weight: bold !important; /* Optional */
+}
 
 .shipmethod{
   margin-top: 28px !important;
