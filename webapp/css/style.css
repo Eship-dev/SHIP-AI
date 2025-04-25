@@ -1825,6 +1825,11 @@ sidebar-header {
   font-weight: 500 !important;
   color: #444 !important;
 }
+.todayscssNumber{
+  font-weight: 500 !important;
+  font-size: 18px !important;
+  color: #0e0d0d !important;
+}
 .greenTexttoday {
   color: green !important;
   font-weight: bold !important; /* Optional */

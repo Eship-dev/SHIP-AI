@@ -14663,7 +14663,7 @@ sap.ui.define([
         }
         eshipjetModel.setProperty("/SideNavigation", false);
         this.byId("pageContainer").to(this.getView().createId(sKey));
-
+        var trackingArray = eshipjetModel.getProperty("/trackingArray") || [];
         var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             var shipFromObj = {
                 "ShipFromCONTACT": oCurrentObj.FromContact,
@@ -14691,27 +14691,77 @@ sap.ui.define([
                 "HouseNumber": oCurrentObj.RecAddress2,
                 "ShipFromADDRESS_LINE3": ""
             };
-            // var oBusinessPartner = {
-            //     PartnerType: oCurrentObj.PartnerType || "",
-            //     PartnerType: oCurrentObj.RecPartnerType || "", 
-            //     Kunner: oCurrentObj.Kunnr || "",
-            //     BusinessPartnerName1: oCurrentObj.RecCompany || "",
-            //     FullName: oCurrentObj.RecContact || "",
-            //     StreetName: oCurrentObj.RecAddress1 || "",
-            //     HouseNumber: oCurrentObj.RecAddress2 || "", // if using Address Line 2
-            //     CityName: oCurrentObj.RecCity || "",
-            //     Region: oCurrentObj.RecRegion || "",
-            //     PostalCode: oCurrentObj.RecPostalcode || "",
-            //     Country: oCurrentObj.RecCountry || "",
-            //     PhoneNumber: oCurrentObj.RecPhone || "",
-            //     email: oCurrentObj.Emailaddress || ""
-            // };
-            // eshipjetModel.setProperty("/BusinessPartners", [oBusinessPartner]);
+            var handlingUnitObj = {
+                "HandlingUnitExternalID": oCurrentObj.HandlingUnit,
+                "SerialNumber": oCurrentObj.SerialNumber || "", 
+                "PackagingMaterial": oCurrentObj.PackagingMaterial || "" 
+            };
+            eshipjetModel.setProperty("/HandlingUnits", [handlingUnitObj]);
+            
 
+            var trackingObj = {
+                "COMPANY": oCurrentObj.Company,
+                "CreatedDate" : oCurrentObj.Createddate,
+                "ShipDate": oCurrentObj.DateAdded,
+                "CarrierCode": oCurrentObj.CarrierCode,
+                "ServiceName": oCurrentObj.CarrierDesc,
+                "TrackingNumber": oCurrentObj.TrackingNumber,
+                "TrackingStatus":  oCurrentObj.Shipprocess,
+                "SHIP_TO_CONTACT": oCurrentObj.Company,
+                "SHIP_TO_COMPANY": oCurrentObj.Contact,
+            };
+            trackingArray.push(trackingObj);
+            eshipjetModel.setProperty("/trackingArray", trackingArray);
             ShipNowDataModel.setProperty("/ShipFromAddress", shipFromObj);
             ShipNowDataModel.setProperty("/ShipToAddress", shipToObj);
 
-            
+            var shippingChargesArray = eshipjetModel.getProperty("/shippingCharges") || [];
+            var shippingChargesObj1 = {
+                description: "Freight Amount",
+                amount: oCurrentObj.Freightamt || "0.00",
+                currency: oCurrentObj.Waerk
+            };
+            var shippingChargesObj2 = {
+                description: "Discount Amount",
+                amount: oCurrentObj.Discountamt || "0.00",
+                currency: oCurrentObj.Waerk
+            };
+            var shippingChargesObj3 = {
+                description: "Fuel",
+                amount: oCurrentObj.Fuel || "0.00",
+                currency:oCurrentObj.Waerk
+            };
+
+            shippingChargesArray.push(shippingChargesObj1, shippingChargesObj2, shippingChargesObj3);
+            eshipjetModel.setProperty("/shippingCharges", shippingChargesArray);
+
+            var packUrl = oCurrentObj.PackURL || "";
+            var packDocType = packUrl.split('.').pop().toUpperCase();
+
+            var labelUrl = oCurrentObj.Labelurl || "";
+            var labelDocType = labelUrl.split('.').pop().toUpperCase();
+
+            var shippingDocuments = [
+                {
+                    srNo: 1,
+                    docProvider: oCurrentObj.CarrierCode,
+                    docType: labelDocType,  
+                    contentType: "Label",
+                    docURL: labelUrl
+                },
+                {
+                    srNo: 2,
+                    docProvider: "Eshipjet",
+                    docType: packDocType, 
+                    contentType: "Packing Slip",
+                    docURL: packUrl
+                }
+            ];
+
+            eshipjetModel.setProperty("/shippingDocuments", shippingDocuments);
+
+
+
 
     },
     // add onAddAddPaymentTypes popover changes start
