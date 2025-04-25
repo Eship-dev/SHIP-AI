@@ -14647,9 +14647,10 @@ sap.ui.define([
         oRouter.navTo("ShipRequestLabel"); // Replace with your actual route name
     },
     onViewNowPressBackToShipNow: function(oEvent){
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel") 
         var oCurrentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
         var sKey = "ShipNow";      
-        eshipjetModel.setProperty("/commonValues/sapDeliveryNumber",""); //80000001
+        // eshipjetModel.setProperty("/commonValues/sapDeliveryNumber",""); //80000001
         var oToolPage = this.byId("toolPage");
         oToolPage.setSideExpanded(false);
         eshipjetModel.setProperty("/shippingCharges",[]);
@@ -14672,107 +14673,110 @@ sap.ui.define([
         }
         eshipjetModel.setProperty("/SideNavigation", false);
         this.byId("pageContainer").to(this.getView().createId(sKey));
-        var trackingArray = eshipjetModel.getProperty("/trackingArray") || [];
-        var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
-            var shipFromObj = {
-                "ShipFromCONTACT": oCurrentObj.FromContact,
-                "ShipFromCOMPANY": oCurrentObj.FromCompany,
-                "ShipFromPHONE": oCurrentObj.FromPhone,
-                "ShipFromEMAIL": oCurrentObj.Emailaddress,
-                "ShipFromCITY": oCurrentObj.Fromcity,
-                "ShipFromSTATE": oCurrentObj.FromRegion,
-                "ShipFromCOUNTRY": oCurrentObj.FromCountry,
-                "ShipFromZIPCODE": oCurrentObj.FromPostalcode,
-                "ShipFromADDRESS_LINE1": oCurrentObj.FromStreet,
-                "ShipFromADDRESS_LINE2": oCurrentObj.FromStreet2,
-                "ShipFromADDRESS_LINE3": ""
-            };
-            var shipToObj = {
-                "FullName": oCurrentObj.RecContact,
-                "BusinessPartnerName1": oCurrentObj.RecCompany,
-                "PhoneNumber": oCurrentObj.RecPhone,
-                "EMAIL": oCurrentObj.Emailaddress,
-                "CityName": oCurrentObj.RecCity,
-                "Region": oCurrentObj.RecRegion,
-                "Country": oCurrentObj.RecCountry,
-                "PostalCode": oCurrentObj.RecPostalcode,
-                "StreetName": oCurrentObj.RecAddress1,
-                "HouseNumber": oCurrentObj.RecAddress2,
-                "ShipFromADDRESS_LINE3": ""
-            };
-            var handlingUnitObj = {
-                "HandlingUnitExternalID": oCurrentObj.HandlingUnit,
-                "SerialNumber": oCurrentObj.SerialNumber || "", 
-                "PackagingMaterial": oCurrentObj.PackagingMaterial || "" 
-            };
-            eshipjetModel.setProperty("/HandlingUnits", [handlingUnitObj]);
+        // var trackingArray = eshipjetModel.getProperty("/trackingArray") || [];
+        // var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
+        //     var shipFromObj = {
+        //         "ShipFromCONTACT": oCurrentObj.FromContact,
+        //         "ShipFromCOMPANY": oCurrentObj.FromCompany,
+        //         "ShipFromPHONE": oCurrentObj.FromPhone,
+        //         "ShipFromEMAIL": oCurrentObj.Emailaddress,
+        //         "ShipFromCITY": oCurrentObj.Fromcity,
+        //         "ShipFromSTATE": oCurrentObj.FromRegion,
+        //         "ShipFromCOUNTRY": oCurrentObj.FromCountry,
+        //         "ShipFromZIPCODE": oCurrentObj.FromPostalcode,
+        //         "ShipFromADDRESS_LINE1": oCurrentObj.FromStreet,
+        //         "ShipFromADDRESS_LINE2": oCurrentObj.FromStreet2,
+        //         "ShipFromADDRESS_LINE3": ""
+        //     };
+        //     var shipToObj = {
+        //         "FullName": oCurrentObj.RecContact,
+        //         "BusinessPartnerName1": oCurrentObj.RecCompany,
+        //         "PhoneNumber": oCurrentObj.RecPhone,
+        //         "EMAIL": oCurrentObj.Emailaddress,
+        //         "CityName": oCurrentObj.RecCity,
+        //         "Region": oCurrentObj.RecRegion,
+        //         "Country": oCurrentObj.RecCountry,
+        //         "PostalCode": oCurrentObj.RecPostalcode,
+        //         "StreetName": oCurrentObj.RecAddress1,
+        //         "HouseNumber": oCurrentObj.RecAddress2,
+        //         "ShipFromADDRESS_LINE3": ""
+        //     };
+        //     var handlingUnitObj = {
+        //         "HandlingUnitExternalID": oCurrentObj.HandlingUnit,
+        //         "SerialNumber": oCurrentObj.SerialNumber || "", 
+        //         "PackagingMaterial": oCurrentObj.PackagingMaterial || "" 
+        //     };
+        //     eshipjetModel.setProperty("/HandlingUnits", [handlingUnitObj]);
             
 
-            var trackingObj = {
-                "COMPANY": oCurrentObj.Company,
-                "CreatedDate" : oCurrentObj.Createddate,
-                "ShipDate": oCurrentObj.DateAdded,
-                "CarrierCode": oCurrentObj.CarrierCode,
-                "ServiceName": oCurrentObj.CarrierDesc,
-                "TrackingNumber": oCurrentObj.TrackingNumber,
-                "TrackingStatus":  oCurrentObj.Shipprocess,
-                "SHIP_TO_CONTACT": oCurrentObj.Company,
-                "SHIP_TO_COMPANY": oCurrentObj.Contact,
-            };
-            trackingArray.push(trackingObj);
-            eshipjetModel.setProperty("/trackingArray", trackingArray);
-            ShipNowDataModel.setProperty("/ShipFromAddress", shipFromObj);
-            ShipNowDataModel.setProperty("/ShipToAddress", shipToObj);
+        //     var trackingObj = {
+        //         "COMPANY": oCurrentObj.Company,
+        //         "CreatedDate" : oCurrentObj.Createddate,
+        //         "ShipDate": oCurrentObj.DateAdded,
+        //         "CarrierCode": oCurrentObj.CarrierCode,
+        //         "ServiceName": oCurrentObj.CarrierDesc,
+        //         "TrackingNumber": oCurrentObj.TrackingNumber,
+        //         "TrackingStatus":  oCurrentObj.Shipprocess,
+        //         "SHIP_TO_CONTACT": oCurrentObj.Company,
+        //         "SHIP_TO_COMPANY": oCurrentObj.Contact,
+        //     };
+        //     trackingArray.push(trackingObj);
+        //     eshipjetModel.setProperty("/trackingArray", trackingArray);
+        //     ShipNowDataModel.setProperty("/ShipFromAddress", shipFromObj);
+        //     ShipNowDataModel.setProperty("/ShipToAddress", shipToObj);
 
-            var shippingChargesArray = eshipjetModel.getProperty("/shippingCharges") || [];
-            var shippingChargesObj1 = {
-                description: "Freight Amount",
-                amount: oCurrentObj.Freightamt || "0.00",
-                currency: oCurrentObj.Waerk
-            };
-            var shippingChargesObj2 = {
-                description: "Discount Amount",
-                amount: oCurrentObj.Discountamt || "0.00",
-                currency: oCurrentObj.Waerk
-            };
-            var shippingChargesObj3 = {
-                description: "Fuel",
-                amount: oCurrentObj.Fuel || "0.00",
-                currency:oCurrentObj.Waerk
-            };
+        //     var shippingChargesArray = eshipjetModel.getProperty("/shippingCharges") || [];
+        //     var shippingChargesObj1 = {
+        //         description: "Freight Amount",
+        //         amount: oCurrentObj.Freightamt || "0.00",
+        //         currency: oCurrentObj.Waerk
+        //     };
+        //     var shippingChargesObj2 = {
+        //         description: "Discount Amount",
+        //         amount: oCurrentObj.Discountamt || "0.00",
+        //         currency: oCurrentObj.Waerk
+        //     };
+        //     var shippingChargesObj3 = {
+        //         description: "Fuel",
+        //         amount: oCurrentObj.Fuel || "0.00",
+        //         currency:oCurrentObj.Waerk
+        //     };
 
-            shippingChargesArray.push(shippingChargesObj1, shippingChargesObj2, shippingChargesObj3);
-            eshipjetModel.setProperty("/shippingCharges", shippingChargesArray);
+        //     shippingChargesArray.push(shippingChargesObj1, shippingChargesObj2, shippingChargesObj3);
+        //     eshipjetModel.setProperty("/shippingCharges", shippingChargesArray);
 
-            var packUrl = oCurrentObj.PackURL || "";
-            var packDocType = packUrl.split('.').pop().toUpperCase();
+        //     var packUrl = oCurrentObj.PackURL || "";
+        //     var packDocType = packUrl.split('.').pop().toUpperCase();
 
-            var labelUrl = oCurrentObj.Labelurl || "";
-            var labelDocType = labelUrl.split('.').pop().toUpperCase();
+        //     var labelUrl = oCurrentObj.Labelurl || "";
+        //     var labelDocType = labelUrl.split('.').pop().toUpperCase();
 
-            var shippingDocuments = [
-                {
-                    srNo: 1,
-                    docProvider: oCurrentObj.CarrierCode,
-                    docType: labelDocType,  
-                    contentType: "Label",
-                    docURL: labelUrl
-                },
-                {
-                    srNo: 2,
-                    docProvider: "Eshipjet",
-                    docType: packDocType, 
-                    contentType: "Packing Slip",
-                    docURL: packUrl
-                }
-            ];
+        //     var shippingDocuments = [
+        //         {
+        //             srNo: 1,
+        //             docProvider: oCurrentObj.CarrierCode,
+        //             docType: labelDocType,  
+        //             contentType: "Label",
+        //             docURL: labelUrl
+        //         },
+        //         {
+        //             srNo: 2,
+        //             docProvider: "Eshipjet",
+        //             docType: packDocType, 
+        //             contentType: "Packing Slip",
+        //             docURL: packUrl
+        //         }
+        //     ];
 
-            eshipjetModel.setProperty("/shippingDocuments", shippingDocuments);
-
-
-
-
+        //     eshipjetModel.setProperty("/shippingDocuments", shippingDocuments);
+        var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+        var sDocumentNumber = oCurrentObj.Vbeln;
+        oController.getOwnerComponent().getModel("eshipjetModel").setProperty("/commonValues/sapDeliveryNumber",sDocumentNumber);
+        eshipjetModel.setProperty("/commonValues/shipNowGetBtn", true);
+        oController.onShipNowGetPress();
     },
+
+    
     // add onAddAddPaymentTypes popover changes start
     onAddAddDangerousGoodsPress: function (oEvent) {
         var oButton = oEvent.getSource(),
