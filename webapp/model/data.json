@@ -37,7 +37,8 @@
         "shipNowUPSSelect": false,
         "shipNowVoidSelect": false,
         "shipNowVoidSelectSave":true,
-        "shipNowVoidSelectShipNow": true
+        "shipNowVoidSelectShipNow": true,
+        "showShipType": false
     },        
     
     "createShipReqBusinessSelect": true,

@@ -37,13 +37,13 @@
 									<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch" value="{eshipjetModel>/commonValues/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
 									<Input id="idSapDeliveryNumber" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{eshipjetModel>/commonValues/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle sapDeliveryNumberInptBold create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd custom-input2" width="14%" editable="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
 									<Button text="Get" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" type="Ghost" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" press="onShipNowGetPress" width="4%"></Button>
-									<!-- <Label text="ShipType"  class="sapUiSmallMarginTop sapUiLargeMarginBegin"></Label>
-									<Text text="ZA" class="ship-type-value sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" ></Text> -->
+									<Label text="Ship Type" visible="{eshipjetModel>/commonValues/showShipType}" class="sapUiSmallMargin"></Label>
+									<Text text="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}" visible="{eshipjetModel>/commonValues/showShipType}" class="ship-type-value sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" ></Text>
 									<!-- <Button text="Consolidation" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" type="Ghost" press="handleConsolidationPress" width="8%"></Button> -->
-									<Label text="Ship Date" class="sapUiSmallMarginTop sapUiLargeMarginBegin" labelFor="DP1" width="6%" />
-									<DatePicker class="create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd" id="DP1" width="10%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" placeholder=" " />
+									<Label text="Ship Date" class="sapUiSmallMarginTop sapUiSmallMarginBegin" labelFor="DP1" width="6%" />
+									<DatePicker class="create-ship-req_input sapUiTinyMargin" id="DP1" width="10%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" placeholder=" " />
 									<ToolbarSpacer ></ToolbarSpacer>
-									 <Button text="Clear" press="onShipNowNewPress" class="Ship-Now-toolbar1__button_red clearBtn sapUiTinyMarginTop  sapUiLargeMarginEnd" type="Ghost" />
+									 <Button text="Clear" press="onShipNowNewPress" class="Ship-Now-toolbar1__button_red clearBtn sapUiTinyMargin" type="Ghost" />
 									<Button text="New" press="onShipNowNewPress" class="scan-ship-toolbar1__button saveBtn sapUiTinyMargin" type="Ghost" width="6%" ></Button>
                             </Toolbar>
 							<!-- Icon Tab Bar Starts here -->			
@@ -331,7 +331,7 @@
 													</VBox>
 													<VBox class="sapUiTinyMarginTop" >
 														<Label text="Country" />
-														<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipFromAddress/ShipFromCOUNTRY}" >
+														<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipToAddress/Country}" >
 															<core:Item key="{eshipjetModel>code}" text="{eshipjetModel>name}" />												
 														</ComboBox>
 													</VBox>
@@ -356,11 +356,11 @@
 												 columnsM="2" columnsL="3" columnsXL="6" >
 												<f:content>
 													<Label text="Sales Order No" />
-													<Input value="" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/commonValues/SalesOrder}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text="Purchase Order No" />
-													<Input value="" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
+													<Input value="{eshipjetModel>/commonValues/PurchaseOrder}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text="Reference1" />
-													<Input  value="{eshipjetModel>/Reference1}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
+													<Input  value="{eshipjetModel>/commonValues/sapDeliveryNumber}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text="Reference2" />
 													<Input value="{eshipjetModel>/Reference1}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text="Invoice No" />
@@ -808,7 +808,7 @@
 													</VBox>
 													<VBox class="sapUiTinyMarginTop" >
 														<Label text="Country" />
-														<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipFromAddress/ShipFromCOUNTRY}" >
+														<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipToAddress/Country}" >
 															<core:Item key="{eshipjetModel>code}" text="{eshipjetModel>name}" />												
 														</ComboBox>
 													</VBox>
@@ -945,7 +945,7 @@
 								<ui:Column visible="true" width="3%" >
 									<Label text="#" />
 									<ui:template>
-										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
+										<Text text="{eshipjetModel>DistributionChannel}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/0/visible}" >

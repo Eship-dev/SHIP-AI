@@ -325,8 +325,8 @@
 
 		<OverflowToolbar class="eship-footer1 ship-now-footer" visible="{eshipjetModel>/commonValues/shipNowViewFooter}">
 			<HBox>
-				<Text text="Today’s Shipments by " class="todayscss sapUiTinyMarginEnd sapUiSmallMarginBegin" />
-				<Text text=" Kumar Vidadala" class="greenTexttoday" />
+				<Text text="Today's Shipments by " class="todayscss sapUiTinyMarginEnd sapUiSmallMarginBegin" />
+				<Text text="{eshipjetModel>/TodayShipmentsByUser}" class="greenTexttoday" />
 				<Text text=":" class="todayscss" />
 				<Text text="{eshipjetModel>/TodayShipmentsLength}" class="todayscssNumber sapUiTinyMarginBegin " />
 			</HBox>
@@ -354,7 +354,7 @@
 			<ToolbarSpacer/>
 				<!-- <Button text="Save" press="createHandlingUnits" class="scan-ship-toolbar1__button sapUiTinyMargin sapUiLargeMarginEnd" visible="{eshipjetModel>/commonValues/shipNowVoidSelectSave}" type="Ghost" width="5%"  /> -->
 				<Button text="Ship Now" press="onShipNowPress" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" visible="{eshipjetModel>/commonValues/shipNowVoidSelectShipNow}" type="Ghost" class="green-button sapUiMediumMarginEnd" />
-				<Button text="Void" press="onVoidShipNowPress"  visible="{eshipjetModel>/commonValues/shipNowVoidSelect}" type="Ghost" class="green-button sapUiMediumMarginEnd" width="15px" />
+				<Button text="Void" press="onShipNowVoidPress"  visible="{eshipjetModel>/commonValues/shipNowVoidSelect}" type="Ghost" class="green-button sapUiMediumMarginEnd" width="15px" />
 		</OverflowToolbar>
 
 		<Toolbar class="sapUiLargeMarginBottom eship-req-footer" visible="{eshipjetModel>/commonValues/createShipReqViewFooter}" >
