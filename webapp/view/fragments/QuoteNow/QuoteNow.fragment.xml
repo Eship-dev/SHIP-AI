@@ -4,11 +4,11 @@
 	    <Toolbar class="scan-ship-toolbar" >
             
                 <Text text="Quote Now" class="sapUiTinyMargin toolBarHeader scan-ship-toolbar__title" ></Text>
-                <Input class="scan-ship-toolbar__input" value="{eshipjetModel>/sShipAndScan}"   placeholder="Scan or Enter Shipment Order" ></Input>
-                <Button id="idQuoteNow" text="Quote Now" type="Accept" class="scan-ship-toolbar__button" ></Button>
+                <Input class="scan-ship-toolbar__input" value="{eshipjetModel>/commonValues/quoteNowDeliveryNumbInput}"   placeholder="Scan or Enter Shipment Order" ></Input>
+                <Button id="idQuoteNow" text="Quote Now" type="Accept" class="scan-ship-toolbar__button"   press="onQuoteNowPress"></Button>
                 
             <ToolbarSpacer ></ToolbarSpacer>
-                <Button text="Clear" class="scan-ship-toolbar__button scan-ship-toolbar__button_void" type="Reject" ></Button>
+                <Button text="Clear" class="scan-ship-toolbar__button scan-ship-toolbar__button_void" type="Reject" press="onQuoteNowClearPress"></Button>
         </Toolbar>
 
         <!-- <Toolbar height="32rem" class="sapUiSmallMarginTop scan-ship-toolbar" >

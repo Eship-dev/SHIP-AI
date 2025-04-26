@@ -1,6 +1,7 @@
 {
     "commonValues":{
         "sapDeliveryNumber":"",
+        "quoteNowDeliveryNumbInput":"",
         "ShipNowShipMethodSelectedKey":"",
         "ShipNowShipsrvNameSelectedKey":"",
         "ShipNowSelectedServiceName":"",
@@ -27,7 +28,7 @@
         "shipNowFastFarwarderSelect": false,
         "shipNowJPMorganChaseInternalSelect": false,
         "shipNowFedExSelect": false,
-        "shipNowMalca-AmitSelect": false,
+        "shipNowMalca_AmitSelect": false,
         "shipNowOtherSelect": false,
         "shipNowRLSelect": false,
         "shipNowTheArmorySelect": false,
@@ -46,9 +47,7 @@
     "toolPageDarkHeader": false,       
     "HandlingUnitsLength":0,
     "selectedPackageMat": "CARTON BOX",    
-      
-    
-    
+    "sFromViewName":"",   
     "DgUpdate":false,
     "DgAdd":false,
     "PriorityAlert": false,

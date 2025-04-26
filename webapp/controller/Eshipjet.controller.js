@@ -257,36 +257,8 @@ sap.ui.define([
                 // this._handleDisplayShipReqTable();
                 oController.getShipReqLabelHistoryShipments();
             } else if (sKey === "ShipNow") {
-                var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
-                var obj = {
-                    "ShipFromCONTACT": "Steve Marsh",
-                    "ShipFromCOMPANY": "Eshipjet Software Inc.",
-                    "ShipFromPHONE": "(888) 464-2360",
-                    "ShipFromEMAIL": "info@eshipjet.ai",
-                    "ShipFromCITY": "Plano",
-                    "ShipFromSTATE": "TX",
-                    "ShipFromCOUNTRY": "US",
-                    "ShipFromZIPCODE": "75024",
-                    "ShipFromADDRESS_LINE1": "5717 Legacy",
-                    "ShipFromADDRESS_LINE2": "Suite 250",
-                    "LocationType": "Commercial"
-                };
-                ShipNowDataModel.setProperty("/ShipFromAddress", obj);
+                oController.onShipNowNavigateInitialProcess();
                 ShipNowDataModel.setProperty("/ShipToAddress", "");
-                eshipjetModel.setProperty("/commonValues/toolPageHeader", false);
-                eshipjetModel.setProperty("/commonValues/allViewsFooter", false);
-                eshipjetModel.setProperty("/commonValues/shipNowViewFooter", true);
-                eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
-                eshipjetModel.setProperty("/commonValues/routingGuidFooter", false);
-                eshipjetModel.setProperty("/commonValues/showDarkThemeSwitch", false);
-                eshipjetModel.setProperty("/commonValues/darkTheme", false);
-                document.body.classList.remove("dark-theme");
-                eshipjetModel.setProperty("/commonValues/shipNowGetBtn", true);
-                eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", "");
-                eshipjetModel.setProperty("/commonValues/shipNowBtnStatus", true);
-                eshipjetModel.setProperty("/commonValues/showShipType", false);
-                oController.onPackSectionEmptyRows();
-                oController.getTodayShipments();
                 // oController._handleDisplayShipNowPackTable();
                 // this._handleDisplayShipNowProductsTable();
                 // this._handleDisplayShipNowHandlingUnitTable();
@@ -372,7 +344,41 @@ sap.ui.define([
             eshipjetModel.setProperty("/SideNavigation", false);
             this.byId("pageContainer").to(this.getView().createId(sKey));
         },
+        onShipNowNavigateInitialProcess:function(){
+            var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
+            var sFromScreen = eshipjetModel.getProperty("/sFromViewName");
+            var obj = {
+                "ShipFromCONTACT": "Steve Marsh",
+                "ShipFromCOMPANY": "Eshipjet Software Inc.",
+                "ShipFromPHONE": "(888) 464-2360",
+                "ShipFromEMAIL": "info@eshipjet.ai",
+                "ShipFromCITY": "Plano",
+                "ShipFromSTATE": "TX",
+                "ShipFromCOUNTRY": "US",
+                "ShipFromZIPCODE": "75024",
+                "ShipFromADDRESS_LINE1": "5717 Legacy",
+                "ShipFromADDRESS_LINE2": "Suite 250",
+                "LocationType": "Commercial"
+            };
+            ShipNowDataModel.setProperty("/ShipFromAddress", obj);           
+            eshipjetModel.setProperty("/commonValues/toolPageHeader", false);
+            eshipjetModel.setProperty("/commonValues/allViewsFooter", false);
+            eshipjetModel.setProperty("/commonValues/shipNowViewFooter", true);
+            eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
+            eshipjetModel.setProperty("/commonValues/routingGuidFooter", false);
+            eshipjetModel.setProperty("/commonValues/showDarkThemeSwitch", false);
+            eshipjetModel.setProperty("/commonValues/darkTheme", false);
+            document.body.classList.remove("dark-theme");
+            eshipjetModel.setProperty("/commonValues/shipNowGetBtn", true);
+            eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", "");
+            eshipjetModel.setProperty("/commonValues/shipNowBtnStatus", true);
+            oController.onPackSectionEmptyRows();
+            oController.getTodayShipments();
+            // if(sFromScreen === "QUOTE_NOW"){
+            //     oController.onShipNowGetPress()
+            // }
 
+        },
         handleUserNamePress: function (event) {
             var oPopover = new Popover({
                 showHeader: false,
@@ -1018,7 +1024,7 @@ sap.ui.define([
                 shipNowFastFarwarderSelect : false,
                 shipNowFedExFreightSelect : false,
                 shipNowJPMorganChaseInternalSelect:false,
-                "shipNowMalca-AmitSelect":false,
+                "shipNowMalca_AmitSelect":false,
                 shipNowMoviGroupSelect: false,
                 shipNowOtherSelect:false,
                 shipNowRLSelect :false,
@@ -2691,7 +2697,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -2898,11 +2904,7 @@ sap.ui.define([
                             }
                             tepmShippingDocs.push(billOfLading);
                         }
-
-                            
-
-
-                                
+  
                             eshipjetModel.setProperty("/shippingDocuments", tepmShippingDocs);
                             eshipjetModel.setProperty("/tepmShippingDocs", ashippingDocuments );
 
@@ -3036,7 +3038,7 @@ sap.ui.define([
                 oDeliveryModel.submitChanges({
                     "groupId":"addressDefferedgroupID",
                     success: function(oData){
-                        oController.oBusyDialog.close();
+                        //oController.oBusyDialog.close();
                         if(oData &&  oData.__batchResponses &&  oData.__batchResponses.length > 0){
                             oData.__batchResponses.map(function(currentValue, index, arr){
                                 if(index == 0){
@@ -3089,6 +3091,14 @@ sap.ui.define([
                 }});                
             });  
             Promise.all([promise1]).then((values) => {
+                // invoking Shipping Rates from "Quote Now" Screen
+                let sFromScreen = eshipjetModel.getProperty("/sFromViewName");
+                if(sFromScreen === "QUOTE_NOW"){
+                    var getShipRatePromise = new Promise((resolve, reject) => {
+                        oController.onOpenBusyDialog();
+                        oController.onShipRateRequest(resolve, reject, "QUOTE_NOW");
+                    });
+                }
                 if(sFromMenu === "ScanAndShip"){
                     oController.onShipNowPress();
                 }    
@@ -3180,7 +3190,9 @@ sap.ui.define([
                         eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
                         oController.onPackSectionEmptyRows();
                     }
-                    oController.onCloseBusyDialog();
+                    if(eshipjetModel.getProperty("/sFromViewName") !== "QUOTE_NOW"){
+                        oController.onCloseBusyDialog();
+                    }
                 },
                 error: function(oErr){
                     console.log(oErr);                        
@@ -13147,7 +13159,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13168,7 +13180,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13189,7 +13201,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", true );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13211,7 +13223,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", true );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13232,7 +13244,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13253,7 +13265,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13274,7 +13286,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13295,7 +13307,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13316,7 +13328,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13337,7 +13349,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13358,7 +13370,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13379,7 +13391,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13400,7 +13412,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13421,7 +13433,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13442,7 +13454,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13463,7 +13475,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13484,7 +13496,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13505,7 +13517,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13526,7 +13538,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13547,7 +13559,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -13569,7 +13581,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowFastFarwarderSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowFedExFreightSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowJPMorganChaseInternalSelect", false );
-                eshipjetModel.setProperty("/commonValues/shipNowMalca-AmitSelect", false );
+                eshipjetModel.setProperty("/commonValues/shipNowMalca_AmitSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowMoviGroupSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowOtherSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowRLSelect", false );
@@ -14243,19 +14255,18 @@ sap.ui.define([
             MessageBox.warning("Please create package");
         }else{
            
-            var getShipRatePromise = new Promise((resolve, reject) => {
+            let getShipRatePromise = new Promise((resolve, reject) => {
                 oController.onShipRateRequest(resolve, reject, "ShipRates");
             });
         }        
     },
-    onShipRateRequest:function(resolve, reject, sRequestFrom){
-        var oEshipjetModel  = oController.getOwnerComponent().getModel("eshipjetModel");
+    onShipRateRequest:function(resolve, reject, sRequestFrom){       
         var oShipDataModel  = oController.getView().getModel("ShipNowDataModel");  
-       
+        //oController.onOpenBusyDialog();
         var oPayload = {
             "HeaderInfo": {
                 "FeederSystem": "Manual",
-                "DocumentNumber": oEshipjetModel.getProperty("/commonValues/sapDeliveryNumber"),
+                "DocumentNumber": eshipjetModel.getProperty("/commonValues/sapDeliveryNumber"),
                 "DocumentType": "Delivery Order",
                 "ShipDate": "2024-10-29T09:08:36.962Z",
                 "CreatedDate": "2024-10-29T09:08:36.962Z",
@@ -14512,7 +14523,7 @@ sap.ui.define([
                 "EMAIL": oShipDataModel.getProperty("/ShipFromAddress/ShipFromEMAIL")
             }
         };       
-        oEshipjetModel.updateBindings(true);
+        oController.onOpenBusyDialog();
         // var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/Rateall "; 
         var sPath = "https://carrier-api-v1.eshipjet.site/rateall"
         $.ajax({
@@ -14520,21 +14531,22 @@ sap.ui.define([
             method: "POST",
             contentType: "application/json", // Set content type to JSON if sending JSON data
             data: JSON.stringify(oPayload),
-            success: function (response) {          
-                console.log("Success:", response);    
+            success: function (response) {                 
                 resolve();          
                 if(response && response.RateServices && response.RateServices.length > 0){
                     response.RateServices.map(function(Obj, idx){
                         Obj["discountFreight_Cal"] = (Obj.publishedFreight) - ((Obj.publishedFreight * 20 ) / 100) ;  
                     });
-                    oEshipjetModel.setProperty("/shipNowShippingRates", response.RateServices);
-                    if(sRequestFrom === "ShipRates"){
+                    eshipjetModel.setProperty("/shipNowShippingRates", response.RateServices);
+                    let sFromViewName = eshipjetModel.getProperty("/sFromViewName");
+                    if(sRequestFrom === "ShipRates"|| sFromViewName === "QUOTE_NOW"){                        
                         oController.onOpenShipNowShippinRateDialog();
+                        oController.onCloseBusyDialog();
                     }else{
-                        var sKey = oEshipjetModel.getProperty("/commonValues/ShipNowShipMethodSelectedKey"), oCarrier = {};
+                        var sKey = eshipjetModel.getProperty("/commonValues/ShipNowShipMethodSelectedKey"), oCarrier = {};
                         if(sKey !== "ABFS"){
                             
-                            var sServiceKeyName = oEshipjetModel.getProperty("/carrierServiceName_dis");
+                            var sServiceKeyName = eshipjetModel.getProperty("/carrierServiceName_dis");
                             if(response && response.RateServices &&  response.RateServices.length > 0){
                                 response.RateServices.forEach(function(item, idx){
                                     if(sServiceKeyName === item.serviceName){
@@ -14542,7 +14554,7 @@ sap.ui.define([
                                     }
                                 })
                             }
-                            oEshipjetModel.setProperty("/shipRateSelectItem", oCarrier);
+                            eshipjetModel.setProperty("/shipRateSelectItem", oCarrier);
                             let fuelAmount = (oCarrier && oCarrier.surCharges && oCarrier.surCharges.length > 0 ) ? oCarrier.surCharges[0].amount : "";
                             var aShippingCharges = [
                                 { "description": "Freight Amount", "amount": parseInt(oCarrier.publishedFreight).toFixed(2), "currency": "USD" },
@@ -14550,11 +14562,11 @@ sap.ui.define([
                                 { "description": "Fuel", "amount": fuelAmount, "currency": "USD" }
                             ];
                             eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
-                            oEshipjetModel.setProperty("/commonValues/ShipNowShipMethodSelectedKey", oCarrier.Carrier);
-                            oEshipjetModel.setProperty("/commonValues/ShipNowShipsrvNameSelectedKey", oCarrier.serviceCode);
-                            oEshipjetModel.setProperty("/commonValues/ShipNowSelectedServiceName", oCarrier.serviceName);
-                            oEshipjetModel.setProperty("/accountNumber", oCarrier.AccountNumber); 
-                            oEshipjetModel.setProperty("/carrierServiceName_dis",oCarrier.serviceName);
+                            eshipjetModel.setProperty("/commonValues/ShipNowShipMethodSelectedKey", oCarrier.Carrier);
+                            eshipjetModel.setProperty("/commonValues/ShipNowShipsrvNameSelectedKey", oCarrier.serviceCode);
+                            eshipjetModel.setProperty("/commonValues/ShipNowSelectedServiceName", oCarrier.serviceName);
+                            eshipjetModel.setProperty("/accountNumber", oCarrier.AccountNumber); 
+                            eshipjetModel.setProperty("/carrierServiceName_dis",oCarrier.serviceName);
                         }else{
                             var aShippingCharges = [
                                 { "description": "Freight Amount", "amount": "100.00", "currency": "USD" },
@@ -14622,24 +14634,32 @@ sap.ui.define([
         this.byId("_IDGenShipNowShppindRateDialog").close();        
     },
     onPickCarrierSubmit:function(){
-        var oTable  = oController.byId("_ShippingRateTableId");
-        var oEshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-        var aSelectedItems = oTable.getSelectedItems();
-        var oCarrier = oTable.getSelectedItem().getBindingContext("eshipjetModel").getObject();
+        var oTable  = oController.byId("_ShippingRateTableId"),        
+        aSelectedItems = oTable.getSelectedItems(), oCarrier,
+        sFromViewName = eshipjetModel.getProperty("/sFromViewName");
         // var RecentShipmentSet = oEshipjetModel.getData().RecentShipmentSet;
         // RecentShipmentSet[RecentShipmentSet.length-1]["Carrier"] = oCarrier.Carrier;
-        // RecentShipmentSet["Carrier"] = oCarrier;
-        oEshipjetModel.setProperty("/shipRateSelectItem", oCarrier);
-        oEshipjetModel.updateBindings(true);
+        // RecentShipmentSet["Carrier"] = oCarrier;            
         
         if(aSelectedItems && aSelectedItems.length > 0){
+            oCarrier = oTable.getSelectedItem().getBindingContext("eshipjetModel").getObject();
+            eshipjetModel.setProperty("/shipRateSelectItem", oCarrier);  
             oController.oSelectObj = aSelectedItems[0].getBindingContext("eshipjetModel").getObject(); 
-            oEshipjetModel.setProperty("/commonValues/ShipNowShipMethodSelectedKey", oController.oSelectObj.Carrier);
-            oEshipjetModel.setProperty("/commonValues/ShipNowShipsrvNameSelectedKey", oController.oSelectObj.serviceCode);
-            oEshipjetModel.setProperty("/commonValues/ShipNowSelectedServiceName", oController.oSelectObj.serviceName);
-            oEshipjetModel.setProperty("/accountNumber", oController.oSelectObj.AccountNumber); 
-            oEshipjetModel.setProperty("/carrierServiceName_dis",oController.oSelectObj.serviceName);                    
-        }
+            eshipjetModel.setProperty("/commonValues/ShipNowShipMethodSelectedKey", oController.oSelectObj.Carrier);
+            eshipjetModel.setProperty("/commonValues/ShipNowShipsrvNameSelectedKey", oController._getShippingType(oController.oSelectObj.serviceCode));
+            eshipjetModel.setProperty("/commonValues/ShipNowSelectedServiceName", oController.oSelectObj.serviceName);
+            eshipjetModel.setProperty("/accountNumber", oController.oSelectObj.AccountNumber); 
+            eshipjetModel.setProperty("/carrierServiceName_dis",oController.oSelectObj.serviceName);  
+            ///commonValues/ShipNowShipMethodSelectedKey    
+            if(sFromViewName === "QUOTE_NOW"){
+                eshipjetModel.setProperty("/sFromViewName","");
+                oController.onShipNowNavigateInitialProcess();
+                oController.byId("pageContainer").to(this.getView().createId("ShipNow"));            
+            }              
+        }else{
+            MessageToast.show("Please select the item from list");
+        }   
+        eshipjetModel.updateBindings(true);
         oController.onCloseShipNowShippinRateDialog();
     },
     onPressCloseShipNow: function() {
@@ -15188,13 +15208,6 @@ sap.ui.define([
                 }
             });
         },
-
-
-
-
-
-
-
         onShipNowVoidPress: function () {       
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var packAddProductTable = eshipjetModel.getProperty("/commonValues/packAddProductTable");
@@ -15267,10 +15280,35 @@ sap.ui.define([
                 });
             // })   
 
+        },
+         /**
+         * Below Function invoke on "Quote Now" button press from QuoteNow screen
+         * once user provice delivery number and click quote now we are calling getting shipdata for shiping rates and showing dialog
+         */
+         onQuoteNowPress:function(){            
+            let quoteNowDeliveryNum = eshipjetModel.getProperty("/commonValues/quoteNowDeliveryNumbInput");
+            if(quoteNowDeliveryNum && quoteNowDeliveryNum.length > 0){
+                eshipjetModel.setProperty("/commonValues/sapDeliveryNumber", quoteNowDeliveryNum);
+                eshipjetModel.setProperty("/sFromViewName", "QUOTE_NOW");
+                oController.onShipNowGetPress();
+            }
+            
+        },
+        onQuoteNowClearPress:function(){
+            eshipjetModel.setProperty("/commonValues/quoteNowDeliveryNumbInput","");
+        },
+        _getShippingType:function(sServiceNameCode){
+            var aCarrierServiceNames = oController.getView().getModel("serviceNamesList").getProperty("/carrierServices");
+            var sShippinType;
+            //var sSelectedValue = aCarrierServiceNames.find(function())
+            const result = aCarrierServiceNames.find(({ ServiceCode }) => ServiceCode === sServiceNameCode);
+            if(result){
+                sShippinType = result.ShippingType;
+            }else{
+                sShippinType = sServiceNameCode;
+            }
+
+            return sShippinType;
         }
-        
-        
-        
-        
     });
 });
