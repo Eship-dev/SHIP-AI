@@ -258,7 +258,7 @@ sap.ui.define([
                 oController.getShipReqLabelHistoryShipments();
             } else if (sKey === "ShipNow") {
                 oController.onShipNowNavigateInitialProcess();
-                ShipNowDataModel.setProperty("/ShipToAddress", "");
+                // ShipNowDataModel.setProperty("/ShipToAddress", "");
                 // oController._handleDisplayShipNowPackTable();
                 // this._handleDisplayShipNowProductsTable();
                 // this._handleDisplayShipNowHandlingUnitTable();
@@ -2540,7 +2540,7 @@ sap.ui.define([
             eshipjetModel.setProperty("/commonValues/darkTheme", false);
             eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", "");
             eshipjetModel.setProperty("/commonValues/showShipType", false);
-            eshipjetModel.setProperty("commonValues/SalesOrder", "");
+            eshipjetModel.setProperty("/commonValues/SalesOrder", "");
 
             jQuery.sap.delayedCall(500, oController, function() {
                 oController.getView().byId("idSapDeliveryNumber").focus();
