@@ -1476,6 +1476,30 @@ sapMPopover .sapMPopoverCont {
   color: #fff !important;
 }
 
+/* Ship Now button base */
+.btnShipNowVoid {
+  background-color: #247a09 !important;
+  border: 1px solid #4ea732 !important;
+  color: #ffffff !important;
+  font-size: 17.5px !important;
+  width: 160px !important;
+  height: 46px !important;
+  font-family: "AvenirNextCyrMedium", "72", sans-serif !important;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer; /* ensure cursor is pointer */
+  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+
+/* Hover behavior: keep background green and text white */
+.btnShipNowVoid:hover {
+  background-color: #247a09 !important; /* same green */
+  border: 1px solid #4ea732 !important; /* same green border */
+  color: #ffffff !important; /* white text */
+  cursor: pointer; /* pointer cursor */
+}
+
+
 
 .scan-ship-toolbar1__input input {
   height: 52px;

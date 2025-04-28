@@ -4,7 +4,7 @@
 	    <Toolbar class="scan-ship-toolbar" >
             
                 <Text text="Quote Now" class="sapUiTinyMargin toolBarHeader scan-ship-toolbar__title" ></Text>
-                <Input class="scan-ship-toolbar__input" value="{eshipjetModel>/commonValues/quoteNowDeliveryNumbInput}"   placeholder="Scan or Enter Shipment Order" ></Input>
+                <Input class="scan-ship-toolbar__input" value="{eshipjetModel>/commonValues/quoteNowDeliveryNumbInput}"  submit="onQuoteNowPress"   placeholder="Scan or Enter Shipment Order" ></Input>
                 <Button id="idQuoteNow" text="Quote Now" type="Accept" class="scan-ship-toolbar__button"   press="onQuoteNowPress"></Button>
                 
             <ToolbarSpacer ></ToolbarSpacer>

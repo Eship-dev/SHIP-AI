@@ -333,7 +333,7 @@
 
 			<ToolbarSpacer/>
 				<!-- <Button text="Get Shipping Rates" class="ship-now-footer_ship-rates btngetshipments"/> -->
-				<Button text="Get Shipping Rates" class="ship-now-footer_ship-now" type="Success" width="auto" press="onShipRatePress" />
+				<Button text="Get Shipping Rates" visible="{eshipjetModel>/commonValues/shipNowVoidSelectShipNow}" class="ship-now-footer_ship-now" type="Success" width="auto" press="onShipRatePress" />
 				<!-- <ComboBox class="create-ship-req_input" items="" placeholder="More Actions" editable="false" >
 					<HBox>
 						<core:Item key="postGoodsIssue" text="Post Goods Issue" />
@@ -349,12 +349,12 @@
 					<core:ListItem key="postGoodsIssue" text="Post Goods Issue" icon="sap-icon://accept" />
 					<core:ListItem key="reversePGI" text="Reverse PGI" icon="sap-icon://refresh" />
 				</Select> -->
-				<Button text="More Actions" press="onMoreActionsPress" icon="sap-icon://dropdown" class="moreActions-btn" iconFirst="false" />
+				<Button text="More Actions" visible="{eshipjetModel>/commonValues/shipNowVoidSelectShipNow}" press="onMoreActionsPress" icon="sap-icon://dropdown" class="moreActions-btn" iconFirst="false" />
 
 			<ToolbarSpacer/>
 				<!-- <Button text="Save" press="createHandlingUnits" class="scan-ship-toolbar1__button sapUiTinyMargin sapUiLargeMarginEnd" visible="{eshipjetModel>/commonValues/shipNowVoidSelectSave}" type="Ghost" width="5%"  /> -->
 				<Button text="Ship Now" press="onShipNowPress" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" visible="{eshipjetModel>/commonValues/shipNowVoidSelectShipNow}" type="Ghost" class="green-button sapUiMediumMarginEnd" />
-				<Button text="Void" press="onShipNowVoidPress"  visible="{eshipjetModel>/commonValues/shipNowVoidSelect}" type="Ghost" class="green-button sapUiMediumMarginEnd" width="15px" />
+				<Button text="Void" press="onShipNowVoidPress"  visible="{eshipjetModel>/commonValues/shipNowVoidSelect}" type="Ghost" class="btnShipNowVoid sapUiMediumMarginEnd" width="" />
 		</OverflowToolbar>
 
 		<Toolbar class="sapUiLargeMarginBottom eship-req-footer" visible="{eshipjetModel>/commonValues/createShipReqViewFooter}" >

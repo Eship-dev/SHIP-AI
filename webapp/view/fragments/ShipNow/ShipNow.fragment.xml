@@ -10,10 +10,12 @@
 					visible="{= ${eshipjetModel>/commonValues/OverallGoodsMovementStatus} === 'C' }"
 					icon="sap-icon://accept" iconFirst="true"
 					enabled="false" class="sapUiSmallMarginEnd pgiSuccess" />
-				<Button text="PGI Failed." type="Ghost"
-					visible="{= ${eshipjetModel>/commonValues/OverallGoodsMovementStatus} === 'A' }"
+				<Button text="PGI Failed." type="Ghost" 
+					visible="{= ${eshipjetModel>/commonValues/OverallGoodsMovementStatus} === 'A' ? (${eshipjetModel>/commonValues/shipNowStatus} === true) : false }"
 					icon="sap-icon://decline" iconFirst="true"
 					enabled="false" class="sapUiSmallMarginEnd pgiFailed" />
+
+
 
 						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn ship-now-decline_btn" type="Ghost" />
 				</Toolbar>

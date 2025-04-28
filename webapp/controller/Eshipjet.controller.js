@@ -15269,7 +15269,7 @@ sap.ui.define([
                     data: JSON.stringify(obj),
                     success: function (response) {
                         console.log("Success:", response);
-                        oController.updateManifestHeaderSet("CANC");
+                        // oController.updateManifestHeaderSet("CANC");
                         oController.onCloseBusyDialog();
                     },
                     error: function (error) {
