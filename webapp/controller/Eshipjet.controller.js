@@ -1036,6 +1036,7 @@ sap.ui.define([
                 shipNowVoidSelectSave:true,
                 shipNowVoidSelectShipNow: true,
                 showShipType: false,
+                SalesOrder: ""
             };
             eshipjetModel.setProperty("/commonValues", oCommonValues);        
             eshipjetModel.setProperty("/accountNumber", "");
@@ -1436,6 +1437,7 @@ sap.ui.define([
                             },
                             error: function (error) {
                                 reject(error);
+                                MessageBox.warning(error.responseText);
                                 console.log("Error:", error);
                                 oController.onCloseBusyDialog();
                             }
@@ -1757,8 +1759,17 @@ sap.ui.define([
                     aManifestData.push(jQuery.extend(true, {}, oManifestDataObj));
                 });
             }else{
+                for(var i=0; i<shippingDocuments.length; i++){
+                    if(shippingDocuments[i].contentType === "Label"){
+                        oManifestDataObj["Labelurl"] = shippingDocuments[i].docName;
+                    }else if(shippingDocuments[i].contentType === "Packing Slip"){
+                        oManifestDataObj["PackURL"] = shippingDocuments[i].docName;
+                    }else if(shippingDocuments[i].contentType === "Bill Of Lading"){
+                        oManifestDataObj["BOLURL"] = shippingDocuments[i].docName;
+                    }
+                };
                 aManifestData.push(oManifestDataObj);
-            }
+            };
             var oPayload = {
                 "Vbeln": sapDeliveryNumber,
                 "ToManifestData": aManifestData
@@ -1776,8 +1787,15 @@ sap.ui.define([
                     // console.log("Success:", oData);
                     // oController.onCloseBusyDialog();
                     MessageToast.show("Shipment processed successfully.");
-                    oController.showLabelAfterShipmentSuccess(eshipjetModel.getProperty("/ShipNowPostResponse"));
+                    var ShipNowPostResponse = eshipjetModel.getProperty("/ShipNowPostResponse");
                     oController.createPostGoodsIssue(sapDeliveryNumber);
+
+                    var sFromViewName = eshipjetModel.getProperty("/sFromViewName");
+                    if(sFromViewName === "SCAN_SHIP"){
+                        oController.getManifestHeaderForScanShip();
+                    }else{
+                        oController.showLabelAfterShipmentSuccess(ShipNowPostResponse);
+                    }
                     
                     // var sAudioPath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/audio/ShipNow.mp3");
                     // var audio = new Audio(sAudioPath);
@@ -2520,7 +2538,9 @@ sap.ui.define([
             eshipjetModel.setProperty("/commonValues/routingGuidFooter", false);
             eshipjetModel.setProperty("/showDarkThemeSwitch", false);
             eshipjetModel.setProperty("/commonValues/darkTheme", false);
-            eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", ""); 
+            eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", "");
+            eshipjetModel.setProperty("/commonValues/showShipType", false);
+            eshipjetModel.setProperty("commonValues/SalesOrder", "");
 
             jQuery.sap.delayedCall(500, oController, function() {
                 oController.getView().byId("idSapDeliveryNumber").focus();
@@ -2711,9 +2731,10 @@ sap.ui.define([
             eshipjetModel.setProperty("/commonValues/accountNumber","");    
             eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", "");
             eshipjetModel.setProperty("/commonValues/shipNowBtnStatus", true);
-            let myPromise = new Promise(function(myResolve, myReject) {
+            var myPromise = new Promise(function(myResolve, myReject) {
                 oController.shipNowData(sDeveliveryNumber, "ShipNow", myResolve);                                                    
             });
+            await myPromise;
         },
 
         onOpenBusyDialog: function () {
@@ -2741,77 +2762,162 @@ sap.ui.define([
         },     
 
         shipNowData:function(sDeveliveryNumber ,sFromMenu, myResolve){
-            var oDeliveryModel = oController.getView().getModel("OutBoundDeliveryModel");                    
-            var oHandlingUnitModel = oController.getView().getModel("HandlingUnitModel");           
-            var sPath = "/A_OutbDeliveryHeader('"+ sDeveliveryNumber +"')/to_DeliveryDocumentPartner";
-            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            if(sDeveliveryNumber && sDeveliveryNumber.length >= 7){
-                oController.onOpenBusyDialog();
+            // var oDeliveryModel = oController.getView().getModel("OutBoundDeliveryModel");                    
+            // var oHandlingUnitModel = oController.getView().getModel("HandlingUnitModel");           
+            // var sPath = "/A_OutbDeliveryHeader('"+ sDeveliveryNumber +"')/to_DeliveryDocumentPartner";
+            // var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            // if(sDeveliveryNumber && sDeveliveryNumber.length >= 7){
+            //     oController.onOpenBusyDialog();
                 
-                var path = "/A_OutbDeliveryHeader('"+ sDeveliveryNumber +"')"
-                oDeliveryModel.read(path,{
-                    urlParameters: {
-                        "$expand": "to_DeliveryDocumentItem,to_DeliveryDocumentPartner"
-                    },
-                    success:function(oData){                        
-                        oController.etag = oData.__metadata.etag;
-                        oController.ShippingType = oData.ShippingType;
-                        eshipjetModel.setProperty("/PlantCode",oData.ShippingPoint);
-                        eshipjetModel.setProperty("/commonValues/ShipNowShipsrvNameSelectedKey", oData.ShippingType);
-                        if(oData.ShippingType !== "" && oData.ShippingType !== undefined){
-                            eshipjetModel.setProperty("/commonValues/showShipType", true);
-                        }
-                        eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", oData.OverallGoodsMovementStatus);
-                        oController.getManifestHeaderForCharges(sDeveliveryNumber);
-                    },
-                    error: function(oErr){
-                        oController.onCloseBusyDialog();
-                    }
-                });
+            //     var path = "/A_OutbDeliveryHeader('"+ sDeveliveryNumber +"')"
+            //     oDeliveryModel.read(path,{
+            //         urlParameters: {
+            //             "$expand": "to_DeliveryDocumentItem,to_DeliveryDocumentPartner"
+            //         },
+            //         success:function(oData){                        
+            //             oController.etag = oData.__metadata.etag;
+            //             oController.ShippingType = oData.ShippingType;
+            //             eshipjetModel.setProperty("/PlantCode",oData.ShippingPoint);
+            //             eshipjetModel.setProperty("/commonValues/ShipNowShipsrvNameSelectedKey", oData.ShippingType);
+            //             if(oData.ShippingType !== "" && oData.ShippingType !== undefined){
+            //                 eshipjetModel.setProperty("/commonValues/showShipType", true);
+            //             }
+            //             eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", oData.OverallGoodsMovementStatus);
+            //             oController.getManifestHeaderForCharges(sDeveliveryNumber);
+            //         },
+            //         error: function(oErr){
+            //             oController.onCloseBusyDialog();
+            //         }
+            //     });
 
-                oDeliveryModel.read(sPath,{
-                    // urlParameters: {
-                    //     "$expand": "to_DeliveryDocumentItem,to_DeliveryDocumentPartner"
-                    // },
-                    success:function(oData){
-                        if(oData){                      
-                            oController._getShipToAddress(oData.results, sDeveliveryNumber, sFromMenu);
-                        }
-                        myResolve();
-                    },
-                    error: function(oErr){                        
-                        console.log(oErr);
-                        myResolve();
-                        oController.onCloseBusyDialog();
-                    }
-                });
+            //     oDeliveryModel.read(sPath,{
+            //         // urlParameters: {
+            //         //     "$expand": "to_DeliveryDocumentItem,to_DeliveryDocumentPartner"
+            //         // },
+            //         success:function(oData){
+            //             if(oData){                      
+            //                 oController._getShipToAddress(oData.results, sDeveliveryNumber, sFromMenu);
+            //             }
+            //             myResolve();
+            //         },
+            //         error: function(oErr){                        
+            //             console.log(oErr);
+            //             myResolve();
+            //             oController.onCloseBusyDialog();
+            //         }
+            //     });
 
                
-                //var promise = new promise(function(resolved, rejected){
-                    var aOutBoundDelveryFilter = [], aProductTable = [];
-                    aOutBoundDelveryFilter.push(new Filter("DeliveryDocument", "EQ", sDeveliveryNumber));
-                    oDeliveryModel.read("/A_OutbDeliveryItem",{
+            //     //var promise = new promise(function(resolved, rejected){
+            //         var aOutBoundDelveryFilter = [], aProductTable = [];
+            //         aOutBoundDelveryFilter.push(new Filter("DeliveryDocument", "EQ", sDeveliveryNumber));
+            //         oDeliveryModel.read("/A_OutbDeliveryItem",{
+            //             filters: aOutBoundDelveryFilter,
+            //             success:function(oData){
+            //                 if(oData && oData.results && oData.results.length > 0){
+            //                     for(var i = 0; i < oData.results.length; i++){
+            //                         oData.results[i]["SerialNumber"] = i+1;
+            //                         oData.results[i]["ItemWeightUnit"] = "10X12X12";
+            //                         oData.results[i]["BalanceQty"] = oData.results[i].ActualDeliveryQuantity;
+            //                         aProductTable.push(oData.results[i]);
+            //                     };
+            //                     var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            //                     eshipjetModel.setProperty("/commonValues/packAddProductTable",aProductTable);
+            //                     oController.getSalesOrder(aProductTable);
+            //                     oController.readHUDataSet(sDeveliveryNumber)
+            //                 }
+            //             },
+            //             error: function(oErr){
+            //                 console.log(oErr);
+            //                 oController.onCloseBusyDialog();
+            //             }
+            //         });
+                
+            // }
+
+
+            var oDeliveryModel = oController.getView().getModel("OutBoundDeliveryModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+
+            if (sDeveliveryNumber && sDeveliveryNumber.length >= 7) {
+                oController.onOpenBusyDialog();
+
+                // Build Promises
+                let headerPromise = new Promise((resolve, reject) => {
+                    var path = "/A_OutbDeliveryHeader('" + sDeveliveryNumber + "')";
+                    oDeliveryModel.read(path, {
+                        urlParameters: {
+                            "$expand": "to_DeliveryDocumentItem,to_DeliveryDocumentPartner"
+                        },
+                        success: function (oData) {
+                            oController.etag = oData.__metadata.etag;
+                            oController.ShippingType = oData.ShippingType;
+                            eshipjetModel.setProperty("/PlantCode", oData.ShippingPoint);
+                            eshipjetModel.setProperty("/commonValues/ShipNowShipsrvNameSelectedKey", oData.ShippingType);
+                            if (oData.ShippingType !== "" && oData.ShippingType !== undefined) {
+                                eshipjetModel.setProperty("/commonValues/showShipType", true);
+                            }
+                            eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", oData.OverallGoodsMovementStatus);
+                            oController.getManifestHeaderForCharges(sDeveliveryNumber);
+                            resolve(); // finish header read
+                        },
+                        error: function (oErr) {
+                            oController.onCloseBusyDialog();
+                            reject(oErr);
+                        }
+                    });
+                });
+
+                let partnerPromise = new Promise((resolve, reject) => {
+                    var sPath = "/A_OutbDeliveryHeader('" + sDeveliveryNumber + "')/to_DeliveryDocumentPartner";
+                    oDeliveryModel.read(sPath, {
+                        success: function (oData) {
+                            if (oData) {
+                                oController._getShipToAddress(oData.results, sDeveliveryNumber, sFromMenu);
+                            }
+                            resolve(); // finish partner read
+                        },
+                        error: function (oErr) {
+                            oController.onCloseBusyDialog();
+                            reject(oErr);
+                        }
+                    });
+                });
+
+                let itemPromise = new Promise((resolve, reject) => {
+                    var aOutBoundDelveryFilter = [new Filter("DeliveryDocument", "EQ", sDeveliveryNumber)];
+                    var aProductTable = [];
+                    oDeliveryModel.read("/A_OutbDeliveryItem", {
                         filters: aOutBoundDelveryFilter,
-                        success:function(oData){
-                            if(oData && oData.results && oData.results.length > 0){
-                                for(var i = 0; i < oData.results.length; i++){
-                                    oData.results[i]["SerialNumber"] = i+1;
+                        success: function (oData) {
+                            if (oData && oData.results && oData.results.length > 0) {
+                                for (var i = 0; i < oData.results.length; i++) {
+                                    oData.results[i]["SerialNumber"] = i + 1;
                                     oData.results[i]["ItemWeightUnit"] = "10X12X12";
                                     oData.results[i]["BalanceQty"] = oData.results[i].ActualDeliveryQuantity;
                                     aProductTable.push(oData.results[i]);
-                                };
-                                var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-                                eshipjetModel.setProperty("/commonValues/packAddProductTable",aProductTable);
+                                }
+                                eshipjetModel.setProperty("/commonValues/packAddProductTable", aProductTable);
                                 oController.getSalesOrder(aProductTable);
-                                oController.readHUDataSet(sDeveliveryNumber)
+                                oController.readHUDataSet(sDeveliveryNumber);
                             }
+                            resolve(); // finish item read
                         },
-                        error: function(oErr){
-                            console.log(oErr);
+                        error: function (oErr) {
                             oController.onCloseBusyDialog();
+                            reject(oErr);
                         }
                     });
-                
+                });
+
+                // Wait for all reads to finish
+                Promise.all([headerPromise, partnerPromise, itemPromise])
+                    .then(() => {
+                        myResolve(); // Now, after all reads are done
+                    })
+                    .catch((error) => {
+                        console.error("Error in one of the reads:", error);
+                    });
             }
         },
 
@@ -15074,13 +15180,13 @@ sap.ui.define([
             ManifestSrvModel.read("/EshipjetManfestSet",{
                 filters: aFilters,
                 success:function(response){
-                    // var Labelurls = []
-                    // response.results.forEach(function(item, idx){
-                    //     Labelurls.push({"Labelurl" : item.Labelurl});
-                    // });
-                    // response.results[0]["Labelurl"] = Labelurls;
-                    eshipjetModel.setProperty("/scanShipTableData2", response.results);
-                    eshipjetModel.setProperty("/sShipAndScan", "");
+                    if(response && response.results.length > 0){
+                        eshipjetModel.setProperty("/scanShipTableData2", response.results);
+                        eshipjetModel.setProperty("/sShipAndScan", "");
+                    }else{
+                        oController.createShipmentFromScanShip();
+                    }
+                    
                     oController.onCloseBusyDialog();
                 },
                 error: function(error){
@@ -15089,6 +15195,22 @@ sap.ui.define([
                 }
             });
         },
+
+
+        createShipmentFromScanShip: async function () {
+            var sShipAndScanDeliveryNum = eshipjetModel.getProperty("/sShipAndScan");
+            eshipjetModel.setProperty("/sFromViewName", "SCAN_SHIP");
+            if (sShipAndScanDeliveryNum && sShipAndScanDeliveryNum.length > 0) {
+                eshipjetModel.setProperty("/commonValues/sapDeliveryNumber", sShipAndScanDeliveryNum);
+                try {
+                    await oController.onShipNowGetPress();
+                    oController.onShipNowPress();
+                } catch (error) {
+                    console.error("Error occurred:", error);
+                }
+            }
+        },
+
 
         onScanShipViewPressBackToShipNow:function(oEvent){
             var oCurrentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
@@ -15292,7 +15414,6 @@ sap.ui.define([
                 eshipjetModel.setProperty("/sFromViewName", "QUOTE_NOW");
                 oController.onShipNowGetPress();
             }
-            
         },
         onQuoteNowClearPress:function(){
             eshipjetModel.setProperty("/commonValues/quoteNowDeliveryNumbInput","");

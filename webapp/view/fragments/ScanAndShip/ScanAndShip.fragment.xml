@@ -224,7 +224,7 @@
 									<Label text="Actions"/>
 									<ui:template>
 										<HBox>
-											<Button text="View Now" class="ordersSmallButton" type="Transparent" press="onScanShipViewPressBackToShipNow" ></Button>
+											<Button text="View Now" class="ordersSmallButton" type="Transparent" press="onViewNowPressBackToShipNow" ></Button>
 											<Button icon="sap-icon://megamenu" class="ordersSmallButton" type="Transparent" press="handleDownArrowPress" ></Button>
 										</HBox>
 									</ui:template>
