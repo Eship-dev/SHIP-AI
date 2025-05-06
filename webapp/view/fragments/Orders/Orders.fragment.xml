@@ -31,7 +31,7 @@
 				</Toolbar>
 
 
-
+ 
 
 						<Toolbar width="100%" height="4rem" class="toolbarbottomborder ordersDarkThemeToolbar">
 					<Text text="Orders" class="sapUiTinyMarginBegin sapUiTinyMarginTop Orders_PageTitle ordersTextColor"></Text>
@@ -46,43 +46,50 @@
 				</Toolbar>
 
 
+<Panel expandable="true" expanded="true" width="auto" >
+		<content>
+		
+		
 		<Toolbar height="7rem" class="whiteBackground" >
 			<HBox width="100%">
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="{eshipjetModel>/allOrdersLength}" class="NumberSizeTitle1"></Text>
 					<Text text="Total" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Emphasized" press="onOrderNowTotalFilterPress" class="total-request-button request-button" icon="false" width="100%"></Button>
+					<Button type="Emphasized" id="Total" press="onOrderStstusBtnFilterPress" class="total-request-button request-button" icon="false" width="100%"></Button>
 				</VBox>
 
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="{eshipjetModel>/allOrdersLength}" class="NumberSizeTitle1"></Text>
 					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Success" press="onOrderNowShippedFilterPress" class="shipped-request-button request-button" icon="false" width="100%" ></Button>
+					<Button type="Success" id="Shipped" press="onOrderStstusBtnFilterPress" class="shipped-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Critical" press="onOrderNowOpenFilterPress"  class="cancelled-request-button request-button" icon="false" width="100%" ></Button>
+					<Button type="Critical" id="Cancelled" press="onOrderStstusBtnFilterPress"  class="cancelled-request-button request-button" icon="false" width="100%" ></Button>
 					
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Open" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Critical" press="onOrderNowInTransitFilterPress"  class="InTransitord-request-button request-button" icon="false" width="100%" ></Button>
+					<Button type="Critical" id="Open" press="onOrderStstusBtnFilterPress"  class="InTransitord-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="In-Transit" class="sapUiTinyMarginBottom"></Text>
-					<Button press="onOrderNowCancelledFilterPress" class="open-request-button request-button" icon="false" width="100%" ></Button>
+					<Button press="onOrderStstusBtnFilterPress" id="In-Transit" class="open-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Received" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Critical" press="onOrderNowReceivedFilterPress"  class="Receivedord-request-button request-button" icon="false" width="100%" ></Button>
+					<Button type="Critical" id="Received" press="onOrderStstusBtnFilterPress"  class="Receivedord-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				
 			</HBox>
 		</Toolbar>
+
+		</content>
+	</Panel>
 
 
 <VBox class="whiteBackground sapUiTinyMarginTop" >

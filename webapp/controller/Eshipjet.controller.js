@@ -346,7 +346,7 @@ sap.ui.define([
         },
         onShipNowNavigateInitialProcess:function(){
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
-            var sFromScreen = eshipjetModel.getProperty("/sFromViewName");
+            eshipjetModel.setProperty("/sFromViewName", "SHIP_NOW");
             var obj = {
                 "ShipFromCONTACT": "Steve Marsh",
                 "ShipFromCOMPANY": "Eshipjet Software Inc.",
@@ -996,6 +996,7 @@ sap.ui.define([
             eshipjetModel.setProperty("/shippingDocuments",[]);
             eshipjetModel.setProperty("/HandlingUnitItems",[]);
             eshipjetModel.setProperty("/HandlingUnits",[]); 
+            eshipjetModel.setProperty("/sFromViewName", "SHIP_NOW");
             var oCommonValues = {
                 sapDeliveryNumber :"",
                 ShipNowShipMethodSelectedKey:"",
@@ -1423,7 +1424,7 @@ sap.ui.define([
                                     //post to manifest service
                                     // oController.getManifestData(response);
                                     
-                                    oController.updateManifestHeaderSet("SHIP");         
+                                    oController.updateManifestHeaderSet();         
 
                                 }else if(response && response.status === "Error"){
                                     var sError = "Shipment process failed reasons:\n";
@@ -1446,7 +1447,7 @@ sap.ui.define([
                     
                     // myPromise.then(
                     //     function(response) {
-                    //         oController.updateManifestHeaderSet("SHIP");
+                    //         oController.updateManifestHeaderSet();
                     //          //oController.FreightQuoteUpdatedSrvData();
                     //         // var myOutbounddeliveryPromise = new Promise((resolve, reject) => {                            
                     //         //     oController.ApiOutboundDeliverySrvData(resolve, reject, response);
@@ -1487,7 +1488,7 @@ sap.ui.define([
                 String(baseDate.getSeconds()).padStart(2, '0');
         },
 
-        updateManifestHeaderSet: function (shipStatus) {
+        updateManifestHeaderSet: function () {
             var amount, Discountamt, Fuel;
             var sapDeliveryNumber = eshipjetModel.getProperty("/commonValues/sapDeliveryNumber");
             var SalesOrder = eshipjetModel.getProperty("commonValues/SalesOrder");
@@ -1661,7 +1662,7 @@ sap.ui.define([
                 "Auart": "OR",
                 "Lfart": "LF",
                 "Description": "",
-                "Shipprocess": shipStatus,
+                "Shipprocess": "SHIP",
                 "Venum": "123",
                 "Gewei": "LB",                
                 "Reasonforexport": "",
@@ -2835,14 +2836,14 @@ sap.ui.define([
                 
             // }
 
-
+            oController.onOpenBusyDialog();
             var oDeliveryModel = oController.getView().getModel("OutBoundDeliveryModel");
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
 
             if (sDeveliveryNumber && sDeveliveryNumber.length >= 7) {
                 oController.onOpenBusyDialog();
 
-                // Build Promises
+                // Header Promise
                 let headerPromise = new Promise((resolve, reject) => {
                     var path = "/A_OutbDeliveryHeader('" + sDeveliveryNumber + "')";
                     oDeliveryModel.read(path, {
@@ -2858,8 +2859,12 @@ sap.ui.define([
                                 eshipjetModel.setProperty("/commonValues/showShipType", true);
                             }
                             eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", oData.OverallGoodsMovementStatus);
-                            oController.getManifestHeaderForCharges(sDeveliveryNumber);
-                            resolve(); // finish header read
+
+                            // Call and wait for getManifestHeaderForCharges
+                            Promise.resolve().then(() => {
+                                oController.getManifestHeaderForCharges(sDeveliveryNumber);
+                                resolve();
+                            });
                         },
                         error: function (oErr) {
                             oController.onCloseBusyDialog();
@@ -2868,14 +2873,19 @@ sap.ui.define([
                     });
                 });
 
+                // Partner Promise
                 let partnerPromise = new Promise((resolve, reject) => {
                     var sPath = "/A_OutbDeliveryHeader('" + sDeveliveryNumber + "')/to_DeliveryDocumentPartner";
                     oDeliveryModel.read(sPath, {
                         success: function (oData) {
                             if (oData) {
-                                oController._getShipToAddress(oData.results, sDeveliveryNumber, sFromMenu);
+                                Promise.resolve().then(() => {
+                                    oController._getShipToAddress(oData.results, sDeveliveryNumber, sFromMenu);
+                                    resolve();
+                                });
+                            } else {
+                                resolve();
                             }
-                            resolve(); // finish partner read
                         },
                         error: function (oErr) {
                             oController.onCloseBusyDialog();
@@ -2884,6 +2894,7 @@ sap.ui.define([
                     });
                 });
 
+                // Item Promise with getSalesOrder and readHUDataSet
                 let itemPromise = new Promise((resolve, reject) => {
                     var aOutBoundDelveryFilter = [new Filter("DeliveryDocument", "EQ", sDeveliveryNumber)];
                     var aProductTable = [];
@@ -2898,10 +2909,15 @@ sap.ui.define([
                                     aProductTable.push(oData.results[i]);
                                 }
                                 eshipjetModel.setProperty("/commonValues/packAddProductTable", aProductTable);
-                                oController.getSalesOrder(aProductTable);
-                                oController.readHUDataSet(sDeveliveryNumber);
+
+                                // Wait for both functions to finish before resolving itemPromise
+                                Promise.all([
+                                    Promise.resolve().then(() => oController.getSalesOrder(aProductTable)),
+                                    Promise.resolve().then(() => oController.readHUDataSet(sDeveliveryNumber))
+                                ]).then(resolve);
+                            } else {
+                                resolve();
                             }
-                            resolve(); // finish item read
                         },
                         error: function (oErr) {
                             oController.onCloseBusyDialog();
@@ -2910,13 +2926,13 @@ sap.ui.define([
                     });
                 });
 
-                // Wait for all reads to finish
+                // After all promises are resolved
                 Promise.all([headerPromise, partnerPromise, itemPromise])
                     .then(() => {
-                        myResolve(); // Now, after all reads are done
+                        myResolve(); // All done
                     })
                     .catch((error) => {
-                        console.error("Error in one of the reads:", error);
+                        console.error("Error in one of the reads or internal calls:", error);
                     });
             }
         },
@@ -3126,7 +3142,7 @@ sap.ui.define([
             var oShipNowModel = oController.getView().getModel("ShipNowDataModel");
             oDeliveryModel.setDeferredGroups(["addressDefferedgroupID"]);
             oDeliveryModel.setUseBatch(true);
-            var batchChanges = [], aBusinessPartnerTable = [], promise1;           
+            var batchChanges = [], aBusinessPartnerTable = [], promise1;
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var sPath = "";
             promise1 = new Promise((resolve, reject) => {    
@@ -3205,10 +3221,10 @@ sap.ui.define([
                         oController.onShipRateRequest(resolve, reject, "QUOTE_NOW");
                     });
                 }
-                if(sFromMenu === "ScanAndShip"){
-                    oController.onShipNowPress();
-                }    
-            });            
+                // if(sFromMenu === "ScanAndShip"){
+                //     oController.onShipNowPress();
+                // }    
+            });
         },
 
         onPackPress:function(){
@@ -3296,9 +3312,13 @@ sap.ui.define([
                         eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
                         oController.onPackSectionEmptyRows();
                     }
-                    if(eshipjetModel.getProperty("/sFromViewName") !== "QUOTE_NOW"){
+                    var sFromScreen = eshipjetModel.getProperty("/sFromViewName");
+                    if(sFromScreen !== "QUOTE_NOW"){
                         oController.onCloseBusyDialog();
                     }
+                    if(sFromScreen === "SCAN_SHIP"){
+                        oController.onShipNowPress();
+                    } 
                 },
                 error: function(oErr){
                     console.log(oErr);                        
@@ -4623,6 +4643,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/allViewsFooter", false);
                 eshipjetModel.setProperty("/commonValues/shipNowViewFooter", true);
                 eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
+                eshipjetModel.setProperty("/sFromViewName", "SHIP_NOW");
                 this.byId("pageContainer").to(this.getView().createId(sKey));
                 var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
                 var obj = {
@@ -4890,33 +4911,32 @@ sap.ui.define([
         onOrderFilterPopoverApplyPress: function () {
             this.byId("idOrdersFilterPopover").close();
         },
-
-        onOrderNowTotalFilterPress:function(oEvent){
-            var oTable = oController.getView().byId("idOrdersTable");
-            var oBindings = oTable.getBinding("rows");
-            oBindings.filter([]);
-        },
         
-        onOrderNowShippedFilterPress:function(){
+        onOrderStstusBtnFilterPress:function(oEvent){
+            var aFilterId = oEvent.getSource().getId().split("--");
+            var oText = aFilterId[aFilterId.length-1];
+            var oFilterText;
             var oTable = oController.getView().byId("idOrdersTable");
             var oBinding = oTable.getBinding("rows");
-            var oFilter = new sap.ui.model.Filter("Status", sap.ui.model.FilterOperator.EQ, "Shipped");
+            
+            if(oText === "Shipped"){
+                oFilterText = "SHIP";
+            }else if(oText === "Cancelled"){
+                oFilterText = "Cancelled";
+            }else if(oText === "Open"){
+                oFilterText = "Open";
+            }else if(oText === "In-Transit"){
+                oFilterText = "In-Transit";
+            }else if(oText === "Received"){
+                oFilterText = "Received";
+            }else if(oText === "Total"){
+                return oBinding.filter([]);
+            }
+            
+            var oFilter = new sap.ui.model.Filter("Shipprocess", sap.ui.model.FilterOperator.EQ, oFilterText);
             oBinding.filter([oFilter]);
         },
 
-        onOrderNowOpenFilterPress:function(){
-            var oTable = oController.getView().byId("idOrdersTable");
-            var oBinding = oTable.getBinding("rows");
-            var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Open");
-            oBinding.filter([oFilter]);
-        },
-
-        onOrderNowCancelledFilterPress:function(){
-            var oTable = oController.getView().byId("idOrdersTable");
-            var oBinding = oTable.getBinding("rows");
-            var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Cancelled");
-            oBinding.filter([oFilter]);
-        },
         // Order Changes End
 
 
@@ -6930,75 +6950,87 @@ sap.ui.define([
             var today = new Date();
             var aFilter = [];
 
-            function toODataDate(date) {
-                return `/Date(${date.getTime()})/`;
-            }
-
             if (selectedKey === "today") {
-                var dateFilter = new Filter("DateAdded", FilterOperator.EQ, toODataDate(today));
+                var start = new Date();
+                start.setHours(0, 0, 0, 0);
+                var end = new Date();
+                end.setHours(23, 59, 59, 999);
+
+                var dateFilter = new Filter({
+                    path: "DateAdded",
+                    operator: FilterOperator.BT,
+                    value1: start,
+                    value2: end
+                });
                 aFilter.push(dateFilter);
             }
 
             else if (selectedKey === "yesterday") {
-                var yesterday = new Date(today);
-                yesterday.setDate(yesterday.getDate() - 1);
-                var dateFilter = new Filter("DateAdded", FilterOperator.EQ, toODataDate(yesterday));
+                var start = new Date();
+                start.setDate(start.getDate() - 1);
+                start.setHours(0, 0, 0, 0);
+                var end = new Date(start);
+                end.setHours(23, 59, 59, 999);
+
+                var dateFilter = new Filter({
+                    path: "DateAdded",
+                    operator: FilterOperator.BT,
+                    value1: start,
+                    value2: end
+                });
                 aFilter.push(dateFilter);
             }
 
             else if (selectedKey === "thisWeek") {
-                var firstDay = new Date(today);
-                firstDay.setDate(today.getDate() - today.getDay() + 1); // Monday
-                var lastDay = new Date(firstDay);
-                lastDay.setDate(firstDay.getDate() + 6); // Sunday
-                var dateFilter = new Filter({
+                var start = new Date();
+                start.setDate(today.getDate() - today.getDay() + 1); // Monday
+                start.setHours(0, 0, 0, 0);
+                var end = new Date(start);
+                end.setDate(start.getDate() + 6); // Sunday
+                end.setHours(23, 59, 59, 999);
+
+                aFilter.push(new Filter({
                     path: "DateAdded",
                     operator: FilterOperator.BT,
-                    value1: toODataDate(firstDay),
-                    value2: toODataDate(lastDay)
-                });
-                aFilter.push(dateFilter);
+                    value1: start,
+                    value2: end
+                }));
             }
 
             else if (selectedKey === "lastWeek") {
-                var firstDay = new Date(today);
-                firstDay.setDate(today.getDate() - today.getDay() - 6); // Previous Monday
-                var lastDay = new Date(firstDay);
-                lastDay.setDate(firstDay.getDate() + 6); // Previous Sunday
-                var dateFilter = new Filter({
+                var start = new Date();
+                start.setDate(today.getDate() - today.getDay() - 6); // Previous Monday
+                start.setHours(0, 0, 0, 0);
+                var end = new Date(start);
+                end.setDate(start.getDate() + 6); // Previous Sunday
+                end.setHours(23, 59, 59, 999);
+
+                aFilter.push(new Filter({
                     path: "DateAdded",
                     operator: FilterOperator.BT,
-                    value1: toODataDate(firstDay),
-                    value2: toODataDate(lastDay)
-                });
-                aFilter.push(dateFilter);
+                    value1: start,
+                    value2: end
+                }));
             }
 
             else if (selectedKey === "thisMonth") {
-                var firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
-                var lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-                var dateFilter = new Filter({
+                var start = new Date(today.getFullYear(), today.getMonth(), 1);
+                start.setHours(0, 0, 0, 0);
+                var end = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+                end.setHours(23, 59, 59, 999);
+
+                aFilter.push(new Filter({
                     path: "DateAdded",
                     operator: FilterOperator.BT,
-                    value1: toODataDate(firstDay),
-                    value2: toODataDate(lastDay)
-                });
-                aFilter.push(dateFilter);
+                    value1: start,
+                    value2: end
+                }));
             }
 
-            // Apply filter
             var orderTable = this.byId("idOrdersTable");
             var oBindings = orderTable.getBinding("rows");
             oBindings.filter(aFilter);
-            eshipjetModel.setProperty("/ordersSelectedFilter");
-        },
-
-        _isSameDate: function (d1, d2) {
-            return (
-                d1.getDate() === d2.getDate() &&
-                d1.getMonth() === d2.getMonth() &&
-                d1.getFullYear() === d2.getFullYear()
-            );
+            eshipjetModel.setProperty("/ordersSelectedFilter", selectedKey);
         },
 
         getShipReqLabelHistoryShipments:function(){
@@ -12789,7 +12821,7 @@ sap.ui.define([
                     ];
                     eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
                     sap.m.MessageToast.show("FreightQuote Updated successful!");
-                    oController.updateManifestHeaderSet("SHIP");
+                    oController.updateManifestHeaderSet();
                 },
                 error: function(oError) {
                     // var errMsg = JSON.parse(oError.responseText).error.message.value
@@ -14749,6 +14781,10 @@ sap.ui.define([
         
         if(aSelectedItems && aSelectedItems.length > 0){
             oCarrier = oTable.getSelectedItem().getBindingContext("eshipjetModel").getObject();
+            oCarrier.discountFreight = oCarrier.discountFreight.toString();
+            oCarrier.publishedFreight = oCarrier.publishedFreight.toString();
+            // oCarrier.discountFreight_Cal = oCarrier.discountFreight_Cal.toString();
+
             eshipjetModel.setProperty("/shipRateSelectItem", oCarrier);  
             oController.oSelectObj = aSelectedItems[0].getBindingContext("eshipjetModel").getObject(); 
             eshipjetModel.setProperty("/commonValues/ShipNowShipMethodSelectedKey", oController.oSelectObj.Carrier);
@@ -14795,8 +14831,9 @@ sap.ui.define([
             eshipjetModel.setProperty("/commonValues/darkTheme", false);
             document.body.classList.remove("dark-theme");
             eshipjetModel.setProperty("/commonValues/shipNowGetBtn", true);
+            eshipjetModel.setProperty("/sFromViewName", "SHIP_NOW");
             oController.onPackSectionEmptyRows();
-        }
+        };
         eshipjetModel.setProperty("/SideNavigation", false);
         this.byId("pageContainer").to(this.getView().createId(sKey));
         // var trackingArray = eshipjetModel.getProperty("/trackingArray") || [];
@@ -15198,13 +15235,14 @@ sap.ui.define([
 
 
         createShipmentFromScanShip: async function () {
+            oController.onOpenBusyDialog();
             var sShipAndScanDeliveryNum = eshipjetModel.getProperty("/sShipAndScan");
             eshipjetModel.setProperty("/sFromViewName", "SCAN_SHIP");
             if (sShipAndScanDeliveryNum && sShipAndScanDeliveryNum.length > 0) {
                 eshipjetModel.setProperty("/commonValues/sapDeliveryNumber", sShipAndScanDeliveryNum);
                 try {
                     await oController.onShipNowGetPress();
-                    oController.onShipNowPress();
+                    // oController.onShipNowPress();
                 } catch (error) {
                     console.error("Error occurred:", error);
                 }
@@ -15325,7 +15363,7 @@ sap.ui.define([
                     oController.onCloseBusyDialog();
                 },
                 error: function (error) {
-                    MessageBox.warning(error.responseText);
+                    MessageBox.warning(error.message);
                     oController.onCloseBusyDialog();
                 }
             });
@@ -15391,7 +15429,7 @@ sap.ui.define([
                     data: JSON.stringify(obj),
                     success: function (response) {
                         console.log("Success:", response);
-                        // oController.updateManifestHeaderSet("CANC");
+                        // oController.updateManifestHeaderSet();
                         oController.onCloseBusyDialog();
                     },
                     error: function (error) {
