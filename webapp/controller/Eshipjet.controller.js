@@ -423,112 +423,155 @@ sap.ui.define([
                 oToggleButton.setTooltip('Small Size Navigation');
             }
         },
+            // shipper Copilot changes start
+            onSendPress: async function () {
+                oController.onOpenBusyDialog();
+                const oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
+                const sUserMessage = this.getView().byId("userInput").getValue();
+                if (!sUserMessage) {
+                    MessageToast.show("Please enter a message.");
+                    return;
+                }
+                oShipperCopilotModel.setProperty("/iconState", false);
+                oShipperCopilotModel.setProperty("/listState", true);
 
-        // shipper Copilot changes start
-        onSendPress: async function () {
-            oController.onOpenBusyDialog();
-            const oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
-            const sUserMessage = this.getView().byId("userInput").getValue();
-            if (!sUserMessage) {
-                MessageToast.show("Please enter a message.");
-                return;
-            }
-            oShipperCopilotModel.setProperty("/iconState", false);
-            oShipperCopilotModel.setProperty("/listState", true);
+                // Add the user's message to the chat list
+                const aMessages = oShipperCopilotModel.getProperty("/messages");
+                aMessages.push({ sender: "You", text: sUserMessage });
+                oShipperCopilotModel.setProperty("/messages", aMessages);
+                this.getView().byId("userInput").setValue("");
 
-            // Add the user's message to the chat list
-            const aMessages = oShipperCopilotModel.getProperty("/messages");
-            aMessages.push({ sender: "You", text: sUserMessage });
-            oShipperCopilotModel.setProperty("/messages", aMessages);
-            this.getView().byId("userInput").setValue("");
-
-            // Simulate a bot response after sending the user message
-            try {
-                const sResponse = await this._simulateBotResponse(sUserMessage);
-                var aShippinDocs = sResponse.shippingDocuments;
-                var aLabel = aShippinDocs.filter((obj) => obj.contentType === "Label");
-                var sLabel;
-                if (aLabel.length !== 0 && aLabel !== undefined) {
-                    // sLabel = aLabel[0].encodedLabel;
-                    // var dataUrl = "data:image/png;base64," + sLabel;
-                    sLabel = aLabel[0].docName;
-                    var dataUrl = "https://eshipjetsatge.blob.core.windows.net/shipping-labels/" + sLabel
-                    aMessages.push({ sender: "Bot", text: dataUrl });
-                    oShipperCopilotModel.setProperty("/messages", aMessages);
-                    oController.oBusyDialog.close();
-                } else {
-                    var aError = sResponse.Errors;
-                    if (aError.length !== 0) {
-                        aMessages.push({ sender: "BotError", text: aError[0] });
+                // Simulate a bot response after sending the user message
+                try {
+                    const sResponse = await this._simulateBotResponse(sUserMessage);
+                    var aShippinDocs = sResponse.shippingDocuments;
+                    var aLabel = aShippinDocs.filter((obj) => obj.contentType === "Label");
+                    var sLabel;
+                    if (aLabel.length !== 0 && aLabel !== undefined) {
+                        // sLabel = aLabel[0].encodedLabel;
+                        // var dataUrl = "data:image/png;base64," + sLabel;
+                        sLabel = aLabel[0].docName;
+                        var dataUrl = "https://eshipjetsatge.blob.core.windows.net/shipping-labels/" + sLabel
+                        aMessages.push({ sender: "Bot", text: dataUrl });
                         oShipperCopilotModel.setProperty("/messages", aMessages);
                         oController.oBusyDialog.close();
+                    } else {
+                        var aError = sResponse.Errors;
+                        if (aError.length !== 0) {
+                            aMessages.push({ sender: "BotError", text: aError[0] });
+                            oShipperCopilotModel.setProperty("/messages", aMessages);
+                            oController.oBusyDialog.close();
+                        }
                     }
-                }
 
-            } catch (error) {
-                if (error.responseText !== undefined) {
-                    aMessages.push({ sender: "BotError", text: error.responseText });
+                } catch (error) {
+                    if (error.responseText !== undefined) {
+                        aMessages.push({ sender: "BotError", text: error.responseText });
+                        oShipperCopilotModel.setProperty("/messages", aMessages);
+                    }
+                    //MessageToast.show("Error communicating with Copilot.");
+                    oController.oBusyDialog.close();
+                }
+            },
+
+            // Simulate bot response for testing purposes
+            _simulateBotResponse: function (sMessage) {            
+                var obj = {
+                    "message": sMessage // Match DeliveryNo in the message if needed
+                }
+                var sPath = "https://eshipjet-demo-srv-hvacbxf0fqapdpgd.francecentral-01.azurewebsites.net/copilot/v1/bot/process";
+
+                const oShipperCopilotModel = oController.getView().getModel("ShipperCopilotModel");
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        url: sPath, // Replace with your API endpoint
+                        method: "POST",
+                        contentType: "application/json", // Set content type to JSON if sending JSON data
+                        data: JSON.stringify(obj),
+                        success: function (response) {
+                            // Handle successful response
+                            resolve(response);
+                            console.log("Success:", response);
+                        },
+                        error: function (error) {
+                            // Handle error
+                            reject(error);
+                            console.log("Error:", error);
+                        }
+                    });
+                });
+            },
+
+            onZoomImage: function (oEvent) {
+                var dataUrl = oEvent.getSource().getBindingContext("ShipperCopilotModel").getObject().text
+                // Create a dialog if it does not exist
+                if (!this._oDialog) {
+                    this._oDialog = new Dialog({
+                        title: "Ship Image",
+                        contentWidth: "30%", // Adjust width as needed
+                        contentHeight: "80%", // Adjust height as needed
+                        content: new sap.m.Image({
+                            class: "sapUiSmallMargin",
+                            src: dataUrl,
+                            width: "100%", // Full width of dialog content
+                            height: "100%"
+                        }),
+                        endButton: new sap.m.Button({
+                            text: "Close",
+                            press: function () {
+                                this._oDialog.close();
+                            }.bind(this)
+                        })
+                    });
+                }
+                // Open the dialog
+                this._oDialog.open();
+            },
+            onPressAllShipments: async function () {
+                const oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
+                const oManifestSrvModel = this.getOwnerComponent().getModel("ManifestSrvModel");
+                const aMessages = oShipperCopilotModel.getProperty("/messages");
+            
+                oController.onOpenBusyDialog(); // start loader
+            
+                try {
+                    const oData = await new Promise((resolve, reject) => {
+                        oManifestSrvModel.read("/EshipjetManfestSet", {
+                            success: function (oResponse) {
+                                resolve(oResponse.results);
+                            },
+                            error: function (oError) {
+                                reject(oError);
+                            }
+                        });
+                    });
+            
+                    aMessages.push({
+                        sender: "Bot",
+                        text: "Here are all the shipments:",
+                        tableData: oData,
+                        hasTableData: true,
+                        isUserText: false,
+                        isBotImage: false
+                    });
                     oShipperCopilotModel.setProperty("/messages", aMessages);
+            
+                } catch (error) {
+                    aMessages.push({
+                        sender: "BotError",
+                        text: "Failed to load shipments.",
+                        isUserText: false,
+                        isBotImage: false,
+                        hasTableData: false
+                    });
+                    oShipperCopilotModel.setProperty("/messages", aMessages);
+                    console.error("Error fetching shipments:", error);
+                } finally {
+                    oController.oBusyDialog.close(); // ALWAYS CLOSE!
                 }
-                //MessageToast.show("Error communicating with Copilot.");
-                oController.oBusyDialog.close();
-            }
-        },
-
-        // Simulate bot response for testing purposes
-        _simulateBotResponse: function (sMessage) {            
-            var obj = {
-                "message": sMessage // Match DeliveryNo in the message if needed
-            }
-            var sPath = "https://eshipjet-demo-srv-hvacbxf0fqapdpgd.francecentral-01.azurewebsites.net/copilot/v1/bot/process";
-
-            const oShipperCopilotModel = oController.getView().getModel("ShipperCopilotModel");
-            return new Promise((resolve, reject) => {
-                $.ajax({
-                    url: sPath, // Replace with your API endpoint
-                    method: "POST",
-                    contentType: "application/json", // Set content type to JSON if sending JSON data
-                    data: JSON.stringify(obj),
-                    success: function (response) {
-                        // Handle successful response
-                        resolve(response);
-                        console.log("Success:", response);
-                    },
-                    error: function (error) {
-                        // Handle error
-                        reject(error);
-                        console.log("Error:", error);
-                    }
-                });
-            });
-        },
-
-        onZoomImage: function (oEvent) {
-            var dataUrl = oEvent.getSource().getBindingContext("ShipperCopilotModel").getObject().text
-            // Create a dialog if it does not exist
-            if (!this._oDialog) {
-                this._oDialog = new Dialog({
-                    title: "Ship Image",
-                    contentWidth: "30%", // Adjust width as needed
-                    contentHeight: "80%", // Adjust height as needed
-                    content: new sap.m.Image({
-                        class: "sapUiSmallMargin",
-                        src: dataUrl,
-                        width: "100%", // Full width of dialog content
-                        height: "100%"
-                    }),
-                    endButton: new sap.m.Button({
-                        text: "Close",
-                        press: function () {
-                            this._oDialog.close();
-                        }.bind(this)
-                    })
-                });
-            }
-            // Open the dialog
-            this._oDialog.open();
-        },
-        // Shipper Copilot Changes end
+            },
+            
+            // Shipper Copilot Changes end
 
         // Ship Now changes starts here
 

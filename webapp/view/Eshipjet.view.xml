@@ -113,26 +113,59 @@
 											<Image src="{value: 'com/eshipjet/zeshipjet/css/images/copilotlogo.png',formatter: 'sap.ui.require.toUrl'}" width="5rem" height="5rem"/>
 										</HBox>
 										<HBox class="sapUiLargeMarginTop" justifyContent="Center">
-											<Button class="sapUiTinyMargin ship-copilot-button all-shipments" icon="sap-icon://in-progress"  text="Show all Shipments"/>
+											<Button class="sapUiTinyMargin ship-copilot-button all-shipments" icon="sap-icon://in-progress"  text="Show all Shipments" press="onPressAllShipments"/>
 											<Button class="sapUiTinyMargin ship-copilot-button country-shipments" icon="sap-icon://product" text="Country wise Shipments" />
 											<Button class="sapUiTinyMargin ship-copilot-button open-order-status" icon="sap-icon://shipping-status" text="Orders with Open Status"/>
 										</HBox>
 									</VBox>
 									<List id="chatList" items="{ShipperCopilotModel>/messages}" class="co-pilot-search-results" visible="{ShipperCopilotModel>/listState}" >
-										<CustomListItem class="sapUiTinyMargin" >
-											<HBox justifyContent="{= ${ShipperCopilotModel>sender} === 'You' ? 'End' : 'Start'}">
-											<VBox class="messageBox {= ${ShipperCopilotModel>sender} === 'You' ? 'userMessage' : 'botMessage'}">
-												<Text text="{ShipperCopilotModel>text}" wrapping="true" class="co-pilot-search-text" visible="{= ${ShipperCopilotModel>sender} === 'You'}" />
-												<HBox>
-												<Image class="sapUiSmallMarginEnd" src="{value: 'com/eshipjet/zeshipjet/css/images/copilotlogo.png',formatter: 'sap.ui.require.toUrl'}" width="16px" height="auto" visible="{= ${ShipperCopilotModel>sender} === 'BotError' || ${ShipperCopilotModel>sender} === 'Bot'}"/>
-												<Text text="{ShipperCopilotModel>text}" wrapping="true" visible="{= ${ShipperCopilotModel>sender} === 'BotError'}" />
+										<CustomListItem class="sapUiTinyMargin">
+										<HBox justifyContent="{= ${ShipperCopilotModel>sender} === 'You' ? 'End' : 'Start'}">
+											<VBox class="messageBox {= ${ShipperCopilotModel>sender} === 'You' ? 'userMessage' : 'botMessage'}" visible="{ShipperCopilotModel>hasTableData}">
+
+												<!-- User Text -->
+												<Text text="{ShipperCopilotModel>text}" wrapping="true"
+													class="co-pilot-search-text"
+													visible="{ShipperCopilotModel>isUserText}" />
+
+												<!-- Bot Error Text -->
+												<HBox visible="{= ${ShipperCopilotModel>sender} === 'BotError' }">
+													<Image class="sapUiSmallMarginEnd"
+														src="{value: 'com/eshipjet/zeshipjet/css/images/copilotlogo.png',formatter: 'sap.ui.require.toUrl'}"
+														width="16px" height="auto"/>
+													<Text text="{ShipperCopilotModel>text}" wrapping="true"/>
+												</HBox>
+
+												<!-- Bot Image -->
 												<Image src="{ShipperCopilotModel>text}"
 													width="70%" height="70%"
-													press="onZoomImage" visible="{= ${ShipperCopilotModel>sender} === 'Bot'}" />
-												</HBox>    
+													press="onZoomImage"
+													visible="{ShipperCopilotModel>isBotImage}" />
+
+												<!-- Table -->
+												<VBox visible="{ShipperCopilotModel>hasTableData}">
+													<Text text="{ShipperCopilotModel>text}" class="sapUiSmallMarginBottom" />
+													<Table items="{ShipperCopilotModel>tableData}" inset="false" fixedLayout="false">
+														<columns>
+															<Column><Text text="Manifest No" /></Column>
+															<Column><Text text="Ship From" /></Column>
+															<Column><Text text="Ship To" /></Column>
+														</columns>
+														<items>
+															<ColumnListItem>
+																<cells>
+																	<Text text="{ShipperCopilotModel>Vbeln}" />
+																	<Text text="{ShipperCopilotModel>FromCompany}" />
+																	<Text text="{ShipperCopilotModel>RecCompany}" />
+																</cells>
+															</ColumnListItem>
+														</items>
+													</Table>
+												</VBox>
+
 											</VBox>
-											</HBox>
-										</CustomListItem>
+										</HBox>
+									</CustomListItem>
 									</List>
 									<HBox justifyContent="Center" class="ship-copilot-search-section">
 										<Input id="userInput" class="sapUiTinyMarginEnd" placeholder="Good Afternoon Robert, I'm ready for the task" width="30rem" submit="onSendPress"/>
