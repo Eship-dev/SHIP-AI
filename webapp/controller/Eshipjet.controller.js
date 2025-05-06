@@ -1748,7 +1748,7 @@ sap.ui.define([
                 "CrossdockShipby": "",
                 "EdiControlNo": "",
                 "Edi997Status": "",
-                "Shipmentid": "",
+                "Shipmentid": eshipjetModel.getProperty("/commonValues/ShipNowShipsrvNameSelectedKey"),
                 "EodTimestamp": "",
                 "Labelurl": shippingDocName,
                 "PackURL" : packingSlip,
@@ -1774,8 +1774,7 @@ sap.ui.define([
                 "Accessorial": "",
                 "Fuel": Fuel ?  Fuel.toString() : "0.00",
                 "Deliverynno": sapDeliveryNumber ? sapDeliveryNumber : "",
-                "TimeAdded": timeAdded ? timeAdded : "",
-
+                "TimeAdded": timeAdded ? timeAdded : ""
             };
             // var packCount = 0;
             var Count  = 0
