@@ -7,7 +7,7 @@
 					<ToolbarSpacer/>
 
 				<Button text="PGI Successful." type="Ghost"
-					visible="{= ${eshipjetModel>/commonValues/OverallGoodsMovementStatus} === 'C' }"
+					visible="{= ${eshipjetModel>/commonValues/OverallGoodsMovementStatus} === 'C' ? true : false }"
 					icon="sap-icon://accept" iconFirst="true"
 					enabled="false" class="sapUiSmallMarginEnd pgiSuccess pgis2" />
 				<Button text="PGI Failed." type="Ghost" 
@@ -1053,10 +1053,10 @@
 											</HBox>
 										</ui:template>
 									</ui:Column>
-								<ui:Column visible="true" width="4rem" >
+								<ui:Column visible="true" width="3rem" >
 									<Button icon="sap-icon://action-settings" type="Transparent" press="openShipNowPrdctColNamesPopover" ></Button>
 									<ui:template>
-										<Button icon="sap-icon://delete" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" type="Transparent" tooltip="Delete" press="onShipNowPrdctDltPress" class="customDeleteButton" ></Button>
+										<Button icon="sap-icon://delete" visible="false" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" type="Transparent" tooltip="Delete" press="onShipNowPrdctDltPress" class="customDeleteButton" ></Button>
 									</ui:template>
 								</ui:Column>
 							</ui:columns>

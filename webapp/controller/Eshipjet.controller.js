@@ -68,6 +68,19 @@ sap.ui.define([
             this.getOwnerComponent().getRouter().getRoute("RouteEshipjet").attachPatternMatched(this._handleRouteMatched, this);
             oController.readAPIProductSrvModel();
             oController.ShippingTypeDropdownData();
+
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var userId = sap.ushell.Container.getUser().getId();
+            var userName;
+            if (!userId || userId.toUpperCase() === "DEFAULT_USER") {
+                userName = "Guest"; // or "User"
+            }else{
+                userName = userId.split('.')[0].toLowerCase();
+                userName = userName.charAt(0).toUpperCase() + userName.slice(1);
+            }
+            
+            eshipjetModel.setProperty("/userName", userName);
+
         },
 
         readAPIProductSrvModel:function(){
@@ -454,13 +467,13 @@ sap.ui.define([
                         var dataUrl = "https://eshipjetsatge.blob.core.windows.net/shipping-labels/" + sLabel
                         aMessages.push({ sender: "Bot", text: dataUrl });
                         oShipperCopilotModel.setProperty("/messages", aMessages);
-                        oController.oBusyDialog.close();
+                        oController.onCloseBusyDialog();
                     } else {
                         var aError = sResponse.Errors;
                         if (aError.length !== 0) {
                             aMessages.push({ sender: "BotError", text: aError[0] });
                             oShipperCopilotModel.setProperty("/messages", aMessages);
-                            oController.oBusyDialog.close();
+                            oController.onCloseBusyDialog();
                         }
                     }
 
@@ -470,7 +483,7 @@ sap.ui.define([
                         oShipperCopilotModel.setProperty("/messages", aMessages);
                     }
                     //MessageToast.show("Error communicating with Copilot.");
-                    oController.oBusyDialog.close();
+                    oController.onCloseBusyDialog();
                 }
             },
 
@@ -527,48 +540,182 @@ sap.ui.define([
                 // Open the dialog
                 this._oDialog.open();
             },
+
+            _createShipmentsTable: function (aData) {
+                var oView = this.getView();
+                var oVBox = oView.byId("yourVBoxId"); // Replace with actual VBox ID
+            
+                // Remove old content if needed
+                oVBox.removeAllItems();
+            
+                var oTable = new sap.ui.table.Table({
+                    visibleRowCount: 5,
+                    selectionMode: "None",
+                    width: "25rem",
+                    fixedColumnCount: 1
+                });
+            
+                // Define columns manually
+                var aColumns = [
+                    { label: "Request ID", property: "Vbeln" },
+                    { label: "Created Date", property: "Createddate", formatter: ".formatter.formatCustomDateTimeForOrders" },
+                    { label: "Ship Date", property: "DateAdded", formatter: ".formatter.formatCustomDateTimeForOrders" },
+                    { label: "Shipment Type", property: "Shipmenttype" },
+                    { label: "Carrier Name", property: "CarrierCode" },
+                    { label: "Service Level", property: "CarrierDesc" },
+                    { label: "Tracking Number", property: "TrackingNumber" },
+                    { label: "Status", property: "DeliveryStatus" },
+                    { label: "Ship To Company", property: "RecCompany" },
+                    { label: "Ship To Contact", property: "RecContact" },
+                    { label: "Ship To Address Line 1", property: "RecAddress1" },
+                    { label: "Ship To City", property: "RecCity" },
+                    { label: "Ship To State", property: "Region" },
+                    { label: "Ship To Country", property: "RecCountry" },
+                    { label: "Ship To Zipcode", property: "RecPostalcode" },
+                    { label: "Ship To Phone", property: "RecPhone" },
+                    { label: "Ship To Email", property: "Emailaddress" },
+                    { label: "Requester Name", property: "RecContact" },
+                    { label: "Connected To", property: "DateAdded" },
+                    { label: "Order Type", property: "Shipmentid" },
+                    { label: "Priority Level", property: "Priorityalert" },
+                    { label: "RF ID", property: "Reference1" },
+                    { label: "Updated", property: "" }
+                ];
+            
+                aColumns.forEach(function (col) {
+                    oTable.addColumn(new sap.ui.table.Column({
+                        label: new sap.m.Label({ text: col.label }),
+                        template: new sap.m.Text({
+                            text: col.formatter ?
+                                { path: "ShipperCopilotModel>" + col.property, formatter: this.getView().getController()[col.formatter] } :
+                                "{" + "ShipperCopilotModel>" + col.property + "}"
+                        }),
+                        hAlign: "Center",
+                        width: "8rem"
+                    }));
+                }.bind(this));
+            
+                // Create a JSONModel and bind to table
+                var oModel = this.getView().getModel("ShipperCopilotModel");
+                oTable.setModel(oModel, "ShipperCopilotModel");
+                oTable.bindRows("ShipperCopilotModel>/tableData");
+            
+                // Add the table to VBox
+                oVBox.addItem(oTable);
+            },
+
+
+            _showAllShipmentsResponse:function(){
+                var oManifestSrvModel = this.getOwnerComponent().getModel("ManifestSrvModel");
+                return new Promise(function (resolve, reject) {
+                    oManifestSrvModel.read("/EshipjetManfestSet", {
+                        success: function (oResponse) {
+                            resolve(oResponse.results); // Resolve with data
+                        },
+                        error: function (oError) {
+                            reject(oError); // Reject with error
+                        }
+                    });
+                });
+            },
+
             onPressAllShipments: async function () {
-                const oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
-                const oManifestSrvModel = this.getOwnerComponent().getModel("ManifestSrvModel");
-                const aMessages = oShipperCopilotModel.getProperty("/messages");
-            
-                oController.onOpenBusyDialog(); // start loader
-            
+                oController.onOpenBusyDialog();
+                var oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
+
+                let sResponse;
                 try {
-                    const oData = await new Promise((resolve, reject) => {
-                        oManifestSrvModel.read("/EshipjetManfestSet", {
-                            success: function (oResponse) {
-                                resolve(oResponse.results);
-                            },
-                            error: function (oError) {
-                                reject(oError);
-                            }
-                        });
-                    });
-            
-                    aMessages.push({
-                        sender: "Bot",
-                        text: "Here are all the shipments:",
-                        tableData: oData,
-                        hasTableData: true,
-                        isUserText: false,
-                        isBotImage: false
-                    });
-                    oShipperCopilotModel.setProperty("/messages", aMessages);
-            
+                    // Await the response first
+                    sResponse = await oController._showAllShipmentsResponse();
+                    oShipperCopilotModel.setProperty("/tableData", sResponse);
+                    await oController._createShipmentsTable(sResponse);
                 } catch (error) {
-                    aMessages.push({
-                        sender: "BotError",
-                        text: "Failed to load shipments.",
-                        isUserText: false,
-                        isBotImage: false,
-                        hasTableData: false
-                    });
-                    oShipperCopilotModel.setProperty("/messages", aMessages);
-                    console.error("Error fetching shipments:", error);
-                } finally {
-                    oController.oBusyDialog.close(); // ALWAYS CLOSE!
+                    oController.onCloseBusyDialog();
+                    
+                    var aMessages = oShipperCopilotModel.getProperty("/messages") || [];
+                    if (error.responseText !== undefined) {
+                        aMessages.push({ sender: "BotError", text: error.responseText });
+                        oShipperCopilotModel.setProperty("/messages", aMessages);
+                    }
+                    return;
                 }
+
+                var oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
+                var sUserMessage = "Show All Shipments";
+                oShipperCopilotModel.setProperty("/iconState", false);
+                oShipperCopilotModel.setProperty("/listState", true);
+
+                // Add the user's message to the chat list
+                var aMessages = oShipperCopilotModel.getProperty("/messages") || [];
+                aMessages.push({ sender: "You", text: sUserMessage });
+                oShipperCopilotModel.setProperty("/messages", aMessages);
+                this.getView().byId("userInput").setValue("");
+
+                if (sResponse && sResponse.length !== 0) {
+                    oShipperCopilotModel.setProperty("/showAllShipmentsTable", true);
+                    aMessages.push({
+                                sender: "Bot",
+                                text: "Here are all the shipments:",
+                                tableData: sResponse,
+                                hasTableData: true,
+                                isUserText: false,
+                                isBotImage: false
+                            });
+                    oShipperCopilotModel.setProperty("/messages", aMessages);
+                } else {
+                    var aError = sResponse.Errors || [];
+                    if (aError.length !== 0) {
+                        aMessages.push({ sender: "BotError", text: aError[0] });
+                        oShipperCopilotModel.setProperty("/messages", aMessages);
+                    }
+                }
+
+                oController.onCloseBusyDialog();
+
+
+                // var oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
+                // var oManifestSrvModel = this.getOwnerComponent().getModel("ManifestSrvModel");
+                // var aMessages = oShipperCopilotModel.getProperty("/messages");
+            
+                // oController.onOpenBusyDialog(); // start loader
+            
+                // try {
+                //     const oData = await new Promise((resolve, reject) => {
+                //         oManifestSrvModel.read("/EshipjetManfestSet", {
+                //             success: function (oResponse) {
+                //                 resolve(oResponse.results);
+                //                 oController.getView().byId("userInput").setValue("Show All Shipments");
+                //                 oController.onSendPress();
+                //             },
+                //             error: function (oError) {
+                //                 reject(oError);
+                //             }
+                //         });
+                //     });
+            
+                //     aMessages.push({
+                //         sender: "Bot",
+                //         text: "Here are all the shipments:",
+                //         tableData: oData,
+                //         hasTableData: true,
+                //         isUserText: false,
+                //         isBotImage: false
+                //     });
+                //     oShipperCopilotModel.setProperty("/messages", aMessages);
+                // } catch (error) {
+                //     aMessages.push({
+                //         sender: "BotError",
+                //         text: "Failed to load shipments.",
+                //         isUserText: false,
+                //         isBotImage: false,
+                //         hasTableData: false
+                //     });
+                //     oShipperCopilotModel.setProperty("/messages", aMessages);
+                //     console.error("Error fetching shipments:", error);
+                // } finally {
+                //     oController.onCloseBusyDialog(); // ALWAYS CLOSE!
+                // }
+
             },
             
             // Shipper Copilot Changes end
@@ -15398,8 +15545,6 @@ sap.ui.define([
                             }
                         });
         
-                        var userId = sap.ushell.Container.getUser().getId();
-                        eshipjetModel.setProperty("/TodayShipmentsByUser", userId);
                         eshipjetModel.setProperty("/TodayShipmentsLength", filteredResults.length);
                         
                     }

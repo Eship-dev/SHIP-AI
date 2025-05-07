@@ -143,24 +143,158 @@
 													visible="{ShipperCopilotModel>isBotImage}" />
 
 												<!-- Table -->
-												<VBox visible="{ShipperCopilotModel>hasTableData}">
+												<VBox class="sapUiSmallMarginBottom" id="yourVBoxId" >
 													<Text text="{ShipperCopilotModel>text}" class="sapUiSmallMarginBottom" />
-													<Table items="{ShipperCopilotModel>tableData}" inset="false" fixedLayout="false">
-														<columns>
-															<Column><Text text="Manifest No" /></Column>
-															<Column><Text text="Ship From" /></Column>
-															<Column><Text text="Ship To" /></Column>
-														</columns>
-														<items>
-															<ColumnListItem>
-																<cells>
-																	<Text text="{ShipperCopilotModel>Vbeln}" />
-																	<Text text="{ShipperCopilotModel>FromCompany}" />
-																	<Text text="{ShipperCopilotModel>RecCompany}" />
-																</cells>
-															</ColumnListItem>
-														</items>
-													</Table>
+
+										<!-- <ui:Table
+											rows="{ShipperCopilotModel>tableData}"
+											visible="{ShipperCopilotModel>/showAllShipmentsTable}"
+											selectionMode="None"
+											width="30rem"
+											fixedColumnCount="1"
+											visibleRowCount="5"  >
+											<ui:columns>
+												<ui:Column width="6rem" hAlign="Center">
+													<Label text="Request ID" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>Vbeln}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Created Date" />
+													<ui:template>
+														<Text text="{path: 'ShipperCopilotModel>Createddate', formatter: '.formatter.formatCustomDateTimeForOrders'}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Ship Date" />
+													<ui:template>
+														<Text text="{path: 'ShipperCopilotModel>DateAdded', formatter: '.formatter.formatCustomDateTimeForOrders'}" />
+													</ui:template>
+												</ui:Column>
+
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Shipment Type" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>Shipmenttype}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Carrier Name" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>CarrierCode}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Service Level" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>CarrierDesc}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Tracking Number" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>TrackingNumber}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Status" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>DeliveryStatus}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Ship To Company" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>RecCompany}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Ship To Contact" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>RecContact}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Ship To Address Line 1" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>RecAddress1}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Ship To City" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>RecCity}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Ship To State" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>Region}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Ship To Country" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>RecCountry}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Ship To Zipcode" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>RecPostalcode}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Ship To Phone" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>RecPhone}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Ship To Email" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>Emailaddress}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Requester Name" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>RecContact}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Connected To" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>DateAdded}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Order Type" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>Shipmentid}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Priority Level" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>Priorityalert}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="RF ID" />
+													<ui:template>
+														<Text text="{ShipperCopilotModel>Reference1}" />
+													</ui:template>
+												</ui:Column>
+												<ui:Column width="10rem" hAlign="Center">
+													<Label text="Updated" />
+													<ui:template>
+														<Text text="" />
+													</ui:template>
+												</ui:Column>
+											</ui:columns>
+										</ui:Table> -->
 												</VBox>
 
 											</VBox>
@@ -169,7 +303,7 @@
 									</List>
 									<HBox justifyContent="Center" class="ship-copilot-search-section">
 										<Button icon="sap-icon://chain-link" press="onSendPress" class="chainlinkCp sapUiLargeMarginBegin"/>
-										<Input id="userInput" class="sapUiTinyMarginEnd shippercopilotcss" placeholder="Good Afternoon Robert, I'm ready for the task" width="30rem" submit="onSendPress"/>
+										<Input id="userInput" class="sapUiTinyMarginEnd shippercopilotcss" placeholder="Good Afternoon {eshipjetModel>/userName}, I'm ready for the task" width="30rem" submit="onSendPress"/>
 										<Button icon="sap-icon://arrow-top" press="onSendPress" class="sapUiTinyMarginEnd"/>
 									</HBox>
 
@@ -360,7 +494,7 @@
 		<OverflowToolbar class="eship-footer1 ship-now-footer" visible="{eshipjetModel>/commonValues/shipNowViewFooter}">
 			<HBox>
 				<Text text="Today's Shipments by " class="todayscss sapUiTinyMarginEnd sapUiSmallMarginBegin" />
-				<Text text="{eshipjetModel>/TodayShipmentsByUser}" class="greenTexttoday" />
+				<Text text="{eshipjetModel>/userName}" class="greenTexttoday" />
 				<Text text=":" class="todayscss" />
 				<Text text="{eshipjetModel>/TodayShipmentsLength}" class="todayscssNumber sapUiTinyMarginBegin " />
 			</HBox>
