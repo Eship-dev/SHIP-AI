@@ -9,7 +9,7 @@
 				<Button text="PGI Successful." type="Ghost"
 					visible="{= ${eshipjetModel>/commonValues/OverallGoodsMovementStatus} === 'C' }"
 					icon="sap-icon://accept" iconFirst="true"
-					enabled="false" class="sapUiSmallMarginEnd pgiSuccess" />
+					enabled="false" class="sapUiSmallMarginEnd pgiSuccess pgis2" />
 				<Button text="PGI Failed." type="Ghost" 
 					visible="{= ${eshipjetModel>/commonValues/OverallGoodsMovementStatus} === 'A' ? (${eshipjetModel>/commonValues/shipNowStatus} === true) : false }"
 					icon="sap-icon://decline" iconFirst="true"

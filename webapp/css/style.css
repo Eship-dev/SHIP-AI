@@ -1076,6 +1076,17 @@ body.dark-theme {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.sapUiSizeCompact .sapMInputBaseInner {
+  padding: 0 0.5rem;
+  min-width: 39rem;
+}
+.shippercopilotcss{
+  padding: 0 0.5rem;
+  min-width: 39rem;
+}
+.chainlinkCp{
+  padding-top: 10px;
+}
 
 .icon-dashboard_icon .path1:before {
   content: "\e900";
@@ -1820,6 +1831,21 @@ sidebar-header {
   top: 3px !important;
   
   
+}
+.pgiSuccess .sapMBtnIcon {
+  background-color: #07f13e;
+    padding: 1px;
+    color: white;
+    margin-right: 7px;
+}
+
+.pgis2{
+  font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    display: flex
+;
+    align-items: center;
 }
 .todayscss{
   font-weight: 500 !important;

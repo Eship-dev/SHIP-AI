@@ -1,6 +1,6 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
-    <Toolbar  width="auto" height="15%" class="toolbarbottomborder fixedLayout">
+    <Toolbar  width="auto" height="15%" class="toolbarbottomborder fixedLayout ordersDarkThemeToolbar">
 			<Text text="Statuses" class="toolBarHeader sapUiTinyMarginBegin pageTitle" ></Text>
 				<ToolbarSpacer />
 					<HBox>

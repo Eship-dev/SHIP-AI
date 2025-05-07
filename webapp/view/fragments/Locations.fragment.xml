@@ -1,7 +1,7 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
-        <Toolbar width="auto" height="15%" class="toolbarbottomborder fixedLayout">
-			<Text text="Locations" class="toolBarHeader sapUiTinyMarginBegin sapUiMediumMarginBottom sapUiSmallMarginTop " ></Text>
+        <Toolbar width="auto" height="15%" class="toolbarbottomborder fixedLayout ordersDarkThemeToolbar">
+			<Text text="Locations" class="toolBarHeader sapUiTinyMarginBegin sapUiMediumMarginBottom sapUiSmallMarginTop whiteColor" ></Text>
 				<ToolbarSpacer />
 					<HBox>
 						<Button  text="Add Location"  press="onAddLocationPress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="10rem" ></Button>
@@ -9,7 +9,7 @@
                 	</HBox>
 		</Toolbar>
 
-        <Toolbar height="25%" class="sapUiTinyMarginBottom" >
+        <Toolbar height="25%" class="sapUiTinyMarginBottom whiteBackground " >
 			<HBox width="100%" >
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="1" class="NumberSizeTitle1"></Text>
@@ -32,6 +32,7 @@
 
     <ui:Table	id="_IDLocationTable"
              	selectionMode="None"
+				class="whiteBackground"
 				visibleRowCount="15"
 				ariaLabelledBy="title">
     <ui:extension>

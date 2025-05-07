@@ -168,8 +168,9 @@
 									</CustomListItem>
 									</List>
 									<HBox justifyContent="Center" class="ship-copilot-search-section">
-										<Input id="userInput" class="sapUiTinyMarginEnd" placeholder="Good Afternoon Robert, I'm ready for the task" width="30rem" submit="onSendPress"/>
-										<Button icon="sap-icon://arrow-top" press="onSendPress"/>
+										<Button icon="sap-icon://chain-link" press="onSendPress" class="chainlinkCp sapUiLargeMarginBegin"/>
+										<Input id="userInput" class="sapUiTinyMarginEnd shippercopilotcss" placeholder="Good Afternoon Robert, I'm ready for the task" width="30rem" submit="onSendPress"/>
+										<Button icon="sap-icon://arrow-top" press="onSendPress" class="sapUiTinyMarginEnd"/>
 									</HBox>
 
 					</ScrollContainer>

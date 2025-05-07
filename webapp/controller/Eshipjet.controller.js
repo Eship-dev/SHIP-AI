@@ -15297,6 +15297,7 @@ sap.ui.define([
             var sKey = "ShipNow";      
             eshipjetModel.setProperty("/commonValues/sapDeliveryNumber",""); //80000001
             var oToolPage = this.byId("toolPage");
+            
             oToolPage.setSideExpanded(false);
             eshipjetModel.setProperty("/shippingCharges",[]);
             eshipjetModel.setProperty("/shippingDocuments",[]);
