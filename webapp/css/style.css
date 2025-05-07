@@ -1076,10 +1076,7 @@ body.dark-theme {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.sapUiSizeCompact .sapMInputBaseInner {
-  padding: 0 0.5rem;
-  min-width: 39rem;
-}
+
 .shippercopilotcss{
   padding: 0 0.5rem;
   min-width: 39rem;
