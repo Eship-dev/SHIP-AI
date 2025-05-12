@@ -486,6 +486,19 @@ sap.ui.define([
                     //MessageToast.show("Error communicating with Copilot.");
                     oController.onCloseBusyDialog();
                 }
+
+                const oList = this.byId("chatList");
+
+                oList.attachEvent("updateFinished", function (oEvent) {
+                    const iLength = oEvent.getSource().getItems().length;
+
+                    if (iLength > 0) {
+                    // Use a small timeout to allow rendering to complete
+                    setTimeout(() => {
+                        oList.scrollToIndex(iLength - 1, true);
+                    }, 100);
+                    }
+                });
             },
 
             // Simulate bot response for testing purposes
@@ -544,7 +557,7 @@ sap.ui.define([
 
             _createShipmentsTable: function (aData) {
                 var oView = this.getView();
-                var oVBox = oView.byId("yourVBoxId"); // Replace with actual VBox ID
+                var oVBox = oView.byId("yourVBoxId");
             
                 // Remove old content if needed
                 oVBox.removeAllItems();
@@ -624,7 +637,7 @@ sap.ui.define([
                 oController.onOpenBusyDialog();
                 var oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
 
-                let sResponse;
+                var sResponse;
                 try {
                     // Await the response first
                     sResponse = await oController._showAllShipmentsResponse();
@@ -15438,12 +15451,17 @@ sap.ui.define([
                 filters: aFilters,
                 success:function(response){
                     if(response && response.results.length > 0){
+                        var ShipperCopilotModel = oController.getView().getModel("ShipperCopilotModel");
+                        var text = response.results[0].Labelurl;
+                        // var aMessages = [];
+                        // aMessages.push({ sender: "Bot", text: text });
+                        // ShipperCopilotModel.setProperty("/messages", aMessages);
+                        ShipperCopilotModel.setProperty("/text", text);
                         eshipjetModel.setProperty("/scanShipTableData2", response.results);
                         eshipjetModel.setProperty("/sShipAndScan", "");
                     }else{
                         oController.createShipmentFromScanShip();
                     }
-                    
                     oController.onCloseBusyDialog();
                 },
                 error: function(error){

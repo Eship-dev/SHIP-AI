@@ -2533,3 +2533,41 @@ button, input, optgroup, select, textarea {
 .packScreenPadding{
   padding: 13px !important;
 }
+
+.sapMCbBg {
+  background-color: #fff;
+  /* border: solid .125rem #bfbfbf; */
+  display: inline-block;
+  position: absolute;
+  left: 0.8125rem;
+  top: 0.8125rem;
+  height: 1.125rem;
+  width: 1.125rem;
+  line-height: 1.125rem;
+  padding: 0px;
+  text-align: center;
+  font-size: 1rem;
+  border-top-left-radius: 0.125rem;
+  border-top-right-radius: 0.125rem;
+  border-bottom-right-radius: 0.125rem;
+  border-bottom-left-radius: 0.125rem;
+  -webkit-focus-ring-color: none;
+}
+
+.customInputWrapper {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  align-items: center;
+}
+
+.startButton {
+  border: none;
+  background: transparent;
+  height: 100%;
+}
+
+.shippercopilotcss {
+  border: none;
+  flex-grow: 1;
+}
