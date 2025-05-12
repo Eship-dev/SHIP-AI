@@ -456,26 +456,31 @@ sap.ui.define([
 
                 // Simulate a bot response after sending the user message
                 try {
-                    const sResponse = await this._simulateBotResponse(sUserMessage);
-                    var aShippinDocs = sResponse.shippingDocuments;
-                    var aLabel = aShippinDocs.filter((obj) => obj.contentType === "Label");
-                    var sLabel;
-                    if (aLabel.length !== 0 && aLabel !== undefined) {
-                        // sLabel = aLabel[0].encodedLabel;
-                        // var dataUrl = "data:image/png;base64," + sLabel;
-                        sLabel = aLabel[0].docName;
-                        var dataUrl = "https://eshipjetsatge.blob.core.windows.net/shipping-labels/" + sLabel
-                        aMessages.push({ sender: "Bot", text: dataUrl });
-                        oShipperCopilotModel.setProperty("/messages", aMessages);
+                    var sUserDeliveryNum = sUserMessage.split(" ");
+                    sUserDeliveryNum = sUserDeliveryNum[sUserDeliveryNum.length-1]
+                    eshipjetModel.setProperty("/sShipAndScan", sUserDeliveryNum);
+                    oController.getManifestHeaderForScanShip();
+                    oController.onCloseBusyDialog();
+                    // const sResponse = await this._simulateBotResponse(sUserMessage);
+                    // var aShippinDocs = sResponse.shippingDocuments;
+                    // var aLabel = aShippinDocs.filter((obj) => obj.contentType === "Label");
+                    // var sLabel;
+                    // if (aLabel.length !== 0 && aLabel !== undefined) {
+                    //     // sLabel = aLabel[0].encodedLabel;
+                    //     // var dataUrl = "data:image/png;base64," + sLabel;
+                    //     sLabel = aLabel[0].docName;
+                    //     var dataUrl = "https://eshipjetsatge.blob.core.windows.net/shipping-labels/" + sLabel
+                    //     aMessages.push({ sender: "Bot", text: dataUrl });
+                    //     oShipperCopilotModel.setProperty("/messages", aMessages);
                         oController.onCloseBusyDialog();
-                    } else {
-                        var aError = sResponse.Errors;
-                        if (aError.length !== 0) {
-                            aMessages.push({ sender: "BotError", text: aError[0] });
-                            oShipperCopilotModel.setProperty("/messages", aMessages);
-                            oController.onCloseBusyDialog();
-                        }
-                    }
+                    // } else {
+                    //     var aError = sResponse.Errors;
+                    //     if (aError.length !== 0) {
+                    //         aMessages.push({ sender: "BotError", text: aError[0] });
+                    //         oShipperCopilotModel.setProperty("/messages", aMessages);
+                    //         oController.onCloseBusyDialog();
+                    //     }
+                    // }
 
                 } catch (error) {
                     if (error.responseText !== undefined) {
@@ -516,7 +521,8 @@ sap.ui.define([
             },
 
             onZoomImage: function (oEvent) {
-                var dataUrl = oEvent.getSource().getBindingContext("ShipperCopilotModel").getObject().text
+                // var dataUrl = oEvent.getSource().getBindingContext("ShipperCopilotModel").getObject().text
+                var dataUrl = oEvent.getSource().getBindingContext("ShipperCopilotModel").getModel().getData().text
                 // Create a dialog if it does not exist
                 if (!this._oDialog) {
                     this._oDialog = new Dialog({
@@ -1584,6 +1590,9 @@ sap.ui.define([
                                             })
                                         }
                                         eshipjetModel.setProperty("/shippingDocuments", ashippingDocuments);
+                                        var ShipperCopilotModel = oController.getView().getModel("ShipperCopilotModel");
+                                        var text = ashippingDocuments[0].docName;
+                                        ShipperCopilotModel.setProperty("text", text);
                                     }
 
                                     if(response && response.shippingCharges && response.shippingCharges.length > 0 ){
@@ -3218,6 +3227,8 @@ sap.ui.define([
   
                             eshipjetModel.setProperty("/shippingDocuments", tepmShippingDocs);
                             eshipjetModel.setProperty("/tepmShippingDocs", ashippingDocuments );
+                            var ShipperCopilotModel = oController.getView().getModel("ShipperCopilotModel");
+                            ShipperCopilotModel.setProperty("text", ashippingDocuments/0/docName);
 
                             var trackingArray = [];
                             for(var i=0; i<aFilteredData.length; i++){
@@ -15407,6 +15418,9 @@ sap.ui.define([
                 filters: aFilters,
                 success:function(response){
                     if(response && response.results.length > 0){
+                        var ShipperCopilotModel = oController.getView().getModel("ShipperCopilotModel");
+                        var text = response.results[0].Labelurl;
+                        ShipperCopilotModel.setProperty("/text", text);
                         eshipjetModel.setProperty("/scanShipTableData2", response.results);
                         eshipjetModel.setProperty("/sShipAndScan", "");
                     }else{

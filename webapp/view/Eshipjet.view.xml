@@ -137,14 +137,14 @@
 												</HBox>
 
 												<!-- Bot Image -->
-												<Image src="{ShipperCopilotModel>text}"
+												<Image src="{ShipperCopilotModel>/text}"
 													width="70%" height="70%"
 													press="onZoomImage"
 													visible="{ShipperCopilotModel>isBotImage}" />
 
 												<!-- Table -->
 												<VBox class="sapUiSmallMarginBottom" id="yourVBoxId" >
-													<Text text="{ShipperCopilotModel>text}" class="sapUiSmallMarginBottom" />
+													<!-- <Text text="{ShipperCopilotModel>text}" class="sapUiSmallMarginBottom" /> -->
 
 										<!-- <ui:Table
 											rows="{ShipperCopilotModel>tableData}"

@@ -96,10 +96,8 @@
 								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="Shipmenttype" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/3/visible}">
 									<Label text="Shipment Type" />
 									<ui:template>
-										<HBox justifyContent="SpaceBetween" width="100%" >
-											<Text text="{eshipjetModel>Shipmenttype}" wrapping="false" class="ordersSmallText sapUiSmallMarginTop" />
+											<Text text="{eshipjetModel>Shipmenttype}" wrapping="false" class="ordersSmallText" />
 											<!-- <Button icon="sap-icon://add" type="Transparent" ></Button> -->
-										</HBox>
 									</ui:template>
 								</ui:Column>
 
