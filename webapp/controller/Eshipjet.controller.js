@@ -486,19 +486,6 @@ sap.ui.define([
                     //MessageToast.show("Error communicating with Copilot.");
                     oController.onCloseBusyDialog();
                 }
-
-                const oList = this.byId("chatList");
-
-                oList.attachEvent("updateFinished", function (oEvent) {
-                    const iLength = oEvent.getSource().getItems().length;
-
-                    if (iLength > 0) {
-                    // Use a small timeout to allow rendering to complete
-                    setTimeout(() => {
-                        oList.scrollToIndex(iLength - 1, true);
-                    }, 100);
-                    }
-                });
             },
 
             // Simulate bot response for testing purposes
