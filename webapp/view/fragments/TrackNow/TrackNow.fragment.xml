@@ -25,23 +25,23 @@
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="3" class="NumberSizeTitle1"></Text>
 					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Success" press="onTrackNowShippedFilterPress1" class="shipped-request-button request-button" id="idShippedBtn" icon="false" width="100%" ></Button>
+					<Button type="Success" press="onTrackNowStstusBtnFilterPress" class="shipped-request-button request-button" id="idShippedBtn" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="3" class="NumberSizeTitle1"></Text>
 					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Negative" press="onTrackNowCancelledFilterPress1" id="idCancelledBtn" class="cancelled-request-button request-button" icon="false" width="100%" ></Button>
+					<Button type="Negative" press="onTrackNowStstusBtnFilterPress" id="idCancelledBtn" class="cancelled-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="3" class="NumberSizeTitle1"></Text>
 					<Text text="In-Transit" class="sapUiTinyMarginBottom"></Text>
-					<Button  press="onTrackNowInTransitFilterPres1s" class="inTransit-request-button request-button" id="idInTransitBtn" icon="false" width="100%"  ></Button>
+					<Button  press="onTrackNowStstusBtnFilterPress" class="inTransit-request-button request-button" id="idInTransitBtn" icon="false" width="100%"  ></Button>
 				</VBox>
 				
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="3" class="NumberSizeTitle1"></Text>
 					<Text text="Delivered" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Success" press="onTrackNowDeliveredFilterPress1" id="idDeliveredBtn" class="shippedProgress-request-button request-button" icon="false" width="100%" ></Button>
+					<Button type="Success" press="onTrackNowStstusBtnFilterPress" id="idDeliveredBtn" class="shippedProgress-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 			</HBox>
 		</Toolbar>
@@ -117,7 +117,8 @@
 							<ui:Column width="5rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/6/visible}">
 								<Label text="Status" />
 								<ui:template>
-									<Text text="Shipped" wrapping="false" class="greenColorForIcon ordersSmallText "  />
+									<!-- <Text text="Shipped" wrapping="false" class="greenColorForIcon ordersSmallText "  /> -->
+										<Text text="{path: 'eshipjetModel>Shipprocess', formatter: '.formatter.formatShipmentType'}" wrapping="false" class="greenColorForIcon ordersSmallText" />
 								</ui:template>
 							</ui:Column>
 

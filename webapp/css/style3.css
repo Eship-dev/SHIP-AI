@@ -1402,6 +1402,26 @@ sapMPopover .sapMPopoverCont {
   border: none;
 } */
 
+/* New style for the header */
+.alHeaderStyle {
+  background-color: white !important;
+  border-bottom: 1px solid #ccc; /* optional subtle border */
+}
+
+.alHeaderStyle .sapMText,
+.alHeaderStyle .sapUiIcon {
+  color: black !important;
+  fill: black !important;
+}
+
+.alHeaderStyle .sapMBtn {
+  background-color: white !important;
+  color: black !important;
+  fill: black !important;
+  border: 1px solid #ccc; /* optional */
+}
+
+
 .customHeaderStyle {
   border-bottom: none !important;
   background-color: #212121 !important;
@@ -1479,20 +1499,42 @@ sapMPopover .sapMPopoverCont {
   color: #fff !important;
 }
 
-/* Ship Now button base */
+
+.green-buttonVoid {
+  color: unset !important;
+  border-radius: 1% !important;
+  height: 40px !important;
+  cursor: pointer;
+  background-color: #4E9C2D !important; /* Always green */
+  color: #fff !important;
+  border: 1px solid #4E9C2D !important;
+}
+
+.green-buttonVoid span {
+  display: flex !important;
+  align-items: center;
+  color: #fff !important;
+}
+
+.green-buttonVoid:hover,
+.green-buttonVoid:focus,
+.green-buttonVoid:active {
+  background-color: #4E9C2D !important; /* Ensure no change on hover/click */
+  border: 1px solid #4E9C2D !important;
+  color: #fff !important;
+}
+
+/* Ship Now button base for now no use */ 
 .btnShipNowVoid {
-  background-color: #247a09 !important;
-  border: 1px solid #4ea732 !important;
-  color: #ffffff !important;
+  background-color: #247a09;
+  border: 1px solid #4ea732;
+  float: right;
+  color: #fff;
+  margin-right: 7px !important;
   font-size: 17.5px !important;
   width: 160px !important;
-  height: 46px !important;
-  font-family: "AvenirNextCyrMedium", "72", sans-serif !important;
-  border-radius: 8px;
-  outline: none;
-  cursor: pointer; /* ensure cursor is pointer */
-  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
 }
+
 
 /* Hover behavior: keep background green and text white */
 .btnShipNowVoid:hover {
