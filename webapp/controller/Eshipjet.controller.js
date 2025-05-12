@@ -285,6 +285,7 @@ sap.ui.define([
                 document.body.classList.remove("dark-theme");
             } else if (sKey === "TrackNow") {
                 this.getOrdersHistoryShipments();
+                eshipjetModel.setProperty("/commonValues/toolPageHeader", false);
                 eshipjetModel.setProperty("/commonValues/allViewsFooter", true);
                 eshipjetModel.setProperty("/commonValues/shipNowViewFooter", false);
                 eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
