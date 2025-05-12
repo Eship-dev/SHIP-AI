@@ -30,7 +30,7 @@
 		</Toolbar>
 
     <ui:Table	id="_IDThirdPartyTable"	width="100%"	class="whiteBackground sapUiTinyMarginTop"
-             	selectionMode="None"	paste="onPaste" 	ariaLabelledBy="title">
+             	selectionMode="None"	paste="onPaste" 	ariaLabelledBy="title" visibleRowCount="14">
     <ui:extension>
         <OverflowToolbar style="Clear">										
             <ToolbarSpacer />

@@ -33,7 +33,7 @@
     <ui:Table	id="_IDLocationTable"
              	selectionMode="None"
 				class="whiteBackground"
-				visibleRowCount="15"
+				visibleRowCount="10"
 				ariaLabelledBy="title">
     <ui:extension>
         <OverflowToolbar style="Clear">										

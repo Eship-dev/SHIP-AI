@@ -30,7 +30,7 @@
 		</Toolbar>
 
 
-    <ui:Table	id="_IDLTLClassTable" width="100%" class="headerContent sapUiTinyMarginTop"
+    <ui:Table	id="_IDLTLClassTable" width="100%" class="headerContent sapUiTinyMarginTop" visibleRowCount="10"
              	selectionMode="None" >
     <ui:extension>
         <OverflowToolbar style="Clear">										
