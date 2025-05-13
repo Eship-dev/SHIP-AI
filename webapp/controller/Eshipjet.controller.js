@@ -1141,8 +1141,8 @@ sap.ui.define([
             eshipjetModel.setProperty("/commonValues/showShipType" , false);
             eshipjetModel.setProperty("/commonValues/PurchaseOrder" , "");
             eshipjetModel.setProperty("/selectPaymentType", "");
-           
-
+            var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
+            ShipNowDataModel.setProperty("/ShipToAddress", {});
 
             var oToolPage = this.byId("toolPage");
             oToolPage.setSideExpanded(false);
