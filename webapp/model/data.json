@@ -401,7 +401,7 @@
             { "key": "Lithium", "text": "Lithium" }
         ],
       
-    "selectPaymentType":"Sender",
+    "selectPaymentType":"",
     "PaymentTypes": [
         { "key": "COLLECT", "text": "Collect" },
         { "key": "RECIPIENT", "text": "Recipient" },
