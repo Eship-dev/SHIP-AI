@@ -1130,6 +1130,13 @@ sap.ui.define([
             eshipjetModel.setProperty("/InternationalDetails/shipFromTaxNo", "");
             eshipjetModel.setProperty("/InternationalDetails/shipFromTaxNo", "");
             eshipjetModel.setProperty("/trackingArray", []);
+            eshipjetModel.setProperty("/commonValues/shipNowVoidSelect", false);
+            eshipjetModel.setProperty("/commonValues/shipNowVoidSelectSave" , true);
+            eshipjetModel.setProperty("/commonValues/shipNowVoidSelectShipNow" , true);
+            eshipjetModel.setProperty("/commonValues/showShipType" , false);
+            eshipjetModel.setProperty("/commonValues/PurchaseOrder" , "");
+            eshipjetModel.setProperty("/selectPaymentType", "");
+           
 
 
             var oToolPage = this.byId("toolPage");
@@ -1157,6 +1164,70 @@ sap.ui.define([
             eshipjetModel.setProperty("/SideNavigation", false);
             this.byId("pageContainer").to(this.getView().createId(sKey));
             eshipjetModel.setProperty("/commonValues/toolPageHeader", true);
+        },
+        onSearchOrder: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+        
+            // Get the table and binding
+            var oTable = this.byId("idOrdersTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    // Example: filter on Plant, OrderID, CustomerName (add fields as needed)
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("Plant", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("Vbeln", sap.ui.model.FilterOperator.Contains, sQuery),
+                            
+                            new sap.ui.model.Filter("CarrierCode", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("Shipmentid", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("CarrierDesc", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("ShipmentType", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("Totalpkg", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("DateAdded", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("TrackingNumber", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("Shipprocess", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("ExpDelDate", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("RecContact", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("RecCompany", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("RecCity", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("RecRegion", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("RecPostalcode", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("RecCountry", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("RecPhone", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("Emailaddress", sap.ui.model.FilterOperator.Contains, sQuery),
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+        
+
+        onSearchTrack: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+        
+            // Get the table and binding
+            var oTable = this.byId("idTrackNowTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    // Example: filter on Plant, OrderID, CustomerName (add fields as needed)
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("FromCompany", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("Vbeln", sap.ui.model.FilterOperator.Contains, sQuery),
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
         },
 
         onShipNowNewPress:function(){
@@ -2927,6 +2998,20 @@ sap.ui.define([
             });
             await myPromise;
         },
+
+        onDeliveryNumberLiveChange: function (oEvent) {
+            var input = oEvent.getSource();
+            var value = oEvent.getParameter("value");
+          
+            // Allow only digits
+            var cleanValue = value.replace(/[^0-9]/g, '');
+          
+            // Update input field only if the value changed
+            if (value !== cleanValue) {
+              input.setValue(cleanValue);
+            }
+          },
+          
 
         onOpenBusyDialog: function () {
             if (!oController._pBusyDialog) {

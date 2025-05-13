@@ -37,7 +37,7 @@
 						press="onOpenSAPDeliveryList" />
 
 									<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch" value="{eshipjetModel>/commonValues/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
-									<Input id="idSapDeliveryNumber" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{eshipjetModel>/commonValues/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle sapDeliveryNumberInptBold create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd custom-input2" width="14%" editable="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog" ></Input>
+									<Input id="idSapDeliveryNumber" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{eshipjetModel>/commonValues/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle sapDeliveryNumberInptBold create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd custom-input2" width="14%" editable="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog"  liveChange="onDeliveryNumberLiveChange" ></Input>
 									<Button text="Get" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" type="Ghost" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" press="onShipNowGetPress" width="4%"></Button>
 									<Label text="Ship Type" visible="{eshipjetModel>/commonValues/showShipType}" class="sapUiSmallMargin"></Label>
 									<Text text="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}" visible="{eshipjetModel>/commonValues/showShipType}" class="ship-type-value sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" ></Text>
@@ -1096,7 +1096,7 @@
 					</ui:extension>
 				</ui:Table> -->
 							<HBox class="sapUiTinyMarginTop" >													
-								<HBox height="3rem" width="33%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="Start" >																
+								<HBox height="3rem" width="25%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="Start" >																
 									<!-- <FlexBox alignItems="Center" >
 										<core:Icon
 											src="sap-icon://sap-box"
@@ -1109,21 +1109,23 @@
 										<Button text="Get" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" visible="{eshipjetModel>/commonValues/shipNowGetBtn}" class="scan-ship-toolbar1__button sapUiTinyMargin" type="Ghost" width="3rem" ></Button>
 									</FlexBox>
 								</HBox>
-								<HBox height="3rem" width="37%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="SpaceBetween" >
+								<HBox height="3rem" width="20%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="SpaceBetween" >
 									<FlexBox>
 										<Label text="Pkg Material" class="sapUiSmallMarginTop" width="auto" />
-										<ComboBox items="{eshipjetModel>/packageMaterial}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" selectedKey="{eshipjetModel>/selectedPackageMat}" class="create-ship-req_input sapUiTinyMarginBegin" width="7rem" >
+										<ComboBox items="{eshipjetModel>/packageMaterial}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" selectedKey="{eshipjetModel>/selectedPackageMat}" class="create-ship-req_input sapUiTinyMarginBegin" width="11rem" >
 											<core:Item key="{eshipjetModel>Product}" text="{eshipjetModel>Product}" />
 										</ComboBox>
 									</FlexBox>
-									<FlexBox>
-										<Button text="Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="auto" press="onPackPress" ></Button>
-										<Button text="Pack All" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="auto" press="onPackAllPress" ></Button>
-										<Button text="DG Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="auto" ></Button>
-										<Button text="DG Pack All" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="scan-ship-toolbar1__button" type="Ghost" width="auto" ></Button>
-									</FlexBox>
+									
 								</HBox>
-
+								<HBox height="3rem" width="27%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="SpaceBetween" >
+								   <FlexBox>
+										<Button text="Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_Pack sapUiTinyMarginEnd sapUiTinyMarginBegin sapUiTinyMarginBottom" type="Ghost" width="auto" press="onPackPress" ></Button>
+										<Button text="Pack All" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_PackAll sapUiTinyMarginEnd" type="Ghost" width="auto" press="onPackAllPress" ></Button>
+										<Button text="DG Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_DGPack sapUiTinyMarginEnd" type="Ghost" width="auto" ></Button>
+										<Button text="DG Pack All" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_DGPackAll" type="Ghost" width="auto" ></Button>
+									</FlexBox>
+                                </HBox>
 								<HBox height="3rem" width="30%" class="whiteBackground" alignItems="Center" justifyContent="Start" >
 									<Text text="Tracking / Pro#" class="sapUiTinyMargin" ></Text>
 									<Input value="{}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input sapUiTinyMargin" width="auto"></Input>

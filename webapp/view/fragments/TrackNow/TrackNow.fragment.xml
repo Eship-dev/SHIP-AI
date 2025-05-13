@@ -49,6 +49,7 @@
 	<Toolbar  class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd" >
 										<Button icon="sap-icon://filter" press="onTrackNowFilterPress"></Button>
 										<ToolbarSpacer />
+										<SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" search="onSearchTrack" ></SearchField>
 										<Button icon="sap-icon://synchronize"></Button>
 										<Button icon="sap-icon://action"></Button>
 									<Button icon="sap-icon://action-settings" press="openTrackNowColNamesPopover"></Button>
