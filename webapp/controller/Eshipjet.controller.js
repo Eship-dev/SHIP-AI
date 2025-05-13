@@ -45,6 +45,7 @@ sap.ui.define([
             }
             const oShipperCopilotModel = new JSONModel(obj);
             this.getView().setModel(oShipperCopilotModel, "ShipperCopilotModel");
+            this.getView().getModel("ShipperCopilotModel").setSizeLimit(9999999);   
             oResourceBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
             this._setToggleButtonTooltip(!Device.system.desktop);
             
