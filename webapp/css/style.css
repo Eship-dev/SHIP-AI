@@ -592,6 +592,10 @@ span.sapMBtnInner.sapMBtnReject {
   padding-top: 8px;
 }
 
+.sapUiSizeCompact .sapMTB {
+  height: 3rem;
+}
+
 .sapUiSizeCompact .sapMInputBaseInner {
   padding: 0 0.5rem;
   min-width: 2rem;
