@@ -123,6 +123,8 @@ sap.ui.define([
         formatShipmentType:function(shipType){
             if(shipType === "SHIP"){
                 return "Shipped";
+            }else if(shipType === "CANC"){
+                return "Cancelled";
             }
         }
 	};
