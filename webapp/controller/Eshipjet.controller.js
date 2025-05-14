@@ -647,7 +647,7 @@ sap.ui.define([
                     return;
                 }
 
-                var oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
+                //var oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
                 var sUserMessage = "Show All Shipments";
                 oShipperCopilotModel.setProperty("/iconState", false);
                 oShipperCopilotModel.setProperty("/listState", true);
@@ -723,6 +723,108 @@ sap.ui.define([
                 //     oController.onCloseBusyDialog(); // ALWAYS CLOSE!
                 // }
 
+            },
+
+            onClickCountryWiseShipments: async function(){
+                oController.onOpenBusyDialog();
+                var oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
+                var sResponse, aShipmetsResponse = oShipperCopilotModel.getProperty("/tableData");
+                try {
+                    // Await the response first
+                    if(!aShipmetsResponse || aShipmetsResponse.length == 0){
+                        sResponse = await oController._showAllShipmentsResponse();
+                        oShipperCopilotModel.setProperty("/tableData", sResponse);
+                    }else{
+                        sResponse = oShipperCopilotModel.getProperty("/tableData");
+                    } 
+                    let groupedData = sResponse.reduce((result, item) => {
+                        if (!result[item.FromCountry]) {
+                            result[item.FromCountry] = [];
+                        }
+                        result[item.FromCountry].push(item);
+                        return result;
+                        }, {});
+                  // Convert JSON into an array with country and count
+                        let formattedData = Object.keys(groupedData).map(FromCountry => ({
+                            country: FromCountry,
+                            count: groupedData[FromCountry].length
+                        }));                        
+                        formattedData = formattedData.filter(item => item.country.trim() !== ""); // removing empty country
+                        oShipperCopilotModel.setProperty("/ShippingDataCountryWiseCoount",formattedData);
+                        await oController._createShipmentsTableCountryWise();
+                        //console.log(formattedData);
+                }catch (error) {
+                    oController.onCloseBusyDialog();                    
+                    var aMessages = oShipperCopilotModel.getProperty("/messages") || [];
+                    if (error.responseText !== undefined) {
+                        aMessages.push({ sender: "BotError", text: error.responseText });
+                        oShipperCopilotModel.setProperty("/messages", aMessages);
+                    }
+                    return;
+                }
+
+                var sUserMessage = "show me country wise shipments";
+                oShipperCopilotModel.setProperty("/iconState", false);
+                oShipperCopilotModel.setProperty("/listState", true);
+
+                // Add the user's message to the chat list
+                var aMessages = oShipperCopilotModel.getProperty("/messages") || [];
+                aMessages.push({ sender: "You", text: sUserMessage });
+                oShipperCopilotModel.setProperty("/messages", aMessages);
+                this.getView().byId("userInput").setValue("");
+
+                if (sResponse && sResponse.length !== 0) {
+                    oShipperCopilotModel.setProperty("/showAllShipmentsTable", true);
+                    aMessages.push({
+                        sender: "Bot",
+                        text: "Details found for country wise shipments:",
+                        tableData: sResponse,
+                        hasTableData: true,
+                        isUserText: false,
+                        isBotImage: false
+                    });
+                    oShipperCopilotModel.setProperty("/messages", aMessages);
+                } else {
+                        var aError = sResponse.Errors || [];
+                        if (aError.length !== 0) {
+                            aMessages.push({ sender: "BotError", text: aError[0] });
+                            oShipperCopilotModel.setProperty("/messages", aMessages);
+                        }
+                }
+                oController.onCloseBusyDialog(); 
+
+            },
+            _createShipmentsTableCountryWise:function(){
+                var oView = this.getView();
+                var oVBox = oView.byId("yourVBoxId");
+                // Remove old content if needed
+                oVBox.removeAllItems();
+                var oTable = new sap.ui.table.Table({
+                                visibleRowCount: 2,
+                                selectionMode: "None",
+                                width: "12rem"
+                            });
+                 var aColumns = [
+                                { label: "Country", property: "country" },
+                                { label: "Count", property: "count" }];
+                aColumns.forEach(function (col) {
+                    oTable.addColumn(new sap.ui.table.Column({
+                        label: new sap.m.Label({ text: col.label }),
+                        template: new sap.m.Text({
+                            text: col.formatter ?
+                                { path: "ShipperCopilotModel>" + col.property, formatter: this.getView().getController()[col.formatter] } :
+                                "{" + "ShipperCopilotModel>" + col.property + "}"
+                        }),
+                        hAlign: "Center",
+                        width: "6rem"
+                    }));
+                }.bind(this));
+                 var oModel = this.getView().getModel("ShipperCopilotModel");
+                oTable.setModel(oModel, "ShipperCopilotModel");
+                oTable.bindRows("ShipperCopilotModel>/ShippingDataCountryWiseCoount");
+            
+                // Add the table to VBox
+                oVBox.addItem(oTable);
             },
             
             // Shipper Copilot Changes end
@@ -3264,8 +3366,9 @@ sap.ui.define([
                 success:function(response){
                     eshipjetModel.setProperty("/getManifestHeader", response.results);
 
-                    oController.onShopNowShipMethodChangeFromQuoteNow(response.results[0].CarrierCode, response.results[0].CarrierDesc);
-                    if (response && response.results) {
+                    
+                    if (response && response.results > 0) {
+                        oController.onShopNowShipMethodChangeFromQuoteNow(response.results[0].CarrierCode, response.results[0].CarrierDesc);
                         // Apply filtering after receiving the response
                         var aFilteredData = response.results.filter(function (item) {
                             return item.Vbeln === sDeveliveryNumber;
@@ -16619,6 +16722,7 @@ sap.ui.define([
             }
 
             return sShippinType;
-        }
+        },
+     
     });
 });
