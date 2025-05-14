@@ -1142,6 +1142,7 @@ sap.ui.define([
             eshipjetModel.setProperty("/commonValues/showShipType" , false);
             eshipjetModel.setProperty("/commonValues/PurchaseOrder" , "");
             eshipjetModel.setProperty("/selectPaymentType", "");
+            eshipjetModel.setProperty("/invoiceNo", "");
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             ShipNowDataModel.setProperty("/ShipToAddress", {});
 
@@ -1286,6 +1287,7 @@ sap.ui.define([
             eshipjetModel.setProperty("/HandlingUnits",[]); 
             eshipjetModel.setProperty("/sFromViewName", "SHIP_NOW");
             eshipjetModel.setProperty("/selectPaymentType", "");
+            eshipjetModel.setProperty("/invoiceNo", "");
             var oCommonValues = {
                 sapDeliveryNumber :"",
                 ShipNowShipMethodSelectedKey:"",
