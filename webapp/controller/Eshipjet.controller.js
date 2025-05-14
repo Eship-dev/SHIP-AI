@@ -3477,7 +3477,7 @@ sap.ui.define([
                     Supplier = aResults[2].Supplier
                 };
                 eshipjetModel.setProperty("/commonValues/ShipNowShipMethodSelectedKey", Supplier);
-                // oController.onShopNowShipMethodAfterChange(Supplier);
+                oController.onShopNowShipMethodAfterChange(Supplier);
                 for (var i = 0; i < aResults.length; i++) {               
                     sPath = "/A_OutbDeliveryHeader('"+ sDocNumber +"')/to_DeliveryDocumentPartner(PartnerFunction='"+ aResults[i].PartnerFunction + "',SDDocument='"+ sDocNumber +"')/to_Address";
                     oDeliveryModel.read(sPath,{ "groupId":"addressDefferedgroupID", "merge":false});                               
@@ -16572,7 +16572,7 @@ sap.ui.define([
                 "Vbeln": sapDeliveryNumber,
                 "ToManifestData": [oManifestDataObj]
             };
-            ShipReadDataSrvModel.update("/ManifestHeaderSet", oPayload, {
+            ShipReadDataSrvModel.create("/ManifestHeaderSet", oPayload, {
                 method: "PATCH",
                 success: function (oData) {
                     sap.m.MessageBox.warning("Shipment Cancelled Successfully.");
