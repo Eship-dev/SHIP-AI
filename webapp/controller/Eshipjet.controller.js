@@ -606,7 +606,14 @@ sap.ui.define([
                 var oModel = this.getView().getModel("ShipperCopilotModel");
                 oTable.setModel(oModel, "ShipperCopilotModel");
                 oTable.bindRows("ShipperCopilotModel>/tableData");
-            
+                
+                // Add the table to VBox
+                var oText = new sap.m.Text({
+                    text:"Details found for - show all shipments:",
+                    wrapping:true
+                });
+                oText.addStyleClass("co-pilot-search-text sapUiTinyMarginBottom");
+                oVBox.addItem(oText);
                 // Add the table to VBox
                 oVBox.addItem(oTable);
             },
@@ -769,7 +776,7 @@ sap.ui.define([
 
                 // Add the user's message to the chat list
                 var aMessages = oShipperCopilotModel.getProperty("/messages") || [];
-                aMessages.push({ sender: "You", text: sUserMessage });
+                aMessages.push({ sender: "You", text: sUserMessage});
                 oShipperCopilotModel.setProperty("/messages", aMessages);
                 this.getView().byId("userInput").setValue("");
 
@@ -800,9 +807,9 @@ sap.ui.define([
                 // Remove old content if needed
                 oVBox.removeAllItems();
                 var oTable = new sap.ui.table.Table({
-                                visibleRowCount: 2,
+                                visibleRowCount: 1,
                                 selectionMode: "None",
-                                width: "12rem"
+                                width: "13rem"
                             });
                  var aColumns = [
                                 { label: "Country", property: "country" },
@@ -824,6 +831,12 @@ sap.ui.define([
                 oTable.bindRows("ShipperCopilotModel>/ShippingDataCountryWiseCoount");
             
                 // Add the table to VBox
+                var oText = new sap.m.Text({
+                    text:"Details found for country wise shipments:",
+                    wrapping:true
+                });
+                oText.addStyleClass("co-pilot-search-text sapUiTinyMarginBottom");
+                oVBox.addItem(oText);
                 oVBox.addItem(oTable);
             },
             
