@@ -1186,24 +1186,25 @@ sap.ui.define([
                         filters: [
                             new sap.ui.model.Filter("Plant", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("Vbeln", sap.ui.model.FilterOperator.Contains, sQuery),
-                            
+                           // new sap.ui.model.Filter("SAP Delivery Number", sap.ui.model.FilterOperator.Contains, sQuery),
+                           new sap.ui.model.Filter("Carriertype", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("CarrierCode", sap.ui.model.FilterOperator.Contains, sQuery),
-                            // new sap.ui.model.Filter("Shipmentid", sap.ui.model.FilterOperator.Contains, sQuery),
-                            // new sap.ui.model.Filter("CarrierDesc", sap.ui.model.FilterOperator.Contains, sQuery),
-                            // new sap.ui.model.Filter("ShipmentType", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("Shipmentid", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("CarrierDesc", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("ShipmentType", sap.ui.model.FilterOperator.Contains, sQuery),
                             // new sap.ui.model.Filter("Totalpkg", sap.ui.model.FilterOperator.Contains, sQuery),
-                            // new sap.ui.model.Filter("DateAdded", sap.ui.model.FilterOperator.Contains, sQuery),
-                            // new sap.ui.model.Filter("TrackingNumber", sap.ui.model.FilterOperator.Contains, sQuery),
-                            // new sap.ui.model.Filter("Shipprocess", sap.ui.model.FilterOperator.Contains, sQuery),
+                            //new sap.ui.model.Filter("DateAdded", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("TrackingNumber", sap.ui.model.FilterOperator.Contains, sQuery),
+                             new sap.ui.model.Filter("Shipprocess", sap.ui.model.FilterOperator.Contains, sQuery),
                             // new sap.ui.model.Filter("ExpDelDate", sap.ui.model.FilterOperator.Contains, sQuery),
-                            // new sap.ui.model.Filter("RecContact", sap.ui.model.FilterOperator.Contains, sQuery),
-                            // new sap.ui.model.Filter("RecCompany", sap.ui.model.FilterOperator.Contains, sQuery),
-                            // new sap.ui.model.Filter("RecCity", sap.ui.model.FilterOperator.Contains, sQuery),
-                            // new sap.ui.model.Filter("RecRegion", sap.ui.model.FilterOperator.Contains, sQuery),
-                            // new sap.ui.model.Filter("RecPostalcode", sap.ui.model.FilterOperator.Contains, sQuery),
-                            // new sap.ui.model.Filter("RecCountry", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("RecContact", sap.ui.model.FilterOperator.Contains, sQuery),
+                             new sap.ui.model.Filter("RecCompany", sap.ui.model.FilterOperator.Contains, sQuery),
+                             new sap.ui.model.Filter("RecCity", sap.ui.model.FilterOperator.Contains, sQuery),
+                             new sap.ui.model.Filter("RecRegion", sap.ui.model.FilterOperator.Contains, sQuery),
+                             new sap.ui.model.Filter("RecPostalcode", sap.ui.model.FilterOperator.Contains, sQuery),
+                             new sap.ui.model.Filter("RecCountry", sap.ui.model.FilterOperator.Contains, sQuery),
                             // new sap.ui.model.Filter("RecPhone", sap.ui.model.FilterOperator.Contains, sQuery),
-                            // new sap.ui.model.Filter("Emailaddress", sap.ui.model.FilterOperator.Contains, sQuery),
+                             new sap.ui.model.Filter("Emailaddress", sap.ui.model.FilterOperator.Contains, sQuery),
                         ],
                         and: false
                     }));
@@ -1228,6 +1229,25 @@ sap.ui.define([
                         filters: [
                             new sap.ui.model.Filter("FromCompany", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("Vbeln", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("SAP Delivery Number", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("Carriertype", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("CarrierCode", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("Shipmentid", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("CarrierDesc", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("ShipmentType", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("Totalpkg", sap.ui.model.FilterOperator.Contains, sQuery),
+                            //new sap.ui.model.Filter("DateAdded", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("TrackingNumber", sap.ui.model.FilterOperator.Contains, sQuery),
+                             new sap.ui.model.Filter("Shipprocess", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("ExpDelDate", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("RecContact", sap.ui.model.FilterOperator.Contains, sQuery),
+                             new sap.ui.model.Filter("RecCompany", sap.ui.model.FilterOperator.Contains, sQuery),
+                             new sap.ui.model.Filter("RecCity", sap.ui.model.FilterOperator.Contains, sQuery),
+                             new sap.ui.model.Filter("RecRegion", sap.ui.model.FilterOperator.Contains, sQuery),
+                             new sap.ui.model.Filter("RecPostalcode", sap.ui.model.FilterOperator.Contains, sQuery),
+                             new sap.ui.model.Filter("RecCountry", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("RecPhone", sap.ui.model.FilterOperator.Contains, sQuery),
+                             new sap.ui.model.Filter("Emailaddress", sap.ui.model.FilterOperator.Contains, sQuery),
                         ],
                         and: false
                     }));
@@ -2094,6 +2114,7 @@ sap.ui.define([
         if (!sValue) return "";
         return parseInt(sValue, 10).toString();
     },
+
     
         
         
@@ -3353,6 +3374,17 @@ sap.ui.define([
                                 eshipjetModel.setProperty("/trackingArray", trackingArray);
                             }
                             eshipjetModel.updateBindings(true);
+
+                            var invoiceNums = "";
+                            aFilteredData.forEach(function(item, idx) {
+                                if (idx === 0) {
+                                    invoiceNums = item.HandlingUnit;
+                                } else {
+                                    invoiceNums = invoiceNums + ", " + item.HandlingUnit;
+                                }
+                            });
+                            eshipjetModel.setProperty("/invoiceNo", invoiceNums);
+                            
                         }
                     }
                     // oController.onCloseBusyDialog();
@@ -3446,7 +3478,7 @@ sap.ui.define([
                     Supplier = aResults[2].Supplier
                 };
                 eshipjetModel.setProperty("/commonValues/ShipNowShipMethodSelectedKey", Supplier);
-                // oController.onShopNowShipMethodAfterChange(Supplier);
+                oController.onShopNowShipMethodAfterChange(Supplier);
                 for (var i = 0; i < aResults.length; i++) {               
                     sPath = "/A_OutbDeliveryHeader('"+ sDocNumber +"')/to_DeliveryDocumentPartner(PartnerFunction='"+ aResults[i].PartnerFunction + "',SDDocument='"+ sDocNumber +"')/to_Address";
                     oDeliveryModel.read(sPath,{ "groupId":"addressDefferedgroupID", "merge":false});                               
@@ -16541,7 +16573,7 @@ sap.ui.define([
                 "Vbeln": sapDeliveryNumber,
                 "ToManifestData": [oManifestDataObj]
             };
-            ShipReadDataSrvModel.update("/ManifestHeaderSet", oPayload, {
+            ShipReadDataSrvModel.create("/ManifestHeaderSet", oPayload, {
                 method: "PATCH",
                 success: function (oData) {
                     sap.m.MessageBox.warning("Shipment Cancelled Successfully.");
