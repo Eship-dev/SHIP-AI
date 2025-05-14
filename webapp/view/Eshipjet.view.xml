@@ -115,9 +115,17 @@
 											<Image src="{value: 'com/eshipjet/zeshipjet/css/images/copilotlogo.png',formatter: 'sap.ui.require.toUrl'}" width="5rem" height="5rem"/>
 										</HBox>
 										<HBox class="sapUiLargeMarginTop" justifyContent="Center">
-											<Button class="sapUiTinyMargin ship-copilot-button all-shipments" icon="sap-icon://in-progress"  text="Show all Shipments" press="onPressAllShipments"/>
+											<Button class="sapUiTinyMargin ship-copilot-button all-shipments" icon="sap-icon://in-progress"  text="Show all Shipments" press="onPressAllShipments">
+												<customData>
+													<core:CustomData key="ShowAllShipments" value="ShowAllShipments" writeToDom="true" />
+												</customData>
+											</Button>
 											<Button class="sapUiTinyMargin ship-copilot-button country-shipments" icon="sap-icon://product" text="Country wise Shipments" press="onClickCountryWiseShipments"/>
-											<Button class="sapUiTinyMargin ship-copilot-button open-order-status" icon="sap-icon://shipping-status" text="Orders with Open Status"/>
+											<Button class="sapUiTinyMargin ship-copilot-button open-order-status" icon="sap-icon://shipping-status" text="Orders with Open Status"  press="onPressAllShipments">
+												<customData>
+													<core:CustomData key="OrderStatus" value="OrderStatus" writeToDom="true" />
+												</customData>
+											</Button>
 										</HBox>
 									</VBox>
 									<List id="chatList" inset="true" items="{ShipperCopilotModel>/messages}" class="co-pilot-search-results" visible="{ShipperCopilotModel>/listState}" growing="false" >

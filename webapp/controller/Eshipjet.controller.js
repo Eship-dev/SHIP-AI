@@ -548,7 +548,7 @@ sap.ui.define([
                 this._oDialog.open();
             },
 
-            _createShipmentsTable: function (aData) {
+            _createShipmentsTable: function (aData, sCustomDataKey) {
                 var oView = this.getView();
                 var oVBox = oView.byId("yourVBoxId");
             
@@ -606,10 +606,17 @@ sap.ui.define([
                 var oModel = this.getView().getModel("ShipperCopilotModel");
                 oTable.setModel(oModel, "ShipperCopilotModel");
                 oTable.bindRows("ShipperCopilotModel>/tableData");
+
+                var sText;
+                if(sCustomDataKey === "ShowAllShipments"){
+                    sText = "Details found for - show all shipments:";
+                }else if(sCustomDataKey === "OrderStatus"){
+                    sText = "Details found for - show orders with open status:";
+                }
                 
                 // Add the table to VBox
                 var oText = new sap.m.Text({
-                    text:"Details found for - show all shipments:",
+                    text:sText,
                     wrapping:true
                 });
                 oText.addStyleClass("co-pilot-search-text sapUiTinyMarginBottom");
@@ -633,16 +640,19 @@ sap.ui.define([
                 });
             },
 
-            onPressAllShipments: async function () {
+            onPressAllShipments: async function (oEvent) {
                 oController.onOpenBusyDialog();
                 var oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
-
+                var sCustomDataKey = oEvent.getSource().getCustomData()[0].getKey();
                 var sResponse;
                 try {
                     // Await the response first
                     sResponse = await oController._showAllShipmentsResponse();
-                    oShipperCopilotModel.setProperty("/tableData", sResponse);
-                    await oController._createShipmentsTable(sResponse);
+                    if(sCustomDataKey === "OrderStatus"){
+                        sResponse = sResponse.filter(item => item.Shipmenttype.trim() === "O");                        
+                    }
+                    oShipperCopilotModel.setProperty("/tableData", sResponse);                   
+                    await oController._createShipmentsTable(sResponse , sCustomDataKey);
                 } catch (error) {
                     oController.onCloseBusyDialog();
                     
