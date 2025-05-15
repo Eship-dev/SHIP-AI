@@ -548,7 +548,7 @@ sap.ui.define([
                 this._oDialog.open();
             },
 
-            _createShipmentsTable: function (aData) {
+            _createShipmentsTable: function (aData , sCustomDataKey) {
                 var oView = this.getView();
                 var oVBox = oView.byId("yourVBoxId");
             
@@ -606,6 +606,21 @@ sap.ui.define([
                 var oModel = this.getView().getModel("ShipperCopilotModel");
                 oTable.setModel(oModel, "ShipperCopilotModel");
                 oTable.bindRows("ShipperCopilotModel>/tableData");
+
+                var sText;
+                if(sCustomDataKey === "ShowAllShipments"){
+                    sText = "Details found for - show all shipments:";
+                }else if(sCustomDataKey === "OrderStatus"){
+                    sText = "Details found for - show orders with open status:";
+                }
+                
+                // Add the table to VBox
+                var oText = new sap.m.Text({
+                    text:sText,
+                    wrapping:true
+                });
+                oText.addStyleClass("co-pilot-search-text sapUiTinyMarginBottom");
+                oVBox.addItem(oText);
             
                 // Add the table to VBox
                 oVBox.addItem(oTable);
@@ -627,16 +642,19 @@ sap.ui.define([
                 });
             },
 
-            onPressAllShipments: async function () {
+            onPressAllShipments: async function (oEvent) {
                 oController.onOpenBusyDialog();
                 var oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
-
+                var sCustomDataKey = oEvent.getSource().getCustomData()[0].getKey();
                 var sResponse;
                 try {
                     // Await the response first
                     sResponse = await oController._showAllShipmentsResponse();
+                    if(sCustomDataKey === "OrderStatus"){
+                        sResponse = sResponse.filter(item => item.Shipmenttype.trim() === "O");                        
+                    }
                     oShipperCopilotModel.setProperty("/tableData", sResponse);
-                    await oController._createShipmentsTable(sResponse);
+                    await oController._createShipmentsTable(sResponse , sCustomDataKey);
                 } catch (error) {
                     oController.onCloseBusyDialog();
                     
@@ -648,7 +666,7 @@ sap.ui.define([
                     return;
                 }
 
-                var oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
+                //var oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
                 var sUserMessage = "Show All Shipments";
                 oShipperCopilotModel.setProperty("/iconState", false);
                 oShipperCopilotModel.setProperty("/listState", true);
@@ -723,9 +741,114 @@ sap.ui.define([
                 // } finally {
                 //     oController.onCloseBusyDialog(); // ALWAYS CLOSE!
                 // }
-
-            },
-            
+},
+                onClickCountryWiseShipments: async function(){
+                    oController.onOpenBusyDialog();
+                    var oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
+                    var sResponse, aShipmetsResponse = oShipperCopilotModel.getProperty("/tableData");
+                    try {
+                        // Await the response first
+                        if(!aShipmetsResponse || aShipmetsResponse.length == 0){
+                            sResponse = await oController._showAllShipmentsResponse();
+                            oShipperCopilotModel.setProperty("/tableData", sResponse);
+                        }else{
+                            sResponse = oShipperCopilotModel.getProperty("/tableData");
+                        } 
+                        let groupedData = sResponse.reduce((result, item) => {
+                            if (!result[item.FromCountry]) {
+                                result[item.FromCountry] = [];
+                            }
+                            result[item.FromCountry].push(item);
+                            return result;
+                            }, {});
+                      // Convert JSON into an array with country and count
+                            let formattedData = Object.keys(groupedData).map(FromCountry => ({
+                                country: FromCountry,
+                                count: groupedData[FromCountry].length
+                            }));                        
+                            formattedData = formattedData.filter(item => item.country.trim() !== ""); // removing empty country
+                            oShipperCopilotModel.setProperty("/ShippingDataCountryWiseCoount",formattedData);
+                            await oController._createShipmentsTableCountryWise();
+                            //console.log(formattedData);
+                    }catch (error) {
+                        oController.onCloseBusyDialog();                    
+                        var aMessages = oShipperCopilotModel.getProperty("/messages") || [];
+                        if (error.responseText !== undefined) {
+                            aMessages.push({ sender: "BotError", text: error.responseText });
+                            oShipperCopilotModel.setProperty("/messages", aMessages);
+                        }
+                        return;
+                    }
+    
+                    var sUserMessage = "show me country wise shipments";
+                    oShipperCopilotModel.setProperty("/iconState", false);
+                    oShipperCopilotModel.setProperty("/listState", true);
+    
+                    // Add the user's message to the chat list
+                    var aMessages = oShipperCopilotModel.getProperty("/messages") || [];
+                    aMessages.push({ sender: "You", text: sUserMessage});
+                    oShipperCopilotModel.setProperty("/messages", aMessages);
+                    this.getView().byId("userInput").setValue("");
+    
+                    if (sResponse && sResponse.length !== 0) {
+                        oShipperCopilotModel.setProperty("/showAllShipmentsTable", true);
+                        aMessages.push({
+                            sender: "Bot",
+                            text: "Details found for country wise shipments:",
+                            tableData: sResponse,
+                            hasTableData: true,
+                            isUserText: false,
+                            isBotImage: false
+                        });
+                        oShipperCopilotModel.setProperty("/messages", aMessages);
+                    } else {
+                            var aError = sResponse.Errors || [];
+                            if (aError.length !== 0) {
+                                aMessages.push({ sender: "BotError", text: aError[0] });
+                                oShipperCopilotModel.setProperty("/messages", aMessages);
+                            }
+                    }
+                    oController.onCloseBusyDialog(); 
+    
+                },
+                _createShipmentsTableCountryWise:function(){
+                    var oView = this.getView();
+                    var oVBox = oView.byId("yourVBoxId");
+                    // Remove old content if needed
+                    oVBox.removeAllItems();
+                    var oTable = new sap.ui.table.Table({
+                                    visibleRowCount: 1,
+                                    selectionMode: "None",
+                                    width: "13rem"
+                                });
+                     var aColumns = [
+                                    { label: "Country", property: "country" },
+                                    { label: "Count", property: "count" }];
+                    aColumns.forEach(function (col) {
+                        oTable.addColumn(new sap.ui.table.Column({
+                            label: new sap.m.Label({ text: col.label }),
+                            template: new sap.m.Text({
+                                text: col.formatter ?
+                                    { path: "ShipperCopilotModel>" + col.property, formatter: this.getView().getController()[col.formatter] } :
+                                    "{" + "ShipperCopilotModel>" + col.property + "}"
+                            }),
+                            hAlign: "Center",
+                            width: "6rem"
+                        }));
+                    }.bind(this));
+                     var oModel = this.getView().getModel("ShipperCopilotModel");
+                    oTable.setModel(oModel, "ShipperCopilotModel");
+                    oTable.bindRows("ShipperCopilotModel>/ShippingDataCountryWiseCoount");
+                
+                    // Add the table to VBox
+                    var oText = new sap.m.Text({
+                        text:"Details found for country wise shipments:",
+                        wrapping:true
+                    });
+                    oText.addStyleClass("co-pilot-search-text sapUiTinyMarginBottom");
+                    oVBox.addItem(oText);
+                    oVBox.addItem(oTable);
+                },
             // Shipper Copilot Changes end
 
         // Ship Now changes starts here
@@ -5252,7 +5375,7 @@ sap.ui.define([
             if(oText === "Shipped"){
                 oFilterText = "SHIP";
             }else if(oText === "Cancelled"){
-                oFilterText = "Cancelled";
+                oFilterText = "CANC";
             }else if(oText === "Open"){
                 oFilterText = "Open";
             }else if(oText === "In-Transit"){
@@ -7281,6 +7404,8 @@ sap.ui.define([
                         });
                 
                         // Normalize ShipmentType
+                        var shippedCount = 0;
+                        var cancelledCount = 0;
                         filteredResults.forEach(item => {
                             let shipmentValue = item.Type || item.Shipmenttype || item.ShipmentType;
                             if (shipmentValue && typeof shipmentValue === "string") {
@@ -7289,11 +7414,18 @@ sap.ui.define([
                             } else {
                                 item.ShipmentType = "LTL";
                             }
+                            if(item.Shipprocess === "SHIP"){
+                                shippedCount += 1;
+                            }else if(item.Shipprocess === "CANC"){
+                                cancelledCount += 1;
+                            }
                         });
                 
                         // Set the filtered, sorted data to the model
                         eshipjetModel.setProperty("/allOrders", filteredResults);
                         eshipjetModel.setProperty("/allOrdersLength", filteredResults.length);
+                        eshipjetModel.setProperty("/shippedCount", shippedCount);
+                        eshipjetModel.setProperty("/cancelledCount", cancelledCount);
                     }
                     oController.onCloseBusyDialog();
                 },
@@ -16621,6 +16753,6 @@ sap.ui.define([
             }
 
             return sShippinType;
-        }
+        },
     });
 });
