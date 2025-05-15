@@ -621,10 +621,80 @@ sap.ui.define([
                 });
                 oText.addStyleClass("co-pilot-search-text sapUiTinyMarginBottom");
                 oVBox.addItem(oText);
-            
-                // Add the table to VBox
-                oVBox.addItem(oTable);
-            },
+             // Add the table to VBox
+             oVBox.addItem(oTable);
+
+             
+             // HBox for button at bottom-left
+             var oButtonHBox = new sap.m.HBox({
+                 justifyContent: "Start", // Aligns content to the left
+                 items: [
+                     new sap.m.Button({
+                         icon: "sap-icon://download",
+                         // text: "Download",
+                         type: "Transparent",
+                         press: function () {
+                             this._downloadExcel(aData);
+                         }.bind(this)
+                     })
+                 ]
+             });
+             oButtonHBox.addStyleClass("sapUiTinyMarginTop"); // adds spacing
+             oVBox.addItem(oButtonHBox);
+
+         },
+
+
+         _downloadExcel: function (aData) {
+             var aCols = [
+                 { label: "Request ID", property: "Vbeln" },
+                 { label: "Created Date", property: "Createddate" },
+                 { label: "Ship Date", property: "DateAdded" },
+                 { label: "Shipment Type", property: "Shipmenttype" },
+                 { label: "Carrier Name", property: "CarrierCode" },
+                 { label: "Service Level", property: "CarrierDesc" },
+                 { label: "Tracking Number", property: "TrackingNumber" },
+                 { label: "Status", property: "DeliveryStatus" },
+                 { label: "Ship To Company", property: "RecCompany" },
+                 { label: "Ship To Contact", property: "RecContact" },
+                 { label: "Ship To Address Line 1", property: "RecAddress1" },
+                 { label: "Ship To City", property: "RecCity" },
+                 { label: "Ship To State", property: "Region" },
+                 { label: "Ship To Country", property: "RecCountry" },
+                 { label: "Ship To Zipcode", property: "RecPostalcode" },
+                 { label: "Ship To Phone", property: "RecPhone" },
+                 { label: "Ship To Email", property: "Emailaddress" },
+                 { label: "Requester Name", property: "RecContact" },
+                 { label: "Connected To", property: "DateAdded" },
+                 { label: "Order Type", property: "Shipmentid" },
+                 { label: "Priority Level", property: "Priorityalert" },
+                 { label: "RF ID", property: "Reference1" },
+                 { label: "Updated", property: "" }
+             ];
+         
+             var aExportData = aData.map(function (oItem) {
+                 var oExportItem = {};
+                 aCols.forEach(function (col) {
+                     oExportItem[col.label] = oItem[col.property] || "";
+                 });
+                 return oExportItem;
+             });
+         
+             var oSpreadsheet = new sap.ui.export.Spreadsheet({
+                 workbook: {
+                     columns: aCols.map(function (col) {
+                         return { label: col.label, property: col.label, type: "string" };
+                     }),
+                     hierarchyLevel: "Level"
+                 },
+                 dataSource: aExportData,
+                 fileName: "Shipments.xlsx"
+             });
+         
+             oSpreadsheet.build().finally(function () {
+                 oSpreadsheet.destroy();
+             });
+         },
 
 
             _showAllShipmentsResponse:function(){
