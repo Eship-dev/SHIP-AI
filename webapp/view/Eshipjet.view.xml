@@ -128,7 +128,7 @@
 											</Button>
 										</HBox>
 									</VBox>
-									<List id="chatList" inset="true" items="{ShipperCopilotModel>/messages}" class="co-pilot-search-results" visible="{ShipperCopilotModel>/listState}" growing="false" >
+									<List width="100rem" id="chatList" inset="true" items="{ShipperCopilotModel>/messages}" class="co-pilot-search-results" visible="{ShipperCopilotModel>/listState}" growing="false" >
 										<CustomListItem class="sapUiTinyMargin">
 										<HBox justifyContent="{= ${ShipperCopilotModel>sender} === 'You' ? 'End' : 'Start'}">
 											<VBox class="messageBox {= ${ShipperCopilotModel>sender} === 'You' ? 'userMessage' : 'botMessage'}" visible="{ShipperCopilotModel>hasTableData}">
@@ -161,7 +161,7 @@
 										</HBox>
 									</CustomListItem>
 									</List>
-									<HBox justifyContent="Center" class="ship-copilot-search-section">
+									<HBox justifyContent="Center" class="ship-copilot-search-section" width="80rem" >
 										<Button icon="sap-icon://chain-link" class="chainlinkCp sapUiLargeMarginBegin"/>
 										<Input id="userInput" class="sapUiTinyMarginEnd shippercopilotcss" placeholder="Good Afternoon {eshipjetModel>/userName}, I'm ready for the task" width="30rem" submit="onSendPress"/>
 										<Button icon="sap-icon://arrow-top" press="onSendPress" class="sapUiTinyMarginEnd"/>

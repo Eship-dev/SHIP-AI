@@ -596,9 +596,9 @@ sap.ui.define([
                             text: col.formatter ?
                                 { path: "ShipperCopilotModel>" + col.property, formatter: this.getView().getController()[col.formatter] } :
                                 "{" + "ShipperCopilotModel>" + col.property + "}"
-                        }),
+                        }).addStyleClass("allOrdersSmallTextInShipperCopilot"),
                         hAlign: "Center",
-                        width: "8rem"
+                        width: "7rem"
                     }));
                 }.bind(this));
             
@@ -6384,26 +6384,28 @@ sap.ui.define([
             oTable.bindRows("/TrackNowRows");
         },
 
-        // onTrackNowShippedFilterPress:function(oEvent){
-        //     var oTable = oController.getView().byId("idTrackNowTable");
-        //     var oBinding = oTable.getBinding("rows");
-        //     var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Shipped");
-        //     oBinding.filter([oFilter]);
-        // },
-
-        // onTrackNowInTransitFilterPress:function(){
-        //     var oTable = oController.getView().byId("idTrackNowTable");
-        //     var oBinding = oTable.getBinding("rows");
-        //     var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "In-Transit");
-        //     oBinding.filter([oFilter]);
-        // },
-
-        // onTrackNowCancelledFilterPress:function(){
-        //     var oTable = oController.getView().byId("idTrackNowTable");
-        //     var oBinding = oTable.getBinding("rows");
-        //     var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Cancelled");
-        //     oBinding.filter([oFilter]);
-        // },
+        onTrackNowStstusBtnFilterPress:function(oEvent){
+            var aFilterId = oEvent.getSource().getId().split("--");
+            var oText = aFilterId[aFilterId.length-1];
+            var oFilterText;
+            var oTable = oController.getView().byId("idTrackNowTable");
+            var oBinding = oTable.getBinding("rows");
+            
+            if(oText === "idTrackShipped"){
+                oFilterText = "SHIP";
+            }else if(oText === "idTrackCancelled"){
+                oFilterText = "CANC";
+            }else if(oText === "idTrackInTransit"){
+                oFilterText = "In-Transit";
+            }else if(oText === "idTrackDelivered"){
+                oFilterText = "Delivered";
+            }else if(oText === "Total"){
+                return oBinding.filter([]);
+            }
+            
+            var oFilter = new sap.ui.model.Filter("Shipprocess", sap.ui.model.FilterOperator.EQ, oFilterText);
+            oBinding.filter([oFilter]);
+        },
 
         onTrackNowDeliveredFilterPress:function(){
             var oTable = oController.getView().byId("idTrackNowTable");
@@ -6533,34 +6535,6 @@ sap.ui.define([
         },
         onTrackNowFilterPopoverApplyPress: function () {
             this.byId("idTrackNowFilterPopover").close();
-        },
-
-        onTrackNowStstusBtnFilterPress: function (oEvent) {
-            var sButtonId = oEvent.getSource().getId(); // Full ID
-            var sStatusKey = "";
-        
-            // Determine the status based on ID suffix
-            if (sButtonId.includes("idShippedBtn")) {
-                sStatusKey = "SHIP";
-            } else if (sButtonId.includes("idCancelledBtn")) {
-                sStatusKey = "Cancelled";
-            } else if (sButtonId.includes("idInTransitBtn")) {
-                sStatusKey = "In-Transit";
-            } else if (sButtonId.includes("idDeliveredBtn")) {
-                sStatusKey = "Received";
-            } else {
-                // If status not recognized or it's "Total", remove all filters
-                var oTable = this.getView().byId("idTrackNowTable");
-                var oBinding = oTable.getBinding("rows");
-                oBinding.filter([]);
-                return;
-            }
-        
-            var oTable = this.getView().byId("idTrackNowTable");
-            var oBinding = oTable.getBinding("rows");
-        
-            var oFilter = new sap.ui.model.Filter("Shipprocess", sap.ui.model.FilterOperator.EQ, sStatusKey);
-            oBinding.filter([oFilter]);
         },
         
 

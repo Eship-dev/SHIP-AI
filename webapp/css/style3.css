@@ -2504,6 +2504,10 @@ button, input, optgroup, select, textarea {
   font-size: 10px !important;
 }
 
+.allOrdersSmallTextInShipperCopilot {
+  font-size: 12px !important;
+}
+
 .ordersSmallButton .sapUiSizeCompact .sapMBtnInner.sapMBtnText, .sapUiSizeCompact .sapMBtnInner.sapMBtnIconFirst {
   padding-left: 0.4375rem;
   padding-right: 0.4375rem;

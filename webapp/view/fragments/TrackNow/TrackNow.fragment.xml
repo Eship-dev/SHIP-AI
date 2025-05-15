@@ -23,25 +23,25 @@
 		<Toolbar height="15%" class="whiteBackground"  >
 			<HBox width="100%" >
 				<VBox class="sapUiTinyMargin" width="25%">
-					<Text text="3" class="NumberSizeTitle1"></Text>
+					<Text text="{eshipjetModel>/shippedCount}" class="NumberSizeTitle1"></Text>
 					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Success" press="onTrackNowStstusBtnFilterPress" class="shipped-request-button request-button" id="idShippedBtn" icon="false" width="100%" ></Button>
+					<Button type="Success" press="onTrackNowStstusBtnFilterPress" class="shipped-request-button request-button" id="idTrackShipped" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
-					<Text text="3" class="NumberSizeTitle1"></Text>
+					<Text text="{eshipjetModel>/cancelledCount}" class="NumberSizeTitle1"></Text>
 					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Negative" press="onTrackNowStstusBtnFilterPress" id="idCancelledBtn" class="cancelled-request-button request-button" icon="false" width="100%" ></Button>
+					<Button type="Negative" press="onTrackNowStstusBtnFilterPress" id="idTrackCancelled" class="cancelled-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
-					<Text text="3" class="NumberSizeTitle1"></Text>
+					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="In-Transit" class="sapUiTinyMarginBottom"></Text>
-					<Button  press="onTrackNowStstusBtnFilterPress" class="inTransit-request-button request-button" id="idInTransitBtn" icon="false" width="100%"  ></Button>
+					<Button  press="onTrackNowStstusBtnFilterPress" class="inTransit-request-button request-button" id="idTrackInTransit" icon="false" width="100%"  ></Button>
 				</VBox>
 				
 				<VBox class="sapUiTinyMargin" width="25%">
-					<Text text="3" class="NumberSizeTitle1"></Text>
+					<Text text="0" class="NumberSizeTitle1"></Text>
 					<Text text="Delivered" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Success" press="onTrackNowStstusBtnFilterPress" id="idDeliveredBtn" class="shippedProgress-request-button request-button" icon="false" width="100%" ></Button>
+					<Button type="Success" press="onTrackNowStstusBtnFilterPress" id="idTrackDelivered" class="shippedProgress-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 			</HBox>
 		</Toolbar>
