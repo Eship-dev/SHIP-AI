@@ -154,7 +154,7 @@
 											</VBox>
 
 												<!-- Table -->
-											<VBox class="sapUiSmallMarginBottom" id="yourVBoxId" visible="{= ${ShipperCopilotModel>sender} === 'Bot'}">
+											<VBox class="sapUiSmallMarginBottom  sapUiLargeMarginEnd" id="yourVBoxId" visible="{= ${ShipperCopilotModel>sender} === 'Bot'}">
 													<!-- <Text text="{ShipperCopilotModel>text}" class="sapUiSmallMarginBottom" /> -->
 											</VBox>
 										</HBox>

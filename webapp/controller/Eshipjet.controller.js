@@ -565,8 +565,8 @@ sap.ui.define([
                 // Define columns manually
                 var aColumns = [
                     { label: "Request ID", property: "Vbeln" },
-                    { label: "Created Date", property: "Createddate", formatter: formatter.formatCustomDateTimeForOrders },
-                    { label: "Ship Date", property: "DateAdded", formatter: ".formatter.formatCustomDateTimeForOrders" },
+                    { label: "Created Date", property: "Createddate", formatter: "formatCustomDateShipmentTable" },
+                    { label: "Ship Date", property: "DateAdded", formatter: "formatCustomDateShipmentTable" },
                     { label: "Shipment Type", property: "Shipmenttype" },
                     { label: "Carrier Name", property: "CarrierCode" },
                     { label: "Service Level", property: "CarrierDesc" },
@@ -582,11 +582,11 @@ sap.ui.define([
                     { label: "Ship To Phone", property: "RecPhone" },
                     { label: "Ship To Email", property: "Emailaddress" },
                     { label: "Requester Name", property: "RecContact" },
-                    { label: "Connected To", property: "DateAdded" },
+                    { label: "Connected To", property: "DateAdded", formatter: "formatCustomDateShipmentTable"  },
                     { label: "Order Type", property: "Shipmentid" },
                     { label: "Priority Level", property: "Priorityalert" },
-                    { label: "RF ID", property: "Reference1" },
-                    { label: "Updated", property: "" }
+                    { label: "RF ID", property: "Reference1" }//,
+                   // { label: "Updated", property: "" }
                 ];
             
                 aColumns.forEach(function (col) {
@@ -594,7 +594,8 @@ sap.ui.define([
                         label: new sap.m.Label({ text: col.label }),
                         template: new sap.m.Text({
                             text: col.formatter ?
-                                { path: "ShipperCopilotModel>" + col.property, formatter: this.getView().getController()[col.formatter] } :
+                                { path: "ShipperCopilotModel>" + col.property,                                     
+                                formatter: this.formatter[col.formatter] ? this.formatter[col.formatter] : undefined } :
                                 "{" + "ShipperCopilotModel>" + col.property + "}"
                         }).addStyleClass("allOrdersSmallTextInShipperCopilot"),
                         hAlign: "Center",
@@ -648,8 +649,8 @@ sap.ui.define([
          _downloadExcel: function (aData) {
              var aCols = [
                  { label: "Request ID", property: "Vbeln" },
-                 { label: "Created Date", property: "Createddate" },
-                 { label: "Ship Date", property: "DateAdded" },
+                 { label: "Created Date", property: "Createddate", formatter: "formatCustomDateShipmentTable" },
+                 { label: "Ship Date", property: "DateAdded", formatter: "formatCustomDateShipmentTable" },
                  { label: "Shipment Type", property: "Shipmenttype" },
                  { label: "Carrier Name", property: "CarrierCode" },
                  { label: "Service Level", property: "CarrierDesc" },
@@ -665,11 +666,11 @@ sap.ui.define([
                  { label: "Ship To Phone", property: "RecPhone" },
                  { label: "Ship To Email", property: "Emailaddress" },
                  { label: "Requester Name", property: "RecContact" },
-                 { label: "Connected To", property: "DateAdded" },
+                 { label: "Connected To", property: "DateAdded", formatter: "formatCustomDateShipmentTable" },
                  { label: "Order Type", property: "Shipmentid" },
                  { label: "Priority Level", property: "Priorityalert" },
-                 { label: "RF ID", property: "Reference1" },
-                 { label: "Updated", property: "" }
+                 { label: "RF ID", property: "Reference1" }//,
+                 //{ label: "Updated", property: "" }
              ];
          
              var aExportData = aData.map(function (oItem) {

@@ -99,6 +99,28 @@ sap.ui.define([
             // Format: MM/DD/YYYY HH:mm
             return sMonth + "/" + sDay + "/" + iYear + " " + sHours + ":" + sMinutes;
           },
+          formatCustomDateShipmentTable: function (sDateStr) {
+            if (!sDateStr) return "";
+      
+            // Convert the string to a Date object
+            var oDate = new Date(sDateStr);
+      
+            // Extract components
+            var iDay = oDate.getDate();
+            var iMonth = oDate.getMonth() + 1; // Months are 0-based
+            var iYear = oDate.getFullYear();
+            var iHours = oDate.getHours();
+            var iMinutes = oDate.getMinutes();
+      
+            // Pad single digits with leading zeros
+            var sDay = iDay < 10 ? "0" + iDay : iDay;
+            var sMonth = iMonth < 10 ? "0" + iMonth : iMonth;
+            var sHours = iHours < 10 ? "0" + iHours : iHours;
+            var sMinutes = iMinutes < 10 ? "0" + iMinutes : iMinutes;
+      
+            // Format: MM/DD/YYYY
+            return sMonth + "/" + sDay + "/" + iYear;
+          },
 
           getCarrierIconClass: function (sCarrierType) {
             switch (sCarrierType) {
