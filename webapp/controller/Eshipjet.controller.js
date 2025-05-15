@@ -565,7 +565,7 @@ sap.ui.define([
                 // Define columns manually
                 var aColumns = [
                     { label: "Request ID", property: "Vbeln" },
-                    { label: "Created Date", property: "Createddate", formatter: ".formatter.formatCustomDateTimeForOrders" },
+                    { label: "Created Date", property: "Createddate", formatter: formatter.formatCustomDateTimeForOrders },
                     { label: "Ship Date", property: "DateAdded", formatter: ".formatter.formatCustomDateTimeForOrders" },
                     { label: "Shipment Type", property: "Shipmenttype" },
                     { label: "Carrier Name", property: "CarrierCode" },
@@ -631,7 +631,8 @@ sap.ui.define([
                 return new Promise(function (resolve, reject) {
                     oManifestSrvModel.read("/EshipjetManfestSet", {
                         success: function (oResponse) {
-                            resolve(oResponse.results); // Resolve with data
+                            var last15Records = oResponse.results.slice(-15);
+                            resolve(last15Records); // Resolve with data
                         },
                         error: function (oError) {
                             reject(oError); // Reject with error
@@ -3390,7 +3391,7 @@ sap.ui.define([
                     eshipjetModel.setProperty("/getManifestHeader", response.results);
 
                     
-                    if (response && response.results > 0) {
+                    if (response && response.results.length > 0) {
                         oController.onShopNowShipMethodChangeFromQuoteNow(response.results[0].CarrierCode, response.results[0].CarrierDesc);
                         // Apply filtering after receiving the response
                         var aFilteredData = response.results.filter(function (item) {
