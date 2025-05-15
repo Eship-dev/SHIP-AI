@@ -556,9 +556,9 @@ sap.ui.define([
                 oVBox.removeAllItems();
             
                 var oTable = new sap.ui.table.Table({
-                    visibleRowCount: 5,
+                    visibleRowCount: 4,
                     selectionMode: "None",
-                    width: "25rem",
+                    width: "32rem",
                     fixedColumnCount: 1
                 });
             
