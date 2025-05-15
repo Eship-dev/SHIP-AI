@@ -2079,8 +2079,8 @@ sap.ui.define([
                 "Reference2": "",
                 "Kunnr": "100188",
                 "Kunag": "100188",
-                "Vkorg": "BP01",
-                "Werks": "BP01",
+                "Vkorg": "1710",
+                "Werks": "1710",
                 "Auart": "OR",
                 "Lfart": "LF",
                 "Description": "",
@@ -5376,7 +5376,7 @@ sap.ui.define([
             if(oText === "Shipped"){
                 oFilterText = "SHIP";
             }else if(oText === "Cancelled"){
-                oFilterText = "Cancelled";
+                oFilterText = "CANC";
             }else if(oText === "Open"){
                 oFilterText = "Open";
             }else if(oText === "In-Transit"){
@@ -7405,6 +7405,8 @@ sap.ui.define([
                         });
                 
                         // Normalize ShipmentType
+                        var shippedCount = 0;
+                        var cancelledCount = 0;
                         filteredResults.forEach(item => {
                             let shipmentValue = item.Type || item.Shipmenttype || item.ShipmentType;
                             if (shipmentValue && typeof shipmentValue === "string") {
@@ -7413,11 +7415,18 @@ sap.ui.define([
                             } else {
                                 item.ShipmentType = "LTL";
                             }
+                            if(item.Shipprocess === "SHIP"){
+                                shippedCount += 1;
+                            }else if(item.Shipprocess === "CANC"){
+                                cancelledCount += 1;
+                            }
                         });
                 
                         // Set the filtered, sorted data to the model
                         eshipjetModel.setProperty("/allOrders", filteredResults);
                         eshipjetModel.setProperty("/allOrdersLength", filteredResults.length);
+                        eshipjetModel.setProperty("/shippedCount", shippedCount);
+                        eshipjetModel.setProperty("/cancelledCount", cancelledCount);
                     }
                     oController.onCloseBusyDialog();
                 },
@@ -16584,8 +16593,8 @@ sap.ui.define([
                 "Reference2": "",
                 "Kunnr": "100188",
                 "Kunag": "100188",
-                "Vkorg": "BP01",
-                "Werks": "BP01",
+                "Vkorg": "1710",
+                "Werks": "1710",
                 "Auart": "OR",
                 "Lfart": "LF",
                 "Description": "",

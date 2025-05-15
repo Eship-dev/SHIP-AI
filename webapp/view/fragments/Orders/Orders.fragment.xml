@@ -59,12 +59,12 @@
 				</VBox>
 
 				<VBox class="sapUiTinyMargin" width="25%">
-					<Text text="{eshipjetModel>/allOrdersLength}" class="NumberSizeTitle1"></Text>
+					<Text text="{eshipjetModel>/shippedCount}" class="NumberSizeTitle1"></Text>
 					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Success" id="Shipped" press="onOrderStstusBtnFilterPress" class="shipped-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
-					<Text text="0" class="NumberSizeTitle1"></Text>
+					<Text text="{eshipjetModel>/cancelledCount}" class="NumberSizeTitle1"></Text>
 					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Critical" id="Cancelled" press="onOrderStstusBtnFilterPress"  class="cancelled-request-button request-button" icon="false" width="100%" ></Button>
 					
