@@ -45,14 +45,15 @@
 				</VBox>
 			</HBox>
 		</Toolbar>
-	<VBox  class="whiteBackground sapUiTinyMarginTop" >
+		
+	<VBox class="whiteBackground sapUiTinyMarginTop" >
 	<Toolbar  class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd" >
-										<Button icon="sap-icon://filter" press="onTrackNowFilterPress"></Button>
+										<Button icon="sap-icon://filter" press="onTrackNowFilterPress" type="Transparent" class="ordersIcons" ></Button>
 										<ToolbarSpacer />
-										<SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" search="onSearchTrack" ></SearchField>
-										<Button icon="sap-icon://synchronize"></Button>
-										<Button icon="sap-icon://action"></Button>
-									<Button icon="sap-icon://action-settings" press="openTrackNowColNamesPopover"></Button>
+										<SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh ordersIcons" search="onSearchTrack" ></SearchField>
+										<Button icon="sap-icon://synchronize" press="getOrdersHistoryShipments" type="Transparent" class="ordersIcons" ></Button>
+										<Button icon="sap-icon://action"  press="onTrackNowExportToExcel" type="Transparent" class="ordersIcons" ></Button>
+									<Button icon="sap-icon://action-settings" press="openTrackNowColNamesPopover" type="Transparent" class="ordersIcons" ></Button>
 	</Toolbar>
 	
 							<ui:Table

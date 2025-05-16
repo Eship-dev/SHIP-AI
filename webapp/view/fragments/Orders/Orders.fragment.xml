@@ -98,7 +98,7 @@
 			<Button icon="sap-icon://filter" press="onShipReqFilterPopoverPress" type="Transparent" class="ordersIcons" ></Button>
 				<ToolbarSpacer ></ToolbarSpacer>
 				   <SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" search="onSearchOrder" ></SearchField>
-					<!-- <Button icon="sap-icon://synchronize" press="onShipReqRefreshPress"></Button> -->
+					<Button icon="sap-icon://synchronize" press="getOrdersHistoryShipments" type="Transparent" class="ordersIcons" ></Button>
 					<Button icon="sap-icon://action" press="onOrderExportToExcel" type="Transparent" class="ordersIcons" ></Button>
                     <Button icon="sap-icon://action-settings" press="openOrderColNamesPopover" type="Transparent" class="ordersIcons" ></Button>
                 <customData>

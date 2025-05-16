@@ -2068,6 +2068,11 @@
     "ShipReqTableData":{
 		"ShipReqColumns": [
 			{
+                "name": "Plant",
+                "label": "Location Id",
+                "visible": true
+            },
+            {
                 "name": "RecCity",
                 "label": "Location Name",
                 "visible": false
@@ -7773,9 +7778,14 @@
 
     "ShipReqColumns": [
         {
-            "name": "PodLocation",
-            "label": "Location Name",
+            "name": "Plant",
+            "label": "Location Id",
             "visible": false
+        },
+        {
+            "name": "RecCity",
+            "label": "Location Name",
+            "visible": true
         },
         {
             "name": "Consolidation",
@@ -7784,8 +7794,13 @@
         },
         {
             "name": "requestIdLabelId",
-            "label": "Request ID / Label ID",
-            "visible": true
+            "label": "Delivery/handling Requests",
+            "visible": false
+        },
+        {
+            "name": "EID",
+            "label": "EID",
+            "visible": false
         },
         {
             "name": "Createddate",
@@ -7793,19 +7808,24 @@
             "visible": true
         },
         {
-            "name": "CrossdockShipdate",
+            "name": "DateAdded",
             "label": "Ship Date",
             "visible": true
         },
         {
-            "name": "Shipmenttype",
+            "name": "Carriertype",
             "label": "Shipment Type",
             "visible": false
         },
         {
-            "name": "ShipMethod",
+            "name": "CarrierCode",
             "label": "Ship Method",
             "visible": true
+        },
+        {
+            "name": "CarrierDesc",
+            "label": "Ship Description",
+            "visible": false
         },
         {
             "name": "ServiceName",
@@ -7814,13 +7834,18 @@
         },
         {
             "name": "TrackingNumber",
+            "label": "Master Tracking Number",
+            "visible": false
+        },
+        {
+            "name": "TrackingNumber",
             "label": "Tracking Number",
             "visible": true
         },
         {
             "name": "DeliveryStatus",
-            "label": "Status",
-            "visible": true
+            "label": "Quote Status",
+            "visible": false
         },
         {
             "name": "RecContact",
@@ -7845,7 +7870,7 @@
         {
             "name": "RecCity",
             "label": "Ship To City",
-            "visible": true
+            "visible": false
         },
         {
             "name": "Postalcode",
@@ -7876,6 +7901,11 @@
             "name": "ConnectedTo",
             "label": "Connected To",
             "visible": false
+        },
+        {
+            "name": "Status",
+            "label": "Status",
+            "visible": true
         },
         {
             "name": "OrderType",

@@ -5357,34 +5357,52 @@ sap.ui.define([
 
         onOrderExportToExcel: function () {
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var rows = eshipjetModel.getProperty("/OrderTableData/orderRows");
+            var rows = eshipjetModel.getProperty("/allOrders");
+
+            var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+                pattern: "MM/dd/yyyy HH:mm"
+            });
+        
+            var formattedRows = rows.map(function (row) {
+                return {
+                    ...row,
+                    DateAdded: row.DateAdded ? oDateFormat.format(new Date(row.DateAdded)) : "",
+                    ExpDelDate: row.ExpDelDate ? oDateFormat.format(new Date(row.ExpDelDate)) : ""
+                };
+            });
+
             var oSettings = {
                 workbook: {
                     columns: [
-                        { label: "Order ID", property: "orderID" },
+                        { label: "Plant ID", property: "Plant" },
+                        { label: "Order ID", property: "Vbeln" },
                         { label: "Created Date", property: "CreatedDate" },
-                        { label: "Ship Date", property: "ShipDate" },
-                        { label: "Shipment Type", property: "ShipmentType" },
-                        { label: "Ship Method", property: "shipMethod" },
-                        { label: "Service Name", property: "ServiceName" },
-                        { label: "Tracking Number", property: "TrackingNumber" },
-                        { label: "Status", property: "status" },
-                        { label: "Ship To Contact", property: "ShipToContact" },
-                        { label: "Ship To Company", property: "ShipToCompany" },
-                        { label: "Ship To AddressLine1", property: "ShipToAddressLine1" },
-                        { label: "Ship To City", property: "shipToCity" },
-                        { label: "Ship To State", property: "shipToState" },
-                        { label: "Ship To Country", property: "shipToCountry" },
-                        { label: "Ship To Zip", property: "shipToZip" },
-                        { label: "Ship To Phone", property: "shipToPhone" },
-                        { label: "Ship To Email", property: "shipToEmail" },
-                        { label: "Requestor Name", property: "requesterName" },
-                        { label: "Connected To", property: "connectedTo" },
-                        { label: "Priority Level", property: "priorityLevel" },
-                        { label: "Actions", property: "actions" },
+                        { label: "Order Type", property: "SAP Delivery Number" },
+                        { label: "Ship Method", property: "Carriertype" },
+                        { label: "ERP Service ID", property: "CarrierCode" },
+                        { label: "Ship Type", property: "Shipmentid" },
+                        { label: "Service Name", property: "CarrierDesc" },
+                        { label: "Type", property: "ShipmentType" },
+                        { label: "Pkgs", property: "Totalpkg" },
+                        { label: "PGI", property: "true" },
+                        { label: "Ship Date-Time", property: "DateAdded" },
+                        { label: "Tracking/Pro", property: "TrackingNumber" },
+                        { label: "Status", property: "Shipprocess" },
+                        { label: "Del'd Date-Time", property: "ExpDelDate" },
+                        { label: "Ship To Contact", property: "RecContact" },
+                        { label: "Ship To Company", property: "RecCompany" },
+                        { label: "Ship To City", property: "RecCity" },
+                        { label: "Ship To State", property: "RecRegion" },
+                        { label: "Ship To Postal", property: "RecPostalcode" },
+                        { label: "Ship To Country", property: "RecCountry" },
+                        { label: "Ship To Phone", property: "RecPhone" },
+                        { label: "Ship To Email", property: "Emailaddress" },
+                        { label: "User ID", property: "" },
+                        { label: "SAP User ID", property: "" },
+                        { label: "Note", property: "" }
                     ]
                 },
-                dataSource: rows,
+                dataSource: formattedRows,
                 fileName: 'Orders_Data',
                 Worker: true
             };
@@ -6510,7 +6528,56 @@ sap.ui.define([
             return value;
         },
         
-    
+        onTrackNowExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/allOrders");
+            var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+                pattern: "MM/dd/yyyy HH:mm"
+            });
+        
+            var formattedRows = rows.map(function (row) {
+                return {
+                    ...row,
+                    Createddate: row.Createddate ? oDateFormat.format(new Date(row.Createddate)) : "",
+                    PodDate: row.PodDate ? oDateFormat.format(new Date(row.PodDate)) : ""
+                };
+            });
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Location Name", property: "FromCompany" },
+                        { label: "Request Id", property: "Vbeln" },
+                        { label: "Created Date", property: "Createddate" },
+                        { label: "Ship Date", property: "PodDate" },
+                        { label: "Carrier ID", property: "Carriertype" },
+                        { label: "Service Name", property: "CarrierDesc" },
+                        { label: "Status", property: "Shipprocess" },
+                        { label: "Tracking/Pro", property: "TrackingNumber" },
+                        { label: "Ship To Contact", property: "RecContact" },
+                        { label: "Ship To Company", property: "RecCompany" },
+                        { label: "Connected To", property: "CarrierCode" },
+                        { label: "Order Type", property: "SAP Delivery Number" },
+                        { label: "Ship To Address Line 1", property: "RecAddress1" },
+                        { label: "Ship To City", property: "RecCity" },
+                        { label: "Ship To State", property: "RecRegion" },
+                        { label: "Ship To Country", property: "RecCountry" },
+                        { label: "Ship To Postal Code", property: "RecPostalcode" },
+                        { label: "Ship To Phone", property: "RecPhone" },
+                        { label: "Ship To Email", property: "Emailaddress" },
+                        { label: "Requester Name", property: "CarrierCode" },
+                        { label: "Shipment Type", property: "Shipmenttype" },
+                        { label: "Priority Level", property: "Priorityalert" }
+                    ]
+                },
+                dataSource: formattedRows,
+                fileName: 'Track_Now_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
        
 
         openTrackNowColNamesPopover: function (oEvent) {
@@ -7490,6 +7557,14 @@ sap.ui.define([
                         eshipjetModel.setProperty("/allOrdersLength", filteredResults.length);
                         eshipjetModel.setProperty("/shippedCount", shippedCount);
                         eshipjetModel.setProperty("/cancelledCount", cancelledCount);
+
+                        var oTable = oController.getView().byId("idOrdersTable");
+                        var oBinding = oTable.getBinding("rows");
+                        oBinding.filter([]);
+
+                        var oTable = oController.getView().byId("idTrackNowTable");
+                        var oBinding = oTable.getBinding("rows");
+                        oBinding.filter([]);
                     }
                     oController.onCloseBusyDialog();
                 },
