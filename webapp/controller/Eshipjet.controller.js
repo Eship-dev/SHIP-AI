@@ -906,6 +906,7 @@ sap.ui.define([
                     var oTable = new sap.ui.table.Table({
                                     visibleRowCount: 1,
                                     selectionMode: "None",
+                                    visible:"{ShipperCopilotModel>hasTableData}",
                                     width: "13rem"
                                 });
                      var aColumns = [
@@ -930,7 +931,8 @@ sap.ui.define([
                     // Add the table to VBox
                     var oText = new sap.m.Text({
                         text:"Details found for country wise shipments:",
-                        wrapping:true
+                        wrapping:true,
+                        visible:"{ShipperCopilotModel>hasTableData}"
                     });
                     oText.addStyleClass("co-pilot-search-text sapUiTinyMarginBottom");
                     oVBox.addItem(oText);
