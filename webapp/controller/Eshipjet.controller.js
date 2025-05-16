@@ -689,7 +689,7 @@ sap.ui.define([
                      hierarchyLevel: "Level"
                  },
                  dataSource: aExportData,
-                 fileName: "Shipments.xlsx"
+                 fileName: "Last15Shipments.xlsx"
              });
          
              oSpreadsheet.build().finally(function () {
