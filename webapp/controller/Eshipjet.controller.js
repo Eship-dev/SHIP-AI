@@ -1089,7 +1089,8 @@ sap.ui.define([
             var oView = oController.getView();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = eshipjetModel.getProperty("/ShipNowProductsTableColumns");
-            var oShipNowPrdTable = oView.byId("myShipNowPrdColumnSelectId");
+            var oShipNowPrdTable =  oView.byId("myShipNowPrdColumnSelectId") || 
+                                    sap.ui.getCore().byId(oView.createId("myShipNowPrdColumnSelectId"));
             var aTableItems = oShipNowPrdTable.getItems();
 
             aColumns.map(function (oColObj) {
