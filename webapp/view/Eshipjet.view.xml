@@ -139,20 +139,23 @@
 													visible="{ShipperCopilotModel>isUserText}" />
 
 												<!-- Bot Error Text -->
-												<HBox visible="{= ${ShipperCopilotModel>sender} === 'BotError' }">
+												<HBox  visible="{= ${ShipperCopilotModel>sender} === 'BotError' }">
 													<Image class="sapUiSmallMarginEnd"
 														src="{value: 'com/eshipjet/zeshipjet/css/images/copilotlogo.png',formatter: 'sap.ui.require.toUrl'}"
 														width="16px" height="auto"/>
 													<Text text="{ShipperCopilotModel>text}" wrapping="true"/>
 												</HBox>
 
+												
+											</VBox>
+											<VBox  class="messageBox {= ${ShipperCopilotModel>sender} === 'You' ? 'userMessage' : 'botMessage'}"  visible="{ShipperCopilotModel>isBotImage}">
 												<!-- Bot Image -->
-												<Image src="{ShipperCopilotModel>/text}"
-													width="70%" height="90%"
+												<Image  src="{ShipperCopilotModel>imageSrc}"
+													width="70%" height="80%"
 													press="onZoomImage"
 													visible="{ShipperCopilotModel>isBotImage}" />
+											
 											</VBox>
-
 												<!-- Table -->
 											<VBox class="sapUiSmallMarginBottom  sapUiLargeMarginEnd" id="yourVBoxId" visible="{= ${ShipperCopilotModel>sender} === 'Bot'}">
 													<!-- <Text text="{ShipperCopilotModel>text}" class="sapUiSmallMarginBottom" /> -->

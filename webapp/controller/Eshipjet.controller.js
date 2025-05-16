@@ -460,7 +460,7 @@ sap.ui.define([
                 try {
                     var sUserDeliveryNum = sUserMessage.split(" ");
                     sUserDeliveryNum = sUserDeliveryNum[sUserDeliveryNum.length-1]
-                    eshipjetModel.setProperty("/sShipAndScan", sUserDeliveryNum);
+                    eshipjetModel.setProperty("/sShipAndScan", sUserDeliveryNum.trim());
                     oController.getManifestHeaderForScanShip();
                     oController.onCloseBusyDialog();
                     // const sResponse = await this._simulateBotResponse(sUserMessage);
@@ -547,7 +547,17 @@ sap.ui.define([
                 // Open the dialog
                 this._oDialog.open();
             },
-
+            createShipmentLabelForChatBot:function(){
+                var oView = oController.getView();
+                var oVBox = oView.byId("yourVBoxId");                
+                var oImage = new sap.m.Image({
+                    src: "{ShipperCopilotModel>imageSrc}",
+                    width: "70%",
+                    height:"80%",
+                    visible:"{ShipperCopilotModel>isBotImage}"
+                });
+                oVBox.addItem(oImage);
+            },
             _createShipmentsTable: function (aData , sCustomDataKey) {
                 var oView = this.getView();
                 var oVBox = oView.byId("yourVBoxId");
@@ -559,7 +569,8 @@ sap.ui.define([
                     visibleRowCount: 4,
                     selectionMode: "None",
                     width: "32rem",
-                    fixedColumnCount: 1
+                    fixedColumnCount: 1,
+                    visible:"{ShipperCopilotModel>hasTableData}"
                 });
             
                 // Define columns manually
@@ -607,17 +618,10 @@ sap.ui.define([
                 var oModel = this.getView().getModel("ShipperCopilotModel");
                 oTable.setModel(oModel, "ShipperCopilotModel");
                 oTable.bindRows("ShipperCopilotModel>/tableData");
-
-                var sText;
-                if(sCustomDataKey === "ShowAllShipments"){
-                    sText = "Details found for - show all shipments:";
-                }else if(sCustomDataKey === "OrderStatus"){
-                    sText = "Details found for - show orders with open status:";
-                }
-                
+               
                 // Add the table to VBox
                 var oText = new sap.m.Text({
-                    text:sText,
+                    text:"{ShipperCopilotModel>text}",
                     wrapping:true
                 });
                 oText.addStyleClass("co-pilot-search-text sapUiTinyMarginBottom");
@@ -628,6 +632,7 @@ sap.ui.define([
              
              // HBox for button at bottom-left
              var oButtonHBox = new sap.m.HBox({
+                 visible:"{ShipperCopilotModel>hasTableData}",
                  justifyContent: "Start", // Aligns content to the left
                  items: [
                      new sap.m.Button({
@@ -738,7 +743,12 @@ sap.ui.define([
                 }
 
                 //var oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
-                var sUserMessage = "Show All Shipments";
+                var sUserMessage, sBotMessage;
+                if(sCustomDataKey === "ShowAllShipments"){
+                    sUserMessage = "Show All Shipments";
+                }else if(sCustomDataKey === "OrderStatus"){
+                    sUserMessage = "show orders with open status";
+                }
                 oShipperCopilotModel.setProperty("/iconState", false);
                 oShipperCopilotModel.setProperty("/listState", true);
 
@@ -750,9 +760,15 @@ sap.ui.define([
 
                 if (sResponse && sResponse.length !== 0) {
                     oShipperCopilotModel.setProperty("/showAllShipmentsTable", true);
+                   
+                    if(sCustomDataKey === "ShowAllShipments"){
+                        sBotMessage = "Here are all the shipments:";
+                    }else if(sCustomDataKey === "OrderStatus"){
+                         sBotMessage = "Details found for - show orders with open status:"
+                    }
                     aMessages.push({
                                 sender: "Bot",
-                                text: "Here are all the shipments:",
+                                text: sBotMessage,
                                 tableData: sResponse,
                                 hasTableData: true,
                                 isUserText: false,
@@ -16234,10 +16250,13 @@ sap.ui.define([
                     if(response && response.results.length > 0){
                         var ShipperCopilotModel = oController.getView().getModel("ShipperCopilotModel");
                         var text = response.results[0].Labelurl;
-                        // var aMessages = [];
-                        // aMessages.push({ sender: "Bot", text: text });
-                        // ShipperCopilotModel.setProperty("/messages", aMessages);
-                        ShipperCopilotModel.setProperty("/text", text);
+                        const aMessages = ShipperCopilotModel.getProperty("/messages");
+                        //var aMessages = [];
+                        //aMessages.push({ sender: "Bot", text: "Delivery"+ sDeveliveryNumber +" has been processed and shipped by ShipperCopilot" });
+                        aMessages.push({ sender: "Bot", imageSrc: text, hasTableData:false, isBotImage:true});
+                        ShipperCopilotModel.setProperty("/messages", aMessages);
+                        //ShipperCopilotModel.setProperty("/text", text);
+                       // oController.createShipmentLabelForChatBot();
                         eshipjetModel.setProperty("/scanShipTableData2", response.results);
                         eshipjetModel.setProperty("/sShipAndScan", "");
                     }else{
