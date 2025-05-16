@@ -5472,6 +5472,72 @@ sap.ui.define([
         onOrderFilterPopoverApplyPress: function () {
             this.byId("idOrdersFilterPopover").close();
         },
+        onOrderFilterPopoverApplyPress: function () {
+            var oView = this.getView();
+            var oTable = oView.byId("idOrdersTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            var aFilters = [];
+        
+            var locationName = oView.byId("locationComboId").getSelectedKey();
+            var shipFromDate = oView.byId("shipFromDateId").getDateValue();
+            var shipToDate = oView.byId("shipToDateId").getDateValue();
+            var carrier = oView.byId("carrierComboId").getSelectedKey();
+            var orderType = oView.byId("orderTypeComboId").getSelectedKey();
+            var status = oView.byId("statusComboId").getSelectedKey();
+        
+            // ComboBox filters (exact match)
+            if (locationName) {
+                aFilters.push(new sap.ui.model.Filter("LocationName", sap.ui.model.FilterOperator.EQ, locationName));
+            }
+            if (carrier) {
+                aFilters.push(new sap.ui.model.Filter("CarrierCode", sap.ui.model.FilterOperator.EQ, carrier));
+            }
+            if (orderType) {
+                aFilters.push(new sap.ui.model.Filter("Packagetype", sap.ui.model.FilterOperator.EQ, orderType));
+            }
+            if (status) {
+                aFilters.push(new sap.ui.model.Filter("Status", sap.ui.model.FilterOperator.EQ, status));
+            }
+        
+            // Date filters (between)
+            if (shipFromDate || shipToDate) {
+                let fromDate = shipFromDate ? new Date(shipFromDate.setHours(0, 0, 0, 0)) : null;
+                let toDate = shipToDate ? new Date(shipToDate.setHours(23, 59, 59, 999)) : null;
+        
+                if (fromDate && toDate) {
+                    aFilters.push(new sap.ui.model.Filter("Date", sap.ui.model.FilterOperator.BT, fromDate, toDate));
+                } else if (fromDate) {
+                    aFilters.push(new sap.ui.model.Filter("Date", sap.ui.model.FilterOperator.GE, fromDate));
+                } else if (toDate) {
+                    aFilters.push(new sap.ui.model.Filter("Date", sap.ui.model.FilterOperator.LE, toDate));
+                }
+            }
+        
+            // Apply filters to table
+            if (oBinding) {
+                oBinding.filter(aFilters);
+            }
+        },
+        
+        onOrderFilterPopoverResetPress: function () {
+            var oView = this.getView();
+            var today = new Date();
+
+            oView.byId("locationComboId").setSelectedKey("");
+            oView.byId("shipFromDateId").setDateValue(today);
+            oView.byId("shipToDateId").setDateValue(today);
+            oView.byId("carrierComboId").setSelectedKey("");
+            oView.byId("orderTypeComboId").setSelectedKey("");
+            oView.byId("statusComboId").setSelectedKey("");
+        
+            // Reset table to show all
+            var oModel = oView.getModel("eshipjetModel");
+            oModel.setProperty("/filteredOrders", oModel.getProperty("/allOrders"));
+            oView.byId("idOrdersTable").bindRows("eshipjetModel>/filteredOrders");
+        },
+        
+        
         
         onOrderStstusBtnFilterPress:function(oEvent){
             var aFilterId = oEvent.getSource().getId().split("--");

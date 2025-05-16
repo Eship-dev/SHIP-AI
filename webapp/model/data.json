@@ -9629,6 +9629,20 @@
             "id": 58
         }
     ],
+        "ForFiltercarriers": [
+            { "key": "fedex", "text": "FedEx" },
+            { "key": "ups", "text": "UPS" },
+            { "key": "abfs", "text": "ABFS" }
+        ],
+        "shipmentStatuses": [
+            { "key": "shipped", "text": "Shipped" },
+            { "key": "cancelled", "text": "Cancelled" },
+            { "key": "open", "text": "Open" },
+            { "key": "in_transit", "text": "In-Transit" }
+        ],
+        "LocationName": [
+            {"key": "1710", "text": "1710" }
+        ],
 
     "carrierconfiguration1": [
         {

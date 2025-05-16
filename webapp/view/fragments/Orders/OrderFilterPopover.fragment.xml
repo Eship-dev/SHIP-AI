@@ -18,53 +18,84 @@
         <VBox >
 		<HBox >
 			<VBox class="sapUiSmallMargin" width="30%" >
-			<Label text="Location Name" width="100%" />
+			<Label text="Location ID/Location Name" width="100%" />
 					<ComboBox
+						id="locationComboId"
 						width="100%"
-						items="{}">
-						<core:Item key="{key}" text="{text}" />
+						class="sapUiSmallMarginBottom create-ship-req_input"
+						items="{eshipjetModel>/LocationName}">
+						<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
 					</ComboBox>
 			</VBox>
 			<VBox class="sapUiSmallMargin" width="30%" >
 					<Label text="Ship From Date" width="100%" />
 					<DatePicker
+					id="shipFromDateId"
+					 	value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}"
 						width="100%"
 						placeholder="Enter Date"
 						change="handleChange"
-						class="sapUiSmallMarginBottom"/>
+						class="sapUiSmallMarginBottom create-ship-req_input"/>
 			</VBox>
 			<VBox class="sapUiSmallMargin" width="30%" >
-					<Label text="Ship To" width="100%" />
+					<Label text="Ship To Date" width="100%" />
 					<DatePicker
+					id="shipToDateId"
+					 	value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}"
 						width="100%"
 						placeholder="Enter Date"
 						change="handleChange"
-						class="sapUiSmallMarginBottom"/>
+						class="sapUiSmallMarginBottom create-ship-req_input"/>
 			</VBox>
 			
 		</HBox>
         <HBox>
         	<VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
-					<Label text="Connect To" width="100%" />
+					<Label text="Carrier Name" width="100%" />
 					<ComboBox
+					id="carrierComboId"
+						class="sapUiSmallMarginBottom create-ship-req_input"
 						width="100%"
-						items="{}">
-						<core:Item key="{key}" text="{text}" />
+						items="{eshipjetModel>/ForFiltercarriers}">
+						<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
 					</ComboBox>
 			</VBox>
             <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
 					<Label text="Order Type" width="100%" />
 					<ComboBox
+					id="orderTypeComboId"
 						width="100%"
-						items="{}">
-						<core:Item key="{key}" text="{text}" />
+						class="sapUiSmallMarginBottom create-ship-req_input"
+						items="{eshipjetModel>/shipNowSAPDeliveryItems}">
+						<core:Item key="{eshipjetModel>SAPDeliveryItem}" text="{eshipjetModel>SAPDeliveryItem}" />
 					</ComboBox>
+
 			</VBox>
             <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
-					<Label text="Delivery No" width="100%" />
-					<Input value="{}" width="100%"></Input>
+					<Label text="Status" width="100%" />
+					<ComboBox
+					id="statusComboId"
+						width="100%"
+						class="sapUiSmallMarginBottom create-ship-req_input"
+						items="{eshipjetModel>/shipmentStatuses}">
+						<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
+					</ComboBox>
 			</VBox>
 		</HBox>
         </VBox>
+		<footer>
+			<OverflowToolbar>
+				
+				<Button
+					text="Reset"
+					type="Ghost"
+					press="onOrderFilterPopoverResetPress" />
+					<ToolbarSpacer/>
+                <Button
+					text="Apply"
+					
+					press="onOrderFilterPopoverApplyPress" />
+			</OverflowToolbar>
+		</footer>
 	</Popover>
 </core:FragmentDefinition>
