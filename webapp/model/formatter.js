@@ -86,11 +86,11 @@ sap.ui.define([
           },
 
           formatCustomDateShipmentTable: function (sDateStr) {
-            if (!oDate) return "";
+            if (!sDateStr) return "";
             const oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
                 pattern: "MM/dd/yyyy"
             });
-            return oDateFormat.format(new Date(oDate));
+            return oDateFormat.format(new Date(sDateStr));
           },
 
           getCarrierIconClass: function (sCarrierType) {
