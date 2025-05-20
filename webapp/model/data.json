@@ -9646,7 +9646,8 @@
             { "key": "in_transit", "text": "In-Transit" }
         ],
         "LocationName": [
-            {"key": "1710", "text": "1710" }
+            {"key": "1710", "text": "1710" },
+            {"key": "bp01", "text": "BP01" }
         ],
 
     "carrierconfiguration1": [

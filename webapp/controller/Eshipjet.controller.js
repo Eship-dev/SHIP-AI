@@ -2107,7 +2107,7 @@ sap.ui.define([
                 "Dimensions": "10X12X12",
                 "Aesitn": "",
                 "Vhilm": eshipjetModel.getProperty("/selectedPackageMat"),
-                "Emailaddress": "",
+                "Emailaddress": ShipNowDataModel.getProperty("/ShipToAddress/EMAIL"),
                 "Signaturetype": "",
                 "RecCompany": ShipNowDataModel.getProperty("/ShipToAddress/BusinessPartnerName1"),
                 "RecContact": ShipNowDataModel.getProperty("/ShipToAddress/FullName"),
@@ -5488,7 +5488,7 @@ sap.ui.define([
         
             // ComboBox filters (exact match)
             if (locationName) {
-                aFilters.push(new sap.ui.model.Filter("LocationName", sap.ui.model.FilterOperator.EQ, locationName));
+                aFilters.push(new sap.ui.model.Filter("Plant", sap.ui.model.FilterOperator.EQ, locationName));
             }
             if (carrier) {
                 aFilters.push(new sap.ui.model.Filter("CarrierCode", sap.ui.model.FilterOperator.EQ, carrier));
@@ -5518,6 +5518,7 @@ sap.ui.define([
             if (oBinding) {
                 oBinding.filter(aFilters);
             }
+            this.byId("idOrdersFilterPopover").close();
         },
         
         onOrderFilterPopoverResetPress: function () {

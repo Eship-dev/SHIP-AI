@@ -31,7 +31,7 @@
 					<Label text="Ship From Date" width="100%" />
 					<DatePicker
 					id="shipFromDateId"
-					 	value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}"
+					 	value="{path: 'eshipjetModel>/DateAdded', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}"
 						width="100%"
 						placeholder="Enter Date"
 						change="handleChange"
@@ -41,7 +41,7 @@
 					<Label text="Ship To Date" width="100%" />
 					<DatePicker
 					id="shipToDateId"
-					 	value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}"
+					 	value="{path: 'eshipjetModel>/ExpDelDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}"
 						width="100%"
 						placeholder="Enter Date"
 						change="handleChange"

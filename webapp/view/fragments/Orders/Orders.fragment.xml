@@ -228,7 +228,7 @@
 								<ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '12rem' : 'auto' }" sortProperty="ExpDelDate" visible="{eshipjetModel>/OrderTableData/OrderColumns/13/visible}">
 									<Label text="Del'd Date-Time" />
 									<ui:template>
-										<Text text="{path: 'eshipjetModel>ExpDelDate', formatter: '.formatter.formatCustomDateTimeForOrders'}" class="ordersSmallText" wrapping="false" />
+										<Text text="{path: 'eshipjetModel>DateAdded', formatter: '.formatter.formatCustomDateTimeForOrders'}" class="ordersSmallText" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
@@ -291,14 +291,14 @@
 								<ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '5rem' : 'auto' }" sortProperty="" visible="{eshipjetModel>/OrderTableData/OrderColumns/22/visible}">
 									<Label text="User ID" />
 									<ui:template>
-										<Text text="" class="ordersSmallText" wrapping="false" />
+										<Text text="{eshipjetModel>userName}" class="ordersSmallText" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '6rem' : 'auto' }" sortProperty="" visible="{eshipjetModel>/OrderTableData/OrderColumns/23/visible}">
 									<Label text="SAP User ID" />
 									<ui:template>
-										<Text text="" class="ordersSmallText" wrapping="false" />
+										<Text text="{eshipjetModel>userName}" class="ordersSmallText" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 

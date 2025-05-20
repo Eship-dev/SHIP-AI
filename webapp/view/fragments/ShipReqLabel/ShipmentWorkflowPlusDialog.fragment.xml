@@ -15,7 +15,7 @@
         <!-- History Notes Section -->
         <Label text="History Notes" />
 
-        <Table width="100%" items="{eshipjetModel>/historyNotes}">
+        <Table width="100%" items="{eshipjetModel>/allOrders}">
             <columns>
                 <Column>
                     <Text text="Date" />
@@ -30,8 +30,8 @@
             <items>
                 <ColumnListItem>
                     <cells>
-                        <Text text="{eshipjetModel>date}" />
-                        <Text text="{eshipjetModel>name}" />
+                        <Text text="{eshipjetModel>DateAdded}" />
+                        <Text text="{eshipjetModel>FromCompany}" />
                         <Text text="{eshipjetModel>notes}" />
                     </cells>
                 </ColumnListItem>
