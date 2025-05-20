@@ -5956,38 +5956,55 @@ sap.ui.define([
 
         onShipReqExportToExcel: function () {
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var rows = eshipjetModel.getProperty("/ShipReqTableData/ShipReqRows");
+            var rows = eshipjetModel.getProperty("/RecentShipmentSetShipReqLabel");
+
+            var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+                pattern: "MM/dd/yyyy HH:mm"
+            });
+        
+            var formattedRows = rows.map(function (row) {
+                return {
+                    ...row,
+                    DateAdded: row.DateAdded ? oDateFormat.format(new Date(row.DateAdded)) : "",
+                    Createddate: row.Createddate ? oDateFormat.format(new Date(row.Createddate)) : ""
+                };
+            });
+
             var oSettings = {
                 workbook: {
                     columns: [
-                        { label: "Location Name", property: "locationName" },
-                        { label: "Consolidation ID", property: "consolidationID" },
-                        { label: "Request ID / Label ID", property: "requestIdLabelId" },
-                        { label: "Created Date", property: "CreatedDate" },
-                        { label: "Ship Date", property: "ShipDate" },
-                        { label: "Shipment Type", property: "ShipmentType" },
-                        { label: "Ship Method", property: "shipMethod" },
-                        { label: "Service Name", property: "ServiceName" },
+                        { label: "Location Id", property: "Plant" },
+                        { label: "Location Name", property: "RecCity" },
+                        { label: "Consolidation Id", property: "Consolidation" },
+                        { label: "Delivery/handling Requests", property: "requestIdLabelId" },
+                        { label: "EID", property: "" },
+                        { label: "Created Date", property: "Createddate" },
+                        { label: "Ship Date", property: "DateAdded" },
+                        { label: "Shipment Type", property: "Carriertype" },
+                        { label: "Ship Method", property: "CarrierCode" },
+                        { label: "Ship Description", property: "CarrierDesc" },
+                        { label: "Service Name", property: "CarrierDesc" },
+                        { label: "Master Tracking Number", property: "TrackingNumber" },
                         { label: "Tracking Number", property: "TrackingNumber" },
-                        { label: "Status", property: "status" },
-                        { label: "Ship To Contact", property: "ShipToContact" },
-                        { label: "Ship To Company", property: "ShipToCompany" },
-                        { label: "Ship To AddressLine1", property: "ShipToAddressLine1" },
-                        { label: "Ship To State / Provincey", property: "shipToStateProvince" },
-                        { label: "Ship To City", property: "shipToCity" },
-                        { label: "Ship To Zip / Postal Code", property: "shipToZipPostalCode" },
-                        { label: "Ship To Country", property: "shipToCountry" },
-                        { label: "Ship To Phone", property: "shipToPhone" },
-                        { label: "Ship To Email", property: "shipToEmail" },
-                        { label: "Requestor Name", property: "requesterName" },
-                        { label: "Connected To", property: "connectedTo" },
-                        { label: "Order Type", property: "orderType" },
-                        { label: "RFID", property: "RFID" },
-                        { label: "Actions", property: "actions" },
+                        { label: "Quote Status", property: "DeliveryStatus" },
+                        { label: "Ship To Contact", property: "RecContact" },
+                        { label: "Ship To Company", property: "RecCompany" },
+                        { label: "Ship To Address Line 1", property: "RecAddress1" },
+                        { label: "Ship To State", property: "RecRegion" },
+                        { label: "Ship To City", property: "RecCity" },
+                        { label: "Ship To Zip / Postal Code", property: "RecPostalcode" },
+                        { label: "Ship To Country", property: "RecCountry" },
+                        { label: "Ship To Phone", property: "RecPhone" },
+                        { label: "Ship To Email", property: "Emailaddress" },
+                        { label: "Requester Name", property: "RecContact" },
+                        { label: "Connected To", property: "" },
+                        { label: "Status", property: "DeliveryStatus" },
+                        { label: "Order Type", property: "Packagetype" },
+                        { label: "RFID", property: "" }
                     ]
                 },
-                dataSource: rows,
-                fileName: 'Shipment_Data',
+                dataSource: formattedRows,
+                fileName: 'Ship_Request_Label_Data',
                 Worker: true
             };
             var oSpreadsheet = new Spreadsheet(oSettings);

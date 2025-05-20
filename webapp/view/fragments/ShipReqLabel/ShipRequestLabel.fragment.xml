@@ -79,7 +79,7 @@
 				<ToolbarSpacer />
 				<SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" search="onSearchTrack" ></SearchField>
 				<Button icon="sap-icon://synchronize" press="getShipReqLabelHistoryShipments" type="Transparent" class="ordersIcons" ></Button>
-				<Button icon="sap-icon://action"  press="onShipReqExportToExcel" type="Transparent" class="ordersIcons" ></Button>
+				<Button icon="sap-icon://action" press="onShipReqExportToExcel" type="Transparent" class="ordersIcons" ></Button>
 				<Button icon="sap-icon://action-settings" press="openShipReqColNamesPopover" type="Transparent" class="ordersIcons" ></Button>
 			</Toolbar>
 
@@ -266,7 +266,7 @@
 								<ui:Column sortProperty="DeliveryStatus" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/24/visible}" >
 									<Label text="Status" />
 									<ui:template>
-										<Text text="{eshipjetModel>DeliveryStatus}" wrapping="false" />
+										<Text text="{path: 'eshipjetModel>Shipprocess', formatter: '.formatter.formatShipmentType'}" wrapping="false" class="ordersSmallText" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column sortProperty="Packagetype" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/25/visible}" >
