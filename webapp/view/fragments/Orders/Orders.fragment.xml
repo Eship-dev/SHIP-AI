@@ -70,17 +70,17 @@
 					
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
-					<Text text="0" class="NumberSizeTitle1"></Text>
+					<Text text="{eshipjetModel>/openCount}" class="NumberSizeTitle1"></Text>
 					<Text text="Open" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Critical" id="Open" press="onOrderStstusBtnFilterPress"  class="InTransitord-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
-					<Text text="0" class="NumberSizeTitle1"></Text>
+					<Text text="{eshipjetModel>/InTransistCount}" class="NumberSizeTitle1"></Text>
 					<Text text="In-Transit" class="sapUiTinyMarginBottom"></Text>
 					<Button press="onOrderStstusBtnFilterPress" id="In-Transit" class="open-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
-					<Text text="0" class="NumberSizeTitle1"></Text>
+					<Text text="{eshipjetModel>/receivedCount}" class="NumberSizeTitle1"></Text>
 					<Text text="Received" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Critical" id="Received" press="onOrderStstusBtnFilterPress"  class="Receivedord-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>

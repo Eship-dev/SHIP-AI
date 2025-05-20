@@ -7780,7 +7780,7 @@
         {
             "name": "Plant",
             "label": "Location Id",
-            "visible": false
+            "visible": true
         },
         {
             "name": "RecCity",
@@ -7790,12 +7790,12 @@
         {
             "name": "Consolidation",
             "label": "Consolidation ID",
-            "visible": false
+            "visible": true
         },
         {
             "name": "requestIdLabelId",
             "label": "Delivery/handling Requests",
-            "visible": false
+            "visible": true
         },
         {
             "name": "EID",
@@ -7828,7 +7828,7 @@
             "visible": false
         },
         {
-            "name": "ServiceName",
+            "name": "CarrierDesc",
             "label": "Service Name",
             "visible": true
         },
@@ -7873,7 +7873,7 @@
             "visible": false
         },
         {
-            "name": "Postalcode",
+            "name": "RecPostalcode",
             "label": "Ship To Zip / Postal Code",
             "visible": false
         },
@@ -7893,28 +7893,33 @@
             "visible": false
         },
         {
-            "name": "RequestorName",
+            "name": "RecContact",
             "label": "Requestor Name",
             "visible": false
         },
         {
             "name": "ConnectedTo",
             "label": "Connected To",
-            "visible": false
+            "visible": true
         },
         {
-            "name": "Status",
+            "name": "DeliveryStatus",
             "label": "Status",
             "visible": true
         },
         {
-            "name": "OrderType",
+            "name": "Packagetype",
             "label": "Order Type",
             "visible": false
         },
         {
             "name": "RFID",
             "label": "RFID",
+            "visible": false
+        },
+        {
+            "name": "ShipmentWorkflow",
+            "label": "Shipment Workflow",
             "visible": false
         },
         {

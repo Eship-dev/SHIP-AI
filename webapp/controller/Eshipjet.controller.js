@@ -6047,7 +6047,7 @@ sap.ui.define([
             });
             eshipjetModel.updateBindings(true);
             // this._handleDisplayShipReqTable();
-            oController.getShipReqLabelHistoryShipments();
+            // oController.getShipReqLabelHistoryShipments();
             this._pShipReqPopover.then(function (oPopover) {
                 oPopover.close();
             });
@@ -7603,6 +7603,9 @@ sap.ui.define([
                         // Normalize ShipmentType
                         var shippedCount = 0;
                         var cancelledCount = 0;
+                        var openCount = 0;
+                        var InTransistCount = 0;
+                        var receivedCount = 0;
                         filteredResults.forEach(item => {
                             let shipmentValue = item.Type || item.Shipmenttype || item.ShipmentType;
                             if (shipmentValue && typeof shipmentValue === "string") {
@@ -7615,6 +7618,12 @@ sap.ui.define([
                                 shippedCount += 1;
                             }else if(item.Shipprocess === "CANC"){
                                 cancelledCount += 1;
+                            }else if(item.Shipprocess === "OPEN"){
+                                openCount += 1;
+                            }else if(item.Shipprocess === "InTransist"){
+                                InTransistCount += 1;
+                            }else if(item.Shipprocess === "RECEIVED"){
+                                receivedCount += 1;
                             }
                         });
                 
@@ -7623,6 +7632,9 @@ sap.ui.define([
                         eshipjetModel.setProperty("/allOrdersLength", filteredResults.length);
                         eshipjetModel.setProperty("/shippedCount", shippedCount);
                         eshipjetModel.setProperty("/cancelledCount", cancelledCount);
+                        eshipjetModel.setProperty("/openCount", openCount);
+                        eshipjetModel.setProperty("/InTransistCount", InTransistCount);
+                        eshipjetModel.setProperty("/receivedCount", receivedCount);
 
                         var oTable = oController.getView().byId("idOrdersTable");
                         var oBinding = oTable.getBinding("rows");
@@ -7739,9 +7751,38 @@ sap.ui.define([
                 // },
                 success:function(response){
                     var last50Records = response.results.slice(-50);
-                    if(response && response.results.length > 0){
-                        eshipjetModel.setProperty("/RecentShipmentSetShipReqLabel",last50Records);
-                    }
+
+                    var shipReqShippedCount = 0;
+                    var shipReqCancelledCount = 0;
+                    var shipReqOpenCount = 0;
+                    last50Records.forEach(item => {
+                        let shipmentValue = item.Type || item.Shipmenttype || item.ShipmentType;
+                        if (shipmentValue && typeof shipmentValue === "string") {
+                            shipmentValue = shipmentValue.trim().toUpperCase();
+                            item.ShipmentType = shipmentValue === 'O' ? "Parcel" : "LTL";
+                        } else {
+                            item.ShipmentType = "LTL";
+                        }
+                        if(item.Shipprocess === "SHIP"){
+                            shipReqShippedCount += 1;
+                        }else if(item.Shipprocess === "CANC"){
+                            shipReqCancelledCount += 1;
+                        }else if(item.Shipprocess === "OPEN"){
+                            shipReqOpenCount += 1;
+                        }
+                    });
+            
+                    // Set the filtered, sorted data to the model
+                    eshipjetModel.setProperty("/RecentShipmentSetShipReqLabel", last50Records);
+                    eshipjetModel.setProperty("/allshipReqLength", last50Records.length);
+                    eshipjetModel.setProperty("/shipReqShippedCount", shipReqShippedCount);
+                    eshipjetModel.setProperty("/shipReqCancelledCount", shipReqCancelledCount);
+                    eshipjetModel.setProperty("/shipReqOpenCount", shipReqOpenCount);
+
+                    var oTable = oController.getView().byId("idShipReqsTable");
+                    var oBinding = oTable.getBinding("rows");
+                    oBinding.filter([]);
+
                     oController.onCloseBusyDialog();
                 },
                 error: function(error){
@@ -7749,6 +7790,27 @@ sap.ui.define([
                     oController.onCloseBusyDialog();
                 }
             });
+        },
+
+        handleshipReqFilterPress:function(oEvent){
+            var aFilterId = oEvent.getSource().getId().split("--");
+            var oText = aFilterId[aFilterId.length-1];
+            var oFilterText;
+            var oTable = oController.getView().byId("idShipReqsTable");
+            var oBinding = oTable.getBinding("rows");
+            
+            if(oText === "idShipReqShippedBtn"){
+                oFilterText = "SHIP";
+            }else if(oText === "idShipRequCancelledBtn"){
+                oFilterText = "CANC";
+            }else if(oText === "idShipReqOpenBtn"){
+                oFilterText = "Open";
+            }else if(oText === "idShipReqTotalBtn"){
+                return oBinding.filter([]);
+            }
+            
+            var oFilter = new sap.ui.model.Filter("Shipprocess", sap.ui.model.FilterOperator.EQ, oFilterText);
+            oBinding.filter([oFilter]);
         },
 
         onColumnSearch: function (oEvent) {
