@@ -59,10 +59,11 @@
 
                     <ui:extension>
 						<OverflowToolbar class="scan-ship-table__toolbar">
-							<Button icon="sap-icon://filter" press="scanShipFilterPopoverPress" type="Transparent" ></Button>
+							<Button icon="sap-icon://filter" press="scanShipFilterPopoverPress" type="Transparent" class="ordersIcons" ></Button>
 							<ToolbarSpacer ></ToolbarSpacer>
-							<Button icon="sap-icon://action" press="onScanShipExportToExcel" type="Transparent" ></Button>
-                            <Button icon="sap-icon://action-settings" press="openScanShipColNamesPopover" type="Transparent" >
+							<Button icon="sap-icon://synchronize" press="getScanShipHistoryShipments" type="Transparent" class="ordersIcons" ></Button>
+							<Button icon="sap-icon://action" press="onScanShipExportToExcel" type="Transparent" class="ordersIcons" ></Button>
+                            <Button icon="sap-icon://action-settings" press="openScanShipColNamesPopover" type="Transparent" class="ordersIcons"  >
                                 <customData>
                                     <core:CustomData key="remember" value="true" />
                                     <core:CustomData key="showClearButton" value="true" />
@@ -75,7 +76,7 @@
 										<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="Deliverynno" class="whiteBackground" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/0/visible}">
 									<Label text="SAP Shipment ID" />
 									<ui:template>
-										<Text text="{eshipjetModel>Deliverynno}" wrapping="false" class="ordersSmallText" />
+										<Text text="{eshipjetModel>Vbeln}" wrapping="false" class="ordersSmallText" />
 									</ui:template>
 								</ui:Column>
 
@@ -132,14 +133,14 @@
 								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="Contact" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/8/visible}">
 									<Label text="Ship To Contact" />
 									<ui:template>
-										<Text text="{eshipjetModel>Contact}" wrapping="false" class="ordersSmallText" />
+										<Text text="{eshipjetModel>RecContact}" wrapping="false" class="ordersSmallText" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="Company" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/9/visible}">
 								<Label text="Ship To Company" />
 								<ui:template>
-										<Text text="{eshipjetModel>Company}" wrapping="false" class="ordersSmallText" />
+										<Text text="{eshipjetModel>RecCompany}" wrapping="false" class="ordersSmallText" />
 									</ui:template>
 							</ui:Column>
 
@@ -154,20 +155,18 @@
 								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="RecCity" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/11/visible}">
 									<Label text="Ship To City" />
 									<ui:template>
-										<Link text="{eshipjetModel>RecCity}" press="onTrackingNumberPress" class="ordersSmallText" wrapping="false" />
+										<Text text="{eshipjetModel>RecCity}" class="ordersSmallText" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="Shipped" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/12/visible}">
-								<Label text="Ship To State" />
-								<ui:template>
-									<!-- <Text text="Shipped" wrapping="false"
-										class="{path: 'Shipped', formatter: '.formatter.getDeliveryStatusClass'} ordersSmallText" /> -->
-									<Text text="Shipped" wrapping="false" class="greenColorForIcon ordersSmallText" />
-								</ui:template>
-							</ui:Column>
-
-
+									<Label text="Ship To State" />
+									<ui:template>
+										<!-- <Text text="Shipped" wrapping="false"
+											class="{path: 'Shipped', formatter: '.formatter.getDeliveryStatusClass'} ordersSmallText" /> -->
+										<Text text="{eshipjetModel>RecRegion}" wrapping="false" class="ordersSmallText" />
+									</ui:template>
+								</ui:Column>
 
 								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="RecCountry" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/13/visible}">
 									<Label text="Ship To Country" />
@@ -193,28 +192,28 @@
 								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/16/visible}">
 									<Label text="Ship To Email" />
 									<ui:template>
-										<Text text="" class="ordersSmallText" wrapping="false" />
+										<Text text="{eshipjetModel>Emailaddress}" class="ordersSmallText" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="RecContact" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/17/visible}">
 									<Label text="Requester Name" />
 									<ui:template>
-										<Text text="{eshipjetModel>RecContact}" class="ordersSmallText" wrapping="false" />
+										<Text text="{eshipjetModel>Contact}" class="ordersSmallText" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/18/visible}">
 									<Label text="Connected To" />
 									<ui:template>
-										<Text text="" class="ordersSmallText" wrapping="false" />
+										<Text text="{eshipjetModel>Contact}" class="ordersSmallText" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 
 								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="RecCountry" visible="{eshipjetModel>/scanShipTableData1/scanShipColumns/19/visible}">
 									<Label text="Order Type" />
 									<ui:template>
-										<Text text="" class="ordersSmallText" wrapping="false" />
+										<Text text="{eshipjetModel>Shipmenttype}" class="ordersSmallText" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 

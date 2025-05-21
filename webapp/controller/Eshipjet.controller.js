@@ -248,6 +248,7 @@ sap.ui.define([
 
                 eshipjetModel.setProperty("/sShipAndScan", "");
                 eshipjetModel.setProperty("/scanShipTableData2", []);
+                oController.getScanShipHistoryShipments();
                 // this._handleDisplayScanShipTable();
             } else if (sKey === "Orders") {
                 eshipjetModel.setProperty("/commonValues/toolPageHeader", false);
@@ -2006,6 +2007,7 @@ sap.ui.define([
             var PurchaseOrder = eshipjetModel.getProperty("commonValues/PurchaseOrder");
             var ShipReadDataSrvModel = oController.getOwnerComponent().getModel("ShipReadDataSrvModel");
             var shippingCharges = eshipjetModel.getProperty("/shippingCharges");
+            var dimensions = eshipjetModel.getProperty("/commonValues/dimensions");
             shippingCharges.forEach(function(item, idx){
                 if(item.description === "Published Freight"){
                     amount = item.amount;
@@ -2104,7 +2106,7 @@ sap.ui.define([
                 "Accountnumber": eshipjetModel.getProperty("/accountNumber"),
                 "Dutytaxpaytype": "SENDER",
                 "Dtaccountnumber": "",
-                "Dimensions": "10X12X12",
+                "Dimensions": dimensions ? dimensions.toString() : "10X12X12",
                 "Aesitn": "",
                 "Vhilm": eshipjetModel.getProperty("/selectedPackageMat"),
                 "Emailaddress": ShipNowDataModel.getProperty("/ShipToAddress/EMAIL"),
@@ -2303,7 +2305,8 @@ sap.ui.define([
 
                     var sFromViewName = eshipjetModel.getProperty("/sFromViewName");
                     if(sFromViewName === "SCAN_SHIP"){
-                        oController.getManifestHeaderForScanShip();
+                        // oController.getManifestHeaderForScanShip();
+                        oController.getScanShipHistoryShipments();
                     }else{
                         oController.showLabelAfterShipmentSuccess(ShipNowPostResponse);
                     }
@@ -3845,12 +3848,18 @@ sap.ui.define([
                             oData.results[i]["SerialNumber"] = i + 1;
                             aHandlingUnits.push(oData.results[i]);
                             oData.results[i]["boxCount"] = "1";
-                            // if(getManifestHeader.length > 0){
-                            //     oData.results[i]["Tracking"] = getManifestHeader[i].TrackingNumber;
-                            // }
                         };
                         eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
                         oController.getHandlingUnit(aHandlingUnits);
+
+                        var HandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
+                        for(var i=0; i<getManifestHeader.length; i++){
+                            if(getManifestHeader.length > 0){
+                                HandlingUnits[i]["TrackingNumber"] = getManifestHeader[i].TrackingNumber;
+                                HandlingUnits[i]["CarrierCode"] = eshipjetModel.getProperty("/commonValues/ShipNowShipMethodSelectedKey");
+                            }
+                        };
+
                     }else{
                         eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
                         oController.onPackSectionEmptyRows();
@@ -4487,6 +4496,66 @@ sap.ui.define([
             oTable.bindRows("/pickAddProductTable");
         },
 
+        getScanShipHistoryShipments:function(){
+            oController.onOpenBusyDialog();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var ManifestSrvModel = oController.getOwnerComponent().getModel("ManifestSrvModel");
+            var RecentShipmentTab = eshipjetModel.getProperty("/RecentShipmentTab");
+            ManifestSrvModel.read("/EshipjetManfestSet",{
+                // urlParameters: {
+                //     "$expand": "to_DeliveryDocumentItem,to_DeliveryDocumentPartner"
+                // },
+                success:function(response){
+                    if (response && response.results.length > 0) {
+                        // Get today's date info
+                        const today = new Date();
+                        const currentDate = today.getDate();
+                        const currentMonth = today.getMonth(); // 0-based index
+                        const currentYear = today.getFullYear();
+        
+                        // Filter to include only today's entries
+                        const filteredResults = response.results.filter(item => {
+                            const itemDate = new Date(item.DateAdded);
+                            return itemDate.getDate() === currentDate &&
+                                   itemDate.getMonth() === currentMonth &&
+                                   itemDate.getFullYear() === currentYear;
+                        });
+        
+                        // Sort filtered results by date and time
+                        filteredResults.sort((a, b) => {
+                            let dateA = new Date(a.DateAdded).getTime();
+                            let dateB = new Date(b.DateAdded).getTime();
+        
+                            if (dateA !== dateB) {
+                                return dateB - dateA; // Descending by date
+                            }
+        
+                            return b.TimeAdded.ms - a.TimeAdded.ms; // Descending by time
+                        });
+        
+                        // Normalize shipment type
+                        filteredResults.forEach(item => {
+                            let shipmentValue = item.Type || item.Shipmenttype || item.ShipmentType;
+                            if (shipmentValue && typeof shipmentValue === "string") {
+                                shipmentValue = shipmentValue.trim().toUpperCase();
+                                item.Shipmenttype = shipmentValue === 'O' ? "Parcel" : "LTL";
+                            } else {
+                                item.Shipmenttype = "LTL";
+                            }
+                        });
+        
+                        // Set the filtered results to the model
+                        eshipjetModel.setProperty("/scanShipTableData2", filteredResults);
+                    }
+                    oController.onCloseBusyDialog();
+                },
+                error: function(error){
+                    MessageBox.warning(error.responseText);
+                    oController.onCloseBusyDialog();
+                }
+            });
+        },
+
         openShipNowProductsColNamesPopover: function (oEvent) {
             var oButton = oEvent.getSource(),
                 oView = this.getView();
@@ -5025,58 +5094,48 @@ sap.ui.define([
         },
 
         onScanShipExportToExcel: function () {
-            // var oTable = oController.getView().byId("idScanAndShipTable");
-            // var oModel = oController.getView().getModel("ScanShipTableDataModel");
-            // var aData = oModel.getProperty("/rows");
-            // var aColumns = oTable.getColumns().map(function (oColumn, index) {
-            //     var oLabel = oColumn.getLabel();
-            //     var sLabel = oLabel && oLabel.getText ? oLabel.getText() : "Column " + (index + 1);
-            //     var sProperty = oColumn.getCustomData().length > 0 ? oColumn.getCustomData()[0].getValue() : "col" + index;
-            //     return {
-            //         label: sLabel,
-            //         property: sProperty,
-            //         type: "string"
-            //     };
-            // });
-            // var oSettings = {
-            //     workbook: { columns: aColumns },
-            //     dataSource: aData,
-            //     fileName: "ExportedData.xlsx"
-            // };
-            // var oSpreadsheet = new sap.ui.export.Spreadsheet(oSettings);
-            // oSpreadsheet.build().finally(function () {
-            //     oSpreadsheet.destroy();
-            // });
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/scanShipTableData2");
 
-            var ScanShipTableDataModel = this.getView().getModel("ScanShipTableDataModel");
-            var rows = ScanShipTableDataModel.getProperty("/scanShipTableData");
+            var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+                pattern: "MM/dd/yyyy HH:mm"
+            });
+        
+            var formattedRows = rows.map(function (row) {
+                return {
+                    ...row,
+                    DateAdded: row.DateAdded ? oDateFormat.format(new Date(row.DateAdded)) : "",
+                    ExpDelDate: row.ExpDelDate ? oDateFormat.format(new Date(row.ExpDelDate)) : ""
+                };
+            });
+
             var oSettings = {
                 workbook: {
                     columns: [
-                        { label: "SAP Shipment ID", property: "sapShipmentID" },
-                        { label: "Created Date", property: "CreatedDate" },
-                        { label: "Ship Date", property: "ShipDate" },
-                        { label: "Shipment Type", property: "ShipmentType" },
-                        { label: "Ship Method", property: "shipMethod" },
-                        { label: "Service Name", property: "ServiceName" },
+                        { label: "SAP Shipment ID", property: "Vbeln" },
+                        { label: "Created Date", property: "DateAdded" },
+                        { label: "Ship Date", property: "DateAdded" },
+                        { label: "Shipment Type", property: "Shipmenttype" },
+                        { label: "Carrier Name", property: "CarrierCode" },
+                        { label: "Service Name", property: "CarrierDesc" },
                         { label: "Tracking Number", property: "TrackingNumber" },
-                        { label: "Status", property: "status" },
-                        { label: "Ship To Contact", property: "ShipToContact" },
-                        { label: "Ship To Company", property: "ShipToCompany" },
-                        { label: "Ship To Address Line 1", property: "ShipToAddressLine1" },
-                        { label: "Ship To City", property: "shipToCity" },
-                        { label: "Ship To State", property: "shipToState" },
-                        { label: "Ship To Country", property: "shipToCountry" },
-                        { label: "Ship to Zipcode", property: "shipToZipcode" },
-                        { label: "Ship To Phone", property: "shipToPhone" },
-                        { label: "Ship To Email", property: "shipToEmail" },
-                        { label: "Requester Name", property: "requesterName" },
-                        { label: "Connected To", property: "connectedTo" },
-                        { label: "Order Type", property: "orderType" },
+                        { label: "Status", property: "Shipprocess" },
+                        { label: "Ship To Contact", property: "RecContact" },
+                        { label: "Ship To Company", property: "RecCompany" },
+                        { label: "Ship To Address Line 1", property: "RecAddress1" },
+                        { label: "Ship To City", property: "RecCity" },
+                        { label: "Ship To State", property: "RecRegion" },
+                        { label: "Ship To Country", property: "RecCountry" },
+                        { label: "Ship To Zipcode", property: "RecPostalcode" },
+                        { label: "Ship To Phone", property: "RecPhone" },
+                        { label: "Ship To Email", property: "Emailaddress" },
+                        { label: "Requester Name", property: "Contact" },
+                        { label: "Connected To", property: "Contact" },
+                        { label: "Order Type", property: "Shipmenttype" }
                     ]
                 },
-                dataSource: rows,
-                fileName: 'Shipment_Data',
+                dataSource: formattedRows,
+                fileName: 'Scan_Ship_Data',
                 Worker: true
             };
             var oSpreadsheet = new Spreadsheet(oSettings);
@@ -7775,9 +7834,9 @@ sap.ui.define([
                         let shipmentValue = item.Type || item.Shipmenttype || item.ShipmentType;
                         if (shipmentValue && typeof shipmentValue === "string") {
                             shipmentValue = shipmentValue.trim().toUpperCase();
-                            item.ShipmentType = shipmentValue === 'O' ? "Parcel" : "LTL";
+                            item.Shipmenttype = shipmentValue === 'O' ? "Parcel" : "LTL";
                         } else {
-                            item.ShipmentType = "LTL";
+                            item.Shipmenttype = "LTL";
                         }
                         if(item.Shipprocess === "SHIP"){
                             shipReqShippedCount += 1;
@@ -16609,9 +16668,9 @@ sap.ui.define([
                             let shipmentValue = item.Type || item.Shipmenttype || item.ShipmentType;
                             if (shipmentValue && typeof shipmentValue === "string") {
                                 shipmentValue = shipmentValue.trim().toUpperCase();
-                                item.ShipmentType = shipmentValue === 'O' ? "Parcel" : "LTL";
+                                item.Shipmenttype = shipmentValue === 'O' ? "Parcel" : "LTL";
                             } else {
-                                item.ShipmentType = "LTL";
+                                item.Shipmenttype = "LTL";
                             }
                         });
         
