@@ -5528,9 +5528,6 @@ sap.ui.define([
         onOrderFilterPopoverClosePress: function () {
             this.byId("idOrdersFilterPopover").close();
         },
-        onOrderFilterPopoverResetPress: function () {
-            this.byId("idOrdersFilterPopover").close();
-        },
         
         onOrderFilterPopoverApplyPress: function () {
             var aFilters = [];
@@ -5565,22 +5562,13 @@ sap.ui.define([
         
         onOrderFilterPopoverResetPress: function () {
             var oView = this.getView();
-            var today = new Date();
-
-            oView.byId("locationComboId").setSelectedKey("");
+            eshipjetModel.setProperty("/orderLocationFilter", "");
+            eshipjetModel.setProperty("/orderCarrierFilter", "");
+            eshipjetModel.setProperty("/orderShipmentStatusFilter", "");
+            eshipjetModel.setProperty("/orderOrderTypeFilter", "");
             oView.byId("shipFromDateId").setDateValue(null);
             oView.byId("shipToDateId").setDateValue(null);
-            oView.byId("carrierComboId").setSelectedKey("");
-            oView.byId("orderTypeComboId").setSelectedKey("");
-            oView.byId("statusComboId").setSelectedKey("");
-        
-            // Reset table to show all
-            var oModel = oView.getModel("eshipjetModel");
-            oModel.setProperty("/filteredOrders", oModel.getProperty("/allOrders"));
-            oView.byId("idOrdersTable").bindRows("eshipjetModel>/filteredOrders");
         },
-        
-        
         
         onOrderStstusBtnFilterPress:function(oEvent){
             var aFilterId = oEvent.getSource().getId().split("--");
