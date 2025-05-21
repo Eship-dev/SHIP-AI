@@ -5954,7 +5954,6 @@ sap.ui.define([
             });
         },
 
-
         onShipReqExportToExcel: function () {
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var rows = eshipjetModel.getProperty("/RecentShipmentSetShipReqLabel");
@@ -5966,8 +5965,8 @@ sap.ui.define([
             var formattedRows = rows.map(function (row) {
                 return {
                     ...row,
-                    DateAdded: row.DateAdded ? oDateFormat.format(new Date(row.DateAdded)) : "",
-                    Createddate: row.Createddate ? oDateFormat.format(new Date(row.Createddate)) : ""
+                    Createddate: row.Createddate ? oDateFormat.format(new Date(row.Createddate)) : "",
+                    DateAdded: row.DateAdded ? oDateFormat.format(new Date(row.DateAdded)) : ""
                 };
             });
 
@@ -5978,7 +5977,7 @@ sap.ui.define([
                         { label: "Location Name", property: "RecCity" },
                         { label: "Consolidation Id", property: "Consolidation" },
                         { label: "Delivery/handling Requests", property: "requestIdLabelId" },
-                        { label: "EID", property: "" },
+                        { label: "EID", property: "EID" },
                         { label: "Created Date", property: "Createddate" },
                         { label: "Ship Date", property: "DateAdded" },
                         { label: "Shipment Type", property: "Carriertype" },
@@ -5998,10 +5997,9 @@ sap.ui.define([
                         { label: "Ship To Phone", property: "RecPhone" },
                         { label: "Ship To Email", property: "Emailaddress" },
                         { label: "Requester Name", property: "RecContact" },
-                        { label: "Connected To", property: "" },
+                        { label: "Connected To", property: "RecContact" },
                         { label: "Status", property: "DeliveryStatus" },
-                        { label: "Order Type", property: "Packagetype" },
-                        { label: "RFID", property: "" }
+                        { label: "Order Type", property: "Packagetype" }
                     ]
                 },
                 dataSource: formattedRows,

@@ -1116,7 +1116,7 @@
 									<FlexBox alignItems="Center" >
 										<Text text="Master Tracking/Pro #" class="sapUiTinyMargin" ></Text>
 										<Input value="{}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" width="auto"></Input>
-										<Button text="Get" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" visible="{eshipjetModel>/commonValues/shipNowGetBtn}" class="scan-ship-toolbar1__button sapUiTinyMargin" type="Ghost" width="3rem" ></Button>
+										<!-- <Button text="Get" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" visible="{eshipjetModel>/commonValues/shipNowGetBtn}" class="scan-ship-toolbar1__button sapUiTinyMargin" type="Ghost" width="3rem" ></Button> -->
 									</FlexBox>
 								</HBox>
 								<HBox height="3rem" width="20%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="SpaceBetween" >
@@ -1139,7 +1139,7 @@
 								<HBox height="3rem" width="30%" class="whiteBackground" alignItems="Center" justifyContent="Start" >
 									<Text text="Tracking / Pro#" class="sapUiTinyMargin" ></Text>
 									<Input value="{}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input sapUiTinyMargin" width="auto"></Input>
-									<Button text="Get" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" visible="{eshipjetModel>/commonValues/shipNowGetBtn}" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="3rem" ></Button>
+									<!-- <Button text="Get" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" visible="{eshipjetModel>/commonValues/shipNowGetBtn}" class="scan-ship-toolbar1__button sapUiTinyMarginEnd" type="Ghost" width="3rem" ></Button> -->
 								</HBox>
 							</HBox>
 

@@ -33,13 +33,13 @@
 					<Button type="Negative" press="onTrackNowStstusBtnFilterPress" id="idTrackCancelled" class="cancelled-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
-					<Text text="0" class="NumberSizeTitle1"></Text>
+					<Text text="{eshipjetModel>/InTransistCount}" class="NumberSizeTitle1"></Text>
 					<Text text="In-Transit" class="sapUiTinyMarginBottom"></Text>
 					<Button  press="onTrackNowStstusBtnFilterPress" class="inTransit-request-button request-button" id="idTrackInTransit" icon="false" width="100%"  ></Button>
 				</VBox>
 				
 				<VBox class="sapUiTinyMargin" width="25%">
-					<Text text="0" class="NumberSizeTitle1"></Text>
+					<Text text="{eshipjetModel>/receivedCount}" class="NumberSizeTitle1"></Text>
 					<Text text="Delivered" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Success" press="onTrackNowStstusBtnFilterPress" id="idTrackDelivered" class="shippedProgress-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
