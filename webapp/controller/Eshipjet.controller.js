@@ -34,6 +34,9 @@ sap.ui.define([
             // var audio = new Audio(sAudioPath);
             // audio.play();
 
+            this._pageSize = 50;
+            this._currentPage = 1;
+
             var oModel = new JSONModel(sap.ui.require.toUrl("com/eshipjet/zeshipjet/model/data.json"));
             this.getView().setModel(oModel);
             oController = this;
@@ -5565,8 +5568,8 @@ sap.ui.define([
             var today = new Date();
 
             oView.byId("locationComboId").setSelectedKey("");
-            oView.byId("shipFromDateId").setDateValue(today);
-            oView.byId("shipToDateId").setDateValue(today);
+            oView.byId("shipFromDateId").setDateValue(null);
+            oView.byId("shipToDateId").setDateValue(null);
             oView.byId("carrierComboId").setSelectedKey("");
             oView.byId("orderTypeComboId").setSelectedKey("");
             oView.byId("statusComboId").setSelectedKey("");
@@ -5603,6 +5606,9 @@ sap.ui.define([
             var oFilter = new sap.ui.model.Filter("Shipprocess", sap.ui.model.FilterOperator.EQ, oFilterText);
             oBinding.filter([oFilter]);
         },
+
+        //pagination
+        
 
         // Order Changes End
 
@@ -7626,6 +7632,8 @@ sap.ui.define([
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var ManifestSrvModel = oController.getOwnerComponent().getModel("ManifestSrvModel");
             var RecentShipmentTab = eshipjetModel.getProperty("/RecentShipmentTab");
+          
+
             ManifestSrvModel.read("/EshipjetManfestSet",{
                 // urlParameters: {
                 //     "$expand": "to_DeliveryDocumentItem,to_DeliveryDocumentPartner"
@@ -7690,7 +7698,7 @@ sap.ui.define([
                         eshipjetModel.setProperty("/openCount", openCount);
                         eshipjetModel.setProperty("/InTransistCount", InTransistCount);
                         eshipjetModel.setProperty("/receivedCount", receivedCount);
-
+                        oController.setupPagination();
                         var oTable = oController.getView().byId("idOrdersTable");
                         var oBinding = oTable.getBinding("rows");
                         oBinding.filter([]);
@@ -7698,6 +7706,10 @@ sap.ui.define([
                         var oTable = oController.getView().byId("idTrackNowTable");
                         var oBinding = oTable.getBinding("rows");
                         oBinding.filter([]);
+
+                        const allOrders = oController.getView().getModel("eshipjetModel").getProperty("/allOrders") || [];
+                        const lastThree = allOrders.slice(-3); // Get last 3 entries
+                        oController.getView().getModel("eshipjetModel").setProperty("/lastThreeNotes", lastThree);
                     }
                     oController.onCloseBusyDialog();
                 },
@@ -7707,6 +7719,61 @@ sap.ui.define([
                 }
             });
         },
+
+       
+        
+        setupPagination: function () {
+            const oModel = this.getView().getModel("eshipjetModel");
+            this._totalItems = oModel.getProperty("/allOrders")?.length || 0;
+            this._totalPages = Math.ceil(this._totalItems / this._pageSize);
+            this._currentPage = 1;
+            this._updatePagedOrders();
+        },
+        
+        _updatePagedOrders: function () {
+            const oModel = this.getView().getModel("eshipjetModel");
+            const allOrders = oModel.getProperty("/allOrders") || [];
+        
+            const startIndex = (this._currentPage - 1) * this._pageSize;
+            const endIndex = Math.min(startIndex + this._pageSize, allOrders.length);
+            const pagedData = allOrders.slice(startIndex, endIndex);
+        
+            oModel.setProperty("/pagedOrders", pagedData);
+        
+            // Update pagination text
+            this.byId("paginationText").setText(`${startIndex + 1}-${endIndex} of ${this._totalItems}`);
+        
+            // Enable/disable buttons
+            this.byId("btnFirst").setEnabled(this._currentPage > 1);
+            this.byId("btnPrevious").setEnabled(this._currentPage > 1);
+            this.byId("btnNext").setEnabled(this._currentPage < this._totalPages);
+            this.byId("btnLast").setEnabled(this._currentPage < this._totalPages);
+        },
+        
+        onFirstPage: function () {
+            this._currentPage = 1;
+            this._updatePagedOrders();
+        },
+        
+        onPreviousPage: function () {
+            if (this._currentPage > 1) {
+                this._currentPage--;
+                this._updatePagedOrders();
+            }
+        },
+        
+        onNextPage: function () {
+            if (this._currentPage < this._totalPages) {
+                this._currentPage++;
+                this._updatePagedOrders();
+            }
+        },
+        
+        onLastPage: function () {
+            this._currentPage = this._totalPages;
+            this._updatePagedOrders();
+        },
+        
 
         onOrdersDateFilterChange: function (oEvent) {
             var selectedKey = oEvent.getSource().getSelectedKey();

@@ -57,17 +57,16 @@
 					<Text text="Total" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Emphasized" id="Total" press="onOrderStstusBtnFilterPress" class="total-request-button request-button" icon="false" width="100%"></Button>
 				</VBox>
-
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="{eshipjetModel>/shippedCount}" class="NumberSizeTitle1"></Text>
 					<Text text="Shipped" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Success" id="Shipped" press="onOrderStstusBtnFilterPress" class="shipped-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
-				<VBox class="sapUiTinyMargin" width="25%">
+				<!-- <VBox class="sapUiTinyMargin" width="25%">
 					<Text text="{eshipjetModel>/openCount}" class="NumberSizeTitle1"></Text>
 					<Text text="Open" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Critical" id="Open" press="onOrderStstusBtnFilterPress"  class="InTransitord-request-button request-button" icon="false" width="100%" ></Button>
-				</VBox>
+				</VBox> -->
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="{eshipjetModel>/InTransistCount}" class="NumberSizeTitle1"></Text>
 					<Text text="In-Transit" class="sapUiTinyMarginBottom"></Text>
@@ -75,15 +74,15 @@
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="{eshipjetModel>/receivedCount}" class="NumberSizeTitle1"></Text>
-					<Text text="Received" class="sapUiTinyMarginBottom"></Text>
-					<Button type="Critical" id="Received" press="onOrderStstusBtnFilterPress"  class="Receivedord-request-button request-button" icon="false" width="100%" ></Button>
+					<Text text="Delivered" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Critical" id="Delivered" press="onOrderStstusBtnFilterPress"  class="Receivedord-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="25%">
 					<Text text="{eshipjetModel>/cancelledCount}" class="NumberSizeTitle1"></Text>
 					<Text text="Cancelled" class="sapUiTinyMarginBottom"></Text>
 					<Button type="Critical" id="Cancelled" press="onOrderStstusBtnFilterPress"  class="cancelled-request-button request-button" icon="false" width="100%" ></Button>
+					
 				</VBox>
-				
 			</HBox>
 		</Toolbar>
 
@@ -109,7 +108,7 @@
 
 						<ui:Table
 							id="idOrdersTable"
-							rows="{eshipjetModel>/allOrders}"
+							rows="{eshipjetModel>/pagedOrders}"
 							class="sapUiSmallMarginBegin sapUiSmallMarginEnd rowRightLine ordersTableRightBorder"
 							selectionMode="None"
 							visibleRowCount="14" >
@@ -323,14 +322,17 @@
 	</VBox>
 
 
-		<Toolbar class="whiteBackground sapUiTinyMarginTop ordersTableFooter" >
-			<ToolbarSpacer/>
-				<Button  text="First" enabled="false" type="Transparent" />
-				<Button  text="Previous" enabled="false" type="Transparent" />
-				<Text    text="1-50 of 74" />
-				<Button  text="Next" type="Transparent" />
-				<Button  text="Last" type="Transparent" />
-		</Toolbar>
+								<Toolbar class="whiteBackground sapUiTinyMarginTop ordersTableFooter">
+								<ToolbarSpacer/>
+								<Button id="btnFirst" text="First" type="Transparent" press=".onFirstPage"/>
+								<Button id="btnPrevious" text="Previous" type="Transparent" press=".onPreviousPage"/>
+								<Text id="paginationText" text="1-50 of 0"/>
+								<Button id="btnNext" text="Next" type="Transparent" press=".onNextPage"/>
+								<Button id="btnLast" text="Last" type="Transparent" press=".onLastPage"/>
+								</Toolbar>
+
+
+
 
         <!-- <ui:Table id="idOrdersTable"
                 class="sapUiTinyMarginTop"
