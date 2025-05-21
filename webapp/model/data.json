@@ -9634,20 +9634,24 @@
             "id": 58
         }
     ],
+    "orderLocationFilter":"",
+    "orderCarrierFilter":"",
+    "orderShipmentStatusFilter":"",
+    "orderOrderTypeFilter":"",
         "ForFiltercarriers": [
-            { "key": "fedex", "text": "FedEx" },
-            { "key": "ups", "text": "UPS" },
-            { "key": "abfs", "text": "ABFS" }
+            { "key": "FedEx", "text": "FedEx" },
+            { "key": "UPS", "text": "UPS" },
+            { "key": "ABFS", "text": "ABFS" }
         ],
         "shipmentStatuses": [
-            { "key": "shipped", "text": "Shipped" },
-            { "key": "cancelled", "text": "Cancelled" },
-            { "key": "open", "text": "Open" },
-            { "key": "in_transit", "text": "In-Transit" }
+            { "key": "SHIP", "text": "Shipped" },
+            { "key": "CANC", "text": "Cancelled" },
+            { "key": "OPEN", "text": "Open" },
+            { "key": "INTRANSIT", "text": "In-Transit" }
         ],
         "LocationName": [
             {"key": "1710", "text": "1710" },
-            {"key": "bp01", "text": "BP01" }
+            {"key": "BP01", "text": "BP01" }
         ],
 
     "carrierconfiguration1": [
