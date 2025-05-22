@@ -1547,7 +1547,10 @@ sap.ui.define([
                 shipNowVoidSelectShipNow: true,
                 showShipType: false,
                 SalesOrder: "",
-                PurchaseOrder: ""
+                PurchaseOrder: "",
+                lengthOfDimensions: "",
+                widthOfDimensions: "",
+                heightOfDimensions: ""
             };
             eshipjetModel.setProperty("/commonValues", oCommonValues);        
             eshipjetModel.setProperty("/accountNumber", "");
@@ -2010,7 +2013,10 @@ sap.ui.define([
             var PurchaseOrder = eshipjetModel.getProperty("commonValues/PurchaseOrder");
             var ShipReadDataSrvModel = oController.getOwnerComponent().getModel("ShipReadDataSrvModel");
             var shippingCharges = eshipjetModel.getProperty("/shippingCharges");
-            var dimensions = eshipjetModel.getProperty("/commonValues/dimensions");
+            var lengthOfDimensions = eshipjetModel.getProperty("/commonValues/lengthOfDimensions");
+            var widthOfDimensions = eshipjetModel.getProperty("/commonValues/widthOfDimensions");
+            var heightOfDimensions = eshipjetModel.getProperty("/commonValues/heightOfDimensions");
+            var dimensions = lengthOfDimensions + "X" + widthOfDimensions + "X" + heightOfDimensions
             shippingCharges.forEach(function(item, idx){
                 if(item.description === "Published Freight"){
                     amount = item.amount;
@@ -3070,6 +3076,7 @@ sap.ui.define([
 
             oController.onCloseBusyDialog();
         },
+
         onShipmentLabelDialogClosePress1: function () {
             this.byId("idAfterShipmentLabelDialog").close();
         },
@@ -4440,6 +4447,32 @@ sap.ui.define([
             }
             oController._shipNowDocDialog.open();
         },
+
+        onSerialNumPress:function(oEvent){
+            var currentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
+            var serialNumberData = {
+                "Vbeln": currentObj.HandlingUnitReferenceDocument
+            };
+            eshipjetModel.setProperty("/serialNumberData", serialNumberData);
+            var oView = this.getView();
+            if (!this.byId("_IDGenSerialNumberDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SerialNumberDialog",
+                    controller: this
+                }).then(function(oSerialNumberDialog) {
+                    oView.addDependent(oSerialNumberDialog);
+                    oSerialNumberDialog.open();
+                });
+            } else {
+                this.byId("_IDGenSerialNumberDialog").open();
+            }
+        },
+
+        onCloseSerialNumDialog:function(){
+            this.byId("_IDGenSerialNumberDialog").close();
+        },
+
         // Ship Now Changes End here
 
         // Scan & Ship Code Changes Start

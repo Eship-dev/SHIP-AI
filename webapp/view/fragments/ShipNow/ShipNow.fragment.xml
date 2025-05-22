@@ -1059,7 +1059,7 @@
 										</HBox>
 										<ui:template>
 											<HBox justifyContent="Center" alignItems="Center">
-												<Button icon="sap-icon://tag" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Button>
+												<Button icon="sap-icon://tag" type="Transparent" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Button>
 											</HBox>
 										</ui:template>
 									</ui:Column>
@@ -1119,6 +1119,7 @@
 										<!-- <Button text="Get" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" visible="{eshipjetModel>/commonValues/shipNowGetBtn}" class="scan-ship-toolbar1__button sapUiTinyMargin" type="Ghost" width="3rem" ></Button> -->
 									</FlexBox>
 								</HBox>
+								
 								<HBox height="3rem" width="30%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="SpaceBetween" >
 									<FlexBox>
 										<Label text="Pkg Material" class="sapUiSmallMarginTop" width="auto" />
@@ -1126,9 +1127,13 @@
 											<core:Item key="{eshipjetModel>Product}" text="{eshipjetModel>Product}" />
 										</ComboBox>
 									</FlexBox>
-									<Input value="{eshipjetModel>/commonValues/dimensions}" placeholder="Dimension" class="create-ship-req_input sapUiTinyMarginBegin" width="auto" ></Input>
-									
+									<FlexBox>
+										<Input value="{eshipjetModel>/commonValues/lengthOfDimensions}" placeholder="L" class="create-ship-req_input sapUiTinyMarginBegin" width="3rem" ></Input>
+										<Input value="{eshipjetModel>/commonValues/widthOfDimensions}" placeholder="W" class="create-ship-req_input sapUiTinyMarginBegin" width="3rem" ></Input>
+										<Input value="{eshipjetModel>/commonValues/heightOfDimensions}" placeholder="H" class="create-ship-req_input sapUiTinyMarginBegin" width="3rem" ></Input>
+									</FlexBox>
 								</HBox>
+
 								<HBox height="3rem" width="27%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="SpaceBetween" >
 								   <FlexBox>
 										<Button text="Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_Pack sapUiTinyMarginEnd sapUiTinyMarginBegin sapUiTinyMarginBottom" type="Ghost" width="auto" press="onPackPress" ></Button>
@@ -1265,7 +1270,7 @@
 										</HBox>
 									<ui:template>
 										<HBox justifyContent="Center" alignItems="Center">
-												<Button icon="sap-icon://tag" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Button>
+												<Button icon="sap-icon://tag" type="Transparent" press="onSerialNumPress" ></Button>
 											</HBox>
 									</ui:template>
 								</ui:Column>

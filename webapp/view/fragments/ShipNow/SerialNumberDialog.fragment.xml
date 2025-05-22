@@ -1,0 +1,75 @@
+<core:FragmentDefinition xmlns="sap.m" 
+    xmlns:core="sap.ui.core" 
+    xmlns:f="sap.ui.layout.form">
+
+    <Dialog id="_IDGenSerialNumberDialog"
+            class="sapUiSmallMargin"
+            showHeader="false"
+            contentWidth="70%"
+            contentHeight="70%"
+            verticalScrolling="false"
+            horizontalScrolling="false" >
+        
+            <Toolbar>
+                <Title text="Serial Numbers" class="sapUiSmallMarginBegin" />
+                <ToolbarSpacer />
+                <Button icon="sap-icon://decline" press="onCloseSerialNumDialog" class="Decline_Btn ship-now-decline_btn" type="Ghost" />
+            </Toolbar>
+        
+        <content>
+            <f:SimpleForm editable="true"
+                          width="auto"
+                          layout="ColumnLayout"
+                          columnsM="3"
+                          columnsL="3"
+                          columnsXL="3">
+                <f:content>
+                    <Label text="SAP Delivery Number" />
+                    <Input value="{eshipjetModel>/serialNumberData/Vbeln}" class="sapUiSmallMarginBottom create-ship-req_input" />
+                    
+                    <Label text="Item No." />
+                    <Input   class="sapUiSmallMarginBottom create-ship-req_input" />
+
+                    <Label text="Product Code" />
+                    <Input   class="sapUiSmallMarginBottom create-ship-req_input" />
+                </f:content>
+            </f:SimpleForm>
+
+            <Table id="idSerialNumTable"
+                inset="false"
+                items="{}" >
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <content>
+                            <Title text="Entered Serial Number" level="H2"/>
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column
+                        width="auto" >
+                        <Text text="Item No" />
+                    </Column>
+                    <Column width="auto" >
+                        <Text text="Serial Numbers" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem vAlign="Middle">
+                        <cells>
+                            <Text text="" />
+                            <Text text="" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+
+        <footer>
+            <OverflowToolbar class="sapMPopoverFooter1">
+                <Button text="Cancel" press="onCloseSerialNumDialog" class="Decline_Btn ship-now-decline_btn" type="Ghost" />
+            </OverflowToolbar>
+        </footer>
+
+    </Dialog>
+</core:FragmentDefinition>
