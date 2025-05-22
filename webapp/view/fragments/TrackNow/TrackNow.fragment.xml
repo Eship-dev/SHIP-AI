@@ -57,11 +57,12 @@
 	</Toolbar>
 	
 							<ui:Table
-							id="idTrackNowTable"
-							rows="{eshipjetModel>/allOrders}"
-							class="sapUiTinyMarginTop"
-							selectionMode="None"
-							visibleRowCount="14" >
+	id="idTrackNowTable"
+	rows="{eshipjetModel>/pagedTrackOrders}"
+	class="sapUiTinyMarginTop"
+	selectionMode="None"
+	visibleRowCount="14" >
+
 
 							
 
@@ -248,16 +249,14 @@
 						</ui:Table> 
 
 						</VBox>
-								<Toolbar class="whiteBackground sapUiTinyMarginTop ordersTableFooter">
+								<Toolbar class="whiteBackground sapUiTinyMarginTop trackNowTableFooter">
 									<ToolbarSpacer/>
-									<Button text="First" type="Transparent" press=".onFirstPage" enabled="{eshipjetModel>/FirstBtnVisableStatus}" />
-									<Button text="Previous" type="Transparent" press=".onPreviousPage"
-enabled="{eshipjetModel>/PreviousBtnVisableStatus}" />
-									<Text id="paginationText1" text="1-50 of 0" />
-									<Button text="Next" type="Transparent" press=".onNextPage"
-										enabled="{eshipjetModel>/NextBtnVisableStatus}" />
-									<Button text="Last" type="Transparent" press=".onLastPage"
-										enabled="{eshipjetModel>/LastBtnVisableStatus}" />
+									<Button text="First" type="Transparent" press=".onTrackFirstPage" enabled="{eshipjetModel>/TrackFirstVisible}" />
+									<Button text="Previous" type="Transparent" press=".onTrackPreviousPage" enabled="{eshipjetModel>/TrackPrevVisible}" />
+									<Text id="paginationTextTrack" text="1-50 of 0" />
+									<Button text="Next" type="Transparent" press=".onTrackNextPage" enabled="{eshipjetModel>/TrackNextVisible}" />
+									<Button text="Last" type="Transparent" press=".onTrackLastPage" enabled="{eshipjetModel>/TrackLastVisible}" />
 								</Toolbar>
+
 
 </core:FragmentDefinition>

@@ -5279,8 +5279,8 @@ sap.ui.define([
                 // this._handleDisplayTrackNowTable();
                 this.getOrdersHistoryShipments();
                 var sKey = "TrackNow";
+                eshipjetModel.setProperty("/commonValues/allViewsFooter", true);
                 eshipjetModel.setProperty("/commonValues/toolPageHeader", false);
-                eshipjetModel.setProperty("/commonValues/allViewsFooter", false);
                 eshipjetModel.setProperty("/commonValues/shipNowViewFooter", false);
                 eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
                 this.byId("pageContainer").to(this.getView().createId(sKey));
@@ -7774,6 +7774,7 @@ sap.ui.define([
                         eshipjetModel.setProperty("/InTransistCount", InTransistCount);
                         eshipjetModel.setProperty("/receivedCount", receivedCount);
                         oController.setupPagination();
+                        oController.setupTrackPagination();
                         var oTable = oController.getView().byId("idOrdersTable");
                         var oBinding = oTable.getBinding("rows");
                         oBinding.filter([]);
@@ -7848,6 +7849,61 @@ sap.ui.define([
             this._currentPage = this._totalPages;
             this._updatePagedOrders();
         },
+
+
+
+        setupTrackPagination: function () {
+            const oModel = this.getView().getModel("eshipjetModel");
+            this._trackTotalItems = oModel.getProperty("/allOrders")?.length || 0;
+            this._trackTotalPages = Math.ceil(this._trackTotalItems / this._pageSize);
+            this._trackCurrentPage = 1;
+            this._updatePagedTrackOrders();
+        },
+        _updatePagedTrackOrders: function () {
+            const allOrders = this.getView().getModel("eshipjetModel").getProperty("/allOrders") || [];
+        
+            const startIndex = (this._trackCurrentPage - 1) * this._pageSize;
+            const endIndex = Math.min(startIndex + this._pageSize, allOrders.length);
+            const pagedData = allOrders.slice(startIndex, endIndex);
+        
+            this.getView().getModel("eshipjetModel").setProperty("/pagedTrackOrders", pagedData);
+        
+            // Update pagination text if needed
+            this.byId("paginationTextTrack").setText(`${startIndex + 1}-${endIndex} of ${this._trackTotalItems}`);
+        
+            // Update visibility status
+            const oModel = this.getView().getModel("eshipjetModel");
+            oModel.setProperty("/TrackFirstVisible", this._trackCurrentPage > 1);
+            oModel.setProperty("/TrackPrevVisible", this._trackCurrentPage > 1);
+            oModel.setProperty("/TrackNextVisible", this._trackCurrentPage < this._trackTotalPages);
+            oModel.setProperty("/TrackLastVisible", this._trackCurrentPage < this._trackTotalPages);
+        },
+        onTrackFirstPage: function () {
+            this._trackCurrentPage = 1;
+            this._updatePagedTrackOrders();
+        },
+        
+        onTrackPreviousPage: function () {
+            if (this._trackCurrentPage > 1) {
+                this._trackCurrentPage--;
+                this._updatePagedTrackOrders();
+            }
+        },
+        
+        onTrackNextPage: function () {
+            if (this._trackCurrentPage < this._trackTotalPages) {
+                this._trackCurrentPage++;
+                this._updatePagedTrackOrders();
+            }
+        },
+        
+        onTrackLastPage: function () {
+            this._trackCurrentPage = this._trackTotalPages;
+            this._updatePagedTrackOrders();
+        },
+        
+        
+        
         
 
         onOrdersDateFilterChange: function (oEvent) {
