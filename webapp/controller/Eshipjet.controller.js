@@ -5528,6 +5528,9 @@ sap.ui.define([
         onOrderFilterPopoverClosePress: function () {
             this.byId("idOrdersFilterPopover").close();
         },
+        onOrderFilterPopoverResetPress: function () {
+            this.byId("idOrdersFilterPopover").close();
+        },
         
         onOrderFilterPopoverApplyPress: function () {
             var aFilters = [];
@@ -5562,13 +5565,22 @@ sap.ui.define([
         
         onOrderFilterPopoverResetPress: function () {
             var oView = this.getView();
-            eshipjetModel.setProperty("/orderLocationFilter", "");
-            eshipjetModel.setProperty("/orderCarrierFilter", "");
-            eshipjetModel.setProperty("/orderShipmentStatusFilter", "");
-            eshipjetModel.setProperty("/orderOrderTypeFilter", "");
+            var today = new Date();
+
+            oView.byId("locationComboId").setSelectedKey("");
             oView.byId("shipFromDateId").setDateValue(null);
             oView.byId("shipToDateId").setDateValue(null);
+            oView.byId("carrierComboId").setSelectedKey("");
+            oView.byId("orderTypeComboId").setSelectedKey("");
+            oView.byId("statusComboId").setSelectedKey("");
+        
+            // Reset table to show all
+            var oModel = oView.getModel("eshipjetModel");
+            oModel.setProperty("/filteredOrders", oModel.getProperty("/allOrders"));
+            oView.byId("idOrdersTable").bindRows("eshipjetModel>/filteredOrders");
         },
+        
+        
         
         onOrderStstusBtnFilterPress:function(oEvent){
             var aFilterId = oEvent.getSource().getId().split("--");
@@ -7794,24 +7806,23 @@ sap.ui.define([
         },
         
        _updatePagedOrders: function () {
-    const oModel = this.getView().getModel("eshipjetModel");
-    const allOrders = oModel.getProperty("/allOrders") || [];
+            const allOrders = eshipjetModel.getProperty("/allOrders") || [];
 
-    const startIndex = (this._currentPage - 1) * this._pageSize;
-    const endIndex = Math.min(startIndex + this._pageSize, allOrders.length);
-    const pagedData = allOrders.slice(startIndex, endIndex);
+            const startIndex = (this._currentPage - 1) * this._pageSize;
+            const endIndex = Math.min(startIndex + this._pageSize, allOrders.length);
+            const pagedData = allOrders.slice(startIndex, endIndex);
 
-    oModel.setProperty("/pagedOrders", pagedData);
+            eshipjetModel.setProperty("/pagedOrders", pagedData);
 
-    // Update pagination text
-    this.byId("paginationText").setText(`${startIndex + 1}-${endIndex} of ${this._totalItems}`);
+            // Update pagination text
+            this.byId("paginationText").setText(`${startIndex + 1}-${endIndex} of ${this._totalItems}`);
 
-    // Update visibility statuses in the model
-    oModel.setProperty("/FirstBtnVisableStatus", this._currentPage > 1);
-    oModel.setProperty("/PreviousBtnVisableStatus", this._currentPage > 1);
-    oModel.setProperty("/NextBtnVisableStatus", this._currentPage < this._totalPages);
-    oModel.setProperty("/LastBtnVisableStatus", this._currentPage < this._totalPages);
-},
+            // Update visibility statuses in the model
+            eshipjetModel.setProperty("/FirstBtnVisableStatus", this._currentPage > 1);
+            eshipjetModel.setProperty("/PreviousBtnVisableStatus", this._currentPage > 1);
+            eshipjetModel.setProperty("/NextBtnVisableStatus", this._currentPage < this._totalPages);
+            eshipjetModel.setProperty("/LastBtnVisableStatus", this._currentPage < this._totalPages);
+        },
 
         
         onFirstPage: function () {
