@@ -323,13 +323,18 @@
 
 
 								<Toolbar class="whiteBackground sapUiTinyMarginTop ordersTableFooter">
-								<ToolbarSpacer/>
-								<Button id="btnFirst" text="First" type="Transparent" press=".onFirstPage"/>
-								<Button id="btnPrevious" text="Previous" type="Transparent" press=".onPreviousPage"/>
-								<Text id="paginationText" text="1-50 of 0"/>
-								<Button id="btnNext" text="Next" type="Transparent" press=".onNextPage"/>
-								<Button id="btnLast" text="Last" type="Transparent" press=".onLastPage"/>
+									<ToolbarSpacer/>
+									<Button text="First" type="Transparent" press=".onFirstPage"
+										enabled="{eshipjetModel>/FirstBtnVisableStatus}" />
+									<Button text="Previous" type="Transparent" press=".onPreviousPage"
+										enabled="{eshipjetModel>/PreviousBtnVisableStatus}" />
+									<Text id="paginationText" text="1-50 of 0" />
+									<Button text="Next" type="Transparent" press=".onNextPage"
+										enabled="{eshipjetModel>/NextBtnVisableStatus}" />
+									<Button text="Last" type="Transparent" press=".onLastPage"
+										enabled="{eshipjetModel>/LastBtnVisableStatus}" />
 								</Toolbar>
+
 
 
 

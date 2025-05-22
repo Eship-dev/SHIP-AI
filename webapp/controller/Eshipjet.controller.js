@@ -6805,11 +6805,86 @@ sap.ui.define([
         onTrackNowFilterPopoverResetPress: function () {
             this.byId("idTrackNowFilterPopover").close();
         },
+        
         onTrackNowFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var oModel = oView.getModel("eshipjetModel");
+        
+            // Model-bound filters
+            var sLocation = oModel.getProperty("/TrackLoctionName");
+            var sCarrier = oModel.getProperty("/TrackCarrierFilter");
+            var sStatus = oModel.getProperty("/TrackShipmentStatusFilter");
+        
+            // Input field filters
+            var dShipFrom = oView.byId("shipFromDateId1").getDateValue();
+            var dShipTo = oView.byId("shipToDateId1").getDateValue();
+            var sVbeln = oView.byId("DeliveryNum").getValue();
+            var sRecCountry = oView.byId("ShipToCompany").getValue();
+            var sTrackingNumber = oView.byId("TrackingNumber").getValue();
+        
+            if (sLocation) {
+                aFilters.push(new sap.ui.model.Filter("Plant", sap.ui.model.FilterOperator.EQ, sLocation));
+            }
+            if (sCarrier) {
+                aFilters.push(new sap.ui.model.Filter("Carriertype", sap.ui.model.FilterOperator.EQ, sCarrier));
+            }
+            if (sStatus) {
+                aFilters.push(new sap.ui.model.Filter("Shipprocess", sap.ui.model.FilterOperator.EQ, sStatus));
+            }
+            if (dShipFrom && dShipTo) {
+                aFilters.push(new sap.ui.model.Filter({
+                    path: "DateAdded",
+                    operator: sap.ui.model.FilterOperator.BT,
+                    value1: dShipFrom,
+                    value2: dShipTo
+                }));
+            }
+            if (sVbeln) {
+                aFilters.push(new sap.ui.model.Filter("Vbeln", sap.ui.model.FilterOperator.Contains, sVbeln));
+            }
+            if (sRecCountry) {
+                aFilters.push(new sap.ui.model.Filter("RecCountry", sap.ui.model.FilterOperator.Contains, sRecCountry));
+            }
+            if (sTrackingNumber) {
+                aFilters.push(new sap.ui.model.Filter("TrackingNumber", sap.ui.model.FilterOperator.Contains, sTrackingNumber));
+            }
+        
+            var oTable = oView.byId("idTrackNowTable");
+            var oBinding = oTable.getBinding("rows");
+            oBinding.filter(aFilters);
+        
             this.byId("idTrackNowFilterPopover").close();
         },
+        onTrackNowFilterPopoverResetPress: function () {
+            var oView = this.getView();
         
-
+            // Reset UI fields
+            oView.byId("locationComboId1").setSelectedKey("");
+            oView.byId("shipFromDateId1").setDateValue(null);
+            oView.byId("shipToDateId1").setDateValue(null);
+            oView.byId("carrierComboId1").setSelectedKey("");
+            oView.byId("statusComboId1").setSelectedKey("");
+            oView.byId("DeliveryNum").setValue("");
+            oView.byId("ShipToCompany").setValue("");
+            oView.byId("TrackingNumber").setValue("");
+        
+            // Reset model values
+            var oModel = oView.getModel("eshipjetModel");
+            oModel.setProperty("/TrackLoctionName", "");
+            oModel.setProperty("/TrackCarrierFilter", "");
+            oModel.setProperty("/TrackShipmentStatusFilter", "");
+        
+            // Remove all filters from table
+            var oTable = oView.byId("idTrackNowTable");
+            oTable.getBinding("rows").filter([]);
+        },
+        
+        
+        
+        
+        
+        
         // Track Now changes End
 
 
@@ -7718,25 +7793,26 @@ sap.ui.define([
             this._updatePagedOrders();
         },
         
-        _updatePagedOrders: function () {
-            const oModel = this.getView().getModel("eshipjetModel");
-            const allOrders = oModel.getProperty("/allOrders") || [];
-        
-            const startIndex = (this._currentPage - 1) * this._pageSize;
-            const endIndex = Math.min(startIndex + this._pageSize, allOrders.length);
-            const pagedData = allOrders.slice(startIndex, endIndex);
-        
-            oModel.setProperty("/pagedOrders", pagedData);
-        
-            // Update pagination text
-            this.byId("paginationText").setText(`${startIndex + 1}-${endIndex} of ${this._totalItems}`);
-        
-            // Enable/disable buttons
-            this.byId("btnFirst").setEnabled(this._currentPage > 1);
-            this.byId("btnPrevious").setEnabled(this._currentPage > 1);
-            this.byId("btnNext").setEnabled(this._currentPage < this._totalPages);
-            this.byId("btnLast").setEnabled(this._currentPage < this._totalPages);
-        },
+       _updatePagedOrders: function () {
+    const oModel = this.getView().getModel("eshipjetModel");
+    const allOrders = oModel.getProperty("/allOrders") || [];
+
+    const startIndex = (this._currentPage - 1) * this._pageSize;
+    const endIndex = Math.min(startIndex + this._pageSize, allOrders.length);
+    const pagedData = allOrders.slice(startIndex, endIndex);
+
+    oModel.setProperty("/pagedOrders", pagedData);
+
+    // Update pagination text
+    this.byId("paginationText").setText(`${startIndex + 1}-${endIndex} of ${this._totalItems}`);
+
+    // Update visibility statuses in the model
+    oModel.setProperty("/FirstBtnVisableStatus", this._currentPage > 1);
+    oModel.setProperty("/PreviousBtnVisableStatus", this._currentPage > 1);
+    oModel.setProperty("/NextBtnVisableStatus", this._currentPage < this._totalPages);
+    oModel.setProperty("/LastBtnVisableStatus", this._currentPage < this._totalPages);
+},
+
         
         onFirstPage: function () {
             this._currentPage = 1;

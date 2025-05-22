@@ -248,12 +248,16 @@
 						</ui:Table> 
 
 						</VBox>
-		<Toolbar >
-			<ToolbarSpacer/>
-				<Button  text="First" enabled="false" />
-				<Button  text="Previous" enabled="false"/>
-				<Text    text="1-50 of 74"/>
-				<Button  text="Next" />
-				<Button  text="Last" />
-		</Toolbar>
+								<Toolbar class="whiteBackground sapUiTinyMarginTop ordersTableFooter">
+									<ToolbarSpacer/>
+									<Button text="First" type="Transparent" press=".onFirstPage" enabled="{eshipjetModel>/FirstBtnVisableStatus}" />
+									<Button text="Previous" type="Transparent" press=".onPreviousPage"
+enabled="{eshipjetModel>/PreviousBtnVisableStatus}" />
+									<Text id="paginationText1" text="1-50 of 0" />
+									<Button text="Next" type="Transparent" press=".onNextPage"
+										enabled="{eshipjetModel>/NextBtnVisableStatus}" />
+									<Button text="Last" type="Transparent" press=".onLastPage"
+										enabled="{eshipjetModel>/LastBtnVisableStatus}" />
+								</Toolbar>
+
 </core:FragmentDefinition>
