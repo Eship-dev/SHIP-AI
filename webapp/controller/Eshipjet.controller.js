@@ -6174,12 +6174,80 @@ sap.ui.define([
         onShipReqFilterPopoverClosePress: function () {
             this.byId("idShipReqFilterPopover").close();
         },
-        onShipReqFilterPopoverResetPress: function () {
-            this.byId("idShipReqFilterPopover").close();
-        },
+
         onShipReqFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var oModel = oView.getModel("eshipjetModel");
+        
+            // Model-bound filters
+            var sLocation = oModel.getProperty("/ShipReqLoctionName");
+            var sCarrier = oModel.getProperty("/ShipReqCarrierFilter");
+            var sStatus = oModel.getProperty("/ShipReqShipmentStatusFilter");
+        
+            // Input field filters
+            var dShipFrom = oView.byId("shipFromDateId11").getDateValue();
+            var dShipTo = oView.byId("shipToDateId11").getDateValue();
+            var sVbeln = oView.byId("DeliveryNum1").getValue();
+            var sRecCountry = oView.byId("ShipToCompany1").getValue();
+            var sTrackingNumber = oView.byId("TrackingNumber1").getValue();
+        
+            if (sLocation) {
+                aFilters.push(new sap.ui.model.Filter("Plant", sap.ui.model.FilterOperator.EQ, sLocation));
+            }
+            if (sCarrier) {
+                aFilters.push(new sap.ui.model.Filter("Carriertype", sap.ui.model.FilterOperator.EQ, sCarrier));
+            }
+            if (sStatus) {
+                aFilters.push(new sap.ui.model.Filter("Shipprocess", sap.ui.model.FilterOperator.EQ, sStatus));
+            }
+            if (dShipFrom && dShipTo) {
+                aFilters.push(new sap.ui.model.Filter({
+                    path: "DateAdded",
+                    operator: sap.ui.model.FilterOperator.BT,
+                    value1: dShipFrom,
+                    value2: dShipTo
+                }));
+            }
+            if (sVbeln) {
+                aFilters.push(new sap.ui.model.Filter("Vbeln", sap.ui.model.FilterOperator.Contains, sVbeln));
+            }
+            if (sRecCountry) {
+                aFilters.push(new sap.ui.model.Filter("RecCountry", sap.ui.model.FilterOperator.Contains, sRecCountry));
+            }
+            if (sTrackingNumber) {
+                aFilters.push(new sap.ui.model.Filter("TrackingNumber", sap.ui.model.FilterOperator.Contains, sTrackingNumber));
+            }
+        
+            var oTable = oView.byId("idShipReqsTable");
+            var oBinding = oTable.getBinding("rows");
+            oBinding.filter(aFilters);
+        
             this.byId("idShipReqFilterPopover").close();
         },
+
+        onShipReqFilterPopoverResetPress: function () {
+            var oView = this.getView();
+        
+            // Reset UI fields
+            oView.byId("locationComboId11").setSelectedKey("");
+            oView.byId("shipFromDateId11").setDateValue(null);
+            oView.byId("shipToDateId11").setDateValue(null);
+            oView.byId("carrierComboId11").setSelectedKey("");
+            oView.byId("statusComboId11").setSelectedKey("");
+            oView.byId("DeliveryNum1").setValue("");
+            oView.byId("ShipToCompany1").setValue("");
+            oView.byId("TrackingNumber1").setValue("");
+          // Remove all filters from table
+            var oTable = oView.byId("idShipReqsTable");
+            oTable.getBinding("rows").filter([]);
+        },
+        
+        
+
+
+
+
         onSettingsPress: function (oEvent) {
             var that = this;
             

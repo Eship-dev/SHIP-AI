@@ -109,7 +109,10 @@
     "EmailNotification": false,
     "CertifiedMail1": false,
     "CertifiedMail2": false,
-
+    "ShipReqFirstVisible": false,
+    "ShipReqPrevVisible":false,
+    "ShipReqNextVisible":true,
+    "ShipReqLastVisible":false,
     
    
     "sShipAndScan":"",
@@ -9641,7 +9644,9 @@
             "id": 58
         }
     ],
-    
+    "ShipReqLoctionName":"",
+    "ShipReqShipmentStatusFilter":"",
+    "ShipReqCarrierFilter":"",
     "TrackLoctionName":"",
     "TrackShipmentStatusFilter":"",
     "TrackCarrierFilter":"",

@@ -16,78 +16,95 @@
 		</Toolbar>
 		<footer>
 			<OverflowToolbar>
-				<ToolbarSpacer/>
+				
 				<Button
 					text="Reset"
 					type="Ghost"
 					press="onShipReqFilterPopoverResetPress" />
+					<ToolbarSpacer/>
                 <Button
 					text="Apply"
 					type="Success"
 					press="onShipReqFilterPopoverApplyPress" />
 			</OverflowToolbar>
 		</footer>
-        <VBox >
+       <VBox >
 		<HBox >
-			<VBox class="sapUiSmallMargin" width="22%" >
-			<Label text="Location Name" width="100%" required="true" />
+			<VBox class="sapUiSmallMargin" width="30%" >
+			<Label text="Location ID/Location Name" width="100%" />
 					<ComboBox
-					class="sapUiSmallMarginBottom create-ship-req_input"
+						id="locationComboId11"
 						width="100%"
-						items="{}">
-						<core:Item key="{key}" text="{text}" />
+						class="sapUiSmallMarginBottom create-ship-req_input"
+						items="{eshipjetModel>/LocationName}"
+						selectedKey="{eshipjetModel>/ShipReqLoctionName}" >
+						<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
 					</ComboBox>
 			</VBox>
-			<VBox class="sapUiSmallMargin" width="22%" >
-					<Label text="From Date" width="100%" />
+			<VBox class="sapUiSmallMargin" width="30%" >
+					<Label text="Ship From Date" width="100%" />
 					<DatePicker
-					class="sapUiSmallMarginBottom create-ship-req_input"
-						width="100%"
-						placeholder="Enter Date"
-						change="handleChange"
-						/>
-			</VBox>
-			<VBox class="sapUiSmallMargin" width="22%" >
-					<Label text="To Date" width="100%" />
-					<DatePicker
+					id="shipFromDateId11"
+					 	value="{path: 'eshipjetModel>/DateAdded', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}"
 						width="100%"
 						placeholder="Enter Date"
 						change="handleChange"
 						class="sapUiSmallMarginBottom create-ship-req_input"/>
 			</VBox>
-			<VBox class="sapUiSmallMargin" width="22%" >
+			<VBox class="sapUiSmallMargin" width="30%" >
+					<Label text="Ship To Date" width="100%" />
+					<DatePicker
+					id="shipToDateId11"
+					 	value="{path: 'eshipjetModel>/ExpDelDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}"
+						width="100%"
+						placeholder="Enter Date"
+						change="handleChange"
+						class="sapUiSmallMarginBottom create-ship-req_input"/>
+			</VBox>
+			<VBox class="sapUiSmallMargin" width="30%" >
 					<Label text="Request ID / Label ID" width="100%" />
-					<Input value="{}" width="100%" class="sapUiSmallMarginBottom create-ship-req_input"></Input>
+					<Input id="DeliveryNum1" width="100%" class="sapUiSmallMarginBottom create-ship-req_input"></Input>
 			</VBox>
 		</HBox>
         <HBox>
-        	<VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="22%" >
-					<Label text="Cost Center" width="100%" />
+            <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="22%" >
+					<Label text="Carrier Name" width="100%" />
 					<ComboBox
-					class="sapUiSmallMarginBottom create-ship-req_input"
+					id="carrierComboId11"
+						class="sapUiSmallMarginBottom create-ship-req_input"
 						width="100%"
-						items="{}">
-						<core:Item key="{key}" text="{text}" />
+						items="{eshipjetModel>/ForFiltercarriers}"
+						selectedKey="{eshipjetModel>/ShipReqCarrierFilter}" >
+						<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
 					</ComboBox>
 			</VBox>
-            <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="22%" >
-					<Label text="Ship Method" width="100%" />
-					<ComboBox
-					class="sapUiSmallMarginBottom create-ship-req_input"
-						width="100%"
-						items="{}">
-						<core:Item key="{key}" text="{text}" />
-					</ComboBox>
-			</VBox>
-            <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="22%" >
+			<VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="22%" >
 					<Label text="Status" width="100%" />
 					<ComboBox
-					class="sapUiSmallMarginBottom create-ship-req_input"
+					id="statusComboId11"
 						width="100%"
-						items="{}">
-						<core:Item key="{key}" text="{text}" />
+						class="sapUiSmallMarginBottom create-ship-req_input"
+						items="{eshipjetModel>/shipmentStatuses}"
+						selectedKey="{eshipjetModel>/ShipReqShipmentStatusFilter}" >
+						<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
 					</ComboBox>
 			</VBox>
+        	<VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="22%" >
+					<Label text="Ship To Company Name" width="100%" />
+					<Input 
+						id="ShipToCompany1"
+						width="100%"
+						class="sapUiSmallMarginBottom create-ship-req_input"
+						items="{}"></Input>
+			</VBox>
+            <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="22%" >
+					<Label text="Tracking Number" width="100%" />
+					<Input 
+						id="TrackingNumber1"
+						width="100%"
+						class="sapUiSmallMarginBottom create-ship-req_input"
+						items="{}"></Input>		
+			</VBox>            
 		</HBox>
         </VBox>
 	</Popover>
