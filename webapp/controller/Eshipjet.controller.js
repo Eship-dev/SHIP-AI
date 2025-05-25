@@ -22,7 +22,7 @@ sap.ui.define([
 
     var ButtonType = library.ButtonType,
         PlacementType = library.PlacementType,
-        oController, oResourceBundle, eshipjetModel;
+        oController, oResourceBundle, eshipjetModel, oShipperCopilotModel;
     const SortOrder = CoreLibrary.SortOrder;
 
     return Controller.extend("com.eshipjet.zeshipjet.controller.Eshipjet", {
@@ -231,8 +231,9 @@ sap.ui.define([
                     "listState": false,
                     "iconState": true
                 }
-                const oShipperCopilotModel = new JSONModel(obj);
+                oShipperCopilotModel = new JSONModel(obj);
                 this.getView().setModel(oShipperCopilotModel, "ShipperCopilotModel");
+                oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
                 eshipjetModel.setProperty("/commonValues/allViewsFooter", true);
                 eshipjetModel.setProperty("/commonValues/shipNowViewFooter", false);
                 eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
@@ -445,7 +446,7 @@ sap.ui.define([
             // shipper Copilot changes start
             onSendPress: async function () {
                 oController.onOpenBusyDialog();
-                const oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
+                oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
                 const sUserMessage = this.getView().byId("userInput").getValue();
                 if (!sUserMessage) {
                     MessageToast.show("Please enter a message.");
@@ -462,10 +463,11 @@ sap.ui.define([
 
                 // Simulate a bot response after sending the user message
                 try {
-                    var sUserDeliveryNum = sUserMessage.split(" ");
+                    var sUserDeliveryNum = sUserMessage.split(" "), aResponse;
                     sUserDeliveryNum = sUserDeliveryNum[sUserDeliveryNum.length-1]
                     eshipjetModel.setProperty("/sShipAndScan", sUserDeliveryNum.trim());
-                    oController.getManifestHeaderForScanShip();
+                    aResponse = await oController.getManifestHeaderForScanShip();
+                   // oController.createShipmentLabelForChatBot();
                     oController.onCloseBusyDialog();
                     // const sResponse = await this._simulateBotResponse(sUserMessage);
                     // var aShippinDocs = sResponse.shippingDocuments;
@@ -478,7 +480,7 @@ sap.ui.define([
                     //     var dataUrl = "https://eshipjetsatge.blob.core.windows.net/shipping-labels/" + sLabel
                     //     aMessages.push({ sender: "Bot", text: dataUrl });
                     //     oShipperCopilotModel.setProperty("/messages", aMessages);
-                        oController.onCloseBusyDialog();
+                     //   oController.onCloseBusyDialog();
                     // } else {
                     //     var aError = sResponse.Errors;
                     //     if (aError.length !== 0) {
@@ -651,7 +653,10 @@ sap.ui.define([
              });
              oButtonHBox.addStyleClass("sapUiTinyMarginTop"); // adds spacing
              oVBox.addItem(oButtonHBox);
-
+             oVBox.invalidate();
+             oShipperCopilotModel.refresh(true);
+             var oList = oView.byId("chatList");
+                oList.invalidate();
          },
 
 
@@ -734,7 +739,7 @@ sap.ui.define([
                         sResponse = sResponse.filter(item => item.Shipmenttype.trim() === "O");                        
                     }
                     oShipperCopilotModel.setProperty("/tableData", sResponse);
-                    await oController._createShipmentsTable(sResponse , sCustomDataKey);
+                    //await oController._createShipmentsTable(sResponse , sCustomDataKey);
                 } catch (error) {
                     oController.onCloseBusyDialog();
                     
@@ -775,6 +780,7 @@ sap.ui.define([
                                 text: sBotMessage,
                                 tableData: sResponse,
                                 hasTableData: true,
+                                hasCountryTableData: false,
                                 isUserText: false,
                                 isBotImage: false
                             });
@@ -789,50 +795,7 @@ sap.ui.define([
 
                 oController.onCloseBusyDialog();
 
-
-                // var oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
-                // var oManifestSrvModel = this.getOwnerComponent().getModel("ManifestSrvModel");
-                // var aMessages = oShipperCopilotModel.getProperty("/messages");
-            
-                // oController.onOpenBusyDialog(); // start loader
-            
-                // try {
-                //     const oData = await new Promise((resolve, reject) => {
-                //         oManifestSrvModel.read("/EshipjetManfestSet", {
-                //             success: function (oResponse) {
-                //                 resolve(oResponse.results);
-                //                 oController.getView().byId("userInput").setValue("Show All Shipments");
-                //                 oController.onSendPress();
-                //             },
-                //             error: function (oError) {
-                //                 reject(oError);
-                //             }
-                //         });
-                //     });
-            
-                //     aMessages.push({
-                //         sender: "Bot",
-                //         text: "Here are all the shipments:",
-                //         tableData: oData,
-                //         hasTableData: true,
-                //         isUserText: false,
-                //         isBotImage: false
-                //     });
-                //     oShipperCopilotModel.setProperty("/messages", aMessages);
-                // } catch (error) {
-                //     aMessages.push({
-                //         sender: "BotError",
-                //         text: "Failed to load shipments.",
-                //         isUserText: false,
-                //         isBotImage: false,
-                //         hasTableData: false
-                //     });
-                //     oShipperCopilotModel.setProperty("/messages", aMessages);
-                //     console.error("Error fetching shipments:", error);
-                // } finally {
-                //     oController.onCloseBusyDialog(); // ALWAYS CLOSE!
-                // }
-},
+            },
                 onClickCountryWiseShipments: async function(){
                     oController.onOpenBusyDialog();
                     var oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
@@ -853,14 +816,42 @@ sap.ui.define([
                             return result;
                             }, {});
                       // Convert JSON into an array with country and count
-                            let formattedData = Object.keys(groupedData).map(FromCountry => ({
+                            let formattedResponse = Object.keys(groupedData).map(FromCountry => ({
                                 country: FromCountry,
                                 count: groupedData[FromCountry].length
                             }));                        
-                            formattedData = formattedData.filter(item => item.country.trim() !== ""); // removing empty country
-                            oShipperCopilotModel.setProperty("/ShippingDataCountryWiseCoount",formattedData);
-                            await oController._createShipmentsTableCountryWise();
-                            //console.log(formattedData);
+                            formattedResponse = formattedResponse.filter(item => item.country.trim() !== ""); // removing empty country
+                           
+                            //await oController._createShipmentsTableCountryWise();
+                            var sUserMessage = "show me country wise shipments";
+                            oShipperCopilotModel.setProperty("/iconState", false);
+                            oShipperCopilotModel.setProperty("/listState", true);
+            
+                            // Add the user's message to the chat list
+                            var aMessages = oShipperCopilotModel.getProperty("/messages") || [];
+                            aMessages.push({ sender: "You", text: sUserMessage});
+                            oShipperCopilotModel.setProperty("/messages", aMessages);
+                            this.getView().byId("userInput").setValue("");
+            
+                            if (sResponse && sResponse.length !== 0) {
+                                oShipperCopilotModel.setProperty("/showAllShipmentsTable", true);
+                                aMessages.push({
+                                    sender: "Bot",
+                                    text: "Details found for country wise shipments:",
+                                    CountryTableData: formattedResponse,
+                                    hasCountryTableData: true,
+                                    hasTableData:false,
+                                    isUserText: false,
+                                    isBotImage: false
+                                });
+                                oShipperCopilotModel.setProperty("/messages", aMessages);
+                            } else {
+                                    var aError = sResponse.Errors || [];
+                                    if (aError.length !== 0) {
+                                        aMessages.push({ sender: "BotError", text: aError[0] });
+                                        oShipperCopilotModel.setProperty("/messages", aMessages);
+                                    }
+                            }
                     }catch (error) {
                         oController.onCloseBusyDialog();                    
                         var aMessages = oShipperCopilotModel.getProperty("/messages") || [];
@@ -869,36 +860,7 @@ sap.ui.define([
                             oShipperCopilotModel.setProperty("/messages", aMessages);
                         }
                         return;
-                    }
-    
-                    var sUserMessage = "show me country wise shipments";
-                    oShipperCopilotModel.setProperty("/iconState", false);
-                    oShipperCopilotModel.setProperty("/listState", true);
-    
-                    // Add the user's message to the chat list
-                    var aMessages = oShipperCopilotModel.getProperty("/messages") || [];
-                    aMessages.push({ sender: "You", text: sUserMessage});
-                    oShipperCopilotModel.setProperty("/messages", aMessages);
-                    this.getView().byId("userInput").setValue("");
-    
-                    if (sResponse && sResponse.length !== 0) {
-                        oShipperCopilotModel.setProperty("/showAllShipmentsTable", true);
-                        aMessages.push({
-                            sender: "Bot",
-                            text: "Details found for country wise shipments:",
-                            tableData: sResponse,
-                            hasTableData: true,
-                            isUserText: false,
-                            isBotImage: false
-                        });
-                        oShipperCopilotModel.setProperty("/messages", aMessages);
-                    } else {
-                            var aError = sResponse.Errors || [];
-                            if (aError.length !== 0) {
-                                aMessages.push({ sender: "BotError", text: aError[0] });
-                                oShipperCopilotModel.setProperty("/messages", aMessages);
-                            }
-                    }
+                    }                  
                     oController.onCloseBusyDialog(); 
     
                 },
@@ -16796,37 +16758,42 @@ sap.ui.define([
 
         getManifestHeaderForScanShip:function(){
             oController.onOpenBusyDialog();
-            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var sDeveliveryNumber = eshipjetModel.getProperty("/sShipAndScan");
-            var ManifestSrvModel = oController.getOwnerComponent().getModel("ManifestSrvModel");
-            var aFilters = [
-                new sap.ui.model.Filter("Vbeln", sap.ui.model.FilterOperator.EQ, sDeveliveryNumber)
-            ];
 
-            ManifestSrvModel.read("/EshipjetManfestSet",{
-                filters: aFilters,
-                success:function(response){
-                    if(response && response.results.length > 0){
-                        var ShipperCopilotModel = oController.getView().getModel("ShipperCopilotModel");
-                        var text = response.results[0].Labelurl;
-                        const aMessages = ShipperCopilotModel.getProperty("/messages");
-                        //var aMessages = [];
-                        //aMessages.push({ sender: "Bot", text: "Delivery"+ sDeveliveryNumber +" has been processed and shipped by ShipperCopilot" });
-                        aMessages.push({ sender: "Bot", imageSrc: text, hasTableData:false, isBotImage:true});
-                        ShipperCopilotModel.setProperty("/messages", aMessages);
-                        //ShipperCopilotModel.setProperty("/text", text);
-                       // oController.createShipmentLabelForChatBot();
-                        eshipjetModel.setProperty("/scanShipTableData2", response.results);
-                        eshipjetModel.setProperty("/sShipAndScan", "");
-                    }else{
-                        oController.createShipmentFromScanShip();
+            return new Promise(function (resolve, reject) {
+                var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+                var sDeveliveryNumber = eshipjetModel.getProperty("/sShipAndScan");
+                var ManifestSrvModel = oController.getOwnerComponent().getModel("ManifestSrvModel");
+                var aFilters = [
+                    new sap.ui.model.Filter("Vbeln", sap.ui.model.FilterOperator.EQ, sDeveliveryNumber)
+                ];
+
+                ManifestSrvModel.read("/EshipjetManfestSet",{
+                    filters: aFilters,
+                    success:function(response){
+                        if(response && response.results.length > 0){
+                            //var ShipperCopilotModel = oController.getView().getModel("ShipperCopilotModel");
+                            var text = response.results[0].Labelurl;
+                            const aMessages = oShipperCopilotModel.getProperty("/messages");
+                            //var aMessages = [];
+                            //aMessages.push({ sender: "Bot", text: "Delivery"+ sDeveliveryNumber +" has been processed and shipped by ShipperCopilot" });
+                            aMessages.push({ sender: "Bot", imageSrc: text, hasTableData:false, hasCountryTableData:false, isBotImage:true});
+                            oShipperCopilotModel.setProperty("/messages", aMessages);
+                            //ShipperCopilotModel.setProperty("/text", text);
+                        // oController.createShipmentLabelForChatBot();
+                            eshipjetModel.setProperty("/scanShipTableData2", response.results);
+                            eshipjetModel.setProperty("/sShipAndScan", "");
+                        }else{
+                            oController.createShipmentFromScanShip();
+                        }
+                        resolve();
+                        oController.onCloseBusyDialog();
+                    },
+                    error: function(error){
+                        MessageBox.warning(error.responseText);
+                        resolve();
+                        oController.onCloseBusyDialog();
                     }
-                    oController.onCloseBusyDialog();
-                },
-                error: function(error){
-                    MessageBox.warning(error.responseText);
-                    oController.onCloseBusyDialog();
-                }
+                });
             });
         },
 

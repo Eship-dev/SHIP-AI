@@ -1,4 +1,4 @@
-<mvc:View	controllerName="com.eshipjet.zeshipjet.controller.Eshipjet" xmlns="sap.m"	xmlns:core="sap.ui.core"	xmlns:mvc="sap.ui.core.mvc"	 xmlns:tnt="sap.tnt" 	xmlns:ui="sap.ui.table"
+<mvc:View	controllerName="com.eshipjet.zeshipjet.controller.Eshipjet" xmlns="sap.m"	xmlns:core="sap.ui.core"	xmlns:mvc="sap.ui.core.mvc"	 xmlns:tnt="sap.tnt" 	xmlns:table="sap.ui.table"
 	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	height="100%">
 	<App id="app">
 	<tnt:ToolPage id="toolPage" sideExpanded="false" >
@@ -148,17 +148,183 @@
 
 												
 											</VBox>
-											<VBox  class="messageBox {= ${ShipperCopilotModel>sender} === 'You' ? 'userMessage' : 'botMessage'}"  visible="{ShipperCopilotModel>isBotImage}">
-												<!-- Bot Image -->
+											<!-- <VBox  class="messageBox {= ${ShipperCopilotModel>sender} === 'You' ? 'userMessage' : 'botMessage'}"  visible="true">
+											
+											
+											</VBox> -->
+												<!-- Table -->
+											<VBox class="sapUiSmallMarginBottom  sapUiLargeMarginEnd" id="yourVBoxId" visible="{= ${ShipperCopilotModel>sender} === 'Bot'}">
+													<Text text="{ShipperCopilotModel>text}" wrapping="true" class="co-pilot-search-text sapUiTinyMarginBottom"/>
+												<table:Table
+													
+													visibleRowCount="4"
+													selectionMode="None"
+													width="32rem"
+													fixedColumnCount="1"
+													visible="{ShipperCopilotModel>hasTableData}"
+													rows="{ShipperCopilotModel>tableData}">
+													<table:columns>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Request ID"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>Vbeln}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Created Date"/>
+															<table:template>
+																<Text text="{path: 'ShipperCopilotModel>Createddate', formatter: '.formatter.formatCustomDateShipmentTable'}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Ship Date"/>
+															<table:template>
+																<Text text="{path: 'ShipperCopilotModel>DateAdded', formatter: '.formatter.formatCustomDateShipmentTable'}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Shipment Type"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>Shipmenttype}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Carrier Name"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>CarrierCode}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Service Level"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>CarrierDesc}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Tracking Number"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>TrackingNumber}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Status"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>DeliveryStatus}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Ship To Company"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>RecCompany}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Ship To Contact"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>RecContact}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Ship To Address Line 1"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>RecAddress1}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Ship To City"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>RecCity}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Ship To State"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>Region}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Ship To Country"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>RecCountry}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Ship To Zipcode"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>RecPostalcode}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Ship To Phone"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>RecPhone}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Ship To Email"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>Emailaddress}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Requester Name"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>RecContact}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Connected To"/>
+															<table:template>
+																<Text text="{path: 'ShipperCopilotModel>DateAdded', formatter: '.formatter.formatCustomDateShipmentTable'}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Order Type"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>Shipmentid}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="Priority Level"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>Priorityalert}" wrapping="false" />
+															</table:template>
+														</table:Column>
+														<table:Column width="7rem" hAlign="Center">
+															<Label text="RF ID"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>Reference1}" wrapping="false" />
+															</table:template>
+														</table:Column>
+													</table:columns>
+												</table:Table>												
+												<HBox visible="{ShipperCopilotModel>hasTableData}" justifyContent="Start" class="sapUiTinyMarginTop">
+													<Button icon="sap-icon://download" type="Transparent" press="onDownloadExcel"/>
+												</HBox>
+												<table:Table	visibleRowCount="1"		selectionMode="None"
+													width="13rem"													
+													visible="{ShipperCopilotModel>hasCountryTableData}"
+													rows="{ShipperCopilotModel>CountryTableData}">
+													<table:columns>
+														<table:Column width="6rem" hAlign="Center">
+															<Label text="Country"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>country}"  />
+															</table:template>
+														</table:Column>
+														<table:Column width="6rem" hAlign="Center">
+															<Label text="Count"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>count}" wrapping="false" />
+															</table:template>
+														</table:Column>													
+													</table:columns>
+												</table:Table>
+													
 												<Image  src="{ShipperCopilotModel>imageSrc}"
 													width="70%" height="80%"
 													press="onZoomImage"
 													visible="{ShipperCopilotModel>isBotImage}" />
-											
-											</VBox>
-												<!-- Table -->
-											<VBox class="sapUiSmallMarginBottom  sapUiLargeMarginEnd" id="yourVBoxId" visible="{= ${ShipperCopilotModel>sender} === 'Bot'}">
-													<!-- <Text text="{ShipperCopilotModel>text}" class="sapUiSmallMarginBottom" /> -->
 											</VBox>
 										</HBox>
 									</CustomListItem>
