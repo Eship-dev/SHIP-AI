@@ -466,29 +466,8 @@ sap.ui.define([
                     var sUserDeliveryNum = sUserMessage.split(" "), aResponse;
                     sUserDeliveryNum = sUserDeliveryNum[sUserDeliveryNum.length-1]
                     eshipjetModel.setProperty("/sShipAndScan", sUserDeliveryNum.trim());
-                    aResponse = await oController.getManifestHeaderForScanShip();
-                   // oController.createShipmentLabelForChatBot();
-                    oController.onCloseBusyDialog();
-                    // const sResponse = await this._simulateBotResponse(sUserMessage);
-                    // var aShippinDocs = sResponse.shippingDocuments;
-                    // var aLabel = aShippinDocs.filter((obj) => obj.contentType === "Label");
-                    // var sLabel;
-                    // if (aLabel.length !== 0 && aLabel !== undefined) {
-                    //     // sLabel = aLabel[0].encodedLabel;
-                    //     // var dataUrl = "data:image/png;base64," + sLabel;
-                    //     sLabel = aLabel[0].docName;
-                    //     var dataUrl = "https://eshipjetsatge.blob.core.windows.net/shipping-labels/" + sLabel
-                    //     aMessages.push({ sender: "Bot", text: dataUrl });
-                    //     oShipperCopilotModel.setProperty("/messages", aMessages);
-                     //   oController.onCloseBusyDialog();
-                    // } else {
-                    //     var aError = sResponse.Errors;
-                    //     if (aError.length !== 0) {
-                    //         aMessages.push({ sender: "BotError", text: aError[0] });
-                    //         oShipperCopilotModel.setProperty("/messages", aMessages);
-                    //         oController.onCloseBusyDialog();
-                    //     }
-                    // }
+                    aResponse = await oController.getManifestHeaderForScanShip();                 
+                    oController.onCloseBusyDialog();                 
 
                 } catch (error) {
                     if (error.responseText !== undefined) {
@@ -553,113 +532,6 @@ sap.ui.define([
                 // Open the dialog
                 this._oDialog.open();
             },
-            createShipmentLabelForChatBot:function(){
-                var oView = oController.getView();
-                var oVBox = oView.byId("yourVBoxId");                
-                var oImage = new sap.m.Image({
-                    src: "{ShipperCopilotModel>imageSrc}",
-                    width: "70%",
-                    height:"80%",
-                    visible:"{ShipperCopilotModel>isBotImage}"
-                });
-                oVBox.addItem(oImage);
-            },
-            _createShipmentsTable: function (aData , sCustomDataKey) {
-                var oView = this.getView();
-                var oVBox = oView.byId("yourVBoxId");
-            
-                // Remove old content if needed
-                oVBox.removeAllItems();
-            
-                var oTable = new sap.ui.table.Table({
-                    visibleRowCount: 4,
-                    selectionMode: "None",
-                    width: "32rem",
-                    fixedColumnCount: 1,
-                    visible:"{ShipperCopilotModel>hasTableData}"
-                });
-            
-                // Define columns manually
-                var aColumns = [
-                    { label: "Request ID", property: "Vbeln" },
-                    { label: "Created Date", property: "Createddate", formatter: "formatCustomDateShipmentTable" },
-                    { label: "Ship Date", property: "DateAdded", formatter: "formatCustomDateShipmentTable" },
-                    { label: "Shipment Type", property: "Shipmenttype" },
-                    { label: "Carrier Name", property: "CarrierCode" },
-                    { label: "Service Level", property: "CarrierDesc" },
-                    { label: "Tracking Number", property: "TrackingNumber" },
-                    { label: "Status", property: "DeliveryStatus" },
-                    { label: "Ship To Company", property: "RecCompany" },
-                    { label: "Ship To Contact", property: "RecContact" },
-                    { label: "Ship To Address Line 1", property: "RecAddress1" },
-                    { label: "Ship To City", property: "RecCity" },
-                    { label: "Ship To State", property: "Region" },
-                    { label: "Ship To Country", property: "RecCountry" },
-                    { label: "Ship To Zipcode", property: "RecPostalcode" },
-                    { label: "Ship To Phone", property: "RecPhone" },
-                    { label: "Ship To Email", property: "Emailaddress" },
-                    { label: "Requester Name", property: "RecContact" },
-                    { label: "Connected To", property: "DateAdded", formatter: "formatCustomDateShipmentTable"  },
-                    { label: "Order Type", property: "Shipmentid" },
-                    { label: "Priority Level", property: "Priorityalert" },
-                    { label: "RF ID", property: "Reference1" }//,
-                   // { label: "Updated", property: "" }
-                ];
-            
-                aColumns.forEach(function (col) {
-                    oTable.addColumn(new sap.ui.table.Column({
-                        label: new sap.m.Label({ text: col.label }),
-                        template: new sap.m.Text({
-                            text: col.formatter ?
-                                { path: "ShipperCopilotModel>" + col.property,                                     
-                                formatter: this.formatter[col.formatter] ? this.formatter[col.formatter] : undefined } :
-                                "{" + "ShipperCopilotModel>" + col.property + "}"
-                        }).addStyleClass("allOrdersSmallTextInShipperCopilot"),
-                        hAlign: "Center",
-                        width: "7rem"
-                    }));
-                }.bind(this));
-            
-                // Create a JSONModel and bind to table
-                var oModel = this.getView().getModel("ShipperCopilotModel");
-                oTable.setModel(oModel, "ShipperCopilotModel");
-                oTable.bindRows("ShipperCopilotModel>/tableData");
-               
-                // Add the table to VBox
-                var oText = new sap.m.Text({
-                    text:"{ShipperCopilotModel>text}",
-                    wrapping:true
-                });
-                oText.addStyleClass("co-pilot-search-text sapUiTinyMarginBottom");
-                oVBox.addItem(oText);
-             // Add the table to VBox
-             oVBox.addItem(oTable);
-
-             
-             // HBox for button at bottom-left
-             var oButtonHBox = new sap.m.HBox({
-                 visible:"{ShipperCopilotModel>hasTableData}",
-                 justifyContent: "Start", // Aligns content to the left
-                 items: [
-                     new sap.m.Button({
-                         icon: "sap-icon://download",
-                         // text: "Download",
-                         type: "Transparent",
-                         press: function () {
-                             this._downloadExcel(aData);
-                         }.bind(this)
-                     })
-                 ]
-             });
-             oButtonHBox.addStyleClass("sapUiTinyMarginTop"); // adds spacing
-             oVBox.addItem(oButtonHBox);
-             oVBox.invalidate();
-             oShipperCopilotModel.refresh(true);
-             var oList = oView.byId("chatList");
-                oList.invalidate();
-         },
-
-
          _downloadExcel: function (aData) {
              var aCols = [
                  { label: "Request ID", property: "Vbeln" },
@@ -821,8 +693,7 @@ sap.ui.define([
                                 count: groupedData[FromCountry].length
                             }));                        
                             formattedResponse = formattedResponse.filter(item => item.country.trim() !== ""); // removing empty country
-                           
-                            //await oController._createShipmentsTableCountryWise();
+                                                      
                             var sUserMessage = "show me country wise shipments";
                             oShipperCopilotModel.setProperty("/iconState", false);
                             oShipperCopilotModel.setProperty("/listState", true);
@@ -861,49 +732,8 @@ sap.ui.define([
                         }
                         return;
                     }                  
-                    oController.onCloseBusyDialog(); 
-    
-                },
-                _createShipmentsTableCountryWise:function(){
-                    var oView = this.getView();
-                    var oVBox = oView.byId("yourVBoxId");
-                    // Remove old content if needed
-                    oVBox.removeAllItems();
-                    var oTable = new sap.ui.table.Table({
-                                    visibleRowCount: 1,
-                                    selectionMode: "None",
-                                    visible:"{ShipperCopilotModel>hasTableData}",
-                                    width: "13rem"
-                                });
-                     var aColumns = [
-                                    { label: "Country", property: "country" },
-                                    { label: "Count", property: "count" }];
-                    aColumns.forEach(function (col) {
-                        oTable.addColumn(new sap.ui.table.Column({
-                            label: new sap.m.Label({ text: col.label }),
-                            template: new sap.m.Text({
-                                text: col.formatter ?
-                                    { path: "ShipperCopilotModel>" + col.property, formatter: this.getView().getController()[col.formatter] } :
-                                    "{" + "ShipperCopilotModel>" + col.property + "}"
-                            }),
-                            hAlign: "Center",
-                            width: "6rem"
-                        }));
-                    }.bind(this));
-                     var oModel = this.getView().getModel("ShipperCopilotModel");
-                    oTable.setModel(oModel, "ShipperCopilotModel");
-                    oTable.bindRows("ShipperCopilotModel>/ShippingDataCountryWiseCoount");
-                
-                    // Add the table to VBox
-                    var oText = new sap.m.Text({
-                        text:"Details found for country wise shipments:",
-                        wrapping:true,
-                        visible:"{ShipperCopilotModel>hasTableData}"
-                    });
-                    oText.addStyleClass("co-pilot-search-text sapUiTinyMarginBottom");
-                    oVBox.addItem(oText);
-                    oVBox.addItem(oTable);
-                },
+                    oController.onCloseBusyDialog();     
+                },              
             // Shipper Copilot Changes end
 
         // Ship Now changes starts here
@@ -16754,11 +16584,8 @@ sap.ui.define([
                 sap.m.MessageToast.show("Verified address not found.");
             }
         },
-
-
         getManifestHeaderForScanShip:function(){
             oController.onOpenBusyDialog();
-
             return new Promise(function (resolve, reject) {
                 var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
                 var sDeveliveryNumber = eshipjetModel.getProperty("/sShipAndScan");
@@ -16778,8 +16605,7 @@ sap.ui.define([
                             //aMessages.push({ sender: "Bot", text: "Delivery"+ sDeveliveryNumber +" has been processed and shipped by ShipperCopilot" });
                             aMessages.push({ sender: "Bot", imageSrc: text, hasTableData:false, hasCountryTableData:false, isBotImage:true});
                             oShipperCopilotModel.setProperty("/messages", aMessages);
-                            //ShipperCopilotModel.setProperty("/text", text);
-                        // oController.createShipmentLabelForChatBot();
+                            //ShipperCopilotModel.setProperty("/text", text);                        
                             eshipjetModel.setProperty("/scanShipTableData2", response.results);
                             eshipjetModel.setProperty("/sShipAndScan", "");
                         }else{
@@ -16790,7 +16616,7 @@ sap.ui.define([
                     },
                     error: function(error){
                         MessageBox.warning(error.responseText);
-                        resolve();
+                        reject();
                         oController.onCloseBusyDialog();
                     }
                 });
