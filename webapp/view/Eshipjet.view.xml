@@ -339,7 +339,7 @@
 														<table:Column width="9rem" hAlign="Center">
 															<Label text="Tracking Number"/>
 															<table:template>
-																<Link text="{ShipperCopilotModel>Mastertracking}" press="onShipperCopilotTrackPress" />
+																<Link text="{ShipperCopilotModel>TrackingNumber}" press="onShipperCopilotTrackPress" />
 															</table:template>
 														</table:Column>															
 													</table:columns>
