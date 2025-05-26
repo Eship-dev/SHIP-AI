@@ -7552,7 +7552,7 @@ sap.ui.define([
                             // If dates are the same, compare timeAdded (Descending order)
                             return b.TimeAdded.ms - a.TimeAdded.ms; // Reverse order
                         });
-                        var firstTenRecords = response.results.slice(0, 10);
+                        var firstTenRecords = response.results.slice(0, 20);
                         //var lastTenReversed = response.results.slice(-10).reverse();
                         eshipjetModel.setProperty("/RecentShipmentSet", firstTenRecords);
                     }
