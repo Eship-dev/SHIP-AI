@@ -6529,7 +6529,7 @@ sap.ui.define([
             var aFilterId = oEvent.getSource().getId().split("--");
             var oText = aFilterId[aFilterId.length-1];
             var oFilterText;
-            var oTable = oController.getView().byId("idTrackNowTable");
+            var oTable = Fragment.byId(this.getView().getId(), "idTrackNowTable");
             var oBinding = oTable.getBinding("rows");
             
             if(oText === "idTrackShipped"){
@@ -6548,12 +6548,6 @@ sap.ui.define([
             oBinding.filter([oFilter]);
         },
 
-        onTrackNowDeliveredFilterPress:function(){
-            var oTable = oController.getView().byId("idTrackNowTable");
-            var oBinding = oTable.getBinding("rows");
-            var oFilter = new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, "Delivered");
-            oBinding.filter([oFilter]);
-        },
         formatPriorityAlert: function(value) {
             if (value === false) {
                 return "";
@@ -6633,10 +6627,9 @@ sap.ui.define([
         },
 
         TrackNowColumnsVisiblity: function () {
-            var oView = oController.getView();
             var oTrackNowTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var aColumns = oTrackNowTableModel.getProperty("/TrackNowTableData/TrackNowColumns");
-            var oTrackNowTable = oView.byId("myTrackNowColumnSelectId");
+            var oTrackNowTable = Fragment.byId(this.getView().getId(), "myTrackNowColumnSelectId");
             var aTableItems = oTrackNowTable.getItems();
 
             aColumns.map(function (oColObj) {
@@ -6664,7 +6657,7 @@ sap.ui.define([
 
         onoTrackNowColSelectOkPress: function () {
             var oView = this.getView()
-            var oTrackNowTable = oView.byId("myTrackNowColumnSelectId");
+            var oTrackNowTable = Fragment.byId(this.getView().getId(), "myTrackNowColumnSelectId");
             var eshipjetModel = oView.getModel("eshipjetModel");
             var oTrackNowTblItems = oTrackNowTable.getItems();
             var aColumnsData = eshipjetModel.getProperty("/TrackNowTableData/TrackNowColumns");
@@ -6692,6 +6685,7 @@ sap.ui.define([
                 oPopover.close();
             });
         },
+        
         onTrackNowColSelectClosePress: function () {
             this._pTrackNowPopover.then(function (oPopover) {
                 oPopover.close();
