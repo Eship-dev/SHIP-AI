@@ -325,6 +325,25 @@
 													width="70%" height="80%"
 													press="onZoomImage"
 													visible="{ShipperCopilotModel>isBotImage}" />
+												<table:Table	visibleRowCount="{= ${ShipperCopilotModel>TrackTableData}.length }"		selectionMode="None"
+													width="18rem"													
+													visible="{ShipperCopilotModel>hasTrackTableData}"
+													rows="{ShipperCopilotModel>TrackTableData}">
+													<table:columns>
+														<table:Column width="9rem" hAlign="Center">
+															<Label text="Service Name"/>
+															<table:template>
+																<Text text="{ShipperCopilotModel>CarrierCode}"  />
+															</table:template>
+														</table:Column>														
+														<table:Column width="9rem" hAlign="Center">
+															<Label text="Tracking Number"/>
+															<table:template>
+																<Link text="{ShipperCopilotModel>Mastertracking}" press="onShipperCopilotTrackPress" />
+															</table:template>
+														</table:Column>															
+													</table:columns>
+												</table:Table>
 											</VBox>
 										</HBox>
 									</CustomListItem>

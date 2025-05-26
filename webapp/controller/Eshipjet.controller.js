@@ -466,7 +466,11 @@ sap.ui.define([
                     var sUserDeliveryNum = sUserMessage.split(" "), aResponse;
                     sUserDeliveryNum = sUserDeliveryNum[sUserDeliveryNum.length-1]
                     eshipjetModel.setProperty("/sShipAndScan", sUserDeliveryNum.trim());
-                    aResponse = await oController.getManifestHeaderForScanShip();                 
+                    if(sUserDeliveryNum && sUserDeliveryNum.length > 7){
+                        aResponse = await oController.getManifestHeaderForScanShip(sUserMessage);
+                    }else{
+                        MessageToast.show("Please enter valid delivery number");
+                    }                 
                     oController.onCloseBusyDialog();                 
 
                 } catch (error) {
@@ -652,6 +656,7 @@ sap.ui.define([
                                 text: sBotMessage,
                                 tableData: sResponse,
                                 hasTableData: true,
+                                hasTrackTableData:false,
                                 hasCountryTableData: false,
                                 isUserText: false,
                                 isBotImage: false
@@ -712,6 +717,7 @@ sap.ui.define([
                                     CountryTableData: formattedResponse,
                                     hasCountryTableData: true,
                                     hasTableData:false,
+                                    hasTrackTableData:false,
                                     isUserText: false,
                                     isBotImage: false
                                 });
@@ -16591,7 +16597,7 @@ sap.ui.define([
                 sap.m.MessageToast.show("Verified address not found.");
             }
         },
-        getManifestHeaderForScanShip:function(){
+        getManifestHeaderForScanShip:function(sUserMessage){
             oController.onOpenBusyDialog();
             return new Promise(function (resolve, reject) {
                 var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
@@ -16604,17 +16610,21 @@ sap.ui.define([
                 ManifestSrvModel.read("/EshipjetManfestSet",{
                     filters: aFilters,
                     success:function(response){
-                        if(response && response.results.length > 0){
-                            //var ShipperCopilotModel = oController.getView().getModel("ShipperCopilotModel");
-                            var text = response.results[0].Labelurl;
-                            const aMessages = oShipperCopilotModel.getProperty("/messages");
-                            //var aMessages = [];
-                            //aMessages.push({ sender: "Bot", text: "Delivery"+ sDeveliveryNumber +" has been processed and shipped by ShipperCopilot" });
-                            aMessages.push({ sender: "Bot", imageSrc: text, hasTableData:false, hasCountryTableData:false, isBotImage:true});
-                            oShipperCopilotModel.setProperty("/messages", aMessages);
-                            //ShipperCopilotModel.setProperty("/text", text);                        
-                            eshipjetModel.setProperty("/scanShipTableData2", response.results);
-                            eshipjetModel.setProperty("/sShipAndScan", "");
+                        if(response && response.results.length > 0){                           
+                                sUserMessage = sUserMessage.trim().toLowerCase();
+                                var text = response.results[0].Labelurl;
+                                const aMessages = oShipperCopilotModel.getProperty("/messages");
+                                if (sUserMessage.indexOf("ship") !== -1) { 
+                                    aMessages.push({ sender: "Bot", imageSrc: text, hasTableData:false, hasCountryTableData:false, hasTrackTableData:false, isBotImage:true});
+                                    oShipperCopilotModel.setProperty("/messages", aMessages);
+                                }
+
+                                if (sUserMessage.indexOf("track") !== -1) { 
+                                    aMessages.push({ sender: "Bot", imageSrc: "", TrackTableData:response.results, hasTableData:false, hasCountryTableData:false, hasTrackTableData:true, isBotImage:false});
+                                    oShipperCopilotModel.setProperty("/messages", aMessages);
+                                }
+                                eshipjetModel.setProperty("/scanShipTableData2", response.results);
+                                eshipjetModel.setProperty("/sShipAndScan", "");
                         }else{
                             oController.createShipmentFromScanShip();
                         }
@@ -16630,7 +16640,37 @@ sap.ui.define([
             });
         },
 
-
+        onShipperCopilotTrackPress: function (oEvent) {
+            var oView = this.getView();
+            var oCurrentObject = oEvent.getSource().getBindingContext("ShipperCopilotModel").getObject();
+			var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+			oCurrentObject["StandardTransit"]= "01/31/25 before 2:39 PM";
+            oCurrentObject["Delivered"] = "01/31/25 at 2:39 PM";
+            oCurrentObject["SignedBy"] = "Stephen";
+            oCurrentObject["ServiceName"] =  eshipjetModel.getProperty("/carrierServiceName_dis");
+			eshipjetModel.setProperty("/TrackingNumberTableRows",oCurrentObject);
+            var sUrl;
+            //Hardcoding values
+            var aTravelHistoryData = eshipjetModel.getProperty("/ShipmentTravelHistoryRows");
+            if(oCurrentObject.CarrierCode.toUpperCase() === "FEDEX"){
+                sUrl = "https://drivemedical.eshipjet.site/next-gen-tracking?Carrier=Fedex&TrackingNumber="+oCurrentObject.TrackingNumber;
+                aTravelHistoryData.forEach(function(item, idx){
+                    item.Status = item.Status.replace("UPS", oCurrentObject.CarrierCode);
+                });   
+                oController.TrackDialogWithUrl();             
+            }else if(oCurrentObject.CarrierCode.toUpperCase() === "UPS"){
+                sUrl = "https://drivemedical.eshipjet.site/next-gen-tracking?Carrier=UPS&TrackingNumber="+oCurrentObject.TrackingNumber;
+                aTravelHistoryData.forEach(function(item, idx){
+                    item.Status = item.Status.replace("FedEx", oCurrentObject.CarrierCode);
+                });
+                oController.TrackDialogWithUrl();
+            }else{
+                oController.TrackDialogWithOutUrl();
+            };
+            eshipjetModel.setProperty("/ShipmentTravelHistoryRows", aTravelHistoryData);
+            eshipjetModel.setProperty("TrackingdisplayUrl", sUrl);
+		},
+        
         createShipmentFromScanShip: async function () {
             oController.onOpenBusyDialog();
             var sShipAndScanDeliveryNum = eshipjetModel.getProperty("/sShipAndScan");
