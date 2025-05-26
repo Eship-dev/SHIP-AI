@@ -5359,12 +5359,18 @@ sap.ui.define([
         
         onOrderFilterPopoverApplyPress: function () {
             var aFilters = [];
-            var oView = oController.getView();
+            var oView = this.getView();
             var sLocation = eshipjetModel.getProperty("/orderLocationFilter");
             var sCarrier = eshipjetModel.getProperty("/orderCarrierFilter");
             var sStatus = eshipjetModel.getProperty("/orderShipmentStatusFilter");
-            var dShipFrom = oView.byId("shipFromDateId").getDateValue();
-            var dShipTo = oView.byId("shipToDateId").getDateValue();
+        
+            // Accessing DatePickers from the Fragment using View ID as fragment ID
+            var oShipFrom = Fragment.byId(oView.getId(), "shipFromDateId");
+            var oShipTo = Fragment.byId(oView.getId(), "shipToDateId");
+        
+            var dShipFrom = oShipFrom ? oShipFrom.getDateValue() : null;
+            var dShipTo = oShipTo ? oShipTo.getDateValue() : null;
+        
             if (sLocation) {
                 aFilters.push(new sap.ui.model.Filter("Plant", sap.ui.model.FilterOperator.EQ, sLocation));
             }
@@ -5382,9 +5388,15 @@ sap.ui.define([
                     value2: dShipTo
                 }));
             }
+        
             var oTable = oView.byId("idOrdersTable");
-            var oBinding = oTable.getBinding("rows");
-            oBinding.filter(aFilters);
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter(aFilters);
+                }
+            }
+        
             this.byId("idOrdersFilterPopover").close();
         },
         
@@ -5407,27 +5419,28 @@ sap.ui.define([
         
         
         
-        onOrderStstusBtnFilterPress:function(oEvent){
+        onOrderStstusBtnFilterPress: function (oEvent) {
+            var oView = this.getView(); // Correct way
             var aFilterId = oEvent.getSource().getId().split("--");
-            var oText = aFilterId[aFilterId.length-1];
+            var oText = aFilterId[aFilterId.length - 1];
             var oFilterText;
-            var oTable = oController.getView().byId("idOrdersTable");
+            var oTable = Fragment.byId(oView.getId(), "idOrdersTable");
             var oBinding = oTable.getBinding("rows");
-            
-            if(oText === "Shipped"){
+        
+            if (oText === "Shipped") {
                 oFilterText = "SHIP";
-            }else if(oText === "Cancelled"){
+            } else if (oText === "Cancelled") {
                 oFilterText = "CANC";
-            }else if(oText === "Open"){
+            } else if (oText === "Open") {
                 oFilterText = "Open";
-            }else if(oText === "In-Transit"){
+            } else if (oText === "In-Transit") {
                 oFilterText = "In-Transit";
-            }else if(oText === "Received"){
+            } else if (oText === "Received") {
                 oFilterText = "Received";
-            }else if(oText === "Total"){
-                return oBinding.filter([]);
+            } else if (oText === "Total") {
+                return oBinding.filter([]); // Show all
             }
-            
+        
             var oFilter = new sap.ui.model.Filter("Shipprocess", sap.ui.model.FilterOperator.EQ, oFilterText);
             oBinding.filter([oFilter]);
         },
