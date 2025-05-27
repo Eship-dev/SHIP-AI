@@ -744,81 +744,162 @@ sap.ui.define([
 
         // Ship Now changes starts here
 
-        onShipNowHUColumnConfigPress:function(oEvent){
-            var oButton = oEvent.getSource(),
-                oView = this.getView();
+        // onShipNowHUColumnConfigPress:function(oEvent){
+        //     var oButton = oEvent.getSource(),
+        //         oView = this.getView();
+        //     if (!this._pShipNowHUColumnConfigPopover) {
+        //         this._pShipNowHUColumnConfigPopover = Fragment.load({
+        //             id: oView.getId(),
+        //             name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.ShipNowHUColumnConfig",
+        //             controller: this
+        //         }).then(function (oPopover) {
+        //             oView.addDependent(oPopover);
+        //             return oPopover;
+        //         });
+        //     }
+        //     this._pShipNowHUColumnConfigPopover.then(function (oPopover) {
+        //         oController.ShipNowHUColumnConfigVisiblity();
+        //         oPopover.openBy(oButton);
+        //     });
+        // },
+
+        // ShipNowHUColumnConfigVisiblity: function () {
+        //     var oView = oController.getView();
+        //     var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+        //     var aColumns = eshipjetModel.getProperty("/ShipNowHandlingUnitTableColumns");
+        //     var oShipNowHUColumnConfigTable = oView.byId("myShipNowHUColumnConfigSelectId");
+        //     var aTableItems = oShipNowHUColumnConfigTable.getItems();
+
+        //     aColumns.map(function (oColObj) {
+        //         aTableItems.map(function (oItem) {
+        //             if (oColObj.name === oItem.getBindingContext("eshipjetModel").getObject().name && oColObj.visible) {
+        //                 oItem.setSelected(true);
+        //             }
+        //         });
+        //     });
+        // },
+
+        // onShipNowHUColumnConfigNameSearch: function (oEvent) {
+        //     var aFilters = [];
+        //     var sQuery = oEvent.getSource().getValue();
+        //     if (sQuery && sQuery.length > 0) {
+        //         var filter = new Filter("label", FilterOperator.Contains, sQuery);
+        //         aFilters.push(filter);
+        //     }
+        //     // update list binding
+        //     var oList = oController.getView().byId("myShipNowHUColumnConfigSelectId");
+        //     var oBinding = oList.getBinding("items");
+        //     oBinding.filter(aFilters, "Application");
+        // },
+
+        // onShipNowHUColumnConfigSelectOkPress: function () {
+        //     var oView = this.getView();
+        //     var oShipNowHUColumnConfigTable = oView.byId("myShipNowHUColumnConfigSelectId");
+        //     var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+        //     var oShipNowHUColumnConfigTableItems = oShipNowHUColumnConfigTable.getItems();
+        //     var aColumnsData = eshipjetModel.getProperty("/ShipNowHandlingUnitTableColumns");
+        //     oShipNowHUColumnConfigTableItems.map(function (oTableItems) {
+        //         aColumnsData.map(function (oColObj) {
+        //             if (oTableItems.getBindingContext("eshipjetModel").getObject().name === oColObj.name) {
+        //                 if (oTableItems.getSelected()) {
+        //                     oColObj.visible = true;
+        //                 } else {
+        //                     oColObj.visible = false;
+        //                 }
+        //             }
+        //         })
+        //     });
+        //     eshipjetModel.updateBindings(true);
+        //     this._pShipNowHUColumnConfigPopover.then(function (oPopover) {
+        //         oPopover.close();
+        //     });
+        // },
+        // onShipNowHUColumnConfigSelectClosePress: function () {
+        //     this._pShipNowHUColumnConfigPopover.then(function (oPopover) {
+        //         oPopover.close();
+        //     });
+        // },
+
+
+        onShipNowHUColumnConfigPress: function (oEvent) {
+            const oButton = oEvent.getSource();
+            const oView = this.getView();
+        
             if (!this._pShipNowHUColumnConfigPopover) {
                 this._pShipNowHUColumnConfigPopover = Fragment.load({
                     id: oView.getId(),
                     name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.ShipNowHUColumnConfig",
                     controller: this
-                }).then(function (oPopover) {
+                }).then((oPopover) => {
                     oView.addDependent(oPopover);
                     return oPopover;
                 });
             }
-            this._pShipNowHUColumnConfigPopover.then(function (oPopover) {
-                oController.ShipNowHUColumnConfigVisiblity();
+        
+            this._pShipNowHUColumnConfigPopover.then((oPopover) => {
+                this._syncShipNowHUColumnSelections();
                 oPopover.openBy(oButton);
             });
         },
-
-        ShipNowHUColumnConfigVisiblity: function () {
-            var oView = oController.getView();
-            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var aColumns = eshipjetModel.getProperty("/ShipNowHandlingUnitTableColumns");
-            var oShipNowHUColumnConfigTable = oView.byId("myShipNowHUColumnConfigSelectId");
-            var aTableItems = oShipNowHUColumnConfigTable.getItems();
-
-            aColumns.map(function (oColObj) {
-                aTableItems.map(function (oItem) {
-                    if (oColObj.name === oItem.getBindingContext("eshipjetModel").getObject().name && oColObj.visible) {
-                        oItem.setSelected(true);
-                    }
-                });
+        
+        _syncShipNowHUColumnSelections: function () {
+            const oView = this.getView();
+            const oModel = this.getOwnerComponent().getModel("eshipjetModel");
+            const aColumns = oModel.getProperty("/ShipNowHandlingUnitTableColumns");
+            const oTable = oView.byId("myShipNowHUColumnConfigSelectId");
+        
+            if (!oTable) return;
+        
+            oTable.getItems().forEach((oItem) => {
+                const oItemData = oItem.getBindingContext("eshipjetModel").getObject();
+                const oCol = aColumns.find(col => col.name === oItemData.name);
+                oItem.setSelected(!!oCol?.visible);
             });
         },
-
+        
         onShipNowHUColumnConfigNameSearch: function (oEvent) {
-            var aFilters = [];
-            var sQuery = oEvent.getSource().getValue();
-            if (sQuery && sQuery.length > 0) {
-                var filter = new Filter("label", FilterOperator.Contains, sQuery);
-                aFilters.push(filter);
+            const sQuery = oEvent.getSource().getValue();
+            const aFilters = [];
+        
+            if (sQuery) {
+                aFilters.push(new Filter("label", FilterOperator.Contains, sQuery));
             }
-            // update list binding
-            var oList = oController.getView().byId("myShipNowHUColumnConfigSelectId");
-            var oBinding = oList.getBinding("items");
+        
+            const oTable = this.getView().byId("myShipNowHUColumnConfigSelectId");
+            const oBinding = oTable.getBinding("items");
             oBinding.filter(aFilters, "Application");
         },
-
+        
         onShipNowHUColumnConfigSelectOkPress: function () {
-            var oView = this.getView();
-            var oShipNowHUColumnConfigTable = oView.byId("myShipNowHUColumnConfigSelectId");
-            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var oShipNowHUColumnConfigTableItems = oShipNowHUColumnConfigTable.getItems();
-            var aColumnsData = eshipjetModel.getProperty("/ShipNowHandlingUnitTableColumns");
-            oShipNowHUColumnConfigTableItems.map(function (oTableItems) {
-                aColumnsData.map(function (oColObj) {
-                    if (oTableItems.getBindingContext("eshipjetModel").getObject().name === oColObj.name) {
-                        if (oTableItems.getSelected()) {
-                            oColObj.visible = true;
-                        } else {
-                            oColObj.visible = false;
-                        }
-                    }
-                })
+            const oView = this.getView();
+            const oTable = oView.byId("myShipNowHUColumnConfigSelectId");
+            const oModel = this.getOwnerComponent().getModel("eshipjetModel");
+            const aItems = oTable.getItems();
+            const aColumns = oModel.getProperty("/ShipNowHandlingUnitTableColumns");
+        
+            aItems.forEach((oItem) => {
+                const oData = oItem.getBindingContext("eshipjetModel").getObject();
+                const oCol = aColumns.find(col => col.name === oData.name);
+                if (oCol) {
+                    oCol.visible = oItem.getSelected();
+                }
             });
-            eshipjetModel.updateBindings(true);
-            this._pShipNowHUColumnConfigPopover.then(function (oPopover) {
+        
+            oModel.updateBindings(true);
+        
+            this._pShipNowHUColumnConfigPopover.then((oPopover) => {
                 oPopover.close();
             });
         },
+        
         onShipNowHUColumnConfigSelectClosePress: function () {
-            this._pShipNowHUColumnConfigPopover.then(function (oPopover) {
-                oPopover.close();
-            });
+            if (this._pShipNowHUColumnConfigPopover) {
+                this._pShipNowHUColumnConfigPopover.then((oPopover) => {
+                    oPopover.close();
+                });
+            }
         },
+        
 
         _handleDisplayShipNowPackTable: function () {
             var that = this;
@@ -886,9 +967,75 @@ sap.ui.define([
             oTable.bindRows("/commonValues/packAddProductTable");
         },
 
+        // openShipNowPrdctColNamesPopover: function (oEvent) {
+        //     var oButton = oEvent.getSource(),
+        //         oView = this.getView();
+        //     if (!this._pShipNowPrdctPopover) {
+        //         this._pShipNowPrdctPopover = Fragment.load({
+        //             id: oView.getId(),
+        //             name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.ShipNowPrdctTableColumns",
+        //             controller: this
+        //         }).then(function (oPopover) {
+        //             oView.addDependent(oPopover);
+        //             return oPopover;
+        //         });
+        //     }
+        //     this._pShipNowPrdctPopover.then(function (oPopover) {
+        //         oController.ShipNowPrdctColumnsVisiblity();
+        //         oPopover.openBy(oButton);
+        //     });
+        // },
+
+        // ShipNowPrdctColumnsVisiblity: function () {
+        //     var oView = oController.getView();
+        //     var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+        //     var aColumns = eshipjetModel.getProperty("/ShipNowProductsTableColumns");
+        //     var oShipNowPrdTable =  oView.byId("myShipNowPrdColumnSelectId") || 
+        //                             sap.ui.getCore().byId(oView.createId("myShipNowPrdColumnSelectId"));
+        //     var aTableItems = oShipNowPrdTable.getItems();
+
+        //     aColumns.map(function (oColObj) {
+        //         aTableItems.map(function (oItem) {
+        //             if (oColObj.name === oItem.getBindingContext("eshipjetModel").getObject().name && oColObj.visible) {
+        //                 oItem.setSelected(true);
+        //             }
+        //         });
+        //     });
+        // },
+        // onShipNowPrdColSelectOkPress: function () {
+        //     var oView = this.getView()
+        //     var oShipNowPrdTable = oView.byId("myShipNowPrdColumnSelectId");
+        //     var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+        //     var oShipNowPrdTableItems = oShipNowPrdTable.getItems();
+        //     var aColumnsData = eshipjetModel.getProperty("/ShipNowProductsTableColumns");
+        //     oShipNowPrdTableItems.map(function (oTableItems) {
+        //         aColumnsData.map(function (oColObj) {
+        //             if (oTableItems.getBindingContext("eshipjetModel").getObject().name === oColObj.name) {
+        //                 if (oTableItems.getSelected()) {
+        //                     oColObj.visible = true;
+        //                 } else {
+        //                     oColObj.visible = false;
+        //                 }
+        //             }
+        //         })
+        //     });
+        //     eshipjetModel.updateBindings(true);
+        //     // this._handleDisplayShipNowPackTable();
+        //     this._pShipNowPrdctPopover.then(function (oPopover) {
+        //         oPopover.close();
+        //     });
+        // },
+        // onShipNowPrdColSelectClosePress: function () {
+        //     this._pShipNowPrdctPopover.then(function (oPopover) {
+        //         oPopover.close();
+        //     });
+        // },
+// after version change code here down 
         openShipNowPrdctColNamesPopover: function (oEvent) {
-            var oButton = oEvent.getSource(),
-                oView = this.getView();
+            const oButton = oEvent.getSource();
+            const oView = this.getView();
+            const that = this;
+        
             if (!this._pShipNowPrdctPopover) {
                 this._pShipNowPrdctPopover = Fragment.load({
                     id: oView.getId(),
@@ -899,28 +1046,36 @@ sap.ui.define([
                     return oPopover;
                 });
             }
+        
             this._pShipNowPrdctPopover.then(function (oPopover) {
-                oController.ShipNowPrdctColumnsVisiblity();
+                that._syncShipNowPrdctColumnSelections();
                 oPopover.openBy(oButton);
             });
+            
         },
-
-        ShipNowPrdctColumnsVisiblity: function () {
-            var oView = oController.getView();
-            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var aColumns = eshipjetModel.getProperty("/ShipNowProductsTableColumns");
-            var oShipNowPrdTable =  oView.byId("myShipNowPrdColumnSelectId") || 
-                                    sap.ui.getCore().byId(oView.createId("myShipNowPrdColumnSelectId"));
-            var aTableItems = oShipNowPrdTable.getItems();
-
-            aColumns.map(function (oColObj) {
-                aTableItems.map(function (oItem) {
-                    if (oColObj.name === oItem.getBindingContext("eshipjetModel").getObject().name && oColObj.visible) {
-                        oItem.setSelected(true);
-                    }
+        onShipNowPrdColSelectClosePress: function () {
+            if (this._pShipNowPrdctPopover) {
+                this._pShipNowPrdctPopover.then(function (oPopover) {
+                    oPopover.close();
                 });
+            }
+        },
+        
+        
+        _syncShipNowPrdctColumnSelections: function () {
+            const oTable = Fragment.byId(this.getView().getId(), "myShipNowPrdColumnSelectId");
+            if (!oTable) return;
+        
+            const aItems = oTable.getItems();
+            aItems.forEach(function (oItem) {
+                const oContext = oItem.getBindingContext("eshipjetModel");
+                if (oContext) {
+                    const oData = oContext.getObject();
+                    oItem.setSelected(oData.visible === true);
+                }
             });
         },
+        
 
         onShipNowPrdColNameSearch: function (oEvent) {
             var aFilters = [];
@@ -934,35 +1089,29 @@ sap.ui.define([
             var oBinding = oList.getBinding("items");
             oBinding.filter(aFilters, "Application");
         },
-
         onShipNowPrdColSelectOkPress: function () {
-            var oView = this.getView()
-            var oShipNowPrdTable = oView.byId("myShipNowPrdColumnSelectId");
-            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var oShipNowPrdTableItems = oShipNowPrdTable.getItems();
-            var aColumnsData = eshipjetModel.getProperty("/ShipNowProductsTableColumns");
-            oShipNowPrdTableItems.map(function (oTableItems) {
-                aColumnsData.map(function (oColObj) {
-                    if (oTableItems.getBindingContext("eshipjetModel").getObject().name === oColObj.name) {
-                        if (oTableItems.getSelected()) {
-                            oColObj.visible = true;
-                        } else {
-                            oColObj.visible = false;
-                        }
-                    }
-                })
+            const oTable = Fragment.byId(this.getView().getId(), "myShipNowPrdColumnSelectId");
+            const oModel = this.getOwnerComponent().getModel("eshipjetModel");
+            const aColumns = oModel.getProperty("/ShipNowProductsTableColumns");
+        
+            // Update visibility from selection
+            oTable.getItems().forEach(function (oItem) {
+                const oContext = oItem.getBindingContext("eshipjetModel");
+                if (oContext) {
+                    const oData = oContext.getObject();
+                    oData.visible = oItem.getSelected();
+                }
             });
-            eshipjetModel.updateBindings(true);
-            // this._handleDisplayShipNowPackTable();
+        
+            oModel.refresh(true);
+        
             this._pShipNowPrdctPopover.then(function (oPopover) {
                 oPopover.close();
             });
+            
         },
-        onShipNowPrdColSelectClosePress: function () {
-            this._pShipNowPrdctPopover.then(function (oPopover) {
-                oPopover.close();
-            });
-        },
+        
+        
 
 
         onPartialQtyChange:function(oEvent){

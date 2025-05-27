@@ -349,7 +349,7 @@
 									</CustomListItem>
 									</List>
 									<HBox justifyContent="Center" class="ship-copilot-search-section" width="80rem" >
-										<Button icon="sap-icon://chain-link" class="chainlinkCp sapUiLargeMarginBegin"/>
+										<!-- <Button icon="sap-icon://chain-link" class="chainlinkCp sapUiLargeMarginBegin"/> -->
 										<Input id="userInput" class="sapUiTinyMarginEnd shippercopilotcss" placeholder="Good Afternoon {eshipjetModel>/userName}, I'm ready for the task" width="30rem" submit="onSendPress"/>
 										<Button icon="sap-icon://arrow-top" press="onSendPress" class="sapUiTinyMarginEnd"/>
 									</HBox>
