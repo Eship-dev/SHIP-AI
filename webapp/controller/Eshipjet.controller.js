@@ -5199,9 +5199,59 @@ sap.ui.define([
             oTable.bindRows("/orderRows");
         },
 
+        // openOrderColNamesPopover: function (oEvent) {
+        //     var oButton = oEvent.getSource(),
+        //         oView = this.getView();
+        //     if (!this._pOrderPopover) {
+        //         this._pOrderPopover = Fragment.load({
+        //             id: oView.getId(),
+        //             name: "com.eshipjet.zeshipjet.view.fragments.Orders.OrderTableColumns",
+        //             controller: this
+        //         }).then(function (oPopover) {
+        //             oView.addDependent(oPopover);
+        //             return oPopover;
+        //         });
+        //     }
+        //     this._pOrderPopover.then(function (oPopover) {
+        //         oController.OrderColumnsVisiblity();
+        //         oPopover.openBy(oButton);
+        //     });
+        // },
+
+        // OrderColumnsVisiblity: function () {
+        //     var oView = oController.getView();
+        //     var oOrderTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
+        //     var aColumns = oOrderTableModel.getProperty("/OrderTableData/OrderColumns");
+        //     var oOrderTable = oView.byId("myOrderColumnSelectId");
+        //     var aTableItems = oOrderTable.getItems();
+
+        //     aColumns.map(function (oColObj) {
+        //         aTableItems.map(function (oItem) {
+        //             if (oColObj.name === oItem.getBindingContext("eshipjetModel").getObject().name && oColObj.visible) {
+        //                 oItem.setSelected(true);
+        //             }
+        //         });
+        //     });
+        // },
+        // onOrderColNameSearch: function (oEvent) {
+        //     var aFilters = [];
+        //     var sQuery = oEvent.getSource().getValue();
+        //     if (sQuery && sQuery.length > 0) {
+        //         var filter = new Filter("label", FilterOperator.Contains, sQuery);
+        //         aFilters.push(filter);
+        //     }
+        //     // update list binding
+        //     var oList = oController.getView().byId("myOrderColumnSelectId");
+        //     var oBinding = oList.getBinding("items");
+        //     oBinding.filter(aFilters, "Application");
+
+        // },
+
         openOrderColNamesPopover: function (oEvent) {
-            var oButton = oEvent.getSource(),
-                oView = this.getView();
+            var oButton = oEvent.getSource();
+            var oView = this.getView();
+            var oController = this;
+        
             if (!this._pOrderPopover) {
                 this._pOrderPopover = Fragment.load({
                     id: oView.getId(),
@@ -5212,40 +5262,65 @@ sap.ui.define([
                     return oPopover;
                 });
             }
+        
             this._pOrderPopover.then(function (oPopover) {
-                oController.OrderColumnsVisiblity();
+                oController._syncColumnSelections();
                 oPopover.openBy(oButton);
             });
         },
-
-        OrderColumnsVisiblity: function () {
-            var oView = oController.getView();
-            var oOrderTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var aColumns = oOrderTableModel.getProperty("/OrderTableData/OrderColumns");
-            var oOrderTable = oView.byId("myOrderColumnSelectId");
-            var aTableItems = oOrderTable.getItems();
-
-            aColumns.map(function (oColObj) {
-                aTableItems.map(function (oItem) {
-                    if (oColObj.name === oItem.getBindingContext("eshipjetModel").getObject().name && oColObj.visible) {
-                        oItem.setSelected(true);
-                    }
-                });
+        
+        _syncColumnSelections: function () {
+            var oTable = Fragment.byId(this.getView().getId(), "myOrderColumnSelectId");
+            if (!oTable) return;
+        
+            var aItems = oTable.getItems();
+            aItems.forEach(function (oItem) {
+                var oContext = oItem.getBindingContext("eshipjetModel");
+                if (oContext) {
+                    var oData = oContext.getObject();
+                    oItem.setSelected(oData.visible === true);
+                }
             });
         },
+        
         onOrderColNameSearch: function (oEvent) {
-            var aFilters = [];
             var sQuery = oEvent.getSource().getValue();
-            if (sQuery && sQuery.length > 0) {
-                var filter = new Filter("label", FilterOperator.Contains, sQuery);
-                aFilters.push(filter);
+            var oTable = Fragment.byId(this.getView().getId(), "myOrderColumnSelectId");
+            if (!oTable) return;
+        
+            var oBinding = oTable.getBinding("items");
+            var aFilters = [];
+            if (sQuery) {
+                aFilters.push(new Filter("label", FilterOperator.Contains, sQuery));
             }
-            // update list binding
-            var oList = oController.getView().byId("myOrderColumnSelectId");
-            var oBinding = oList.getBinding("items");
-            oBinding.filter(aFilters, "Application");
-
+            oBinding.filter(aFilters);
         },
+        
+        onOrderColSelectClosePress: function () {
+            var oPopover = Fragment.byId(this.getView().getId(), "orderColumnsPopover");
+            if (oPopover) {
+                oPopover.close();
+            }
+        },
+        
+        onOrderColSelectOkPress: function () {
+            var oTable = Fragment.byId(this.getView().getId(), "myOrderColumnSelectId");
+            var oModel = this.getOwnerComponent().getModel("eshipjetModel");
+            var aColumns = oModel.getProperty("/OrderTableData/OrderColumns");
+        
+            oTable.getItems().forEach(function (oItem, iIndex) {
+                var oContext = oItem.getBindingContext("eshipjetModel");
+                if (oContext) {
+                    var oData = oContext.getObject();
+                    oData.visible = oItem.getSelected();
+                }
+            });
+        
+            oModel.refresh(true);
+            this.onOrderColSelectClosePress();
+            // You may also call table rerender or update logic here
+        },
+        
 
 
         onOrderExportToExcel: function () {

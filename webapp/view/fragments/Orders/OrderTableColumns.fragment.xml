@@ -1,38 +1,45 @@
 <core:FragmentDefinition
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
-	<Popover  contentWidth="20%" placement="Left" contentHeight="40%">
+	<Popover id="orderColumnsPopover" contentWidth="20%" contentHeight="40%" placement="Left">
 		<customHeader>
-			<VBox >
+			<VBox>
 				<Toolbar class="toolbarbottomborder">
-					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="Columns"></Title>
-					<ToolbarSpacer ></ToolbarSpacer>					
-					<Button icon="sap-icon://decline" press="onOrderColSelectClosePress" class="Decline_Btn ship-now-decline_btn" ></Button>
+					<Title class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="Columns"/>
+					<ToolbarSpacer/>
+					<Button icon="sap-icon://decline" press="onOrderColSelectClosePress" class="Decline_Btn ship-now-decline_btn"/>
 				</Toolbar>
-				<SearchField placeholder="Search Columns"   liveChange="onOrderColNameSearch"></SearchField>
+				<SearchField placeholder="Search Columns" liveChange="onOrderColNameSearch"/>
 			</VBox>
 		</customHeader>
+
 		<content>
-        <Table	id="myOrderColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/OrderTableData/OrderColumns'}" >
-		<ColumnListItem id="_IDGenOrderColumnListItem1" vAlign="Middle">
-			<cells>				
-				<Text text="{eshipjetModel>label}" visible="{= ${eshipjetModel>label} === 'Actions' ? false : true }" />				
-			</cells>
-		</ColumnListItem>
-		<columns>
-			<Column >
-				<header>
-					<Text text="Select All" />
-				</header>
-			</Column>			
-		</columns>
-        </Table>
-        </content>
-        <footer>
-            <Toolbar >
-                <ToolbarSpacer />
-                <Button text="Apply" press="onoOrderColSelectOkPress" type="Emphasized"></Button>               
-            </Toolbar>
-        </footer>      
-	</Popover>   
+			<Table
+				id="myOrderColumnSelectId"
+				mode="MultiSelect"
+				items="{path: 'eshipjetModel>/OrderTableData/OrderColumns'}">
+				<columns>
+					<Column>
+						<header>
+							<Text text="Select All"/>
+						</header>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{eshipjetModel>label}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button text="Apply" type="Emphasized" press="onOrderColSelectOkPress"/>
+			</Toolbar>
+		</footer>
+	</Popover>
 </core:FragmentDefinition>
