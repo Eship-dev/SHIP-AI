@@ -220,7 +220,7 @@
 								<ui:Column width="{= ${eshipjetModel>/scanShipColSelectedCount} >= 15 ? '10rem' : 'auto' }" hAlign="End" >
 									<Label text="Actions"/>
 									<ui:template>
-										<HBox>
+										<HBox justifyContent="End">
 											<Button text="View Now" class="ordersSmallButton" type="Transparent" press="onViewNowPressBackToShipNow" ></Button>
 											<Button icon="sap-icon://megamenu" class="ordersSmallButton" type="Transparent" press="handleDownArrowPress" ></Button>
 										</HBox>
@@ -229,8 +229,14 @@
 							</ui:columns>
 						</ui:Table>
     </VBox>
-
+			
 		<Toolbar class="whiteBackground sapUiTinyMarginTop ordersTableFooter" >
+		<HBox>
+				<Text text="Today's Shipments by " class="todayscss sapUiTinyMarginEnd sapUiSmallMarginBegin" />
+				<Text text="{eshipjetModel>/userName}" class="greenTexttoday" />
+				<Text text=":" class="todayscss" />
+				<Text text="{eshipjetModel>/TodayShipmentsLength}" class="todayscssNumber sapUiTinyMarginBegin " />
+			</HBox>
 			<ToolbarSpacer/>
 				<Button  text="First" enabled="false" type="Transparent" />
 				<Button  text="Previous" enabled="false" type="Transparent" />

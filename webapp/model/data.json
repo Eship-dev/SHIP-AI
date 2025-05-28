@@ -9624,6 +9624,9 @@
             "id": 58
         }
     ],
+    "ScanLoctionName":"",
+    "ScanShipmentStatusFilter":"",
+    "ScanCarrierFilter":"",
     "ShipReqLoctionName":"",
     "ShipReqShipmentStatusFilter":"",
     "ShipReqCarrierFilter":"",

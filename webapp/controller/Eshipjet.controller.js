@@ -4914,6 +4914,7 @@ sap.ui.define([
         openScanShipColNamesPopover: function (oEvent) {
             var oButton = oEvent.getSource(),
                 oView = this.getView();
+                var oController = this;
             if (!this._pScanPopover) {
                 this._pScanPopover = Fragment.load({
                     id: oView.getId(),
@@ -4925,59 +4926,46 @@ sap.ui.define([
                 });
             }
             this._pScanPopover.then(function (oPopover) {
-                oController.ScanShipColumnsVisiblity();
+                oController._syncScanShipColumnSelections();
                 oPopover.openBy(oButton);
             });
         },
-
-        ScanShipColumnsVisiblity: function () {
-            var oView = oController.getView();
-            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var aColumns = eshipjetModel.getProperty("/scanShipTableData1/scanShipColumns");
-            var oScanTable = oView.byId("myScanColumnSelectId");
-            var aTableItems = oScanTable.getItems();
-
-            aColumns.map(function (oColObj) {
-                aTableItems.map(function (oItem) {
-                    if (oColObj.name === oItem.getBindingContext("eshipjetModel").getObject().name && oColObj.visible) {
-                        oItem.setSelected(true);
-                    }
-                });
-            });
-        },
-
-        onScanShipColSelectOkPress: function () {
-            var oView = oController.getView()
-            var oScanTable = oView.byId("myScanColumnSelectId");
-            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var oScanTblItems = oScanTable.getItems();
-            var aColumnsData = eshipjetModel.getProperty("/scanShipTableData1/scanShipColumns");
-            var scanShipColSelectedCount = 0;
-            oScanTblItems.map(function (oTableItems) {
-                aColumnsData.map(function (oColObj) {
-                    if (oTableItems.getBindingContext("eshipjetModel").getObject().name === oColObj.name) {
-                        if (oTableItems.getSelected()) {
-                            oColObj.visible = true;
-                            scanShipColSelectedCount += 1;
-                        } else {
-                            oColObj.visible = false;
-                        }
-                    }
-
-                })
-            });
-            console.log(scanShipColSelectedCount);
-            eshipjetModel.setProperty("/scanShipColSelectedCount", scanShipColSelectedCount);
-            eshipjetModel.updateBindings(true);
-            // this._handleDisplayScanShipTable();
-            this._pScanPopover.then(function (oPopover) {
-                oPopover.close();
-            });
-        },
         onScanShipColSelectClosePress: function () {
-            this._pScanPopover.then(function (oPopover) {
+            var oPopover = Fragment.byId(this.getView().getId(), "myPopover");
+            if (oPopover) {
                 oPopover.close();
+            }
+        },
+        
+        _syncScanShipColumnSelections: function () {
+            var oTable = Fragment.byId(this.getView().getId(), "myScanColumnSelectId");
+            if (!oTable) return;
+        
+            var aItems = oTable.getItems();
+            aItems.forEach(function (oItem) {
+                var oContext = oItem.getBindingContext("eshipjetModel");
+                if (oContext) {
+                    var oData = oContext.getObject();
+                    oItem.setSelected(oData.visible === true);
+                }
             });
+        },
+        onScanShipColSelectOkPress: function () {
+            var oTable = Fragment.byId(this.getView().getId(), "myScanColumnSelectId");
+            var oModel = this.getOwnerComponent().getModel("eshipjetModel");
+            var aColumns = oModel.getProperty("/scanShipTableData1/scanShipColumns");
+        
+            oTable.getItems().forEach(function (oItem, iIndex) {
+                var oContext = oItem.getBindingContext("eshipjetModel");
+                if (oContext) {
+                    var oData = oContext.getObject();
+                    oData.visible = oItem.getSelected();
+                }
+            });
+        
+            oModel.refresh(true);
+            this.onScanShipColSelectClosePress();
+            // You may also call table rerender or update logic here
         },
         onScanShipColNameSearch: function (oEvent) {
             var aFilters = [];
@@ -5114,6 +5102,33 @@ sap.ui.define([
         },
         onScanShipFilterApplyPress: function (oEvent) {
             this.byId("idScanAndShipPopover").close();
+        },
+        onScanShipFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var sLocation = eshipjetModel.getProperty("/ScanLoctionName");
+            var sCarrier = eshipjetModel.getProperty("/ScanCarrierFilter");
+            var sStatus = eshipjetModel.getProperty("/ScanShipmentStatusFilter");
+        
+            if (sLocation) {
+                aFilters.push(new sap.ui.model.Filter("Plant", sap.ui.model.FilterOperator.EQ, sLocation));
+            }
+            if (sCarrier) {
+                aFilters.push(new sap.ui.model.Filter("Carriertype", sap.ui.model.FilterOperator.EQ, sCarrier));
+            }
+            if (sStatus) {
+                aFilters.push(new sap.ui.model.Filter("Shipprocess", sap.ui.model.FilterOperator.EQ, sStatus));
+            }
+        
+            var oTable = oView.byId("idScanAndShipTable");
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter(aFilters);
+                }
+            }
+        
+            this.byId("idScanShipFilterPopover").close();
         },
 
         onScanShipExportToExcel: function () {
@@ -5717,7 +5732,8 @@ sap.ui.define([
 
         //pagination
         
-
+      
+        
         // Order Changes End
 
 
