@@ -1393,7 +1393,7 @@ sap.ui.define([
                     // Example: filter on Plant, OrderID, CustomerName (add fields as needed)
                     aFilters.push(new sap.ui.model.Filter({
                         filters: [
-                            new sap.ui.model.Filter("FromCompany", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("Plant", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("Vbeln", sap.ui.model.FilterOperator.Contains, sQuery),
                             // new sap.ui.model.Filter("SAP Delivery Number", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("Carriertype", sap.ui.model.FilterOperator.Contains, sQuery),
@@ -1414,6 +1414,46 @@ sap.ui.define([
                              new sap.ui.model.Filter("RecCountry", sap.ui.model.FilterOperator.Contains, sQuery),
                             // new sap.ui.model.Filter("RecPhone", sap.ui.model.FilterOperator.Contains, sQuery),
                              new sap.ui.model.Filter("Emailaddress", sap.ui.model.FilterOperator.Contains, sQuery),
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+
+        onSearchShipReqLabel: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+        
+            // Get the table and binding
+            var oTable = this.byId("idShipReqsTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("Plant", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("RecCity", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("Vbeln", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("Createddate", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("DateAdded", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("Carriertype", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("CarrierCode", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("CarrierDesc", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("TrackingNumber", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("DeliveryStatus", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("RecContact", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("RecCompany", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("RecAddress1", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("RecRegion", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("RecPostalcode", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("RecCountry", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("RecPhone", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("Emailaddress", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("Shipprocess", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("Packagetype", sap.ui.model.FilterOperator.Contains, sQuery)
                         ],
                         and: false
                     }));
@@ -6067,6 +6107,20 @@ sap.ui.define([
             });
         },
 
+        ShipReqColumnsVisiblity: function () {
+            var oTable = Fragment.byId(this.getView().getId(), "myShipReqColumnSelectId");
+            if (!oTable) return;
+            var aItems = oTable.getItems();
+
+            aItems.forEach(function (oItem) {
+                var oContext = oItem.getBindingContext("eshipjetModel");
+                if (oContext) {
+                    var oData = oContext.getObject();
+                    oItem.setSelected(oData.visible === true);
+                }
+            });
+        },
+
         onShipReqExportToExcel: function () {
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var rows = eshipjetModel.getProperty("/RecentShipmentSetShipReqLabel");
@@ -6125,23 +6179,6 @@ sap.ui.define([
             });
         },
 
-
-        ShipReqColumnsVisiblity: function () {
-            var oView = oController.getView();
-            var oShipReqTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var aColumns = oShipReqTableModel.getProperty("/ShipReqColumns");
-            var oShipReqTable = oView.byId("myShipReqColumnSelectId");
-            var aTableItems = oShipReqTable.getItems();
-
-            aColumns.map(function (oColObj) {
-                aTableItems.map(function (oItem) {
-                    if (oColObj.name === oItem.getBindingContext("eshipjetModel").getObject().name && oColObj.visible) {
-                        oItem.setSelected(true);
-                    }
-                });
-            });
-        },
-
         onShipReqColNameSearch: function (oEvent) {
             var aFilters = [];
             var sQuery = oEvent.getSource().getValue();
@@ -6158,7 +6195,7 @@ sap.ui.define([
 
         onoShipReqColSelectOkPress: function () {
             var oView = this.getView()
-            var oShipReqTable = oView.byId("myShipReqColumnSelectId");
+            var oShipReqTable = Fragment.byId(oView.getId(), "myShipReqColumnSelectId");
             var eshipjetModel = oView.getModel("eshipjetModel");
             var oShipReqTblItems = oShipReqTable.getItems();
             // var aColumnsData = ShipReqTableDataModel.getProperty("/ShipReqColumns");
@@ -6181,6 +6218,7 @@ sap.ui.define([
                 oPopover.close();
             });
         },
+
         onShipReqColSelectClosePress: function () {
             this._pShipReqPopover.then(function (oPopover) {
                 oPopover.close();
@@ -6850,24 +6888,24 @@ sap.ui.define([
                     return oPopover;
                 });
             }
+
             this._pTrackNowPopover.then(function (oPopover) {
-                oController.TrackNowColumnsVisiblity();
+                oController._syncTrackNowColumnSelections();
                 oPopover.openBy(oButton);
             });
         },
-
-        TrackNowColumnsVisiblity: function () {
-            var oTrackNowTableModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var aColumns = oTrackNowTableModel.getProperty("/TrackNowTableData/TrackNowColumns");
-            var oTrackNowTable = Fragment.byId(this.getView().getId(), "myTrackNowColumnSelectId");
-            var aTableItems = oTrackNowTable.getItems();
-
-            aColumns.map(function (oColObj) {
-                aTableItems.map(function (oItem) {
-                    if (oColObj.name === oItem.getBindingContext("eshipjetModel").getObject().name && oColObj.visible) {
-                        oItem.setSelected(true);
-                    }
-                });
+        
+        _syncTrackNowColumnSelections: function () {
+            var oTable = Fragment.byId(this.getView().getId(), "myTrackNowColumnSelectId");
+            if (!oTable) return;
+        
+            var aItems = oTable.getItems();
+            aItems.forEach(function (oItem) {
+                var oContext = oItem.getBindingContext("eshipjetModel");
+                if (oContext) {
+                    var oData = oContext.getObject();
+                    oItem.setSelected(oData.visible === true);
+                }
             });
         },
 
@@ -7023,6 +7061,93 @@ sap.ui.define([
         },
         
         
+        onTrackNowDateFilterChange: function (oEvent) {
+            var selectedKey = oEvent.getSource().getSelectedKey();
+            var today = new Date();
+            var aFilter = [];
+
+            if (selectedKey === "today") {
+                var start = new Date();
+                start.setHours(0, 0, 0, 0);
+                var end = new Date();
+                end.setHours(23, 59, 59, 999);
+
+                var dateFilter = new Filter({
+                    path: "DateAdded",
+                    operator: FilterOperator.BT,
+                    value1: start,
+                    value2: end
+                });
+                aFilter.push(dateFilter);
+            }
+
+            else if (selectedKey === "yesterday") {
+                var start = new Date();
+                start.setDate(start.getDate() - 1);
+                start.setHours(0, 0, 0, 0);
+                var end = new Date(start);
+                end.setHours(23, 59, 59, 999);
+
+                var dateFilter = new Filter({
+                    path: "DateAdded",
+                    operator: FilterOperator.BT,
+                    value1: start,
+                    value2: end
+                });
+                aFilter.push(dateFilter);
+            }
+
+            else if (selectedKey === "thisWeek") {
+                var start = new Date();
+                start.setDate(today.getDate() - today.getDay() + 1); // Monday
+                start.setHours(0, 0, 0, 0);
+                var end = new Date(start);
+                end.setDate(start.getDate() + 6); // Sunday
+                end.setHours(23, 59, 59, 999);
+
+                aFilter.push(new Filter({
+                    path: "DateAdded",
+                    operator: FilterOperator.BT,
+                    value1: start,
+                    value2: end
+                }));
+            }
+
+            else if (selectedKey === "lastWeek") {
+                var start = new Date();
+                start.setDate(today.getDate() - today.getDay() - 6); // Previous Monday
+                start.setHours(0, 0, 0, 0);
+                var end = new Date(start);
+                end.setDate(start.getDate() + 6); // Previous Sunday
+                end.setHours(23, 59, 59, 999);
+
+                aFilter.push(new Filter({
+                    path: "DateAdded",
+                    operator: FilterOperator.BT,
+                    value1: start,
+                    value2: end
+                }));
+            }
+
+            else if (selectedKey === "thisMonth") {
+                var start = new Date(today.getFullYear(), today.getMonth(), 1);
+                start.setHours(0, 0, 0, 0);
+                var end = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+                end.setHours(23, 59, 59, 999);
+
+                aFilter.push(new Filter({
+                    path: "DateAdded",
+                    operator: FilterOperator.BT,
+                    value1: start,
+                    value2: end
+                }));
+            }
+
+            var orderTable = this.byId("idTrackNowTable");
+            var oBindings = orderTable.getBinding("rows");
+            oBindings.filter(aFilter);
+            eshipjetModel.setProperty("/trackNowSelectedFilter", selectedKey);
+        },
         
         
         
@@ -8161,8 +8286,8 @@ sap.ui.define([
                     eshipjetModel.setProperty("/shipReqShippedCount", shipReqShippedCount);
                     eshipjetModel.setProperty("/shipReqCancelledCount", shipReqCancelledCount);
                     eshipjetModel.setProperty("/shipReqOpenCount", shipReqOpenCount);
-
-                    var oTable = oController.getView().byId("idShipReqsTable");
+                    
+                    var oTable = Fragment.byId(oController.getView().getId(), "idShipReqsTable");
                     var oBinding = oTable.getBinding("rows");
                     oBinding.filter([]);
 
@@ -8179,7 +8304,7 @@ sap.ui.define([
             var aFilterId = oEvent.getSource().getId().split("--");
             var oText = aFilterId[aFilterId.length-1];
             var oFilterText;
-            var oTable = oController.getView().byId("idShipReqsTable");
+            var oTable = Fragment.byId(this.getView().getId(), "idShipReqsTable");
             var oBinding = oTable.getBinding("rows");
             
             if(oText === "idShipReqShippedBtn"){

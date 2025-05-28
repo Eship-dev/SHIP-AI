@@ -17,9 +17,18 @@
 					<Text text=" Days" class="sapUiTinyMarginBegin sapUiTinyMarginTop Orders_PageTitle ordersTextColor"/>
 				</HBox>
 				<ToolbarSpacer />
-					<Text text="11/23/2024 - 11/29/2024" class=" sapUiTinyMarginBottom sapUiTinyMarginTop sapUiTinyMarginEnd TrackNowColor_PageTitle TrackNowTextColor " width="270px"></Text>
+					<ComboBox id="trackNowDateFilterComboBox" class="create-ship-req_input sapUiTinyMarginEnd" 
+						placeholder="Select Date Filter"
+						items="{eshipjetModel>/ordersFilterData}"
+						selectedKey="{dateFilterModel>/trackNowSelectedFilter}"
+						selectionChange="onTrackNowDateFilterChange" >
+						<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
+					</ComboBox>
 		</Toolbar>
 
+	<Panel expandable="true" expanded="true" width="auto" >
+		<content>
+		
 		<Toolbar height="15%" class="whiteBackground"  >
 			<HBox width="100%" >
 				<VBox class="sapUiTinyMargin" width="25%">
@@ -45,6 +54,10 @@
 				</VBox>
 			</HBox>
 		</Toolbar>
+
+		</content>
+	</Panel>
+		
 		
 	<VBox class="whiteBackground sapUiTinyMarginTop" >
 	<Toolbar  class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd" >

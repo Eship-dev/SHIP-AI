@@ -7834,18 +7834,8 @@
         },
         {
             "name": "CarrierDesc",
-            "label": "Ship Description",
-            "visible": false
-        },
-        {
-            "name": "CarrierDesc",
             "label": "Service Name",
             "visible": true
-        },
-        {
-            "name": "TrackingNumber",
-            "label": "Master Tracking Number",
-            "visible": false
         },
         {
             "name": "TrackingNumber",
@@ -7878,11 +7868,6 @@
             "visible": false
         },
         {
-            "name": "RecCity",
-            "label": "Ship To City",
-            "visible": false
-        },
-        {
             "name": "RecPostalcode",
             "label": "Ship To Zip / Postal Code",
             "visible": false
@@ -7900,11 +7885,6 @@
         {
             "name": "Emailaddress",
             "label": "Ship To Email",
-            "visible": false
-        },
-        {
-            "name": "RecContact",
-            "label": "Requestor Name",
             "visible": false
         },
         {
@@ -9805,7 +9785,7 @@
         { "key": "lastWeek", "text": "Last Week" },
         { "key": "thisMonth", "text": "This Month" }
     ],
-    "ordersSelectedFilter":""
-    
+    "ordersSelectedFilter":"",
+    "trackNowSelectedFilter":""
       
 }

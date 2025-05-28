@@ -9,13 +9,17 @@
     xmlns:dnd="sap.ui.core.dnd"
 	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" >
 
-	<VBox class="whiteBackground" >
-		<Toolbar width="auto" height="15%" class="toolbarbottomborder" >
+	<!-- <VBox > -->
+		<Toolbar width="auto" height="4rem" >
 			<Text text="Ship Requests / Labels" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiSmallMarginBottom toolBarHeader" ></Text>
 				<ToolbarSpacer />
-					<Button text="Create Ship Request / Label" class="ship-req-toolbar__button sapUiTinyMargin" width="200px" press="onCreateShipReqLabelPress" ></Button>
+					<Button text="Create Ship Request / Label" class="ship-req-toolbar__button" width="200px" press="onCreateShipReqLabelPress" ></Button>
 		</Toolbar>
-		<Toolbar height="25%" >
+
+	<Panel expandable="true" expanded="true" width="auto" >
+		<content>
+
+		<Toolbar height="25%" class="whiteBackground" >
 			<HBox width="100%">
 				<VBox class="sapUiTinyMargin" width="27%" >
 					<Text text="{eshipjetModel>/allshipReqLength}" class="NumberSizeTitle1"></Text>
@@ -39,7 +43,11 @@
 				</VBox>
 			</HBox>
 		</Toolbar>
-	</VBox>
+
+		</content>
+	</Panel>
+
+	<!-- </VBox> -->
         <!-- <ui:Table id="idShipReqsTable"
                 class="sapUiTinyMarginTop"
 				rows="{eshipjetModel>/Orderitems}"
@@ -77,7 +85,7 @@
 			<Toolbar  class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd" >
 				<Button icon="sap-icon://filter" press="onShipReqFilterPopoverPress" type="Transparent" class="ordersIcons" ></Button>
 				<ToolbarSpacer />
-				<SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" search="onSearchTrack" ></SearchField>
+				<SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" search="onSearchShipReqLabel" ></SearchField>
 				<Button icon="sap-icon://synchronize" press="getShipReqLabelHistoryShipments" type="Transparent" class="ordersIcons" ></Button>
 				<Button icon="sap-icon://action" press="onShipReqExportToExcel" type="Transparent" class="ordersIcons" ></Button>
 				<Button icon="sap-icon://action-settings" press="openShipReqColNamesPopover" type="Transparent" class="ordersIcons" ></Button>
@@ -86,7 +94,7 @@
 
 		<ui:Table
 							id="idShipReqsTable"
-							rows="{eshipjetModel>/pagedShipReqs}"
+							rows="{eshipjetModel>/RecentShipmentSetShipReqLabel}"
 							class="sapUiSmallMarginBegin sapUiSmallMarginEnd rowRightLine ordersTableRightBorder"
 							selectionMode="None"
 							visibleRowCount="14" >
@@ -118,16 +126,16 @@
 										<Text text="{eshipjetModel>RecCity}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column sortProperty="Consolidation" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '10rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/2/visible}">
+								<ui:Column sortProperty="Consolidation" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '10rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/2/visible}" >
 									<Label text="Consolidation Id" />
 									<ui:template>
 										<Text text="{eshipjetModel>Consolidation}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column sortProperty="requestIdLabelId" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '13rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/3/visible}" >
+								<ui:Column sortProperty="Vbeln" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '13rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/3/visible}" >
 									<Label text="Delivery/handling Requests" />
 									<ui:template>
-										<Text text="{eshipjetModel>requestIdLabelId}" wrapping="false" />
+										<Text text="{eshipjetModel>Vbeln}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column sortProperty="" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '4rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/4/visible}" >
@@ -165,13 +173,13 @@
 										</HBox> -->
 									</ui:template>
 								</ui:Column>
-								<ui:Column sortProperty="CarrierDesc" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/9/visible}" >
+								<!-- <ui:Column sortProperty="CarrierDesc" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/9/visible}" >
 									<Label text="Ship Description" />
 									<ui:template>
 										<Text text="{eshipjetModel>CarrierDesc}" wrapping="false" />
 									</ui:template>
-								</ui:Column>
-								<ui:Column sortProperty="CarrierDesc" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/10/visible}" >
+								</ui:Column> -->
+								<ui:Column sortProperty="CarrierDesc" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/9/visible}" >
 									<Label text="Service Name" />
 									<ui:template>
 										<Text text="{eshipjetModel>CarrierDesc}" wrapping="false" />
@@ -179,109 +187,109 @@
 								</ui:Column>
 
 
-								<ui:Column sortProperty="TrackingNumber" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '13rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/11/visible}" >
+								<!-- <ui:Column sortProperty="TrackingNumber" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '13rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/11/visible}" >
 									<Label text="Master Tracking Number" />
 									<ui:template>
 										<Link text="{eshipjetModel>TrackingNumber}" press="onTrackingNumberPress" wrapping="false" />
 									</ui:template>
-								</ui:Column>
-								<ui:Column sortProperty="TrackingNumber" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '10rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/12/visible}" >
+								</ui:Column> -->
+								<ui:Column sortProperty="TrackingNumber" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '10rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/10/visible}" >
 									<Label text="Tracking Number" />
 									<ui:template>
 										<Link text="{eshipjetModel>TrackingNumber}" press="onTrackingNumberPress" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column sortProperty="DeliveryStatus" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/13/visible}" >
+								<ui:Column sortProperty="" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/11/visible}" >
 									<Label text="Quote Status" />
 									<ui:template>
-										<Text text="{eshipjetModel>DeliveryStatus}" wrapping="false" />
+										<Text text="" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column sortProperty="RecContact" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '10rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/14/visible}" >
+								<ui:Column sortProperty="RecContact" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '10rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/12/visible}" >
 									<Label text="Ship To Contact" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecContact}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column sortProperty="RecCompany" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '10rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/15/visible}" >
+								<ui:Column sortProperty="RecCompany" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '10rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/13/visible}" >
 									<Label text="Ship To Company" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecCompany}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column sortProperty="RecAddress1" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '10rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/16/visible}" >
+								<ui:Column sortProperty="RecAddress1" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '10rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/14/visible}" >
 									<Label text="Ship To Address Line 1" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecAddress1}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column sortProperty="RecRegion" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '10rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/17/visible}" >
+								<ui:Column sortProperty="RecRegion" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '10rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/15/visible}" >
 									<Label text="Ship To State / Province" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecRegion}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column sortProperty="RecCity" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/18/visible}" >
+								<!-- <ui:Column sortProperty="RecCity" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/18/visible}" >
 									<Label text="Ship To City" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecCity}" wrapping="false" />
 									</ui:template>
-								</ui:Column>
-								<ui:Column sortProperty="RecPostalcode" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '10rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/19/visible}" >
+								</ui:Column> -->
+								<ui:Column sortProperty="RecPostalcode" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '10rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/16/visible}" >
 									<Label text="Ship To Zip / Postal Code" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecPostalcode}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column sortProperty="RecCountry" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/19/visible}" >
+								<ui:Column sortProperty="RecCountry" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/17/visible}" >
 									<Label text="Ship To Country" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecCountry}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column sortProperty="RecPhone" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '10rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/20/visible}" >
+								<ui:Column sortProperty="RecPhone" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '10rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/18/visible}" >
 									<Label text="Ship To Phone No" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecPhone}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column sortProperty="Emailaddress" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/21/visible}" >
+								<ui:Column sortProperty="Emailaddress" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/19/visible}" >
 									<Label text="Ship To Email" />
 									<ui:template>
 										<Text text="{eshipjetModel>Emailaddress}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column sortProperty="RecContact" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/22/visible}" >
+								<!-- <ui:Column sortProperty="RecContact" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/23/visible}" >
 									<Label text="Requester Name" />
 									<ui:template>
 										<Text text="{eshipjetModel>RecContact}" wrapping="false" />
 									</ui:template>
-								</ui:Column>
-								<ui:Column sortProperty="" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/23/visible}" >
+								</ui:Column> -->
+								<ui:Column sortProperty="" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/20/visible}" >
 									<Label text="Connected To" />
 									<ui:template>
-										<Text text="{}" wrapping="false" />
+										<Text text="" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column sortProperty="DeliveryStatus" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/24/visible}" >
+								<ui:Column sortProperty="Shipprocess" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/21/visible}" >
 									<Label text="Status" />
 									<ui:template>
 										<Text text="{path: 'eshipjetModel>Shipprocess', formatter: '.formatter.formatShipmentType'}" wrapping="false" class="ordersSmallText" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column sortProperty="Packagetype" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/25/visible}" >
+								<ui:Column sortProperty="Packagetype" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '8rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/22/visible}" >
 									<Label text="Order Type" />
 									<ui:template>
 										<Text text="{eshipjetModel>Packagetype}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column sortProperty="RFID" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '5rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/26/visible}" >
+								<ui:Column sortProperty="RFID" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '5rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/23/visible}" >
 									<Label text="RFID" />
 									<ui:template>
-										<Text text="{}" wrapping="false" />
+										<Text text="" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '10rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/27/visible}" >
+								<ui:Column width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '10rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/24/visible}" >
 									<Label text="Shipment Workflow" />
 									<ui:template>
 									<VBox justifyContent="Center" alignItems="Center">
