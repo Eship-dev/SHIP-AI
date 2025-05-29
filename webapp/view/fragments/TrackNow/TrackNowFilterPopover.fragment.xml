@@ -5,6 +5,7 @@
 	xmlns:core="sap.ui.core">
 	<Popover
 		contentWidth="60%"
+		showArrow="false"
 		showHeader="false"
 		id="idTrackNowFilterPopover"
 		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"

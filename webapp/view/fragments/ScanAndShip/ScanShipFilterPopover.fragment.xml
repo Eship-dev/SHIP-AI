@@ -20,11 +20,11 @@
 				<Button
 					text="Reset"
 					type="Ghost"
-					press="onScanShipFilterResetPress" />
+					press="onScanAndShipFilterResetPress" />
 					<ToolbarSpacer/>
                 <Button
 					text="Apply"
-					type="Success"
+					type="Ghost"
 					press="onScanShipFilterApplyPress" />
 			</OverflowToolbar>
 		</footer>

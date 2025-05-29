@@ -238,12 +238,12 @@
 				<Text text="{eshipjetModel>/TodayShipmentsLength}" class="todayscssNumber sapUiTinyMarginBegin " />
 			</HBox>
 			<ToolbarSpacer/>
-				<Button  text="First" enabled="false" type="Transparent" />
-				<Button  text="Previous" enabled="false" type="Transparent" />
-				<Text    text="1-50 of 74" />
-				<Button  text="Next" type="Transparent" />
-				<Button  text="Last" type="Transparent" />
-		</Toolbar>
+			  	<Button text="First" type="Transparent" press=".onScanShipFirstPage" enabled="{eshipjetModel>/ScanShipFirstVisible}" />
+				<Button text="Previous" type="Transparent" press=".onScanShipPreviousPage" enabled="{eshipjetModel>/ScanShipPrevVisible}" />
+				<Text id="paginationTextScanShip" text="{eshipjetModel>/ScanShipPaginationText}" />
+				<Button text="Next" type="Transparent" press=".onScanShipNextPage" enabled="{eshipjetModel>/ScanShipNextVisible}" />
+				<Button text="Last" type="Transparent" press=".onScanShipLastPage" enabled="{eshipjetModel>/ScanShipLastVisible}" />
+			</Toolbar>
 
 
 </core:FragmentDefinition>

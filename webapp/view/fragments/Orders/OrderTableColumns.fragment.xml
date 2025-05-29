@@ -1,7 +1,7 @@
 <core:FragmentDefinition
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
-	<Popover id="orderColumnsPopover" contentWidth="20%" contentHeight="40%" placement="Left">
+	<Popover id="orderColumnsPopover" contentWidth="20%" contentHeight="40%" placement="Left" showArrow="false">
 		<customHeader>
 			<VBox>
 				<Toolbar class="toolbarbottomborder">
@@ -9,7 +9,7 @@
 					<ToolbarSpacer/>
 					<Button icon="sap-icon://decline" press="onOrderColSelectClosePress" class="Decline_Btn ship-now-decline_btn"/>
 				</Toolbar>
-				<SearchField placeholder="Search Columns" liveChange="onOrderColNameSearch"/>
+				<SearchField class="sapUiSmallMarginEnd sapUiTinyMarginBottom columnConfigSearch" placeholder="Search Columns" liveChange="onOrderColNameSearch"/>
 			</VBox>
 		</customHeader>
 

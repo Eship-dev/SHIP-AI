@@ -5100,10 +5100,10 @@ sap.ui.define([
         onScanShipFilterResetPress: function (oEvent) {
             this.byId("idScanAndShipPopover").close();
         },
-        onScanShipFilterApplyPress: function (oEvent) {
-            this.byId("idScanAndShipPopover").close();
-        },
-        onScanShipFilterPopoverApplyPress: function () {
+        // onScanShipFilterApplyPress: function (oEvent) {
+        //     this.byId("idScanAndShipPopover").close();
+        // },
+        onScanShipFilterApplyPress: function () {
             var aFilters = [];
             var oView = this.getView();
             var sLocation = eshipjetModel.getProperty("/ScanLoctionName");
@@ -5130,6 +5130,30 @@ sap.ui.define([
         
             this.byId("idScanShipFilterPopover").close();
         },
+        onScanAndShipFilterResetPress: function () {
+            var oView = this.getView();
+        
+            eshipjetModel.setProperty("/ScanLoctionName", "");
+            eshipjetModel.setProperty("/ScanCarrierFilter", "");
+            eshipjetModel.setProperty("/ScanShipmentStatusFilter", "");
+        
+            oView.byId("scanLocationComboId").setSelectedKey("");
+            oView.byId("scanCarrierComboId").setSelectedKey("");
+            oView.byId("scanStatusComboId").setSelectedKey("");
+        
+            // Clear filters
+            var oTable = oView.byId("idScanAndShipTable");
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter([]);
+                }
+            }
+            this.byId("idScanShipFilterPopover").close();
+        },
+        
+
+        
 
         onScanShipExportToExcel: function () {
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
