@@ -1754,36 +1754,40 @@ sap.ui.define([
                 "ShippingId": 4852,
                 "CarrierDetails": {
                     "Note": "",
-                    "PoNo": eshipjetModel.getProperty("/commonValues/PurchaseOrder"),
+                    "HazMat": [],
                     "UserId": id,
-                    "Carrier": carrier === 'FEDEX' ? 'FedEx' : carrier ,
+                    "Carrier": carrier === 'FEDEX' ? 'FedEx' : carrier,
+                    "Freight": "",
                     "MeterId": "",
                     "RateURL": "",
                     "ShipURL": "",
                     "VoidURL": "",
+                    "Custgrp2": "G01 3P-1 w Routing Guide",
                     "Password": password,
                     "TrackURL": "",
                     "AccessKey": AccessKey,
-                    "InvoiceNo": HandlingUnits[0].HandlingUnitExternalID,
-                    "CostCenter": null,
-                    "LocationId": "1001",
-                    "Reference1": sapDeliveryNumber,
+                    "LabelType": "ZPL",
+                    "ServiceID": eshipjetModel.getProperty("/commonValues/ShipNowShipsrvNameSelectedKey"),
+                    "Reference1": HandlingUnits[0].HandlingUnitExternalID,    
                     "Reference2": "",
                     "Reference3": "",
                     "Reference4": "",
-                    "costCenter": "",
+                    "SalesOrder": eshipjetModel.getProperty("/commonValues/SalesOrder"),
                     "CarrierType": "Parcel",
-                    "PaymentType": eshipjetModel.getProperty("/selectPaymentType"),
+                    "PaymentType": "Sender",
                     "ServiceName": eshipjetModel.getProperty("/carrierServiceCode_display"),
-                    "ERPCarrierID":  carrier === 'FEDEX' ? 'FedEx' : carrier ,
+                    "ERPCarrierID": carrier === 'FEDEX' ? 'FedEx' : carrier,
+                    "PurchaseOrder": eshipjetModel.getProperty("/commonValues/PurchaseOrder"),
                     "ShipToCountry": "",
+                    "StageLocation": "1001",
                     "BillingAccount": billingAccNumber,
                     "BillingCountry": oShipNowDataModel.getProperty("/ShipToAddress/Country"),
                     "BillingZipCode": oShipNowDataModel.getProperty("/ShipToAddress/PostalCode"),
                     "ConnectionType": "API",
                     "CostCenterName": "Cost Center 2",
                     "ShipfromCountry": "",
-                    "ShippingAccount": accountNumber
+                    "ShippingAccount": accountNumber,
+                    "ServiceNameMapping": eshipjetModel.getProperty("/carrierServiceCode_display")
                 },
                 "shiprequest_id": 5348,
                 "InternationalDetails": [],
@@ -1929,7 +1933,8 @@ sap.ui.define([
                                     //post to manifest service
                                     // oController.getManifestData(response);
                                     
-                                    oController.updateManifestHeaderSet();         
+                                    // oController.updateManifestHeaderSet();
+                                    oController.showLabelAfterShipmentSuccess(response);     
 
                                 }else if(response && response.status === "Error"){
                                     var sError = "Shipment process failed reasons:\n";
@@ -2933,27 +2938,7 @@ sap.ui.define([
                         currentObj = response.shippingDocuments[i];
                     }
                 }
-                // encodedLabel = response.shippingDocuments[0].docName;
-            }       
-            // localModel.setProperty("/encodedLabel", encodedLabel);        
-            // if (!this.byId("idAfterShipmentLabelDialog")) {
-            //     Fragment.load({
-            //         id: oView.getId(),
-            //         name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.AfterShipNowClickDialog",
-            //         controller: this
-            //     }).then(function (oDialog) {
-            //         oView.addDependent(oDialog);
-            //         oDialog.getContent()[0].getItems()[0].setSrc(encodedLabel);
-            //         oDialog.open();
-            //     });
-            // } else {
-            //     this.byId("idAfterShipmentLabelDialog").getContent()[0].getItems()[0].setSrc(encodedLabel);
-            //     this.byId("idAfterShipmentLabelDialog").open();
-            // }
-            // oController.onCloseBusyDialog();
-            
-
-            // var currentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
+            }
             var docName = currentObj.docName;
             this._contentType = currentObj.contentType;
             var oDialogContent;
@@ -2961,25 +2946,26 @@ sap.ui.define([
                 this._contentType = "Carrier Label";
             }
             this._dialogContent;
-                if(currentObj.docType.toUpperCase() === "PDF"){
+                
                     for(var i=0; i<shippingDocuments.length; i++) {
-                        var oIframe = new sap.ui.core.HTML({
-                                content: "<iframe src='"+ shippingDocuments[i].docName +"' width='500px' height='600px'></iframe>"
-                            })
-                        oCarousel.addPage(oIframe);
+                        if(shippingDocuments[i].docType.toUpperCase() === "PDF"){
+                            var oIframe = new sap.ui.core.HTML({
+                                    content: "<iframe src='"+ shippingDocuments[i].docName +"' width='500px' height='600px'></iframe>"
+                                })
+                            oCarousel.addPage(oIframe);
+                        }else{
+                            var oCarousel = new sap.m.Carousel({});
+                            // for(var i=0; i<shippingDocuments.length-1; i++) {
+                            var oImage = new sap.m.Image({
+                                src: shippingDocuments[i].docName,
+                                class: "sapUiSmallMargin",
+                                width: "500px",
+                                height: "620px"
+                            });
+                            oCarousel.addPage(oImage);
+                        // };
+                        this._dialogContent = oCarousel;
                     }
-                }else{
-                    var oCarousel = new sap.m.Carousel({});
-                    for(var i=0; i<shippingDocuments.length-1; i++) {
-                        var oImage = new sap.m.Image({
-                            src: shippingDocuments[i].docName,
-                            class: "sapUiSmallMargin",
-                            width: "500px",
-                            height: "620px"
-                        });
-                        oCarousel.addPage(oImage);
-                    };
-                    this._dialogContent = oCarousel;
                 }
                 var oDeclineButton = new sap.m.Button({
                     icon: "sap-icon://decline",
@@ -3007,6 +2993,8 @@ sap.ui.define([
                 this.getView().addDependent(this._oShipmentSuccessLabelDialog);
             //}
             this._oShipmentSuccessLabelDialog.open();
+            oController.onCloseBusyDialog();
+            // oController.updateManifestHeaderSet();
         },
         
         onShipmentLabelDialogClosePress: function () {
