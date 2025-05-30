@@ -4593,6 +4593,7 @@ sap.ui.define([
         
                         // Set the filtered results to the model
                         eshipjetModel.setProperty("/scanShipTableData2", filteredResults);
+                        eshipjetModel.setProperty("/TodayScanShipmentsLength", filteredResults.length);
                     }
                     oController.onCloseBusyDialog();
                 },
@@ -5749,9 +5750,8 @@ sap.ui.define([
             oModel.setProperty("/filteredOrders", oModel.getProperty("/allOrders"));
             oView.byId("idOrdersTable").bindRows("eshipjetModel>/filteredOrders");
         },
-        
-        
-        
+       
+     
         onOrderStstusBtnFilterPress: function (oEvent) {
             var oView = this.getView(); // Correct way
             var aFilterId = oEvent.getSource().getId().split("--");

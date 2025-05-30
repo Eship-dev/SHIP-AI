@@ -235,12 +235,13 @@
 				<Text text="Today's Shipments by " class="todayscss sapUiTinyMarginEnd sapUiSmallMarginBegin" />
 				<Text text="{eshipjetModel>/userName}" class="greenTexttoday" />
 				<Text text=":" class="todayscss" />
-				<Text text="{eshipjetModel>/TodayShipmentsLength}" class="todayscssNumber sapUiTinyMarginBegin " />
+				<Text text="{eshipjetModel>/TodayScanShipmentsLength}" class="todayscssNumber sapUiTinyMarginBegin " />
 			</HBox>
 			<ToolbarSpacer/>
 			  	<Button text="First" type="Transparent" press=".onScanShipFirstPage" enabled="{eshipjetModel>/ScanShipFirstVisible}" />
 				<Button text="Previous" type="Transparent" press=".onScanShipPreviousPage" enabled="{eshipjetModel>/ScanShipPrevVisible}" />
-				<Text id="paginationTextScanShip" text="{eshipjetModel>/ScanShipPaginationText}" />
+				<!-- <Text id="paginationTextScanShip" text="{eshipjetModel>/ScanShipPaginationText}" /> -->
+				<Text    text="1-25 of 50"/>
 				<Button text="Next" type="Transparent" press=".onScanShipNextPage" enabled="{eshipjetModel>/ScanShipNextVisible}" />
 				<Button text="Last" type="Transparent" press=".onScanShipLastPage" enabled="{eshipjetModel>/ScanShipLastVisible}" />
 			</Toolbar>
