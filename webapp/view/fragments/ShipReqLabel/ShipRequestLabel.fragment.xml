@@ -186,7 +186,6 @@
 									</ui:template>
 								</ui:Column>
 
-
 								<!-- <ui:Column sortProperty="TrackingNumber" width="{= ${eshipjetModel>/allshipReqLength} >= 15 ? '13rem' : 'auto' }" visible="{eshipjetModel>/ShipReqColumns/11/visible}" >
 									<Label text="Master Tracking Number" />
 									<ui:template>

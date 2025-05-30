@@ -1085,10 +1085,11 @@ sap.ui.define([
                 aFilters.push(filter);
             }
             // update list binding
-            var oList = oController.getView().byId("myShipNowPrdColumnSelectId");
+            var oList = Fragment.byId(this.getView().getId(), "myShipNowPrdColumnSelectId");
             var oBinding = oList.getBinding("items");
             oBinding.filter(aFilters, "Application");
         },
+
         onShipNowPrdColSelectOkPress: function () {
             const oTable = Fragment.byId(this.getView().getId(), "myShipNowPrdColumnSelectId");
             const oModel = this.getOwnerComponent().getModel("eshipjetModel");
@@ -1594,6 +1595,12 @@ sap.ui.define([
                 password = "Legacy!@3";
                 AccessKey= "JVG9SX85";
             }
+            var Notes = eshipjetModel.getProperty("/Notes")
+            Notes.push({
+                "date": new Date(),
+                "name": eshipjetModel.getProperty("/userName"),
+                "notes": "Shipped Successfully"
+            });
             var obj = {
                 "ShipTo": {
                     "id": 2,
@@ -1782,18 +1789,7 @@ sap.ui.define([
                 "InternationalDetails": [],
                 "ShipmentLevelSpecialServices": {},
                 "id": 5445,
-                "Notes": [
-                    {
-                        "date": "2025-02-11T11:59:00.720Z",
-                        "name": "info@eshipjet.ai",
-                        "notes": "Items are packed sucessfully"
-                    },
-                    {
-                        "date": "2025-02-11T11:59:00.159Z",
-                        "name": "info@eshipjet.ai",
-                        "notes": "Ship request created successfully"
-                    }
-                ]
+                "Notes": Notes
             };
 
             var packObj = obj.Packages[0];
@@ -1850,7 +1846,7 @@ sap.ui.define([
                                                 var serviceName = serviceNameDropdown[i].serviceName;
                                             }
                                         }
-                                        
+                                // Below code is for Tracking   
                                         for(var i=0; i<response.Packages.length; i++){
                                             var trackingObj = {
                                                 "COMPANY": response.Shipper.COMPANY,
@@ -1883,24 +1879,28 @@ sap.ui.define([
                                     // if(response && response.shippingCharges && response.shippingCharges.length > 0 ){
                                     //     eshipjetModel.setProperty("/shippingCharges", response.shippingCharges);
                                     // }
+
+                            // Below code is for Documents
                                     if(response && response.shippingDocuments && response.shippingDocuments.length > 0 ){
                                         var shippingDocuments = response.shippingDocuments;
                                         var ashippingDocuments = [];
                                         for(var i=0; i<shippingDocuments.length; i++){
-                                            ashippingDocuments.push(
-                                                {
-                                                    "srNo": i+1,
-                                                    "contentType": shippingDocuments[i].contentType,
-                                                    "copiesToPrint": shippingDocuments[i].copiesToPrint,
-                                                    "docName": shippingDocuments[i].docName,
-                                                    "docProvider": shippingDocuments[i].docProvider,
-                                                    "docType": shippingDocuments[i].docType,
-                                                    "encodedLabel": shippingDocuments[i].encodedLabel,
-                                            })
+                                            if(shippingDocuments[i].docName !== ""){
+                                                ashippingDocuments.push(
+                                                    {
+                                                        "srNo": i+1,
+                                                        "contentType": shippingDocuments[i].contentType,
+                                                        "copiesToPrint": shippingDocuments[i].copiesToPrint,
+                                                        "docName": shippingDocuments[i].docName,
+                                                        "docProvider": shippingDocuments[i].docProvider,
+                                                        "docType": shippingDocuments[i].docType,
+                                                        "encodedLabel": shippingDocuments[i].encodedLabel,
+                                                })
+                                            }
                                         }
                                         eshipjetModel.setProperty("/shippingDocuments", ashippingDocuments);
                                     }
-
+                            // Below code is for Charges
                                     if(response && response.shippingCharges && response.shippingCharges.length > 0 ){
                                         var shippingCharges = response.shippingCharges;
                                         var oShippingCharges = [];
@@ -2934,7 +2934,7 @@ sap.ui.define([
                     }
                 }
                 // encodedLabel = response.shippingDocuments[0].docName;
-            }            
+            }       
             // localModel.setProperty("/encodedLabel", encodedLabel);        
             // if (!this.byId("idAfterShipmentLabelDialog")) {
             //     Fragment.load({
@@ -2962,9 +2962,12 @@ sap.ui.define([
             }
             this._dialogContent;
                 if(currentObj.docType.toUpperCase() === "PDF"){
-                    this._dialogContent = new sap.ui.core.HTML({
-                        content: "<iframe src='"+docName+"' width='500px' height='600px'></iframe>"
-                    });
+                    for(var i=0; i<shippingDocuments.length; i++) {
+                        var oIframe = new sap.ui.core.HTML({
+                                content: "<iframe src='"+ shippingDocuments[i].docName +"' width='500px' height='600px'></iframe>"
+                            })
+                        oCarousel.addPage(oIframe);
+                    }
                 }else{
                     var oCarousel = new sap.m.Carousel({});
                     for(var i=0; i<shippingDocuments.length-1; i++) {
@@ -3078,23 +3081,29 @@ sap.ui.define([
                 this._contentType = "Carrier Label";
             }
             this._dialogContent;
+            var oCarousel = new sap.m.Carousel({});
                 if(currentObj.docType.toUpperCase() === "PDF"){
-                    this._dialogContent = new sap.ui.core.HTML({
-                        content: "<iframe src='"+docName+"' width='500px' height='600px'></iframe>"
-                    })
-                }else{
-                    var oCarousel = new sap.m.Carousel({});
+                    for(var i=0; i<tepmShippingDocs.length; i++) {
+                        var oIframe = new sap.ui.core.HTML({
+                                content: "<iframe src='"+ tepmShippingDocs[i].docName +"' width='500px' height='600px'></iframe>"
+                            })
+                        oCarousel.addPage(oIframe);
+                    }
+                }else if(currentObj.docType.toUpperCase() === "PNG"){
                     for(var i=0; i<tepmShippingDocs.length; i++) {
                         var oImage = new sap.m.Image({
-                        class: "sapUiSmallMargin",
-                        src: tepmShippingDocs[i].docName,
-                        width: "500px",
-                        height: "620px"
-                    });
-                    oCarousel.addPage(oImage);
-                };
-                this._dialogContent = oCarousel;
+                            class: "sapUiSmallMargin",
+                            src: tepmShippingDocs[i].docName,
+                            width: "500px",
+                            height: "620px"
+                        });
+                        oCarousel.addPage(oImage);
+                    }
+                }else{
+                    sap.m.MessageToast.show(currentObj.contentType + " doesn't exist");
+                    return
                 }
+                this._dialogContent = oCarousel;
                 var oDeclineButton = new sap.m.Button({
                     icon: "sap-icon://decline",
                     class: "Decline_Btn ship-now-decline_btn",
@@ -3771,6 +3780,14 @@ sap.ui.define([
         },
 
         onPackPress:function(){
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            var Notes = eshipjetModel.getProperty("/Notes")
+            Notes.push({
+                "date": new Date(),
+                "name": eshipjetModel.getProperty("/userName"),
+                "notes": "Items are packed sucessfully"
+            });
+
             var productTable = this.byId("idShipNowPackTable");
             var selectedItems = productTable.getSelectedIndices();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
@@ -3877,6 +3894,13 @@ sap.ui.define([
         },
 
         onPackAllPress:function(){
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            var Notes = eshipjetModel.getProperty("/Notes")
+            Notes.push({
+                "date": new Date(),
+                "name": eshipjetModel.getProperty("/userName"),
+                "notes": "Items are packed sucessfully"
+            });
             var productTable = this.byId("idShipNowPackTable");
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var packAddProductTable = eshipjetModel.getProperty("/commonValues/packAddProductTable");
@@ -8394,9 +8418,6 @@ sap.ui.define([
 
         },
 
-
-
-
         handlePopoverListItemPress: function (oEvent) {
             var oHeader = $(".sapTntToolHeader.sapMTBStandard");
             oHeader.removeClass("customHeaderStyle");
@@ -12868,26 +12889,8 @@ sap.ui.define([
 
            
             oTable.removeSelections(true);
-            oController.byId("_IDGenAlcoholEditDialogshipnow").close();
+            this.byId("_IDGenAlcoholEditDialogshipnow").close();
         },
-        
-
-        onShipToPickAnAddressSelectPress: function () {
-            var ShipNowDataModel = this.getView().getModel("ShipNowDataModel");
-            var shipNowBtnId = ShipNowDataModel.getProperty("/shipNowBtnId");
-            var oShipToTable = this.getView().byId("idShipToAddressTable");
-            var oSelectedItem = oShipToTable.getSelectedItem();
-            var oContext = oSelectedItem.getBindingContext();
-            var oSelectedData = oContext.getObject();
-            var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
-            ShipNowDataModel.setProperty("/ShipToAddress", oSelectedData);
-            // var oAddressModel = new JSONModel(oSelectedData);
-            // this.getView().setModel(oAddressModel, "oAddressModel");
-            oShipToTable.removeSelections(true);
-            this.byId("idShipToPickAnAddressPopover").close();
-        },
-
-      
 
             ShipToPickAnAddressPopoverPress: function() {
                 var oView = this.getView();
@@ -12928,16 +12931,8 @@ sap.ui.define([
 
            
             oShipToTable.removeSelections(true);
-            oController.byId("_IDGenAlcoholEditDialogshipnowTo").close();
+            this.byId("_IDGenAlcoholEditDialogshipnowTo").close();
         },
-
-
-
-        
-
-
-        
-
 
         // add ShipNowPlusIcon popover changes start
         onShipNowAddIconPress: function (oEvent) {

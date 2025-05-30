@@ -20,7 +20,7 @@
             <f:SimpleForm editable="true"
                           width="auto"
                           layout="ColumnLayout"
-                          columnsM="3"
+                          columnsM="2"
                           columnsL="3"
                           columnsXL="3">
                 <f:content>
@@ -67,7 +67,7 @@
 
         <footer>
             <OverflowToolbar class="sapMPopoverFooter1">
-                <Button text="Cancel" press="onCloseSerialNumDialog" class="Decline_Btn ship-now-decline_btn" type="Ghost" />
+                <Button text="Cancel" press="onCloseSerialNumDialog" class="Decline_Btn ship-now-decline_btn" type="Transparent" />
             </OverflowToolbar>
         </footer>
 

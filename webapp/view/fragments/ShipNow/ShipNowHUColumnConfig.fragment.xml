@@ -1,7 +1,7 @@
 <core:FragmentDefinition
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
-	<Popover  contentWidth="15%" placement="Auto" contentHeight="25%">
+	<Popover  contentWidth="18%" placement="Auto" contentHeight="25%" showArrow="false" >
 		<customHeader>
 			<VBox >
 				<Toolbar class="toolbarbottomborder">
@@ -9,7 +9,7 @@
 					<ToolbarSpacer ></ToolbarSpacer>					
 					<Button icon="sap-icon://decline" press="onShipNowHUColumnConfigSelectClosePress" class="Decline_Btn ship-now-decline_btn" ></Button>
 				</Toolbar>
-				<SearchField placeholder="Search Columns"   liveChange="onShipNowHUColumnConfigNameSearch"></SearchField>
+				<SearchField placeholder="Search Columns" class="sapUiSmallMarginEnd sapUiTinyMarginBottom columnConfigSearch" liveChange="onShipNowHUColumnConfigNameSearch"></SearchField>
 			</VBox>
 		</customHeader>
 		<content>
