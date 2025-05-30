@@ -1441,20 +1441,20 @@ sap.ui.define([
                             new sap.ui.model.Filter("Plant", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("RecCity", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("Vbeln", sap.ui.model.FilterOperator.Contains, sQuery),
-                            new sap.ui.model.Filter("Createddate", sap.ui.model.FilterOperator.Contains, sQuery),
-                            new sap.ui.model.Filter("DateAdded", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("Createddate", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("DateAdded", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("Carriertype", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("CarrierCode", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("CarrierDesc", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("TrackingNumber", sap.ui.model.FilterOperator.Contains, sQuery),
-                            new sap.ui.model.Filter("DeliveryStatus", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("DeliveryStatus", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("RecContact", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("RecCompany", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("RecAddress1", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("RecRegion", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("RecPostalcode", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("RecCountry", sap.ui.model.FilterOperator.Contains, sQuery),
-                            new sap.ui.model.Filter("RecPhone", sap.ui.model.FilterOperator.Contains, sQuery),
+                            // new sap.ui.model.Filter("RecPhone", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("Emailaddress", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("Shipprocess", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("Packagetype", sap.ui.model.FilterOperator.Contains, sQuery)
@@ -8156,8 +8156,67 @@ sap.ui.define([
             });
         },
 
-       
-        
+                    // Setup ShipReq Pagination
+                    setupShipReqPagination: function () {
+                        const oModel = this.getView().getModel("eshipjetModel");
+                        const allShipReqs = oModel.getProperty("/RecentShipmentSetShipReqLabel") || [];
+                    
+                        this._pageSize = 50;
+                        this._shipReqCurrentPage = 1;
+                        this._shipReqTotalItems = allShipReqs.length;
+                        this._shipReqTotalPages = Math.ceil(this._shipReqTotalItems / this._pageSize);
+                    
+                        this._updateShipReqPagedData();
+                    },
+                    
+
+                    _updateShipReqPagedData: function () {
+                        const oModel = this.getView().getModel("eshipjetModel");
+                        const allShipReqs = oModel.getProperty("/RecentShipmentSetShipReqLabel") || [];
+                    
+                        const startIndex = (this._shipReqCurrentPage - 1) * this._pageSize;
+                        const endIndex = Math.min(startIndex + this._pageSize, allShipReqs.length);
+                        const pagedData = allShipReqs.slice(startIndex, endIndex);
+                    
+                        oModel.setProperty("/ShipReqPagedData", pagedData);
+                        oModel.setProperty("/ShipReqPaginationText", `${startIndex + 1}-${endIndex} of ${allShipReqs.length}`);
+                    
+                        const isFirstPage = this._shipReqCurrentPage === 1;
+                        const isLastPage = this._shipReqCurrentPage === this._shipReqTotalPages;
+                    
+                        oModel.setProperty("/ShipReqFirstVisible", !isFirstPage);
+                        oModel.setProperty("/ShipReqPrevVisible", !isFirstPage);
+                        oModel.setProperty("/ShipReqNextVisible", !isLastPage);
+                        oModel.setProperty("/ShipReqLastVisible", !isLastPage);
+                    },
+                    
+
+
+                onShipReqFirstPage: function () {
+                    this._shipReqCurrentPage = 1;
+                    this._updateShipReqPagedData();
+                },
+
+                onShipReqPreviousPage: function () {
+                    if (this._shipReqCurrentPage > 1) {
+                        this._shipReqCurrentPage--;
+                        this._updateShipReqPagedData();
+                    }
+                },
+
+                onShipReqNextPage: function () {
+                    if (this._shipReqCurrentPage < this._shipReqTotalPages) {
+                        this._shipReqCurrentPage++;
+                        this._updateShipReqPagedData();
+                    }
+                },
+
+                onShipReqLastPage: function () {
+                    this._shipReqCurrentPage = this._shipReqTotalPages;
+                    this._updateShipReqPagedData();
+                },
+
+        // Setup Orders Pagination
         setupPagination: function () {
             const oModel = this.getView().getModel("eshipjetModel");
             this._totalItems = oModel.getProperty("/allOrders")?.length || 0;
@@ -8387,6 +8446,9 @@ sap.ui.define([
             
                     // Set the filtered, sorted data to the model
                     eshipjetModel.setProperty("/RecentShipmentSetShipReqLabel", last50Records);
+                    // eshipjetModel.setProperty("/RecentShipmentSetShipReqLabel", aData);
+                    oController.setupShipReqPagination();
+
                     eshipjetModel.setProperty("/allshipReqLength", last50Records.length);
                     eshipjetModel.setProperty("/shipReqShippedCount", shipReqShippedCount);
                     eshipjetModel.setProperty("/shipReqCancelledCount", shipReqCancelledCount);

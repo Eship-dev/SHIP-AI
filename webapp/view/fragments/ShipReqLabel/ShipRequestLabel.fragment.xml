@@ -94,7 +94,7 @@
 
 		<ui:Table
 							id="idShipReqsTable"
-							rows="{eshipjetModel>/RecentShipmentSetShipReqLabel}"
+							rows="{eshipjetModel>/ShipReqPagedData}"
 							class="sapUiSmallMarginBegin sapUiSmallMarginEnd rowRightLine ordersTableRightBorder"
 							selectionMode="None"
 							visibleRowCount="14" >
@@ -312,12 +312,13 @@
 						</ui:Table>
 			</VBox>
 								<Toolbar class="whiteBackground sapUiTinyMarginTop trackNowTableFooter">
-									<ToolbarSpacer/>
-									<Button text="First" type="Transparent" press=".onShipReqFirstPage" enabled="{eshipjetModel>/ShipReqFirstVisible}" />
-									<Button text="Previous" type="Transparent" press=".onShipReqPreviousPage" enabled="{eshipjetModel>/ShipReqPrevVisible}" />
-									<Text id="paginationTextShipReq" text="1-50 of 0" />
-									<Button text="Next" type="Transparent" press=".onShipReqNextPage" enabled="{eshipjetModel>/ShipReqNextVisible}" />
-									<Button text="Last" type="Transparent" press=".onShipReqLastPage" enabled="{eshipjetModel>/ShipReqLastVisible}" />
+								<ToolbarSpacer ></ToolbarSpacer>
+									<Button text="First" press=".onShipReqFirstPage" type="Transparent" enabled="{eshipjetModel>/ShipReqFirstVisible}" />
+<Button text="Previous" press=".onShipReqPreviousPage" type="Transparent" enabled="{eshipjetModel>/ShipReqPrevVisible}" />
+<Text id="paginationTextShipReq" text="{eshipjetModel>/ShipReqPaginationText}" />
+<Button text="Next" press=".onShipReqNextPage" type="Transparent" enabled="{eshipjetModel>/ShipReqNextVisible}" />
+<Button text="Last" press=".onShipReqLastPage" type="Transparent" enabled="{eshipjetModel>/ShipReqLastVisible}" />
+
 								</Toolbar>
 
 </core:FragmentDefinition>
