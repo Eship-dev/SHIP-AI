@@ -276,6 +276,9 @@ sap.ui.define([
                 // this._handleDisplayShipReqTable();
                 oController.getShipReqLabelHistoryShipments();
             } else if (sKey === "ShipNow") {
+                jQuery.sap.delayedCall(500, this, function() {
+                    this.getView().byId("idSapDeliveryNumber").focus();
+                });
                 oController.onShipNowNavigateInitialProcess();
                 // ShipNowDataModel.setProperty("/ShipToAddress", "");
                 // oController._handleDisplayShipNowPackTable();
@@ -1542,8 +1545,8 @@ sap.ui.define([
             };
             eshipjetModel.setProperty("/commonValues", oCommonValues);        
             eshipjetModel.setProperty("/accountNumber", "");
-            jQuery.sap.delayedCall(500, oController, function() {
-                oController.getView().byId("idSapDeliveryNumber").focus();
+            jQuery.sap.delayedCall(500, this, function() {
+                this.getView().byId("idSapDeliveryNumber").focus();
             });
             oController.onPackSectionEmptyRows();            
             // oController.onCloseBusyDialog();
@@ -3046,8 +3049,8 @@ sap.ui.define([
             eshipjetModel.setProperty("/commonValues/PurchaseOrder" , "");
             eshipjetModel.setProperty("/selectPaymentType", "");
 
-            jQuery.sap.delayedCall(500, oController, function() {
-                oController.getView().byId("idSapDeliveryNumber").focus();
+            jQuery.sap.delayedCall(500, this, function() {
+                this.getView().byId("idSapDeliveryNumber").focus();
             });
             
             oController.onPackSectionEmptyRows();
@@ -5343,6 +5346,9 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", ""); 
                 eshipjetModel.setProperty("/commonValues/shipNowBtnStatus", true);
                 eshipjetModel.setProperty("/commonValues/showShipType", false);
+                jQuery.sap.delayedCall(500, this, function() {
+                    this.getView().byId("idSapDeliveryNumber").focus();
+                });
                 oController.onPackSectionEmptyRows();
                 oController.getTodayShipments();
                 // oController._handleDisplayShipNowPackTable();

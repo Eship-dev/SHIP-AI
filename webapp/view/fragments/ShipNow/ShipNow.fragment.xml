@@ -29,7 +29,7 @@
 
 						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn ship-now-decline_btn" type="Ghost" />
 				</Toolbar>
-							<Toolbar class="sapUiTinyMarginBottom scan-ship-toolbar1 " height="15%">
+							<Toolbar class="sapUiTinyMarginBottom scan-ship-toolbar1" height="15%">
 									<ComboBox class="create-ship-req_input sapUiTinyMargin sapUiSmallMarginBegin" width="16%" selectedKey="SAPS4HANAPrivate" >
 										<core:Item key="SAPS4HANAPublic" text="SAP S4 HANA Public Cloud Edition" />
 										<core:Item key="SAPS4HANAPrivate" text="SAP S4 HANA Private Cloud Edition" />	
@@ -44,6 +44,7 @@
 					<Button text="{eshipjetModel>/SAPDeliveryNo}"
 						class="sapUiTinyMargin"
 						type="Transparent"
+						width="10rem"
 						press="onOpenSAPDeliveryList" />
 
 									<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch" value="{eshipjetModel>/commonValues/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
