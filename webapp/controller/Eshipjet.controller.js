@@ -1769,7 +1769,7 @@ sap.ui.define([
                     "Password": password,
                     "TrackURL": "",
                     "AccessKey": AccessKey,
-                    "LabelType": "ZPL",
+                    // "LabelType": "ZPL",
                     "ServiceID": eshipjetModel.getProperty("/commonValues/ShipNowShipsrvNameSelectedKey"),
                     "Reference1": HandlingUnits[0].HandlingUnitExternalID,    
                     "Reference2": "",
@@ -2930,76 +2930,121 @@ sap.ui.define([
 
 
         showLabelAfterShipmentSuccess: function (response) {
+            var oController = this;
             var oView = this.getView();
-            var localModel = oView.getModel();
+            var oController = this;
+            var eshipjetModel = oView.getModel("eshipjetModel");
             var shippingDocuments = eshipjetModel.getProperty("/shippingDocuments");
-
-            var sDocName, encodedLabel, currentObj;
-            if(response && response.shippingDocuments && response.shippingDocuments.length > 0){
-                for(var i=0; i<response.shippingDocuments.length; i++){
-                    if(response.shippingDocuments[i].contentType === "Label"){
-                        currentObj = response.shippingDocuments[i];
+        
+            var oCarousel = new sap.m.Carousel({});
+            var hasZpl = false;
+            var zplData = "";
+        
+            // Loop through documents and handle PDF/PNG
+            for (var i = 0; i < shippingDocuments.length; i++) {
+                var doc = shippingDocuments[i];
+                var docType = doc.docType.toUpperCase();
+        
+                if (docType === "PDF") {
+                    var oIframe = new sap.ui.core.HTML({
+                        content: "<iframe src='" + doc.docName + "' width='500px' height='600px'></iframe>"
+                    });
+                    oCarousel.addPage(oIframe);
+                } else if (docType === "PNG") {
+                    var oImage = new sap.m.Image({
+                        src: doc.docName,
+                        class: "sapUiSmallMargin",
+                        width: "500px",
+                        height: "620px"
+                    });
+                    oCarousel.addPage(oImage);
+                } else if (docType === "ZPL") {
+                    hasZpl = true;
+                    // Assume ZPL is available in response (not model)
+                    for (var j = 0; j < response.shippingDocuments.length; j++) {
+                        if (response.shippingDocuments[j].contentType === "Label" && response.shippingDocuments[j].encodedLabel) {
+                            zplData = response.shippingDocuments[j].encodedLabel;
+                            break;
+                        }
                     }
                 }
             }
-            var docName = currentObj.docName;
-            this._contentType = currentObj.contentType;
-            var oDialogContent;
-            if (this._contentType === "Label") {
-                this._contentType = "Carrier Label";
-            }
-            this._dialogContent;
-                
-                    for(var i=0; i<shippingDocuments.length; i++) {
-                        if(shippingDocuments[i].docType.toUpperCase() === "PDF"){
-                            var oIframe = new sap.ui.core.HTML({
-                                    content: "<iframe src='"+ shippingDocuments[i].docName +"' width='500px' height='600px'></iframe>"
-                                })
-                            oCarousel.addPage(oIframe);
-                        }else{
-                            var oCarousel = new sap.m.Carousel({});
-                            // for(var i=0; i<shippingDocuments.length-1; i++) {
-                            var oImage = new sap.m.Image({
-                                src: shippingDocuments[i].docName,
-                                class: "sapUiSmallMargin",
-                                width: "500px",
-                                height: "620px"
-                            });
-                            oCarousel.addPage(oImage);
-                        // };
-                        this._dialogContent = oCarousel;
-                    }
-                }
-                var oDeclineButton = new sap.m.Button({
-                    icon: "sap-icon://decline",
-                    class: "Decline_Btn ship-now-decline_btn",
-                    type: "Transparent",
-                    press: function () {
-                        this.onShipmentLabelDialogClosePress();
-                    }.bind(this)
-                });
-                // **Create a toolbar as a custom header**
-                var oCustomHeader = new sap.m.Toolbar({
-                    content: [
-                        new sap.m.Title({ text: this._contentType, level: "H2" }),
-                        new sap.m.ToolbarSpacer(), // Pushes the Decline button to the right
-                        oDeclineButton
-                    ]
-                });
-            //if (!this._oShippingDocumentDialog) {
-                this._oShipmentSuccessLabelDialog = new Dialog({
+        
+            // Create header bar
+            var oDeclineButton = new sap.m.Button({
+                icon: "sap-icon://decline",
+                class: "Decline_Btn ship-now-decline_btn",
+                type: "Transparent",
+                press: function () {
+                    this.onShipmentLabelDialogClosePress();
+                }.bind(this)
+            });
+        
+            var oCustomHeader = new sap.m.Toolbar({
+                content: [
+                    new sap.m.Title({ text: "Carrier Label", level: "H2" }),
+                    new sap.m.ToolbarSpacer(),
+                    oDeclineButton
+                ]
+            });
+        
+            var openDialogWithCarousel = function () {
+                oController._dialogContent = oCarousel;
+                oController._oShipmentSuccessLabelDialog = new sap.m.Dialog({
                     customHeader: oCustomHeader,
                     contentWidth: "500px",
                     contentHeight: "620px",
-                    content: [this._dialogContent]
+                    content: [oController._dialogContent]
                 });
-                this.getView().addDependent(this._oShipmentSuccessLabelDialog);
-            //}
-            this._oShipmentSuccessLabelDialog.open();
-            oController.onCloseBusyDialog();
-            // oController.updateManifestHeaderSet();
+                oController.getView().addDependent(oController._oShipmentSuccessLabelDialog);
+                oController._oShipmentSuccessLabelDialog.open();
+                oController.onCloseBusyDialog();
+            };
+        
+            if (hasZpl && zplData) {
+                // Convert ZPL to PNG via Labelary
+                $.ajax({
+                    url: "https://api.labelary.com/v1/printers/8dpmm/labels/4x6/0/",
+                    type: "POST",
+                    data: zplData,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    processData: false,
+                    responseType: "arraybuffer",
+                    success: function (data) {
+                        var base64Image = oController.arrayBufferToBase64(data);
+                        var imageUrl = "data:image/png;base64," + base64Image;
+        
+                        var oImage = new sap.m.Image({
+                            src: imageUrl,
+                            width: "500px",
+                            height: "620px"
+                        });
+                        oCarousel.addPage(oImage);
+        
+                        openDialogWithCarousel(); // Show dialog after image is ready
+                    },
+                    error: function () {
+                        MessageBox.error("Error converting ZPL to image.");
+                        openDialogWithCarousel(); // Still show dialog with existing content
+                    }
+                });
+            } else {
+                openDialogWithCarousel(); // No ZPL, just open
+            }
         },
         
+        arrayBufferToBase64:function(buffer) {
+            var binary = '';
+            var bytes = new Uint8Array(buffer);
+            var len = bytes.byteLength;
+            for (var i = 0; i < len; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return window.btoa(binary);
+        },
+
         onShipmentLabelDialogClosePress: function () {
             oController._oShipmentSuccessLabelDialog.close();
             oController.onOpenBusyDialog(); 
@@ -3534,6 +3579,7 @@ sap.ui.define([
                                 ashippingDocuments.push(obj);
                             }
 
+                        if(aFilteredData[0].PackURL !== "" && aFilteredData[0].PackURL !== undefined){
                             var packObj = {
                                 "srNo": 2,
                                 "contentType": "Packing Slip",
@@ -3542,9 +3588,9 @@ sap.ui.define([
                                 "docProvider": "Eshipjet",
                                 "docType": aFilteredData[0].PackURL.split(".")[aFilteredData[0].PackURL.split(".").length-1],
                                 "docName": aFilteredData[0].PackURL,
-                        };
-                        tepmShippingDocs.push(packObj);
-
+                            };
+                            tepmShippingDocs.push(packObj);
+                        }
                         if(aFilteredData[0].BolURL !== "" && aFilteredData[0].BolURL !== undefined){    
                             var billOfLading = {
                                     "srNo": 3,
@@ -3557,7 +3603,7 @@ sap.ui.define([
                             }
                             tepmShippingDocs.push(billOfLading);
                         }
-  
+                        
                             eshipjetModel.setProperty("/shippingDocuments", tepmShippingDocs);
                             eshipjetModel.setProperty("/tepmShippingDocs", ashippingDocuments );
 
@@ -3858,8 +3904,8 @@ sap.ui.define([
                         oController.getHandlingUnit(aHandlingUnits);
 
                         var HandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
-                        for(var i=0; i<getManifestHeader.length; i++){
-                            if(getManifestHeader.length > 0){
+                        if(getManifestHeader.length > 0){
+                            for(var i=0; i<getManifestHeader.length; i++){
                                 HandlingUnits[i]["TrackingNumber"] = getManifestHeader[i].TrackingNumber;
                                 HandlingUnits[i]["CarrierCode"] = eshipjetModel.getProperty("/commonValues/ShipNowShipMethodSelectedKey");
                             }
@@ -13110,8 +13156,9 @@ sap.ui.define([
                 oController.ShipNowSearchDlg.open();
             }
         },
+
         onShipNowSearchDialogClosePress: function () {
-            oController.byId("idShipNowSearchDialog").close();
+            Fragment.byId(this.getView().getId(), "idShipNowSearchDialog").close();
         },
 
         handleConsolidationPress: function () {
@@ -13132,8 +13179,9 @@ sap.ui.define([
                 this._handleDisplayShipNowConsolidationTable();
             }
         },
+
         onConsolidationClosePress: function () {
-            this.byId("idShipNowConsolidationDialog").close();
+            Fragment.byId(oView.getId(), "idShipNowConsolidationDialog").close();
         },
         
 
