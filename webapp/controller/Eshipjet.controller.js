@@ -3033,6 +3033,7 @@ sap.ui.define([
             } else {
                 openDialogWithCarousel(); // No ZPL, just open
             }
+            // oController.updateManifestHeaderSet();
         },
         
         arrayBufferToBase64:function(buffer) {
