@@ -1312,6 +1312,7 @@ sap.ui.define([
             eshipjetModel.setProperty("/commonValues/PurchaseOrder" , "");
             eshipjetModel.setProperty("/selectPaymentType", "");
             eshipjetModel.setProperty("/invoiceNo", "");
+            eshipjetModel.setProperty("/shipNowShipFromInputStatus", false);
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             ShipNowDataModel.setProperty("/ShipToAddress", {});
 
@@ -1483,6 +1484,7 @@ sap.ui.define([
                 "ShipFromADDRESS_LINE2": "Suite 250",
                 "LocationType": "Commercial"
             };
+            eshipjetModel.setProperty("/shipNowShipFromInputStatus", false);
             ShipNowDataModel.setProperty("/ShipFromAddress", shipFromObj);            
             ShipNowDataModel.setProperty("/ShipFromAddressType", "");
             ShipNowDataModel.setProperty("/ShipToAddress", {});
@@ -1769,8 +1771,7 @@ sap.ui.define([
                     "Password": password,
                     "TrackURL": "",
                     "AccessKey": AccessKey,
-                    // "LabelType": "ZPL",
-                    // "LabelType": "ZPL",
+                    "LabelType": "ZPL",
                     "ServiceID": eshipjetModel.getProperty("/commonValues/ShipNowShipsrvNameSelectedKey"),
                     "Reference1": HandlingUnits[0].HandlingUnitExternalID,
                     "Reference2": "",
@@ -2329,21 +2330,7 @@ sap.ui.define([
             });
         },
 
-        toMicrosoftJsonDate:function(date) {
-            return `/Date(${date.getTime()})/`;
-        },
-
-    //    for order tables TotalPkg
-    formatTotalPkg: function (sValue) {
-        if (!sValue) return "";
-        return parseInt(sValue, 10).toString();
-    },
-
-    
-        
-        
-
-        createHandlingUnits:function(){
+       createHandlingUnits:function(){
             oController.onOpenBusyDialog();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             // var HandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
@@ -2933,7 +2920,7 @@ sap.ui.define([
         showLabelAfterShipmentSuccess: function (response) {
             var oController = this;
             var oView = this.getView();
-            var oController = this;
+            this.onCloseBusyDialog();
             var eshipjetModel = oView.getModel("eshipjetModel");
             var shippingDocuments = eshipjetModel.getProperty("/shippingDocuments");
         
@@ -2959,15 +2946,14 @@ sap.ui.define([
                         height: "620px"
                     });
                     oCarousel.addPage(oImage);
-                } else if (docType === "ZPL") {
+                } else if (docType === "ZPL" || docType ===  "ZPLII") {
                     hasZpl = true;
                     // Assume ZPL is available in response (not model)
-                    for (var j = 0; j < response.shippingDocuments.length; j++) {
-                        if (response.shippingDocuments[j].contentType === "Label" && response.shippingDocuments[j].encodedLabel) {
-                            zplData = response.shippingDocuments[j].encodedLabel;
-                            break;
+                        if (response.shippingDocuments[i].contentType === "Label" && response.shippingDocuments[i].encodedLabel) {
+                            zplData = response.shippingDocuments[i].encodedLabel;
+
+                            oController.convertZplToPng(hasZpl, zplData, oCarousel);
                         }
-                    }
                 }
             }
         
@@ -2980,7 +2966,7 @@ sap.ui.define([
                     this.onShipmentLabelDialogClosePress();
                 }.bind(this)
             });
-        
+
             var oCustomHeader = new sap.m.Toolbar({
                 content: [
                     new sap.m.Title({ text: "Carrier Label", level: "H2" }),
@@ -2988,8 +2974,8 @@ sap.ui.define([
                     oDeclineButton
                 ]
             });
-        
-            var openDialogWithCarousel = function () {
+            
+            this.openDialogWithCarousel = function () {
                 oController._dialogContent = oCarousel;
                 oController._oShipmentSuccessLabelDialog = new sap.m.Dialog({
                     customHeader: oCustomHeader,
@@ -3002,6 +2988,10 @@ sap.ui.define([
                 oController.onCloseBusyDialog();
             };
         
+            // oController.updateManifestHeaderSet();
+        },
+
+        convertZplToPng:function(hasZpl, zplData, oCarousel){
             if (hasZpl && zplData) {
                 // Convert ZPL to PNG via Labelary
                 $.ajax({
@@ -3011,11 +3001,16 @@ sap.ui.define([
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
+                    xhrFields: {
+                        responseType: 'arraybuffer'  // Important for binary PDF data
+                    },
                     processData: false,
                     responseType: "arraybuffer",
                     success: function (data) {
-                        var base64Image = oController.arrayBufferToBase64(data);
-                        var imageUrl = "data:image/png;base64," + base64Image;
+                        var blob = new Blob([data], { type: 'image/png' });
+                        var imageUrl = URL.createObjectURL(blob);
+                        // var base64Image = oController.arrayBufferToBase64(data);
+                        // var imageUrl = "data:image/png;base64," + base64Image;
         
                         var oImage = new sap.m.Image({
                             src: imageUrl,
@@ -3024,17 +3019,13 @@ sap.ui.define([
                         });
                         oCarousel.addPage(oImage);
         
-                        openDialogWithCarousel(); // Show dialog after image is ready
+                        oController.openDialogWithCarousel(); // Show dialog after image is ready
                     },
                     error: function () {
                         MessageBox.error("Error converting ZPL to image.");
-                        openDialogWithCarousel(); // Still show dialog with existing content
                     }
                 });
-            } else {
-                openDialogWithCarousel(); // No ZPL, just open
             }
-            // oController.updateManifestHeaderSet();
         },
         
         arrayBufferToBase64:function(buffer) {
@@ -3049,8 +3040,6 @@ sap.ui.define([
 
         onShipmentLabelDialogClosePress: function () {
             oController._oShipmentSuccessLabelDialog.close();
-            oController.onOpenBusyDialog(); 
-            // this.byId("idAfterShipmentLabelDialog").close();
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             var shipFromObj = {
                 "ShipFromCONTACT": "",
@@ -3095,19 +3084,17 @@ sap.ui.define([
             eshipjetModel.setProperty("/commonValues/SalesOrder", "");
             eshipjetModel.setProperty("/commonValues/PurchaseOrder" , "");
             eshipjetModel.setProperty("/selectPaymentType", "");
+            eshipjetModel.setProperty("/shipNowShipFromInputStatus", false);
 
             jQuery.sap.delayedCall(500, this, function() {
                 this.getView().byId("idSapDeliveryNumber").focus();
             });
             
-            oController.onPackSectionEmptyRows();
-
-            oController.onCloseBusyDialog();
+            this.onPackSectionEmptyRows();
+            // this.byId("idAfterShipmentLabelDialog").close();
+            // this.onCloseBusyDialog();
         },
 
-        onShipmentLabelDialogClosePress1: function () {
-            this.byId("idAfterShipmentLabelDialog").close();
-        },
         
         onShippingDocumentsViewPress:function(oEvent){
             var currentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
@@ -3293,6 +3280,7 @@ sap.ui.define([
             eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", "");
             eshipjetModel.setProperty("/commonValues/shipNowBtnStatus", true);
             eshipjetModel.setProperty("/selectPaymentType", "Sender");
+            eshipjetModel.setProperty("/shipNowShipFromInputStatus", true);
             var myPromise = new Promise(function(myResolve, myReject) {
                 oController.shipNowData(sDeveliveryNumber, "ShipNow", myResolve);                                                    
             });
@@ -3332,7 +3320,7 @@ sap.ui.define([
 
         onCloseBusyDialog:function(oEvent){
             //this.byId("idBusyDialog").close();
-            oController._pBusyDialog.then(function(oBusyDialog) {
+            this._pBusyDialog.then(function(oBusyDialog) {
                 oBusyDialog.close();
             });
         },     

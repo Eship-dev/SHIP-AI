@@ -74,47 +74,47 @@
 													</Toolbar>
 													
 													<Label text="Contact Name" class="sapUiTinyMarginTop" />
-													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromCONTACT}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="sapUiSmallMarginBottom create-ship-req_input" />
+													<Input value="{ShipNowDataModel>/ShipFromAddress/ShipFromCONTACT}" enabled="{= ${eshipjetModel>/commonValues/shipNowBtnStatus} === 'false' || !${eshipjetModel>/shipNowShipFromInputStatus} }" class="sapUiSmallMarginBottom create-ship-req_input" />
 													<Label text="Address Line 1" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE1}"></Input>
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{= ${eshipjetModel>/commonValues/shipNowBtnStatus} === 'false' || !${eshipjetModel>/shipNowShipFromInputStatus} }" value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE1}"></Input>
 													<Label text="City" />													
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromCITY}" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{= ${eshipjetModel>/commonValues/shipNowBtnStatus} === 'false' || !${eshipjetModel>/shipNowShipFromInputStatus} }" value="{ShipNowDataModel>/ShipFromAddress/ShipFromCITY}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
 													<!-- <Label text="State / Province" /> -->
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" maxLength="3" value="{ShipNowDataModel>/ShipFromAddress/ShipFromSTATE}" placeholder="State" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{= ${eshipjetModel>/commonValues/shipNowBtnStatus} === 'false' || !${eshipjetModel>/shipNowShipFromInputStatus} }" maxLength="3" value="{ShipNowDataModel>/ShipFromAddress/ShipFromSTATE}" placeholder="State" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
 													<Label text="Email Address" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromEMAIL}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{= ${eshipjetModel>/commonValues/shipNowBtnStatus} === 'false' || !${eshipjetModel>/shipNowShipFromInputStatus} }" value="{ShipNowDataModel>/ShipFromAddress/ShipFromEMAIL}" />
 													<Label text="Company Name" class="sapUiTinyMarginTop" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromCOMPANY}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{= ${eshipjetModel>/commonValues/shipNowBtnStatus} === 'false' || !${eshipjetModel>/shipNowShipFromInputStatus} }" value="{ShipNowDataModel>/ShipFromAddress/ShipFromCOMPANY}" />
 													<Label text="Address Line 2" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE2}" />
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{= ${eshipjetModel>/commonValues/shipNowBtnStatus} === 'false' || !${eshipjetModel>/shipNowShipFromInputStatus} }" value="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE2}" />
 													<Label text="Postal Code" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromZIPCODE}" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{= ${eshipjetModel>/commonValues/shipNowBtnStatus} === 'false' || !${eshipjetModel>/shipNowShipFromInputStatus} }" value="{ShipNowDataModel>/ShipFromAddress/ShipFromZIPCODE}" >
 													<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
-													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipFromAddress/ShipFromCOUNTRY}" placeholder="Country" >
+													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" enabled="{= ${eshipjetModel>/commonValues/shipNowBtnStatus} === 'false' || !${eshipjetModel>/shipNowShipFromInputStatus} }" items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipFromAddress/ShipFromCOUNTRY}" placeholder="Country" >
 														<core:Item key="{eshipjetModel>code}" text="{eshipjetModel>name}" />
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>													
 													</ComboBox>
 													<Label text="Phone Number" />
-													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{ShipNowDataModel>/ShipFromAddress/ShipFromPHONE}" >
+													<Input class="sapUiSmallMarginBottom create-ship-req_input" enabled="{= ${eshipjetModel>/commonValues/shipNowBtnStatus} === 'false' || !${eshipjetModel>/shipNowShipFromInputStatus} }" value="{ShipNowDataModel>/ShipFromAddress/ShipFromPHONE}" >
 														<layoutData>
 															<f:ColumnElementData cellsSmall="6" cellsLarge="6" />
 														</layoutData>
 													</Input>
 													<ComboBox class="sapUiSmallMarginBottom create-ship-req_input"
-														enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" 
+														enabled="{= ${eshipjetModel>/commonValues/shipNowBtnStatus} === 'false' || !${eshipjetModel>/shipNowShipFromInputStatus} }" 
 														selectedKey="{ShipNowDataModel>/ShipFromAddress/LocationType}"
 														items="{eshipjetModel>/shipNowAddressType}" 
 														placeholder="Address Type">
