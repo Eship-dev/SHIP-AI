@@ -1937,7 +1937,7 @@ sap.ui.define([
                                     //post to manifest service
                                     // oController.getManifestData(response);
                                     
-                                    oController.updateManifestHeaderSet();         
+                                    // oController.updateManifestHeaderSet();         
                                     oController.showLabelAfterShipmentSuccess(response);
 
                                 }else if(response && response.status === "Error"){
