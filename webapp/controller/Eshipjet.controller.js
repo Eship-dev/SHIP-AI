@@ -1770,8 +1770,9 @@ sap.ui.define([
                     "TrackURL": "",
                     "AccessKey": AccessKey,
                     // "LabelType": "ZPL",
+                    // "LabelType": "ZPL",
                     "ServiceID": eshipjetModel.getProperty("/commonValues/ShipNowShipsrvNameSelectedKey"),
-                    "Reference1": HandlingUnits[0].HandlingUnitExternalID,    
+                    "Reference1": HandlingUnits[0].HandlingUnitExternalID,
                     "Reference2": "",
                     "Reference3": "",
                     "Reference4": "",
@@ -1936,8 +1937,8 @@ sap.ui.define([
                                     //post to manifest service
                                     // oController.getManifestData(response);
                                     
-                                    // oController.updateManifestHeaderSet();
-                                    oController.showLabelAfterShipmentSuccess(response);     
+                                    oController.updateManifestHeaderSet();         
+                                    oController.showLabelAfterShipmentSuccess(response);
 
                                 }else if(response && response.status === "Error"){
                                     var sError = "Shipment process failed reasons:\n";
