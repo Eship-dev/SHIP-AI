@@ -397,9 +397,10 @@ sap.ui.define([
             eshipjetModel.setProperty("/commonValues/shipNowBtnStatus", true);
             oController.onPackSectionEmptyRows();
             oController.getTodayShipments();
-            // if(sFromScreen === "QUOTE_NOW"){
-            //     oController.onShipNowGetPress()
-            // }
+            var sFromScreen = eshipjetModel.getProperty("/sFromScreen");
+            if(sFromScreen === "QUOTE_NOW"){
+                oController.onShipNowGetPress()
+            }
 
         },
         handleUserNamePress: function (event) {
@@ -3099,9 +3100,9 @@ sap.ui.define([
             eshipjetModel.setProperty("/shippingDocuments",[]);
             eshipjetModel.setProperty("/HandlingUnitItems",[]);
             eshipjetModel.setProperty("/HandlingUnits",[]);
-            eshipjetModel.setProperty("/commonValues/toolPageHeader", false);
-            eshipjetModel.setProperty("/commonValues/allViewsFooter", false);
-            eshipjetModel.setProperty("/commonValues/shipNowViewFooter", true);
+            // eshipjetModel.setProperty("/commonValues/toolPageHeader", false);
+            // eshipjetModel.setProperty("/commonValues/allViewsFooter", false);
+            // eshipjetModel.setProperty("/commonValues/shipNowViewFooter", true);
             eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
             eshipjetModel.setProperty("/commonValues/routingGuidFooter", false);
             eshipjetModel.setProperty("/showDarkThemeSwitch", false);
@@ -3571,7 +3572,7 @@ sap.ui.define([
                             var aShippingCharges = [
                                 { "description": "Freight Amount", "amount": parseInt(aFilteredData[0].Freightamt).toFixed(2), "currency": "USD" },
                                 { "description": "Discount Amount", "amount": parseInt(aFilteredData[0].Discountamt).toFixed(2), "currency": "USD" },
-                                { "description": "Fuel", "amount": parseInt(aFilteredData[0].Fuel).toFixed(2) === "" ? "amount" : "0.00", "currency": "USD" }
+                                { "description": "Fuel", "amount": aFilteredData[0].Fuel && aFilteredData[0].Fuel !== "" ? parseFloat(aFilteredData[0].Fuel).toFixed(2) : "0.00", "currency": "USD" }
                             ];
                             eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
                             var shippingDocuments = response.shippingDocuments;
@@ -5184,9 +5185,7 @@ sap.ui.define([
         onScanShipFilterResetPress: function (oEvent) {
             this.byId("idScanAndShipPopover").close();
         },
-        // onScanShipFilterApplyPress: function (oEvent) {
-        //     this.byId("idScanAndShipPopover").close();
-        // },
+
         onScanShipFilterApplyPress: function () {
             var aFilters = [];
             var oView = this.getView();
@@ -5212,7 +5211,7 @@ sap.ui.define([
                 }
             }
         
-            this.byId("idScanShipFilterPopover").close();
+            this.byId("idScanAndShipPopover").close();
         },
         onScanAndShipFilterResetPress: function () {
             var oView = this.getView();
@@ -16228,9 +16227,22 @@ sap.ui.define([
             // eshipjetModel.setProperty("/carrierServiceName_dis",oController.oSelectObj.serviceName);  
             
         if(sFromViewName === "QUOTE_NOW"){
-            eshipjetModel.setProperty("/sFromViewName","");
+            var sKey = "ShipNow";
+                eshipjetModel.setProperty("/commonValues/toolPageHeader", false);
+                eshipjetModel.setProperty("/commonValues/allViewsFooter", false);
+                eshipjetModel.setProperty("/commonValues/shipNowViewFooter", true);
+                eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
+                eshipjetModel.setProperty("/commonValues/routingGuidFooter", false);
+                eshipjetModel.setProperty("/showDarkThemeSwitch", false);
+                eshipjetModel.setProperty("/commonValues/darkTheme", false);
+                document.body.classList.remove("dark-theme");
+                eshipjetModel.setProperty("/commonValues/shipNowGetBtn", true);
+                eshipjetModel.setProperty("/sFromViewName", "SHIP_NOW");
+                oController.onPackSectionEmptyRows();
+            eshipjetModel.setProperty("/SideNavigation", false);
+            this.byId("pageContainer").to(this.getView().createId(sKey));
+            
             oController.onShipNowNavigateInitialProcess();
-            oController.byId("pageContainer").to(this.getView().createId("ShipNow"));            
         }              
         }else{
             MessageToast.show("Please select the item from list");
