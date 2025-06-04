@@ -314,10 +314,10 @@
 								<Toolbar class="whiteBackground sapUiTinyMarginTop trackNowTableFooter">
 								<ToolbarSpacer ></ToolbarSpacer>
 									<Button text="First" press=".onShipReqFirstPage" type="Transparent" enabled="{eshipjetModel>/ShipReqFirstVisible}" />
-<Button text="Previous" press=".onShipReqPreviousPage" type="Transparent" enabled="{eshipjetModel>/ShipReqPrevVisible}" />
-<Text id="paginationTextShipReq" text="{eshipjetModel>/ShipReqPaginationText}" />
-<Button text="Next" press=".onShipReqNextPage" type="Transparent" enabled="{eshipjetModel>/ShipReqNextVisible}" />
-<Button text="Last" press=".onShipReqLastPage" type="Transparent" enabled="{eshipjetModel>/ShipReqLastVisible}" />
+									<Button text="Previous" press=".onShipReqPreviousPage" type="Transparent" enabled="{eshipjetModel>/ShipReqPrevVisible}" />
+									<Text id="paginationTextShipReq" text="{eshipjetModel>/ShipReqPaginationText}" />
+									<Button text="Next" press=".onShipReqNextPage" type="Transparent" enabled="{eshipjetModel>/ShipReqNextVisible}" />
+									<Button text="Last" press=".onShipReqLastPage" type="Transparent" enabled="{eshipjetModel>/ShipReqLastVisible}" />
 
 								</Toolbar>
 

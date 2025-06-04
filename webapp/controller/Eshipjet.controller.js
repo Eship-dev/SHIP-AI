@@ -1771,7 +1771,7 @@ sap.ui.define([
                     "Password": password,
                     "TrackURL": "",
                     "AccessKey": AccessKey,
-                    "LabelType": "ZPL",
+                    // "LabelType": "ZPL",
                     "ServiceID": eshipjetModel.getProperty("/commonValues/ShipNowShipsrvNameSelectedKey"),
                     "Reference1": HandlingUnits[0].HandlingUnitExternalID,
                     "Reference2": "",
@@ -1938,7 +1938,7 @@ sap.ui.define([
                                     //post to manifest service
                                     // oController.getManifestData(response);
                                     
-                                    // oController.updateManifestHeaderSet();         
+                                     oController.updateManifestHeaderSet();         
                                     oController.showLabelAfterShipmentSuccess(response);
 
                                 }else if(response && response.status === "Error"){
