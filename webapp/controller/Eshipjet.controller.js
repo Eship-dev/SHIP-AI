@@ -2313,9 +2313,10 @@ sap.ui.define([
                     if(sFromViewName === "SCAN_SHIP"){
                         // oController.getManifestHeaderForScanShip();
                         oController.getScanShipHistoryShipments();
-                    }else{
-                        oController.showLabelAfterShipmentSuccess(ShipNowPostResponse);
                     }
+                    // else{
+                    //     oController.showLabelAfterShipmentSuccess(ShipNowPostResponse);
+                    // }
                     
                     // var sAudioPath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/audio/ShipNow.mp3");
                     // var audio = new Audio(sAudioPath);
@@ -2919,14 +2920,14 @@ sap.ui.define([
 
         showLabelAfterShipmentSuccess: function (response) {
             var oController = this;
-            var oView = this.getView();
-            this.onCloseBusyDialog();
+            var oView = this.getView();           
+            oController.onOpenBusyDialog();
             var eshipjetModel = oView.getModel("eshipjetModel");
             var shippingDocuments = eshipjetModel.getProperty("/shippingDocuments");
         
             var oCarousel = new sap.m.Carousel({});
             var hasZpl = false;
-            var zplData = "";
+            var zplData = "", aPromises = [];
         
             // Loop through documents and handle PDF/PNG
             for (var i = 0; i < shippingDocuments.length; i++) {
@@ -2951,13 +2952,44 @@ sap.ui.define([
                     // Assume ZPL is available in response (not model)
                         if (response.shippingDocuments[i].contentType === "Label" && response.shippingDocuments[i].encodedLabel) {
                             zplData = response.shippingDocuments[i].encodedLabel;
-
-                            oController.convertZplToPng(hasZpl, zplData, oCarousel);
+                            // oController.convertZplToPng(hasZpl, zplData, oCarousel);
+                            aPromises.push(oController.convertZplToPng(zplData));
                         }
                 }
             }
-        
-            // Create header bar
+            if(aPromises && aPromises.length > 0){
+                Promise.all(aPromises).then(responses => {
+                    console.log("All AJAX requests completed!");
+                    var oImage,oEshipjetModel = oController.getView().getModel("eshipjetModel"), aShippingDoc = oEshipjetModel.getProperty("/shippingDocuments"), atempShippingDoc = [], atempObj = {};
+                    responses.forEach((response, index) => {                       
+                        oImage = new sap.m.Image({
+                            src: response,
+                            width: "500px",
+                            height: "620px"
+                        });
+                        oCarousel.addPage(oImage);
+                        // if(aShippingDoc[index].docType.toUpperCase() === "ZPLII" || aShippingDoc[index].docType.toUpperCase() === "ZPL"){
+                        //     oEshipjetModel.setProperty("/shippingDocuments/"+ index +"/docName", response);
+                        // }
+                    });                
+                    oController.creatingCarouseltodisplay(oCarousel);
+                    oController.openDialogWithCarousel();
+                    oController.updateManifestHeaderSet();
+                    oController.onCloseBusyDialog();
+                }).catch(error => {
+                    console.error("Error in AJAX calls:", error);
+                    oController.onCloseBusyDialog();
+                });  
+            }else{
+                oController.creatingCarouseltodisplay(oCarousel);                
+                oController.openDialogWithCarousel();
+                oController.updateManifestHeaderSet();
+                oController.onCloseBusyDialog();
+            }                
+            // oController.updateManifestHeaderSet();
+        },
+        creatingCarouseltodisplay:function(oCarousel){
+               // Create header bar
             var oDeclineButton = new sap.m.Button({
                 icon: "sap-icon://decline",
                 class: "Decline_Btn ship-now-decline_btn",
@@ -2987,12 +3019,14 @@ sap.ui.define([
                 oController._oShipmentSuccessLabelDialog.open();
                 oController.onCloseBusyDialog();
             };
-        
-            // oController.updateManifestHeaderSet();
-        },
 
-        convertZplToPng:function(hasZpl, zplData, oCarousel){
-            if (hasZpl && zplData) {
+        },
+        convertZplToPng:function(zplData){
+            return new Promise((resolve, reject) => {
+                if (!zplData) {
+                    reject("No ZPL data provided!");
+                    return;
+                }        
                 // Convert ZPL to PNG via Labelary
                 $.ajax({
                     url: "https://api.labelary.com/v1/printers/8dpmm/labels/4x6/0/",
@@ -3008,24 +3042,17 @@ sap.ui.define([
                     responseType: "arraybuffer",
                     success: function (data) {
                         var blob = new Blob([data], { type: 'image/png' });
-                        var imageUrl = URL.createObjectURL(blob);
-                        // var base64Image = oController.arrayBufferToBase64(data);
-                        // var imageUrl = "data:image/png;base64," + base64Image;
-        
-                        var oImage = new sap.m.Image({
-                            src: imageUrl,
-                            width: "500px",
-                            height: "620px"
-                        });
-                        oCarousel.addPage(oImage);
-        
-                        oController.openDialogWithCarousel(); // Show dialog after image is ready
+                        var imageUrl = URL.createObjectURL(blob);       
+                       
+                        resolve(imageUrl);
+                        //oController.openDialogWithCarousel(); // Show dialog after image is ready
                     },
                     error: function () {
                         MessageBox.error("Error converting ZPL to image.");
                     }
                 });
-            }
+            
+            });
         },
         
         arrayBufferToBase64:function(buffer) {
@@ -3100,7 +3127,7 @@ sap.ui.define([
             var currentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
             var shippingDocuments = eshipjetModel.getProperty("/shippingDocuments");
             var tepmShippingDocs = eshipjetModel.getProperty("/tepmShippingDocs");
-            var docName = currentObj.docName;
+            var docName = currentObj.docName, hasZpl = false, aPromises = [];
             this._contentType = currentObj.contentType;
             if (this._contentType === "Label") {
                 this._contentType = "Carrier Label";
@@ -3124,7 +3151,12 @@ sap.ui.define([
                         });
                         oCarousel.addPage(oImage);
                     }
-                }else{
+                }
+                // else if (currentObj.docType.toUpperCase() === "ZPL" || currentObj.docType.toUpperCase() ===  "ZPLII") {
+                    
+                    
+                // }
+                else{
                     sap.m.MessageToast.show(currentObj.contentType + " doesn't exist");
                     return
                 }
@@ -3894,7 +3926,7 @@ sap.ui.define([
                         oController.getHandlingUnit(aHandlingUnits);
 
                         var HandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
-                        if(getManifestHeader.length > 0){
+                        if(getManifestHeader && getManifestHeader.length > 0){
                             for(var i=0; i<getManifestHeader.length; i++){
                                 HandlingUnits[i]["TrackingNumber"] = getManifestHeader[i].TrackingNumber;
                                 HandlingUnits[i]["CarrierCode"] = eshipjetModel.getProperty("/commonValues/ShipNowShipMethodSelectedKey");
