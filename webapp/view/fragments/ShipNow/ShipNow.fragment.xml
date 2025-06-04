@@ -1060,7 +1060,7 @@
 										</HBox>
 										<ui:template>
 											<HBox justifyContent="Center" alignItems="Center">
-												<Button icon="sap-icon://tag" type="Transparent" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Button>
+												<Button icon="sap-icon://tag" type="Transparent" press="onSerialNumPress" enabled="{= ${eshipjetModel>BalanceQty} > 0 }" ></Button>
 											</HBox>
 										</ui:template>
 									</ui:Column>
@@ -1271,7 +1271,7 @@
 										</HBox>
 									<ui:template>
 										<HBox justifyContent="Center" alignItems="Center">
-												<Button icon="sap-icon://tag" type="Transparent" press="onSerialNumPress" ></Button>
+												<Button icon="sap-icon://tag" type="Transparent" press="onSerialNumPress" enabled="{= ${eshipjetModel>HandlingUnitExternalID} > 0 }" ></Button>
 											</HBox>
 									</ui:template>
 								</ui:Column>
@@ -1413,7 +1413,7 @@
 													<Label text="Freight Forwarder Tax No" />
 													<Input value="{eshipjetModel>/freightForwordTaxNo}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text=" " visible="false" />
-													<CheckBox text="Dutiable" selected="" class="sapUiSmallMarginTop" />
+													<CheckBox text="Dutiable" selected="" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="sapUiSmallMarginTop" />
 												</f:content>
 											</f:SimpleForm>
 
