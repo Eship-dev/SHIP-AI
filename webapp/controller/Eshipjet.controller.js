@@ -6213,39 +6213,6 @@ sap.ui.define([
             oTable.bindRows("/RecentShipmentSetShipReqLabel");
         },
 
-        openShipReqColNamesPopover: function (oEvent) {
-            var oButton = oEvent.getSource(),
-                oView = this.getView();
-            if (!this._pShipReqPopover) {
-                this._pShipReqPopover = Fragment.load({
-                    id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.ShipReqTableColumns",
-                    controller: this
-                }).then(function (oPopover) {
-                    oView.addDependent(oPopover);
-                    return oPopover;
-                });
-            }
-            this._pShipReqPopover.then(function (oPopover) {
-                oController.ShipReqColumnsVisiblity();
-                oPopover.openBy(oButton);
-            });
-        },
-
-        ShipReqColumnsVisiblity: function () {
-            var oTable = Fragment.byId(this.getView().getId(), "myShipReqColumnSelectId");
-            if (!oTable) return;
-            var aItems = oTable.getItems();
-
-            aItems.forEach(function (oItem) {
-                var oContext = oItem.getBindingContext("eshipjetModel");
-                if (oContext) {
-                    var oData = oContext.getObject();
-                    oItem.setSelected(oData.visible === true);
-                }
-            });
-        },
-
         onShipReqExportToExcel: function () {
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var rows = eshipjetModel.getProperty("/RecentShipmentSetShipReqLabel");
@@ -6303,75 +6270,104 @@ sap.ui.define([
                 oSpreadsheet.destroy();
             });
         },
+            // Fixed ShipReqLabel Column Management Functions
 
-        onShipReqColNameSearch: function (oEvent) {
-            var aFilters = [];
-            var sQuery = oEvent.getSource().getValue();
-            if (sQuery && sQuery.length > 0) {
-                var filter = new Filter("label", FilterOperator.Contains, sQuery);
-                aFilters.push(filter);
-            }
-            // update list binding
-            var oList = oController.getView().byId("myShipReqColumnSelectId");
-            var oBinding = oList.getBinding("items");
-            oBinding.filter(aFilters, "Application");
+            openShipReqColNamesPopover: function (oEvent) {
+                var oButton = oEvent.getSource();
+                var oView = this.getView();
+                var oController = this;
 
-        },
+                if (!this._pShipReqPopover) {
+                    this._pShipReqPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.ShipReqTableColumns",
+                        controller: this
+                    }).then(function (oPopover) {
+                        oView.addDependent(oPopover);
+                        return oPopover;
+                    });
+                }
 
-        onoShipReqColSelectOkPress: function () {
-            var oView = this.getView()
-            var oShipReqTable = Fragment.byId(oView.getId(), "myShipReqColumnSelectId");
-            var eshipjetModel = oView.getModel("eshipjetModel");
-            var oShipReqTblItems = oShipReqTable.getItems();
-            // var aColumnsData = ShipReqTableDataModel.getProperty("/ShipReqColumns");
-            var aColumnsData = eshipjetModel.getData().ShipReqColumns;
-            oShipReqTblItems.map(function (oTableItems) {
-                aColumnsData.map(function (oColObj) {
-                    if (oTableItems.getBindingContext("eshipjetModel").getObject().name === oColObj.name) {
-                        if (oTableItems.getSelected()) {
-                            oColObj.visible = true;
-                        } else {
-                            oColObj.visible = false;
-                        }
-                    }
-                })
-            });
-            eshipjetModel.updateBindings(true);
-            // this._handleDisplayShipReqTable();
-            // oController.getShipReqLabelHistoryShipments();
-            this._pShipReqPopover.then(function (oPopover) {
-                oPopover.close();
-            });
-        },
-
-        onShipReqColSelectClosePress: function () {
-            this._pShipReqPopover.then(function (oPopover) {
-                oPopover.close();
-            });
-        },
-
-        onShipReqFilterPopoverPress: function (oEvent) {
-            var oButton = oEvent.getSource(),
-                oView = this.getView();
-            // create popover
-            if (!this._shipReqPopover) {
-                this._shipReqPopover = Fragment.load({
-                    id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.ShipReqFilterPopover",
-                    controller: this
-                }).then(function (shipReqPopover) {
-                    oView.addDependent(shipReqPopover);
-                    // shipReqPopover.bindElement("/ProductCollection/0");
-                    return shipReqPopover;
+                this._pShipReqPopover.then(function (oPopover) {
+                    oController._syncShipReqColumnSelections();
+                    oPopover.openBy(oButton);
                 });
-            }
-            this._shipReqPopover.then(function (shipReqPopover) {
-                shipReqPopover.openBy(oButton);
-            });
-        },
-        onShipReqFilterPopoverClosePress: function () {
-            this.byId("idShipReqFilterPopover").close();
-        },
+            },
+
+            _syncShipReqColumnSelections: function () {
+                var oTable = Fragment.byId(this.getView().getId(), "myShipReqColumnSelectId");
+                if (!oTable) return;
+
+                var aItems = oTable.getItems();
+                aItems.forEach(function (oItem) {
+                    var oContext = oItem.getBindingContext("eshipjetModel");
+                    if (oContext) {
+                        var oData = oContext.getObject();
+                        oItem.setSelected(oData.visible === true);
+                    }
+                });
+            },
+
+            onShipReqColNameSearch: function (oEvent) {
+                var sQuery = oEvent.getSource().getValue();
+                var oTable = Fragment.byId(this.getView().getId(), "myShipReqColumnSelectId");
+                if (!oTable) return;
+
+                var oBinding = oTable.getBinding("items");
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new Filter("label", FilterOperator.Contains, sQuery));
+                }
+                oBinding.filter(aFilters);
+            },
+
+            onShipReqColSelectClosePress: function () {
+                this._pShipReqPopover.then(function (oPopover) {
+                    oPopover.close();
+                });
+            },
+
+            onShipReqColSelectOkPress: function () {
+                var oTable = Fragment.byId(this.getView().getId(), "myShipReqColumnSelectId");
+                var oModel = this.getOwnerComponent().getModel("eshipjetModel");
+                var aColumns = oModel.getProperty("/ShipReqColumns");
+
+                oTable.getItems().forEach(function (oItem, iIndex) {
+                    var oContext = oItem.getBindingContext("eshipjetModel");
+                    if (oContext) {
+                        var oData = oContext.getObject();
+                        oData.visible = oItem.getSelected();
+                    }
+                });
+
+                oModel.refresh(true);
+                this.onShipReqColSelectClosePress();
+                // Optional: Call your specific table update logic here
+                // this.getShipReqLabelHistoryShipments();
+            },
+            
+            onShipReqFilterPopoverPress: function (oEvent) {
+                var oButton = oEvent.getSource(),
+                    oView = this.getView();
+                // create popover
+                if (!this._shipReqPopover) {
+                    this._shipReqPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.ShipReqFilterPopover",
+                        controller: this
+                    }).then(function (shipReqPopover) {
+                        oView.addDependent(shipReqPopover);
+                        // shipReqPopover.bindElement("/ProductCollection/0");
+                        return shipReqPopover;
+                    });
+                }
+                this._shipReqPopover.then(function (shipReqPopover) {
+                    shipReqPopover.openBy(oButton);
+                });
+            },
+            onShipReqFilterPopoverClosePress: function () {
+                this.byId("idShipReqFilterPopover").close();
+            },
 
         onShipReqFilterPopoverApplyPress: function () {
             var aFilters = [];
@@ -7000,90 +6996,81 @@ sap.ui.define([
         },
        
 
-        openTrackNowColNamesPopover: function (oEvent) {
-            var oButton = oEvent.getSource(),
-                oView = this.getView();
-            if (!this._pTrackNowPopover) {
-                this._pTrackNowPopover = Fragment.load({
-                    id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.TrackNow.TrackNowTableColumns",
-                    controller: this
-                }).then(function (oPopover) {
-                    oView.addDependent(oPopover);
-                    return oPopover;
-                });
-            }
+      
 
-            this._pTrackNowPopover.then(function (oPopover) {
-                oController._syncTrackNowColumnSelections();
-                oPopover.openBy(oButton);
-            });
-        },
-        
-        _syncTrackNowColumnSelections: function () {
-            var oTable = Fragment.byId(this.getView().getId(), "myTrackNowColumnSelectId");
-            if (!oTable) return;
-        
-            var aItems = oTable.getItems();
-            aItems.forEach(function (oItem) {
-                var oContext = oItem.getBindingContext("eshipjetModel");
-                if (oContext) {
-                    var oData = oContext.getObject();
-                    oItem.setSelected(oData.visible === true);
+            openTrackNowColNamesPopover: function (oEvent) {
+                var oButton = oEvent.getSource();
+                var oView = this.getView();
+                var oController = this;
+
+                if (!this._pTrackNowPopover) {
+                    this._pTrackNowPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.TrackNow.TrackNowTableColumns",
+                        controller: this
+                    }).then(function (oPopover) {
+                        oView.addDependent(oPopover);
+                        return oPopover;
+                    });
                 }
-            });
-        },
 
-        onTrackNowColNameSearch: function (oEvent) {
-            var aFilters = [];
-            var sQuery = oEvent.getSource().getValue();
-            if (sQuery && sQuery.length > 0) {
-                var filter = new Filter("label", FilterOperator.Contains, sQuery);
-                aFilters.push(filter);
-            }
-            // update list binding
-            var oList = oController.getView().byId("myTrackNowColumnSelectId");
-            var oBinding = oList.getBinding("items");
-            oBinding.filter(aFilters, "Application");
+                this._pTrackNowPopover.then(function (oPopover) {
+                    oController._syncTrackNowColumnSelections();
+                    oPopover.openBy(oButton);
+                });
+            },
 
-        },
+            _syncTrackNowColumnSelections: function () {
+                var oTable = Fragment.byId(this.getView().getId(), "myTrackNowColumnSelectId");
+                if (!oTable) return;
 
-        onoTrackNowColSelectOkPress: function () {
-            var oView = this.getView()
-            var oTrackNowTable = Fragment.byId(this.getView().getId(), "myTrackNowColumnSelectId");
-            var eshipjetModel = oView.getModel("eshipjetModel");
-            var oTrackNowTblItems = oTrackNowTable.getItems();
-            var aColumnsData = eshipjetModel.getProperty("/TrackNowTableData/TrackNowColumns");
-            var TrackNowColSelectedCount = 0;
-
-            oTrackNowTblItems.map(function (oTableItems) {
-                aColumnsData.map(function (oColObj) {
-                    if (oTableItems.getBindingContext("eshipjetModel").getObject().name === oColObj.name) {
-                        if (oTableItems.getSelected()) {
-                            oColObj.visible = true;
-                            TrackNowColSelectedCount +=1;
-                        } else {
-                            oColObj.visible = false;
-                        }
+                var aItems = oTable.getItems();
+                aItems.forEach(function (oItem) {
+                    var oContext = oItem.getBindingContext("eshipjetModel");
+                    if (oContext) {
+                        var oData = oContext.getObject();
+                        oItem.setSelected(oData.visible === true);
                     }
-                })
-            });
-            
-            eshipjetModel.setProperty("/TrackNowColSelectedCount", TrackNowColSelectedCount);
-            eshipjetModel.updateBindings(true);
+                });
+            },
 
-            // this._handleDisplayTrackNowTable();
-            this.getOrdersHistoryShipments();
-            this._pTrackNowPopover.then(function (oPopover) {
-                oPopover.close();
-            });
-        },
-        
-        onTrackNowColSelectClosePress: function () {
-            this._pTrackNowPopover.then(function (oPopover) {
-                oPopover.close();
-            });
-        },
+            onTrackNowColNameSearch: function (oEvent) {
+                var sQuery = oEvent.getSource().getValue();
+                var oTable = Fragment.byId(this.getView().getId(), "myTrackNowColumnSelectId");
+                if (!oTable) return;
+
+                var oBinding = oTable.getBinding("items");
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new Filter("label", FilterOperator.Contains, sQuery));
+                }
+                oBinding.filter(aFilters);
+            },
+
+            onTrackNowColSelectClosePress: function () {
+                this._pTrackNowPopover.then(function (oPopover) {
+                    oPopover.close();
+                });
+            },
+
+            onoTrackNowColSelectOkPress: function () {
+                var oTable = Fragment.byId(this.getView().getId(), "myTrackNowColumnSelectId");
+                var oModel = this.getOwnerComponent().getModel("eshipjetModel");
+                var aColumns = oModel.getProperty("/TrackNowTableData/TrackNowColumns");
+
+                oTable.getItems().forEach(function (oItem, iIndex) {
+                    var oContext = oItem.getBindingContext("eshipjetModel");
+                    if (oContext) {
+                        var oData = oContext.getObject();
+                        oData.visible = oItem.getSelected();
+                    }
+                });
+
+                oModel.refresh(true);
+                this.onTrackNowColSelectClosePress();
+                // Optional: Call your specific table update logic here
+                // this.getOrdersHistoryShipments();
+            },
 
         onTrackNowFilterPress: function (oEvent) {
             var oButton = oEvent.getSource(),

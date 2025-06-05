@@ -2345,7 +2345,7 @@
   { "name": "shipToCountry", "label": "Ship To Country", "visible": true },
   { "name": "shipToZipPostalCode", "label": "Ship To Postal Code", "visible": true },
   { "name": "shipToPhone", "label": "Ship To Phone", "visible": true },
-  { "name": "shipToEmail", "label": "Ship To Email", "visible": true },
+  { "name": "shipToEmail", "label": "Ship To Email", "visible": false },
   { "name": "requesterName", "label": "Requester Name", "visible": true },
   { "name": "ShipmentType", "label": "Shipment Type", "visible": true },
   { "name": "priorityLevel", "label": "Priority Level", "visible": true }
