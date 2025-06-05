@@ -299,7 +299,7 @@
 													</table:columns>
 												</table:Table>												
 												<HBox visible="{ShipperCopilotModel>hasTableData}" justifyContent="Start" class="sapUiTinyMarginTop">
-													<Button icon="sap-icon://download" type="Transparent" press="onDownloadExcel"/>
+													<Button icon="sap-icon://download" type="Transparent" press="onDownloadAllShipmentsExcel"/>
 												</HBox>
 												<table:Table	visibleRowCount="1"		selectionMode="None"
 													width="13rem"													

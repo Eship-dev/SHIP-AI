@@ -456,6 +456,13 @@ sap.ui.define([
                     MessageToast.show("Please enter a message.");
                     return;
                 }
+                if(sUserMessage.toUpperCase() === "SHOW ALL SHIPMENTS" || sUserMessage.toUpperCase() === "SHOW ORDERS WITH OPEN STATUS"){
+                    this.onPressAllShipments("ShowAllShipments");
+                    return
+                }else if(sUserMessage.toUpperCase() === "SHOW COUNTRY WISE SHIPMENTS"){
+                    this.onClickCountryWiseShipments();
+                    return
+                }
                 oShipperCopilotModel.setProperty("/iconState", false);
                 oShipperCopilotModel.setProperty("/listState", true);
 
@@ -516,19 +523,19 @@ sap.ui.define([
             },
 
             onZoomImage: function (oEvent) {
-                var dataUrl = oEvent.getSource().getBindingContext("ShipperCopilotModel").getObject().text
-                // Create a dialog if it does not exist
+                var dataUrl = oEvent.getSource().getBindingContext("ShipperCopilotModel").getObject().imageSrc;
                 if (!this._oDialog) {
-                    this._oDialog = new Dialog({
+                    this._oImage = new sap.m.Image({
+                        class: "sapUiSmallMargin",
+                        width: "100%",
+                        height: "100%"
+                    });
+
+                    this._oDialog = new sap.m.Dialog({
                         title: "Ship Image",
-                        contentWidth: "30%", // Adjust width as needed
-                        contentHeight: "80%", // Adjust height as needed
-                        content: new sap.m.Image({
-                            class: "sapUiSmallMargin",
-                            src: dataUrl,
-                            width: "100%", // Full width of dialog content
-                            height: "100%"
-                        }),
+                        contentWidth: "30%",
+                        contentHeight: "80%",
+                        content: [this._oImage],
                         endButton: new sap.m.Button({
                             text: "Close",
                             press: function () {
@@ -537,59 +544,63 @@ sap.ui.define([
                         })
                     });
                 }
-                // Open the dialog
+
+                this._oImage.setSrc(dataUrl);
                 this._oDialog.open();
             },
-         _downloadExcel: function (aData) {
-             var aCols = [
-                 { label: "Request ID", property: "Vbeln" },
-                 { label: "Created Date", property: "Createddate", formatter: "formatCustomDateShipmentTable" },
-                 { label: "Ship Date", property: "DateAdded", formatter: "formatCustomDateShipmentTable" },
-                 { label: "Shipment Type", property: "Shipmenttype" },
-                 { label: "Carrier Name", property: "CarrierCode" },
-                 { label: "Service Level", property: "CarrierDesc" },
-                 { label: "Tracking Number", property: "TrackingNumber" },
-                 { label: "Status", property: "DeliveryStatus" },
-                 { label: "Ship To Company", property: "RecCompany" },
-                 { label: "Ship To Contact", property: "RecContact" },
-                 { label: "Ship To Address Line 1", property: "RecAddress1" },
-                 { label: "Ship To City", property: "RecCity" },
-                 { label: "Ship To State", property: "Region" },
-                 { label: "Ship To Country", property: "RecCountry" },
-                 { label: "Ship To Zipcode", property: "RecPostalcode" },
-                 { label: "Ship To Phone", property: "RecPhone" },
-                 { label: "Ship To Email", property: "Emailaddress" },
-                 { label: "Requester Name", property: "RecContact" },
-                 { label: "Connected To", property: "DateAdded", formatter: "formatCustomDateShipmentTable" },
-                 { label: "Order Type", property: "Shipmentid" },
-                 { label: "Priority Level", property: "Priorityalert" },
-                 { label: "RF ID", property: "Reference1" }//,
-                 //{ label: "Updated", property: "" }
-             ];
-         
-             var aExportData = aData.map(function (oItem) {
-                 var oExportItem = {};
-                 aCols.forEach(function (col) {
-                     oExportItem[col.label] = oItem[col.property] || "";
-                 });
-                 return oExportItem;
-             });
-         
-             var oSpreadsheet = new sap.ui.export.Spreadsheet({
-                 workbook: {
-                     columns: aCols.map(function (col) {
-                         return { label: col.label, property: col.label, type: "string" };
-                     }),
-                     hierarchyLevel: "Level"
-                 },
-                 dataSource: aExportData,
-                 fileName: "Last15Shipments.xlsx"
-             });
-         
-             oSpreadsheet.build().finally(function () {
-                 oSpreadsheet.destroy();
-             });
-         },
+
+            
+            onDownloadAllShipmentsExcel: function (aData) {
+                var ShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
+                var rows = ShipperCopilotModel.getProperty("/tableData");
+
+                var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+                    pattern: "MM/dd/yyyy HH:mm"
+                });
+            
+                var formattedRows = rows.map(function (row) {
+                    return {
+                        ...row,
+                        Createddate: row.Createddate ? oDateFormat.format(new Date(row.Createddate)) : "",
+                        DateAdded: row.DateAdded ? oDateFormat.format(new Date(row.DateAdded)) : "" 
+                    };
+                });
+                var oSettings = {
+                    workbook: {
+                        columns: [
+                            { label: "Request ID", property: "Vbeln" },
+                            { label: "Created Date", property: "Createddate" },
+                            { label: "Ship Date", property: "DateAdded" },
+                            { label: "Shipment Type", property: "Shipmenttype" },
+                            { label: "Carrier Name", property: "CarrierCode" },
+                            { label: "Service Level", property: "CarrierDesc" },
+                            { label: "Tracking Number", property: "TrackingNumber" },
+                            { label: "Status", property: "DeliveryStatus" },
+                            { label: "Ship To Company", property: "RecCompany" },
+                            { label: "Ship To Contact", property: "RecContact" },
+                            { label: "Ship To Address Line 1", property: "RecAddress1" },
+                            { label: "Ship To City", property: "RecCity" },
+                            { label: "Ship To State", property: "Region" },
+                            { label: "Ship To Country", property: "RecCountry" },
+                            { label: "Ship To Zipcode", property: "RecPostalcode" },
+                            { label: "Ship To Phone", property: "RecPhone" },
+                            { label: "Ship To Email", property: "Emailaddress" },
+                            { label: "Requester Name", property: "RecContact" },
+                            { label: "Connected To", property: "DateAdded" },
+                            { label: "Order Type", property: "Shipmentid" },
+                            { label: "Priority Level", property: "Priorityalert" },
+                            { label: "RF ID", property: "Reference1" }
+                        ]
+                    },
+                    dataSource: formattedRows,
+                    fileName: 'All_Shipments',
+                    Worker: true
+                };
+                var oSpreadsheet = new Spreadsheet(oSettings);
+                oSpreadsheet.build().finally(function () {
+                    oSpreadsheet.destroy();
+                });
+            },
 
 
             _showAllShipmentsResponse:function(){
@@ -610,8 +621,13 @@ sap.ui.define([
             onPressAllShipments: async function (oEvent) {
                 oController.onOpenBusyDialog();
                 var oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
-                var sCustomDataKey = oEvent.getSource().getCustomData()[0].getKey();
-                var sResponse;
+                var sCustomDataKey, sResponse;
+                if(oEvent === "ShowAllShipments"){
+                    sCustomDataKey = oEvent;
+                }else{
+                    sCustomDataKey = oEvent.getSource().getCustomData()[0].getKey();
+                }
+                
                 try {
                     // Await the response first
                     sResponse = await oController._showAllShipmentsResponse();
