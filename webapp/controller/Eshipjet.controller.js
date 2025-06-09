@@ -452,17 +452,25 @@ sap.ui.define([
                 oController.onOpenBusyDialog();
                 oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
                 const sUserMessage = this.getView().byId("userInput").getValue();
+
                 if (!sUserMessage) {
                     MessageToast.show("Please enter a message.");
                     return;
                 }
-                if(sUserMessage.toUpperCase() === "SHOW ALL SHIPMENTS" || sUserMessage.toUpperCase() === "SHOW ORDERS WITH OPEN STATUS"){
+                const sNormalizedMessage = sUserMessage.toUpperCase();
+
+                if (sNormalizedMessage === "SHOW ALL SHIPMENTS" || sNormalizedMessage === "SHOW ORDERS WITH OPEN STATUS") {
                     this.onPressAllShipments("ShowAllShipments");
-                    return
-                }else if(sUserMessage.toUpperCase() === "SHOW COUNTRY WISE SHIPMENTS"){
+                } else if (sNormalizedMessage === "SHOW COUNTRY WISE SHIPMENTS") {
                     this.onClickCountryWiseShipments();
-                    return
-                }
+                } else if (sNormalizedMessage === "SHOW FEDEX SHIPMENTS") {
+                    this.onPressCarrierWiseShipments("FEDEX");
+                } else if (sNormalizedMessage === "SHOW UPS SHIPMENTS") {
+                    this.onPressCarrierWiseShipments("UPS");
+                } 
+                // else {
+                //     MessageToast.show("Please enter a valid message.");
+                // }
                 oShipperCopilotModel.setProperty("/iconState", false);
                 oShipperCopilotModel.setProperty("/listState", true);
 
@@ -472,7 +480,7 @@ sap.ui.define([
                 oShipperCopilotModel.setProperty("/messages", aMessages);
                 this.getView().byId("userInput").setValue("");
 
-                // Simulate a bot response after sending the user message
+                                // Simulate a bot response after sending the user message
                 try {
                     var sUserDeliveryNum = sUserMessage.split(" "), aResponse;
                     sUserDeliveryNum = sUserDeliveryNum[sUserDeliveryNum.length-1]
@@ -492,6 +500,75 @@ sap.ui.define([
                     //MessageToast.show("Error communicating with Copilot.");
                     oController.onCloseBusyDialog();
                 }
+            },
+
+            onPressCarrierWiseShipments: async function(oCarrier){
+                oController.onOpenBusyDialog();
+                var oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
+                var sCustomDataKey = oCarrier;
+                var sResponse;
+                
+                try {
+                    // Await the response first
+                    sResponse = await oController._showAllShipmentsResponse();
+                    sResponse = sResponse.filter(item => item.CarrierCode.trim() === sCustomDataKey);                        
+                    oShipperCopilotModel.setProperty("/tableData", sResponse);
+                    //await oController._createShipmentsTable(sResponse , sCustomDataKey);
+                } catch (error) {
+                    oController.onCloseBusyDialog();
+                    
+                    var aMessages = oShipperCopilotModel.getProperty("/messages") || [];
+                    if (error.responseText !== undefined) {
+                        aMessages.push({ sender: "BotError", text: error.responseText });
+                        oShipperCopilotModel.setProperty("/messages", aMessages);
+                    }
+                    return;
+                }
+
+                //var oShipperCopilotModel = this.getView().getModel("ShipperCopilotModel");
+                var sUserMessage, sBotMessage;
+                if(sCustomDataKey === "FEDEX"){
+                    sUserMessage = "Show FedEx Shipments";
+                }else if(sCustomDataKey === "UPS"){
+                    sUserMessage = "Show UPS Shipments";
+                }
+                oShipperCopilotModel.setProperty("/iconState", false);
+                oShipperCopilotModel.setProperty("/listState", true);
+
+                // Add the user's message to the chat list
+                var aMessages = oShipperCopilotModel.getProperty("/messages") || [];
+                aMessages.push({ sender: "You", text: sUserMessage });
+                oShipperCopilotModel.setProperty("/messages", aMessages);
+                this.getView().byId("userInput").setValue("");
+
+                if (sResponse && sResponse.length !== 0) {
+                    oShipperCopilotModel.setProperty("/showAllShipmentsTable", true);
+                   
+                    if(sCustomDataKey === "FEDEX"){
+                        sBotMessage = "Here are all the FedEx shipments:";
+                    }else if(sCustomDataKey === "UPS"){
+                         sBotMessage = "Here are all the UPS shipments:"
+                    }
+                    aMessages.push({
+                                sender: "Bot",
+                                text: sBotMessage,
+                                tableData: sResponse,
+                                hasTableData: true,
+                                hasTrackTableData:false,
+                                hasCountryTableData: false,
+                                isUserText: false,
+                                isBotImage: false
+                            });
+                    oShipperCopilotModel.setProperty("/messages", aMessages);
+                } else {
+                    var aError = sResponse.Errors || [];
+                    if (aError.length !== 0) {
+                        aMessages.push({ sender: "BotError", text: aError[0] });
+                        oShipperCopilotModel.setProperty("/messages", aMessages);
+                    }
+                }
+
+                oController.onCloseBusyDialog();
             },
 
             // Simulate bot response for testing purposes
@@ -608,7 +685,7 @@ sap.ui.define([
                 return new Promise(function (resolve, reject) {
                     oManifestSrvModel.read("/EshipjetManfestSet", {
                         success: function (oResponse) {
-                            var last15Records = oResponse.results.slice(-15);
+                            var last15Records = oResponse.results.slice(-100);
                             resolve(last15Records); // Resolve with data
                         },
                         error: function (oError) {
@@ -3975,7 +4052,7 @@ sap.ui.define([
             Notes.push({
                 "date": new Date(),
                 "name": eshipjetModel.getProperty("/userName"),
-                "notes": "Items are packed sucessfully"
+                "notes": "All Items are packed sucessfully"
             });
             var productTable = this.byId("idShipNowPackTable");
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");

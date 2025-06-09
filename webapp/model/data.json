@@ -39,12 +39,11 @@
         "shipNowVoidSelect": false,
         "shipNowVoidSelectSave":true,
         "shipNowVoidSelectShipNow": true,
-        "showShipType": false,
-
-        "lengthOfDimensions": "",
-        "widthOfDimensions": "",
-        "heightOfDimensions": ""
-    },        
+        "showShipType": false
+    },
+    "lengthOfDimensions": "",
+    "widthOfDimensions": "",
+    "heightOfDimensions": "",
     "Firstbtnvisablestatus":false,
     "PreviousBtnVisableStatus":false,
     "LastBtnVisableStatus":false,
