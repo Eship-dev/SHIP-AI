@@ -454,6 +454,7 @@ sap.ui.define([
                 const sUserMessage = this.getView().byId("userInput").getValue();
 
                 if (!sUserMessage) {
+                    oController.onCloseBusyDialog();
                     MessageToast.show("Please enter a message.");
                     return;
                 }
@@ -488,7 +489,7 @@ sap.ui.define([
                     if(sUserDeliveryNum && sUserDeliveryNum.length > 7){
                         aResponse = await oController.getManifestHeaderForScanShip(sUserMessage);
                     }else{
-                        MessageToast.show("Please enter valid delivery number");
+                        MessageToast.show("Please enter valid data");
                     }                 
                     oController.onCloseBusyDialog();                 
 
@@ -537,8 +538,8 @@ sap.ui.define([
 
                 // Add the user's message to the chat list
                 var aMessages = oShipperCopilotModel.getProperty("/messages") || [];
-                aMessages.push({ sender: "You", text: sUserMessage });
-                oShipperCopilotModel.setProperty("/messages", aMessages);
+                // aMessages.push({ sender: "You", text: sUserMessage });
+                // oShipperCopilotModel.setProperty("/messages", aMessages);
                 this.getView().byId("userInput").setValue("");
 
                 if (sResponse && sResponse.length !== 0) {
