@@ -39,27 +39,22 @@
         </Table>
     </VBox>
       
-       
-     <footer>
+        <footer>
             <OverflowToolbar class="p-sidebar-header sapMPopoverFooter1">
-                <Button
+               <Button
                     text="Cancel"
-                    class="frieghtCancelBtn"
+                    class= "sapUiSmallMarginBottom"
                     press="ShipmentWorkflowCancelDialog"
                 />
                 <ToolbarSpacer />
                 <Button
-                    class="btnSave"
                     type="Emphasized"
                     text="Save"
+                    class= "sapUiSmallMarginBottom"
                     press="saveSelectPopover"
                 />
             </OverflowToolbar>
         </footer>
-
-
-
-   
   </Dialog>
 </core:FragmentDefinition>
 
