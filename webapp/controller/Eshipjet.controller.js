@@ -363,10 +363,20 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/darkTheme", false);
                 document.body.classList.remove("dark-theme");
                 // this._handleDisplayRoutingGuideTable();
+            }else if (sKey === "FreightQuoteOrders") {
+                eshipjetModel.setProperty("/commonValues/toolPageHeader", false);
+                eshipjetModel.setProperty("/commonValues/allViewsFooter", false);
+                eshipjetModel.setProperty("/commonValues/shipNowViewFooter", false);
+                eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
+                eshipjetModel.setProperty("/commonValues/routingGuidFooter", false);
+                eshipjetModel.setProperty("/commonValues/showDarkThemeSwitch", false);
+                eshipjetModel.setProperty("/commonValues/darkTheme", false);
+                document.body.classList.remove("dark-theme");
             }
             eshipjetModel.setProperty("/SideNavigation", false);
             this.byId("pageContainer").to(this.getView().createId(sKey));
         },
+        
         onShipNowNavigateInitialProcess:function(){
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             eshipjetModel.setProperty("/sFromViewName", "SHIP_NOW");
@@ -17821,5 +17831,243 @@ sap.ui.define([
 
             return sShippinType;
         },
+
+
+        // Freight Quote Orders Changes Starts
+        openFreightQuoteOrdersColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource();
+            var oView = this.getView();
+            var oController = this;
+        
+            if (!this._pOrderPopover) {
+                this._pOrderPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.FreightQuoteOrders.FreightQuoteOrdersTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+        
+            this._pOrderPopover.then(function (oPopover) {
+                oController._syncColumnSelections();
+                oPopover.openBy(oButton);
+            });
+        },
+        
+        _syncColumnSelections: function () {
+            var oTable = Fragment.byId(this.getView().getId(), "myFreightQuoteOrdersColumnSelectId");
+            if (!oTable) return;
+        
+            var aItems = oTable.getItems();
+            aItems.forEach(function (oItem) {
+                var oContext = oItem.getBindingContext("eshipjetModel");
+                if (oContext) {
+                    var oData = oContext.getObject();
+                    oItem.setSelected(oData.visible === true);
+                }
+            });
+        },
+        
+        onFreightQuoteOrdersColNameSearch: function (oEvent) {
+            var sQuery = oEvent.getSource().getValue();
+            var oTable = Fragment.byId(this.getView().getId(), "myFreightQuoteOrdersColumnSelectId");
+            if (!oTable) return;
+        
+            var oBinding = oTable.getBinding("items");
+            var aFilters = [];
+            if (sQuery) {
+                aFilters.push(new Filter("label", FilterOperator.Contains, sQuery));
+            }
+            oBinding.filter(aFilters);
+        },
+        
+        onFreightQuoteOrdersColSelectClosePress: function () {
+            var oPopover = Fragment.byId(this.getView().getId(), "FreightQuoteOrdersColumnsPopover");
+            if (oPopover) {
+                oPopover.close();
+            }
+        },
+        
+        onFreightQuoteOrdersColSelectOkPress: function () {
+            var oTable = Fragment.byId(this.getView().getId(), "myFreightQuoteOrdersColumnSelectId");
+            var oModel = this.getOwnerComponent().getModel("eshipjetModel");
+            var aColumns = oModel.getProperty("/FreightQuoteOrdersColumns");
+        
+            oTable.getItems().forEach(function (oItem, iIndex) {
+                var oContext = oItem.getBindingContext("eshipjetModel");
+                if (oContext) {
+                    var oData = oContext.getObject();
+                    oData.visible = oItem.getSelected();
+                }
+            });
+        
+            oModel.refresh(true);
+            this.onOrderColSelectClosePress();
+            // You may also call table rerender or update logic here
+        },
+        
+
+
+        onFreightQuoteOrdersExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/FreightQuoteOrdersData");
+
+            var oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
+                pattern: "MM/dd/yyyy HH:mm"
+            });
+        
+            var formattedRows = rows.map(function (row) {
+                return {
+                    ...row,
+                    ShipDateTime: row.ShipDateTime ? oDateFormat.format(new Date(row.ShipDateTime)) : ""
+                };
+            });
+
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Plant ID", property: "PlantID" },
+                        { label: "Order ID", property: "OrderID" },
+                        { label: "Order Type", property: "OrderType" },
+                        { label: "Freight Quote ID", property: "FreightQuoteID" },
+                        { label: "Carrier Name", property: "CarrierName" },
+                        { label: "ERP Service ID", property: "ERPServiceID" },
+                        { label: "Ship Type", property: "ShipType" },
+                        { label: "Service Name", property: "ServiceName" },
+                        { label: "Type", property: "Type" },
+                        { label: "Bidded Carriers", property: "BiddedCarriers" },
+                        { label: "Ship Date Time", property: "ShipDateTime" },
+                        { label: "Quote Status", property: "QuoteStatus" },
+                        { label: "Notes", property: "Notes" }
+                    ]
+                },
+                dataSource: formattedRows,
+                fileName: 'Freight_Quote_Orders_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
+        onoOrderColSelectOkPress: function () {
+            var oView = this.getView();
+            var oOrderTable = oView.byId("myOrderColumnSelectId");
+            var eshipjetModel = oView.getModel("eshipjetModel");
+            var oOrderTblItems = oOrderTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/OrderTableData/OrderColumns");
+            var orderColSelectedCount = 0;
+            oOrderTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().name === oColObj.name) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                            orderColSelectedCount += 1;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            console.log(orderColSelectedCount);
+            eshipjetModel.setProperty("/orderColSelectedCount", orderColSelectedCount);
+            eshipjetModel.updateBindings(true);
+            // this._handleDisplayOrdersTable();
+            this._pOrderPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onOrderColSelectClosePress: function () {
+            this._pOrderPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        onFreightQuoteOrdersFilterPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._orderPopover) {
+                this._orderPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.FreightQuoteOrders.FreightQuoteOrdersFilterPopover",
+                    controller: this
+                }).then(function (orderPopover) {
+                    oView.addDependent(orderPopover);
+                    return orderPopover;
+                });
+            }
+            this._orderPopover.then(function (orderPopover) {
+                orderPopover.openBy(oButton);
+            });
+        },
+        onFreightQuoteOrdersFilterPopoverClosePress: function () {
+            this.byId("idFreightQuoteOrdersFilterPopover").close();
+        },
+        
+        onFreightQuoteOrdersFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var sLocation = eshipjetModel.getProperty("/orderLocationFilter");
+            var sCarrier = eshipjetModel.getProperty("/orderCarrierFilter");
+            var sStatus = eshipjetModel.getProperty("/orderShipmentStatusFilter");
+        
+            // Accessing DatePickers from the Fragment using View ID as fragment ID
+            var oShipFrom = Fragment.byId(oView.getId(), "shipFromDateId");
+            var oShipTo = Fragment.byId(oView.getId(), "shipToDateId");
+        
+            var dShipFrom = oShipFrom ? oShipFrom.getDateValue() : null;
+            var dShipTo = oShipTo ? oShipTo.getDateValue() : null;
+        
+            if (sLocation) {
+                aFilters.push(new sap.ui.model.Filter("PlantID", sap.ui.model.FilterOperator.EQ, sLocation));
+            }
+            if (sCarrier) {
+                aFilters.push(new sap.ui.model.Filter("Carriertype", sap.ui.model.FilterOperator.EQ, sCarrier));
+            }
+            if (sStatus) {
+                aFilters.push(new sap.ui.model.Filter("Shipprocess", sap.ui.model.FilterOperator.EQ, sStatus));
+            }
+            if (dShipFrom && dShipTo) {
+                aFilters.push(new sap.ui.model.Filter({
+                    path: "DateAdded",
+                    operator: sap.ui.model.FilterOperator.BT,
+                    value1: dShipFrom,
+                    value2: dShipTo
+                }));
+            }
+        
+            var oTable = oView.byId("idOrdersTable");
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter(aFilters);
+                }
+            }
+        
+            this.byId("idOrdersFilterPopover").close();
+        },
+        
+        onFreightQuoteOrdersFilterPopoverResetPress: function () {
+            var oView = this.getView();
+            var today = new Date();
+            oView.byId("locationComboId").setSelectedKey("");
+            oView.byId("shipFromDateId").setDateValue(null);
+            oView.byId("shipToDateId").setDateValue(null);
+            oView.byId("carrierComboId").setSelectedKey("");
+            oView.byId("orderTypeComboId").setSelectedKey("");
+            oView.byId("statusComboId").setSelectedKey("");
+        
+            // Reset table to show all
+            var oModel = oView.getModel("eshipjetModel");
+            oModel.setProperty("/filteredOrders", oModel.getProperty("/allOrders"));
+            oView.byId("idOrdersTable").bindRows("eshipjetModel>/filteredOrders");
+            this.byId("idFreightQuoteOrdersFilterPopover").close();
+        }
+        // Freight Quote Orders Changes End
+
+
     });
 });

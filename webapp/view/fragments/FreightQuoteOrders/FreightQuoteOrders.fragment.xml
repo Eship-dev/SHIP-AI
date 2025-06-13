@@ -1,0 +1,187 @@
+<core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
+
+        <Toolbar width="100%" height="3rem" >
+            <core:Icon src="sap-icon://curriculum" class="orderItem sapUiTinyMarginTop sapUiTinyMarginBegin" ></core:Icon>
+            <Text text="Freight Quote Orders" class="sapUiTinyMarginBegin sapUiTinyMarginTop Orders_PageTitle" ></Text>
+            <ToolbarSpacer></ToolbarSpacer>
+            <Button  icon="sap-icon://decline" press="onOrdersClosePress" class="Decline_Btn ship-now-decline_btn" type="Ghost" />
+        </Toolbar>
+
+        <Toolbar width="100%" height="4rem" class="toolbarbottomborder ordersDarkThemeToolbar">
+            <Text text="Freight Quote Orders" class="sapUiTinyMarginBegin sapUiTinyMarginTop Orders_PageTitle ordersTextColor"></Text>
+            <ToolbarSpacer></ToolbarSpacer>
+            <ComboBox id="FreightQuoteOrdersDateFilterComboBox" class="create-ship-req_input sapUiTinyMarginEnd" 
+                placeholder="Select Date Filter"
+                items="{eshipjetModel>/ordersFilterData}"
+                selectedKey="{dateFilterModel>/ordersSelectedFilter}"
+                selectionChange="onOrdersDateFilterChange" >
+                <core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
+            </ComboBox>
+        </Toolbar>
+		
+		<Toolbar height="7rem" class="whiteBackground" >
+			<HBox width="100%">
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="{eshipjetModel>/allOrdersLength}" class="NumberSizeTitle1"></Text>
+					<Text text="Total" class="sapUiTinyMarginBottom"></Text>
+					<Button id="FreightQuoteOrdersTotal" press="onOrderStstusBtnFilterPress" class="total-FreightQuoteOrders-button request-button" icon="false" width="100%"></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="{eshipjetModel>/shippedCount}" class="NumberSizeTitle1"></Text>
+					<Text text="Submitted" class="sapUiTinyMarginBottom"></Text>
+					<Button type="Critical" press="onOrderStstusBtnFilterPress" id="FreightQuoteOrdersIn-Transit" class="open-request-button request-button" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="{eshipjetModel>/InTransistCount}" class="NumberSizeTitle1"></Text>
+					<Text text="Received" class="sapUiTinyMarginBottom"></Text>
+                    <Button type="Emphasized" id="FreightQuoteOrdersDelivered" press="onOrderStstusBtnFilterPress"  class="Receivedord-request-button request-button" icon="false" width="100%" ></Button>
+                </VBox>
+				<VBox class="sapUiTinyMargin" width="25%">
+					<Text text="{eshipjetModel>/receivedCount}" class="NumberSizeTitle1"></Text>
+					<Text text="Approved" class="sapUiTinyMarginBottom"></Text>
+                    <Button type="Success" id="FreightQuoteOrdersShipped" press="onOrderStstusBtnFilterPress" class="shipped-request-button request-button" icon="false" width="100%" ></Button>
+                </VBox>
+			</HBox>
+		</Toolbar>
+
+        <VBox class="whiteBackground sapUiTinyMarginTop" >
+            <Toolbar class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd" >
+                <Button icon="sap-icon://filter" press="onOrdersFilterPopoverPress" type="Transparent" class="ordersIcons" ></Button>
+                    <ToolbarSpacer ></ToolbarSpacer>
+                    <SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" search="onSearchOrder" ></SearchField>
+                        <Button icon="sap-icon://synchronize" press="getOrdersHistoryShipments" type="Transparent" class="ordersIcons" ></Button>
+                        <Button icon="sap-icon://action" press="onFreightQuoteOrdersExportToExcel" type="Transparent" class="ordersIcons" ></Button>
+                        <Button icon="sap-icon://action-settings" press="openOrderColNamesPopover" type="Transparent" class="ordersIcons" ></Button>
+                    <customData>
+                        <core:CustomData key="remember" value="true" />
+                        <core:CustomData key="showClearButton" value="true" />
+                        <core:CustomData key="confirmButtonText" value="Ok" />
+                    </customData>
+            </Toolbar>
+
+            <ui:Table
+                id="_IDFreightQuoteOrdersTable"
+                rows="{eshipjetModel>/FreightQuoteOrdersData}"
+                class="sapUiSmallMarginBegin sapUiSmallMarginEnd rowRightLine ordersTableRightBorder"
+                selectionMode="None"
+                visibleRowCount="14" >
+                    <ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '5rem' : 'auto' }" sortProperty="Plant" class="whiteBackground" visible="{eshipjetModel>/FreightQuoteOrdersColumns/0/visible}">
+                        <Label text="Plant ID" />
+                        <ui:template>
+                            <Text text="{eshipjetModel>PlantID}" wrapping="false" class="ordersSmallText" />
+                        </ui:template>
+                    </ui:Column>
+
+                    <ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '6rem' : 'auto' }" sortProperty="Vbeln" visible="{eshipjetModel>/FreightQuoteOrdersColumns/1/visible}">
+                        <Label text="Order ID" />
+                        <ui:template>
+                            <Text text="{eshipjetModel>OrderID}" wrapping="false" class="ordersSmallText" />
+                        </ui:template>
+                    </ui:Column>
+
+                    <ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="Packagetype" visible="{eshipjetModel>/FreightQuoteOrdersColumns/2/visible}">
+                        <Label text="Order Type" />
+                        <ui:template>
+                            <Text text="{eshipjetModel>OrderType}" wrapping="false" class="ordersSmallText" />
+                        </ui:template>
+                    </ui:Column>
+
+                    <ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '7rem' : 'auto' }" sortProperty="Carriertype" visible="{eshipjetModel>/FreightQuoteOrdersColumns/3/visible}">
+                        <Label text="Freight Quote ID" />
+                        <ui:template>
+                                <Text text="{eshipjetModel>FreightQuoteID}" wrapping="false" class="ordersSmallText" />
+                        </ui:template>
+                    </ui:Column>
+
+                    <ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '7rem' : 'auto' }" sortProperty="CarrierCode" visible="{eshipjetModel>/FreightQuoteOrdersColumns/4/visible}">
+                        <Label text="Carrier Name" />
+                        <ui:template>
+                            <Text text="{eshipjetModel>CarrierName}" wrapping="false" class="ordersSmallText" />
+                        </ui:template>
+                    </ui:Column>
+
+                    <ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '7rem' : 'auto' }" sortProperty="CarrierCode" visible="{eshipjetModel>/FreightQuoteOrdersColumns/5/visible}">
+                        <Label text="ERP Service ID" />
+                        <ui:template>
+                            <Text text="{eshipjetModel>ERPServiceID}" wrapping="false" class="ordersSmallText" />
+                        </ui:template>
+                    </ui:Column>
+
+                    <ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '7rem' : 'auto' }" sortProperty="CarrierDesc" visible="{eshipjetModel>/FreightQuoteOrdersColumns/6/visible}">
+                        <Label text="Ship Type" />
+                        <ui:template>
+                            <Text text="{eshipjetModel>ShipType}" wrapping="false" class="ordersSmallText" />
+                        </ui:template>
+                    </ui:Column>
+
+                    <ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '4rem' : 'auto' }" sortProperty="ShipmentType" visible="{eshipjetModel>/FreightQuoteOrdersColumns/7/visible}">
+                        <Label text="Service Name" />
+                        <ui:template>
+                            <Text text="{eshipjetModel>ServiceName}" wrapping="false" class="ordersSmallText" />
+                        </ui:template>
+                    </ui:Column>
+
+                    <ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '4rem' : 'auto' }" sortProperty="Totalpkg" visible="{eshipjetModel>/FreightQuoteOrdersColumns/8/visible}">
+                        <Label text="Type" />
+                        <ui:template>
+                            <Text text="{eshipjetModel>Type}" wrapping="false" class="ordersSmallText" />
+                        </ui:template>
+                    </ui:Column>
+
+                    <ui:Column width="10rem" sortProperty="PGI" visible="{eshipjetModel>/FreightQuoteOrdersColumns/9/visible}">
+                        <Label text="Bided Carriers" />
+                        <ui:template>
+                            <HBox justifyContent="SpaceBetween" width="100%" >
+                                <Text text="{eshipjetModel>BiddedCarriers}" wrapping="false" class="sapUiSmallMarginTop ordersSmallText" />
+                                <Button icon="sap-icon://add" press="onShipMethodUpdate" class="ordersSmallText" type="Transparent" ></Button>
+                            </HBox>
+                        </ui:template>
+                    </ui:Column>
+
+                    <ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '10rem' : 'auto' }" sortProperty="DateAdded" visible="{eshipjetModel>/FreightQuoteOrdersColumns/10/visible}">
+                        <Label text="Ship Date-Time" />
+                        <ui:template>
+                            <Text text="{eshipjetModel>ShipDateTime}" class="ordersSmallText" wrapping="false" />
+                        </ui:template>
+                    </ui:Column>
+
+                    <ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '12rem' : 'auto' }" sortProperty="TrackingNumber" visible="{eshipjetModel>/FreightQuoteOrdersColumns/11/visible}">
+                        <Label text="Quote Status" />
+                        <ui:template>
+                            <Text text="{eshipjetModel>QuoteStatus}" class="ordersSmallText" wrapping="false" />
+                        </ui:template>
+                    </ui:Column>
+
+                    <ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '6rem' : 'auto' }" sortProperty="DeliveryStatus" visible="{eshipjetModel>/FreightQuoteOrdersColumns/12/visible}">
+                        <Label text="Notes" />
+                        <ui:template>
+                            <Button icon="sap-icon://document-text" press="onShipmentWorkflowPress" type="Transparent" class="greenColorForIcon ordersSmallText" />
+                        </ui:template>
+                    </ui:Column>
+
+                    <ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '7rem' : 'auto' }" hAlign="End" >
+                        <Label text="Actions"/>
+                        <ui:template>
+                            <HBox>
+                                <Button text="View Now" class="ordersSmallButton" type="Transparent" press="onViewNowPressBackToShipNow" ></Button>
+                                <Button icon="sap-icon://megamenu" class="ordersSmallButton" type="Transparent" press="handleDownArrowPress" ></Button>
+                            </HBox>
+                        </ui:template>
+                    </ui:Column>
+            </ui:Table> 
+	
+            </VBox>
+                <Toolbar class="whiteBackground sapUiTinyMarginTop ordersTableFooter">
+                    <ToolbarSpacer/>
+                        <Button text="First" type="Transparent" press=".onFirstPage"
+                            enabled="{eshipjetModel>/FirstBtnVisableStatus}" />
+                        <Button text="Previous" type="Transparent" press=".onPreviousPage"
+                            enabled="{eshipjetModel>/PreviousBtnVisableStatus}" />
+                        <Text id="FreightQuoteOrdersPaginationText" text="1-50 of 0" />
+                        <Button text="Next" type="Transparent" press=".onNextPage"
+                            enabled="{eshipjetModel>/NextBtnVisableStatus}" />
+                        <Button text="Last" type="Transparent" press=".onLastPage"
+                            enabled="{eshipjetModel>/LastBtnVisableStatus}" />
+                </Toolbar>
+
+</core:FragmentDefinition>

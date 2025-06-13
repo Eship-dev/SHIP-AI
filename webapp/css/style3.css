@@ -1243,6 +1243,17 @@ sapMPopover .sapMPopoverCont {
   }
 }
 
+.total-FreightQuoteOrders-button {
+  span{
+    background-color: rgb(0, 79, 125) !important;
+    height: 20px !important;
+    border-radius: 6px !important;
+    &:hover { 
+      border-bottom: 10px solid #166a9b !important;
+    }
+  }
+}
+
 .ship-type-value {
   display: inline-block !important;
   background-color: #E3F2FD !important;
@@ -2575,4 +2586,31 @@ button, input, optgroup, select, textarea {
 .shippercopilotcss {
   border: none;
   flex-grow: 1;
+}
+
+.freightQuoteStatusSubmitColor{
+  background-color: dodgerblue;
+}
+.freightQuoteStatusReceivedColor{
+  background-color: rgb(79, 168, 178);
+}
+.freightQuoteStatusClosedColor{
+  background-color: rgb(254, 54, 54);
+}
+.freightQuoteStatusApprovedColor{
+  background-color: rgb(0, 165, 0);
+}
+.freightQuoteStatusFontColor{
+  color: white !important;
+  font-weight: bold !important;
+}
+
+.freightQuoteStatusApprovedBtnColor{
+  background-color: green !important;
+  color: white !important;
+}
+
+.freightQuoteStatusCancelledBtnColor{
+  background-color: red !important;
+  color: white !important;
 }

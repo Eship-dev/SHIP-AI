@@ -185,7 +185,7 @@
 														<table:Column width="7rem" hAlign="Center">
 															<Label text="Shipment Type"/>
 															<table:template>
-																<Text text="{ShipperCopilotModel>Shipmenttype}" wrapping="false" />
+																<Text text="{= ${ShipperCopilotModel>Shipmenttype} === 'O' ? 'Parcel' : 'LTL' }" wrapping="false" />
 															</table:template>
 														</table:Column>
 														<table:Column width="7rem" hAlign="Center">
@@ -380,7 +380,10 @@
 						<!-- <mvc:XMLView viewName="com.eshipjet.zeshipjet.view.ShipNow"/> -->
 					</ScrollContainer>
 
-					
+				<!-- Freight Quote Orders Starts here -->
+					<ScrollContainer id="FreightQuoteOrders" horizontal="false" vertical="true" height="100%" class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.FreightQuoteOrders.FreightQuoteOrders" type="XML" />
+					</ScrollContainer>
 
 				<!-- Quote Now Starts here -->
 					<ScrollContainer	id="QuoteNow" horizontal="false" vertical="true" height="calc(100% - 50px)" class="sapUiContentPadding">

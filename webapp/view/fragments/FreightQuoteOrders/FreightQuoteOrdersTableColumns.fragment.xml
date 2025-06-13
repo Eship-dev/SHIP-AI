@@ -1,0 +1,45 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover id="FreightQuoteOrdersColumnsPopover" contentWidth="20%" contentHeight="40%" placement="Left" showArrow="false">
+		<customHeader>
+			<VBox>
+				<Toolbar class="toolbarbottomborder">
+					<Title class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="Columns"/>
+                        <ToolbarSpacer/>
+                            <Button icon="sap-icon://decline" press="onFreightQuoteOrdersColSelectClosePress" class="Decline_Btn ship-now-decline_btn"/>
+				</Toolbar>
+				<SearchField class="sapUiSmallMarginEnd sapUiTinyMarginBottom columnConfigSearch" placeholder="Search Columns" liveChange="onFreightQuoteOrdersColNameSearch" />
+			</VBox>
+		</customHeader>
+
+		<content>
+			<Table
+				id="myFreightQuoteOrdersColumnSelectId"
+				mode="MultiSelect"
+				items="{path: 'eshipjetModel>/FreightQuoteOrdersColumns'}">
+				<columns>
+					<Column>
+						<header>
+							<Text text="Select All"/>
+						</header>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{eshipjetModel>label}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button text="Apply" type="Emphasized" press="onFreightQuoteOrdersColSelectOkPress"/>
+			</Toolbar>
+		</footer>
+	</Popover>
+</core:FragmentDefinition>

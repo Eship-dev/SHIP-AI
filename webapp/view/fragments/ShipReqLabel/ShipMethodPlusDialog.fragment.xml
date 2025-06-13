@@ -19,55 +19,56 @@
     </customHeader> -->
 
     <!-- Custom Header -->
-       <customHeader>
-            <Toolbar height="3.5rem" >
+       <!-- <customHeader> -->
+            <Toolbar height="3rem" >
+                <Button text="Back" icon="sap-icon://nav-back" press="ShipMethodCancelDialog" iconFirst="true" type="Transparent" ></Button>
                  <ToolbarSpacer />
                 <Title text="Freight Quote Status" />
                 <ToolbarSpacer />
                 <Button icon="sap-icon://decline" class="Decline_Btn ship-now-decline_btn" press="ShipMethodCancelDialog" />
             </Toolbar>
-      </customHeader>
+      <!-- </customHeader> -->
       
        <VBox>
-    <HBox justifyContent="SpaceAround" class="summary-section shipmethod">
+    <HBox justifyContent="SpaceAround" class="summary-section shipmethod sapUiTinyMargin">
         
-        <VBox class="stat-card">
+        <VBox class="stat-card freightQuoteStatusSubmitColor" width="20%" >
             <HBox>
-                <Text text="✔" class="checkmark" />
-                <Text text="Quotes Submitted" />
+                <Text text="Submitted" class="freightQuoteStatusFontColor" />
             </HBox>
             <ObjectNumber number="{eshipjetModel>/submitted}" state="Success" class="QuotesSubmittedNumberBegin" />
         </VBox>
-
-        <VBox class="stat-card sapUiMediumMarginBegin">
+        <VBox class="stat-card sapUiMediumMarginBegin freightQuoteStatusReceivedColor" width="20%" >
             <HBox>
-                <Text text="✔" class="checkmark" />
-                <Text text="Quotes Received" />
+                <Text text="Received" class="freightQuoteStatusFontColor" />
             </HBox>
             <ObjectNumber number="{eshipjetModel>/received}" state="Success" />
         </VBox>
-
-        <VBox class="stat-card sapUiMediumMarginBegin">
+        <VBox class="stat-card sapUiMediumMarginBegin freightQuoteStatusClosedColor" width="20%" >
             <HBox>
-                <Text text="✔" class="checkmark" />
-                <Text text="Quote Approved" />
+                <Text text="Closed" class="freightQuoteStatusFontColor" />
             </HBox>
             <ObjectNumber number="{eshipjetModel>/approved}" state="Success" />
         </VBox>
-
+        <VBox class="stat-card sapUiMediumMarginBegin freightQuoteStatusApprovedColor" width="20%" >
+            <HBox>
+                <Text text="Approved" class="freightQuoteStatusFontColor" />
+            </HBox>
+            <ObjectNumber number="{eshipjetModel>/approved}" state="Success" />
+        </VBox>
     </HBox>
 </VBox>
 
         
 <Toolbar ></Toolbar>
        
-       <VBox class=" customSimpleFormShadow1">
+<VBox class=" customSimpleFormShadow1">
     <Text text="Freight Quotation Status" class="section-header" />
 
     <VBox class="carrier-card">
         <HBox justifyContent="SpaceBetween" alignItems="Start">
             <Text text="Pilot Freight Services" class="quote-title" />
-            <Text text="Received" class="quote-status" />
+            <Button text="Approved" enabled="false" class="freightQuoteStatusApprovedBtnColor" />
         </HBox>
         <HBox>
             <VBox>
@@ -81,7 +82,21 @@
     <VBox class="carrier-card">
         <HBox justifyContent="SpaceBetween" alignItems="Start">
             <Text text="SEKO Logistics" class="quote-title" />
-            <Text text="Approved" class="quote-status" />
+            <Button text="Closed" enabled="false" class="freightQuoteStatusCancelledBtnColor"  />
+        </HBox>
+        <HBox>
+            <VBox>
+                <Text text="kumar@c360soft.ai" />
+                <Text text="+14043620500" />
+                <Text text="USD 1800.00" class="quote-amount" />
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <VBox class="carrier-card">
+        <HBox justifyContent="SpaceBetween" alignItems="Start">
+            <Text text="SEKO Logistics" class="quote-title" />
+            <Button text="Closed" enabled="false" class="freightQuoteStatusCancelledBtnColor" />
         </HBox>
         <HBox>
             <VBox>
