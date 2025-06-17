@@ -18065,9 +18065,48 @@ sap.ui.define([
             oModel.setProperty("/filteredOrders", oModel.getProperty("/allOrders"));
             oView.byId("idOrdersTable").bindRows("eshipjetModel>/filteredOrders");
             this.byId("idFreightQuoteOrdersFilterPopover").close();
-        }
-        // Freight Quote Orders Changes End
+        },
 
+        onSearchFreightQuoteOrders: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+            var oTable = this.byId("_IDFreightQuoteOrdersTable");
+            var oBinding = oTable.getBinding("rows");
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("PlantID", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("OrderID", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("OrderType", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("FreightQuoteID", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("CarrierName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("ERPServiceID", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("ShipType", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("ServiceName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("Type", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("BiddedCarriers", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("ShipDateTime", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("QuoteStatus", sap.ui.model.FilterOperator.Contains, sQuery)
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+
+        refreshFreightQuoteOrders:function(){
+            oController.onOpenBusyDialog();
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            var oTable = this.byId("_IDFreightQuoteOrdersTable");
+            var oBinding = oTable.getBinding("rows");
+            oBinding.filter([]);
+            eshipjetModel.setProperty("/FreightQuoteOrdersSearchText", "");
+            oController.onCloseBusyDialog();
+        }
+
+        // Freight Quote Orders Changes End
 
     });
 });

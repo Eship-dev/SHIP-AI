@@ -13,7 +13,7 @@
 			</VBox>
 		</customHeader>
 
-		<content>
+		 <content>
 			<Table
 				id="myFreightQuoteOrdersColumnSelectId"
 				mode="MultiSelect"

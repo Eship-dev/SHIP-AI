@@ -4,7 +4,7 @@
 	xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
 	<Popover
-		contentWidth="90%"
+		contentWidth="10rem"
 		showArrow="false"
 		showHeader="false"
 		id="idFreightQuoteOrdersFilterPopover"
@@ -18,7 +18,7 @@
 		
         <VBox >
             <HBox >
-                <VBox class="sapUiSmallMargin" width="30%" >
+                <VBox class="sapUiSmallMargin" width="5rem" >
                 <Label text="Location ID/Location Name" width="100%" />
                     <ComboBox
                         id="FreightQuoteLocationComboId"
@@ -29,7 +29,7 @@
                             <core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
                         </ComboBox>
                 </VBox>
-                <VBox class="sapUiSmallMargin" width="30%" >
+                <VBox class="sapUiSmallMargin" width="5rem" >
                     <Label text="Ship From Date" width="100%" />
                     <DatePicker
                         id="FreightQuoteShipFromDateId"
@@ -39,7 +39,7 @@
                         change="handleChange"
                         class="sapUiSmallMarginBottom create-ship-req_input"/>
                 </VBox>
-                <VBox class="sapUiSmallMargin" width="30%" >
+                <VBox class="sapUiSmallMargin" width="5rem" >
                     <Label text="Ship To Date" width="100%" />
                     <DatePicker
                         id="FreightQuoteShipToDateId"
@@ -51,7 +51,7 @@
                 </VBox>
             </HBox>
             <HBox>
-                <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
+                <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="5rem" >
                     <Label text="Carrier Name" width="100%" />
                     <ComboBox
                         id="FreightQuoteCarrierComboId"
@@ -62,7 +62,7 @@
                         <core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
                     </ComboBox>
                 </VBox>
-                <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
+                <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="5rem" >
                     <Label text="Order Type" width="100%" />
                     <ComboBox
                         id="FreightQuoteOrderTypeComboId"
@@ -73,7 +73,7 @@
                         <core:Item key="{eshipjetModel>SAPDeliveryItem}" text="{eshipjetModel>SAPDeliveryItem}" />
                     </ComboBox>
                 </VBox>
-                <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="30%" >
+                <VBox class="sapUiSmallMarginBegin sapUiSmallMarginEnd sapUiSmallMarginBottom" width="5rem" >
                     <Label text="Status" width="100%" />
                     <ComboBox
                         id="FreightQuoteStatusComboId"

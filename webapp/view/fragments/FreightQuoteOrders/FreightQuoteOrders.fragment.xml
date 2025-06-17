@@ -1,7 +1,7 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
         <Toolbar width="100%" height="3rem" >
-            <core:Icon src="sap-icon://curriculum" class="orderItem sapUiTinyMarginTop sapUiTinyMarginBegin" ></core:Icon>
+            <core:Icon src="sap-icon://inbox" class="sapUiTinyMarginBegin" ></core:Icon>
             <Text text="Freight Quote Orders" class="sapUiTinyMarginBegin sapUiTinyMarginTop Orders_PageTitle" ></Text>
             <ToolbarSpacer></ToolbarSpacer>
             <Button  icon="sap-icon://decline" press="onOrdersClosePress" class="Decline_Btn ship-now-decline_btn" type="Ghost" />
@@ -48,8 +48,8 @@
             <Toolbar class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd" >
                 <Button icon="sap-icon://filter" press="onOrdersFilterPopoverPress" type="Transparent" class="ordersIcons" ></Button>
                     <ToolbarSpacer ></ToolbarSpacer>
-                    <SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" search="onSearchOrder" ></SearchField>
-                        <Button icon="sap-icon://synchronize" press="getOrdersHistoryShipments" type="Transparent" class="ordersIcons" ></Button>
+                    <SearchField width="10rem" value="{eshipjetModel>/FreightQuoteOrdersSearchText}" class="sapUiSmallMarginBottom forsearchhigh" search="onSearchFreightQuoteOrders" ></SearchField>
+                        <Button icon="sap-icon://synchronize" press="refreshFreightQuoteOrders" type="Transparent" class="ordersIcons" ></Button>
                         <Button icon="sap-icon://action" press="onFreightQuoteOrdersExportToExcel" type="Transparent" class="ordersIcons" ></Button>
                         <Button icon="sap-icon://action-settings" press="openOrderColNamesPopover" type="Transparent" class="ordersIcons" ></Button>
                     <customData>
