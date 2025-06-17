@@ -1416,21 +1416,21 @@ sapMPopover .sapMPopoverCont {
 
 /* New style for the header */
 .alHeaderStyle {
-  background-color: white !important;
-  border-bottom: 1px solid #ccc; /* optional subtle border */
+  background-color: #2E3545 !important;
+  border-bottom: 1px solid #585656; /* optional subtle border */
 }
 
 .alHeaderStyle .sapMText,
 .alHeaderStyle .sapUiIcon {
-  color: black !important;
+  color: white !important;
   fill: black !important;
 }
 
 .alHeaderStyle .sapMBtn {
-  background-color: white !important;
+  background-color: #2E3545 !important;
   color: black !important;
   fill: black !important;
-  border: 1px solid #ccc; /* optional */
+  border: 1px solid #4e4d4d; /* optional */
 }
 
 
