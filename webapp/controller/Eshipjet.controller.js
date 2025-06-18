@@ -33,9 +33,10 @@ sap.ui.define([
             // var sAudioPath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/audio/Lock.mp3");
             // var audio = new Audio(sAudioPath);
             // audio.play();
-
+            
             this._pageSize = 50;
             this._currentPage = 1;
+            this.setupFreightQuotePagination();
 
             var oModel = new JSONModel(sap.ui.require.toUrl("com/eshipjet/zeshipjet/model/data.json"));
             this.getView().setModel(oModel);
@@ -8266,6 +8267,62 @@ sap.ui.define([
                 }
             });
         },
+         // Setup fq Pagination
+
+         setupFreightQuotePagination: function () {
+            const oModel = this.getOwnerComponent().getModel("eshipjetModel");
+            this._freightPageSize = 50;
+        
+            this._freightAllData = oModel.getProperty("/FreightQuoteOrdersData") || [];
+            this._freightTotalItems = this._freightAllData.length;
+            this._freightTotalPages = Math.ceil(this._freightTotalItems / this._freightPageSize);
+            this._freightCurrentPage = 1;
+        
+            this._updateFreightPagedData();
+        },
+        
+        _updateFreightPagedData: function () {
+            const startIndex = (this._freightCurrentPage - 1) * this._freightPageSize;
+            const endIndex = Math.min(startIndex + this._freightPageSize, this._freightTotalItems);
+            const pagedData = this._freightAllData.slice(startIndex, endIndex);
+        
+            const oModel = this.getOwnerComponent().getModel("eshipjetModel");
+            oModel.setProperty("/FreightQuoteOrdersPaged", pagedData);
+        
+            // Update pagination text
+            this.byId("FreightQuoteOrdersPaginationText").setText(`${startIndex + 1}-${endIndex} of ${this._freightTotalItems}`);
+        
+            // Update visibility statuses
+            oModel.setProperty("/FreightFirstVisible", this._freightCurrentPage > 1);
+            oModel.setProperty("/FreightPrevVisible", this._freightCurrentPage > 1);
+            oModel.setProperty("/FreightNextVisible", this._freightCurrentPage < this._freightTotalPages);
+            oModel.setProperty("/FreightLastVisible", this._freightCurrentPage < this._freightTotalPages);
+        },
+        
+        onFreightFirstPage: function () {
+            this._freightCurrentPage = 1;
+            this._updateFreightPagedData();
+        },
+        
+        onFreightPreviousPage: function () {
+            if (this._freightCurrentPage > 1) {
+                this._freightCurrentPage--;
+                this._updateFreightPagedData();
+            }
+        },
+        
+        onFreightNextPage: function () {
+            if (this._freightCurrentPage < this._freightTotalPages) {
+                this._freightCurrentPage++;
+                this._updateFreightPagedData();
+            }
+        },
+        
+        onFreightLastPage: function () {
+            this._freightCurrentPage = this._freightTotalPages;
+            this._updateFreightPagedData();
+        },
+        
 
                     // Setup ShipReq Pagination
                     setupShipReqPagination: function () {

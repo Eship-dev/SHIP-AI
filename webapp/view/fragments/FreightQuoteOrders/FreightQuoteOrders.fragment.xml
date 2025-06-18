@@ -61,10 +61,10 @@
 
             <ui:Table
                 id="_IDFreightQuoteOrdersTable"
-                rows="{eshipjetModel>/FreightQuoteOrdersData}"
-                class="sapUiSmallMarginBegin sapUiSmallMarginEnd rowRightLine ordersTableRightBorder"
-                selectionMode="None"
-                visibleRowCount="14" >
+    rows="{eshipjetModel>/FreightQuoteOrdersPaged}"
+    class="sapUiSmallMarginBegin sapUiSmallMarginEnd rowRightLine ordersTableRightBorder"
+    selectionMode="None"
+    visibleRowCount="14">
                     <ui:Column width="{= ${eshipjetModel>/orderColSelectedCount} >= 15 ? '5rem' : 'auto' }" sortProperty="Plant" class="whiteBackground" visible="{eshipjetModel>/FreightQuoteOrdersColumns/0/visible}">
                         <Label text="Plant ID" />
                         <ui:template>
@@ -173,15 +173,15 @@
             </VBox>
                 <Toolbar class="whiteBackground sapUiTinyMarginTop ordersTableFooter">
                     <ToolbarSpacer/>
-                        <Button text="First" type="Transparent" press=".onFirstPage"
-                            enabled="{eshipjetModel>/FirstBtnVisableStatus}" />
-                        <Button text="Previous" type="Transparent" press=".onPreviousPage"
-                            enabled="{eshipjetModel>/PreviousBtnVisableStatus}" />
-                        <Text id="FreightQuoteOrdersPaginationText" text="1-50 of 0" />
-                        <Button text="Next" type="Transparent" press=".onNextPage"
-                            enabled="{eshipjetModel>/NextBtnVisableStatus}" />
-                        <Button text="Last" type="Transparent" press=".onLastPage"
-                            enabled="{eshipjetModel>/LastBtnVisableStatus}" />
+                    <Button text="First" type="Transparent" press=".onFreightFirstPage"
+                        enabled="{eshipjetModel>/FreightFirstVisible}" />
+                    <Button text="Previous" type="Transparent" press=".onFreightPreviousPage"
+                        enabled="{eshipjetModel>/FreightPrevVisible}" />
+                    <Text id="FreightQuoteOrdersPaginationText" text="1-50 of 0" />
+                    <Button text="Next" type="Transparent" press=".onFreightNextPage"
+                        enabled="{eshipjetModel>/FreightNextVisible}" />
+                    <Button text="Last" type="Transparent" press=".onFreightLastPage"
+                        enabled="{eshipjetModel>/FreightLastVisible}" />
                 </Toolbar>
 
 </core:FragmentDefinition>
