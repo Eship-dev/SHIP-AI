@@ -537,7 +537,8 @@
 	    
 	  </App>
 
-	  <OverflowToolbar class="eship-footer" visible="{eshipjetModel>/commonValues/allViewsFooter}">
+	  	<OverflowToolbar class="eship-footer" visible="{eshipjetModel>/commonValues/allViewsFooter}">
+	  		<Button text="Log Out" class="customLogOutButton" type="Transparent" press="onLogOutPress" icon="sap-icon://log" ></Button>
 			<ToolbarSpacer/>
 				<Text text="© copyright 2024 eshipjet.ai, Inc. All rights reserved."/>
 			<ToolbarSpacer/>

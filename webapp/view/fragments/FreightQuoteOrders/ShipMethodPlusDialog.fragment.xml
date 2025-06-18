@@ -68,7 +68,7 @@
     <VBox class="carrier-card">
         <HBox justifyContent="SpaceBetween" alignItems="Start">
             <Text text="Pilot Freight Services" class="quote-title" />
-            <Button text="Approved" enabled="false" class="freightQuoteStatusApprovedBtnColor" />
+            <Button text="Approved" enabled="false" type="Emphasized" class="freightQuoteStatusApprovedBtnColor" />
         </HBox>
         <HBox>
             <VBox>
@@ -82,7 +82,7 @@
     <VBox class="carrier-card">
         <HBox justifyContent="SpaceBetween" alignItems="Start">
             <Text text="SEKO Logistics" class="quote-title" />
-            <Button text="Closed" enabled="false" class="freightQuoteStatusCancelledBtnColor"  />
+            <Button text="Closed" enabled="false" type="Emphasized" class="freightQuoteStatusCancelledBtnColor" />
         </HBox>
         <HBox>
             <VBox>
@@ -96,7 +96,7 @@
     <VBox class="carrier-card">
         <HBox justifyContent="SpaceBetween" alignItems="Start">
             <Text text="SEKO Logistics" class="quote-title" />
-            <Button text="Closed" enabled="false" class="freightQuoteStatusCancelledBtnColor" />
+            <Button text="Closed" enabled="false" type="Emphasized" class="freightQuoteStatusCancelledBtnColor" />
         </HBox>
         <HBox>
             <VBox>

@@ -14544,7 +14544,7 @@ sap.ui.define([
             if (!this.byId("idShipMethodDialog")) {
                 Fragment.load({
                     id: oView.getId(),
-                    name: "com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.ShipMethodPlusDialog",
+                    name: "com.eshipjet.zeshipjet.view.fragments.FreightQuoteOrders.ShipMethodPlusDialog",
                     controller: this // Pass the controller for binding
                 }).then(function (oShipMethodDialog) {
                     oView.addDependent(oShipMethodDialog);
@@ -18104,9 +18104,13 @@ sap.ui.define([
             oBinding.filter([]);
             eshipjetModel.setProperty("/FreightQuoteOrdersSearchText", "");
             oController.onCloseBusyDialog();
-        }
+        },
 
         // Freight Quote Orders Changes End
+
+        onLogOutPress:function(){
+            window.location.href = "/sap/public/bc/icf/logoff";
+        }
 
     });
 });

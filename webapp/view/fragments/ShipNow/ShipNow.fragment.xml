@@ -57,7 +57,7 @@
 									<DatePicker class="create-ship-req_input sapUiTinyMargin" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" id="DP1" width="10%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
 									<ToolbarSpacer ></ToolbarSpacer>
 									 <Button text="Clear" press="onShipNowNewPress" class="Ship-Now-toolbar1__button_red clearBtn sapUiTinyMargin" type="Ghost" />
-									<Button text="New" press="onShipNowNewPress" class="scan-ship-toolbar1__button saveBtn sapUiTinyMargin" type="Ghost" width="6%" ></Button>
+									<Button text="New" press="onShipNowNewPress" class="scan-ship-toolbar1__button saveBtn sapUiTinyMargin" type="Ghost" ></Button>
                             </Toolbar>
 							<!-- Icon Tab Bar Starts here -->			
 							<IconTabBar id="idIconTabBarFiori2" selectedKey = "Pack" expandable="false" enableTabReordering="true" class="shipNow-IconTabBar-Width customTabStyle" >

@@ -1259,15 +1259,16 @@ sapMPopover .sapMPopoverCont {
   background-color: #E3F2FD !important;
   color: #007ad9 !important;
   font-weight: bold !important;
-  padding: 8px 16px !important;
+  padding: 6px 14px !important;
   border-radius: 12px !important;
   border: 2px solid #007ad9 !important;
   text-align: center !important;
-  min-width: 60px !important;
-  font-size: 14px !important;
+  min-width: 40px !important;
+  font-size: 12px !important;
   letter-spacing: 0.5px !important;
   box-shadow: 2px 2px 8px rgba(0, 122, 217, 0.2) !important;
   transition: all 0.3s ease-in-out !important;
+  height: 2rem !important;
 }
 
 .shipped-request-button {
@@ -2605,12 +2606,55 @@ button, input, optgroup, select, textarea {
   font-weight: bold !important;
 }
 
-.freightQuoteStatusApprovedBtnColor{
+.freightQuoteStatusApprovedBtnColor .sapMBtnInner {
   background-color: green !important;
+  color: white !important;
+  border-color: green !important;
+}
+
+.freightQuoteStatusCancelledBtnColor .sapMBtnInner {
+  background-color: red !important;
+  color: white !important;
+  border-color: red !important;
+}
+
+.customLogOutButton.sapMBtn {
+  border: 2px solid #ff4444 !important;
+  border-radius: 2px !important;
+  background: transparent !important;
+  padding: 3px 10px !important;
+  transition: all 0.3s ease !important;
+  height: 2rem !important;
+  width: 6rem !important;
+}
+
+.customLogOutButton .sapMBtnInner {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 2px !important;
+}
+
+.customLogOutButton .sapMBtnContent {
+  color: #ff4444 !important;
+  font-weight: 500 !important;
+}
+
+.customLogOutButton .sapUiIcon {
+  color: #ff4444 !important;
+  margin-right: 6px !important;
+}
+
+/* Hover state */
+.customLogOutButton.sapMBtn:hover {
+  background: #ff4444 !important;
+  border-color: #ff4444 !important;
+}
+
+.customLogOutButton:hover .sapMBtnContent {
   color: white !important;
 }
 
-.freightQuoteStatusCancelledBtnColor{
-  background-color: red !important;
+.customLogOutButton:hover .sapUiIcon {
   color: white !important;
 }

@@ -46,7 +46,7 @@
 
         <VBox class="whiteBackground sapUiTinyMarginTop" >
             <Toolbar class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd" >
-                <Button icon="sap-icon://filter" press="onOrdersFilterPopoverPress" type="Transparent" class="ordersIcons" ></Button>
+                <Button icon="sap-icon://filter" press="onFreightQuoteOrdersFilterPopoverPress" type="Transparent" class="ordersIcons" ></Button>
                     <ToolbarSpacer ></ToolbarSpacer>
                     <SearchField width="10rem" value="{eshipjetModel>/FreightQuoteOrdersSearchText}" class="sapUiSmallMarginBottom forsearchhigh" search="onSearchFreightQuoteOrders" ></SearchField>
                         <Button icon="sap-icon://synchronize" press="refreshFreightQuoteOrders" type="Transparent" class="ordersIcons" ></Button>
