@@ -70,15 +70,11 @@
 	</Toolbar>
 	
 							<ui:Table
-	id="idTrackNowTable"
-	rows="{eshipjetModel>/pagedTrackOrders}"
-	class="sapUiTinyMarginTop"
-	selectionMode="None"
-	visibleRowCount="14" >
-
-
-							
-
+									id="idTrackNowTable"
+									rows="{eshipjetModel>/pagedTrackOrders}"
+									class="sapUiTinyMarginTop"
+									selectionMode="None"
+									visibleRowCount="14" >
 										<ui:Column width="10rem" visible="{eshipjetModel>/TrackNowTableData/TrackNowColumns/0/visible}">
 									<Label text="Location Name"  />
 									<ui:template>

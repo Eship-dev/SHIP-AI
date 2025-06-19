@@ -17964,6 +17964,81 @@ sap.ui.define([
             this.onOrderColSelectClosePress();
             // You may also call table rerender or update logic here
         },
+
+        openFreightQuoteColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource();
+            var oView = this.getView();
+            var oController = this;
+        
+            if (!this._pFreightQuotePopover) {
+                this._pFreightQuotePopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.FreightQuoteOrders.FreightQuoteOrdersTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+        
+            this._pFreightQuotePopover.then(function (oPopover) {
+                oController._syncFreightQuoteColumnSelections();
+                oPopover.openBy(oButton);
+            });
+        },
+        
+        _syncFreightQuoteColumnSelections: function () {
+            var oTable = Fragment.byId(this.getView().getId(), "myFreightQuoteOrdersColumnSelectId");
+            if (!oTable) return;
+        
+            var aItems = oTable.getItems();
+            aItems.forEach(function (oItem) {
+                var oContext = oItem.getBindingContext("eshipjetModel");
+                if (oContext) {
+                    var oData = oContext.getObject();
+                    oItem.setSelected(oData.visible === true);
+                }
+            });
+        },
+        
+        onFreightQuoteOrdersColNameSearch: function (oEvent) {
+            var sQuery = oEvent.getSource().getValue();
+            var oTable = Fragment.byId(this.getView().getId(), "myFreightQuoteOrdersColumnSelectId");
+            if (!oTable) return;
+        
+            var oBinding = oTable.getBinding("items");
+            var aFilters = [];
+            if (sQuery) {
+                aFilters.push(new sap.ui.model.Filter("label", sap.ui.model.FilterOperator.Contains, sQuery));
+            }
+            oBinding.filter(aFilters);
+        },
+        
+        onFreightQuoteOrdersColSelectClosePress: function () {
+            this._pFreightQuotePopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        
+        onFreightQuoteOrdersColSelectOkPress: function () {
+            var oTable = Fragment.byId(this.getView().getId(), "myFreightQuoteOrdersColumnSelectId");
+            var oModel = this.getOwnerComponent().getModel("eshipjetModel");
+        
+            oTable.getItems().forEach(function (oItem) {
+                var oContext = oItem.getBindingContext("eshipjetModel");
+                if (oContext) {
+                    var oData = oContext.getObject();
+                    oData.visible = oItem.getSelected();
+                }
+            });
+        
+            oModel.refresh(true);
+            this.onFreightQuoteOrdersColSelectClosePress();
+            // Optional: Update the actual table column rendering if needed
+        },
+        
+        
+        
         
 
 
