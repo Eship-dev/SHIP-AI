@@ -1,0 +1,45 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Popover
+		contentWidth="15%"
+		showArrow="false"
+		showHeader="false"
+		id="idLocationsFilterPopover"
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+		placement="Bottom"
+		initialFocus="email">
+		<Toolbar >
+			<ToolbarSpacer ></ToolbarSpacer>
+				<Button icon="sap-icon://decline" press="onLocationsFilterPopoverClosePress" class="Decline_Btn ship-now-decline_btn" ></Button>
+		</Toolbar>
+		
+			<VBox class="sapUiSmallMargin" width="80%" >
+			    <Label text="Location ID / Location Name" width="80%" />
+                <ComboBox
+                    id="LocationsComboId"
+                    width="80%"
+                    class="create-ship-req_input"
+                    items="{eshipjetModel>/LocationName}"
+                    selectedKey="{eshipjetModel>/orderLocationFilter}" >
+                    <core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
+                </ComboBox>
+			</VBox>
+
+	<footer>
+		<OverflowToolbar>
+			<Button
+				text="Reset"
+				type="Ghost"
+				press="onLocationsFilterPopoverResetPress" />
+				<ToolbarSpacer/>
+			<Button
+				text="Apply"
+				type="Ghost"
+				press="onLocationsFilterPopoverApplyPress" />
+		</OverflowToolbar>
+	</footer>
+</Popover>
+</core:FragmentDefinition>

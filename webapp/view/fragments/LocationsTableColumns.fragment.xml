@@ -9,7 +9,7 @@
 					<ToolbarSpacer ></ToolbarSpacer>					
 					<Button icon="sap-icon://decline" press="onLocationsColSelectClosePress" class="Decline_Btn ship-now-decline_btn" ></Button>
 				</Toolbar>
-				<SearchField placeholder="Search Columns"   liveChange="onLocationsColNameSearch"></SearchField>
+				<SearchField placeholder="Search Columns" liveChange="onLocationsColNameSearch" class="sapUiSmallMarginEnd sapUiTinyMarginBottom columnConfigSearch" ></SearchField>
 			</VBox>
 		</customHeader>
 		<content>

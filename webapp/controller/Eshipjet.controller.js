@@ -512,6 +512,25 @@ sap.ui.define([
                     //MessageToast.show("Error communicating with Copilot.");
                     oController.onCloseBusyDialog();
                 }
+                this._scrollToBottom();
+            },
+
+            _scrollToBottom: function() {
+                var oScrollContainer = this.byId("ShipperCopilot");
+                if (oScrollContainer) {
+                    setTimeout(function() {
+                        var oDomRef = oScrollContainer.getDomRef();
+                        if (oDomRef) {
+                            // Force reflow
+                            oDomRef.style.display = 'none';
+                            oDomRef.offsetHeight; // Trigger reflow
+                            oDomRef.style.display = '';
+                            
+                            // Now scroll
+                            oDomRef.scrollTop = oDomRef.scrollHeight;
+                        }
+                    }, 50);
+                }
             },
 
             onPressCarrierWiseShipments: async function(oCarrier){
@@ -11721,6 +11740,90 @@ sap.ui.define([
                 }
             });
             oTable.bindRows("/LocationTableRows");
+        },
+
+        onSearchLocations: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+        
+            var oTable = this.byId("_IDLocationTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("contactName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("phonenum", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("Email", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressLine1", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressLine2", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("stateProvience", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locaCity", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locZip", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locCountry", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locWeightUnit", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locCurr", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locDimensionUnit", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locStatus", sap.ui.model.FilterOperator.Contains, sQuery)
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+
+
+        onLocationsFilterPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._LocationsPopover) {
+                this._LocationsPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.LocationsFilterPopover",
+                    controller: this
+                }).then(function (LocationsPopover) {
+                    oView.addDependent(LocationsPopover);
+                    return LocationsPopover;
+                });
+            }
+            this._LocationsPopover.then(function (LocationsPopover) {
+                LocationsPopover.openBy(oButton);
+            });
+        },
+        onLocationsFilterPopoverClosePress: function () {
+            this.byId("idLocationsFilterPopover").close();
+        },
+        
+        onLocationsFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var sLocation = eshipjetModel.getProperty("/orderLocationFilter");
+        
+            if (sLocation) {
+                aFilters.push(new sap.ui.model.Filter("Plant", sap.ui.model.FilterOperator.EQ, sLocation));
+            }
+        
+            var oTable = oView.byId("_IDLocationTable");
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter(aFilters);
+                }
+            }
+        
+            this.byId("idLocationsFilterPopover").close();
+        },
+        
+        onLocationsFilterPopoverResetPress: function () {
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/orderLocationFilter", "");
+            var oTable = this.byId("_IDLocationTable");
+            var oBinding = oTable.getBinding("rows");
+            oBinding.filter([]);
+            this.byId("idLocationsFilterPopover").close();
         },
 
         onLocationsExportToExcel: function () {

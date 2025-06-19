@@ -1327,7 +1327,7 @@ sapMPopover .sapMPopoverCont {
 
 .Receivedord-request-button {
   span{
-    background-color: rgb(182, 173, 15) !important;
+    /* background-color: rgb(182, 173, 15) !important; */
     height: 20px !important;
     border-radius: 6px !important;
     &:hover { 
@@ -1361,6 +1361,8 @@ sapMPopover .sapMPopoverCont {
 .InWhite-request-button {
   span {
     background-color: #D2D4DA !important;
+    height: 20px !important;
+    border-radius: 6px !important;
     &:hover { 
       border-bottom: 10px solid #939A99 !important;
     }

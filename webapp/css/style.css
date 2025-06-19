@@ -2391,3 +2391,17 @@ button {
 .sapMComboBoxPopover11 {
   z-index: 99999999999 !important; /* Ensure it appears above the footer */
 }
+
+.Master-toolbar__button > span {
+  background-color: #4E9C2D !important;
+  color: #fff !important;
+  border: 1px solid #4E9C2D !important;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+  /* justify-content: space-between; */
+  border-radius: 2px 2px 2px 2px !important;
+  height: 30px !important;
+  padding: 4px !important;
+  text-align: center !important;
+  margin-right: 6px !important;
+}
