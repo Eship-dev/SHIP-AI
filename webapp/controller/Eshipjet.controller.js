@@ -1896,7 +1896,7 @@ sap.ui.define([
                     "Password": password,
                     "TrackURL": "",
                     "AccessKey": AccessKey,
-                    // "LabelType": "ZPL",
+                    "LabelType": "ZPL",
                     "ServiceID": eshipjetModel.getProperty("/commonValues/ShipNowShipsrvNameSelectedKey"),
                     "Reference1": HandlingUnits[0].HandlingUnitExternalID,
                     "Reference2": "",

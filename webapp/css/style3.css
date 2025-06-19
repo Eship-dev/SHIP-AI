@@ -2627,7 +2627,7 @@ button, input, optgroup, select, textarea {
   padding: 3px 10px !important;
   transition: all 0.3s ease !important;
   height: 2rem !important;
-  width: 6rem !important;
+  /* width: 6rem !important; */
 }
 
 .customLogOutButton .sapMBtnInner {
