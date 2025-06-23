@@ -10867,6 +10867,7 @@
     "TrackCarrierFilter": "",
     "orderLocationFilter": "",
     "ThirdPartyFilter":"",
+    "DangerousGoodsFilter":"",
     "orderCarrierFilter": "",
     "orderShipmentStatusFilter": "",
     "orderOrderTypeFilter": "",

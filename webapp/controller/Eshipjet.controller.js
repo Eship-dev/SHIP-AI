@@ -11911,6 +11911,92 @@ sap.ui.define([
         },
 
 
+        // Dangerous Goods
+        onSearchDangerousGoods: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+        
+            var oTable = this.byId("_IDDangerousGoodsTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("destination", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("transportMode", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("hazardClass", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("labelsRequired", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("additionalInfo", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("packingGroup", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("forbidden", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("properShippingName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locZip", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locCountry", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locWeightUnit", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locCurr", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locDimensionUnit", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locStatus", sap.ui.model.FilterOperator.Contains, sQuery)
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+
+
+        onDangerousGoodsFilterPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._DangerousGoodsPopover) {
+                this._DangerousGoodsPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.DangerousGoodsFilterPopover",
+                    controller: this
+                }).then(function (DangerousGoodsPopover) {
+                    oView.addDependent(DangerousGoodsPopover);
+                    return DangerousGoodsPopover;
+                });
+            }
+            this._DangerousGoodsPopover.then(function (DangerousGoodsPopover) {
+                DangerousGoodsPopover.openBy(oButton);
+            });
+        },
+        onDangerousGoodsFilterPopoverClosePress: function () {
+            this.byId("idDangerousGoodsFilterPopover").close();
+        },
+        
+        onDangerousGoodsFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var sDangerousGoods = eshipjetModel.getProperty("/DangerousGoodsFilter");
+        
+            if (sDangerousGoods) {
+                aFilters.push(new sap.ui.model.Filter("Plant", sap.ui.model.FilterOperator.EQ, sDangerousGoods));
+            }
+        
+            var oTable = oView.byId("_IDDangerousGoodsTable");
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter(aFilters);
+                }
+            }
+        
+            this.byId("idDangerousGoodsFilterPopover").close();
+        },
+        
+        onDangerousGoodsFilterPopoverResetPress: function () {
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/DangerousGoodsFilter", "");
+            var oTable = this.byId("_IDDangerousGoodsTable");
+            var oBinding = oTable.getBinding("rows");
+            oBinding.filter([]);
+            this.byId("idDangerousGoodsFilterPopover").close();
+        },
+
+
         onLocationsExportToExcel: function () {
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var rows = eshipjetModel.getProperty("/LocationTableRows");
