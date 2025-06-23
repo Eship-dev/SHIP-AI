@@ -1,0 +1,46 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Popover
+		contentWidth="20%"
+		showArrow="false"
+		showHeader="false"
+		id="idThirdPartyFilterPopover"
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+		placement="Bottom"
+		initialFocus="email">
+		<Toolbar >
+			<ToolbarSpacer ></ToolbarSpacer>
+				<Button icon="sap-icon://decline" press="onThirdPartyFilterPopoverClosePress" class="Decline_Btn ship-now-decline_btn" ></Button>
+		</Toolbar>
+		
+			<VBox class="sapUiSmallMargin" width="90%" >
+			    <Label text="Location ID / Location Name" width="90%" />
+                <ComboBox
+                    id="ThirdPartyComboId"
+                    width="90%"
+                    class="create-ship-req_input"
+                    items="{eshipjetModel>/LocationName}"
+                    selectedKey="{eshipjetModel>/ThirdPartyFilter}" >
+                    <core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
+                </ComboBox>
+			</VBox>
+
+	<footer>
+		<OverflowToolbar>
+			<Button
+				text="Reset"
+				type="Transparent"
+				press="onThirdPartyFilterPopoverResetPress" />
+				<ToolbarSpacer/>
+			<Button
+				text="Apply"
+				width="5rem"
+				class="Master-toolbar__button"
+				press="onThirdPartyFilterPopoverApplyPress" />
+		</OverflowToolbar>
+	</footer>
+</Popover>
+</core:FragmentDefinition>

@@ -1,15 +1,15 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
-    <Toolbar width="auto" height="15%" class="toolbarbottomborder fixedLayout ordersDarkThemeToolbar">
-			<Text text="Third Parties" class="toolBarHeader sapUiTinyMarginBegin pageTitle" ></Text>
+    <Toolbar width="auto" height="3rem" class="toolbarbottomborder fixedLayout ordersDarkThemeToolbar">
+			<Text text="Third Parties" class="toolBarHeader sapUiTinyMarginBegin whiteColor" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button  text="Add Third Party" press="onAddThirdPartyPress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="10rem" ></Button>
-                    <Button type="Success" icon="sap-icon://navigation-down-arrow" press="onThirdPartyArrowPress" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button>
+                    <Button  text="Add Third Party" press="onAddThirdPartyPress" class="Master-toolbar__button " width="8rem" ></Button>
+                    <Button type="Success" icon="sap-icon://navigation-down-arrow" press="onThirdPartyArrowPress" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button>
                 </HBox>
 		</Toolbar>
 
-        <Toolbar height="15%" >
+        <Toolbar  height="25%" class="sapUiTinyMarginBottom whiteBackground " >
 			<HBox width="100%" >
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="1" class="NumberSizeTitle1"></Text>
@@ -28,17 +28,37 @@
 				</VBox>
 			</HBox>
 		</Toolbar>
+		<VBox class="whiteBackground sapUiTinyMarginTop">
+    <Toolbar class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd">
+        <Button icon="sap-icon://filter" press="onThirdPartyFilterPopoverPress" type="Transparent" class="ordersIcons" />
+        <ToolbarSpacer />
+        <SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" search="onSearchThirdParty" />
+        <Button icon="sap-icon://action" press="onThirdPartyExportToExcel" type="Transparent" class="ordersIcons" />
+        <Button icon="sap-icon://action-settings" press="openThirdPartiesColNamesPopover" type="Transparent" class="ordersIcons" />
+        <customData>
+            <core:CustomData key="remember" value="true" />
+            <core:CustomData key="showClearButton" value="true" />
+            <core:CustomData key="confirmButtonText" value="Ok" />
+        </customData>
+    </Toolbar>
 
-    <ui:Table	id="_IDThirdPartyTable"	width="100%"	class="whiteBackground sapUiTinyMarginTop"
-             	selectionMode="None"	paste="onPaste" 	ariaLabelledBy="title" visibleRowCount="14">
-    <ui:extension>
-        <OverflowToolbar style="Clear">										
-            <ToolbarSpacer />
-                <Button icon="sap-icon://action" press="onThirdPartyExportToExcel"></Button>
-                <Button icon="sap-icon://action-settings" press="openThirdPartiesColNamesPopover"></Button>
-        </OverflowToolbar>
-    </ui:extension>	
-    <ui:footer>
+    <ui:Table
+        id="_IDThirdPartyTable"
+        width="100%"
+        class="whiteBackground sapUiTinyMarginTop"
+        selectionMode="None"
+        paste="onPaste"
+        ariaLabelledBy="title"
+        visibleRowCount="14">
+   
+
+
+
+    
+	</ui:Table>
+    </VBox>
+
+
     <Toolbar>        
         <ToolbarSpacer/>
         <Button  text="First"     type="Emphasized"/>
@@ -47,8 +67,7 @@
         <Button  text="Next"       type="Emphasized"/>
         <Button  text="Last"       type="Emphasized"/>
     </Toolbar>
-	</ui:footer>							
-    </ui:Table>
+								
     
 
 </core:FragmentDefinition>

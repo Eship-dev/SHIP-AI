@@ -11826,6 +11826,91 @@ sap.ui.define([
             this.byId("idLocationsFilterPopover").close();
         },
 
+        onSearchThirdParty: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+        
+            var oTable = this.byId("_IDThirdPartyTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("contactName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("phonenum", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("Email", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressLine1", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressLine2", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("stateProvience", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locaCity", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locZip", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locCountry", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locWeightUnit", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locCurr", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locDimensionUnit", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locStatus", sap.ui.model.FilterOperator.Contains, sQuery)
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+
+
+        onThirdPartyFilterPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._ThirdPartyPopover) {
+                this._ThirdPartyPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ThirdPartyFilterPopover",
+                    controller: this
+                }).then(function (ThirdPartyPopover) {
+                    oView.addDependent(ThirdPartyPopover);
+                    return ThirdPartyPopover;
+                });
+            }
+            this._ThirdPartyPopover.then(function (ThirdPartyPopover) {
+                ThirdPartyPopover.openBy(oButton);
+            });
+        },
+        onThirdPartyFilterPopoverClosePress: function () {
+            this.byId("idThirdPartyFilterPopover").close();
+        },
+        
+        onThirdPartyFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var sThirdParty = eshipjetModel.getProperty("/ThirdPartyFilter");
+        
+            if (sThirdParty) {
+                aFilters.push(new sap.ui.model.Filter("Plant", sap.ui.model.FilterOperator.EQ, sThirdParty));
+            }
+        
+            var oTable = oView.byId("_IDThirdPartyTable");
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter(aFilters);
+                }
+            }
+        
+            this.byId("idThirdPartyFilterPopover").close();
+        },
+        
+        onThirdPartyFilterPopoverResetPress: function () {
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/ThirdPartyFilter", "");
+            var oTable = this.byId("_IDThirdPartyTable");
+            var oBinding = oTable.getBinding("rows");
+            oBinding.filter([]);
+            this.byId("idThirdPartyFilterPopover").close();
+        },
+
+
         onLocationsExportToExcel: function () {
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var rows = eshipjetModel.getProperty("/LocationTableRows");
