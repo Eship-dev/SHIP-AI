@@ -32,40 +32,30 @@
 	<VBox class="whiteBackground sapUiTinyMarginTop" >
 		<Toolbar class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd" >
 			<Button icon="sap-icon://filter" press="onLocationsFilterPopoverPress" type="Transparent" class="ordersIcons" ></Button>
-				<ToolbarSpacer ></ToolbarSpacer>
-				   <SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" search="onSearchLocations" ></SearchField>
-					<Button icon="sap-icon://action" press="onLocationsExportToExcel" type="Transparent" class="ordersIcons" ></Button>
-                <Button icon="sap-icon://action-settings" press="openLocationsColNamesPopover" type="Transparent" class="ordersIcons" ></Button>
-                <customData>
-                    <core:CustomData key="remember" value="true" />
-                    <core:CustomData key="showClearButton" value="true" />
-                    <core:CustomData key="confirmButtonText" value="Ok" />
-                </customData>
+			<ToolbarSpacer ></ToolbarSpacer>
+				<SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" search="onSearchLocations" ></SearchField>
+				<Button icon="sap-icon://action" press="onLocationsExportToExcel" type="Transparent" class="ordersIcons" ></Button>
+			<Button icon="sap-icon://action-settings" press="openLocationsColNamesPopover" type="Transparent" class="ordersIcons" ></Button>
+			<customData>
+				<core:CustomData key="remember" value="true" />
+				<core:CustomData key="showClearButton" value="true" />
+				<core:CustomData key="confirmButtonText" value="Ok" />
+			</customData>
 		</Toolbar>
-    <ui:Table	
-		id="_IDLocationTable"
-		selectionMode="None"
-		visibleRowCount="10"
-		ariaLabelledBy="title">
-		<!-- <ui:footer>
-			<Toolbar>
-				<ToolbarSpacer/>
-				<Button  text="First"     type="Transparent"/>
-				<Button  text="Previous"  type="Transparent"/>
-				<Text    text="1-0 of 0" />
-				<Button  text="Next"       type="Transparent"/>
-				<Button  text="Last"       type="Transparent"/>
-			</Toolbar>
-		</ui:footer>							 -->
-    </ui:Table>
+		<ui:Table	
+			id="_IDLocationTable"
+			selectionMode="None"
+			visibleRowCount="10"
+			ariaLabelledBy="title">
+		</ui:Table>
     </VBox>
 
-			<Toolbar class="whiteBackground sapUiTinyMarginTop ordersTableFooter">
-				<ToolbarSpacer/>
-					<Button  text="First"     type="Transparent"/>
-					<Button  text="Previous"  type="Transparent"/>
-					<Text    text="1-0 of 0" />
-					<Button  text="Next"       type="Transparent"/>
-					<Button  text="Last"       type="Transparent"/>
-			</Toolbar>
+	<Toolbar class="whiteBackground sapUiTinyMarginTop ordersTableFooter">
+		<ToolbarSpacer/>
+			<Button  text="First"     type="Transparent"/>
+			<Button  text="Previous"  type="Transparent"/>
+			<Text    text="1-0 of 0" />
+			<Button  text="Next"       type="Transparent"/>
+			<Button  text="Last"       type="Transparent"/>
+	</Toolbar>
 </core:FragmentDefinition>

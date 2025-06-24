@@ -4814,6 +4814,13 @@
             "rfidTag": ""
         }
     ],
+    "addressBookContactName": "",
+    "addressBookCompanyName": "",
+    "addressBookAddressLine1": "",
+    "addressBookCity": "",
+    "addressBookStateProvince": "",
+    "addressBookPostalCode": "",
+
     "UsersTableColumns": [
         {
             "key": "locationName",
@@ -4892,7 +4899,7 @@
             "userId": "info@eshipjet.ai",
             "lastName": "Eshipjet AI",
             "contactName": "Steve Marsh",
-            "phonenum": "(888) 464-2360",
+            "phonenum": "(888) 464-2361",
             "addressLine1": "5717 Legacy",
             "addressLine2": "Suite 250",
             "city": "California",
@@ -10911,6 +10918,20 @@
         {
             "key": "BP01",
             "text": "BP01"
+        }
+    ],
+    "UsersUserNames": [
+        {
+            "key": "Biller",
+            "text": "Biller"
+        },
+        {
+            "key": "Shipper",
+            "text": "Shipper"
+        },
+        {
+            "key": "Super Admin",
+            "text": "Super Admin"
         }
     ],
     "carrierconfiguration1": [

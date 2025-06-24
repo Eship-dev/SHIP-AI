@@ -9096,6 +9096,117 @@ sap.ui.define([
         },
 
 
+        onSearchAddressBook: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+        
+            var oTable = this.byId("_IDAddressBookTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("contactName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("companyName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("phonenum", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressEmail", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressLine1", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressLine2", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressLine3", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("stateProvience", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressCity", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressZip", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressCountry", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addCategory", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressType", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addCostCenter", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("lockerNo", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("lockerLocation", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("lockerAccCode", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("buildingNo", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("floorNo", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("mailStop", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("rfidTag", sap.ui.model.FilterOperator.Contains, sQuery)
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+
+        onAddressBookFilterPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._AddressBookPopover) {
+                this._AddressBookPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.AddressBookFilterPopover",
+                    controller: this
+                }).then(function (AddressBookPopover) {
+                    oView.addDependent(AddressBookPopover);
+                    return AddressBookPopover;
+                });
+            }
+            this._AddressBookPopover.then(function (AddressBookPopover) {
+                AddressBookPopover.openBy(oButton);
+            });
+        },
+        onAddressBookFilterPopoverClosePress: function () {
+            this.byId("idAddressBookFilterPopover").close();
+        },
+        
+        onAddressBookFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var addressBookContactName = eshipjetModel.getProperty("/addressBookContactName");
+            var addressBookCompanyName = eshipjetModel.getProperty("/addressBookCompanyName");
+            var addressBookAddressLine1 = eshipjetModel.getProperty("/addressBookAddressLine1");
+            var addressBookCity = eshipjetModel.getProperty("/addressBookCity");
+            var addressBookStateProvince = eshipjetModel.getProperty("/addressBookStateProvince");
+            var addressBookPostalCode = eshipjetModel.getProperty("/addressBookPostalCode");
+        
+            if (addressBookContactName) {
+                aFilters.push(new sap.ui.model.Filter("contactName", sap.ui.model.FilterOperator.EQ, addressBookContactName));
+            }if (addressBookCompanyName) {
+                aFilters.push(new sap.ui.model.Filter("companyName", sap.ui.model.FilterOperator.EQ, addressBookCompanyName));
+            }if (addressBookAddressLine1) {
+                aFilters.push(new sap.ui.model.Filter("addressLine1", sap.ui.model.FilterOperator.EQ, addressBookAddressLine1));
+            }if (addressBookCity) {
+                aFilters.push(new sap.ui.model.Filter("addressCity", sap.ui.model.FilterOperator.EQ, addressBookCity));
+            }if (addressBookStateProvince) {
+                aFilters.push(new sap.ui.model.Filter("stateProvience", sap.ui.model.FilterOperator.EQ, addressBookStateProvince));
+            }if (addressBookPostalCode) {
+                aFilters.push(new sap.ui.model.Filter("addressZip", sap.ui.model.FilterOperator.EQ, addressBookPostalCode));
+            }
+        
+            var oTable = oView.byId("_IDAddressBookTable");
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter(aFilters);
+                }
+            }
+        
+            this.byId("idAddressBookFilterPopover").close();
+        },
+        
+        onAddressBookFilterPopoverResetPress: function () {
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/addressBookContactName", "");
+            eshipjetModel.setProperty("/addressBookCompanyName", "");
+            eshipjetModel.setProperty("/addressBookAddressLine1", "");
+            eshipjetModel.setProperty("/addressBookCity", "");
+            eshipjetModel.setProperty("/addressBookStateProvince", "");
+            eshipjetModel.setProperty("/addressBookPostalCode", "");
+            var oTable = this.byId("_IDAddressBookTable");
+            var oBinding = oTable.getBinding("rows");
+            oBinding.filter([]);
+            this.byId("idAddressBookFilterPopover").close();
+        },
+
         onAddressBookExportToExcel: function () {
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var rows = eshipjetModel.getProperty("/AddressBookTableRows");
@@ -9757,6 +9868,125 @@ sap.ui.define([
                 }
             });
             oTable.bindRows("/UsersTableRows");
+        },
+
+
+        onSearchUsers: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+        
+            var oTable = this.byId("_IDUsersTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("userId", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("firstName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("lastName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("phonenum", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("userEmail", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressLine1", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressLine2", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressLine3", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressCity", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressZip", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressCountry", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("userRole", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, sQuery)
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+
+        onUsersFilterPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._UsersPopover) {
+                this._UsersPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.UsersFilterPopover",
+                    controller: this
+                }).then(function (UsersPopover) {
+                    oView.addDependent(UsersPopover);
+                    return UsersPopover;
+                });
+            }
+            this._UsersPopover.then(function (UsersPopover) {
+                UsersPopover.openBy(oButton);
+            });
+        },
+
+        onUsersFilterPopoverClosePress: function () {
+            this.byId("idUsersFilterPopover").close();
+        },
+        
+        onUsersFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var sLocation = eshipjetModel.getProperty("/orderLocationFilter");
+            var UsersUserNameFilter = eshipjetModel.getProperty("/orderLocationFilter");
+        
+            if (sLocation) {
+                aFilters.push(new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.EQ, sLocation));
+            }if (UsersUserNameFilter) {
+                aFilters.push(new sap.ui.model.Filter("userRole", sap.ui.model.FilterOperator.EQ, UsersUserNameFilter));
+            }
+            var oTable = oView.byId("_IDUsersTable");
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter(aFilters);
+                }
+            }
+            this.byId("idUsersFilterPopover").close();
+        },
+        
+        onUsersFilterPopoverResetPress: function () {
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/orderLocationFilter", "");
+            eshipjetModel.setProperty("/orderLocationFilter", "");
+            var oTable = this.byId("_IDUsersTable");
+            var oBinding = oTable.getBinding("rows");
+            oBinding.filter([]);
+            this.byId("idUsersFilterPopover").close();
+        },
+
+        onUsersExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/UsersTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Location Name", property: "locationName"},
+                        { label: "User ID", property: "userId"},
+                        { label: "First Name", property: "firstName"},
+                        { label: "Last Name", property: "lastName"},
+                        { label: "Phone No", property: "phonenum"},
+                        { label: "Email", property: "userEmail"},
+                        { label: "Address Line 1", property: "addressLine1"},
+                        { label: "Address Line 2", property: "addressLine2"},
+                        { label: "Address Line 3", property: "addressLine3" },
+                        { label: "City", property: "addressCity" },
+                        { label: "Zip / Postal Code", property: "addressZip" },
+                        { label: "Country", property: "addressCountry" },
+                        { label: "Role", property: "userRole" },
+                        { label: "Status", property: "status" }
+                    ]
+                },
+                dataSource: rows,
+                fileName: 'Usres_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
         },
 
         // Users Column Names Popover code changes End here
@@ -12018,7 +12248,6 @@ sap.ui.define([
                         { label: "Dimension Unit", property: "locDimensionUnit", visible: false },
                         { label: "Status", property: "status", visible: true }
                     ]
-                    
                 },
                 dataSource: rows,
                 fileName: 'Location_Data',
