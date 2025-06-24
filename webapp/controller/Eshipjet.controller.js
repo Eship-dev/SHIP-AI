@@ -12154,17 +12154,7 @@ sap.ui.define([
                             new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("ltlClass", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("shipMethod", sap.ui.model.FilterOperator.Contains, sQuery),
-                            new sap.ui.model.Filter("Email", sap.ui.model.FilterOperator.Contains, sQuery),
-                            new sap.ui.model.Filter("addressLine1", sap.ui.model.FilterOperator.Contains, sQuery),
-                            new sap.ui.model.Filter("addressLine2", sap.ui.model.FilterOperator.Contains, sQuery),
-                            new sap.ui.model.Filter("stateProvience", sap.ui.model.FilterOperator.Contains, sQuery),
-                            new sap.ui.model.Filter("locaCity", sap.ui.model.FilterOperator.Contains, sQuery),
-                            new sap.ui.model.Filter("locZip", sap.ui.model.FilterOperator.Contains, sQuery),
-                            new sap.ui.model.Filter("locCountry", sap.ui.model.FilterOperator.Contains, sQuery),
-                            new sap.ui.model.Filter("locWeightUnit", sap.ui.model.FilterOperator.Contains, sQuery),
-                            new sap.ui.model.Filter("locCurr", sap.ui.model.FilterOperator.Contains, sQuery),
-                            new sap.ui.model.Filter("locDimensionUnit", sap.ui.model.FilterOperator.Contains, sQuery),
-                            new sap.ui.model.Filter("locStatus", sap.ui.model.FilterOperator.Contains, sQuery)
+                            new sap.ui.model.Filter("Email", sap.ui.model.FilterOperator.Contains, sQuery)
                         ],
                         and: false
                     }));
@@ -12310,6 +12300,84 @@ sap.ui.define([
             oBinding.filter([]);
             this.byId("idDangerousGoodsFilterPopover").close();
         },
+
+
+        // NMFC Table-------------------------------------
+        onSearchNMFCTable: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+        
+            var oTable = this.byId("_IDNMFCTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("nmfcCode", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("nmfcDesc", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("shipMethod", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, sQuery)
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+
+
+        onNMFCTableFilterPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._NMFCTablePopover) {
+                this._NMFCTablePopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.NMFCTableFilterPopover",
+                    controller: this
+                }).then(function (NMFCTablePopover) {
+                    oView.addDependent(NMFCTablePopover);
+                    return NMFCTablePopover;
+                });
+            }
+            this._NMFCTablePopover.then(function (NMFCTablePopover) {
+                NMFCTablePopover.openBy(oButton);
+            });
+        },
+        onNMFCTableFilterPopoverClosePress: function () {
+            this.byId("idNMFCTableFilterPopover").close();
+        },
+        
+        onNMFCTableFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var sNMFCTable = eshipjetModel.getProperty("/NMFCTableFilter");
+        
+            if (sNMFCTable) {
+                aFilters.push(new sap.ui.model.Filter("Plant", sap.ui.model.FilterOperator.EQ, sNMFCTable));
+            }
+        
+            var oTable = oView.byId("_IDNMFCTable");
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter(aFilters);
+                }
+            }
+        
+            this.byId("idNMFCTableFilterPopover").close();
+        },
+        
+        onNMFCTableFilterPopoverResetPress: function () {
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/NMFCTableFilter", "");
+            var oTable = this.byId("_IDNMFCTable");
+            var oBinding = oTable.getBinding("rows");
+            oBinding.filter([]);
+            this.byId("idNMFCTableFilterPopover").close();
+        },
+
 
 
         onLocationsExportToExcel: function () {

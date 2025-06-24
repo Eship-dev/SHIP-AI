@@ -6483,7 +6483,141 @@
             "visible": true
         }
     ],
-    "NmfcTableRows": [],
+    "NmfcTableRows": [
+        {
+            "locationName": "BP01",
+            "nmfcCode": "056828-05",
+            "nmfcDesc": "150",
+            "shipMethod": "Medical Supplies",
+            "status": "AMA Transportation"
+          },
+          {
+            "locationName": "BP01",
+            "nmfcCode": "056828-05",
+            "nmfcDesc": "150",
+            "shipMethod": "Medical Supplies",
+            "status": "Atcheson's Express LLC."
+          },
+          {
+            "locationName": "BP01",
+            "nmfcCode": "056828-05",
+            "nmfcDesc": "150",
+            "shipMethod": "Medical Supplies",
+            "status": "ATS Logistics"
+          },
+          {
+            "locationName": "BP01",
+            "nmfcCode": "056828-05",
+            "nmfcDesc": "150",
+            "shipMethod": "Medical Supplies",
+            "status": "Averitt Express, Inc"
+          },
+          {
+            "locationName": "BP01",
+            "nmfcCode": "056828-05",
+            "nmfcDesc": "150",
+            "shipMethod": "Medical Supplies",
+            "status": "Benton"
+          },
+          {
+            "locationName": "BP01",
+            "nmfcCode": "056828-05",
+            "nmfcDesc": "150",
+            "shipMethod": "Medical Supplies",
+            "status": "Best Overnite Express"
+          },
+          {
+            "locationName": "BP01",
+            "nmfcCode": "056828-05",
+            "nmfcDesc": "150",
+            "shipMethod": "Medical Supplies",
+            "status": "Central Freight Lines, Inc."
+          },
+          {
+            "locationName": "BP01",
+            "nmfcCode": "056828-05",
+            "nmfcDesc": "150",
+            "shipMethod": "Medical Supplies",
+            "status": "Central Transport"
+          },
+          {
+            "locationName": "BP01",
+            "nmfcCode": "056828-05",
+            "nmfcDesc": "150",
+            "shipMethod": "Medical Supplies",
+            "status": "C.H. Robinson Worldwide, Inc"
+          },
+          {
+            "locationName": "BP01",
+            "nmfcCode": "056828-05",
+            "nmfcDesc": "150",
+            "shipMethod": "Medical Supplies",
+            "status": "Crowley Liner Services Inc."
+          },
+          {
+            "locationName": "BP01",
+            "nmfcCode": "056828-05",
+            "nmfcDesc": "150",
+            "shipMethod": "Medical Supplies",
+            "status": "Crystal Warehouse"
+          },
+          {
+            "locationName": "BP01",
+            "nmfcCode": "056828-05",
+            "nmfcDesc": "150",
+            "shipMethod": "Medical Supplies",
+            "status": "Daylight Transport, LLC"
+          },
+          {
+            "locationName": "BP01",
+            "nmfcCode": "056828-05",
+            "nmfcDesc": "150",
+            "shipMethod": "Medical Supplies",
+            "status": "Dayton Freight Lines, Inc"
+          },
+          {
+            "locationName": "BP01",
+            "nmfcCode": "056828-05",
+            "nmfcDesc": "150",
+            "shipMethod": "Medical Supplies",
+            "status": "Echo Global Logistics"
+          },
+          {
+            "locationName": "BP01",
+            "nmfcCode": "056828-05",
+            "nmfcDesc": "150",
+            "shipMethod": "Medical Supplies",
+            "status": "EPES Logistics Services, Inc"
+          },
+          {
+            "locationName": "BP01",
+            "nmfcCode": "056828-05",
+            "nmfcDesc": "150",
+            "shipMethod": "Medical Supplies",
+            "status": "Estes Express Lines"
+          },
+          {
+            "locationName": "BP01",
+            "nmfcCode": "056828-05",
+            "nmfcDesc": "150",
+            "shipMethod": "Medical Supplies",
+            "status": "Estes Forwarding Worldwide"
+          },
+          {
+            "locationName": "BP01",
+            "nmfcCode": "056828-05",
+            "nmfcDesc": "150",
+            "shipMethod": "Medical Supplies",
+            "status": "FedEx"
+          },
+          {
+            "locationName": "BP01",
+            "nmfcCode": "056828-05",
+            "nmfcDesc": "150",
+            "shipMethod": "Medical Supplies",
+            "status": "FedExFreight"
+          }
+    ],
     "MotTableColumns": [
         {
             "key": "locationName",
@@ -10875,6 +11009,7 @@
     "orderLocationFilter": "",
     "ThirdPartyFilter":"",
     "DangerousGoodsFilter":"",
+    "NMFCTableFilter":"",
     "orderCarrierFilter": "",
     "orderShipmentStatusFilter": "",
     "orderOrderTypeFilter": "",
