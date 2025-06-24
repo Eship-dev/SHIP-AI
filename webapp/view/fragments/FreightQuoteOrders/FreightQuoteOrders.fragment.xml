@@ -48,7 +48,7 @@
             <Toolbar class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd" >
                 <Button icon="sap-icon://filter" press="onFreightQuoteOrdersFilterPopoverPress" type="Transparent" class="ordersIcons" ></Button>
                     <ToolbarSpacer ></ToolbarSpacer>
-                    <SearchField width="10rem" value="{eshipjetModel>/FreightQuoteOrdersSearchText}" class="sapUiSmallMarginBottom forsearchhigh" search="onSearchFreightQuoteOrders" ></SearchField>
+                    <SearchField width="10rem" value="{eshipjetModel>/FreightQuoteOrdersSearchText}" class="sapUiSmallMarginBottom forsearchhigh" liveChange="onSearchFreightQuoteOrders" ></SearchField>
                         <Button icon="sap-icon://synchronize" press="refreshFreightQuoteOrders" type="Transparent" class="ordersIcons" ></Button>
                         <Button icon="sap-icon://action" press="onFreightQuoteOrdersExportToExcel" type="Transparent" class="ordersIcons" ></Button>
                         <Button icon="sap-icon://action-settings" press="openFreightQuoteColNamesPopover" type="Transparent" class="ordersIcons"/>

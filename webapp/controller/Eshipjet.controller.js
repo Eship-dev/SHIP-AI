@@ -12055,7 +12055,7 @@ sap.ui.define([
             oBinding.filter([]);
             this.byId("idLocationsFilterPopover").close();
         },
-
+// ThirdParty
         onSearchThirdParty: function (oEvent) {
             var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
         
@@ -12139,6 +12139,91 @@ sap.ui.define([
             oBinding.filter([]);
             this.byId("idThirdPartyFilterPopover").close();
         },
+// LTL CLASSES
+        onSearchLTLClasses: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+        
+            var oTable = this.byId("_IDLTLClassTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("ltlClass", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("shipMethod", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("Email", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressLine1", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("addressLine2", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("stateProvience", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locaCity", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locZip", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locCountry", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locWeightUnit", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locCurr", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locDimensionUnit", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locStatus", sap.ui.model.FilterOperator.Contains, sQuery)
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+
+
+        onLTLClassesFilterPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._LTLClassesPopover) {
+                this._LTLClassesPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.LTLClassesFilterPopover",
+                    controller: this
+                }).then(function (LTLClassesPopover) {
+                    oView.addDependent(LTLClassesPopover);
+                    return LTLClassesPopover;
+                });
+            }
+            this._LTLClassesPopover.then(function (LTLClassesPopover) {
+                LTLClassesPopover.openBy(oButton);
+            });
+        },
+        onLTLClassesFilterPopoverClosePress: function () {
+            this.byId("idLTLClassesFilterPopover").close();
+        },
+        
+        onLTLClassesFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var sLTLClasses = eshipjetModel.getProperty("/LTLClassesFilter");
+        
+            if (sLTLClasses) {
+                aFilters.push(new sap.ui.model.Filter("Plant", sap.ui.model.FilterOperator.EQ, sLTLClasses));
+            }
+        
+            var oTable = oView.byId("_IDLTLClassTable");
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter(aFilters);
+                }
+            }
+        
+            this.byId("idLTLClassesFilterPopover").close();
+        },
+        
+        onLTLClassesFilterPopoverResetPress: function () {
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/LTLClassesFilter", "");
+            var oTable = this.byId("_IDLTLClassTable");
+            var oBinding = oTable.getBinding("rows");
+            oBinding.filter([]);
+            this.byId("idLTLClassesFilterPopover").close();
+        },
+
 
 
         // Dangerous Goods
