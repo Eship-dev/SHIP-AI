@@ -1,15 +1,15 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
-    <Toolbar width="auto" height="15%" class="toolbarbottomborder fixedLayout">
-			<Text text="Mode Of Transports" class="toolBarHeader sapUiTinyMarginBegin pageTitle"></Text>
+    <Toolbar width="auto" height="3rem" class="toolbarbottomborder fixedLayout ordersDarkThemeToolbar">
+			<Text text="Mode Of Transports" class="toolBarHeader sapUiTinyMarginBegin whiteColor"></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button text="Add Mode Of Transport" press="AddModeOfTransportPress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="13rem" ></Button>
-                    <Button type="Success" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button>
+                    <Button text="Add Mode Of Transport" press="AddModeOfTransportPress" class="Master-toolbar__button" width="13rem" ></Button>
+                    <Button type="Success" icon="sap-icon://navigation-down-arrow" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button>
                 </HBox>
 		</Toolbar>
 
-        <Toolbar height="15%" >
+        <Toolbar  height="25%" class="sapUiTinyMarginBottom whiteBackground " >
 			<HBox width="100%" >
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="1" class="NumberSizeTitle1"></Text>
@@ -30,26 +30,53 @@
 		</Toolbar>
 
 
-    <ui:Table	id="_IDModeOfTransportTable"	width="100%"	class="headerContent sapUiTinyMarginTop"
-             	selectionMode="None"	paste="onPaste" 	ariaLabelledBy="title">
-    <ui:extension>
-        <OverflowToolbar style="Clear">										
+    <VBox class="whiteBackground sapUiTinyMarginTop">
+        
+        <!-- Header Toolbar -->
+        <Toolbar class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd">
+            <Button icon="sap-icon://filter"
+                    press="onMOTFilterPopoverPress"
+                    type="Transparent"
+                    class="ordersIcons" />
             <ToolbarSpacer />
-                <Button icon="sap-icon://action" press="ModeOfTransports" ></Button>
-                <Button icon="sap-icon://action-settings" press="openMOTColNamesPopover"></Button>
-        </OverflowToolbar>
-    </ui:extension>	
-    <ui:footer>
-    <Toolbar>        
-        <ToolbarSpacer/>
-        <Button  text="First"     type="Emphasized"/>
-        <Button  text="Previous"  type="Emphasized"/>
-        <Text    text="1-0 of 0" />
-        <Button  text="Next"       type="Emphasized"/>
-        <Button  text="Last"       type="Emphasized"/>
+            <SearchField width="10rem"
+                         class="sapUiSmallMarginBottom forsearchhigh"
+                         search="onSearchMOT" />
+            <Button icon="sap-icon://action"
+                    press="ModeOfTransports"
+                    type="Transparent"
+                    class="ordersIcons" />
+            <Button icon="sap-icon://action-settings"
+                    press="openMOTColNamesPopover"
+                    type="Transparent"
+                    class="ordersIcons" />
+            <customData>
+                <core:CustomData key="remember" value="true" />
+                <core:CustomData key="showClearButton" value="true" />
+                <core:CustomData key="confirmButtonText" value="Ok" />
+            </customData>
+        </Toolbar>
+
+        <!-- Table -->
+        <ui:Table id="_IDModeOfTransportTable"
+                  width="100%"
+                  class="headerContent sapUiTinyMarginTop"
+                  selectionMode="None"
+                  paste="onPaste"
+                  ariaLabelledBy="title"
+                  visibleRowCount="10">
+        </ui:Table>
+    </VBox>
+
+    <!-- Footer Toolbar -->
+    <Toolbar class="whiteBackground sapUiTinyMarginTop ordersTableFooter">
+        <ToolbarSpacer />
+        <Button text="First" type="Transparent" />
+        <Button text="Previous" type="Transparent" />
+        <Text text="1-0 of 0" />
+        <Button text="Next" type="Transparent" />
+        <Button text="Last" type="Transparent" />
     </Toolbar>
-	</ui:footer>							
-    </ui:Table>
     
 
 </core:FragmentDefinition>
