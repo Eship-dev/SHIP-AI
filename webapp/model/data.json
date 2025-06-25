@@ -6739,7 +6739,13 @@
             "visible": true
         }
     ],
-    "IncoTermsTableRows": [],
+    "IncoTermsTableRows": [
+        {
+            "incoterm": "Incoterm",
+            "desc": "Incoterm",
+            "status": "BP02"
+        }
+    ],
     "TrackingRangeTableColumns": [
         {
             "key": "LocationName",

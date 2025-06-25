@@ -12585,7 +12585,7 @@ sap.ui.define([
                             new sap.ui.model.Filter("erpName", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("orderTypeCode", sap.ui.model.FilterOperator.Contains, sQuery),
                             new sap.ui.model.Filter("orderTypeDesc", sap.ui.model.FilterOperator.Contains, sQuery)
-                            
+
                         ],
                         and: false
                     }));
@@ -12643,6 +12643,85 @@ sap.ui.define([
             var oBinding = oTable.getBinding("rows");
             oBinding.filter([]);
             this.byId("idOrderTypesFilterPopover").close();
+        },
+
+
+         // Incoterms
+         onSearchIncoterms: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+        
+            var oTable = this.byId("_ID_IncotermsTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("locationid", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("erplocationid", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("erpName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("orderTypeCode", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("orderTypeDesc", sap.ui.model.FilterOperator.Contains, sQuery)
+                            
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+
+
+        onIncotermsFilterPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._IncotermsPopover) {
+                this._IncotermsPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.IncotermsFilterPopover",
+                    controller: this
+                }).then(function (IncotermsPopover) {
+                    oView.addDependent(IncotermsPopover);
+                    return IncotermsPopover;
+                });
+            }
+            this._IncotermsPopover.then(function (IncotermsPopover) {
+                IncotermsPopover.openBy(oButton);
+            });
+        },
+        onIncotermsFilterPopoverClosePress: function () {
+            this.byId("idIncotermsFilterPopover").close();
+        },
+        
+        onIncotermsFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var sIncoterms = eshipjetModel.getProperty("/IncotermsFilter");
+        
+            if (sIncoterms) {
+                aFilters.push(new sap.ui.model.Filter("locationid", sap.ui.model.FilterOperator.EQ, sIncoterms));
+            }
+        
+            var oTable = oView.byId("_ID_IncotermsTable");
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter(aFilters);
+                }
+            }
+        
+            this.byId("idIncotermsFilterPopover").close();
+        },
+        
+        onIncotermsFilterPopoverResetPress: function () {
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/IncotermsFilter", "");
+            var oTable = this.byId("_ID_IncotermsTable");
+            var oBinding = oTable.getBinding("rows");
+            oBinding.filter([]);
+            this.byId("idIncotermsFilterPopover").close();
         },
 
 
