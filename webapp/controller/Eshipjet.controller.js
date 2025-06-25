@@ -12567,6 +12567,85 @@ sap.ui.define([
         },
 
 
+         // OrderTypes
+         onSearchOrderTypes: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+        
+            var oTable = this.byId("_IDOrderTypeTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("locationid", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("erplocationid", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("erpName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("orderTypeCode", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("orderTypeDesc", sap.ui.model.FilterOperator.Contains, sQuery)
+                            
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+
+
+        onOrderTypesFilterPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._OrderTypesPopover) {
+                this._OrderTypesPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.OrderTypesFilterPopover",
+                    controller: this
+                }).then(function (OrderTypesPopover) {
+                    oView.addDependent(OrderTypesPopover);
+                    return OrderTypesPopover;
+                });
+            }
+            this._OrderTypesPopover.then(function (OrderTypesPopover) {
+                OrderTypesPopover.openBy(oButton);
+            });
+        },
+        onOrderTypesFilterPopoverClosePress: function () {
+            this.byId("idOrderTypesFilterPopover").close();
+        },
+        
+        onOrderTypesFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var sOrderTypes = eshipjetModel.getProperty("/OrderTypesFilter");
+        
+            if (sOrderTypes) {
+                aFilters.push(new sap.ui.model.Filter("locationid", sap.ui.model.FilterOperator.EQ, sOrderTypes));
+            }
+        
+            var oTable = oView.byId("_IDOrderTypeTable");
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter(aFilters);
+                }
+            }
+        
+            this.byId("idOrderTypesFilterPopover").close();
+        },
+        
+        onOrderTypesFilterPopoverResetPress: function () {
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/OrderTypesFilter", "");
+            var oTable = this.byId("_IDOrderTypeTable");
+            var oBinding = oTable.getBinding("rows");
+            oBinding.filter([]);
+            this.byId("idOrderTypesFilterPopover").close();
+        },
+
+
 
         onLocationsExportToExcel: function () {
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");

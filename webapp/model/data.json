@@ -6640,8 +6640,23 @@
     "MotTableRows": [],
     "OrderTypesTableColumns": [
         {
+            "key": "locationid",
+            "label": "Location ID",
+            "visible": true
+        },
+        {
             "key": "locationName",
             "label": "Location Name",
+            "visible": true
+        },
+        {
+            "key": "erplocationid",
+            "label": "ERP Location ID",
+            "visible": true
+        },
+        {
+            "key": "erpName",
+            "label": " ERP Name",
             "visible": true
         },
         {
@@ -6660,7 +6675,53 @@
             "visible": true
         }
     ],
-    "OrderTypesTableRows": [],
+    "OrderTypesTableRows": [
+        {
+            "locationid": "BP01",
+            "locationName": "South Brunswick, NJ",
+            "erplocationid": "SAPDN",
+            "erpName": "SAP Delivery Number",
+            "orderTypeCode": "BP01",
+            "orderTypeDesc": "South Brunswick, NJ",
+            "status": "FQ"
+          },
+          {
+            "locationid": "Freight Quote Order",
+            "locationName": "BP01",
+            "erplocationid": "South Brunswick, NJ",
+            "erpName": "MNL",
+            "orderTypeCode": "Manual Order",
+            "orderTypeDesc": "BP01",
+            "status": "SAP"
+          },
+          {
+            "locationid": "SAPSN",
+            "locationName": "SAP Shipment Number",
+            "erplocationid": "BP01",
+            "erpName": "South Brunswick, NJ",
+            "orderTypeCode": "BP01",
+            "orderTypeDesc": "SAP",
+            "status": "RET"
+          },
+          {
+            "locationid": "Return",
+            "locationName": "BP02",
+            "erplocationid": "South Brunswick, NJ",
+            "erpName": "FQ",
+            "orderTypeCode": "Freight Quote Order",
+            "orderTypeDesc": "BP02",
+            "status": "South Brunswick, NJ"
+          },
+          {
+            "locationid": "SAPDN",
+            "locationName": "SAP Delivery Number",
+            "erplocationid": "BP02",
+            "erpName": "South Brunswick, NJ",
+            "orderTypeCode": "MNL",
+            "orderTypeDesc": "Manual Order",
+            "status": "BP02"
+          }
+    ],
     "IncoTermsTableColumns": [
         {
             "key": "incoterm",
@@ -11012,6 +11073,7 @@
     "ThirdPartyFilter":"",
     "DangerousGoodsFilter":"",
     "NMFCTableFilter":"",
+    "OrderTypesFilter":"",
     "orderCarrierFilter": "",
     "orderShipmentStatusFilter": "",
     "orderOrderTypeFilter": "",
