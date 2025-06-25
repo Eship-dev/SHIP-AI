@@ -1,7 +1,7 @@
 <core:FragmentDefinition
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
-	<Popover  contentWidth="20%" placement="Left" contentHeight="40%" >
+	<Popover  contentWidth="18%" placement="Left" contentHeight="30%" showArrow="false" >
 		<customHeader>
 			<VBox >
 				<Toolbar class="toolbarbottomborder">

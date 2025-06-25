@@ -22,7 +22,7 @@
         </Toolbar>
 
         <content>
-            <form:SimpleForm editable="true" layout="ColumnLayout" columnsM="3" columnsL="3" columnsXL="6">
+            <form:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="6">
                 <form:content>
                     <Label text="Location Name" />
                     <ComboBox items="{}" class="sapUiSmallMarginBottom create-ship-req_input">

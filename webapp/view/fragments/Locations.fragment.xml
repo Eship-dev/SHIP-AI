@@ -14,17 +14,17 @@
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="1" class="NumberSizeTitle1"></Text>
 					<Text text="Total Locations" class="NumberSizeTitle2"></Text>
-					<Button class="totalProgress-request-button request-button" press="handleManifestFilterBtnPress" icon="false" width="100%"  ></Button>
+					<Button class="totalProgress-request-button request-button" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="2" class="NumberSizeTitle1"></Text>
 					<Text text="Active" class="NumberSizeTitle2"></Text>
-					<Button type="Critical" class="inTransit-request-button request-button" press="handleManifestFilterBtnPress" icon="false" width="100%" ></Button>
+					<Button type="Critical" class="inTransit-request-button request-button" icon="false" width="100%" ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="3" class="NumberSizeTitle1"></Text>
 					<Text text="Inactive" class="NumberSizeTitle2"></Text>
-					<Button class="InWhite-request-button request-button" type="Success" press="handleManifestFilterBtnPress" icon="false" width="100%" ></Button>
+					<Button class="InWhite-request-button request-button" type="Success" icon="false" width="100%" ></Button>
 				</VBox>
 			</HBox>
 		</Toolbar>
@@ -33,9 +33,9 @@
 		<Toolbar class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd" >
 			<Button icon="sap-icon://filter" press="onLocationsFilterPopoverPress" type="Transparent" class="ordersIcons" ></Button>
 			<ToolbarSpacer ></ToolbarSpacer>
-				<SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" search="onSearchLocations" ></SearchField>
+				<SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" liveChange="onSearchLocations" ></SearchField>
 				<Button icon="sap-icon://action" press="onLocationsExportToExcel" type="Transparent" class="ordersIcons" ></Button>
-			<Button icon="sap-icon://action-settings" press="openLocationsColNamesPopover" type="Transparent" class="ordersIcons" ></Button>
+				<Button icon="sap-icon://action-settings" press="openLocationsColNamesPopover" type="Transparent" class="ordersIcons" ></Button>
 			<customData>
 				<core:CustomData key="remember" value="true" />
 				<core:CustomData key="showClearButton" value="true" />

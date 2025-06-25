@@ -33,7 +33,7 @@
 		<Toolbar class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd" >
 			<Button icon="sap-icon://filter" press="onAddressBookFilterPopoverPress" type="Transparent" class="ordersIcons" ></Button>
 			<ToolbarSpacer ></ToolbarSpacer>
-				<SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" search="onSearchAddressBook" ></SearchField>
+				<SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" liveChange="onSearchAddressBook" ></SearchField>
 				<Button icon="sap-icon://action" press="onAddressBookExportToExcel" type="Transparent" class="ordersIcons" ></Button>
 			<Button icon="sap-icon://action-settings" press="openAddressBookColNamesPopover" type="Transparent" class="ordersIcons" ></Button>
 			<customData>

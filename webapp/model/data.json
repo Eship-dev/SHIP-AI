@@ -5021,7 +5021,7 @@
         },
         {
             "key": "shipMethodName",
-            "label": "Ship Method",
+            "label": "Carrier Name",
             "visible": true
         },
         {
@@ -5126,6 +5126,7 @@
             "shipMethodStatus": ""
         }
     ],
+    "carrierCatelogCarrierName": "",
     "CarrierAccountsTableColumns": [
         {
             "key": "locationName",
@@ -5407,6 +5408,7 @@
             "rateShop": ""
         }
     ],
+    "CarrierAccountsCarrierName": "",
     "CostCenterTableColumns": [
         {
             "key": "locationName",

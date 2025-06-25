@@ -10136,6 +10136,28 @@ sap.ui.define([
             oTable.bindRows("/RolesTableRows");
         },
 
+        onSearchRoles: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+        
+            var oTable = this.byId("_IDRolesTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("roleId", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("roleName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, sQuery)
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+
         // Roles Column Names Popover code changes End here
 
 
@@ -10283,6 +10305,84 @@ sap.ui.define([
             oTable.bindRows("/CarrierCatalogTableRows");
         },
 
+
+        onSearchCarrierCatalog: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+        
+            var oTable = this.byId("_IDCarriesCatalogTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("shipMethodId", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("shipMethodName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("shipMethodType", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("shipMethodCoverage", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("shipMethodStatus", sap.ui.model.FilterOperator.Contains, sQuery)
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+
+        onCarrierCatalogFilterPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._CarrierCatalogPopover) {
+                this._CarrierCatalogPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.CarrierCatalogFilterPopover",
+                    controller: this
+                }).then(function (CarrierCatalogPopover) {
+                    oView.addDependent(CarrierCatalogPopover);
+                    return CarrierCatalogPopover;
+                });
+            }
+            this._CarrierCatalogPopover.then(function (CarrierCatalogPopover) {
+                CarrierCatalogPopover.openBy(oButton);
+            });
+        },
+
+        onCarrierCatalogFilterPopoverClosePress: function () {
+            this.byId("idCarrierCatalogFilterPopover").close();
+        },
+        
+        onCarrierCatalogFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var sLocation = eshipjetModel.getProperty("/orderLocationFilter");
+            var carrierCatelogCarrierName = eshipjetModel.getProperty("/carrierCatelogCarrierName");
+            if (sLocation) {
+                aFilters.push(new sap.ui.model.Filter("Plant", sap.ui.model.FilterOperator.EQ, sLocation));
+            }
+            if (carrierCatelogCarrierName) {
+                aFilters.push(new sap.ui.model.Filter("Plant", sap.ui.model.FilterOperator.EQ, carrierCatelogCarrierName));
+            }
+            var oTable = oView.byId("_IDCarriesCatalogTable");
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter(aFilters);
+                }
+            }
+            this.byId("idCarrierCatalogFilterPopover").close();
+        },
+        
+        onCarrierCatalogFilterPopoverResetPress: function () {
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/orderLocationFilter", "");
+            eshipjetModel.setProperty("/carrierCatelogCarrierName", "");
+            var oTable = this.byId("_IDCarriesCatalogTable");
+            var oBinding = oTable.getBinding("rows");
+            oBinding.filter([]);
+            this.byId("idCarrierCatalogFilterPopover").close();
+        },
+
         // CarrierCatalog Column Names Popover code changes End here
 
 
@@ -10428,6 +10528,94 @@ sap.ui.define([
                 }
             });
             oTable.bindRows("/CarrierAccountsTableRows");
+        },
+
+        onSearchCarrierAccounts: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+            var oTable = this.byId("_IDCarriesAccountsTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("shipMethodName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("costCenter", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("shipFromCountry", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("shipToCountry", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("shipUrl", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("voidUrl", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("rateUrl", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("trackUrl", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("environment", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("carrierType", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("erpCarrierID", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("rateShop", sap.ui.model.FilterOperator.Contains, sQuery)
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+
+
+        onCarriesAccountsFilterPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._CarriesAccountsPopover) {
+                this._CarriesAccountsPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.CarriesAccountsFilterPopover",
+                    controller: this
+                }).then(function (CarriesAccountsPopover) {
+                    oView.addDependent(CarriesAccountsPopover);
+                    return CarriesAccountsPopover;
+                });
+            }
+            this._CarriesAccountsPopover.then(function (CarriesAccountsPopover) {
+                CarriesAccountsPopover.openBy(oButton);
+            });
+        },
+        onCarrierAccountsFilterPopoverClosePress: function () {
+            this.byId("idCarrierAccountsFilterPopover").close();
+        },
+        
+        onCarrierAccountsFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var sLocation = eshipjetModel.getProperty("/orderLocationFilter");
+            var CarrierAccountsCarrierName = eshipjetModel.getProperty("/CarrierAccountsCarrierName");
+        
+            if (sLocation) {
+                aFilters.push(new sap.ui.model.Filter("Plant", sap.ui.model.FilterOperator.EQ, sLocation));
+            }
+            if (CarrierAccountsCarrierName) {
+                aFilters.push(new sap.ui.model.Filter("CarrierAccountsCarrierName", sap.ui.model.FilterOperator.EQ, CarrierAccountsCarrierName));
+            }
+        
+            var oTable = oView.byId("_IDCarriesAccountsTable");
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter(aFilters);
+                }
+            }
+        
+            this.byId("idCarrierAccountsFilterPopover").close();
+        },
+        
+        onCarrierAccountsFilterPopoverResetPress: function () {
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/orderLocationFilter", "");
+            eshipjetModel.setProperty("/CarrierAccountsCarrierName", "");
+            var oTable = this.byId("_IDCarriesAccountsTable");
+            var oBinding = oTable.getBinding("rows");
+            oBinding.filter([]);
+            this.byId("idCarrierAccountsFilterPopover").close();
         },
 
         // CarrierAccount Column Names Popover code changes End here
@@ -14863,9 +15051,11 @@ sap.ui.define([
                 this.byId("idAddCarrierDialog").open(); // Open existing dialog
             }
         },
+
         AddCarrierCancelDialog: function () {
             this.byId("idAddCarrierDialog").close();
         },
+
         AddCarrierUpdateDialog: function () {
             this.byId("idAddCarrierDialog").close();
         },

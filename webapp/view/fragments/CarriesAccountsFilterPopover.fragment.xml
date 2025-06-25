@@ -1,0 +1,59 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Popover
+		contentWidth="30%"
+		showArrow="false"
+		showHeader="false"
+		id="idCarrierAccountsFilterPopover"
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+		placement="Bottom"
+		initialFocus="email">
+		<Toolbar >
+			<ToolbarSpacer ></ToolbarSpacer>
+				<Button icon="sap-icon://decline" press="onCarrierAccountsFilterPopoverClosePress" class="Decline_Btn ship-now-decline_btn" type="Transparent" ></Button>
+		</Toolbar>
+		
+        <HBox >
+            <VBox class="sapUiSmallMargin" width="90%" >
+			    <Label text="Location ID / Location Name" width="90%" />
+                <ComboBox
+                    id="CarrierAccountsComboId"
+                    width="90%"
+                    class="create-ship-req_input"
+                    items="{eshipjetModel>/LocationName}"
+                    selectedKey="{eshipjetModel>/orderLocationFilter}" >
+                    <core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
+                </ComboBox>
+			</VBox>
+            <VBox class="sapUiSmallMargin" width="90%" >
+			    <Label text="Carrier Name" width="90%" />
+                <ComboBox
+                    id="CarrierAccountsCarrierNameComboId"
+                    width="90%"
+                    class="create-ship-req_input"
+                    items="{eshipjetModel>/LocationName}"
+                    selectedKey="{eshipjetModel>/CarrierAccountsCarrierName}" >
+                    <core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
+                </ComboBox>
+			</VBox>
+        </HBox>
+
+	<footer>
+		<OverflowToolbar>
+			<Button
+				text="Reset"
+				type="Transparent"
+				press="onCarrierAccountsFilterPopoverResetPress" />
+				<ToolbarSpacer/>
+			<Button
+				text="Apply"
+				width="5rem"
+				class="Master-toolbar__button"
+				press="onCarrierAccountsFilterPopoverApplyPress" />
+		</OverflowToolbar>
+	</footer>
+</Popover>
+</core:FragmentDefinition>

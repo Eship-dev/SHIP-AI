@@ -1,6 +1,6 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
-    <Toolbar width="auto" height="3rem" class="toolbarbottomborder fixedLayout ordersDarkThemeToolbar">
+    	<Toolbar width="auto" height="3rem" class="toolbarbottomborder fixedLayout ordersDarkThemeToolbar">
 			<Text text="Roles" class="toolBarHeader sapUiTinyMarginBegin whiteColor" ></Text>
 				<ToolbarSpacer />
 					<HBox>
@@ -31,9 +31,8 @@
 
 	<VBox class="whiteBackground sapUiTinyMarginTop" >
 		<Toolbar class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd" >
-			<Button icon="sap-icon://filter" press="onRolesFilterPopoverPress" type="Transparent" class="ordersIcons" ></Button>
 			<ToolbarSpacer ></ToolbarSpacer>
-				<SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" search="onSearchRoles" ></SearchField>
+				<SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" liveChange="onSearchRoles" ></SearchField>
 				<Button icon="sap-icon://action" press="onRolesExportToExcel" type="Transparent" class="ordersIcons" ></Button>
 			<Button icon="sap-icon://action-settings" press="openRolesColNamesPopover" type="Transparent" class="ordersIcons" ></Button>
 			<customData>
