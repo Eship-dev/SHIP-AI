@@ -9364,36 +9364,6 @@ sap.ui.define([
             });
         },
 
-        onPackagesExportToExcel: function () {
-            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-            var rows = eshipjetModel.getProperty("/PackageTypeTableRows");
-            var oSettings = {
-                workbook: {
-                    columns: [
-                        { label: "Location Name", property: "locationName", visible: true },
-                        { label: "Package Code", property: "packageCode", visible: true },
-                        { label: "Package Type", property: "packageType", visible: true },
-                        { label: "Ship Method", property: "shipMethod", visible: true },
-                        { label: "Dimension Units", property: "dimensionUnits", visible: true },
-                        { label: "Status", property: "status", visible: true },
-                        { label: "Ship Method ID", property: "shipMethodId", visible: true },
-                        { label: "Ship Method", property: "shipMethodName", visible: true },
-                        { label: "Ship Method Type", property: "shipMethodType", visible: true },
-                        { label: "Ship Method Coverage", property: "shipMethodCoverage", visible: true },
-                        { label: "Ship Method Status", property: "status", visible: true }
-                    ]                                  
-                },
-                dataSource: rows,
-                fileName: 'Packages_Data',
-                Worker: true
-            };
-            var oSpreadsheet = new Spreadsheet(oSettings);
-            oSpreadsheet.build().finally(function () {
-                oSpreadsheet.destroy();
-            });
-        },
-
-
 
         onLTLClassesExportToExcel: function () {
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
@@ -9720,6 +9690,90 @@ sap.ui.define([
             oSpreadsheet.build().finally(function () {
                 oSpreadsheet.destroy();
             });
+        },
+
+        onSearchProducts: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+            var oTable = this.byId("_IDProductsTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("itemNo", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("productNo", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("desc", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("quantity", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("unitCost", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("unitWeight", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("dimensions", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("harmonizedcode", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("eccn", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("unNo", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("class", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("nmfc", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("uom", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("epcRfidNo", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("countryOfMFR", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, sQuery)
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+
+        onProductsFilterPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._ProductsPopover) {
+                this._ProductsPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ProductsFilterPopover",
+                    controller: this
+                }).then(function (ProductsPopover) {
+                    oView.addDependent(ProductsPopover);
+                    return ProductsPopover;
+                });
+            }
+            this._ProductsPopover.then(function (ProductsPopover) {
+                ProductsPopover.openBy(oButton);
+            });
+        },
+
+        onProductsFilterPopoverClosePress: function () {
+            this.byId("idProductsFilterPopover").close();
+        },
+        
+        onProductsFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var sLocation = eshipjetModel.getProperty("/orderLocationFilter");
+        
+            if (sLocation) {
+                aFilters.push(new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.EQ, sLocation));
+            }
+            var oTable = oView.byId("_IDProductsTable");
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter(aFilters);
+                }
+            }
+            this.byId("idProductsFilterPopover").close();
+        },
+        
+        onProductsFilterPopoverResetPress: function () {
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/orderLocationFilter", "");
+            var oTable = this.byId("_IDProductsTable");
+            var oBinding = oTable.getBinding("rows");
+            oBinding.filter([]);
+            this.byId("idProductsFilterPopover").close();
         },
 
         // Address Book Column Names Popover code changes End here
@@ -10765,6 +10819,110 @@ sap.ui.define([
             oTable.bindRows("/CostCenterTableRows");
         },
 
+        onSearchCostCenter: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+        
+            var oTable = this.byId("_IDCostCenterTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("costCenter", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("desc", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, sQuery)
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+
+        onCostCenterFilterPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._UsersPopover) {
+                this._UsersPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.CostCenterFilterPopover",
+                    controller: this
+                }).then(function (UsersPopover) {
+                    oView.addDependent(UsersPopover);
+                    return UsersPopover;
+                });
+            }
+            this._UsersPopover.then(function (UsersPopover) {
+                UsersPopover.openBy(oButton);
+            });
+        },
+
+        onCostCenterFilterPopoverClosePress: function () {
+            this.byId("idCostCenterFilterPopover").close();
+        },
+        
+        onCostCenterFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var sLocation = eshipjetModel.getProperty("/orderLocationFilter");
+        
+            if (sLocation) {
+                aFilters.push(new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.EQ, sLocation));
+            }
+            var oTable = oView.byId("_IDCostCenterTable");
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter(aFilters);
+                }
+            }
+            this.byId("idCostCenterFilterPopover").close();
+        },
+        
+        onCostCenterFilterPopoverResetPress: function () {
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/orderLocationFilter", "");
+            var oTable = this.byId("_IDCostCenterTable");
+            var oBinding = oTable.getBinding("rows");
+            oBinding.filter([]);
+            this.byId("idCostCenterFilterPopover").close();
+        },
+
+        onCostCenterExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/CostCenterTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Location Name", property: "locationName"},
+                        { label: "User ID", property: "userId"},
+                        { label: "First Name", property: "firstName"},
+                        { label: "Last Name", property: "lastName"},
+                        { label: "Phone No", property: "phonenum"},
+                        { label: "Email", property: "userEmail"},
+                        { label: "Address Line 1", property: "addressLine1"},
+                        { label: "Address Line 2", property: "addressLine2"},
+                        { label: "Address Line 3", property: "addressLine3" },
+                        { label: "City", property: "addressCity" },
+                        { label: "Zip / Postal Code", property: "addressZip" },
+                        { label: "Country", property: "addressCountry" },
+                        { label: "Role", property: "userRole" },
+                        { label: "Status", property: "status" }
+                    ]
+                },
+                dataSource: rows,
+                fileName: 'Cost_Center_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
+        },
+
         // CostCenter Column Names Popover code changes End here
 
         // Statuses Column Names Popover code changes starts here
@@ -10909,6 +11067,102 @@ sap.ui.define([
                 }
             });
             oTable.bindRows("/StatusesTableRows");
+        },
+
+        onSearchStatuses: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+        
+            var oTable = this.byId("_IDStatusesTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("code", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("colorPicker", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("desc", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, sQuery)
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+
+        onStatusesFilterPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._StatusesPopover) {
+                this._StatusesPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.StatusesFilterPopover",
+                    controller: this
+                }).then(function (StatusesPopover) {
+                    oView.addDependent(StatusesPopover);
+                    return StatusesPopover;
+                });
+            }
+            this._StatusesPopover.then(function (StatusesPopover) {
+                StatusesPopover.openBy(oButton);
+            });
+        },
+
+        onStatusesFilterPopoverClosePress: function () {
+            this.byId("idStatusesFilterPopover").close();
+        },
+        
+        onStatusesFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var sLocation = eshipjetModel.getProperty("/orderLocationFilter");
+        
+            if (sLocation) {
+                aFilters.push(new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.EQ, sLocation));
+            }
+            var oTable = oView.byId("_IDStatusesTable");
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter(aFilters);
+                }
+            }
+            this.byId("idStatusesFilterPopover").close();
+        },
+        
+        onStatusesFilterPopoverResetPress: function () {
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/orderLocationFilter", "");
+            var oTable = this.byId("_IDStatusesTable");
+            var oBinding = oTable.getBinding("rows");
+            oBinding.filter([]);
+            this.byId("idStatusesFilterPopover").close();
+        },
+
+        onStatusesExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/StatusesTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Location Name", property: "locationName"},
+                        { label: "Code", property: "code"},
+                        { label: "Color Picker", property: "colorPicker"},
+                        { label: "Description", property: "desc"},
+                        { label: "Status", property: "status"}
+                    ]
+                },
+                dataSource: rows,
+                fileName: 'Statuses_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
         },
 
         // Statuses Column Names Popover code changes End here
@@ -11203,6 +11457,102 @@ sap.ui.define([
                 }
             });
             oTable.bindRows("/PackageTypeTableRows");
+        },
+
+        onSearchPackageTypes: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+        
+            var oTable = this.byId("_IDPackageTypesTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("packageCode", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("shipMethod", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("dimensionUnits", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, sQuery)
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+
+        onPackageTypesFilterPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._PackageTypesPopover) {
+                this._PackageTypesPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.PackageTypesFilterPopover",
+                    controller: this
+                }).then(function (PackageTypesPopover) {
+                    oView.addDependent(PackageTypesPopover);
+                    return PackageTypesPopover;
+                });
+            }
+            this._PackageTypesPopover.then(function (PackageTypesPopover) {
+                PackageTypesPopover.openBy(oButton);
+            });
+        },
+
+        onPackageTypesFilterPopoverClosePress: function () {
+            this.byId("idPackageTypesFilterPopover").close();
+        },
+        
+        onPackageTypesFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var sLocation = eshipjetModel.getProperty("/orderLocationFilter");
+        
+            if (sLocation) {
+                aFilters.push(new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.EQ, sLocation));
+            }
+            var oTable = oView.byId("_IDPackageTypesTable");
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter(aFilters);
+                }
+            }
+            this.byId("idPackageTypesFilterPopover").close();
+        },
+        
+        onPackageTypesFilterPopoverResetPress: function () {
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/orderLocationFilter", "");
+            var oTable = this.byId("_IDPackageTypesTable");
+            var oBinding = oTable.getBinding("rows");
+            oBinding.filter([]);
+            this.byId("idPackageTypesFilterPopover").close();
+        },
+
+        onPackageTypesExportToExcel: function () {
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var rows = eshipjetModel.getProperty("/PackageTypeTableRows");
+            var oSettings = {
+                workbook: {
+                    columns: [
+                        { label: "Location Name", property: "locationName"},
+                        { label: "Package Code", property: "packageCode"},
+                        { label: "Ship Method", property: "shipMethod"},
+                        { label: "Dimension Units", property: "dimensionUnits"},
+                        { label: "Status", property: "status"}
+                    ]
+                },
+                dataSource: rows,
+                fileName: 'Package_Types_Data',
+                Worker: true
+            };
+            var oSpreadsheet = new Spreadsheet(oSettings);
+            oSpreadsheet.build().finally(function () {
+                oSpreadsheet.destroy();
+            });
         },
 
         // PackageTypes Column Names Popover code changes End here

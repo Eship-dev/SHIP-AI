@@ -4,12 +4,12 @@
 	<Popover  contentWidth="20%" placement="Left" contentHeight="40%" >
 		<customHeader>
 			<VBox >
-				<Toolbar class="toolbarbottomborder">
+				<Toolbar class="toolbarbottomborder" height="2rem" >
 					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="Columns"></Title>
 					<ToolbarSpacer ></ToolbarSpacer>					
-					<Button icon="sap-icon://decline" press="onStatusesColSelectClosePress" class="Decline_Btn ship-now-decline_btn" ></Button>
+					<Button icon="sap-icon://decline" press="onStatusesColSelectClosePress" class="Decline_Btn ship-now-decline_btn" type="Transparent" ></Button>
 				</Toolbar>
-				<SearchField placeholder="Search Columns"   liveChange="onStatusesColNameSearch"></SearchField>
+				<SearchField placeholder="Search Columns"   liveChange="onStatusesColNameSearch" class="sapUiSmallMarginEnd sapUiTinyMarginBottom columnConfigSearch" ></SearchField>
 			</VBox>
 		</customHeader>
 		<content>

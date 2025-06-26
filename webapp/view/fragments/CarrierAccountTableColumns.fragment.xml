@@ -4,7 +4,7 @@
 	<Popover  contentWidth="18%" placement="Left" contentHeight="30%" showArrow="false" >
 		<customHeader>
 			<VBox >
-				<Toolbar class="toolbarbottomborder" height="1rem" >
+				<Toolbar class="toolbarbottomborder" height="2rem" >
 					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="Columns"></Title>
 					<ToolbarSpacer ></ToolbarSpacer>					
 					<Button icon="sap-icon://decline" press="onCarrierAccountColSelectClosePress" class="Decline_Btn ship-now-decline_btn" type="Transparent" ></Button>
