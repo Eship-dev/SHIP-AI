@@ -24,8 +24,8 @@
 												<HBox height="4.5rem" width="auto" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" >
 													<VBox >
 														<Label text="Location ID / Location Name" />
-														<ComboBox class="create-ship-req_input sapUiTinyMarginEnd" width="auto" enabled="{}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{}" selectionChange=""  >
-															<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
+														<ComboBox class="create-ship-req_input sapUiTinyMarginEnd" width="auto" enabled="{}" items="{eshipjetModel>/locations}" selectedKey="{eshipjetModel>/CarrierCatalogLocations}" selectionChange=""  >
+															<core:Item key="{eshipjetModel>id}" text="{eshipjetModel>name}" />
 														</ComboBox>
 													</VBox>
 													<VBox >

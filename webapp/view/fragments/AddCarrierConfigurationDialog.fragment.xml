@@ -55,70 +55,71 @@
                     	<HBox height="4.5rem" width="auto" class=" sapUiSmallMarginEnd packScreenPadding" alignItems="Center" >
 													<VBox >
 														<Label text="Location ID / Location Name" />
-														<ComboBox class="create-ship-req_input sapUiSmallMarginEnd" width="auto" enabled="{}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{}" selectionChange=""  >
-															<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
+														<ComboBox class="create-ship-req_input sapUiLargeMarginEnd" width="auto" enabled="{}" items="{eshipjetModel>/locations}" selectedKey="{}" selectionChange=""  >
+															<core:Item key="{eshipjetModel>id}" text="{eshipjetModel>name}" />
 														</ComboBox>
 													</VBox>
 													<VBox >
 														<Label text="Carrier Name" />
-														<ComboBox class="create-ship-req_input sapUiSmallMarginEnd"  width="auto" enabled="{}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
+														<ComboBox class="create-ship-req_input sapUiLargeMarginEnd"  width="auto" enabled="{}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
 															<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
 														</ComboBox>
 													</VBox>
 													<VBox >
 														<Label text="Carrier Type" />
-															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiSmallMarginEnd"  width="auto" />
+															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiLargeMarginEnd"  width="auto" />
 													</VBox>
                                                     <VBox >
 														<Label text="Ship From Country" />
-															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiSmallMarginEnd"  width="auto" />
+															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiLargeMarginEnd"  width="auto" />
 													</VBox>
 													<VBox >
 														<Label text="Ship To Country" />
-															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiSmallMarginEnd"  width="auto" />
+															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiLargeMarginEnd"  width="auto" />
 													</VBox>
                                                     <VBox >
 														<Label text="Cost Center" />
-														<ComboBox class="create-ship-req_input sapUiSmallMarginEnd" width="auto" enabled="{}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
+														<ComboBox class="create-ship-req_input sapUiLargeMarginEnd" width="auto" enabled="{}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
 															<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
 														</ComboBox>
 													</VBox>
 													<VBox >
 														<Label text="Environment" />
-														<ComboBox class="create-ship-req_input sapUiSmallMarginEnd"  width="auto" enabled="{}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
+														<ComboBox class="create-ship-req_input sapUiLargeMarginEnd"  width="auto" enabled="{}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
 															<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
 														</ComboBox>
 													</VBox>
+                                                    
 												</HBox>
 
                                                 <HBox height="4.5rem" width="auto" class=" sapUiSmallMarginEnd packScreenPadding" alignItems="Center" >
 													<VBox >
 														<Label text="Account Number" />
-														<ComboBox class="create-ship-req_input sapUiSmallMarginEnd" width="auto" enabled="{}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{}" selectionChange=""  >
+														<ComboBox class="create-ship-req_input sapUiLargeMarginEnd" width="auto" enabled="{}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{}" selectionChange=""  >
 															<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
 														</ComboBox>
 													</VBox>
 													<VBox >
 														<Label text="User ID" />
-														<ComboBox class="create-ship-req_input sapUiSmallMarginEnd"  width="auto" enabled="{}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
+														<ComboBox class="create-ship-req_input sapUiLargeMarginEnd"  width="auto" enabled="{}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
 															<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
 														</ComboBox>
 													</VBox>
 													<VBox >
 														<Label text="Password" />
-															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiSmallMarginEnd"  width="auto" />
+															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiLargeMarginEnd"  width="auto" />
 													</VBox>
                                                     <VBox >
 														<Label text="Meter ID" />
-															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiSmallMarginEnd"  width="auto" />
+															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiLargeMarginEnd"  width="auto" />
 													</VBox>
 													<VBox >
 														<Label text="Hub ID" />
-															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiSmallMarginEnd"  width="auto" />
+															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiLargeMarginEnd"  width="auto" />
 													</VBox>
                                                     <VBox >
 														<Label text="Connection Type" />
-														<ComboBox class="create-ship-req_input sapUiSmallMarginEnd" width="auto" enabled="{}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
+														<ComboBox class="create-ship-req_input sapUiLargeMarginEnd" width="auto" enabled="{}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
 															<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
 														</ComboBox>
 													</VBox>
@@ -126,55 +127,52 @@
 
                     
                  <Table
-    id="serviceTable"
-    
-    sticky="HeaderToolbar,ColumnHeaders"
->
-    <columns>
-        <Column>
-            <Text text="Service Name" />
-        </Column>
-        <Column>
-            <Text text="ERP Service ID" />
-        </Column>
-        <Column>
-            <Text text="Service Code" />
-        </Column>
-        <Column>
-            <Text text="Service Coverage" />
-        </Column>
-        <Column>
-            <Text text="Status" />
-        </Column>
-    </columns>
-    <!-- static empty row for user input -->
-    <items>
-        <ColumnListItem type="Inactive">
-            <cells>
-                <Input placeholder="Enter Service Name" class="create-ship-req_input" />
-                <Input placeholder="Enter ERP Service ID" class="create-ship-req_input"/>
-                <Input placeholder="Enter Service Code" class="create-ship-req_input"/>
-                <ComboBox class="create-ship-req_input">
-                    <core:Item key="Domestic" text="Domestic" />
-                    <core:Item key="International" text="International" />
-                </ComboBox>
-                <Switch state="false" />
-            </cells>
-        </ColumnListItem>
-    </items>
-    <!-- bound data rows -->
-    <items>
-        <ColumnListItem type="Active" press="onServiceRowPress">
-            <cells>
-                <Text text="{serviceName}" />
-                <Text text="{erpServiceId}" />
-                <Text text="{serviceCode}" />
-                <Text text="{serviceCoverage}" />
-                <Switch state="{status}" />
-            </cells>
-        </ColumnListItem>
-    </items>
-</Table>
+                            id="serviceTable">
+                            <columns>
+                                <Column>
+                                    <Text text="Service Name" />
+                                </Column>
+                                <Column>
+                                    <Text text="ERP Service ID" />
+                                </Column>
+                                <Column>
+                                    <Text text="Service Code" />
+                                </Column>
+                                <Column>
+                                    <Text text="Service Coverage" />
+                                </Column>
+                                <Column>
+                                    <Text text="Status" />
+                                </Column>
+                            </columns>
+                            <!-- static empty row for user input -->
+                            <items>
+                                <ColumnListItem type="Inactive">
+                                    <cells>
+                                        <Input placeholder="Enter Service Name" class="create-ship-req_input" />
+                                        <Input placeholder="Enter ERP Service ID" class="create-ship-req_input"/>
+                                        <Input placeholder="Enter Service Code" class="create-ship-req_input"/>
+                                        <ComboBox class="create-ship-req_input">
+                                            <core:Item key="Domestic" text="Domestic" />
+                                            <core:Item key="International" text="International" />
+                                        </ComboBox>
+                                        <Switch state="false" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                            <!-- bound data rows -->
+                            <!-- <items>
+                                <ColumnListItem type="Active" press="onServiceRowPress">
+                                    <cells>
+                                        <Text text="{serviceName}" />
+                                        <Text text="{erpServiceId}" />
+                                        <Text text="{serviceCode}" />
+                                        <Text text="{serviceCoverage}" />
+                                    
+                                    </cells>
+                                </ColumnListItem>
+                            </items> -->
+                        </Table>
 
                 </IconTabFilter>
 
@@ -189,48 +187,53 @@
                     >
                         <form:content>
                             <Label text="Label Type" />
-                            <ComboBox class="create-ship-req_input">
+                            <ComboBox class="create-ship-req_input ">
                                 <core:Item key="" text="Select" />
                             </ComboBox>
-                            	<Label text="" />
-                             <CheckBox text="Rate Quote" selected="true"/>
+                            <Label text="POD URL" />
+                            <ComboBox class="create-ship-req_input ">
+                                <core:Item key="" text="Select" />
+                            </ComboBox>
                             <Label text="Rate URL" />
                             <ComboBox class="create-ship-req_input">
                                 <core:Item key="" text="Select" />
                             </ComboBox>
-                            <Label text="" />
-                             <CheckBox text="Freight Quote" selected="true"/>
+
+                            	<Label text="" />
+                             <CheckBox text="Rate Quote" selected="true" class="sapUiSmallMarginTop"/>
+                            
+                            
                             <Label text="Ship URL" />
                             <ComboBox class="create-ship-req_input">
                                 <core:Item key="" text="Select" />
                             </ComboBox>
+
                             <Label text="" />
-                             <CheckBox text="End of Day" selected="true"/>
-                            <Label text="Track URL" />
+                             <CheckBox text="Freight Quote" selected="true" class="sapUiSmallMarginTop" />
+
+                              <Label text="Track URL" />
                             <ComboBox class="create-ship-req_input">
                                 <core:Item key="" text="Select" />
                             </ComboBox>
+
+                            <Label text="" />
+                             <CheckBox text="End of Day" selected="true" class="sapUiSmallMarginTop"/>
+
+                              <Label text="Void URL" />
+                            <ComboBox class="create-ship-req_input">
+                                <core:Item key="" text="Select" />
+                            </ComboBox>
+                           
                              <Label text="" />
-                             <CheckBox text="Manual Rates" selected="true"/>
-                            <Label text="Void URL" />
-                            <ComboBox class="create-ship-req_input">
-                                <core:Item key="" text="Select" />
-                            </ComboBox>
-                            <Label text="POD URL" />
-                            <ComboBox class="create-ship-req_input">
-                                <core:Item key="" text="Select" />
-                            </ComboBox>
+                             <CheckBox text="Manual Rates" selected="true" class="sapUiSmallMarginTop"/>
+                           
                             
                             <Label text="Token URL" />
                             <ComboBox class="create-ship-req_input">
                                 <core:Item key="TEST" text="Test" />
                             </ComboBox>
                            <Label text="" />
-                             <CheckBox text="Automate Pro Number" selected="true"/>
-                             
-                             
-                            
-                             
+                             <CheckBox text="Automate Pro Number" selected="true" class="sapUiSmallMarginTop"/>
                         </form:content>
                     </form:SimpleForm>
                 </IconTabFilter>

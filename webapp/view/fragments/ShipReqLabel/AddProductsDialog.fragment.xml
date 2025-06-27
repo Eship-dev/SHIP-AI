@@ -33,7 +33,7 @@
 
         <IconTabBar
             id="idIconTabBarMulti"
-            expandable="false"
+            expandable="true"
             enableTabReordering="true"
             class="shipNow-IconTabBar-Width" >
             <items>

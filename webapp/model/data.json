@@ -12602,5 +12602,20 @@
             "visible": true
         }
     ],
-    "FreightQuoteOrdersSearchText":""
+    "FreightQuoteOrdersSearchText":"",
+    "CarrierCatalogLocations":"",
+    "locations": [
+        { "id": "BP01", "name": "South Brunswick, NJ" },
+        { "id": "BP02", "name": "Atlanta, GA" },
+        { "id": "BP03", "name": "Ontario, CA" },
+        { "id": "BP04", "name": "Drive Medical, GA" },
+        { "id": "BP08", "name": "Drive Medical, MI/IA" },
+        { "id": "BP14", "name": "Drive Medical, GA" },
+        { "id": "BP16", "name": "Drive Medical, FL" },
+        { "id": "BP17", "name": "Drive Medical, PA" },
+        { "id": "BP18", "name": "Drive Medical, MN" },
+        { "id": "BP20", "name": "Canada Warehouse" }
+      ]
+      
+    
 }
