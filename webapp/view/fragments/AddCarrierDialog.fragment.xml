@@ -13,37 +13,117 @@
     <Dialog
         id="idAddCarrierDialog"
         showHeader="false"
-        contentWidth="90%"
+        contentWidth="100%"
         contentHeight="50%" >
         <Toolbar >
             <Title text="Add Carrier"></Title>
             <ToolbarSpacer ></ToolbarSpacer>
                 <Button icon="sap-icon://decline" press="AddCarrierCancelDialog" class="Decline_Btn ship-now-decline_btn" ></Button>
         </Toolbar>
-        
-        <form:SimpleForm editable="true" layout="ColumnLayout" columnsM="4" columnsL="3" columnsXL="5" >
-            <form:content>
-                <Label text="Ship Method ID" />
-                <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
-                <Label text="Ship Method" />
-                <Input class="sapUiSmallMarginBottom create-ship-req_input"></Input>
-                <Label text="Ship Method Type" />
-                <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" items="{}">
-                    <core:Item key="{}" text="{}" />
-                </ComboBox>
-                <Label text="Ship Method Coverage" />
-                <ComboBox class="sapUiSmallMarginBottom create-ship-req_input" items="{}">
-                    <core:Item key="{}" text="{}" />
-                </ComboBox>
-                <Label text="Status" />
-                <Switch type="AcceptReject" state="true">
-                    <layoutData>
-                        <FlexItemData growFactor="1" />
-                    </layoutData>
-                </Switch>
-            </form:content>
-        </form:SimpleForm>
-
+        <HBox alignContent="Center" >
+												<HBox height="4.5rem" width="auto" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" >
+													<VBox >
+														<Label text="Location ID / Location Name" />
+														<ComboBox class="create-ship-req_input sapUiTinyMarginEnd" width="auto" enabled="{}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{}" selectionChange=""  >
+															<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
+														</ComboBox>
+													</VBox>
+													<VBox >
+														<Label text="Carrier Name" />
+														<ComboBox class="create-ship-req_input sapUiTinyMarginEnd"  width="auto" enabled="{}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
+															<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
+														</ComboBox>
+													</VBox>
+													<VBox >
+														<Label text="Carrier ID" />
+															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiTinyMarginEnd"  width="auto" />
+													</VBox>
+                                                    <VBox >
+														<Label text="ERP Carrier ID" />
+															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiTinyMarginEnd"  width="auto" />
+													</VBox>
+													<VBox >
+														<Label text="Carrier Name" />
+															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiTinyMarginEnd"  width="auto" />
+													</VBox>
+                                                    <VBox >
+														<Label text="Carrier Type" />
+														<ComboBox class="create-ship-req_input sapUiTinyMarginEnd" width="auto" enabled="{}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
+															<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
+														</ComboBox>
+													</VBox>
+													<VBox >
+														<Label text="Carrier Coverage" />
+														<ComboBox class="create-ship-req_input sapUiTinyMarginEnd"  width="auto" enabled="{}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
+															<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
+														</ComboBox>
+													</VBox>
+                                                    <VBox >
+														<Label text="Connection Type" />
+														<ComboBox class="create-ship-req_input sapUiTinyMarginEnd" width="auto" enabled="{}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
+															<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
+														</ComboBox>
+													</VBox>
+													<VBox >
+														<Label text="Color Picker" class=" sapUiTinyMarginEnd"/>
+														<Button press="onOpenColorPicker" class="create-ship-req_input sapUiTinyMarginEnd"/>
+													</VBox>
+                                                    <VBox >
+														<Label text="Status" />
+														 <Switch type="AcceptReject" state="true">
+                                                            <layoutData>
+                                                                <FlexItemData growFactor="1" />
+                                                            </layoutData>
+                                                        </Switch>
+													</VBox>
+												</HBox>
+                                                </HBox>
+       <!-- <form:SimpleForm
+    editable="true"
+    layout="ColumnLayout"
+    columnsM="2"
+    columnsL="3"
+    columnsXL="4"
+>
+    <form:content>
+        <Label text="Location ID / Location Name" />
+        <ComboBox class="sapUiSmallMarginBottom create-ship-req_input">
+            <core:Item key="" text="" />
+        </ComboBox>
+        <Label text="ERP Location ID" />
+        <ComboBox class="sapUiSmallMarginBottom create-ship-req_input">
+            <core:Item key="" text="" />
+        </ComboBox>
+        <Label text="Ship Method Type" />
+        <ComboBox class="sapUiSmallMarginBottom create-ship-req_input">
+            <core:Item key="" text="" />
+        </ComboBox>
+        <Label text="Carrier ID" />
+        <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+         <Label text="ERP Carrier ID" />
+        <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+        <Label text="Carrier Name" />
+        <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+        <Label text="Carrier Type" />
+        <ComboBox class="sapUiSmallMarginBottom create-ship-req_input">
+            <core:Item key="" text="" />
+        </ComboBox>
+        <Label text="Carrier Coverage" />
+        <ComboBox class="sapUiSmallMarginBottom create-ship-req_input">
+            <core:Item key="" text="" />
+        </ComboBox> 
+        <Label text="Connection Type" />
+        <ComboBox class="sapUiSmallMarginBottom create-ship-req_input">
+            <core:Item key="" text="" />
+        </ComboBox> 
+        <Label text="Status" />
+        <Switch type="AcceptReject" state="true">
+            <layoutData>
+                <FlexItemData growFactor="1" />
+            </layoutData>
+        </Switch>
+    </form:content>
+</form:SimpleForm> -->
         <Table inset="false"
             items="{eshipjetModel>/addCrrierDialogItems}">
             <columns>
@@ -53,15 +133,15 @@
                 </Column>
                 <Column
                     width="auto">
+                    <Text text="ERP Service ID" />
+                </Column>
+                <Column
+                    width="auto">
                     <Text text="Service Code" />
                 </Column>
                 <Column
                     width="auto">
                     <Text text="Service Coverage" />
-                </Column>
-                <Column
-                    width="auto">
-                    <Text text="Connection Type" />
                 </Column>
                 <Column
                     width="auto">

@@ -13074,6 +13074,84 @@ sap.ui.define([
             this.byId("idIncotermsFilterPopover").close();
         },
 
+         // PaymentTypes
+         onSearchPaymentTypes: function (oEvent) {
+            var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+        
+            var oTable = this.byId("_ID_PaymentTypesTable");
+            var oBinding = oTable.getBinding("rows");
+        
+            if (oBinding) {
+                var aFilters = [];
+                if (sQuery) {
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("locationid", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("erplocationid", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("erpName", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("orderTypeCode", sap.ui.model.FilterOperator.Contains, sQuery),
+                            new sap.ui.model.Filter("orderTypeDesc", sap.ui.model.FilterOperator.Contains, sQuery)
+                            
+                        ],
+                        and: false
+                    }));
+                }
+                oBinding.filter(aFilters);
+            }
+        },
+
+
+        onPaymentTypesFilterPopoverPress: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._PaymentTypesPopover) {
+                this._PaymentTypesPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.PaymentTypesFilterPopover",
+                    controller: this
+                }).then(function (PaymentTypesPopover) {
+                    oView.addDependent(PaymentTypesPopover);
+                    return PaymentTypesPopover;
+                });
+            }
+            this._PaymentTypesPopover.then(function (PaymentTypesPopover) {
+                PaymentTypesPopover.openBy(oButton);
+            });
+        },
+        onPaymentTypesFilterPopoverClosePress: function () {
+            this.byId("idPaymentTypesFilterPopover").close();
+        },
+        
+        onPaymentTypesFilterPopoverApplyPress: function () {
+            var aFilters = [];
+            var oView = this.getView();
+            var sPaymentTypes = eshipjetModel.getProperty("/PaymentTypesFilter");
+        
+            if (sPaymentTypes) {
+                aFilters.push(new sap.ui.model.Filter("locationid", sap.ui.model.FilterOperator.EQ, sPaymentTypes));
+            }
+        
+            var oTable = oView.byId("_ID_PaymentTypesTable");
+            if (oTable) {
+                var oBinding = oTable.getBinding("rows");
+                if (oBinding) {
+                    oBinding.filter(aFilters);
+                }
+            }
+        
+            this.byId("idPaymentTypesFilterPopover").close();
+        },
+        
+        onPaymentTypesFilterPopoverResetPress: function () {
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/PaymentTypesFilter", "");
+            var oTable = this.byId("_ID_PaymentTypesTable");
+            var oBinding = oTable.getBinding("rows");
+            oBinding.filter([]);
+            this.byId("idPaymentTypesFilterPopover").close();
+        },
+
 
 
         onLocationsExportToExcel: function () {
@@ -15567,6 +15645,22 @@ sap.ui.define([
         AddCarrierUpdateDialog: function () {
             this.byId("idAddCarrierDialog").close();
         },
+
+        onOpenColorPicker: function(oEvent) {
+            var oButton = oEvent.getSource();
+            if (!this.oColorPalettePopover) {
+                this.oColorPalettePopover = new sap.m.ColorPalettePopover({
+                    colors: [
+                        "#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF"
+                    ],
+                    colorSelect: function(oEvent) {
+                        var sColor = oEvent.getParameter("value");
+                        this.byId("myVBox").getDomRef().style.backgroundColor = sColor;
+                    }.bind(this)
+                });
+            }
+            this.oColorPalettePopover.openBy(oButton);
+        },        
 
         onAddCarrierDialogPlusPress: function () {
             var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");

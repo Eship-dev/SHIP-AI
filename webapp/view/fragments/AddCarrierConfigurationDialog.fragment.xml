@@ -1,5 +1,5 @@
 <core:FragmentDefinition
-    xmlns="sap.m"
+     xmlns="sap.m"
     xmlns:l="sap.ui.layout"
     xmlns:form="sap.ui.layout.form"
     xmlns:core="sap.ui.core"
@@ -9,89 +9,240 @@
     xmlns:svm="sap.ui.comp.smartvariants"
     xmlns:ui="sap.ui.table"
     xmlns:u="sap.ui.unified"
-    xmlns:c="sap.ui.core">
+    xmlns:c="sap.ui.core"
+>
     <Dialog
         id="idAddCarrierConfigurationDialog"
         showHeader="false"
-        contentWidth="80%"
-        contentHeight="70%">
-        <Toolbar>
-            <Title text="Add Carrier Configuration"></Title>
-            <ToolbarSpacer></ToolbarSpacer>
-            <Button icon="sap-icon://decline" press="AddCarrierConfigurationCloseDialog" class="Decline_Btn ship-now-decline_btn" ></Button>
-        </Toolbar>
+        contentWidth="100%"
+        contentHeight="80%"
+        class="myCustomDialog"
+    >
+        <customHeader>
+            <Toolbar>
+                <Title text="Add Carrier Configuration" />
+                <ToolbarSpacer />
+                <Button
+                     icon="sap-icon://decline"
+                    press=" AddCarrierConfigurationCloseDialog"
+                    class="Decline_Btn ship-now-decline_btn"
+                />
+            </Toolbar>
+        </customHeader>
+<!-- <IconTabBar
+		id="idIconTabBarNoIcons"
+		expanded="false"
+        enableTabReordering="true"
+        class="shipNow-IconTabBar-Width">
+		<items>
+			<IconTabFilter text="Info" key="info">
+				<Text text="Info content goes here ..." />
+			</IconTabFilter>
+			<IconTabFilter text="Attachments" key="attachments">
+				<Text text="Attachments go here ..." />
+			</IconTabFilter>
+		</items>
+	</IconTabBar> -->
+        <IconTabBar
+        expanded="false"
+        enableTabReordering="true"
+        class="shipNow-IconTabBar-Width">
+            <!-- Carrier Info Tab -->
+            <items>
+                <IconTabFilter
+                    key="carrier"
+                    text="Carrier Info">
+                    	<HBox height="4.5rem" width="auto" class=" sapUiSmallMarginEnd packScreenPadding" alignItems="Center" >
+													<VBox >
+														<Label text="Location ID / Location Name" />
+														<ComboBox class="create-ship-req_input sapUiSmallMarginEnd" width="auto" enabled="{}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{}" selectionChange=""  >
+															<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
+														</ComboBox>
+													</VBox>
+													<VBox >
+														<Label text="Carrier Name" />
+														<ComboBox class="create-ship-req_input sapUiSmallMarginEnd"  width="auto" enabled="{}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
+															<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
+														</ComboBox>
+													</VBox>
+													<VBox >
+														<Label text="Carrier Type" />
+															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiSmallMarginEnd"  width="auto" />
+													</VBox>
+                                                    <VBox >
+														<Label text="Ship From Country" />
+															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiSmallMarginEnd"  width="auto" />
+													</VBox>
+													<VBox >
+														<Label text="Ship To Country" />
+															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiSmallMarginEnd"  width="auto" />
+													</VBox>
+                                                    <VBox >
+														<Label text="Cost Center" />
+														<ComboBox class="create-ship-req_input sapUiSmallMarginEnd" width="auto" enabled="{}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
+															<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
+														</ComboBox>
+													</VBox>
+													<VBox >
+														<Label text="Environment" />
+														<ComboBox class="create-ship-req_input sapUiSmallMarginEnd"  width="auto" enabled="{}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
+															<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
+														</ComboBox>
+													</VBox>
+												</HBox>
 
-        <content>
-            <form:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="6">
-                <form:content>
-                    <Label text="Location Name" />
-                    <ComboBox items="{}" class="sapUiSmallMarginBottom create-ship-req_input">
-                        <core:Item key="{}" text="{}" />
-                    </ComboBox>
-                    <Label text="Ship Method Type" />
-                    <ComboBox items="{}" class="sapUiSmallMarginBottom create-ship-req_input">
-                        <core:Item key="{}" text="{}" />
-                    </ComboBox>
-                    <Label text="Meter ID" />
-                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                                                <HBox height="4.5rem" width="auto" class=" sapUiSmallMarginEnd packScreenPadding" alignItems="Center" >
+													<VBox >
+														<Label text="Account Number" />
+														<ComboBox class="create-ship-req_input sapUiSmallMarginEnd" width="auto" enabled="{}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{}" selectionChange=""  >
+															<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
+														</ComboBox>
+													</VBox>
+													<VBox >
+														<Label text="User ID" />
+														<ComboBox class="create-ship-req_input sapUiSmallMarginEnd"  width="auto" enabled="{}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
+															<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
+														</ComboBox>
+													</VBox>
+													<VBox >
+														<Label text="Password" />
+															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiSmallMarginEnd"  width="auto" />
+													</VBox>
+                                                    <VBox >
+														<Label text="Meter ID" />
+															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiSmallMarginEnd"  width="auto" />
+													</VBox>
+													<VBox >
+														<Label text="Hub ID" />
+															<Input value="{}" enabled="{}" class="create-ship-req_input sapUiSmallMarginEnd"  width="auto" />
+													</VBox>
+                                                    <VBox >
+														<Label text="Connection Type" />
+														<ComboBox class="create-ship-req_input sapUiSmallMarginEnd" width="auto" enabled="{}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
+															<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
+														</ComboBox>
+													</VBox>
+												</HBox>
 
-                    <Label text="Ship Method" />
-                    <SearchField  class="sapUiSmallMarginBottom"/>
-                    <Label text="Connection Type" />
-                    <ComboBox items="{}" class="sapUiSmallMarginBottom create-ship-req_input">
-                        <core:Item key="{}" text="{}" />
-                    </ComboBox>
-                    <Label text="Hub ID" />
-                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                    
+                 <Table
+    id="serviceTable"
+    
+    sticky="HeaderToolbar,ColumnHeaders"
+>
+    <columns>
+        <Column>
+            <Text text="Service Name" />
+        </Column>
+        <Column>
+            <Text text="ERP Service ID" />
+        </Column>
+        <Column>
+            <Text text="Service Code" />
+        </Column>
+        <Column>
+            <Text text="Service Coverage" />
+        </Column>
+        <Column>
+            <Text text="Status" />
+        </Column>
+    </columns>
+    <!-- static empty row for user input -->
+    <items>
+        <ColumnListItem type="Inactive">
+            <cells>
+                <Input placeholder="Enter Service Name" class="create-ship-req_input" />
+                <Input placeholder="Enter ERP Service ID" class="create-ship-req_input"/>
+                <Input placeholder="Enter Service Code" class="create-ship-req_input"/>
+                <ComboBox class="create-ship-req_input">
+                    <core:Item key="Domestic" text="Domestic" />
+                    <core:Item key="International" text="International" />
+                </ComboBox>
+                <Switch state="false" />
+            </cells>
+        </ColumnListItem>
+    </items>
+    <!-- bound data rows -->
+    <items>
+        <ColumnListItem type="Active" press="onServiceRowPress">
+            <cells>
+                <Text text="{serviceName}" />
+                <Text text="{erpServiceId}" />
+                <Text text="{serviceCode}" />
+                <Text text="{serviceCoverage}" />
+                <Switch state="{status}" />
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table>
 
-                    <Label text="Ship From Country" />
-                    <ComboBox items="{}" class="sapUiSmallMarginBottom create-ship-req_input">
-                        <core:Item key="{}" text="{}" />
-                    </ComboBox>
-                    <Label text="Account No" />
-                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
-                    <Label text="Fuel Charges" />
-                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
+                </IconTabFilter>
 
-                    <Label text="Ship To Country" />
-                    <ComboBox items="{}" class="sapUiSmallMarginBottom create-ship-req_input">
-                        <core:Item key="{}" text="{}" />
-                    </ComboBox>
-                    <Label text="User ID" />
-                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
-                    <Label text="Label Type" />
-                    <ComboBox items="{}" class="sapUiSmallMarginBottom create-ship-req_input">
-                        <core:Item key="{}" text="{}" />
-                    </ComboBox>
+                <!-- Additional Info Tab -->
+                <IconTabFilter
+                    key="additional"
+                    text="Additional Info"
+                >
 
-                    <Label text="Cost Center" />
-                    <ComboBox items="{}" class="sapUiSmallMarginBottom create-ship-req_input">
-                        <core:Item key="{}" text="{}" />
-                    </ComboBox>
-                    <Label text="Password" />
-                    <Input id="hubId" class="sapUiSmallMarginBottom create-ship-req_input" />
-                    <Label text="ERP Carrier ID" />
-                    <ComboBox items="{}" class="sapUiSmallMarginBottom create-ship-req_input">
-                        <core:Item key="{}" text="{}" />
-                    </ComboBox>
-
-                    <Label text="Environment" />
-                    <ComboBox items="{}" class="sapUiSmallMarginBottom create-ship-req_input">
-                        <core:Item key="{}" text="{}" />
-                    </ComboBox>
-                    <Label text="Access Key" />
-                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
-                    <Label text="Ship URL" />
-                    <Input class="sapUiSmallMarginBottom create-ship-req_input" />
-                </form:content>
-            </form:SimpleForm>
-            <!-- Additional HBox and Table elements remain unchanged -->
-        </content>
+                     <form:SimpleForm
+                       editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="6"
+                    >
+                        <form:content>
+                            <Label text="Label Type" />
+                            <ComboBox class="create-ship-req_input">
+                                <core:Item key="" text="Select" />
+                            </ComboBox>
+                            	<Label text="" />
+                             <CheckBox text="Rate Quote" selected="true"/>
+                            <Label text="Rate URL" />
+                            <ComboBox class="create-ship-req_input">
+                                <core:Item key="" text="Select" />
+                            </ComboBox>
+                            <Label text="" />
+                             <CheckBox text="Freight Quote" selected="true"/>
+                            <Label text="Ship URL" />
+                            <ComboBox class="create-ship-req_input">
+                                <core:Item key="" text="Select" />
+                            </ComboBox>
+                            <Label text="" />
+                             <CheckBox text="End of Day" selected="true"/>
+                            <Label text="Track URL" />
+                            <ComboBox class="create-ship-req_input">
+                                <core:Item key="" text="Select" />
+                            </ComboBox>
+                             <Label text="" />
+                             <CheckBox text="Manual Rates" selected="true"/>
+                            <Label text="Void URL" />
+                            <ComboBox class="create-ship-req_input">
+                                <core:Item key="" text="Select" />
+                            </ComboBox>
+                            <Label text="POD URL" />
+                            <ComboBox class="create-ship-req_input">
+                                <core:Item key="" text="Select" />
+                            </ComboBox>
+                            
+                            <Label text="Token URL" />
+                            <ComboBox class="create-ship-req_input">
+                                <core:Item key="TEST" text="Test" />
+                            </ComboBox>
+                           <Label text="" />
+                             <CheckBox text="Automate Pro Number" selected="true"/>
+                             
+                             
+                            
+                             
+                        </form:content>
+                    </form:SimpleForm>
+                </IconTabFilter>
+            </items>
+        </IconTabBar>
 
         <footer>
             <Toolbar>
+               
                 <Button text="Cancel" press="AddCarrierConfigurationCancelDialog" />
-                <ToolbarSpacer />
+                 <ToolbarSpacer />
+                <Button text="Address" type="Emphasized" press="onAddressCarrierConfig" />
                 <Button text="Save" type="Success" press="AddCarrierConfigurationUpdateDialog" />
             </Toolbar>
         </footer>

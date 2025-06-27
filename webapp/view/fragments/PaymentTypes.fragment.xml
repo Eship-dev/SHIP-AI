@@ -30,26 +30,53 @@
 		</Toolbar>
 
 
-    <ui:Table	id="_ID_PaymentTypeTable"	width="100%"	class="headerContent sapUiTinyMarginTop"
-             	selectionMode="None"	paste="onPaste" 	ariaLabelledBy="title">
-    <ui:extension>
-        <OverflowToolbar style="Clear">										
+     <VBox class="whiteBackground sapUiTinyMarginTop">
+
+        <!-- Header Toolbar -->
+        <Toolbar class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd">
+            <Button icon="sap-icon://filter"
+                    press="onPaymentTypeFilterPopoverPress"
+                    type="Transparent"
+                    class="ordersIcons" />
             <ToolbarSpacer />
-                <Button icon="sap-icon://action" ></Button>
-                <Button icon="sap-icon://action-settings" press="openPaymentTypesColNamesPopover"></Button>
-        </OverflowToolbar>
-    </ui:extension>	
-    <ui:footer>
-    <Toolbar>        
-        <ToolbarSpacer/>
-        <Button  text="First"     type="Emphasized"/>
-        <Button  text="Previous"  type="Emphasized"/>
-        <Text    text="1-0 of 0" />
-        <Button  text="Next"       type="Emphasized"/>
-        <Button  text="Last"       type="Emphasized"/>
+            <SearchField width="10rem"
+                         class="sapUiSmallMarginBottom forsearchhigh"
+                         search="onSearchPaymentTypes" />
+            <Button icon="sap-icon://action"
+                    press="onPaymentTypesExportToExcel"
+                    type="Transparent"
+                    class="ordersIcons" />
+            <Button icon="sap-icon://action-settings"
+                    press="openPaymentTypesColNamesPopover"
+                    type="Transparent"
+                    class="ordersIcons" />
+            <customData>
+                <core:CustomData key="remember" value="true" />
+                <core:CustomData key="showClearButton" value="true" />
+                <core:CustomData key="confirmButtonText" value="Ok" />
+            </customData>
+        </Toolbar>
+
+        <!-- Payment Type Table -->
+        <ui:Table id="_ID_PaymentTypeTable"
+                  width="100%"
+                  class="headerContent sapUiTinyMarginTop"
+                  selectionMode="None"
+                  paste="onPaste"
+                  ariaLabelledBy="title"
+                  visibleRowCount="10">
+        </ui:Table>
+    </VBox>
+
+    <!-- Footer Toolbar (Pagination) -->
+    <Toolbar class="whiteBackground sapUiTinyMarginTop ordersTableFooter">
+        <ToolbarSpacer />
+        <Button text="First" type="Transparent" />
+        <Button text="Previous" type="Transparent" />
+        <Text text="1-0 of 0" />
+        <Button text="Next" type="Transparent" />
+        <Button text="Last" type="Transparent" />
     </Toolbar>
-	</ui:footer>							
-    </ui:Table>
     
 
 </core:FragmentDefinition>
