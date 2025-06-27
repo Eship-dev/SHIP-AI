@@ -44,7 +44,7 @@
 		</items>
 	</IconTabBar> -->
         <IconTabBar
-        expanded="false"
+        expanded="true"
         enableTabReordering="true"
         class="shipNow-IconTabBar-Width">
             <!-- Carrier Info Tab -->
