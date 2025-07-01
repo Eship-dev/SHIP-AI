@@ -54,6 +54,11 @@ server:
             client: '200'
             authenticationType: BasicAuthentication
             path: /sap
+          - url: https://sapdemo.eshipjet.com:44300
+            client: '200'
+            authenticationType: BasicAuthentication
+            destination: Eshipjet-ESJ
+            path: /sap/opu/odata/ESHIPJET/CREATE_HU_SRV/
     - name: sap-fe-mockserver
       beforeMiddleware: csp
       configuration:
@@ -90,6 +95,10 @@ server:
           - urlPath: /sap/opu/odata/sap/API_PRODUCT_SRV
             metadataPath: ./webapp/localService/API_PRODUCT_SRV/metadata.xml
             mockdataPath: ./webapp/localService/API_PRODUCT_SRV/data
+            generateMockData: true
+          - urlPath: /sap/opu/odata/ESHIPJET/CREATE_HU_SRV
+            metadataPath: ./webapp/localService/CREATE_HU_SRV/metadata.xml
+            mockdataPath: ./webapp/localService/CREATE_HU_SRV/data
             generateMockData: true
         annotations:
           - localPath: ./webapp/localService/API_PRODUCT_SRV/API_PRODUCT_ANNO_MDL.xml

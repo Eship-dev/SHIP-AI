@@ -3633,7 +3633,7 @@ sap.ui.define([
                                 // Wait for both functions to finish before resolving itemPromise
                                 Promise.all([
                                     Promise.resolve().then(() => oController.getSalesOrder(aProductTable)),
-                                    Promise.resolve().then(() => oController.readHUDataSet(sDeveliveryNumber))
+                                    Promise.resolve().then(() => oController.getHandlingUnit(sDeveliveryNumber))
                                 ]).then(resolve);
                             } else {
                                 resolve();
@@ -3806,26 +3806,23 @@ sap.ui.define([
             });
         },
 
-        getHandlingUnit:function(aHanlingUnits){            
-            var oView = oController.getView();
-            var oHandlingUnitModel = this.getView().getModel("HandlingUnitModel");            
-            let sPath = "", aFilters = [] ;
-            for (var i = 0; i < aHanlingUnits.length; i++) {               
-                aFilters.push(new Filter("HandlingUnitReferenceDocument", "EQ", aHanlingUnits[i].HandlingUnitReferenceDocument));              
-            };
-            oHandlingUnitModel.read("/HandlingUnitItem",{
+        getHandlingUnit:function(sapDeliveryNumber){
+            var CreateHUSrvModel = oController.getOwnerComponent().getModel("CreateHUSrvModel");
+            let aFilters = [] ;
+            aFilters.push(new Filter("Delivery", "EQ", sapDeliveryNumber));
+            CreateHUSrvModel.read("/HUDETAILSSet",{
                 filters: aFilters,
                 success:function(oData){
                     if(oData && oData.results && oData.results.length > 0){
                         var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-                        eshipjetModel.setProperty("/HandlingUnitItems",oData.results);
+                        // eshipjetModel.setProperty("/HandlingUnitItems",oData.results);
                         var aProductTableData = eshipjetModel.getProperty("/commonValues/packAddProductTable");
                         aProductTableData.forEach(function(obj, idx){
                             if(obj.DeliveryDocumentItem !== undefined){
                                 var count = 0;
                                 oData.results.forEach(function(huObj){
-                                    if(parseInt(obj.DeliveryDocumentItem) === parseInt(huObj.HandlingUnitRefDocumentItem)){
-                                        count += parseInt(huObj.HandlingUnitQuantity);
+                                    if(parseInt(obj.DeliveryDocumentItem) === parseInt(huObj.Itemno)){
+                                        count += parseInt(huObj.Qty);
                                     }
                                 });
                                 var qty = parseInt(obj.ActualDeliveryQuantity) - count;
@@ -3838,16 +3835,31 @@ sap.ui.define([
                         });
 
                         eshipjetModel.updateBindings(true);
-                        
-                        // var oShipNowHandlingUnitTable = oView.byId("idShipNowHandlingUnitTable");
-                        // if(oShipNowHandlingUnitTable){
-                        //     oShipNowHandlingUnitTable.setModel(eshipjetModel);
-                        //    // oShipNowHandlingUnitTable.bindRows("/HandlingUnitItems");
-                        // }
+                        oController.onCloseBusyDialog();
+
+                        var HandlingUnits = eshipjetModel.getProperty("/HandlingUnits")
+                        var getManifestHeader = eshipjetModel.getProperty("/getManifestHeader");
+                        if(oData && oData.results && oData.results.length > 0){
+                            for(var i = 0; i < oData.results.length; i++){
+                                oData.results[i]["SerialNumber"] = i + 1;
+                            };
+
+                            if(getManifestHeader && getManifestHeader.length > 0){
+                                for(var i=0; i<getManifestHeader.length; i++){
+                                    oData.results[i]["TrackingNumber"] = getManifestHeader[i].TrackingNumber;
+                                    oData.results[i]["CarrierCode"] = eshipjetModel.getProperty("/commonValues/ShipNowShipMethodSelectedKey");
+                                }
+                            };
+                            eshipjetModel.setProperty("/HandlingUnits", oData.results);
+                        }else{
+                            eshipjetModel.setProperty("/HandlingUnits", []);
+                            oController.onPackSectionEmptyRows();
+                        }
                     }
                 },
                 error: function(oErr){
-                    var err = oErr;
+                    MessageBox.warning(error.responseText);
+                    oController.onCloseBusyDialog();
                 }
             });
             oController.onPackSectionEmptyRows();
@@ -3994,22 +4006,23 @@ sap.ui.define([
                         var sapDeliveryNumber = eshipjetModel.getProperty("/commonValues/sapDeliveryNumber");
                         var partialQty = eshipjetModel.getProperty("/partialQty");
                         var Material = eshipjetModel.getProperty("/Material");
+                        var pkgMaterial = eshipjetModel.getProperty("/selectedPackageMat")
 
                         var oPayload = {
-                            "Vbeln": sapDeliveryNumber,
-                            "Posnr": "000010",
-                            "Matnr": currentObj.Material,
+                            "Pacmatnr": "EWMS4-WBTRO00",
+                            "Delivery": sapDeliveryNumber,
                             "Qty": currentObj.partialQty,
-                            "Humatnr": selectedPackageMat
+                            "Itemno": "10"
                         };
                         
-                        var ShipReadDataSrvModel = oController.getOwnerComponent().getModel("ShipReadDataSrvModel");
-                        ShipReadDataSrvModel.create("/HuDataSet", oPayload, {
+                        var CreateHUSrvModel = oController.getOwnerComponent().getModel("CreateHUSrvModel");
+                        CreateHUSrvModel.create("/HUHEADERSet", oPayload, {
                             success: function (oData) {
-                                oController.readHUDataSet(sapDeliveryNumber);
+                                // oController.readHUDataSet(sapDeliveryNumber);
                                 MessageToast.show("Handling Unit Created Successfully");
                                 currentObj.partialQty = "";
                                 eshipjetModel.updateBindings(true);
+                                oController.getHandlingUnit(sapDeliveryNumber);
                                 // oController.onCloseBusyDialog();
 
                                 // var sAudioPath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/audio/PackToHU.mp3");
@@ -4023,9 +4036,85 @@ sap.ui.define([
                                 oController.onCloseBusyDialog();
                             }
                         });
+
+                        // var oPayload = {
+                        //     "Vbeln": sapDeliveryNumber,
+                        //     "Posnr": "000010",
+                        //     "Matnr": currentObj.Material,
+                        //     "Qty": currentObj.partialQty,
+                        //     "Humatnr": selectedPackageMat
+                        // };
+                        
+                        // var ShipReadDataSrvModel = oController.getOwnerComponent().getModel("ShipReadDataSrvModel");
+                        // ShipReadDataSrvModel.create("/HuDataSet", oPayload, {
+                        //     success: function (oData) {
+                        //         oController.readHUDataSet(sapDeliveryNumber);
+                        //         MessageToast.show("Handling Unit Created Successfully");
+                        //         currentObj.partialQty = "";
+                        //         eshipjetModel.updateBindings(true);
+                        //         // oController.onCloseBusyDialog();
+
+                        //         // var sAudioPath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/audio/PackToHU.mp3");
+                        //         // var audio = new Audio(sAudioPath);
+                        //         // audio.play();
+                        //     },
+                        //     error: function (oError) {
+                        //         // var errMsg = JSON.parse(oError.responseText).error.message.value;
+                        //         var errMsg = new DOMParser().parseFromString(oError.responseText, "text/xml").getElementsByTagName("message")[0].textContent;
+                        //         sap.m.MessageBox.error(errMsg);
+                        //         oController.onCloseBusyDialog();
+                        //     }
+                        // });
                     }        
                 }
             }
+        },
+
+        readNewHUDataSet:function(oData){
+            let oFilter, aHandlingUnits = [];
+            oFilter = [];
+            oFilter.push(new Filter("Delivery", "EQ", oData.Delivery));
+            oFilter.push(new Filter("Hunumber", "EQ", oData.Hunumber));
+            oFilter.push(new Filter("Itemno", "EQ", oData.Itemno));
+            var CreateHUSrvModel = oController.getOwnerComponent().getModel("CreateHUSrvModel");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            CreateHUSrvModel.read("/HUDETAILSSet",{
+                filters: oFilter,
+                success:function(oData){
+                    var getManifestHeader = eshipjetModel.getProperty("/getManifestHeader");
+                    if(oData && oData.results && oData.results.length > 0){
+                        for(var i = 0; i < oData.results.length; i++){
+                            oData.results[i]["SerialNumber"] = i + 1;
+                            aHandlingUnits.push(oData.results[i]);
+                            oData.results[i]["boxCount"] = "1";
+                        };
+                        eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
+
+                        var HandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
+                        if(getManifestHeader && getManifestHeader.length > 0){
+                            for(var i=0; i<getManifestHeader.length; i++){
+                                HandlingUnits[i]["TrackingNumber"] = getManifestHeader[i].TrackingNumber;
+                                HandlingUnits[i]["CarrierCode"] = eshipjetModel.getProperty("/commonValues/ShipNowShipMethodSelectedKey");
+                            }
+                        };
+
+                    }else{
+                        eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
+                        oController.onPackSectionEmptyRows();
+                    }
+                    var sFromScreen = eshipjetModel.getProperty("/sFromViewName");
+                    if(sFromScreen !== "QUOTE_NOW"){
+                        oController.onCloseBusyDialog();
+                    }
+                    if(sFromScreen === "SCAN_SHIP"){
+                        oController.onShipNowPress();
+                    } 
+                },
+                error: function(oErr){
+                    console.log(oErr);                        
+                    oController.onCloseBusyDialog();
+                }
+            });
         },
 
         readHUDataSet:function(sapDeliveryNumber){
@@ -4049,6 +4138,7 @@ sap.ui.define([
                         };
                         eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
                         oController.getHandlingUnit(aHandlingUnits);
+                        // oController.readNewHUDataSet(aHandlingUnits);
 
                         var HandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
                         if(getManifestHeader && getManifestHeader.length > 0){
@@ -4109,20 +4199,19 @@ sap.ui.define([
                             var Material = eshipjetModel.getProperty("/Material");
 
                             var oPayload = {
-                                "Vbeln": sapDeliveryNumber,
-                                "Posnr": "000010",
-                                "Matnr": currentObj.Material,
+                                "Pacmatnr": "EWMS4-WBTRO00",
+                                "Delivery": sapDeliveryNumber,
                                 "Qty": currentObj.BalanceQty.toString(),
-                                "Humatnr": selectedPackageMat
+                                "Itemno": "10"
                             };
                             
-                            var ShipReadDataSrvModel = oController.getOwnerComponent().getModel("ShipReadDataSrvModel");
-                            ShipReadDataSrvModel.create("/HuDataSet", oPayload, {
+                            var CreateHUSrvModel = oController.getOwnerComponent().getModel("CreateHUSrvModel");
+                            CreateHUSrvModel.create("/HUHEADERSet", oPayload, {
                                 success: function (oData) {
-                                    oController.readHUDataSet(sapDeliveryNumber);
                                     MessageToast.show("Handling Unit Created Successfully");
                                     currentObj.partialQty = "";
                                     eshipjetModel.updateBindings(true);
+                                    oController.getHandlingUnit(sapDeliveryNumber);
 
                                     // var sAudioPath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/audio/PackToHU.mp3");
                                     // var audio = new Audio(sAudioPath);

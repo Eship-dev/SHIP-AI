@@ -96,6 +96,15 @@
           "localUri": "localService/API_PRODUCT_SRV/metadata.xml",
           "odataVersion": "2.0"
         }
+      },
+      "CREATE_HU_SRV": {
+        "uri": "/sap/opu/odata/ESHIPJET/CREATE_HU_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/CREATE_HU_SRV/metadata.xml",
+          "odataVersion": "2.0"
+        }
       }
     }
   },
@@ -223,6 +232,11 @@
       },
       "APIProductSrvModel": {
         "dataSource": "API_PRODUCT_SRV",
+        "preload": true,
+        "settings": {}
+      },
+      "CreateHUSrvModel": {
+        "dataSource": "CREATE_HU_SRV",
         "preload": true,
         "settings": {}
       }

@@ -1839,14 +1839,9 @@
             "visible": true
         },
         {
-            "name": "HUType",
-            "label": "HU Type",
-            "visible": true
-        },
-        {
-            "name": "HU",
-            "label": "HU ID",
-            "visible": true
+            "name": "CreatedBy",
+            "label": "Created By",
+            "visible": false
         },
         {
             "name": "WeightLB",
@@ -1856,11 +1851,6 @@
         {
             "name": "DimensionsIN",
             "label": "Dimensions (IN)",
-            "visible": true
-        },
-        {
-            "name": "PackageType",
-            "label": "Package Type",
             "visible": true
         },
         {
@@ -1881,7 +1871,7 @@
         {
             "name": "CommodityDescription",
             "label": "Commodity Description",
-            "visible": false
+            "visible": true
         },
         {
             "name": "Tracking",
@@ -1894,8 +1884,18 @@
             "visible": true
         },
         {
+            "name": "SNStatus",
+            "label": "SN Status",
+            "visible": false
+        },
+        {
             "name": "PackageMaterial",
             "label": "Pkg Material",
+            "visible": false
+        },
+        {
+            "name": "HULabel",
+            "label": "HU Label",
             "visible": true
         }
     ],
