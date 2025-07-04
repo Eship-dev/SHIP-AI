@@ -1169,7 +1169,7 @@
 									<Label text="Material / SAP HU ID" />
 									<ui:template>
 									<HBox justifyContent="End" alignItems="End">
-										<Link text="{eshipjetModel>Hunumber}" press="handleHULinkPress" wrapping="false" />
+							 		<Link text="{eshipjetModel>Hunumber}" press="handleHULinkPress" wrapping="false" />
 									</HBox>
 									</ui:template>
 								</ui:Column>

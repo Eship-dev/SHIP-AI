@@ -1896,7 +1896,7 @@ sap.ui.define([
                     "Password": password,
                     "TrackURL": "",
                     "AccessKey": AccessKey,
-                    "LabelType": "ZPL",
+                    // "LabelType": "ZPL",
                     "ServiceID": eshipjetModel.getProperty("/commonValues/ShipNowShipsrvNameSelectedKey"),
                     "Reference1": HandlingUnits[0].HandlingUnitExternalID,
                     "Reference2": "",
@@ -1957,6 +1957,7 @@ sap.ui.define([
                     sPath = "https://carrier-api-v1.eshipjet.site/ABF";
                 }else{
                     sPath = "https://carrier-api-v1.eshipjet.site/"+carrier;
+                    // sPath = "https://eshipjet-qas.drivemedical.com/qas/"+carrier;
                 }
                       // var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/FedEx";
                     let myPromise =  new Promise((resolve, reject) => {
@@ -3058,13 +3059,14 @@ sap.ui.define([
             for (var i = 0; i < shippingDocuments.length; i++) {
                 var doc = shippingDocuments[i];
                 var docType = doc.docType.toUpperCase();
+                var contentType = doc.contentType.toUpperCase();
         
-                if (docType === "PDF") {
+                if (docType === "PDF" && contentType !== "PACKING SLIP") {
                     var oIframe = new sap.ui.core.HTML({
                         content: "<iframe src='" + doc.docName + "' width='500px' height='600px'></iframe>"
                     });
                     oCarousel.addPage(oIframe);
-                } else if (docType === "PNG") {
+                } else if (docType === "PNG" && contentType !== "PACKING SLIP") {
                     var oImage = new sap.m.Image({
                         src: doc.docName,
                         class: "sapUiSmallMargin",
@@ -3072,7 +3074,7 @@ sap.ui.define([
                         height: "620px"
                     });
                     oCarousel.addPage(oImage);
-                } else if (docType === "ZPL" || docType ===  "ZPLII") {
+                } else if (docType === "ZPL" || docType ===  "ZPLII" && contentType !== "PACKING SLIP") {
                     hasZpl = true;
                     // Assume ZPL is available in response (not model)
                         if (response.shippingDocuments[i].contentType === "Label" && response.shippingDocuments[i].encodedLabel) {
@@ -3259,14 +3261,14 @@ sap.ui.define([
             }
             this._dialogContent;
             var oCarousel = new sap.m.Carousel({});
-                if(currentObj.docType.toUpperCase() === "PDF"){
+                if(currentObj.docType.toUpperCase() === "PDF" && currentObj.contentType.toUpperCase() === "LABEL"){
                     for(var i=0; i<tepmShippingDocs.length; i++) {
                         var oIframe = new sap.ui.core.HTML({
                                 content: "<iframe src='"+ tepmShippingDocs[i].docName +"' width='500px' height='600px'></iframe>"
                             })
                         oCarousel.addPage(oIframe);
                     }
-                }else if(currentObj.docType.toUpperCase() === "PNG"){
+                }else if(currentObj.docType.toUpperCase() === "PNG" && currentObj.contentType.toUpperCase() === "LABEL"){
                     for(var i=0; i<tepmShippingDocs.length; i++) {
                         var oImage = new sap.m.Image({
                             class: "sapUiSmallMargin",
@@ -3276,6 +3278,11 @@ sap.ui.define([
                         });
                         oCarousel.addPage(oImage);
                     }
+                }else if(currentObj.docType.toUpperCase() === "PDF" && currentObj.contentType.toUpperCase() === "PACKING SLIP"){
+                    var oIframe = new sap.ui.core.HTML({
+                            content: "<iframe src='"+ currentObj.docName +"' width='500px' height='600px'></iframe>"
+                        })
+                    oCarousel.addPage(oIframe);
                 }
                 // else if (currentObj.docType.toUpperCase() === "ZPL" || currentObj.docType.toUpperCase() ===  "ZPLII") {
                     
@@ -3835,7 +3842,6 @@ sap.ui.define([
                         });
 
                         eshipjetModel.updateBindings(true);
-                        oController.onCloseBusyDialog();
 
                         var HandlingUnits = eshipjetModel.getProperty("/HandlingUnits")
                         var getManifestHeader = eshipjetModel.getProperty("/getManifestHeader");
@@ -3853,16 +3859,16 @@ sap.ui.define([
                             eshipjetModel.setProperty("/HandlingUnits", oData.results);
                         }else{
                             eshipjetModel.setProperty("/HandlingUnits", []);
-                            oController.onPackSectionEmptyRows();
                         }
                     }
+                    oController.onPackSectionEmptyRows();
+                    oController.onCloseBusyDialog();
                 },
                 error: function(oErr){
                     MessageBox.warning(error.responseText);
                     oController.onCloseBusyDialog();
                 }
             });
-            oController.onPackSectionEmptyRows();
         },
         getSalesOrder:function(aProductTable){
             var oSalesOrderModel = oController.getOwnerComponent().getModel("SalesOrderModel");            
@@ -3883,8 +3889,8 @@ sap.ui.define([
                     var err = oErr;
                 }
             });
-
         },
+        
         _getShipToAddress:function(aResults, sDocNumber, sFromMenu){
             var oDeliveryModel = oController.getView().getModel("OutBoundDeliveryModel");
             var oShipNowModel = oController.getView().getModel("ShipNowDataModel");
