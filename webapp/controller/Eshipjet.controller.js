@@ -5791,12 +5791,12 @@ sap.ui.define([
             }
         
             this._pOrderPopover.then(function (oPopover) {
-                oController._syncColumnSelections();
+                oController._syncOrderColumnSelections();
                 oPopover.openBy(oButton);
             });
         },
         
-        _syncColumnSelections: function () {
+        _syncOrderColumnSelections: function () {
             var oTable = Fragment.byId(this.getView().getId(), "myOrderColumnSelectId");
             if (!oTable) return;
         
@@ -5824,18 +5824,16 @@ sap.ui.define([
         },
         
         onOrderColSelectClosePress: function () {
-            var oPopover = Fragment.byId(this.getView().getId(), "orderColumnsPopover");
-            if (oPopover) {
+            this._pOrderPopover.then(function (oPopover) {
                 oPopover.close();
-            }
+            });
         },
         
         onOrderColSelectOkPress: function () {
             var oTable = Fragment.byId(this.getView().getId(), "myOrderColumnSelectId");
             var oModel = this.getOwnerComponent().getModel("eshipjetModel");
-            var aColumns = oModel.getProperty("/OrderTableData/OrderColumns");
         
-            oTable.getItems().forEach(function (oItem, iIndex) {
+            oTable.getItems().forEach(function (oItem) {
                 var oContext = oItem.getBindingContext("eshipjetModel");
                 if (oContext) {
                     var oData = oContext.getObject();
@@ -5845,8 +5843,9 @@ sap.ui.define([
         
             oModel.refresh(true);
             this.onOrderColSelectClosePress();
-            // You may also call table rerender or update logic here
+            // optionally call refresh on your orders table
         },
+        
         
 
 
