@@ -3112,8 +3112,7 @@ sap.ui.define([
                 oController.openDialogWithCarousel();
                 oController.updateManifestHeaderSet();
                 oController.onCloseBusyDialog();
-            }                
-            // oController.updateManifestHeaderSet();
+            }
         },
         creatingCarouseltodisplay:function(oCarousel){
                // Create header bar
@@ -3805,10 +3804,33 @@ sap.ui.define([
                         }
                     }
                     // oController.onCloseBusyDialog();
+                    oController.checkPostGoodsIssueStatus(sDeveliveryNumber);
                 },
                 error: function(error){
                     MessageBox.warning(error.responseText);
                     oController.onCloseBusyDialog();
+                }
+            });
+        },
+
+        checkPostGoodsIssueStatus:function(sDeveliveryNumber){
+            var CreateHUSrvModel = oController.getOwnerComponent().getModel("CreateHUSrvModel");
+            var aFilters = [];
+            aFilters.push(new Filter("Delivery", "EQ", sDeveliveryNumber));
+            CreateHUSrvModel.read("/PGICREATESet", {
+                filters: aFilters,
+                success: function (oData) {
+                    // oController.getShippingDataAfterPGI(sapDeliveryNumber);
+
+                    oController.etag = oData.__metadata.etag;
+                    oController.ShippingType = oData.ShippingType;
+                    eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", oData.results[0].Msgtyp);
+                    oController.onCloseBusyDialog();
+                },
+                error: function (oError) {
+                    oController.onCloseBusyDialog();
+                    var errMsg = JSON.parse(oError.responseText).error.message.value;
+                    sap.m.MessageBox.error(errMsg);
                 }
             });
         },
@@ -16278,16 +16300,35 @@ sap.ui.define([
         },
 
         createPostGoodsIssue:function(sapDeliveryNumber){
-            var ShipReadDataSrvModel = oController.getOwnerComponent().getModel("ShipReadDataSrvModel");
+            // var ShipReadDataSrvModel = oController.getOwnerComponent().getModel("ShipReadDataSrvModel");
+            // var oPayload = {
+            //     "Document": sapDeliveryNumber,
+            //     "ResponseDataSet" : []
+            // };
+            // ShipReadDataSrvModel.create("/ProcessPGISet", oPayload, {
+            //     success: function (oData) {
+            //         // MessageBox.success(oData.ResponseDataSet.results[0].Message);
+            //         console.log("Success:", oData);
+            //         oController.getShippingDataAfterPGI(sapDeliveryNumber);
+            //         oController.onCloseBusyDialog();
+            //     },
+            //     error: function (oError) {
+            //         oController.onCloseBusyDialog();
+            //         var errMsg = JSON.parse(oError.responseText).error.message.value;
+            //         sap.m.MessageBox.error(errMsg);
+            //     }
+            // });
+
+            var CreateHUSrvModel = oController.getOwnerComponent().getModel("CreateHUSrvModel");
             var oPayload = {
-                "Document": sapDeliveryNumber,
-                "ResponseDataSet" : []
+                "Delivery": sapDeliveryNumber
             };
-            ShipReadDataSrvModel.create("/ProcessPGISet", oPayload, {
+            CreateHUSrvModel.create("/PGICREATESet", oPayload, {
                 success: function (oData) {
-                    // MessageBox.success(oData.ResponseDataSet.results[0].Message);
-                    console.log("Success:", oData);
-                    oController.getShippingDataAfterPGI(sapDeliveryNumber);
+                    // oController.getShippingDataAfterPGI(sapDeliveryNumber);
+                    oController.etag = oData.__metadata.etag;
+                    oController.ShippingType = oData.ShippingType;
+                    eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", oData.results[0].Msgtyp);
                     oController.onCloseBusyDialog();
                 },
                 error: function (oError) {
