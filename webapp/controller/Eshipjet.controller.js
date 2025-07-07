@@ -3821,9 +3821,6 @@ sap.ui.define([
                 filters: aFilters,
                 success: function (oData) {
                     // oController.getShippingDataAfterPGI(sapDeliveryNumber);
-
-                    oController.etag = oData.__metadata.etag;
-                    oController.ShippingType = oData.ShippingType;
                     eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", oData.results[0].Msgtyp);
                     oController.onCloseBusyDialog();
                 },
@@ -16475,8 +16472,6 @@ sap.ui.define([
             CreateHUSrvModel.create("/PGICREATESet", oPayload, {
                 success: function (oData) {
                     // oController.getShippingDataAfterPGI(sapDeliveryNumber);
-                    oController.etag = oData.__metadata.etag;
-                    oController.ShippingType = oData.ShippingType;
                     eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", oData.results[0].Msgtyp);
                     oController.onCloseBusyDialog();
                 },
