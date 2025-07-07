@@ -4,7 +4,7 @@
 		<Text text="Users" class="toolBarHeader sapUiTinyMarginBegin whiteColor" ></Text>
 			<ToolbarSpacer />
 			<HBox>
-				<Button  text="Add Location"  press="onAddLocationPress" class="Master-toolbar__button" width="8rem" ></Button>
+				<Button  text="Add Users"  press="onAddLocationPress" class="Master-toolbar__button" width="8rem" ></Button>
 				<Button type="Success" press="onADDLocImpPress" icon="sap-icon://navigation-down-arrow" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button>
 			</HBox>
 	</Toolbar>

@@ -1,11 +1,11 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
     <Toolbar width="auto" height="3rem" class="toolbarbottomborder ordersDarkThemeToolbar">
-			<Text text="LTL Classes" class="toolBarHeader sapUiTinyMarginBegin whiteColor" ></Text>
+			<Text text="Carrier Address" class="toolBarHeader sapUiTinyMarginBegin whiteColor" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button  text="Add LTL Class" press="onAddLTLClassPress" class="Master-toolbar__button" width="8rem" ></Button>
-                    <Button type="Success" icon="sap-icon://navigation-down-arrow" press="onLTLClassesArrowPress" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button>
+                    <Button  text="Add Carrier Address" press="onAddCarrierAddressPress" class="Master-toolbar__button" width="8rem" ></Button>
+                    <!-- <Button type="Success" icon="sap-icon://navigation-down-arrow" press="onCarrier AddressArrowPress" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button> -->
                 </HBox>
 		</Toolbar>
 
@@ -13,7 +13,7 @@
 			<HBox width="100%" >
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="1" class="NumberSizeTitle1"></Text>
-					<Text text="Total LTL Classes" class="NumberSizeTitle2"></Text>
+					<Text text="Total Carrier Address" class="NumberSizeTitle2"></Text>
 					<Button class="totalProgress-request-button request-button" press="handleManifestFilterBtnPress" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="33%">
@@ -32,11 +32,11 @@
 
      <VBox class="whiteBackground sapUiTinyMarginTop">
         <Toolbar class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd">
-            <Button icon="sap-icon://filter" press="onLTLClassesFilterPopoverPress" type="Transparent" class="ordersIcons" />
+            <Button icon="sap-icon://filter" press="onCarrierAddressFilterPopoverPress" type="Transparent" class="ordersIcons" />
             <ToolbarSpacer />
-            <SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" liveChange="onSearchLTLClasses" />
-            <Button icon="sap-icon://action" press="onLTLClassesExportToExcel" type="Transparent" class="ordersIcons" />
-            <Button icon="sap-icon://action-settings" press="openLTLClassesColNamesPopover" type="Transparent" class="ordersIcons" />
+            <SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" liveChange="onSearchCarrier Address" />
+            <Button icon="sap-icon://action" press="onCarrierAddressExportToExcel" type="Transparent" class="ordersIcons" />
+            <Button icon="sap-icon://action-settings" press="openCarrierAddressColNamesPopover" type="Transparent" class="ordersIcons" />
             <customData>
                 <core:CustomData key="remember" value="true" />
                 <core:CustomData key="showClearButton" value="true" />
@@ -45,7 +45,7 @@
         </Toolbar>
 
         <ui:Table
-            id="_IDLTLClassTable"
+            id="_IDCarrierAddressTable"
             width="100%"
             class="headerContent sapUiTinyMarginTop"
             visibleRowCount="10"

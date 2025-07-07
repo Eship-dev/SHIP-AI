@@ -1,11 +1,11 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
-        <Toolbar width="auto" height="3rem" class="toolbarbottomborder fixedLayout ordersDarkThemeToolbar">
+        <Toolbar width="auto" height="4rem" class="toolbarbottomborder fixedLayout ordersDarkThemeToolbar">
 			<Text text="Locations" class="toolBarHeader sapUiTinyMarginBegin whiteColor" ></Text>
 				<ToolbarSpacer />
 					<HBox>
 						<Button  text="Add Location"  press="onAddLocationPress" class="Master-toolbar__button" width="8rem" ></Button>
-						<Button type="Success" press="onADDLocImpPress" icon="sap-icon://navigation-down-arrow" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button>
+						<!-- <Button type="Success" press="onADDLocImpPress" icon="sap-icon://navigation-down-arrow" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button> -->
                 	</HBox>
 		</Toolbar>
 

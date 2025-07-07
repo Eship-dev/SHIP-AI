@@ -4080,54 +4080,54 @@
     },
     "AddIconListSet1": [
         {
-            "name": "Locations"
+            "name": "Users *"
         },
         {
-            "name": "Address Book"
+            "name": "Roles *"
         },
         {
-            "name": "Users"
+            "name": "Products *"
         },
         {
-            "name": "Roles"
+            "name": "Module Status Codes"
         },
         {
-            "name": "Carrier Catalog"
+            "name": "Order Types"
         },
         {
-            "name": "Carrier Accounts"
+            "name": "ERP Configuration"
         },
         {
-            "name": "Cost Centers"
+            "name": "Freight Condition"
         },
         {
-            "name": "Statuses"
+            "name": "Default Configuration"
         },
         {
-            "name": "Products"
+            "name": "Peripheral Configuration"
         },
         {
-            "name": "Package Types"
+            "name": "MOT"
         }
     ],
     "AddIconListSet2": [
         {
-            "name": "Third Party"
+            "name": "Carrier Catalog *"
         },
         {
-            "name": "Dangerous Goods"
+            "name": "Carrier Accounts *"
         },
         {
-            "name": "LTL Classes"
+            "name": "Carrier Address *"
         },
         {
-            "name": "NMFC"
+            "name": "Address Book *"
         },
         {
-            "name": "MOT"
+            "name": "Package Types"
         },
         {
-            "name": "Order Types"
+            "name": "Cost Centers"
         },
         {
             "name": "Incoterms"
@@ -4136,7 +4136,7 @@
             "name": "Tracking Range"
         },
         {
-            "name": "Dimensions"
+            "name": "NMFC"
         },
         {
             "name": "Payment Types"
@@ -4144,22 +4144,28 @@
     ],
     "AddIconListSet3": [
         {
+            "name": "Locations *"
+        },
+        {
             "name": "Company Settings"
         },
         {
-            "name": "SMTP Configuration"
+            "name": "Dangerous Goods"
         },
         {
-            "name": "ERP Configuration"
+            "name": "Pkg Materials / Dims"
         },
         {
-            "name": "Default Configuration"
+            "name": "Third Party"
         },
         {
             "name": "Countries"
         },
         {
             "name": "EU Countries"
+        },
+        {
+            "name": "SMTP Configuration"
         }
     ],
     "LocationTableColumns": [

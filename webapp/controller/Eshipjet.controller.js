@@ -8845,32 +8845,36 @@ sap.ui.define([
             this._dashBoardAddPopover.then(function (oPopover) {
                 oPopover.close();
             });
-            if (oCurrObj && oCurrObj.name === "Locations") {
+            if (oCurrObj && oCurrObj.name === "Locations *") {
 
                 oController._displayTables("_IDLocationTable", "LocationTableColumns", "LocationTableRows", "Locations");
                 oPageContainer.to(oView.createId("_ID_Location_TableScrollContainer"));
 
-            } else if (oCurrObj && oCurrObj.name === "Address Book") {
+            } else if (oCurrObj && oCurrObj.name === "Address Book *") {
 
                 oController._displayTables("_IDAddressBookTable", "AddressBookTableColumns", "AddressBookTableRows", "Address Book");
                 oPageContainer.to(oView.createId("_ID_AddressBook_TableScrollContainer"));
 
-            } else if (oCurrObj && oCurrObj.name === "Users") {
+            } else if (oCurrObj && oCurrObj.name === "Users *") {
 
                 oController._displayTables("_IDUsersTable", "UsersTableColumns", "UsersTableRows", "Users");
                 oPageContainer.to(oView.createId("_ID_Users_TableScrollContainer"));
+            // } else if (oCurrObj && oCurrObj.name === "Peripheral Configuration") {
 
-            } else if (oCurrObj && oCurrObj.name === "Roles") {
+            //     oController._displayTables("_IDPeripheralConfigurationTable", "PeripheralConfigurationTableColumns", "PeripheralConfigurationTableRows", "Peripheral Configuration");
+            //     oPageContainer.to(oView.createId("_ID_PeripheralConfiguration_TableScrollContainer"));
+
+            } else if (oCurrObj && oCurrObj.name === "Roles *") {
 
                 oController._displayTables("_IDRolesTable", "RolesTableColumns", "RolesTableRows", "Roles");
                 oPageContainer.to(oView.createId("_ID_Roles_TableScrollContainer"));
 
-            } else if (oCurrObj && oCurrObj.name === "Carrier Catalog") {
+            } else if (oCurrObj && oCurrObj.name === "Carrier Catalog *") {
 
                 oController._displayTables("_IDCarriesCatalogTable", "CarrierCatalogTableColumns", "CarrierCatalogTableRows", "Carrier Catalog");
                 oPageContainer.to(oView.createId("_ID_CarrierCatalog_TableScrollContainer"));
 
-            } else if (oCurrObj && oCurrObj.name === "Carrier Accounts") {
+            } else if (oCurrObj && oCurrObj.name === "Carrier Accounts *") {
 
                 oController._displayTables("_IDCarriesAccountsTable", "CarrierAccountsTableColumns", "CarrierAccountsTableRows", "Carrier Accounts");
                 oPageContainer.to(oView.createId("_ID_CarrierAccounts_TableScrollContainer"));
@@ -8880,12 +8884,12 @@ sap.ui.define([
                 oController._displayTables("_IDCostCenterTable", "CostCenterTableColumns", "CostCenterTableRows", "Cost Centers");
                 oPageContainer.to(oView.createId("_ID_CostCenters_TableScrollContainer"));
 
-            } else if (oCurrObj && oCurrObj.name === "Statuses") {
+            } else if (oCurrObj && oCurrObj.name === "Module Status Codes") {
 
                 oController._displayTables("_IDStatusesTable", "StatusesTableColumns", "StatusesTableRows", "Statuses");
                 oPageContainer.to(oView.createId("_ID_Statuses_TableScrollContainer"));
 
-            } else if (oCurrObj && oCurrObj.name === "Products") {
+            } else if (oCurrObj && oCurrObj.name === "Products *") {
 
                 oController._displayTables("_IDProductsTable", "ProductsTableColumns", "ProductsTableRows", "Products");
                 oPageContainer.to(oView.createId("_ID_Products_TableScrollContainer"));
@@ -8906,7 +8910,7 @@ sap.ui.define([
                 oController._displayTables("_IDThirdPartyTable", "ThirdPartiesTableColumns", "ThirdPartiesTableRows", "Third Party");
                 oPageContainer.to(oView.createId("_ID_ThirdParties_TableScrollContainer"));
 
-            } else if (oCurrObj && oCurrObj.name === "LTL Classes") {
+            } else if (oCurrObj && oCurrObj.name === "Carrier Address *") {
 
                 oController._displayTables("_IDLTLClassTable", "LtlClassesTableColumns", "LtlClassesTableRows", "LTL Classes");
                 oPageContainer.to(oView.createId("_ID_LTLClasses_TableScrollContainer"));
@@ -10159,7 +10163,152 @@ sap.ui.define([
             });
         },
 
-        // Users Column Names Popover code changes End here
+        //Users Column Names Popover code changes End here
+            // PeripheralConfiguration Column Names Popover code changes starts here
+
+            openPeripheralConfigurationColNamesPopover: function (oEvent) {
+                var oButton = oEvent.getSource(),
+                    oView = this.getView();
+                if (!this._pPeripheralConfigurationPopover) {
+                    this._pPeripheralConfigurationPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.eshipjet.zeshipjet.view.fragments.PeripheralConfigurationTableColumns",
+                        controller: this
+                    }).then(function (oPopover) {
+                        oView.addDependent(oPopover);
+                        return oPopover;
+                    });
+                }
+                this._pPeripheralConfigurationPopover.then(function (oPopover) {
+                    oController.PeripheralConfigurationColumnsVisiblity();
+                    oPopover.openBy(oButton);
+                });
+            },
+
+            PeripheralConfigurationColumnsVisiblity: function () {
+                var oView = oController.getView();
+                var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+                var aColumns = eshipjetModel.getProperty("/PeripheralConfigurationTableColumns");
+                var oPeripheralConfigurationTable = oView.byId("myPeripheralConfigurationColumnSelectId");
+                var aTableItems = oPeripheralConfigurationTable.getItems();
+
+                aColumns.map(function (oColObj) {
+                    aTableItems.map(function (oItem) {
+                        if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                            oItem.setSelected(true);
+                        }
+                    });
+                });
+            },
+
+            onPeripheralConfigurationColNameSearch: function (oEvent) {
+                var aFilters = [];
+                var sQuery = oEvent.getSource().getValue();
+                if (sQuery && sQuery.length > 0) {
+                    var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                    aFilters.push(filter);
+                }
+                // update list binding
+                var oList = oController.getView().byId("myPeripheralConfigurationColumnSelectId");
+                var oBinding = oList.getBinding("items");
+                oBinding.filter(aFilters, "Application");
+
+            },
+
+            onPeripheralConfigurationColSelectOkPress: function () {
+                var oView = this.getView();
+                var oPeripheralConfigurationTable = oView.byId("myPeripheralConfigurationColumnSelectId");
+                var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+                var oTable = oView.byId("_IDPeripheralConfigurationTable")
+                oTable.setModel(eshipjetModel);
+
+                var oPeripheralConfigurationTblItems = oPeripheralConfigurationTable.getItems();
+                var aColumnsData = eshipjetModel.getProperty("/PeripheralConfigurationTableColumns");
+                oPeripheralConfigurationTblItems.map(function (oTableItems) {
+                    aColumnsData.map(function (oColObj) {
+                        if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                            if (oTableItems.getSelected()) {
+                                oColObj.visible = true;
+                            } else {
+                                oColObj.visible = false;
+                            }
+                        }
+                    })
+                });
+                eshipjetModel.updateBindings(true);
+                oPeripheralConfigurationTable.setModel(eshipjetModel);
+                this._handleDisplayPeripheralConfigurationTable();
+                this._pPeripheralConfigurationPopover.then(function (oPopover) {
+                    oPopover.close();
+                });
+            },
+            onPeripheralConfigurationColSelectClosePress: function () {
+                this._pPeripheralConfigurationPopover.then(function (oPopover) {
+                    oPopover.close();
+                });
+            },
+
+
+            _handleDisplayPeripheralConfigurationTable: function () {
+                var that = this;
+                const oView = oController.getView();
+                var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+                var PeripheralConfigurationTableColumns = eshipjetModel.getData().PeripheralConfigurationTableColumns;
+                const oTable = oView.byId("_IDPeripheralConfigurationTable");
+                oTable.setModel(eshipjetModel);
+                var count = 0;
+                for (var i = 0; i < PeripheralConfigurationTableColumns.length; i++) {
+                    if (PeripheralConfigurationTableColumns[i].visible === true) {
+                        count += 1
+                    }
+                }
+                oTable.bindColumns("/PeripheralConfigurationTableColumns", function (sId, oContext) {
+                    columnName = oContext.getObject().key;
+                    label = oContext.getObject().label;
+                    var minWidth = "100%";
+                    if (count >= 14) {
+                        var minWidth = "130px";
+                    }
+                    if (columnName === "actions") {
+                        var oHBox = new sap.m.HBox({}); // Create Text instance 
+                        var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                        var Btn2 = new sap.m.Button({
+                            icon: "sap-icon://megamenu", type: "Transparent",
+                            press: function (oEvent) {
+                                that.handleDownArrowPress(oEvent);
+                            }
+                        });
+                        oHBox.addItem(Btn1);
+                        oHBox.addItem(Btn2);
+                        return new sap.ui.table.Column({
+                            label: oResourceBundle.getText(columnName),
+                            template: oHBox,
+                            visible: oContext.getObject().visible,
+                            width: minWidth,
+                            sortProperty: columnName
+                        });
+                    } else if (columnName === "status") {
+                        var oSwitch = new sap.m.Switch({ type: "AcceptReject" });
+                        return new sap.ui.table.Column({
+                            label: oResourceBundle.getText(columnName),
+                            template: oSwitch,
+                            visible: oContext.getObject().visible,
+                            width: minWidth,
+                            sortProperty: columnName
+                        });
+                    } else {
+                        return new sap.ui.table.Column({
+                            label: oResourceBundle.getText(columnName),
+                            template: columnName,
+                            visible: oContext.getObject().visible,
+                            width: minWidth,
+                            sortProperty: columnName
+                        });
+                    }
+                });
+                oTable.bindRows("/PeripheralConfigurationTableRows");
+            },
+            // PeripheralConfiguration Column Names Popover code changes End here
 
 
         // Roles Column Names Popover code changes starts here
@@ -15542,7 +15691,7 @@ sap.ui.define([
             this.byId("idAddThirdPartyPopover1").close();
         },
         // add onAdd Third Party popover changes start
-        onAddLTLClassPress: function (oEvent) {
+        onAddCarrierAddressPress: function (oEvent) {
             var oButton = oEvent.getSource(),
                 oView = this.getView();
             if (!this._AddLTLPopover) {
