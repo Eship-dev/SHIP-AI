@@ -47,7 +47,7 @@
         <ui:Table
             id="_IDCarrierAddressTable"
             width="100%"
-            class="headerContent sapUiTinyMarginTop"
+            class="headerContent sapUiTinyMarginTop rowRightLine ordersTableRightBorder"
             visibleRowCount="10"
             selectionMode="None"
             ariaLabelledBy="title">

@@ -97,6 +97,7 @@
 		<ui:Table	
 			id="_IDCarriesAccountsTable"
 			selectionMode="None"
+			class="rowRightLine ordersTableRightBorder"
 			visibleRowCount="10"
 			ariaLabelledBy="title">
 		</ui:Table>

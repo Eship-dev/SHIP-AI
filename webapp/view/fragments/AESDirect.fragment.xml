@@ -33,7 +33,7 @@
 		</Toolbar>
     <ui:Table
                 id="idAesDirectTable"
-                class="sapUiSmallMarginTop"
+               class="rowRightLine ordersTableRightBorder"
 				rows="{eshipjetModel>/TrackNowItems}"
 				selectionMode="None"
 				visibleRowCount="12">

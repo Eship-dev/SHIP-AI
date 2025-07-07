@@ -44,6 +44,7 @@
 		</Toolbar>
 		<ui:Table	
 			id="_IDUsersTable"
+			class="rowRightLine ordersTableRightBorder"
 			selectionMode="None"
 			visibleRowCount="10"
 			ariaLabelledBy="title">

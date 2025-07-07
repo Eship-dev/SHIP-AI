@@ -49,7 +49,7 @@
         <!-- Table -->
         <ui:Table id="_IDOrderTypeTable"
                   width="100%"
-                  class="headerContent sapUiTinyMarginTop"
+                  class="headerContent sapUiTinyMarginTop rowRightLine ordersTableRightBorder"
                   selectionMode="None"
                   paste="onPaste"
                   ariaLabelledBy="title"

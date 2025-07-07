@@ -45,7 +45,7 @@
     <ui:Table
         id="_IDThirdPartyTable"
         width="100%"
-        class="whiteBackground sapUiTinyMarginTop"
+        class="whiteBackground sapUiTinyMarginTop rowRightLine ordersTableRightBorder"
         selectionMode="None"
         paste="onPaste"
         ariaLabelledBy="title"

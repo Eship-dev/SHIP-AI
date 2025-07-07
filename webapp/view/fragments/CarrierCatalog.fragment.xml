@@ -45,6 +45,7 @@
 		</Toolbar>
 		<ui:Table	
 			id="_IDCarriesCatalogTable"
+			class="rowRightLine ordersTableRightBorder"
 			selectionMode="None"
 			visibleRowCount="10"
 			ariaLabelledBy="title">

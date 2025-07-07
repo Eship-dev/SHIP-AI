@@ -30,7 +30,7 @@
 		</Toolbar>
 
 
-    <ui:Table	id="_ID_DimensionTable"	width="100%"	class="headerContent sapUiTinyMarginTop"
+    <ui:Table	id="_ID_DimensionTable"	width="100%"	class="headerContent sapUiTinyMarginTop rowRightLine ordersTableRightBorder"
              	selectionMode="None"	paste="onPaste" 	ariaLabelledBy="title">
     <ui:extension>
         <OverflowToolbar style="Clear">										

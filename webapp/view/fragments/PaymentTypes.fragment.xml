@@ -60,7 +60,7 @@
         <!-- Payment Type Table -->
         <ui:Table id="_ID_PaymentTypeTable"
                   width="100%"
-                  class="headerContent sapUiTinyMarginTop"
+                  class="headerContent sapUiTinyMarginTop rowRightLine ordersTableRightBorder"
                   selectionMode="None"
                   paste="onPaste"
                   ariaLabelledBy="title"

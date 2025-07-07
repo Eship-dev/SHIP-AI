@@ -59,7 +59,7 @@
         <!-- NMFC table -->
         <ui:Table id="_IDNMFCTable"
                   width="100%"
-                  class="headerContent sapUiTinyMarginTop"
+                  class="headerContent sapUiTinyMarginTop rowRightLine ordersTableRightBorder"
                   visibleRowCount="10"
                   selectionMode="None"
                   paste="onPaste"

@@ -47,7 +47,7 @@
         <ui:Table
             id="_IDDangerousGoodsTable"
             width="100%"
-            class="headerContent sapUiTinyMarginTop"
+            class="headerContent sapUiTinyMarginTop rowRightLine ordersTableRightBorder"
             selectionMode="None"
             paste="onPaste"
             ariaLabelledBy="title"

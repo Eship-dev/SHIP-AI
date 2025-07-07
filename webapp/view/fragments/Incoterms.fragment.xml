@@ -60,7 +60,7 @@
         <!-- Table -->
         <ui:Table id="_ID_IncotermsTable"
                   width="100%"
-                  class="headerContent sapUiTinyMarginTop"
+                  class="headerContent sapUiTinyMarginTop rowRightLine ordersTableRightBorder"
                   selectionMode="None"
                   paste="onPaste"
                   ariaLabelledBy="title"
