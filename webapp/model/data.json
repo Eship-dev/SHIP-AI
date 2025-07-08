@@ -4827,164 +4827,185 @@
     "addressBookStateProvince": "",
     "addressBookPostalCode": "",
 
-    "UsersTableColumns": [
-        {
-            "key": "locationName",
-            "label": "Location Name",
-            "visible": true
-        },
-        {
-            "key": "userId",
-            "label": "User ID",
-            "visible": true
-        },
-        {
-            "key": "firstName",
-            "label": "First Name",
-            "visible": true
-        },
-        {
-            "key": "lastName",
-            "label": "Last Name",
-            "visible": true
-        },
-        {
-            "key": "phonenum",
-            "label": "Phone No",
-            "visible": true
-        },
-        {
-            "key": "userEmail",
-            "label": "Email",
-            "visible": true
-        },
-        {
-            "key": "addressLine1",
-            "label": "Address Line 1",
-            "visible": false
-        },
-        {
-            "key": "addressLine2",
-            "label": "Address Line 2",
-            "visible": false
-        },
-        {
-            "key": "addressLine3",
-            "label": "Address Line 3",
-            "visible": false
-        },
-        {
-            "key": "addressCity",
-            "label": "City",
-            "visible": true
-        },
-        {
-            "key": "addressZip",
-            "label": "Zip / Postal Code",
-            "visible": true
-        },
-        {
-            "key": "addressCountry",
-            "label": "Country",
-            "visible": true
-        },
-        {
-            "key": "userRole",
-            "label": "Role",
-            "visible": true
-        },
-        {
-            "key": "status",
-            "label": "Status",
-            "visible": true
-        }
-    ],
-    "UsersTableRows": [
-        {
-            "locationName": "Eshipjet Software Inc.",
-            "userId": "info@eshipjet.ai",
-            "lastName": "Eshipjet AI",
-            "contactName": "Steve Marsh",
-            "phonenum": "(888) 464-2361",
-            "addressLine1": "5717 Legacy",
-            "addressLine2": "Suite 250",
-            "city": "California",
-            "zip": "75024",
-            "country": "US"
-        },
-        {
-            "locationName": "Eshipjet Software Inc.",
-            "userId": "info@eshipjet.ai",
-            "lastName": "Eshipjet AI",
-            "contactName": "Steve Marsh",
-            "phonenum": "(888) 464-2360",
-            "addressLine1": "5717 Legacy",
-            "addressLine2": "Suite 250",
-            "city": "California",
-            "zip": "75024",
-            "country": "US"
-        },
-        {
-            "locationName": "Eshipjet Software Inc.",
-            "userId": "info@eshipjet.ai",
-            "lastName": "Eshipjet AI",
-            "contactName": "Steve Marsh",
-            "phonenum": "(888) 464-2360",
-            "addressLine1": "5717 Legacy",
-            "addressLine2": "Suite 250",
-            "city": "California",
-            "zip": "75024",
-            "country": "US"
-        },
-        {
-            "locationName": "Eshipjet Software Inc.",
-            "userId": "info@eshipjet.ai",
-            "lastName": "Eshipjet AI",
-            "contactName": "Steve Marsh",
-            "phonenum": "(888) 464-2360",
-            "addressLine1": "5717 Legacy",
-            "addressLine2": "Suite 250",
-            "city": "California",
-            "zip": "75024",
-            "country": "US"
-        },
-        {
-            "locationName": "Eshipjet Software Inc.",
-            "userId": "info@eshipjet.ai",
-            "lastName": "Eshipjet AI",
-            "contactName": "Steve Marsh",
-            "phonenum": "(888) 464-2360",
-            "addressLine1": "5717 Legacy",
-            "addressLine2": "Suite 250",
-            "city": "California",
-            "zip": "75024",
-            "country": "US"
-        },
-        {
-            "locationName": "Eshipjet Software Inc.",
-            "userId": "info@eshipjet.ai",
-            "lastName": "Eshipjet AI",
-            "contactName": "Steve Marsh",
-            "phonenum": "(888) 464-2360",
-            "addressLine1": "5717 Legacy",
-            "addressLine2": "Suite 250",
-            "city": "California",
-            "zip": "75024",
-            "country": "US"
-        },
-        {
-            "locationName": "Eshipjet Software Inc.",
-            "userId": "info@eshipjet.ai",
-            "lastName": "Eshipjet AI",
-            "contactName": "Steve Marsh",
-            "phonenum": "(888) 464-2360",
-            "addressLine1": "5717 Legacy",
-            "addressLine2": "Suite 250",
-            "city": "California",
-            "zip": "75024",
-            "country": "US"
-        }
-    ],
+   "UsersTableColumns": [
+    {
+      "key": "locationName",
+      "label": "Location Name",
+      "visible": true
+    },
+    {
+      "key": "userId",
+      "label": "User ID",
+      "visible": true
+    },
+    {
+      "key": "firstName",
+      "label": "First Name",
+      "visible": true
+    },
+    {
+      "key": "lastName",
+      "label": "Last Name",
+      "visible": true
+    },
+    {
+      "key": "phonenum",
+      "label": "Phone No",
+      "visible": true
+    },
+    {
+      "key": "userEmail",
+      "label": "Email",
+      "visible": true
+    },
+    {
+      "key": "addressLine1",
+      "label": "Address Line 1",
+      "visible": true
+    },
+    {
+      "key": "addressLine2",
+      "label": "Address Line 2",
+      "visible": true
+    },
+    {
+      "key": "addressCity",
+      "label": "City",
+      "visible": true
+    },
+    {
+      "key": "addressZip",
+      "label": "Zip / Postal Code",
+      "visible": true
+    },
+    {
+      "key": "addressCountry",
+      "label": "Country",
+      "visible": true
+    },
+    {
+      "key": "userRole",
+      "label": "Role",
+      "visible": true
+    },
+    {
+      "key": "status",
+      "label": "Status",
+      "visible": true
+    },
+    {
+        "key": "actions",
+        "label": "Actions",
+        "visible": true
+      }
+  ],
+  "UsersTableRows": [
+    {
+      "locationName": "BP01",
+      "userId": "PDORNEY",
+      "firstName": "Paul",
+      "lastName": "Dorney",
+      "phonenum": "(877)-224-0946",
+      "userEmail": "pdorney@drivemedical.com",
+      "addressLine1": "500 Palmetto Logistics Pkwy",
+      "addressLine2": "GA",
+      "addressCity": "Palmetto",
+      "addressZip": "30268-1283",
+      "addressCountry": "US",
+      "userRole": "Super Admin",
+      "status": "Active"
+    },
+    {
+      "locationName": "BP01",
+      "userId": "MABREU",
+      "firstName": "Maria",
+      "lastName": "Abreu",
+      "phonenum": "(888)-464-2306",
+      "userEmail": "mabreu@drivemedical.com",
+      "addressLine1": "200 Docks Corner Rd",
+      "addressLine2": "Suite 241",
+      "addressCity": "South Brunswick",
+      "addressZip": "08810",
+      "addressCountry": "US",
+      "userRole": "Shipper",
+      "status": "Active"
+    },
+    {
+      "locationName": "BP01",
+      "userId": "ANTELLO",
+      "firstName": "Andrea",
+      "lastName": "Tello",
+      "phonenum": "(888)-464-2306",
+      "userEmail": "antello@drivemedical.com",
+      "addressLine1": "200 Docks Corner Rd",
+      "addressLine2": "Suite 241",
+      "addressCity": "South Brunswick",
+      "addressZip": "08810",
+      "addressCountry": "US",
+      "userRole": "Shipper",
+      "status": "Active"
+    },
+    {
+      "locationName": "BP01",
+      "userId": "DEISIV",
+      "firstName": "Deisi",
+      "lastName": "Viva",
+      "phonenum": "(888)-464-2306",
+      "userEmail": "deisiv@drivemedical.com",
+      "addressLine1": "200 Docks Corner Rd",
+      "addressLine2": "Suite 241",
+      "addressCity": "South Brunswick",
+      "addressZip": "08810",
+      "addressCountry": "US",
+      "userRole": "Shipper",
+      "status": "Active"
+    },
+    {
+      "locationName": "BP01",
+      "userId": "RBLIMA",
+      "firstName": "Rossy",
+      "lastName": "Lima",
+      "phonenum": "(888)-464-2306",
+      "userEmail": "rlima@drivemedical.com",
+      "addressLine1": "200 Docks Corner Rd",
+      "addressLine2": "Suite 241",
+      "addressCity": "South Brunswick",
+      "addressZip": "08810",
+      "addressCountry": "US",
+      "userRole": "Shipper",
+      "status": "Active"
+    },
+    {
+      "locationName": "BP01",
+      "userId": "SBATISTA",
+      "firstName": "Santa",
+      "lastName": "Batista",
+      "phonenum": "(888)-464-2306",
+      "userEmail": "sbatista@drivemedical.com",
+      "addressLine1": "200 Docks Corner Rd",
+      "addressLine2": "Suite 241",
+      "addressCity": "South Brunswick",
+      "addressZip": "08810",
+      "addressCountry": "US",
+      "userRole": "Shipper",
+      "status": "Active"
+    },
+    {
+      "locationName": "BP01",
+      "userId": "SPERALTA",
+      "firstName": "Sandra",
+      "lastName": "Peralta",
+      "phonenum": "(888)-464-2306",
+      "userEmail": "speralta@drivemedical.com",
+      "addressLine1": "200 Docks Corner Rd",
+      "addressLine2": "Suite 241",
+      "addressCity": "South Brunswick",
+      "addressZip": "08810",
+      "addressCountry": "US",
+      "userRole": "Shipper",
+      "status": "Active"
+    }
+  ],
     "RolesTableColumns": [
         {
             "key": "roleId",
@@ -5020,118 +5041,404 @@
         }
     ],
     "CarrierCatalogTableColumns": [
-        {
-            "key": "shipMethodId",
-            "label": "Ship Method ID",
-            "visible": true
-        },
-        {
-            "key": "shipMethodName",
-            "label": "Carrier Name",
-            "visible": true
-        },
-        {
-            "key": "shipMethodType",
-            "label": "Ship Method Type",
-            "visible": true
-        },
-        {
-            "key": "shipMethodCoverage",
-            "label": "Ship Method Coverage",
-            "visible": true
-        },
-        {
-            "key": "status",
-            "label": "Ship Method Status",
-            "visible": true
-        }
-    ],
-    "CarrierCatalogTableRows": [
-        {
-            "shipMethodId": "ABF",
-            "shipMethodName": "ABF",
-            "shipMethodType": "LTL",
-            "shipMethodCoverage": "Both",
-            "shipMethodStatus": ""
-        },
-        {
-            "shipMethodId": "BlueDart",
-            "shipMethodName": "BlueDart",
-            "shipMethodType": "Parcel",
-            "shipMethodCoverage": "Both",
-            "shipMethodStatus": ""
-        },
-        {
-            "shipMethodId": "delhivery",
-            "shipMethodName": "delhivery",
-            "shipMethodType": "Generic",
-            "shipMethodCoverage": "Both",
-            "shipMethodStatus": ""
-        },
-        {
-            "shipMethodId": "DHL",
-            "shipMethodName": "DHL",
-            "shipMethodType": "Parcel",
-            "shipMethodCoverage": "Both",
-            "status": ""
-        },
-        {
-            "shipMethodId": "FedEx",
-            "shipMethodName": "FedEx",
-            "shipMethodType": "Parcel",
-            "shipMethodCoverage": "Both",
-            "shipMethodStatus": ""
-        },
-        {
-            "shipMethodId": "Freight",
-            "shipMethodName": "FedEx Freight",
-            "shipMethodType": "LTL",
-            "shipMethodCoverage": "Both",
-            "shipMethodStatus": ""
-        },
-        {
-            "shipMethodId": "gati",
-            "shipMethodName": "gati",
-            "shipMethodType": "Generic",
-            "shipMethodCoverage": "Both",
-            "shipMethodStatus": ""
-        },
-        {
-            "shipMethodId": "GEN",
-            "shipMethodName": "GEN",
-            "shipMethodType": "Generic",
-            "shipMethodCoverage": "Domestic",
-            "shipMethodStatus": ""
-        },
-        {
-            "shipMethodId": "JPMorgan Chase Internal",
-            "shipMethodName": "JPMorgan Chase Internal",
-            "shipMethodType": "Generic",
-            "shipMethodCoverage": "Both",
-            "shipMethodStatus": ""
-        },
-        {
-            "shipMethodId": "RL",
-            "shipMethodName": "RL",
-            "shipMethodType": "LTL",
-            "shipMethodCoverage": "Both",
-            "shipMethodStatus": ""
-        },
-        {
-            "shipMethodId": "UPS",
-            "shipMethodName": "UPS",
-            "shipMethodType": "Parcel",
-            "shipMethodCoverage": "Both",
-            "shipMethodStatus": ""
-        },
-        {
-            "shipMethodId": "USPS",
-            "shipMethodName": "USPS",
-            "shipMethodType": "Parcel",
-            "shipMethodCoverage": "Both",
-            "shipMethodStatus": ""
-        }
-    ],
+        { "key": "locationId", "label": "Location ID", "visible": true },
+        { "key": "erpLocationId", "label": "ERP Location ID", "visible": true },
+        { "key": "carrierId", "label": "Carrier ID", "visible": true },
+        { "key": "erpCarrierId", "label": "ERP Carrier ID", "visible": true },
+        { "key": "carrierName", "label": "Carrier Name", "visible": true },
+        { "key": "carrierType", "label": "Carrier Type", "visible": true },
+        { "key": "carrierCoverage", "label": "Carrier Coverage", "visible": true },
+        { "key": "connectionType", "label": "Connection Type", "visible": true },
+        { "key": "colorPicker", "label": "Color Picker", "visible": true },
+        { "key": "status", "label": "Status", "visible": true },
+        { "key": "actionsforCarrierCatalog", "label": "Actions", "visible": true }
+      ],
+      "CarrierCatalogTableRows": [
+                {
+                    "locationId": "BP02",
+                    "erpLocationId": "BP02",
+                    "carrierId": "UPS",
+                    "erpCarrierId": "UPS",
+                    "carrierName": "UPS",
+                    "carrierType": "Parcel",
+                    "carrierCoverage": "Both",
+                    "connectionType": "API",
+                    "colorPicker": "#4e1111",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP20",
+                    "erpLocationId": "BP20",
+                    "carrierId": "UPS",
+                    "erpCarrierId": "UPS",
+                    "carrierName": "UPS",
+                    "carrierType": "Parcel",
+                    "carrierCoverage": "Both",
+                    "connectionType": "API",
+                    "colorPicker": "#4e1111",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP16",
+                    "erpLocationId": "BP16",
+                    "carrierId": "UPS",
+                    "erpCarrierId": "UPS",
+                    "carrierName": "UPS",
+                    "carrierType": "Parcel",
+                    "carrierCoverage": "Both",
+                    "connectionType": "API",
+                    "colorPicker": "#4e1111",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP18",
+                    "erpLocationId": "BP18",
+                    "carrierId": "UPS",
+                    "erpCarrierId": "UPS",
+                    "carrierName": "UPS",
+                    "carrierType": "Parcel",
+                    "carrierCoverage": "Both",
+                    "connectionType": "API",
+                    "colorPicker": "#4e1111",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP08",
+                    "erpLocationId": "BP08",
+                    "carrierId": "UPS",
+                    "erpCarrierId": "UPS",
+                    "carrierName": "UPS",
+                    "carrierType": "Parcel",
+                    "carrierCoverage": "Both",
+                    "connectionType": "API",
+                    "colorPicker": "#4e1111",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP17",
+                    "erpLocationId": "BP17",
+                    "carrierId": "UPS",
+                    "erpCarrierId": "UPS",
+                    "carrierName": "UPS",
+                    "carrierType": "Parcel",
+                    "carrierCoverage": "Both",
+                    "connectionType": "API",
+                    "colorPicker": "#4e1111",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP03",
+                    "erpLocationId": "BP03",
+                    "carrierId": "UPS",
+                    "erpCarrierId": "UPS",
+                    "carrierName": "UPS",
+                    "carrierType": "Parcel",
+                    "carrierCoverage": "Both",
+                    "connectionType": "API",
+                    "colorPicker": "#4e1111",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP14",
+                    "erpLocationId": "BP14",
+                    "carrierId": "UPS",
+                    "erpCarrierId": "UPS",
+                    "carrierName": "UPS",
+                    "carrierType": "Parcel",
+                    "carrierCoverage": "Both",
+                    "connectionType": "API",
+                    "colorPicker": "#4e1111",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP02",
+                    "erpLocationId": "BP02",
+                    "carrierId": "FedEx",
+                    "erpCarrierId": "FEDEX",
+                    "carrierName": "FedEx",
+                    "carrierType": "Parcel",
+                    "carrierCoverage": "Both",
+                    "connectionType": "API",
+                    "colorPicker": "#7f1f1f",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP20",
+                    "erpLocationId": "BP20",
+                    "carrierId": "FedEx",
+                    "erpCarrierId": "FEDEX",
+                    "carrierName": "FedEx",
+                    "carrierType": "Parcel",
+                    "carrierCoverage": "Both",
+                    "connectionType": "API",
+                    "colorPicker": "#7f1f1f",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP16",
+                    "erpLocationId": "BP16",
+                    "carrierId": "FedEx",
+                    "erpCarrierId": "FEDEX",
+                    "carrierName": "FedEx",
+                    "carrierType": "Parcel",
+                    "carrierCoverage": "Both",
+                    "connectionType": "API",
+                    "colorPicker": "#7f1f1f",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP18",
+                    "erpLocationId": "BP18",
+                    "carrierId": "FedEx",
+                    "erpCarrierId": "FEDEX",
+                    "carrierName": "FedEx",
+                    "carrierType": "Parcel",
+                    "carrierCoverage": "Both",
+                    "connectionType": "API",
+                    "colorPicker": "#7f1f1f",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP08",
+                    "erpLocationId": "BP08",
+                    "carrierId": "FedEx",
+                    "erpCarrierId": "FEDEX",
+                    "carrierName": "FedEx",
+                    "carrierType": "Parcel",
+                    "carrierCoverage": "Both",
+                    "connectionType": "API",
+                    "colorPicker": "#7f1f1f",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP17",
+                    "erpLocationId": "BP17",
+                    "carrierId": "FedEx",
+                    "erpCarrierId": "FEDEX",
+                    "carrierName": "FedEx",
+                    "carrierType": "Parcel",
+                    "carrierCoverage": "Both",
+                    "connectionType": "API",
+                    "colorPicker": "#7f1f1f",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP03",
+                    "erpLocationId": "BP03",
+                    "carrierId": "FedEx",
+                    "erpCarrierId": "FEDEX",
+                    "carrierName": "FedEx",
+                    "carrierType": "Parcel",
+                    "carrierCoverage": "Both",
+                    "connectionType": "API",
+                    "colorPicker": "#7f1f1f",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP14",
+                    "erpLocationId": "BP14",
+                    "carrierId": "FedEx",
+                    "erpCarrierId": "FEDEX",
+                    "carrierName": "FedEx",
+                    "carrierType": "Parcel",
+                    "carrierCoverage": "Both",
+                    "connectionType": "API",
+                    "colorPicker": "#7f1f1f",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP20",
+                    "erpLocationId": "BP01",
+                    "carrierId": "SPOT",
+                    "erpCarrierId": "SPOT",
+                    "carrierName": "SPOT",
+                    "carrierType": "FTL",
+                    "carrierCoverage": "Both",
+                    "connectionType": "MNL",
+                    "colorPicker": "#ac6a6a",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP16",
+                    "erpLocationId": "BP01",
+                    "carrierId": "SPOT",
+                    "erpCarrierId": "SPOT",
+                    "carrierName": "SPOT",
+                    "carrierType": "FTL",
+                    "carrierCoverage": "Both",
+                    "connectionType": "MNL",
+                    "colorPicker": "#ac6a6a",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP18",
+                    "erpLocationId": "BP01",
+                    "carrierId": "SPOT",
+                    "erpCarrierId": "SPOT",
+                    "carrierName": "SPOT",
+                    "carrierType": "FTL",
+                    "carrierCoverage": "Both",
+                    "connectionType": "MNL",
+                    "colorPicker": "#ac6a6a",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP03",
+                    "erpLocationId": "BP01",
+                    "carrierId": "SPOT",
+                    "erpCarrierId": "SPOT",
+                    "carrierName": "SPOT",
+                    "carrierType": "FTL",
+                    "carrierCoverage": "Both",
+                    "connectionType": "MNL",
+                    "colorPicker": "#ac6a6a",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP14",
+                    "erpLocationId": "BP01",
+                    "carrierId": "SPOT",
+                    "erpCarrierId": "SPOT",
+                    "carrierName": "SPOT",
+                    "carrierType": "FTL",
+                    "carrierCoverage": "Both",
+                    "connectionType": "MNL",
+                    "colorPicker": "#ac6a6a",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP02",
+                    "erpLocationId": "BP02",
+                    "carrierId": "SPOT",
+                    "erpCarrierId": "SPOT",
+                    "carrierName": "SPOT",
+                    "carrierType": "LTL",
+                    "carrierCoverage": "Both",
+                    "connectionType": "MNL",
+                    "colorPicker": "#ac6a6a",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP08",
+                    "erpLocationId": "BP01",
+                    "carrierId": "SPOT",
+                    "erpCarrierId": "SPOT",
+                    "carrierName": "SPOT",
+                    "carrierType": "FTL",
+                    "carrierCoverage": "Both",
+                    "connectionType": "MNL",
+                    "colorPicker": "#ac6a6a",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP17",
+                    "erpLocationId": "BP01",
+                    "carrierId": "SPOT",
+                    "erpCarrierId": "SPOT",
+                    "carrierName": "SPOT",
+                    "carrierType": "FTL",
+                    "carrierCoverage": "Both",
+                    "connectionType": "MNL",
+                    "colorPicker": "#ac6a6a",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP20",
+                    "erpLocationId": "BP01",
+                    "carrierId": "PITTOH",
+                    "erpCarrierId": "PITTOH",
+                    "carrierName": "PItt Ohio Express",
+                    "carrierType": "LTL",
+                    "carrierCoverage": "Domestic",
+                    "connectionType": "MNL",
+                    "colorPicker": "#c86666",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP16",
+                    "erpLocationId": "BP01",
+                    "carrierId": "PITTOH",
+                    "erpCarrierId": "PITTOH",
+                    "carrierName": "PItt Ohio Express",
+                    "carrierType": "LTL",
+                    "carrierCoverage": "Domestic",
+                    "connectionType": "MNL",
+                    "colorPicker": "#c86666",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP18",
+                    "erpLocationId": "BP01",
+                    "carrierId": "PITTOH",
+                    "erpCarrierId": "PITTOH",
+                    "carrierName": "PItt Ohio Express",
+                    "carrierType": "LTL",
+                    "carrierCoverage": "Domestic",
+                    "connectionType": "MNL",
+                    "colorPicker": "#c86666",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP03",
+                    "erpLocationId": "BP01",
+                    "carrierId": "PITTOH",
+                    "erpCarrierId": "PITTOH",
+                    "carrierName": "PItt Ohio Express",
+                    "carrierType": "LTL",
+                    "carrierCoverage": "Domestic",
+                    "connectionType": "MNL",
+                    "colorPicker": "#c86666",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP14",
+                    "erpLocationId": "BP01",
+                    "carrierId": "PITTOH",
+                    "erpCarrierId": "PITTOH",
+                    "carrierName": "PItt Ohio Express",
+                    "carrierType": "LTL",
+                    "carrierCoverage": "Domestic",
+                    "connectionType": "MNL",
+                    "colorPicker": "#c86666",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP02",
+                    "erpLocationId": "BP01",
+                    "carrierId": "PITTOH",
+                    "erpCarrierId": "PITTOH",
+                    "carrierName": "PItt Ohio Express",
+                    "carrierType": "LTL",
+                    "carrierCoverage": "Domestic",
+                    "connectionType": "MNL",
+                    "colorPicker": "#c86666",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP08",
+                    "erpLocationId": "BP01",
+                    "carrierId": "PITTOH",
+                    "erpCarrierId": "PITTOH",
+                    "carrierName": "PItt Ohio Express",
+                    "carrierType": "LTL",
+                    "carrierCoverage": "Domestic",
+                    "connectionType": "MNL",
+                    "colorPicker": "#c86666",
+                    "status": ""
+                },
+                {
+                    "locationId": "BP17",
+                    "erpLocationId": "BP01",
+                    "carrierId": "PITTOH",
+                    "erpCarrierId": "PITTOH",
+                    "carrierName": "PItt Ohio Express",
+                    "carrierType": "LTL",
+                    "carrierCoverage": "Domestic",
+                    "connectionType": "MNL",
+                    "colorPicker": "#c86666",
+                    "status": ""
+                }
+                ],
     "carrierCatelogCarrierName": "",
     "CarrierAccountsTableColumns": [
         {

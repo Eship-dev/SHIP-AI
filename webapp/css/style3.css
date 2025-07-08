@@ -1489,6 +1489,55 @@ sapMPopover .sapMPopoverCont {
   height: auto !important;
 
 }
+.green-button_Master_Red {
+  color: unset !important;
+  border-radius: 1% !important;
+  height: 30px !important;
+  cursor: pointer;
+  background-color: #b92a2a !important; /* Always green */
+  color: #fff !important;
+  border: 1px solid #b92a2a !important;
+}
+
+.green-button_Master_Red span {
+  display: flex !important;
+  align-items: center;
+  color: #fff !important;
+}
+
+.green-button_Master_Red:hover,
+.green-button_Master_Red:focus,
+.green-button_Master_Red:active {
+  background-color: #b92a2a !important; /* Ensure no change on hover/click */
+  border: 1px solid #b92a2a !important;
+  color: #fff !important;
+}
+
+
+.green-button_Master {
+  color: unset !important;
+  border-radius: 1% !important;
+  height: 30px !important;
+  cursor: pointer;
+  background-color: #4E9C2D !important; /* Always green */
+  color: #fff !important;
+  border: 1px solid #4E9C2D !important;
+}
+
+.green-button_Master span {
+  display: flex !important;
+  align-items: center;
+  color: #fff !important;
+}
+
+.green-button_Master:hover,
+.green-button_Master:focus,
+.green-button_Master:active {
+  background-color: #4E9C2D !important; /* Ensure no change on hover/click */
+  border: 1px solid #4E9C2D !important;
+  color: #fff !important;
+}
+
 
 .green-button {
   color: unset !important;
@@ -1513,6 +1562,7 @@ sapMPopover .sapMPopoverCont {
   border: 1px solid #4E9C2D !important;
   color: #fff !important;
 }
+
 
 
 .green-buttonVoid {

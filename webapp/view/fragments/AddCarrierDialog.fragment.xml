@@ -179,9 +179,9 @@
                     
         <footer >
             <Toolbar >
-                <Button  text="Cancel" press="AddCarrierCancelDialog" />
+                <Button  text="Cancel" press="AddCarrierCancelDialog" class="green-button_Master_Red" />
                 <ToolbarSpacer/>
-                <Button  text="Save" type="Success" press="AddCarrierUpdateDialog" />
+                <Button  text="Save" press="AddCarrierUpdateDialog" class="green-button_Master"/>
             </Toolbar>
         </footer>
     </Dialog>

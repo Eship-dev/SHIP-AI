@@ -10566,6 +10566,8 @@ sap.ui.define([
             const oView = oController.getView();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
             var CarrierCatalogTableColumns = eshipjetModel.getData().CarrierCatalogTableColumns;
+            var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+
             const oTable = oView.byId("_IDCarriesCatalogTable");
             oTable.setModel(eshipjetModel);
             var count = 0;
@@ -10581,7 +10583,7 @@ sap.ui.define([
                 if (count >= 14) {
                     var minWidth = "130px";
                 }
-                if (columnName === "actions") {
+                if (columnName === "actionsforCarrierCatalog") {
                     var oHBox = new sap.m.HBox({}); // Create Text instance 
                     var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
                     var Btn2 = new sap.m.Button({

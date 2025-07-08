@@ -57,7 +57,7 @@
 				<ToolbarSpacer />
 					<HBox>
 						<Button  text="Add Carrier Account" press="AddCarrierConfigurationDialogPress" class="Master-toolbar__button" width="10rem" ></Button>
-						<Button type="Success" press="onCarrierAccountsArrowPress" icon="sap-icon://navigation-down-arrow" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button>
+						<!-- <Button type="Success" press="onCarrierAccountsArrowPress" icon="sap-icon://navigation-down-arrow" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button> -->
                 	</HBox>
 		</Toolbar>
 

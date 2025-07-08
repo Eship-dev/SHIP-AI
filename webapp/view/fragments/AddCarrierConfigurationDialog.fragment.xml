@@ -243,10 +243,10 @@
         <footer>
             <Toolbar>
                
-                <Button text="Cancel" press="AddCarrierConfigurationCancelDialog" />
+                <Button text="Cancel" press="AddCarrierConfigurationCancelDialog" class="green-button_Master_Red" />
                  <ToolbarSpacer />
                 <Button text="Address" type="Emphasized" press="onAddressCarrierConfig" />
-                <Button text="Save" type="Success" press="AddCarrierConfigurationUpdateDialog" />
+                <Button text="Save"  press="AddCarrierConfigurationUpdateDialog" class="green-button_Master" />
             </Toolbar>
         </footer>
     </Dialog>
