@@ -1,116 +1,190 @@
-<core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:ui="sap.ui.table"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+>
+    <Dialog
+        id="_IDGenAlcoholEditDialogPeripheralConfiguration"
+        title="Alcohol"
+        contentWidth="40vh"
+        contentHeight="95%"
+        verticalScrolling="false"
+        horizontalScrolling="false"
+        class="rightSideDialogSpecialOptionsMasterPrint"
+    >
+        <!-- Custom Header -->
 
+        <Toolbar>
+            <Title text="Peripheral Configuration" />
+            <ToolbarSpacer />
+            <Button
+                icon="sap-icon://decline"
+                class="Decline_Btn ship-now-decline_btn"
+                press="onPeripheralConfigurationCancelPress"
+            />
+        </Toolbar>
 
-	<Toolbar width="auto" height="3rem" class="toolbarbottomborder fixedLayout ordersDarkThemeToolbar">
-			<Text text="Peripheral Configuration" class="toolBarHeader sapUiTinyMarginBegin whiteColor" ></Text>
-				<ToolbarSpacer />
-					<HBox>
-						<Button  text="Add Package Type"  press="onAddAddPackageTypePress" class="Master-toolbar__button" width="8rem" ></Button>
-						<Button type="Success" press="onADDLocImpPress" icon="sap-icon://navigation-down-arrow" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button>
-                	</HBox>
-		</Toolbar>
+        <ScrollContainer
+            height="100%"
+            width="100%"
+            horizontal="true"
+            vertical="true"
+        >
+            <content>
+                <f:SimpleForm
+                    editable="true"
+                    class="customSimpleFormShadow"
+                    width="auto"
+                    layout="ResponsiveGridLayout"
+                    columnsM="4"
+                    columnsL="4"
+                    columnsXL="4"
+                >
+                    <f:content>
+                        <Toolbar ariaLabelledBy="idShipFrom">
+                            <Button
+                                icon="sap-icon://customer-briefing"
+                                press="handleAddLocPress"
+                            />
+                            <Title
+                                id="idAddLocaTionFrom11dssddsd"
+                                text="Printer Information"
+                            />
+                            <ToolbarSpacer />
+                            <Button text="Eshipjet Printer Connect 6.4" />
+                            <ToolbarSpacer />
+                            <Switch />
+                            <Text text="Auto Print" />
+                        </Toolbar>
+                        <Label text="Laser Printer" />
+                        <ComboBox
+                            width="300px"
+                            class="sapUiSmallMarginBottom create-ship-req_input"
+                            showClearIcon="true"
+                            items="{eshipjetModel>/ProductCollection}"
+                        >
+                            <core:Item
+                                key="{eshipjetModel>ProductId}"
+                                text="{eshipjetModel>Name}"
+                            />
+                        </ComboBox>
 
-        <Toolbar height="25%" class="sapUiTinyMarginBottom whiteBackground " >
-			<HBox width="100%" >
-				<VBox class="sapUiTinyMargin" width="33%">
-					<Text text="1" class="NumberSizeTitle1"></Text>
-					<Text text="Total Peripheral Configuration" class="NumberSizeTitle2"></Text>
-					<Button class="totalProgress-request-button request-button" icon="false" width="100%"  ></Button>
-				</VBox>
-				<VBox class="sapUiTinyMargin" width="33%">
-					<Text text="2" class="NumberSizeTitle1"></Text>
-					<Text text="Active" class="NumberSizeTitle2"></Text>
-					<Button type="Critical" class="inTransit-request-button request-button" icon="false" width="100%" ></Button>
-				</VBox>
-				<VBox class="sapUiTinyMargin" width="33%">
-					<Text text="3" class="NumberSizeTitle1"></Text>
-					<Text text="Inactive" class="NumberSizeTitle2"></Text>
-					<Button class="InWhite-request-button request-button" type="Success" icon="false" width="100%" ></Button>
-				</VBox>
-			</HBox>
-		</Toolbar>
+                        <ToolbarSpacer />
+                        <CheckBox />
+                        <core:Icon
+                            src="sap-icon://print"
+                            size="2rem"
+                            color="#007aff"
+                        />
+                        <Label text="Thermal Printer" />
+                        <ComboBox
+                            width="300px"
+                            class="sapUiSmallMarginBottom create-ship-req_input"
+                            showClearIcon="true"
+                            items="{eshipjetModel>/ProductCollection}"
+                        >
+                            <core:Item
+                                key="{eshipjetModel>ProductId}"
+                                text="{eshipjetModel>Name}"
+                            />
+                        </ComboBox>
+                        <ToolbarSpacer />
+                        <CheckBox />
+                        <core:Icon
+                            src="sap-icon://print"
+                            size="2rem"
+                            color="#007aff"
+                        />
+                    </f:content>
+                </f:SimpleForm>
 
-	<VBox class="whiteBackground sapUiTinyMarginTop" >
-		<Toolbar class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd" >
-			<Button icon="sap-icon://filter" press="onPeripheralConfigurationFilterPopoverPress" type="Transparent" class="ordersIcons" ></Button>
-			<ToolbarSpacer ></ToolbarSpacer>
-				<SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" liveChange="onSearchPeripheralConfiguration" ></SearchField>
-				<Button icon="sap-icon://action" press="onPeripheralConfigurationExportToExcel" type="Transparent" class="ordersIcons" ></Button>
-				<Button icon="sap-icon://action-settings" press="openPeripheralConfigurationColNamesPopover" type="Transparent" class="ordersIcons" ></Button>
-			<customData>
-				<core:CustomData key="remember" value="true" />
-				<core:CustomData key="showClearButton" value="true" />
-				<core:CustomData key="confirmButtonText" value="Ok" />
-			</customData>
-		</Toolbar>
-		<ui:Table	
-			id="_IDPeripheralConfigurationTable"
-			selectionMode="None"
-			visibleRowCount="10"
-			ariaLabelledBy="title">
-		</ui:Table>
-    </VBox>
+                <f:SimpleForm
+                    editable="true"
+                    class="customSimpleFormShadow"
+                    width="auto"
+                    layout="ResponsiveGridLayout"
+                    columnsM="3"
+                    columnsL="3"
+                    columnsXL="3"
+                >
+                    <f:content>
+                        <Toolbar ariaLabelledBy="idShipFrom">
+                            <Button
+                                icon="sap-icon://customer-briefing"
+                                press="handleAddLocPress"
+                            />
+                            <Title
+                                id="idAddLocaTionFrom1sd"
+                                text="Scale Information"
+                            />
+                            <ToolbarSpacer />
+                            <Switch />
+                            <Text text="Auto Print" />
+                        </Toolbar>
+                        <Switch />
+                        <Text text="USB Scale" />
+                        <ToolbarSpacer />
+                        <Switch />
+                        <Text text="Serial Scale" />
+                        <!-- <Text text="No Scale Information. Please choose USB Scale or Serial Scale Information."></Text> -->
+                    </f:content>
+                </f:SimpleForm>
 
-	<Toolbar class="whiteBackground sapUiTinyMarginTop ordersTableFooter">
-		<ToolbarSpacer/>
-			<Button  text="First" type="Transparent"/>
-			<Button  text="Previous" type="Transparent"/>
-			<Text    text="1-0 of 0" />
-			<Button  text="Next" type="Transparent"/>
-			<Button  text="Last" type="Transparent"/>
-	</Toolbar>
-
-
-    <!-- <Toolbar width="auto" height="15%" class="toolbarbottomborder fixedLayout">
-			<Text text="Peripheral Configuration" class="toolBarHeader sapUiTinyMarginBegin pageTitle" ></Text>
-				<ToolbarSpacer />
-					<HBox>
-                    <Button  text="Add Package Type" press="onAddAddPackageTypePress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="10rem" ></Button>
-                    <Button type="Success" press="onPackagesTypesArrowPress" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button>
-                </HBox>
-		</Toolbar>
-
-        <Toolbar height="15%" >
-			<HBox width="100%" >
-				<VBox class="sapUiTinyMargin" width="33%">
-					<Text text="1" class="NumberSizeTitle1"></Text>
-					<Text text="Total Peripheral Configuration" class="NumberSizeTitle2"></Text>
-					<Button class="totalProgress-request-button request-button"  press="handleManifestFilterBtnPress" icon="false" width="100%"  ></Button>
-				</VBox>
-				<VBox class="sapUiTinyMargin" width="33%">
-					<Text text="2" class="NumberSizeTitle1"></Text>
-					<Text text="Active" class="NumberSizeTitle2"></Text>
-					<Button class="inTransit-request-button  request-button" type="Critical" press="handleManifestFilterBtnPress" icon="false" width="100%" ></Button>
-				</VBox>
-				<VBox class="sapUiTinyMargin" width="33%">
-					<Text text="3" class="NumberSizeTitle1"></Text>
-					<Text text="Inactive" class="NumberSizeTitle2"></Text>
-					<Button class="InWhite-request-button request-button" type="Success" press="handleManifestFilterBtnPress" icon="false" width="100%" ></Button>
-				</VBox>
-			</HBox>
-		</Toolbar>
-
-
-    <ui:Table	id="_IDPeripheralConfigurationTable"	width="100%"	class="headerContent sapUiTinyMarginTop"
-             	selectionMode="None"	paste="onPaste" 	ariaLabelledBy="title">
-    <ui:extension>
-        <OverflowToolbar style="Clear">										
-            <ToolbarSpacer />  
-                <Button icon="sap-icon://action" press="onPackagesExportToExcel"></Button>
-                <Button icon="sap-icon://action-settings" press="openPeripheralConfigurationColNamesPopover"></Button>
-        </OverflowToolbar>
-    </ui:extension>	
-    <ui:footer>
-    <Toolbar>        
-        <ToolbarSpacer/>
-        <Button  text="First"     type="Emphasized"/>
-        <Button  text="Previous"  type="Emphasized"/>
-        <Text    text="1-0 of 0" />
-        <Button  text="Next"       type="Emphasized"/>
-        <Button  text="Last"       type="Emphasized"/>
-    </Toolbar>
-	</ui:footer>							
-    </ui:Table> -->
-    
-
+                <f:SimpleForm
+                    editable="true"
+                    class="customSimpleFormShadow"
+                    width="auto"
+                    layout="ColumnLayout"
+                    columnsM="2"
+                    columnsL="2"
+                    columnsXL="2"
+                >
+                    <f:content>
+                        <Toolbar ariaLabelledBy="idShipFrom">
+                            <Button
+                                icon="sap-icon://customer-briefing"
+                                press="handleAddLocPress"
+                            />
+                            <Title
+                                id="idAddLocaTionFrom2dfs"
+                                text="Dimensional Scale Information"
+                            />
+                            <ToolbarSpacer />
+                            <Switch />
+                            <Text text="Dim Scale" />
+                        </Toolbar>
+                        <Label text="Manufacturer" />
+                        <Input
+                            class="sapUiSmallMarginBottom create-ship-req_input"
+                        />
+                        <Label text="Device Reference Code" />
+                        <Input
+                            class="sapUiSmallMarginBottom create-ship-req_input"
+                        />
+                        <Label text="API Key / Token" />
+                        <Input
+                            class="sapUiSmallMarginBottom create-ship-req_input"
+                        />
+                    </f:content>
+                </f:SimpleForm>
+            </content>
+        </ScrollContainer>
+        <!-- Footer -->
+        <footer>
+            <OverflowToolbar class="sapMPopoverFooter1">
+                <Button
+                    text="Cancel"
+                    press="onPeripheralConfigCancelPress"
+                />
+                <ToolbarSpacer />
+                <Button
+                    type="Emphasized"
+                    text="Submit"
+                    press="onPeripheralConfigSelectPress"
+                />
+            </OverflowToolbar>
+        </footer>
+    </Dialog>
 </core:FragmentDefinition>

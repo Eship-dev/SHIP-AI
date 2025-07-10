@@ -8856,10 +8856,6 @@ sap.ui.define([
 
                 oController._displayTables("_IDUsersTable", "UsersTableColumns", "UsersTableRows", "Users");
                 oPageContainer.to(oView.createId("_ID_Users_TableScrollContainer"));
-            // } else if (oCurrObj && oCurrObj.name === "Peripheral Configuration") {
-
-            //     oController._displayTables("_IDPeripheralConfigurationTable", "PeripheralConfigurationTableColumns", "PeripheralConfigurationTableRows", "Peripheral Configuration");
-            //     oPageContainer.to(oView.createId("_ID_PeripheralConfiguration_TableScrollContainer"));
 
             } else if (oCurrObj && oCurrObj.name === "Roles *") {
 
@@ -8880,6 +8876,10 @@ sap.ui.define([
 
                 oController._displayTables("_IDCostCenterTable", "CostCenterTableColumns", "CostCenterTableRows", "Cost Centers");
                 oPageContainer.to(oView.createId("_ID_CostCenters_TableScrollContainer"));
+            } else if (oCurrObj && oCurrObj.name === "Freight Condition") {
+
+                oController._displayTables("_IDFreightConditionTable", "FreightConditionTableColumns", "FreightConditionTableRows", "Freight Condition");
+                oPageContainer.to(oView.createId("_ID_FreightCondition_TableScrollContainer"));
 
             } else if (oCurrObj && oCurrObj.name === "Module Status Codes") {
 
@@ -8960,6 +8960,10 @@ sap.ui.define([
             } else if (oCurrObj && oCurrObj.name === "Default Configuration") {
 
                 this.OpenDefaultConfigDialog();
+            } else if (oCurrObj && oCurrObj.name === "Peripheral Configuration") {
+
+                this.OpenPeripheralConfigurationDialog();
+          
             } else if (oCurrObj && oCurrObj.name === "Company Settings") {
 
                 this.OpenCompanySettingsDialog();
@@ -10161,150 +10165,31 @@ sap.ui.define([
         },
 
         //Users Column Names Popover code changes End here
-            // PeripheralConfiguration Column Names Popover code changes starts here
-
-            openPeripheralConfigurationColNamesPopover: function (oEvent) {
-                var oButton = oEvent.getSource(),
-                    oView = this.getView();
-                if (!this._pPeripheralConfigurationPopover) {
-                    this._pPeripheralConfigurationPopover = Fragment.load({
-                        id: oView.getId(),
-                        name: "com.eshipjet.zeshipjet.view.fragments.PeripheralConfigurationTableColumns",
-                        controller: this
-                    }).then(function (oPopover) {
-                        oView.addDependent(oPopover);
-                        return oPopover;
-                    });
-                }
-                this._pPeripheralConfigurationPopover.then(function (oPopover) {
-                    oController.PeripheralConfigurationColumnsVisiblity();
-                    oPopover.openBy(oButton);
+            // Peripheral Configuration Column Names Popover code changes starts here
+ OpenPeripheralConfigurationDialog: function () {
+            var oView = this.getView();
+            if (!this.byId("_IDGenAlcoholEditDialogPeripheralConfiguration")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.PeripheralConfiguration",
+                    controller: this // Pass the controller for binding
+                }).then(function (oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
                 });
-            },
-
-            PeripheralConfigurationColumnsVisiblity: function () {
-                var oView = oController.getView();
-                var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-                var aColumns = eshipjetModel.getProperty("/PeripheralConfigurationTableColumns");
-                var oPeripheralConfigurationTable = oView.byId("myPeripheralConfigurationColumnSelectId");
-                var aTableItems = oPeripheralConfigurationTable.getItems();
-
-                aColumns.map(function (oColObj) {
-                    aTableItems.map(function (oItem) {
-                        if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
-                            oItem.setSelected(true);
-                        }
-                    });
-                });
-            },
-
-            onPeripheralConfigurationColNameSearch: function (oEvent) {
-                var aFilters = [];
-                var sQuery = oEvent.getSource().getValue();
-                if (sQuery && sQuery.length > 0) {
-                    var filter = new Filter("label", FilterOperator.Contains, sQuery);
-                    aFilters.push(filter);
-                }
-                // update list binding
-                var oList = oController.getView().byId("myPeripheralConfigurationColumnSelectId");
-                var oBinding = oList.getBinding("items");
-                oBinding.filter(aFilters, "Application");
-
-            },
-
-            onPeripheralConfigurationColSelectOkPress: function () {
-                var oView = this.getView();
-                var oPeripheralConfigurationTable = oView.byId("myPeripheralConfigurationColumnSelectId");
-                var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
-                var oTable = oView.byId("_IDPeripheralConfigurationTable")
-                oTable.setModel(eshipjetModel);
-
-                var oPeripheralConfigurationTblItems = oPeripheralConfigurationTable.getItems();
-                var aColumnsData = eshipjetModel.getProperty("/PeripheralConfigurationTableColumns");
-                oPeripheralConfigurationTblItems.map(function (oTableItems) {
-                    aColumnsData.map(function (oColObj) {
-                        if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
-                            if (oTableItems.getSelected()) {
-                                oColObj.visible = true;
-                            } else {
-                                oColObj.visible = false;
-                            }
-                        }
-                    })
-                });
-                eshipjetModel.updateBindings(true);
-                oPeripheralConfigurationTable.setModel(eshipjetModel);
-                this._handleDisplayPeripheralConfigurationTable();
-                this._pPeripheralConfigurationPopover.then(function (oPopover) {
-                    oPopover.close();
-                });
-            },
-            onPeripheralConfigurationColSelectClosePress: function () {
-                this._pPeripheralConfigurationPopover.then(function (oPopover) {
-                    oPopover.close();
-                });
-            },
-
-
-            _handleDisplayPeripheralConfigurationTable: function () {
-                var that = this;
-                const oView = oController.getView();
-                var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
-                var PeripheralConfigurationTableColumns = eshipjetModel.getData().PeripheralConfigurationTableColumns;
-                const oTable = oView.byId("_IDPeripheralConfigurationTable");
-                oTable.setModel(eshipjetModel);
-                var count = 0;
-                for (var i = 0; i < PeripheralConfigurationTableColumns.length; i++) {
-                    if (PeripheralConfigurationTableColumns[i].visible === true) {
-                        count += 1
-                    }
-                }
-                oTable.bindColumns("/PeripheralConfigurationTableColumns", function (sId, oContext) {
-                    columnName = oContext.getObject().key;
-                    label = oContext.getObject().label;
-                    var minWidth = "100%";
-                    if (count >= 14) {
-                        var minWidth = "130px";
-                    }
-                    if (columnName === "actions") {
-                        var oHBox = new sap.m.HBox({}); // Create Text instance 
-                        var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
-                        var Btn2 = new sap.m.Button({
-                            icon: "sap-icon://megamenu", type: "Transparent",
-                            press: function (oEvent) {
-                                that.handleDownArrowPress(oEvent);
-                            }
-                        });
-                        oHBox.addItem(Btn1);
-                        oHBox.addItem(Btn2);
-                        return new sap.ui.table.Column({
-                            label: oResourceBundle.getText(columnName),
-                            template: oHBox,
-                            visible: oContext.getObject().visible,
-                            width: minWidth,
-                            sortProperty: columnName
-                        });
-                    } else if (columnName === "status") {
-                        var oSwitch = new sap.m.Switch({ type: "AcceptReject" });
-                        return new sap.ui.table.Column({
-                            label: oResourceBundle.getText(columnName),
-                            template: oSwitch,
-                            visible: oContext.getObject().visible,
-                            width: minWidth,
-                            sortProperty: columnName
-                        });
-                    } else {
-                        return new sap.ui.table.Column({
-                            label: oResourceBundle.getText(columnName),
-                            template: columnName,
-                            visible: oContext.getObject().visible,
-                            width: minWidth,
-                            sortProperty: columnName
-                        });
-                    }
-                });
-                oTable.bindRows("/PeripheralConfigurationTableRows");
-            },
+            } else {
+                this.byId("_IDGenAlcoholEditDialogPeripheralConfiguration").open(); // Open existing dialog
+            }
+        },
+        onPeripheralConfigurationCancelPress: function () {
+            this.byId("_IDGenAlcoholEditDialogPeripheralConfiguration").close();
+        },
+        onPeripheralConfigCancelPress: function () {
+            this.byId("_IDGenAlcoholEditDialogPeripheralConfiguration").close();
+        },
+        onPeripheralConfigSelectPress: function () {
+            this.byId("_IDGenAlcoholEditDialogPeripheralConfiguration").close();
+        },
             // PeripheralConfiguration Column Names Popover code changes End here
 
 
@@ -11186,6 +11071,257 @@ sap.ui.define([
                 oSpreadsheet.destroy();
             });
         },
+
+        // CostCenter Column Names Popover code changes End here
+
+
+         // FreightCondition Column Names Popover code changes starts here
+
+         openFreightConditionColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pFreightConditionPopover) {
+                this._pFreightConditionPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.FreightConditionTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pFreightConditionPopover.then(function (oPopover) {
+                oController.FreightConditionColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        FreightConditionColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/FreightConditionTableColumns");
+            var oFreightConditionTable = oView.byId("myFreightConditionColumnSelectId");
+            var aTableItems = oFreightConditionTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onFreightConditionColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myFreightConditionColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onFreightConditionColSelectOkPress: function () {
+            var oView = this.getView();
+            var oFreightConditionTable = oView.byId("myFreightConditionColumnSelectId");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var oTable = oView.byId("_IDFreightConditionTable")
+            oTable.setModel(eshipjetModel);
+
+            var oFreightConditionTblItems = oFreightConditionTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/FreightConditionTableColumns");
+            oFreightConditionTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            oFreightConditionTable.setModel(eshipjetModel);
+            this._handleDisplayFreightConditionTable();
+            this._pFreightConditionPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onFreightConditionColSelectClosePress: function () {
+            this._pFreightConditionPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        _handleDisplayFreightConditionTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var FreightConditionTableColumns = eshipjetModel.getData().FreightConditionTableColumns;
+            const oTable = oView.byId("_IDFreightConditionTable");
+            oTable.setModel(eshipjetModel);
+            var count = 0;
+            for (var i = 0; i < FreightConditionTableColumns.length; i++) {
+                if (FreightConditionTableColumns[i].visible === true) {
+                    count += 1
+                }
+            }
+            oTable.bindColumns("/FreightConditionTableColumns", function (sId, oContext) {
+                columnName = oContext.getObject().key;
+                label = oContext.getObject().label;
+                var minWidth = "100%";
+                if (count >= 14) {
+                    var minWidth = "130px";
+                }
+                if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "status") {
+                    var oSwitch = new sap.m.Switch({ type: "AcceptReject" });
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oSwitch,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/FreightConditionTableRows");
+        },
+
+        // onSearchCostCenter: function (oEvent) {
+        //     var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
+        
+        //     var oTable = this.byId("_IDCostCenterTable");
+        //     var oBinding = oTable.getBinding("rows");
+        
+        //     if (oBinding) {
+        //         var aFilters = [];
+        //         if (sQuery) {
+        //             aFilters.push(new sap.ui.model.Filter({
+        //                 filters: [
+        //                     new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.Contains, sQuery),
+        //                     new sap.ui.model.Filter("costCenter", sap.ui.model.FilterOperator.Contains, sQuery),
+        //                     new sap.ui.model.Filter("desc", sap.ui.model.FilterOperator.Contains, sQuery),
+        //                     new sap.ui.model.Filter("status", sap.ui.model.FilterOperator.Contains, sQuery)
+        //                 ],
+        //                 and: false
+        //             }));
+        //         }
+        //         oBinding.filter(aFilters);
+        //     }
+        // },
+
+        // onCostCenterFilterPopoverPress: function (oEvent) {
+        //     var oButton = oEvent.getSource(),
+        //         oView = this.getView();
+        //     if (!this._UsersPopover) {
+        //         this._UsersPopover = Fragment.load({
+        //             id: oView.getId(),
+        //             name: "com.eshipjet.zeshipjet.view.fragments.CostCenterFilterPopover",
+        //             controller: this
+        //         }).then(function (UsersPopover) {
+        //             oView.addDependent(UsersPopover);
+        //             return UsersPopover;
+        //         });
+        //     }
+        //     this._UsersPopover.then(function (UsersPopover) {
+        //         UsersPopover.openBy(oButton);
+        //     });
+        // },
+
+        // onCostCenterFilterPopoverClosePress: function () {
+        //     this.byId("idCostCenterFilterPopover").close();
+        // },
+        
+        // onCostCenterFilterPopoverApplyPress: function () {
+        //     var aFilters = [];
+        //     var oView = this.getView();
+        //     var sLocation = eshipjetModel.getProperty("/orderLocationFilter");
+        
+        //     if (sLocation) {
+        //         aFilters.push(new sap.ui.model.Filter("locationName", sap.ui.model.FilterOperator.EQ, sLocation));
+        //     }
+        //     var oTable = oView.byId("_IDCostCenterTable");
+        //     if (oTable) {
+        //         var oBinding = oTable.getBinding("rows");
+        //         if (oBinding) {
+        //             oBinding.filter(aFilters);
+        //         }
+        //     }
+        //     this.byId("idCostCenterFilterPopover").close();
+        // },
+        
+        // onCostCenterFilterPopoverResetPress: function () {
+        //     var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+        //     eshipjetModel.setProperty("/orderLocationFilter", "");
+        //     var oTable = this.byId("_IDCostCenterTable");
+        //     var oBinding = oTable.getBinding("rows");
+        //     oBinding.filter([]);
+        //     this.byId("idCostCenterFilterPopover").close();
+        // },
+
+        // onCostCenterExportToExcel: function () {
+        //     var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+        //     var rows = eshipjetModel.getProperty("/CostCenterTableRows");
+        //     var oSettings = {
+        //         workbook: {
+        //             columns: [
+        //                 { label: "Location Name", property: "locationName"},
+        //                 { label: "User ID", property: "userId"},
+        //                 { label: "First Name", property: "firstName"},
+        //                 { label: "Last Name", property: "lastName"},
+        //                 { label: "Phone No", property: "phonenum"},
+        //                 { label: "Email", property: "userEmail"},
+        //                 { label: "Address Line 1", property: "addressLine1"},
+        //                 { label: "Address Line 2", property: "addressLine2"},
+        //                 { label: "Address Line 3", property: "addressLine3" },
+        //                 { label: "City", property: "addressCity" },
+        //                 { label: "Zip / Postal Code", property: "addressZip" },
+        //                 { label: "Country", property: "addressCountry" },
+        //                 { label: "Role", property: "userRole" },
+        //                 { label: "Status", property: "status" }
+        //             ]
+        //         },
+        //         dataSource: rows,
+        //         fileName: 'Cost_Center_Data',
+        //         Worker: true
+        //     };
+        //     var oSpreadsheet = new Spreadsheet(oSettings);
+        //     oSpreadsheet.build().finally(function () {
+        //         oSpreadsheet.destroy();
+        //     });
+        // },
 
         // CostCenter Column Names Popover code changes End here
 

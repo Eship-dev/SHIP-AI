@@ -5809,6 +5809,89 @@
             "desc": "Marketing Cost Center"
         }
     ],
+        "FreightConditionTableColumns": [
+          {
+            "key": "locationId",
+            "label": "Location ID",
+            "visible": true
+          },
+          {
+            "key": "erpLocationId",
+            "label": "ERP Location ID",
+            "visible": true
+          },
+          {
+            "key": "freightConditionId",
+            "label": "Freight Condition ID",
+            "visible": true
+          },
+          {
+            "key": "erpFreightConditionId",
+            "label": "ERP Freight Condition ID",
+            "visible": true
+          },
+          {
+            "key": "freightConditionDesc",
+            "label": "Freight Condition Description",
+            "visible": true
+          },
+          {
+            "key": "freightConditionType",
+            "label": "Freight Condition Type",
+            "visible": true
+          },
+          {
+            "key": "shipmentType",
+            "label": "Shipment Type",
+            "visible": true
+          },
+          {
+            "key": "carrierName",
+            "label": "Carrier Name",
+            "visible": true
+          },
+          {
+            "key": "status",
+            "label": "Status",
+            "visible": true
+          }
+        ],
+        "FreightConditionTableRows": [
+          {
+            "locationId": "LOC001",
+            "erpLocationId": "ERPLOC001",
+            "freightConditionId": "FC001",
+            "erpFreightConditionId": "ERPFC001",
+            "freightConditionDesc": "Standard Delivery",
+            "freightConditionType": "Regular",
+            "shipmentType": "Air",
+            "carrierName": "FedEx",
+            "status": "Active"
+          },
+          {
+            "locationId": "LOC002",
+            "erpLocationId": "ERPLOC002",
+            "freightConditionId": "FC002",
+            "erpFreightConditionId": "ERPFC002",
+            "freightConditionDesc": "Express Delivery",
+            "freightConditionType": "Urgent",
+            "shipmentType": "Ground",
+            "carrierName": "UPS",
+            "status": "Inactive"
+          },
+          {
+            "locationId": "LOC003",
+            "erpLocationId": "ERPLOC003",
+            "freightConditionId": "FC003",
+            "erpFreightConditionId": "ERPFC003",
+            "freightConditionDesc": "Economy Delivery",
+            "freightConditionType": "Economy",
+            "shipmentType": "Sea",
+            "carrierName": "DHL",
+            "status": "Active"
+          }
+        ],
+      
     "StatusesTableColumns": [
         {
             "key": "locationName",
@@ -12928,6 +13011,24 @@
         { "id": "BP17", "name": "Drive Medical, PA" },
         { "id": "BP18", "name": "Drive Medical, MN" },
         { "id": "BP20", "name": "Canada Warehouse" }
+      ],
+      "ProductCollection": [
+        {
+          "ProductId": "P1001",
+          "Name": "HP LaserJet Pro M404dn"
+        },
+        {
+          "ProductId": "P1002",
+          "Name": "Canon imageCLASS LBP6030w"
+        },
+        {
+          "ProductId": "P1003",
+          "Name": "Brother HL-L2321D"
+        },
+        {
+          "ProductId": "P1004",
+          "Name": "Epson EcoTank M1170"
+        }
       ]
       
     

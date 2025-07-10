@@ -440,10 +440,7 @@
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Users" type="XML" />
 					</ScrollContainer>
 
-					<ScrollContainer	id="_ID_PeripheralConfiguration_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
-						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.PeripheralConfiguration" type="XML" />
-					</ScrollContainer>
-
+					
 					<ScrollContainer	id="_ID_Roles_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.Roles" type="XML" />
 					</ScrollContainer>
@@ -458,6 +455,10 @@
 
 					<ScrollContainer	id="_ID_CostCenters_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.CostCenters" type="XML" />
+					</ScrollContainer>
+
+					<ScrollContainer	id="_ID_FreightCondition_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.FreightCondition" type="XML" />
 					</ScrollContainer>
 
 					<ScrollContainer	id="_ID_Statuses_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
