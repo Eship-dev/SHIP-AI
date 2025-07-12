@@ -5614,13 +5614,22 @@ sap.ui.define([
             oToolPage.setSideExpanded(false);
             var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
             var tileTitle = oEvent.getParameters().domRef.innerText;
-            if (tileTitle === "Ship Request/Label") {
+            if (tileTitle === "Orders") {
                 // this._handleDisplayShipReqTable();
                 oController.getShipReqLabelHistoryShipments();
-                var sKey = "ShipRequestLabel";
-                eshipjetModel.setProperty("/commonValues/allViewsFooter", true);
+                var sKey = "Orders";
+                oController.getOrdersHistoryShipments();
+                // eshipjetModel.setProperty("/commonValues/allViewsFooter", true);
+                // eshipjetModel.setProperty("/commonValues/shipNowViewFooter", false);
+                // eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
+                eshipjetModel.setProperty("/commonValues/toolPageHeader", false);
+                eshipjetModel.setProperty("/commonValues/allViewsFooter", false);
                 eshipjetModel.setProperty("/commonValues/shipNowViewFooter", false);
                 eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
+                eshipjetModel.setProperty("/commonValues/routingGuidFooter", false);
+                eshipjetModel.setProperty("/commonValues/showDarkThemeSwitch", false);
+                eshipjetModel.setProperty("/commonValues/darkTheme", false);
+                document.body.classList.remove("dark-theme");
                 this.byId("pageContainer").to(this.getView().createId(sKey));
             } else if (tileTitle === "Ship Now") {
                 var sKey = "ShipNow";

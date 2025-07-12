@@ -78,9 +78,9 @@
 				                    allowWrapping="true"
 				                    class="sapUiTinyMargin ship-tile-container">
 									<GenericTile press="onTilePress" class="ship-tile shipping-card"
-										headerImage="{value: 'com/eshipjet/zeshipjet/css/images/shiprequest.png',formatter: 'sap.ui.require.toUrl'}">
+										headerImage="{value: 'com/eshipjet/zeshipjet/css/images/orders.png',formatter: 'sap.ui.require.toUrl'}">
 										<TileContent class="ship-tile-content">
-											<Button class="ship-tile-button" text="Ship Request/Label"/>
+											<Button class="ship-tile-button" text="Orders"/>
 										</TileContent>
 									</GenericTile>
 									<GenericTile press="onTilePress" class="ship-tile active-shipping-card"
