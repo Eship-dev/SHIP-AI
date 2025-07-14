@@ -39,7 +39,9 @@
         "shipNowVoidSelect": false,
         "shipNowVoidSelectSave": true,
         "shipNowVoidSelectShipNow": true,
-        "showShipType": false
+        "showShipType": false,
+        "ShippingPoint": false,
+        "plant": ""
     },
     "lengthOfDimensions": "",
     "widthOfDimensions": "",
@@ -1861,17 +1863,17 @@
         {
             "name": "class",
             "label": "Class",
-            "visible": true
+            "visible": false
         },
         {
             "name": "NMFC",
             "label": "NMFC",
-            "visible": true
+            "visible": false
         },
         {
             "name": "CommodityDescription",
             "label": "Commodity Description",
-            "visible": true
+            "visible": false
         },
         {
             "name": "Tracking",

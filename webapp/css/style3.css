@@ -2200,7 +2200,7 @@ button, input, optgroup, select, textarea {
 }
 
 
-.numberData {
+.totalPkgsNumberData {
   color: white !important;
   padding: 5px 15px !important;
   margin-left: 8px;
@@ -2208,6 +2208,16 @@ button, input, optgroup, select, textarea {
   font-weight: bold;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
   background-color: rgb(81, 0, 231) !important;
+}
+
+.pickStatusNumberData {
+  color: white !important;
+  padding: 5px 15px !important;
+  margin-left: 8px;
+  border-radius: 6px;
+  font-weight: bold;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  background-color: rgb(0, 159, 53) !important;
 }
 
 .TransparentBackground{
@@ -2460,6 +2470,8 @@ button, input, optgroup, select, textarea {
 
 .pgiSuccess {
   background-color: green !important; /* Set button background to green */
+  /* height: 2px !important;
+  width: 2px !important; */
 }
 
 .pgiSuccess .sapMBtnContent {
@@ -2709,4 +2721,76 @@ button, input, optgroup, select, textarea {
 
 .customLogOutButton:hover .sapUiIcon {
   color: white !important;
+}
+
+.void-button {
+  background-color: #dc3545;
+  color: #fff !important;
+  opacity: 0.85;
+  border-radius: 5px !important;
+}
+
+/* Target the icon inside the button */
+.void-button .sapMBtnIcon {
+  color: #fff !important;
+  fill: #fff !important;
+}
+
+.void-button:hover {
+  background-color: #ffffff !important;
+  opacity: 1;
+  cursor: pointer;
+  border-radius: 5px !important;
+}
+
+.void-button:hover .sapMBtnIcon {
+  color: #00d13b !important;
+  fill: #fff !important;
+}
+
+.truckSymbol {
+  background-color: #00d13b;
+  color: #fff !important;
+  opacity: 0.85;
+  border-radius: 5px !important;
+}
+
+/* Target the icon inside the button */
+.truckSymbol .sapMBtnIcon {
+  color: #fff !important;
+  fill: #fff !important;
+}
+
+.truckSymbol:hover {
+  background-color: #ffffff !important;
+  opacity: 1;
+  cursor: pointer;
+  border-radius: 5px !important;
+}
+
+.truckSymbol:hover .sapMBtnIcon {
+  color: #00d13b !important;
+  fill: #fff !important;
+}
+
+.pgi-style {
+  color: rgb(11, 173, 11);
+  font-size: 1.5rem;
+  font-weight: bold !important;
+}
+
+.pgi-style .sapUiIcon {
+  font-size: 1.5rem;
+  color: rgb(11, 173, 11);
+}
+
+.pgi-Failed-style {
+  color: rgb(240, 60, 10);
+  font-size: 1.5rem;
+  font-weight: bold !important;
+}
+
+.pgi-Failed-style .sapUiIcon {
+  font-size: 1.5rem;
+  color: rgb(240, 60, 10);
 }

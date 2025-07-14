@@ -280,6 +280,7 @@ sap.ui.define([
                 jQuery.sap.delayedCall(500, this, function() {
                     this.getView().byId("idSapDeliveryNumber").focus();
                 });
+                eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", "0");
                 oController.onShipNowNavigateInitialProcess();
                 // ShipNowDataModel.setProperty("/ShipToAddress", "");
                 // oController._handleDisplayShipNowPackTable();
@@ -1434,6 +1435,8 @@ sap.ui.define([
             eshipjetModel.setProperty("/commonValues/shipNowVoidSelectSave" , true);
             eshipjetModel.setProperty("/commonValues/shipNowVoidSelectShipNow" , true);
             eshipjetModel.setProperty("/commonValues/showShipType" , false);
+            eshipjetModel.setProperty("/commonValues/ShippingPoint" , false);
+            eshipjetModel.setProperty("/commonValues/plant" , "");
             eshipjetModel.setProperty("/commonValues/PurchaseOrder" , "");
             eshipjetModel.setProperty("/selectPaymentType", "");
             eshipjetModel.setProperty("/invoiceNo", "");
@@ -1668,7 +1671,9 @@ sap.ui.define([
                 PurchaseOrder: "",
                 lengthOfDimensions: "",
                 widthOfDimensions: "",
-                heightOfDimensions: ""
+                heightOfDimensions: "",
+                ShippingPoint: false,
+                plant: ""
             };
             eshipjetModel.setProperty("/commonValues", oCommonValues);        
             eshipjetModel.setProperty("/accountNumber", "");
@@ -3581,8 +3586,12 @@ sap.ui.define([
                             oController.ShippingType = oData.ShippingType;
                             eshipjetModel.setProperty("/PlantCode", oData.ShippingPoint);
                             eshipjetModel.setProperty("/commonValues/ShipNowShipsrvNameSelectedKey", oData.ShippingType);
+                            eshipjetModel.setProperty("/commonValues/plant", oData.ShippingPoint);
                             if (oData.ShippingType !== "" && oData.ShippingType !== undefined) {
                                 eshipjetModel.setProperty("/commonValues/showShipType", true);
+                            }
+                            if (oData.ShippingPoint !== "" && oData.ShippingPoint !== undefined) {
+                                eshipjetModel.setProperty("/commonValues/ShippingPoint", true);
                             }
                             eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", oData.OverallGoodsMovementStatus);
 
@@ -5657,7 +5666,7 @@ sap.ui.define([
                 ShipNowDataModel.setProperty("/ShipToAddress", "");
                 eshipjetModel.setProperty("/BusinessPartners", []);
                 eshipjetModel.setProperty("/commonValues/shipNowGetBtn", true);
-                eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", ""); 
+                eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", "0"); 
                 eshipjetModel.setProperty("/commonValues/shipNowBtnStatus", true);
                 eshipjetModel.setProperty("/commonValues/showShipType", false);
                 jQuery.sap.delayedCall(500, this, function() {

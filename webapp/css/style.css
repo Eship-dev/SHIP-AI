@@ -2076,23 +2076,22 @@ sidebar-header {
   max-height: 95% !important;
   padding-bottom: 0px !important;
   top: 3px !important;
-  
-  
 }
+
 .pgiSuccess .sapMBtnIcon {
   background-color: #07f13e;
-    padding: 1px;
-    color: white;
-    margin-right: 7px;
+  padding: 1px;
+  color: white;
+  margin-right: 7px;
+  height: 2px !important;
 }
 
 .pgis2{
-  font-size: 18px;
-    font-weight: bold;
-    color: #fff;
-    display: flex
-;
-    align-items: center;
+  font-size: 40px;
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  align-items: center;
 }
 .todayscss{
   font-weight: 500 !important;
