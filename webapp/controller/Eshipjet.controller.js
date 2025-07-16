@@ -33,6 +33,35 @@ sap.ui.define([
             // var sAudioPath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/audio/Lock.mp3");
             // var audio = new Audio(sAudioPath);
             // audio.play();
+
+            var oTimerModel = new sap.ui.model.json.JSONModel({
+                hours: "00",
+                minutes: "00",
+                seconds: "00"
+            });
+            this.getView().setModel(oTimerModel, "timerModel");
+
+            var seconds = 0, minutes = 0, hours = 0;
+
+            this.timerInterval = setInterval(() => {
+                seconds++;
+
+                if (seconds === 60) {
+                    seconds = 0;
+                    minutes++;
+                }
+
+                if (minutes === 60) {
+                    minutes = 0;
+                    hours++;
+                }
+
+                this.getView().getModel("timerModel").setData({
+                    hours: hours.toString().padStart(2, "0"),
+                    minutes: minutes.toString().padStart(2, "0"),
+                    seconds: seconds.toString().padStart(2, "0")
+                });
+            }, 1000);
             
             this._pageSize = 50;
             this._currentPage = 1;
@@ -1933,18 +1962,18 @@ sap.ui.define([
 
             var packObj = obj.Packages[0];
             var tempArray = [];
-            if(HandlingUnits && HandlingUnits.length > 0 && HandlingUnits[0].HandlingUnitExternalID && HandlingUnits[0].HandlingUnitExternalID.length > 0){
+            if(HandlingUnits && HandlingUnits.length > 0 && HandlingUnits[0].Hunumber && HandlingUnits[0].Hunumber.length > 0){
                 // HandlingUnits.forEach(function(itm, idx ){
                 var huNums = "";
                 $.each(HandlingUnits, function( index, itm ) {
-                    if(itm.HandlingUnitExternalID && itm.HandlingUnitExternalID.length > 0){
+                    if(itm.Hunumber && itm.Hunumber.length > 0){
                         packObj = obj.Packages[0];
-                        packObj.HU = itm.HandlingUnitExternalID;
-                        packObj.Weight = itm.GrossWeight;
+                        packObj.HU = itm.Hunumber;
+                        packObj.Weight = itm.Totalweight.trim();
                         tempArray.push(jQuery.extend(true, {}, packObj));
                         packObj = {};
-                        obj.CarrierDetails.InvoiceNo = itm.HandlingUnitExternalID;
-                        huNums + "," +itm.HandlingUnitExternalID;
+                        obj.CarrierDetails.InvoiceNo = itm.Hunumber;
+                        huNums + "," +itm.Hunumber;
                     }
                 });
                 obj["Packages"] = tempArray;
@@ -2080,6 +2109,7 @@ sap.ui.define([
                                         });                               
                                     }
                                     sap.m.MessageBox.error(sError);
+                                    oController.onCloseBusyDialog();
                                 }
                             },
                             error: function (error) {
@@ -20302,6 +20332,7 @@ sap.ui.define([
         // Freight Quote Orders Changes End
 
         onLogOutPress:function(){
+            clearInterval(this.timerInterval);
             window.location.href = "/sap/public/bc/icf/logoff";
         }
 

@@ -4,19 +4,29 @@
 	    		<Toolbar class="" height="3rem" >
 					<Button icon="sap-icon://past" id="shipNowRecentShips" type="Transparent" press="onOpenRecentShipmentPopover" />
 					<Text text="Ship Now"/>
+					
 					<ToolbarSpacer/>
+						<HBox class="sapUiLargeMarginEnd" >
+							<Text text="A" class="audit-style" tooltip="Audited Today" width="auto" ></Text>
+							<Text text="0" class="audit-style sapUiTinyMarginEnd" tooltip="Audited Today"  width="auto" ></Text>
+
+							<Text text="B" class="billed-style" tooltip="Billed Today"  width="auto" ></Text>
+							<Text text="0" class="billed-style sapUiLargeMarginEnd" tooltip="Billed Today"  width="auto" ></Text>
+
+							<Text text="{= ${timerModel>/hours} + ':' + ${timerModel>/minutes} + ':' + ${timerModel>/seconds} }" class="timer-style" tooltip="Total Time Spent" />
+						</HBox>
 
 				<!-- <Button text="PGI Successful." type="Ghost"
 					visible="{= ${eshipjetModel>/commonValues/OverallGoodsMovementStatus} === 'C' ? true : false }"
 					icon="sap-icon://accept" iconFirst="true"
 					enabled="false" class="sapUiSmallMarginEnd pgiSuccess pgis2" /> -->
 				<HBox class="pgi-style" >
-					<core:Icon src="sap-icon://sys-enter-2" class="sapUiTinyMarginTop" visible="{= ${eshipjetModel>/commonValues/OverallGoodsMovementStatus} === 'C' ? true : false }" ></core:Icon>
-					<Text text="PGI" class="pgi-style sapUiTinyMargin" visible="{= ${eshipjetModel>/commonValues/OverallGoodsMovementStatus} === 'C' ? true : false }" ></Text>
+					<core:Icon src="sap-icon://sys-enter-2" class="sapUiTinyMarginTop" visible="{= ${eshipjetModel>/commonValues/OverallGoodsMovementStatus} === 'C' || ${eshipjetModel>/commonValues/OverallGoodsMovementStatus} === 'B' ? true : false }" ></core:Icon>
+					<Text text="PGI" class="pgi-style sapUiTinyMargin" visible="{= ${eshipjetModel>/commonValues/OverallGoodsMovementStatus} === 'C' || ${eshipjetModel>/commonValues/OverallGoodsMovementStatus} === 'B' ? true : false }" ></Text>
 				</HBox>
 				<HBox class="pgi-Failed-style" >
 					<core:Icon src="sap-icon://sys-cancel-2" class="sapUiTinyMarginTop" visible="{= ${eshipjetModel>/commonValues/OverallGoodsMovementStatus} === 'A' ? (${eshipjetModel>/commonValues/shipNowStatus} === true) : false }" ></core:Icon>
-					<Text text="PGI Failed" class="pgi-Failed-style sapUiTinyMargin" visible="{= ${eshipjetModel>/commonValues/OverallGoodsMovementStatus} === 'A' ? (${eshipjetModel>/commonValues/shipNowStatus} === true) : false }" ></Text>
+					<Text text="PGI" class="pgi-Failed-style sapUiTinyMargin" visible="{= ${eshipjetModel>/commonValues/OverallGoodsMovementStatus} === 'A' ? (${eshipjetModel>/commonValues/shipNowStatus} === true) : false }" ></Text>
 				</HBox>
 				<!-- <Button text="PGI Failed." type="Ghost" 
 					visible="{= ${eshipjetModel>/commonValues/OverallGoodsMovementStatus} === 'A' ? (${eshipjetModel>/commonValues/shipNowStatus} === true) : false }"
@@ -56,13 +66,13 @@
 						press="onOpenSAPDeliveryList" />
 
 									<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch" value="{eshipjetModel>/commonValues/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
-									<Input id="idSapDeliveryNumber" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{eshipjetModel>/commonValues/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle sapDeliveryNumberInptBold create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd custom-input2" width="14%" editable="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog"  liveChange="onDeliveryNumberLiveChange" ></Input>
+									<Input id="idSapDeliveryNumber" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{eshipjetModel>/commonValues/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle sapDeliveryNumberInptBold create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd custom-input2" width="10%" editable="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog"  liveChange="onDeliveryNumberLiveChange" ></Input>
 									<Button text="Get" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" type="Ghost" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" press="onShipNowGetPress" width="4%"></Button>
 									<Label text="Ship Type" visible="{eshipjetModel>/commonValues/showShipType}" class="sapUiSmallMargin" ></Label>
 									<Text text="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}" visible="{eshipjetModel>/commonValues/showShipType}" class="ship-type-value sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" ></Text>
 
 									<Label text="Plant" visible="{eshipjetModel>/commonValues/ShippingPoint}" class="sapUiSmallMargin" ></Label>
-									<Text text="{eshipjetModel>/commonValues/plant}" visible="{eshipjetModel>/commonValues/showShipType}" class="ship-type-value sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" ></Text>
+									<Text text="{eshipjetModel>/commonValues/plant}" visible="{eshipjetModel>/commonValues/showShipType}" class="plant-type-style sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" ></Text>
 									<!-- <Button text="Consolidation" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" type="Ghost" press="handleConsolidationPress" width="8%"></Button> -->
 									<Label text="Ship Date" class="sapUiSmallMarginTop sapUiSmallMarginBegin" labelFor="DP1" width="6%" />
 									<DatePicker class="create-ship-req_input sapUiTinyMargin" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" id="DP1" width="10%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
@@ -1144,7 +1154,8 @@
 										<Button text="Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_Pack sapUiTinyMarginEnd sapUiTinyMarginBegin sapUiTinyMarginBottom" type="Ghost" width="auto" press="onPackPress" ></Button>
 										<Button text="Pack All" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_PackAll sapUiTinyMarginEnd" type="Ghost" width="auto" press="onPackAllPress" ></Button>
 										<Button text="DG Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_DGPack sapUiTinyMarginEnd" type="Ghost" width="auto" ></Button>
-										<Button text="DG Pack All" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_DGPackAll" type="Ghost" width="auto" ></Button>
+										<Button text="DG Pack All" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_DGPackAll sapUiTinyMarginEnd" type="Ghost" width="auto" ></Button>
+										<Button text="Multi Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_MultiPack" type="Ghost" width="auto" ></Button>
 									</FlexBox>
                                 </HBox>
 								<HBox height="3rem" width="30%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="Start" >

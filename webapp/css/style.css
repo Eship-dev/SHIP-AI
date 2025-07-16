@@ -1307,6 +1307,50 @@ body.dark-theme {
 }
 
 
+.Ship-Now-toolbar1__button_MultiPack:hover > span {
+  background-color: #c515f6 !important;
+  color: #fff !important;
+  height: 123% !important;
+  padding-left: 0px;
+  width: 91px !important;
+  border: 2px solid #c515f6 !important;
+  animation: animateBtn 1s infinite;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+  border-radius: 1% !important;
+}
+
+.Ship-Now-toolbar1__button_MultiPack:hover bdi {
+  color: #fff !important;
+  border-radius: 1% !important;
+}
+
+.Ship-Now-toolbar1__button_MultiPack span {
+  color: #c515f6 !important;
+  height: 123% !important;
+  padding-left: 0px;
+  border-radius: 1% !important;
+  display: flex !important;
+  align-items: center;
+  height: 106px;
+  width: 91px !important;
+}
+
+/* Dark Theme Styles */
+body.dark-theme {
+  .Ship-Now-toolbar1__button_MultiPack > span {
+    border-radius: 1% !important;
+    background-color: #c515f6 !important;
+    color: #fff !important;
+  }
+
+  .Ship-Now-toolbar1__button_MultiPack:focus {
+    border: none;
+    border-radius: 1% !important;
+  }
+}
+
+
 .icon-dashboard_icon .path1:before {
   content: "\e900";
   color: rgb(244, 244, 244);
