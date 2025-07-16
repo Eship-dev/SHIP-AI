@@ -4109,7 +4109,7 @@
             "name": "Peripheral Configuration"
         },
         {
-            "name": "MOT"
+            "name": "Lock/Unlock User"
         }
     ],
     "AddIconListSet2": [
@@ -4132,7 +4132,7 @@
             "name": "Cost Centers"
         },
         {
-            "name": "Incoterms"
+            "name": "Payment Types"
         },
         {
             "name": "Tracking Range"
@@ -4141,7 +4141,7 @@
             "name": "NMFC"
         },
         {
-            "name": "Payment Types"
+            "name": "Incoterms"
         }
     ],
     "AddIconListSet3": [
@@ -4168,6 +4168,9 @@
         },
         {
             "name": "SMTP Configuration"
+        },
+        {
+            "name": "MOT"
         }
     ],
     "LocationTableColumns": [

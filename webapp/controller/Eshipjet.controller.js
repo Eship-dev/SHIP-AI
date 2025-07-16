@@ -8981,6 +8981,9 @@ sap.ui.define([
             } else if (oCurrObj && oCurrObj.name === "Peripheral Configuration") {
 
                 this.OpenPeripheralConfigurationDialog();
+            } else if (oCurrObj && oCurrObj.name === "Lock/Unlock User") {
+
+                this.OpenLockUnlockUserDialog();
           
             } else if (oCurrObj && oCurrObj.name === "Company Settings") {
 
@@ -9068,6 +9071,31 @@ sap.ui.define([
                 Fragment.load({
                     id: oView.getId(),
                     name: "com.eshipjet.zeshipjet.view.fragments.DefaultConfigDialog",
+                    controller: this // Pass the controller for binding
+                }).then(function (oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("DefaultconfopenDialog").open(); // Open existing dialog
+            }
+        },
+        DefaultCancelDialog: function () {
+            this.byId("DefaultconfopenDialog").close();
+        },
+        DefaultSaveDialog: function () {
+            this.byId("DefaultconfopenDialog").close();
+        },
+        onDefaultConfigurationClosePress: function () {
+            this.byId("DefaultconfopenDialog").close();
+        },
+
+        OpenLockUnlockUserDialog: function () {
+            var oView = this.getView();
+            if (!this.byId("DefaultconfopenDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.LockUnlockUserDialog",
                     controller: this // Pass the controller for binding
                 }).then(function (oDialog) {
                     oView.addDependent(oDialog);

@@ -1,0 +1,50 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <Dialog
+        id="LockUnlockUseropenDialog"
+        contentWidth="30%"
+        contentHeight="26%" 
+    >
+     <customHeader>
+        <Toolbar>
+            <!-- Title -->
+            <Title text="Default Configuration" />
+            
+            <!-- Spacer to push close button to the right -->
+            <ToolbarSpacer />
+
+            <!-- Close Button -->
+            <Button 
+                icon="sap-icon://decline" 
+                 class="Decline_Btn ship-now-decline_btn" 
+                press="onLockUnlockUserigurationClosePress" />
+        </Toolbar>
+    </customHeader>
+        <f:SimpleForm id="SimpleFormChange480_12120Dual123"
+            editable="true"
+                class="customSimpleFormShadow"
+                width="auto"
+                layout="ResponsiveGridLayout"
+                columnsM="4"
+                columnsL="4"
+                columnsXL="4">
+            <f:content>
+                <Label text="SAP User ID" />
+                <Input placeholder="Enter the Sap User ID" class="sapUiSmallMarginBottom create-ship-req_input" ></Input>
+				<Button text="Get" type="Ghost" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" width="4%"></Button>
+
+            </f:content>
+        </f:SimpleForm>
+
+        <footer>
+            <OverflowToolbar>
+                <Button text="Cancel" press="DefaultCancelDialog" />
+                <ToolbarSpacer/>
+                <Button type="Emphasized" text="Save" press="DefaultSaveDialog" />
+            </OverflowToolbar>
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>
