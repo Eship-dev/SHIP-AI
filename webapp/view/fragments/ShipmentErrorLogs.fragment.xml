@@ -1,0 +1,117 @@
+<core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
+	
+	<Toolbar width="auto" height="3rem" class="toolbarbottomborder fixedLayout ordersDarkThemeToolbar">
+			<Text text="ShipmentErrorLogs" class="toolBarHeader sapUiTinyMarginBegin whiteColor" ></Text>
+				<ToolbarSpacer />
+					<HBox>
+						<Button  text="Shipment Error Logs"  press="onAddStatusPress" class="Master-toolbar__button" width="12rem" ></Button>
+						<!-- <Button type="Success" press="onADDLocImpPress" icon="sap-icon://navigation-down-arrow" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button> -->
+                	</HBox>
+		</Toolbar>
+
+        <Toolbar height="25%" class="sapUiTinyMarginBottom whiteBackground " >
+			<HBox width="100%" >
+				<VBox class="sapUiTinyMargin" width="33%">
+					<Text text="1" class="NumberSizeTitle1"></Text>
+					<Text text="Error" class="NumberSizeTitle2"></Text>
+					<Button class="totalProgress-request-button request-button" icon="false" width="100%"  ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="33%">
+					<Text text="2" class="NumberSizeTitle1"></Text>
+					<Text text="Open" class="NumberSizeTitle2"></Text>
+					<Button type="Critical" class="inTransit-request-button request-button" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="33%">
+					<Text text="3" class="NumberSizeTitle1"></Text>
+					<Text text="Completed" class="NumberSizeTitle2"></Text>
+					<Button class="InWhite-request-button request-button" type="Success" icon="false" width="100%" ></Button>
+				</VBox>
+			</HBox>
+		</Toolbar>
+
+	<VBox class="whiteBackground sapUiTinyMarginTop" >
+		<Toolbar class="sapUiTinyMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd" >
+			<Button icon="sap-icon://filter" press="onShipmentErrorLogsFilterPopoverPress" type="Transparent" class="ordersIcons" ></Button>
+			<ToolbarSpacer ></ToolbarSpacer>
+				<SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" liveChange="onSearchShipmentErrorLogs" ></SearchField>
+				<Button icon="sap-icon://action" press="onShipmentErrorLogsExportToExcel" type="Transparent" class="ordersIcons" ></Button>
+				<Button icon="sap-icon://action-settings" press="openShipmentErrorLogsColNamesPopover" type="Transparent" class="ordersIcons" ></Button>
+			<customData>
+				<core:CustomData key="remember" value="true" />
+				<core:CustomData key="showClearButton" value="true" />
+				<core:CustomData key="confirmButtonText" value="Ok" />
+			</customData>
+		</Toolbar>
+		<ui:Table	
+			id="_ID_ShipmentErrorLogsTable"
+			class="rowRightLine ordersTableRightBorder"
+			selectionMode="None"
+			visibleRowCount="10"
+			ariaLabelledBy="title">
+		</ui:Table>
+    </VBox>
+
+	<Toolbar class="whiteBackground sapUiTinyMarginTop ordersTableFooter">
+		<ToolbarSpacer/>
+			<Button  text="First" type="Transparent"/>
+			<Button  text="Previous" type="Transparent"/>
+			<Text    text="1-0 of 0" />
+			<Button  text="Next" type="Transparent"/>
+			<Button  text="Last" type="Transparent"/>
+	</Toolbar>
+
+
+    <!-- <Toolbar  width="auto" height="15%" class="toolbarbottomborder fixedLayout ordersDarkThemeToolbar">
+			<Text text="ShipmentErrorLogs" class="toolBarHeader sapUiTinyMarginBegin pageTitle" ></Text>
+				<ToolbarSpacer />
+					<HBox>
+                    <Button  text="Add Status" press="onAddStatusPress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="6rem" ></Button>
+                    <Button type="Success" press="onStatusArrowPress" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button>
+                </HBox>
+		</Toolbar>
+
+        <Toolbar height="15%" >
+			<HBox width="100%" >
+				<VBox class="sapUiTinyMargin" width="33%">
+					<Text text="1" class="NumberSizeTitle1"></Text>
+					<Text text="Total ShipmentErrorLogs" class="NumberSizeTitle2"></Text>
+					<Button class="totalProgress-request-button request-button" press="handleManifestFilterBtnPress" icon="false" width="100%"  ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="33%">
+					<Text text="2" class="NumberSizeTitle1"></Text>
+					<Text text="Active" class="NumberSizeTitle2"></Text>
+					<Button class="inTransit-request-button  request-button" type="Critical" press="handleManifestFilterBtnPress" icon="false" width="100%" ></Button>
+				</VBox>
+				<VBox class="sapUiTinyMargin" width="33%">
+					<Text text="3" class="NumberSizeTitle1"></Text>
+					<Text text="Inactive" class="NumberSizeTitle2"></Text>
+					<Button class="InWhite-request-button request-button" type="Success" press="handleManifestFilterBtnPress" icon="false" width="100%" ></Button>
+				</VBox>
+			</HBox>
+		</Toolbar>
+
+
+    <ui:Table	id="_IDShipmentErrorLogsTable"	width="100%"	class="headerContent sapUiTinyMarginTop"
+             	selectionMode="None"	paste="onPaste" 	ariaLabelledBy="title">
+    <ui:extension>
+        <OverflowToolbar style="Clear">										
+            <ToolbarSpacer />
+			    <Button icon="sap-icon://synchronize" press="onShipmentErrorLogsRefreshPress"></Button>
+                <Button icon="sap-icon://action" press="onShipmentErrorLogsExportToExcel" ></Button>
+                <Button icon="sap-icon://action-settings" press="openShipmentErrorLogsColNamesPopover"></Button>
+        </OverflowToolbar>
+    </ui:extension>	
+    <ui:footer>
+    <Toolbar>        
+        <ToolbarSpacer/>
+        <Button  text="First" type="Emphasized"/>
+        <Button  text="Previous" type="Emphasized"/>
+        <Text    text="1-0 of 0" />
+        <Button  text="Next" type="Emphasized"/>
+        <Button  text="Last" type="Emphasized"/>
+    </Toolbar>
+	</ui:footer>							
+    </ui:Table> -->
+    
+
+</core:FragmentDefinition>

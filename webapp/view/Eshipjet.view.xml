@@ -531,6 +531,9 @@
 					<ScrollContainer	id="_ID_EUCountries_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.EUCountries" type="XML" />
 					</ScrollContainer>
+					<ScrollContainer	id="_ID_ShipmentErrorLogs_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ShipmentErrorLogs" type="XML" />
+					</ScrollContainer>
 
 					<ScrollContainer	id="_ID_CreateShipReqLabel_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.CreateShipReqLabelClick" type="XML" />

@@ -8950,9 +8950,9 @@ sap.ui.define([
                 oController._displayTables("_ID_IncotermsTable", "IncoTermsTableColumns", "IncoTermsTableRows", "Incoterms");
                 oPageContainer.to(oView.createId("_ID_Incoterms_TableScrollContainer"));
 
-            } else if (oCurrObj && oCurrObj.name === "Tracking Range") {
+            } else if (oCurrObj && oCurrObj.name === "Pro Number Range") {
 
-                oController._displayTables("_ID_TrackingRangeTable", "TrackingRangeTableColumns", "TrackingRangeTableRows", "Tracking Range");
+                oController._displayTables("_ID_TrackingRangeTable", "TrackingRangeTableColumns", "TrackingRangeTableRows", "Pro Number Range");
                 oPageContainer.to(oView.createId("_ID_TrackingRange_TableScrollContainer"));
 
             } else if (oCurrObj && oCurrObj.name === "Dimensions") {
@@ -8998,6 +8998,10 @@ sap.ui.define([
 
                 oController._displayTables("_ID_EUCountriesTable", "EUCountriesTableColumns", "EUCountriesTableRows", "EU Countries");
                 oPageContainer.to(oView.createId("_ID_EUCountries_TableScrollContainer"));
+            } else if (oCurrObj && oCurrObj.name === "Shipment Error Logs") {
+
+                oController._displayTables("_ID_ShipmentErrorLogsTable", "ShipmentErrorLogsTableColumns", "ShipmentErrorLogsTableRows", "Shipment Error Logs");
+                oPageContainer.to(oView.createId("_ID_ShipmentErrorLogs_TableScrollContainer"));
 
             } else if (oCurrObj && oCurrObj.name === "Routing Guide") {
 
@@ -14949,6 +14953,152 @@ sap.ui.define([
         },
 
         // EUCountries Column Names Popover code changes End here
+
+        // ShipmentErrorLogs Column Names Popover code changes starts here
+
+        openShipmentErrorLogsColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pShipmentErrorLogsPopover) {
+                this._pShipmentErrorLogsPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipmentErrorLogsTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pShipmentErrorLogsPopover.then(function (oPopover) {
+                oController.ShipmentErrorLogsColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        ShipmentErrorLogsColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/ShipmentErrorLogsTableColumns");
+            var oShipmentErrorLogsTable = oView.byId("myShipmentErrorLogsColumnSelectId");
+            var aTableItems = oShipmentErrorLogsTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onShipmentErrorLogsColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myShipmentErrorLogsColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onShipmentErrorLogsColSelectOkPress: function () {
+            var oView = this.getView();
+            var oShipmentErrorLogsTable = oView.byId("myShipmentErrorLogsColumnSelectId");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var oTable = oView.byId("_ID_ShipmentErrorLogsTable")
+            oTable.setModel(eshipjetModel);
+
+            var oShipmentErrorLogsTblItems = oShipmentErrorLogsTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/ShipmentErrorLogsTableColumns");
+            oShipmentErrorLogsTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            oShipmentErrorLogsTable.setModel(eshipjetModel);
+            this._handleDisplayShipmentErrorLogsTable();
+            this._pShipmentErrorLogsPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onShipmentErrorLogsColSelectClosePress: function () {
+            this._pShipmentErrorLogsPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        _handleDisplayShipmentErrorLogsTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var ShipmentErrorLogsTableColumns = eshipjetModel.getData().ShipmentErrorLogsTableColumns;
+            const oTable = oView.byId("_ID_ShipmentErrorLogsTable");
+            oTable.setModel(eshipjetModel);
+            var count = 0;
+            for (var i = 0; i < ShipmentErrorLogsTableColumns.length; i++) {
+                if (ShipmentErrorLogsTableColumns[i].visible === true) {
+                    count += 1
+                }
+            }
+            oTable.bindColumns("/ShipmentErrorLogsTableColumns", function (sId, oContext) {
+                columnName = oContext.getObject().key;
+                label = oContext.getObject().label;
+                var minWidth = "100%";
+                if (count >= 14) {
+                    var minWidth = "130px";
+                }
+                if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "status") {
+                    var oSwitch = new sap.m.Switch({ type: "AcceptReject" });
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oSwitch,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/ShipmentErrorLogsTableRows");
+        },
+
+        // ShipmentErrorLogs Column Names Popover code changes End here
 
         // add location popover changes start
         onAddLocationPress: function (oEvent) {

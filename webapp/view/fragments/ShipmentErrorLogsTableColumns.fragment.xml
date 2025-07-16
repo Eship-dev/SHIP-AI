@@ -1,0 +1,38 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover  contentWidth="20%" placement="Left" contentHeight="40%" >
+		<customHeader>
+			<VBox >
+				<Toolbar class="toolbarbottomborder">
+					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="Columns"></Title>
+					<ToolbarSpacer ></ToolbarSpacer>					
+					<Button icon="sap-icon://decline" press="onShipmentErrorLogsColSelectClosePress" class="Decline_Btn ship-now-decline_btn" ></Button>
+				</Toolbar>
+				<SearchField placeholder="Search Columns"   liveChange="onShipmentErrorLogsColNameSearch"></SearchField>
+			</VBox>
+		</customHeader>
+		<content>
+        <Table	id="myShipmentErrorLogsColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/ShipmentErrorLogsTableColumns'}" >
+		<ColumnListItem id="_IDGenShipmentErrorLogsColumnListItem1" vAlign="Middle">
+			<cells>				
+				<Text text="{eshipjetModel>label}" />				
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column >
+				<header>
+					<Text text="Select All" />
+				</header>
+			</Column>			
+		</columns>
+        </Table>
+        </content>
+        <footer>
+            <Toolbar >
+                <ToolbarSpacer />
+                <Button text="Apply" press="onShipmentErrorLogsColSelectOkPress" type="Emphasized"></Button>               
+            </Toolbar>
+        </footer>      
+	</Popover>   
+</core:FragmentDefinition>

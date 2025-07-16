@@ -4135,7 +4135,7 @@
             "name": "Payment Types"
         },
         {
-            "name": "Tracking Range"
+            "name": "Dangerous Goods"
         },
         {
             "name": "NMFC"
@@ -4152,7 +4152,7 @@
             "name": "Company Settings"
         },
         {
-            "name": "Dangerous Goods"
+            "name": "Pro Number Range"
         },
         {
             "name": "Pkg Materials / Dims"
@@ -4171,6 +4171,9 @@
         },
         {
             "name": "MOT"
+        },
+        {
+            "name": "Shipment Error Logs"
         }
     ],
     "LocationTableColumns": [
@@ -9900,6 +9903,44 @@
         }
     ],
     "EUCountriesTableRows": [],
+    "ShipmentErrorLogsTableColumns": [
+    {
+        "key": "userId",
+        "label": "User ID",
+        "visible": true
+    },
+    {
+        "key": "order",
+        "label": "Order",
+        "visible": true
+    },
+    {
+        "key": "pgiStatus",
+        "label": "PGI Status",
+        "visible": true
+    },
+    {
+        "key": "location",
+        "label": "Location",
+        "visible": true
+    },
+    {
+        "key": "carrier",
+        "label": "Carrier",
+        "visible": true
+    },
+    {
+        "key": "errorMessage",
+        "label": "Error Message",
+        "visible": true
+    },
+    {
+        "key": "createdDate",
+        "label": "Created Date",
+        "visible": true
+    }
+],
+"ShipmentErrorLogsTableRows": [],
     "TrackingNumberColumns": [
         {
             "key": "Ship Method",
