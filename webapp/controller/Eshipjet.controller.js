@@ -1709,7 +1709,9 @@ sap.ui.define([
             jQuery.sap.delayedCall(500, this, function() {
                 this.getView().byId("idSapDeliveryNumber").focus();
             });
-            oController.onPackSectionEmptyRows();            
+            oController.onPackSectionEmptyRows();     
+            var oIconTabBar = this.byId("idIconTabBarFiori2");
+            oIconTabBar.setSelectedKey("Pack");       
             // oController.onCloseBusyDialog();
             oController.getView().setBusy(false);
 
@@ -2206,8 +2208,8 @@ sap.ui.define([
             var aHandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
             var oManifestDataObj = {}, aManifestData = [];
             var aHUnitsFilterData = aHandlingUnits.filter(function (item) {
-                 return item.HandlingUnitReferenceDocument === sapDeliveryNumber;
-            });            
+                 return item.Delivery === sapDeliveryNumber;
+            });
             grossWeight = eshipjetModel.getProperty("/commonValues/packAddProductTable/0/ItemGrossWeight");
             var trackingArray = eshipjetModel.getProperty("/trackingArray");
             
@@ -2418,8 +2420,8 @@ sap.ui.define([
             if(aHUnitsFilterData && aHUnitsFilterData.length > 0) {
                 aHUnitsFilterData.forEach(function(item, index){
                     Count = Count  + 1 
-                    grossWeight = item.GrossWeight;                
-                    oManifestDataObj["HandlingUnit"] = item.HandlingUnitExternalID;
+                    grossWeight = item.Totalweight.trim();                
+                    oManifestDataObj["HandlingUnit"] = item.Hunumber;
                     oManifestDataObj["PackageWeight"] = grossWeight;
                     oManifestDataObj["Chargweight"]   = grossWeight;   
                     // oManifestDataObj["Labelurl"] = shippingDocuments[index].docName;
@@ -3714,7 +3716,6 @@ sap.ui.define([
                 filters: aFilters,
                 success:function(response){
                     eshipjetModel.setProperty("/getManifestHeader", response.results);
-
                     
                     if (response && response.results.length > 0) {
                         oController.onShopNowShipMethodChangeFromQuoteNow(response.results[0].CarrierCode, response.results[0].CarrierDesc);
@@ -3841,9 +3842,9 @@ sap.ui.define([
                             eshipjetModel.setProperty("/invoiceNo", invoiceNums);
                             
                         }
+                        oController.checkPostGoodsIssueStatus(sDeveliveryNumber);
                     }
                     // oController.onCloseBusyDialog();
-                    oController.checkPostGoodsIssueStatus(sDeveliveryNumber);
                 },
                 error: function(error){
                     MessageBox.warning(error.responseText);
@@ -4131,6 +4132,96 @@ sap.ui.define([
                         // });
                     }        
                 }
+            }
+        },
+
+        onMultiPackPress: function () {
+            var oController = this;
+            var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
+            var Notes = eshipjetModel.getProperty("/Notes");
+            Notes.push({
+                "date": new Date(),
+                "name": eshipjetModel.getProperty("/userName"),
+                "notes": "Items are packed successfully"
+            });
+        
+            var productTable = this.byId("idShipNowPackTable");
+            var selectedItems = productTable.getSelectedIndices();
+            var selectedPackageMat = eshipjetModel.getProperty("/selectedPackageMat");
+        
+            if (selectedPackageMat === "") {
+                MessageBox.warning("Please Select Package Material");
+                return;
+            } else if (selectedItems.length === 0) {
+                MessageBox.warning("Please Select at least one record from Product Table");
+                return;
+            }
+        
+            var sapDeliveryNumber = eshipjetModel.getProperty("/commonValues/sapDeliveryNumber");
+            var pkgMaterial = eshipjetModel.getProperty("/selectedPackageMat");
+            var CreateHUSrvModel = this.getOwnerComponent().getModel("CreateHUSrvModel");
+        
+            // Enable batch mode
+            CreateHUSrvModel.setUseBatch(true);
+            CreateHUSrvModel.setDeferredGroups(["batchGroup1"]);
+            var mParameters = {
+                groupId: "batchGroup1"
+            };
+        
+            var hasError = false;
+        
+            for (var i = 0; i < selectedItems.length; i++) {
+                var context = productTable.getContextByIndex(selectedItems[i]);
+                var currentObj = context.getObject();
+        
+                var partialQty = currentObj.partialQty;
+                var BalanceQty = currentObj.BalanceQty;
+        
+                if (!partialQty || partialQty <= 0) {
+                    hasError = true;
+                    MessageBox.warning("Please enter a valid partial quantity for all selected products.");
+                    break;
+                }
+        
+                var times = Math.floor(BalanceQty / partialQty);
+                if (times === 0) {
+                    hasError = true;
+                    MessageBox.warning("Partial quantity is more than the Balance quantity for one of the items.");
+                    break;
+                }
+        
+                for (var j = 0; j < times; j++) {
+                    var oPayload = {
+                        "Pacmatnr": "EWMS4-WBTRO00",
+                        "Delivery": sapDeliveryNumber,
+                        "Qty": partialQty,
+                        "Itemno": "10"
+                    };
+                    CreateHUSrvModel.create("/HUHEADERSet", oPayload, mParameters);
+                }
+            }
+        
+            if (!hasError) {
+                oController.onOpenBusyDialog();
+        
+                CreateHUSrvModel.submitChanges({
+                    groupId: "batchGroup1",
+                    success: function (oData, oResponse) {
+                        MessageToast.show("Handling Units Created Successfully");
+                        for (var k = 0; k < selectedItems.length; k++) {
+                            var obj = productTable.getContextByIndex(selectedItems[k]).getObject();
+                            obj.partialQty = ""; // Clear input field
+                        }
+                        eshipjetModel.updateBindings(true);
+                        oController.getHandlingUnit(sapDeliveryNumber);
+                        oController.onCloseBusyDialog();
+                    },
+                    error: function (oError) {
+                        var errMsg = new DOMParser().parseFromString(oError.responseText, "text/xml").getElementsByTagName("message")[0].textContent;
+                        MessageBox.error(errMsg);
+                        oController.onCloseBusyDialog();
+                    }
+                });
             }
         },
 
@@ -16930,6 +17021,7 @@ sap.ui.define([
             var eshipjetModel =  this.getOwnerComponent().getModel("eshipjetModel");
             var carrierconfiguration = eshipjetModel.getProperty("/carrierconfiguration1");
             var ShipNowShipMethodSelectedKey =  eshipjetModel.getProperty("/commonValues/ShipNowShipMethodSelectedKey");
+            eshipjetModel.setProperty("/commonValues/ShipNowShipsrvNameSelectedKey", "");
             for(var i=0; i<carrierconfiguration.length; i++){
                 if(carrierconfiguration[i].CarrierName === selectedKey){
                     var serviceNamesList = new JSONModel(carrierconfiguration[i]);

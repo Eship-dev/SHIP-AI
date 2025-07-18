@@ -11,7 +11,7 @@
 							<Text text="0" class="audit-style sapUiTinyMarginEnd" tooltip="Audited Today"  width="auto" ></Text>
 
 							<Text text="B" class="billed-style" tooltip="Billed Today"  width="auto" ></Text>
-							<Text text="0" class="billed-style sapUiLargeMarginEnd" tooltip="Billed Today"  width="auto" ></Text>
+							<Text text="{eshipjetModel>/TodayShipmentsLength}" class="billed-style sapUiLargeMarginEnd" tooltip="Billed Today"  width="auto" ></Text>
 
 							<Text text="{= ${timerModel>/hours} + ':' + ${timerModel>/minutes} + ':' + ${timerModel>/seconds} }" class="timer-style" tooltip="Total Time Spent" />
 						</HBox>
@@ -1150,12 +1150,12 @@
 								</HBox>
 
 								<HBox height="3rem" width="37%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="SpaceBetween" >
-								   <FlexBox>
-										<Button text="Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_Pack sapUiTinyMarginEnd sapUiTinyMarginBegin sapUiTinyMarginBottom" type="Ghost" width="auto" press="onPackPress" ></Button>
-										<Button text="Pack All" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_PackAll sapUiTinyMarginEnd" type="Ghost" width="auto" press="onPackAllPress" ></Button>
-										<Button text="DG Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_DGPack sapUiTinyMarginEnd" type="Ghost" width="auto" ></Button>
-										<Button text="DG Pack All" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_DGPackAll sapUiTinyMarginEnd" type="Ghost" width="auto" ></Button>
-										<Button text="Multi Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_MultiPack" type="Ghost" width="auto" ></Button>
+								   <FlexBox justifyContent="SpaceBetween" width="100%" >
+										<Button text="Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_Pack sapUiSmallMarginBegin sapUiTinyMarginBottom" type="Ghost" width="auto" press="onPackPress" ></Button>
+										<Button text="Pack All" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_PackAll" type="Ghost" width="auto" press="onPackAllPress" ></Button>
+										<!-- <Button text="DG Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_DGPack sapUiTinyMarginEnd" type="Ghost" width="auto" ></Button>
+										<Button text="DG Pack All" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_DGPackAll sapUiTinyMarginEnd" type="Ghost" width="auto" ></Button> -->
+										<Button text="Multi Pack" press="onMultiPackPress" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_MultiPack sapUiSmallMarginEnd" type="Ghost" width="auto" ></Button>
 									</FlexBox>
                                 </HBox>
 								<HBox height="3rem" width="30%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="Start" >
