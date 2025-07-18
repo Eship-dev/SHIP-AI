@@ -162,20 +162,21 @@ sap.ui.define([
                     { SerialNumber: "", SAPHUID: "" }
                 );
             }
+            
+            // while (aBusinessPartnersTable.length < 5) {
+            //     aBusinessPartnersTable.push(
+            //         { PartnerType: "Ship From", "FullName": "Eshipjet Software Inc.", "BusinessPartnerName1":"Steve Marsh", "StreetName":"5717 Legacy", "HouseNumber":"Suite 250", "Region":"Plano", "CityName":"TX", "PostalCode":"75024", "Country":"US", "PhoneNumber":"(888) 464-2360", "email":"info@eshipjet.ai" },
+            //         { PartnerType: "Shipper", "FullName": "Eshipjet Software Inc.", "BusinessPartnerName1":"Steve Marsh", "StreetName":"5717 Legacy", "HouseNumber":"Suite 250", "Region":"Plano", "CityName":"TX", "PostalCode":"75024", "Country":"US", "PhoneNumber":"(888) 464-2360", "email":"info@eshipjet.ai" },
+            //         { PartnerType: "Freight Forwarder", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  },
+            //         { PartnerType: "Importer", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  },
+            //         { PartnerType: "Third Party", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  }
+            //     );
+            // }
 
-            while (aBusinessPartnersTable.length < 5) {
-                aBusinessPartnersTable.push(
-                    { PartnerType: "Ship From", "FullName": "Eshipjet Software Inc.", "BusinessPartnerName1":"Steve Marsh", "StreetName":"5717 Legacy", "HouseNumber":"Suite 250", "Region":"Plano", "CityName":"TX", "PostalCode":"75024", "Country":"US", "PhoneNumber":"(888) 464-2360", "email":"info@eshipjet.ai" },
-                    { PartnerType: "Shipper", "FullName": "Eshipjet Software Inc.", "BusinessPartnerName1":"Steve Marsh", "StreetName":"5717 Legacy", "HouseNumber":"Suite 250", "Region":"Plano", "CityName":"TX", "PostalCode":"75024", "Country":"US", "PhoneNumber":"(888) 464-2360", "email":"info@eshipjet.ai" },
-                    { PartnerType: "Freight Forwarder", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  },
-                    { PartnerType: "Importer", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  },
-                    { PartnerType: "Third Party", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  }
-                );
-            }
+            // eshipjetModel.setProperty("/BusinessPartners", aBusinessPartnersTable);
             
             eshipjetModel.setProperty("/commonValues/packAddProductTable", aPackAddProductTable);
             eshipjetModel.setProperty("/HandlingUnits", aHandlingUnits);
-            eshipjetModel.setProperty("/BusinessPartners", aBusinessPartnersTable);
 
             var HandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
             var HandlingUnitsLength = 0;
@@ -311,6 +312,20 @@ sap.ui.define([
                 });
                 eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", "0");
                 oController.onShipNowNavigateInitialProcess();
+                var aBusinessPartnersTable = eshipjetModel.getProperty("/BusinessPartners") || [];
+                while (aBusinessPartnersTable.length < 5) {
+                    aBusinessPartnersTable.push(
+                        { PartnerType: "Ship From", "FullName": "Eshipjet Software Inc.", "BusinessPartnerName1":"Steve Marsh", "StreetName":"5717 Legacy", "HouseNumber":"Suite 250", "Region":"Plano", "CityName":"TX", "PostalCode":"75024", "Country":"US", "PhoneNumber":"(888) 464-2360", "email":"info@eshipjet.ai" },
+                        { PartnerType: "Shipper", "FullName": "Eshipjet Software Inc.", "BusinessPartnerName1":"Steve Marsh", "StreetName":"5717 Legacy", "HouseNumber":"Suite 250", "Region":"Plano", "CityName":"TX", "PostalCode":"75024", "Country":"US", "PhoneNumber":"(888) 464-2360", "email":"info@eshipjet.ai" },
+                        { PartnerType: "Freight Forwarder", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  },
+                        { PartnerType: "Importer", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  },
+                        { PartnerType: "Third Party", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  }
+                    );
+                }
+
+                eshipjetModel.setProperty("/BusinessPartners", aBusinessPartnersTable);
+                var oIconTabBar = this.byId("idIconTabBarFiori2");
+                oIconTabBar.setSelectedKey("Pack");
                 // ShipNowDataModel.setProperty("/ShipToAddress", "");
                 // oController._handleDisplayShipNowPackTable();
                 // this._handleDisplayShipNowProductsTable();
@@ -1714,6 +1729,19 @@ sap.ui.define([
             oIconTabBar.setSelectedKey("Pack");       
             // oController.onCloseBusyDialog();
             oController.getView().setBusy(false);
+
+            var aBusinessPartnersTable = eshipjetModel.getProperty("/BusinessPartners") || [];
+            while (aBusinessPartnersTable.length < 5) {
+            aBusinessPartnersTable.push(
+                { PartnerType: "Ship From", "FullName": "Eshipjet Software Inc.", "BusinessPartnerName1":"Steve Marsh", "StreetName":"5717 Legacy", "HouseNumber":"Suite 250", "Region":"Plano", "CityName":"TX", "PostalCode":"75024", "Country":"US", "PhoneNumber":"(888) 464-2360", "email":"info@eshipjet.ai" },
+                { PartnerType: "Shipper", "FullName": "Eshipjet Software Inc.", "BusinessPartnerName1":"Steve Marsh", "StreetName":"5717 Legacy", "HouseNumber":"Suite 250", "Region":"Plano", "CityName":"TX", "PostalCode":"75024", "Country":"US", "PhoneNumber":"(888) 464-2360", "email":"info@eshipjet.ai" },
+                { PartnerType: "Freight Forwarder", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  },
+                { PartnerType: "Importer", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  },
+                { PartnerType: "Third Party", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  }
+            );
+        }
+
+        eshipjetModel.setProperty("/BusinessPartners", aBusinessPartnersTable);
 
             // var sAudioPath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/audio/clearSound.mp3");
             // var audio = new Audio(sAudioPath);
@@ -5793,6 +5821,23 @@ sap.ui.define([
                 jQuery.sap.delayedCall(500, this, function() {
                     this.getView().byId("idSapDeliveryNumber").focus();
                 });
+
+                var aBusinessPartnersTable = eshipjetModel.getProperty("/BusinessPartners") || [];
+                while (aBusinessPartnersTable.length < 5) {
+                    aBusinessPartnersTable.push(
+                        { PartnerType: "Ship From", "FullName": "Eshipjet Software Inc.", "BusinessPartnerName1":"Steve Marsh", "StreetName":"5717 Legacy", "HouseNumber":"Suite 250", "Region":"Plano", "CityName":"TX", "PostalCode":"75024", "Country":"US", "PhoneNumber":"(888) 464-2360", "email":"info@eshipjet.ai" },
+                        { PartnerType: "Shipper", "FullName": "Eshipjet Software Inc.", "BusinessPartnerName1":"Steve Marsh", "StreetName":"5717 Legacy", "HouseNumber":"Suite 250", "Region":"Plano", "CityName":"TX", "PostalCode":"75024", "Country":"US", "PhoneNumber":"(888) 464-2360", "email":"info@eshipjet.ai" },
+                        { PartnerType: "Freight Forwarder", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  },
+                        { PartnerType: "Importer", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  },
+                        { PartnerType: "Third Party", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  }
+                    );
+                }
+
+                eshipjetModel.setProperty("/BusinessPartners", aBusinessPartnersTable);
+
+                var oIconTabBar = this.byId("idIconTabBarFiori2");
+                oIconTabBar.setSelectedKey("Pack");
+
                 oController.onPackSectionEmptyRows();
                 oController.getTodayShipments();
                 // oController._handleDisplayShipNowPackTable();

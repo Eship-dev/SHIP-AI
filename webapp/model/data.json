@@ -10125,6 +10125,9 @@
     ],
     "shipNowSAPDeliveryItems": [
         {
+            "SAPDeliveryItem": "Outbound Delivery Order"
+        },
+        {
             "SAPDeliveryItem": "Freight Quote Order"
         },
         {
@@ -10137,7 +10140,7 @@
             "SAPDeliveryItem": "SAP Return Order"
         }
     ],
-    "SAPDeliveryNo": "SAP Delivery Number",
+    "SAPDeliveryNo": "Outbound Delivery Order",
     "moreActionsList": [
         {
             "moreActionItem": "Post Goods Issue",
