@@ -1,11 +1,11 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
     <Toolbar width="auto" height="15%" class="toolbarbottomborder fixedLayout">
-			<Text text="Tracking Range" class="toolBarHeader sapUiTinyMarginBegin pageTitle" ></Text>
+			<Text text="Pro Number Range" class="toolBarHeader sapUiTinyMarginBegin pageTitle" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button   text="Add Tracking Range" press="AddTrackingRangePress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="12rem" ></Button>
-                    <Button type="Success" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button>
+                    <Button   text="Add Pro Number Range" press="AddProNumberRangePress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="12rem" ></Button>
+                    <!-- <Button type="Success" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button> -->
                 </HBox>
 		</Toolbar>
 
@@ -13,7 +13,7 @@
 			<HBox width="100%" >
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="1" class="NumberSizeTitle1"></Text>
-					<Text text="Total TrackingRange" class="NumberSizeTitle2"></Text>
+					<Text text="Total Pro Number Range" class="NumberSizeTitle2"></Text>
 					<Button type="Emphasized" class="totalProgress-request-button request-button" press="handleManifestFilterBtnPress" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="33%">
@@ -36,7 +36,7 @@
         <OverflowToolbar style="Clear">										
             <ToolbarSpacer />
                 <Button icon="sap-icon://action" ></Button>
-                <Button icon="sap-icon://action-settings" press="openTrackingRangeColNamesPopover"></Button>
+                <Button icon="sap-icon://action-settings" press="openProNumberRangeColNamesPopover"></Button>
         </OverflowToolbar>
     </ui:extension>	
     <ui:footer>

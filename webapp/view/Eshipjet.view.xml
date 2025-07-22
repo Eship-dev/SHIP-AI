@@ -531,6 +531,15 @@
 					<ScrollContainer	id="_ID_EUCountries_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.EUCountries" type="XML" />
 					</ScrollContainer>
+
+					<ScrollContainer	id="_ID_ResetPassword_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ResetPassword" type="XML" />
+					</ScrollContainer>
+
+					<ScrollContainer	id="_ID_UnlockDeliveryNumber_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.UnlockDeliveryNumber" type="XML" />
+					</ScrollContainer>
+
 					<ScrollContainer	id="_ID_ShipmentErrorLogs_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ShipmentErrorLogs" type="XML" />
 					</ScrollContainer>

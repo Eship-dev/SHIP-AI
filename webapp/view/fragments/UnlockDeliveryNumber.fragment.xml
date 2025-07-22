@@ -1,0 +1,52 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <Dialog
+        draggable="true"
+        id="UnlockDeliveryNumberopenDialog"
+        contentWidth="40%"
+        contentHeight="20%" 
+    >
+     <customHeader>
+        <Toolbar>
+            <!-- Title -->
+            <Title text="Unlock Delivery Number" />
+            
+            <!-- Spacer to push close button to the right -->
+            <ToolbarSpacer />
+
+            <!-- Close Button -->
+            <Button 
+                icon="sap-icon://decline"
+                 class="Decline_Btn ship-now-decline_btn"  
+                press="UnlockDeliveryNumberClosePress" />
+        </Toolbar>
+    </customHeader>
+         <content>
+           	<f:SimpleForm editable="true"
+                           
+                            width="auto"
+							  layout="ColumnLayout"
+							  columnsM="2"
+							  columnsL="2"
+							  columnsXL="2">
+					<f:content>
+                        <Label text="Delivery Number" />  
+			            <Input class="sapUiSmallMarginBottom create-ship-req_input" placeholder="Enter Delivery Number"></Input>
+                        
+					</f:content>
+				</f:SimpleForm>
+               
+        </content>
+    
+        <footer>
+            <OverflowToolbar>
+             <Button text="Cancel"></Button>
+             <ToolbarSpacer ></ToolbarSpacer>
+               <Button text="Unlock Delivery Number"></Button>
+            </OverflowToolbar>
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

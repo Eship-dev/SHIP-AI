@@ -4103,7 +4103,7 @@
             "name": "Freight Condition"
         },
         {
-            "name": "Default Configuration"
+            "name": "NMFC Class"
         },
         {
             "name": "Peripheral Configuration"
@@ -4138,10 +4138,10 @@
             "name": "Dangerous Goods"
         },
         {
-            "name": "NMFC"
+            "name": "Default Configuration"
         },
         {
-            "name": "Incoterms"
+            "name": "Unlock Delivery Number"
         }
     ],
     "AddIconListSet3": [
@@ -4161,7 +4161,7 @@
             "name": "Third Party"
         },
         {
-            "name": "Countries"
+            "name": "Incoterms"
         },
         {
             "name": "EU Countries"
@@ -4170,7 +4170,7 @@
             "name": "SMTP Configuration"
         },
         {
-            "name": "MOT"
+            "name": "Reset Password"
         },
         {
             "name": "Shipment Error Logs"
@@ -7150,34 +7150,326 @@
             "status": "BP02"
         }
     ],
-    "TrackingRangeTableColumns": [
-        {
-            "key": "LocationName",
-            "label": "Location Name",
-            "visible": true
-        },
-        {
-            "key": "Carrier",
-            "label": "Carrier",
-            "visible": true
-        },
-        {
-            "key": "RangeFrom",
-            "label": "Range From",
-            "visible": true
-        },
-        {
-            "key": "RangeTo",
-            "label": "Range To",
-            "visible": true
-        },
-        {
-            "key": "status",
-            "label": "Status",
-            "visible": true
-        }
-    ],
-    "TrackingRangeTableRows": [],
+        "TrackingRangeTableColumns": [
+            {
+                "key": "LocationName",
+                "label": "Location Name",
+                "visible": true
+            },
+            {
+                "key": "Carrier",
+                "label": "Carrier",
+                "visible": true
+            },
+            {
+                "key": "SCACCode",
+                "label": "SCAC Code",
+                "visible": true
+            },
+            {
+                "key": "ProNumberPrefix",
+                "label": "Pro Number Prefix",
+                "visible": true
+            },
+            {
+                "key": "ProNumberLength",
+                "label": "Pro Number Length",
+                "visible": true
+            },
+            {
+                "key": "ProNumberSuffix",
+                "label": "Pro Number Suffix",
+                "visible": true
+            },
+            {
+                "key": "ProNumberRollingRange",
+                "label": "Pro Number Rolling Range",
+                "visible": true
+            },
+            {
+                "key": "FinalProNumber",
+                "label": "Final Pro Number",
+                "visible": true
+            },
+            {
+                "key": "NextRollingNumber",
+                "label": "Next Rolling Number",
+                "visible": true
+            },
+            {
+                "key": "CheckDigitMethod",
+                "label": "Check Digit Method",
+                "visible": true
+            },
+            {
+                "key": "Status",
+                "label": "Status",
+                "visible": true
+            }
+        ],
+        "TrackingRangeTableRows": [
+            {
+                "LocationName": "BP01",
+                "Carrier": "A. Duie Pyle, Inc",
+                "SCACCode": "3333",
+                "ProNumberPrefix": "26606165",
+                "ProNumberLength": "8",
+                "ProNumberSuffix": "26706165",
+                "ProNumberRollingRange": "266061654",
+                "FinalProNumber": "266061654",
+                "NextRollingNumber": "266061654",
+                "CheckDigitMethod": "Mod10",
+                "Status": "Active"
+            },
+            {
+                "LocationName": "BP01",
+                "Carrier": "TAZ",
+                "SCACCode": "3333",
+                "ProNumberPrefix": "24569003",
+                "ProNumberLength": "8",
+                "ProNumberSuffix": "24578974",
+                "ProNumberRollingRange": "245690033",
+                "FinalProNumber": "245690033",
+                "NextRollingNumber": "245690033",
+                "CheckDigitMethod": "Mod10",
+                "Status": "Active"
+            },
+            {
+                "LocationName": "BP01",
+                "Carrier": "R+L Carriers, Inc",
+                "SCACCode": "666",
+                "ProNumberPrefix": "46606165",
+                "ProNumberLength": "8",
+                "ProNumberSuffix": "46706165",
+                "ProNumberRollingRange": "466061652",
+                "FinalProNumber": "466061652",
+                "NextRollingNumber": "466061652",
+                "CheckDigitMethod": "Mod10",
+                "Status": "Active"
+            },
+            {
+                "LocationName": "BP01",
+                "Carrier": "SAIA",
+                "SCACCode": "46546",
+                "ProNumberPrefix": "12119202530",
+                "ProNumberLength": "11",
+                "ProNumberSuffix": "12119302530",
+                "ProNumberRollingRange": "121192025305",
+                "FinalProNumber": "121192025305",
+                "NextRollingNumber": "121192025305",
+                "CheckDigitMethod": "Mod7",
+                "Status": "Active"
+            },
+            {
+                "LocationName": "BP02",
+                "Carrier": "A. Duie Pyle, Inc",
+                "SCACCode": "3333",
+                "ProNumberPrefix": "26606165",
+                "ProNumberLength": "8",
+                "ProNumberSuffix": "26706165",
+                "ProNumberRollingRange": "266061654",
+                "FinalProNumber": "266061654",
+                "NextRollingNumber": "266061654",
+                "CheckDigitMethod": "Mod10",
+                "Status": "Active"
+            },
+            {
+                "LocationName": "BP20",
+                "Carrier": "A. Duie Pyle, Inc",
+                "SCACCode": "3333",
+                "ProNumberPrefix": "26606165",
+                "ProNumberLength": "8",
+                "ProNumberSuffix": "26706165",
+                "ProNumberRollingRange": "266061654",
+                "FinalProNumber": "266061654",
+                "NextRollingNumber": "266061654",
+                "CheckDigitMethod": "Mod10",
+                "Status": "Active"
+            },
+            {
+                "LocationName": "BP16",
+                "Carrier": "A. Duie Pyle, Inc",
+                "SCACCode": "3333",
+                "ProNumberPrefix": "26606165",
+                "ProNumberLength": "8",
+                "ProNumberSuffix": "26706165",
+                "ProNumberRollingRange": "266061654",
+                "FinalProNumber": "266061654",
+                "NextRollingNumber": "266061654",
+                "CheckDigitMethod": "Mod10",
+                "Status": "Active"
+            },
+            {
+                "LocationName": "BP18",
+                "Carrier": "A. Duie Pyle, Inc",
+                "SCACCode": "3333",
+                "ProNumberPrefix": "26606165",
+                "ProNumberLength": "8",
+                "ProNumberSuffix": "26706165",
+                "ProNumberRollingRange": "266061654",
+                "FinalProNumber": "266061654",
+                "NextRollingNumber": "266061654",
+                "CheckDigitMethod": "Mod10",
+                "Status": "Active"
+            },
+            {
+                "LocationName": "BP08",
+                "Carrier": "A. Duie Pyle, Inc",
+                "SCACCode": "3333",
+                "ProNumberPrefix": "26606165",
+                "ProNumberLength": "8",
+                "ProNumberSuffix": "26706165",
+                "ProNumberRollingRange": "266061654",
+                "FinalProNumber": "266061654",
+                "NextRollingNumber": "266061654",
+                "CheckDigitMethod": "Mod10",
+                "Status": "Active"
+            },
+            {
+                "LocationName": "BP17",
+                "Carrier": "A. Duie Pyle, Inc",
+                "SCACCode": "3333",
+                "ProNumberPrefix": "26606165",
+                "ProNumberLength": "8",
+                "ProNumberSuffix": "26706165",
+                "ProNumberRollingRange": "266061654",
+                "FinalProNumber": "266061654",
+                "NextRollingNumber": "266061654",
+                "CheckDigitMethod": "Mod10",
+                "Status": "Active"
+            },
+            {
+                "LocationName": "BP03",
+                "Carrier": "A. Duie Pyle, Inc",
+                "SCACCode": "3333",
+                "ProNumberPrefix": "26606165",
+                "ProNumberLength": "8",
+                "ProNumberSuffix": "26706165",
+                "ProNumberRollingRange": "266061654",
+                "FinalProNumber": "266061654",
+                "NextRollingNumber": "266061654",
+                "CheckDigitMethod": "Mod10",
+                "Status": "Active"
+            },
+            {
+                "LocationName": "BP14",
+                "Carrier": "A. Duie Pyle, Inc",
+                "SCACCode": "3333",
+                "ProNumberPrefix": "26606165",
+                "ProNumberLength": "8",
+                "ProNumberSuffix": "26706165",
+                "ProNumberRollingRange": "266061654",
+                "FinalProNumber": "266061654",
+                "NextRollingNumber": "266061654",
+                "CheckDigitMethod": "Mod10",
+                "Status": "Active"
+            },
+            {
+                "LocationName": "BP04",
+                "Carrier": "A. Duie Pyle, Inc",
+                "SCACCode": "3333",
+                "ProNumberPrefix": "26606165",
+                "ProNumberLength": "8",
+                "ProNumberSuffix": "26706165",
+                "ProNumberRollingRange": "266061654",
+                "FinalProNumber": "266061654",
+                "NextRollingNumber": "266061654",
+                "CheckDigitMethod": "Mod10",
+                "Status": "Active"
+            },
+            {
+                "LocationName": "BP02",
+                "Carrier": "TAZ",
+                "SCACCode": "3333",
+                "ProNumberPrefix": "24569003",
+                "ProNumberLength": "8",
+                "ProNumberSuffix": "24578974",
+                "ProNumberRollingRange": "245690033",
+                "FinalProNumber": "245690033",
+                "NextRollingNumber": "245690033",
+                "CheckDigitMethod": "Mod10",
+                "Status": "Active"
+            },
+            {
+                "LocationName": "BP20",
+                "Carrier": "TAZ",
+                "SCACCode": "3333",
+                "ProNumberPrefix": "24569003",
+                "ProNumberLength": "8",
+                "ProNumberSuffix": "24578974",
+                "ProNumberRollingRange": "245690033",
+                "FinalProNumber": "245690033",
+                "NextRollingNumber": "245690033",
+                "CheckDigitMethod": "Mod10",
+                "Status": "Active"
+            },
+            {
+                "LocationName": "BP16",
+                "Carrier": "TAZ",
+                "SCACCode": "3333",
+                "ProNumberPrefix": "24569003",
+                "ProNumberLength": "8",
+                "ProNumberSuffix": "24578974",
+                "ProNumberRollingRange": "245690033",
+                "FinalProNumber": "245690033",
+                "NextRollingNumber": "245690033",
+                "CheckDigitMethod": "Mod10",
+                "Status": "Active"
+            },
+            {
+                "LocationName": "BP18",
+                "Carrier": "TAZ",
+                "SCACCode": "3333",
+                "ProNumberPrefix": "24569003",
+                "ProNumberLength": "8",
+                "ProNumberSuffix": "24578974",
+                "ProNumberRollingRange": "245690033",
+                "FinalProNumber": "245690033",
+                "NextRollingNumber": "245690033",
+                "CheckDigitMethod": "Mod10",
+                "Status": "Active"
+            },
+            {
+                "LocationName": "BP08",
+                "Carrier": "TAZ",
+                "SCACCode": "3333",
+                "ProNumberPrefix": "24569003",
+                "ProNumberLength": "8",
+                "ProNumberSuffix": "24578974",
+                "ProNumberRollingRange": "245690033",
+                "FinalProNumber": "245690033",
+                "NextRollingNumber": "245690033",
+                "CheckDigitMethod": "Mod10",
+                "Status": "Active"
+            },
+            {
+                "LocationName": "BP17",
+                "Carrier": "TAZ",
+                "SCACCode": "3333",
+                "ProNumberPrefix": "24569003",
+                "ProNumberLength": "8",
+                "ProNumberSuffix": "24578974",
+                "ProNumberRollingRange": "245690033",
+                "FinalProNumber": "245690033",
+                "NextRollingNumber": "245690033",
+                "CheckDigitMethod": "Mod10",
+                "Status": "Active"
+            },
+            {
+                "LocationName": "BP03",
+                "Carrier": "TAZ",
+                "SCACCode": "3333",
+                "ProNumberPrefix": "24569003",
+                "ProNumberLength": "8",
+                "ProNumberSuffix": "24578974",
+                "ProNumberRollingRange": "245690033",
+                "FinalProNumber": "245690033",
+                "NextRollingNumber": "245690033",
+                "CheckDigitMethod": "Mod10",
+                "Status": "Active"
+            }
+        ],
+    
     "CreateReqLabelTabelColumns": [
         {
             "key": "locationName",

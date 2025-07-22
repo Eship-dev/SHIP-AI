@@ -9096,9 +9096,9 @@ sap.ui.define([
                 oController._displayTables("_IDLTLClassTable", "LtlClassesTableColumns", "LtlClassesTableRows", "LTL Classes");
                 oPageContainer.to(oView.createId("_ID_LTLClasses_TableScrollContainer"));
 
-            } else if (oCurrObj && oCurrObj.name === "NMFC") {
+            } else if (oCurrObj && oCurrObj.name === "NMFC Class") {
 
-                oController._displayTables("_IDNMFCTable", "NmfcTableColumns", "NmfcTableRows", "NMFC");
+                oController._displayTables("_IDNMFCTable", "NmfcTableColumns", "NmfcTableRows", "NMFC Class");
                 oPageContainer.to(oView.createId("_ID_NMFC_TableScrollContainer"));
 
             } else if (oCurrObj && oCurrObj.name === "MOT") {
@@ -9154,6 +9154,13 @@ sap.ui.define([
             } else if (oCurrObj && oCurrObj.name === "Company Settings") {
 
                 this.OpenCompanySettingsDialog();
+            } else if (oCurrObj && oCurrObj.name === "Reset Password") {
+
+                this.OpenResetPasswordDialog();
+
+            } else if (oCurrObj && oCurrObj.name === "Unlock Delivery Number") {
+
+                this.OpenUnlockDeliveryNumberDialog();
 
             } else if (oCurrObj && oCurrObj.name === "Countries") {
 
@@ -16508,6 +16515,56 @@ sap.ui.define([
         },
         CompanySettingsClosePress: function () {
             this.byId("CompanySettingsopenDialog").close();
+        },
+
+        OpenResetPasswordDialog: function () {
+            var oView = this.getView();
+            if (!this.byId("ResetPasswordopenDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ResetPassword",
+                    controller: this // Pass the controller for binding
+                }).then(function (oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("ResetPasswordopenDialog").open(); // Open existing dialog
+            }
+        },
+        ResetPasswordCancelDialog: function () {
+            this.byId("ResetPasswordopenDialog").close();
+        },
+        ResetPasswordSaveDialog: function () {
+            this.byId("ResetPasswordopenDialog").close();
+        },
+        ResetPasswordClosePress: function () {
+            this.byId("ResetPasswordopenDialog").close();
+        },
+
+        OpenUnlockDeliveryNumberDialog: function () {
+            var oView = this.getView();
+            if (!this.byId("UnlockDeliveryNumberopenDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.UnlockDeliveryNumber",
+                    controller: this // Pass the controller for binding
+                }).then(function (oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("UnlockDeliveryNumberopenDialog").open(); // Open existing dialog
+            }
+        },
+        UnlockDeliveryNumberCancelDialog: function () {
+            this.byId("UnlockDeliveryNumberopenDialog").close();
+        },
+        UnlockDeliveryNumberSaveDialog: function () {
+            this.byId("UnlockDeliveryNumberopenDialog").close();
+        },
+        UnlockDeliveryNumberClosePress: function () {
+            this.byId("UnlockDeliveryNumberopenDialog").close();
         },
 
 
