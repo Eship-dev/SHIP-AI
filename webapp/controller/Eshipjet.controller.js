@@ -322,7 +322,7 @@ sap.ui.define([
                         { PartnerType: "Third Party", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  }
                     );
                 }
-
+                eshipjetModel.setProperty("/HuCount", 0);
                 eshipjetModel.setProperty("/BusinessPartners", aBusinessPartnersTable);
                 var oIconTabBar = this.byId("idIconTabBarFiori2");
                 oIconTabBar.setSelectedKey("Pack");
@@ -1687,7 +1687,7 @@ sap.ui.define([
                 darkTheme: false,
                 shipNowGanderWhiteSelect:false,
                 shipNowGetBtn:true,
-                OverallGoodsMovementStatus: "",
+                OverallGoodsMovementStatus: "0",
                 shipNowABFSelect : false,
                 shipNowARTEXFineArtSrvSelect : false,
                 shipNowATLASFineArtSelect : false,
@@ -1719,6 +1719,7 @@ sap.ui.define([
                 ShippingPoint: false,
                 plant: ""
             };
+            // eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", "0");
             eshipjetModel.setProperty("/commonValues", oCommonValues);        
             eshipjetModel.setProperty("/accountNumber", "");
             jQuery.sap.delayedCall(500, this, function() {
@@ -3928,6 +3929,15 @@ sap.ui.define([
                             }
                         });
 
+                        // var HandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
+                        // var HuCount = 0;
+                        // HandlingUnits.forEach(function(obj, idx){
+                        //     if(obj.Hunumber !== undefined){
+                        //         HuCount += 1;
+                        //     }
+                        // });
+                        // eshipjetModel.setProperty("/HuCount", HuCount);
+
                         eshipjetModel.updateBindings(true);
 
                         var HandlingUnits = eshipjetModel.getProperty("/HandlingUnits")
@@ -3944,6 +3954,7 @@ sap.ui.define([
                                 }
                             };
                             eshipjetModel.setProperty("/HandlingUnits", oData.results);
+                            eshipjetModel.setProperty("/HuCount", oData.results.length);
                         }else{
                             eshipjetModel.setProperty("/HandlingUnits", []);
                         }
@@ -5796,6 +5807,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowViewFooter", true);
                 eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
                 eshipjetModel.setProperty("/sFromViewName", "SHIP_NOW");
+                eshipjetModel.setProperty("/HuCount", 0);
                 this.byId("pageContainer").to(this.getView().createId(sKey));
                 var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
                 var obj = {

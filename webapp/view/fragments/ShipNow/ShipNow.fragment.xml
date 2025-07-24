@@ -7,10 +7,10 @@
 					
 					<ToolbarSpacer/>
 						<HBox class="sapUiLargeMarginEnd" >
-							<Text text="A" class="audit-style" tooltip="Audited Today" width="auto" ></Text>
-							<Text text="0" class="audit-style sapUiTinyMarginEnd" tooltip="Audited Today"  width="auto" ></Text>
+							<Text text="P" class="audit-style" tooltip="Packed Count" width="auto" ></Text>
+							<Text text="{eshipjetModel>/HuCount}" class="audit-style sapUiTinyMarginEnd" tooltip="Audited Today"  width="auto" ></Text>
 
-							<Text text="B" class="billed-style" tooltip="Billed Today"  width="auto" ></Text>
+							<Text text="S" class="billed-style" tooltip="Shipped Today"  width="auto" ></Text>
 							<Text text="{eshipjetModel>/TodayShipmentsLength}" class="billed-style sapUiLargeMarginEnd" tooltip="Billed Today"  width="auto" ></Text>
 
 							<Text text="{= ${timerModel>/hours} + ':' + ${timerModel>/minutes} + ':' + ${timerModel>/seconds} }" class="timer-style" tooltip="Total Time Spent" />
@@ -1259,7 +1259,7 @@
 										</HBox>
 									<ui:template>
 										<HBox justifyContent="Center" alignItems="Center">
-												<Button icon="sap-icon://tag" type="Transparent" press="onSerialNumPress" enabled="{= ${eshipjetModel>HandlingUnitExternalID} > 0 }" ></Button>
+												<Button icon="sap-icon://tag" type="Transparent" press="onSerialNumPress" enabled="{= ${eshipjetModel>Hunumber} > 0 }" ></Button>
 											</HBox>
 									</ui:template>
 								</ui:Column>
@@ -1535,7 +1535,48 @@
 											</ColumnListItem>
 										</items>
 									</Table>
-									</IconTabFilter>
+
+								<HBox justifyContent="SpaceBetween" width="100%" >
+									<VBox class="shipnowUserInfoSimpleFormShadow" width="30%" >
+										<Toolbar class="customLine" >
+											<!-- <Button icon="sap-icon://person-placeholder" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" /> -->
+											<core:Icon src="sap-icon://person-placeholder" class="sapUiTinyMarginBegin" >
+												<core:layoutData>
+													<FlexItemData growFactor="1" />
+												</core:layoutData>
+											</core:Icon>
+											<Title text="User Information" />
+										</Toolbar>
+										<f:SimpleForm
+											editable="true"
+											layout="ResponsiveGridLayout"
+											labelSpanXL="3"
+											labelSpanL="3"
+											labelSpanM="3"
+											labelSpanS="12"
+											adjustLabelSpan="false"
+											emptySpanXL="4"
+											emptySpanL="4"
+											emptySpanM="4"
+											emptySpanS="0"
+											columnsXL="1"
+											columnsL="1"
+											columnsM="1"
+											singleContainerFullSize="false" >
+											<f:content>
+												<Label text="Shipped By" />
+												<Input value="{eshipjetModel>/userName}" enabled="false" />
+												<Label text="SAP User ID" />
+												<Input value="{eshipjetModel>/userName}" enabled="false" />
+												<Label text="Ship Date-Time" />
+												<DatePicker valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" enabled="false" />
+											</f:content>
+										</f:SimpleForm>
+									</VBox>
+
+									<Button text="Get Missing Documents" ></Button>
+								</HBox>
+								</IconTabFilter>
 
 									<!-- Track Tab Starts here -->
 									<IconTabFilter text="Track and Trace" key="Track" >
