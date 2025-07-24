@@ -42,13 +42,116 @@
 				<core:CustomData key="confirmButtonText" value="Ok" />
 			</customData>
 		</Toolbar>
-		<ui:Table	
-			id="_IDUsersTable"
-			class="rowRightLine ordersTableRightBorder"
-			selectionMode="None"
-			visibleRowCount="10"
-			ariaLabelledBy="title">
-		</ui:Table>
+		<ui:Table
+				id="_IDUsersTable"
+				rows="{eshipjetModel>/UsersTableRows}"
+				visibleRowCount="10"
+				selectionMode="None"
+				class="rowRightLine ordersTableRightBorder">
+
+				<ui:Column visible="{= ${eshipjetModel>/UsersTableColumns/0/visible} }">
+					<Label text="Location Name" />
+					<ui:template>
+						<Text text="{eshipjetModel>locationName}" />
+					</ui:template>
+				</ui:Column>
+
+				<ui:Column visible="{= ${eshipjetModel>/UsersTableColumns/1/visible} }">
+					<Label text="User ID" />
+					<ui:template>
+						<Text text="{eshipjetModel>userId}" />
+					</ui:template>
+				</ui:Column>
+
+				<ui:Column visible="{= ${eshipjetModel>/UsersTableColumns/2/visible} }">
+					<Label text="First Name" />
+					<ui:template>
+						<Text text="{eshipjetModel>firstName}" />
+					</ui:template>
+				</ui:Column>
+
+				<ui:Column visible="{= ${eshipjetModel>/UsersTableColumns/3/visible} }">
+					<Label text="Last Name" />
+					<ui:template>
+						<Text text="{eshipjetModel>lastName}" />
+					</ui:template>
+				</ui:Column>
+
+				<ui:Column visible="{= ${eshipjetModel>/UsersTableColumns/4/visible} }">
+					<Label text="Phone No" />
+					<ui:template>
+						<Text text="{eshipjetModel>phonenum}" />
+					</ui:template>
+				</ui:Column>
+
+				<ui:Column visible="{= ${eshipjetModel>/UsersTableColumns/5/visible} }">
+					<Label text="Email" />
+					<ui:template>
+						<Text text="{eshipjetModel>userEmail}" />
+					</ui:template>
+				</ui:Column>
+
+				<ui:Column visible="{= ${eshipjetModel>/UsersTableColumns/6/visible} }">
+					<Label text="Address Line 1" />
+					<ui:template>
+						<Text text="{eshipjetModel>addressLine1}" />
+					</ui:template>
+				</ui:Column>
+
+				<ui:Column visible="{= ${eshipjetModel>/UsersTableColumns/7/visible} }">
+					<Label text="Address Line 2" />
+					<ui:template>
+						<Text text="{eshipjetModel>addressLine2}" />
+					</ui:template>
+				</ui:Column>
+
+				<ui:Column visible="{= ${eshipjetModel>/UsersTableColumns/8/visible} }">
+					<Label text="City" />
+					<ui:template>
+						<Text text="{eshipjetModel>addressCity}" />
+					</ui:template>
+				</ui:Column>
+
+				<ui:Column visible="{= ${eshipjetModel>/UsersTableColumns/9/visible} }">
+					<Label text="Zip / Postal Code" />
+					<ui:template>
+						<Text text="{eshipjetModel>addressZip}" />
+					</ui:template>
+				</ui:Column>
+
+				<ui:Column visible="{= ${eshipjetModel>/UsersTableColumns/10/visible} }">
+					<Label text="Country" />
+					<ui:template>
+						<Text text="{eshipjetModel>addressCountry}" />
+					</ui:template>
+				</ui:Column>
+
+				<ui:Column visible="{= ${eshipjetModel>/UsersTableColumns/11/visible} }">
+					<Label text="Role" />
+					<ui:template>
+						<Text text="{eshipjetModel>userRole}" />
+					</ui:template>
+				</ui:Column>
+
+				<ui:Column visible="{= ${eshipjetModel>/UsersTableColumns/12/visible} }">
+					<Label text="Status" />
+					<ui:template>
+						<Switch state="{= ${eshipjetModel>status} === 'Active' }" type="AcceptReject" />
+					</ui:template>
+				</ui:Column>
+
+				<ui:Column visible="{= ${eshipjetModel>/UsersTableColumns/13/visible} }">
+					<Label text="Actions" />
+					<ui:template>
+						<HBox>
+							<Button text="View Now" type="Transparent" />
+							<Button icon="sap-icon://megamenu" type="Transparent" press=".handleDownArrowPress" />
+						</HBox>
+					</ui:template>
+				</ui:Column>
+
+			</ui:Table>
+
     </VBox>
 
 	<Toolbar class="whiteBackground sapUiTinyMarginTop ordersTableFooter">

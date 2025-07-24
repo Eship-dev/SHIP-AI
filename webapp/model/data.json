@@ -4900,12 +4900,7 @@
       "key": "status",
       "label": "Status",
       "visible": true
-    },
-    {
-        "key": "actions",
-        "label": "Actions",
-        "visible": true
-      }
+     }
   ],
   "UsersTableRows": [
     {

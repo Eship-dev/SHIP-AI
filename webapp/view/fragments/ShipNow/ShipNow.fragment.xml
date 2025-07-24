@@ -49,9 +49,10 @@
 				</Toolbar>
 							<Toolbar class="sapUiTinyMarginBottom scan-ship-toolbar1" height="15%">
 									<ComboBox class="create-ship-req_input sapUiTinyMargin sapUiSmallMarginBegin" width="16%" selectedKey="SAPS4HANAPrivate" >
-										<core:Item key="SAPS4HANAPublic" text="SAP S4 HANA Public Cloud Edition" />
-										<core:Item key="SAPS4HANAPrivate" text="SAP S4 HANA Private Cloud Edition" />	
-										<core:Item key="EWMOBD" text="EWM Outbound Delivery" />											
+										<core:Item key="SAPS4HANAPublic" text="SAP S/4 HANA Public Cloud Edition" />
+										<core:Item key="SAPS4HANAPrivate" text="SAP S/4 HANA Private Cloud Edition" />	
+										<core:Item key="EWMOBD" text="EWM Outbound Delivery" />	
+										<core:Item key="manual" text="Manual" />											
 									</ComboBox>
 
 									<!-- <Label text="SAP Delivery Number" class="sapdeliverynumberbgcolor sapUiSmallMarginTop sapUiMediumMarginEnd sapUiSmallMarginBegin" width="12%" wrapping="false" labelFor="SAPDelLabel"/> -->
