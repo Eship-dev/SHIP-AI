@@ -4135,10 +4135,10 @@
             "name": "Payment Types"
         },
         {
-            "name": "Dangerous Goods"
+            "name": "Document Catalog"
         },
         {
-            "name": "Default Configuration"
+            "name": "User Audit Trail"
         },
         {
             "name": "Unlock Delivery Number"
@@ -4164,7 +4164,7 @@
             "name": "Incoterms"
         },
         {
-            "name": "EU Countries"
+            "name": "Return Address"
         },
         {
             "name": "SMTP Configuration"
@@ -6398,151 +6398,16 @@
         }
     ],
     "DangerousGoodsTableColumns": [
-        {
-            "key": "unNo",
-            "label": "UN No",
-            "visible": true
-        },
-        {
-            "key": "carrier",
-            "label": "Carrier",
-            "visible": true
-        },
-        {
-            "key": "transportMode",
-            "label": "Transport Mode",
-            "visible": true
-        },
-        {
-            "key": "destination",
-            "label": "Destination",
-            "visible": true
-        },
-        {
-            "key": "hazardId",
-            "label": "Hazard ID",
-            "visible": true
-        },
-        {
-            "key": "ergGuideNumber",
-            "label": "ERG Guide Number",
-            "visible": true
-        },
-        {
-            "key": "hazardClass",
-            "label": "Hazard Class",
-            "visible": true
-        },
-        {
-            "key": "labelsRequired",
-            "label": "Labels Required",
-            "visible": true
-        },
-        {
-            "key": "additionalInfo",
-            "label": "Additional Info",
-            "visible": false
-        },
-        {
-            "key": "packingGroup",
-            "label": "Packing Group",
-            "visible": false
-        },
-        {
-            "key": "passengerCargoMaxNetQty",
-            "label": "Passenger & Cargo Max Net Qty",
-            "visible": false
-        },
-        {
-            "key": "properShippingName",
-            "label": "Proper Shipping Name",
-            "visible": false
-        },
-        {
-            "key": "canadaPermitted",
-            "label": "Canada Permitted",
-            "visible": false
-        },
-        {
-            "key": "cargoAircraftOnlyQuantity",
-            "label": "Cargo Aircraft Only Quantity",
-            "visible": false
-        },
-        {
-            "key": "cargoAircraftOnlyUnit",
-            "label": "Cargo Aircraft Only Unit of Measure",
-            "visible": false
-        },
-        {
-            "key": "doNotPrintPSN",
-            "label": "Do Not Print PSN Reference Only",
-            "visible": false
-        },
-        {
-            "key": "exceptedQuantityCode",
-            "label": "Excepted Quantity Code",
-            "visible": false
-        },
-        {
-            "key": "exemptionRequired",
-            "label": "Exemption Required",
-            "visible": false
-        },
-        {
-            "key": "forbidden",
-            "label": "Forbidden",
-            "visible": false
-        },
-        {
-            "key": "limitedQuantityMaxNetQty",
-            "label": "Limited Quantity Max Net Qty Per Package",
-            "visible": true
-        },
-        {
-            "key": "limitedQuantityPackingInstructions",
-            "label": "Limited Quantity Packing Instructions",
-            "visible": true
-        },
-        {
-            "key": "limitedQuantity",
-            "label": "Limited Quantity",
-            "visible": true
-        },
-        {
-            "key": "limitedQuantityUnit",
-            "label": "Limited Quantity Unit of Measure",
-            "visible": true
-        },
-        {
-            "key": "packagingExceptions",
-            "label": "Packaging Exceptions",
-            "visible": true
-        },
-        {
-            "key": "packagingNonBulk",
-            "label": "Packaging Non-Bulk",
-            "visible": true
-        },
-        {
-            "key": "passengerCargoAircraftPackingInstructions",
-            "label": "Passenger & Cargo Aircraft Packing Instructions",
-            "visible": true
-        },
-        {
-            "key": "passengerCargoAircraftQuantity",
-            "label": "Passenger & Cargo Aircraft Quantity",
-            "visible": true
-        },
-        {
-            "key": "passengerCargoAircraftUnit",
-            "label": "Passenger & Cargo Aircraft Unit of Measure",
-            "visible": true
-        },
-        {
-            "key": "technicalInfoFlag",
-            "label": "Technical Info Flag",
-            "visible": true
-        },
+        { "key": "locationId", "label": "Location ID", "visible": true },
+        { "key": "locationName", "label": "Location Name", "visible": true },
+        { "key": "erpLocationId", "label": "ERP Location ID", "visible": true },
+        { "key": "documentId", "label": "Document ID", "visible": true },
+        { "key": "erpDocumentId", "label": "ERP Document ID", "visible": true },
+        { "key": "documentDesc", "label": "Document Description", "visible": true },
+        { "key": "documentType", "label": "Document Type", "visible": true },
+        { "key": "shipmentType", "label": "Shipment Type", "visible": true },
+        { "key": "numCopies", "label": "# of Copies", "visible": true },
+        { "key": "status", "label": "Status", "visible": true },
         {
             "key": "actions",
             "label": "Actions",
@@ -6551,97 +6416,173 @@
     ],
     "DangerousGoodsTableRows": [
         {
-            "destination": "Domestic",
-            "transportMode": "Ground",
-            "hazardClass": "2.3",
-            "labelsRequired": "POISONOUS GAS, CORROSIVE",
-            "additionalInfo": "Inhalation Hazard Zone B",
-            "packingGroup": "None",
-            "forbidden": "Forbidden",
-            "properShippingName": "Compressed gas, toxic, corrosive, n.o.s. Inhalation Hazard Zone B",
-            "canadaPermitted": false,
-            "cargoAircraftOnlyQuantity": 0,
-            "cargoAircraftOnlyUnit": "None",
-            "doNotPrintPSN": false,
-            "exceptedQuantityCode": false,
-            "exemptionRequired": false,
-            "limitedQuantityMaxNetQty": 0,
-            "limitedQuantityPackingInstructions": "None",
-            "limitedQuantity": 0,
-            "limitedQuantityUnit": "None",
-            "packagingExceptions": true,
-            "unNo": 1070,
-            "carrier": "LTL"
-        },
-        {
-            "destination": "Domestic",
-            "transportMode": "Ground",
-            "hazardClass": "2.3",
-            "labelsRequired": "POISON GAS",
-            "additionalInfo": "Inhalation Hazard Zone C",
-            "packingGroup": "None",
-            "forbidden": "Forbidden",
-            "properShippingName": "Compressed gas, toxic, n.o.s. Inhalation Hazard Zone C",
-            "canadaPermitted": false,
-            "cargoAircraftOnlyQuantity": 0,
-            "cargoAircraftOnlyUnit": "None",
-            "doNotPrintPSN": false,
-            "exceptedQuantityCode": false,
-            "exemptionRequired": false,
-            "limitedQuantityMaxNetQty": 0,
-            "limitedQuantityPackingInstructions": "None",
-            "limitedQuantity": 0,
-            "limitedQuantityUnit": "None",
-            "packagingExceptions": true,
-            "unNo": 1070,
-            "carrier": "LTL"
-        },
-        {
-            "destination": "Domestic",
-            "transportMode": "Ground",
-            "hazardClass": "2.3",
-            "labelsRequired": "POISONOUS GAS, CORROSIVE",
-            "additionalInfo": "Inhalation Hazard Zone B",
-            "packingGroup": "None",
-            "forbidden": "Forbidden",
-            "properShippingName": "Compressed gas, toxic, corrosive, n.o.s. Inhalation Hazard Zone B",
-            "canadaPermitted": false,
-            "cargoAircraftOnlyQuantity": 0,
-            "cargoAircraftOnlyUnit": "None",
-            "doNotPrintPSN": false,
-            "exceptedQuantityCode": false,
-            "exemptionRequired": false,
-            "limitedQuantityMaxNetQty": 0,
-            "limitedQuantityPackingInstructions": "None",
-            "limitedQuantity": 0,
-            "limitedQuantityUnit": "None",
-            "packagingExceptions": true,
-            "unNo": 1050,
-            "carrier": "LTL"
-        },
-        {
-            "destination": "Domestic",
-            "transportMode": "Ground",
-            "hazardClass": "2.3",
-            "labelsRequired": "POISON GAS",
-            "additionalInfo": "Inhalation Hazard Zone C",
-            "packingGroup": "None",
-            "forbidden": "Forbidden",
-            "properShippingName": "Compressed gas, toxic, n.o.s. Inhalation Hazard Zone C",
-            "canadaPermitted": false,
-            "cargoAircraftOnlyQuantity": 0,
-            "cargoAircraftOnlyUnit": "None",
-            "doNotPrintPSN": false,
-            "exceptedQuantityCode": false,
-            "exemptionRequired": false,
-            "limitedQuantityMaxNetQty": 0,
-            "limitedQuantityPackingInstructions": "None",
-            "limitedQuantity": 0,
-            "limitedQuantityUnit": "None",
-            "packagingExceptions": true,
-            "unNo": 1050,
-            "carrier": "LTL"
-        }
+            "locationId": "BP01",
+            "locationName": "South Brunswick, NJ",
+            "erpLocationId": "BP01",
+            "documentId": "ZGB1",
+            "erpDocumentId": "ZGB1",
+            "documentDesc": "Standard Bill of Lading",
+            "documentType": "LTL",
+            "shipmentType": "",
+            "numCopies": "",
+            "status": ""
+          },
+          {
+            "locationId": "BP01",
+            "locationName": "South Brunswick, NJ",
+            "erpLocationId": "BP01",
+            "documentId": "ZBL2",
+            "erpDocumentId": "ZBL2",
+            "documentDesc": "Custom Bill of Lading",
+            "documentType": "LTL",
+            "shipmentType": "",
+            "numCopies": "",
+            "status": ""
+          },
+          {
+            "locationId": "BP01",
+            "locationName": "South Brunswick, NJ",
+            "erpLocationId": "BP01",
+            "documentId": "ZCVS",
+            "erpDocumentId": "ZCVS",
+            "documentDesc": "CVS.com Packing Slip",
+            "documentType": "Generic",
+            "shipmentType": "",
+            "numCopies": "",
+            "status": ""
+          },
+          {
+            "locationId": "BP01",
+            "locationName": "South Brunswick, NJ",
+            "erpLocationId": "BP01",
+            "documentId": "ZPL0",
+            "erpDocumentId": "ZPL0",
+            "documentDesc": "Packing Slip",
+            "documentType": "Generic",
+            "shipmentType": "",
+            "numCopies": "",
+            "status": ""
+          },
+          {
+            "locationId": "BP01",
+            "locationName": "South Brunswick, NJ",
+            "erpLocationId": "BP01",
+            "documentId": "ESJ",
+            "erpDocumentId": "ESJ",
+            "documentDesc": "Carrier Label",
+            "documentType": "Generic",
+            "shipmentType": "",
+            "numCopies": "",
+            "status": ""
+          },
+          {
+            "locationId": "BP01",
+            "locationName": "South Brunswick, NJ",
+            "erpLocationId": "BP01",
+            "documentId": "ZWMB",
+            "erpDocumentId": "ZWMB",
+            "documentDesc": "Walmart BOL",
+            "documentType": "LTL",
+            "shipmentType": "",
+            "numCopies": "",
+            "status": ""
+          },
+          {
+            "locationId": "BP01",
+            "locationName": "South Brunswick, NJ",
+            "erpLocationId": "BP01",
+            "documentId": "ZHSN",
+            "erpDocumentId": "ZHSN",
+            "documentDesc": "HSN Packing List",
+            "documentType": "pdf",
+            "shipmentType": "LTL",
+            "numCopies": "1",
+            "status": ""
+          },
+          {
+            "locationId": "BP01",
+            "locationName": "South Brunswick, NJ",
+            "erpLocationId": "BP01",
+            "documentId": "ZPHS",
+            "erpDocumentId": "ZPHS",
+            "documentDesc": "HSN New Packing List",
+            "documentType": "pdf",
+            "shipmentType": "LTL",
+            "numCopies": "1",
+            "status": ""
+          },
+          {
+            "locationId": "BP01",
+            "locationName": "South Brunswick, NJ",
+            "erpLocationId": "BP01",
+            "documentId": "ZHUL",
+            "erpDocumentId": "ZHUL",
+            "documentDesc": "Handling Unit Label",
+            "documentType": "Generic",
+            "shipmentType": "",
+            "numCopies": "",
+            "status": ""
+          },
+          {
+            "locationId": "BP01",
+            "locationName": "South Brunswick, NJ",
+            "erpLocationId": "BP01",
+            "documentId": "ZPLM",
+            "erpDocumentId": "ZPLM",
+            "documentDesc": "Pallet Manifest",
+            "documentType": "Generic",
+            "shipmentType": "",
+            "numCopies": "",
+            "status": ""
+          },
+          {
+            "locationId": "BP01",
+            "locationName": "South Brunswick, NJ",
+            "erpLocationId": "BP01",
+            "documentId": "ZLTL",
+            "erpDocumentId": "ZLTL",
+            "documentDesc": "LTL Label",
+            "documentType": "LTL",
+            "shipmentType": "",
+            "numCopies": "",
+            "status": ""
+          },
+          {
+            "locationId": "BP20",
+            "locationName": "South Brunswick, NJ",
+            "erpLocationId": "BP20",
+            "documentId": "ZPHS",
+            "erpDocumentId": "ZPHS",
+            "documentDesc": "HSN New Packing List",
+            "documentType": "pdf",
+            "shipmentType": "LTL",
+            "numCopies": "1",
+            "status": ""
+          },
+          {
+            "locationId": "BP16",
+            "locationName": "South Brunswick, NJ",
+            "erpLocationId": "BP16",
+            "documentId": "ZPHS",
+            "erpDocumentId": "ZPHS",
+            "documentDesc": "HSN New Packing List",
+            "documentType": "pdf",
+            "shipmentType": "LTL",
+            "numCopies": "1",
+            "status": ""
+          },
+          {
+            "locationId": "BP18",
+            "locationName": "South Brunswick, NJ",
+            "erpLocationId": "BP18",
+            "documentId": "ZPHS",
+            "erpDocumentId": "ZPHS",
+            "documentDesc": "HSN New Packing List",
+            "documentType": "pdf",
+            "shipmentType": "LTL",
+            "numCopies": "1",
+            "status": ""
+          }
     ],
     "ThirdPartiesTableColumns": [
         {
@@ -7936,75 +7877,296 @@
         }
     ],
     "CountriesTableColumns": [
-        {
-            "key": "countryCode",
-            "label": "Country Code",
-            "visible": true
-        },
-        {
-            "key": "countryDesc",
-            "label": "Country Description",
-            "visible": true
-        },
-        {
-            "key": "region",
-            "label": "Region",
-            "visible": true
-        },
-        {
-            "key": "currency",
-            "label": "Currency",
-            "visible": true
-        },
-        {
-            "key": "status",
-            "label": "Status",
-            "visible": true
-        }
-    ],
+        { "key": "userName", "label": "User Name", "visible": true },
+        { "key": "erpUserId", "label": "ERP User ID", "visible": true },
+        { "key": "locationId", "label": "Location ID", "visible": true },
+        { "key": "ipAddress", "label": "IP Address", "visible": true },
+        { "key": "device", "label": "Device", "visible": true },
+        { "key": "role", "label": "Role", "visible": true },
+        { "key": "browser", "label": "Browser", "visible": true },
+        { "key": "os", "label": "Operating System", "visible": true },
+        { "key": "networkType", "label": "Network Type", "visible": true },
+        { "key": "screenResolution", "label": "Screen Resolution", "visible": true },
+        { "key": "loginTime", "label": "Login Time", "visible": true },
+        { "key": "logoutTime", "label": "Logout Time", "visible": true },
+        { "key": "sessionDuration", "label": "Session Duration", "visible": true },
+        { "key": "loginStatus", "label": "Login Status", "visible": true },
+        { "key": "status", "label": "Status", "visible": true }
+      ],
     "CountriesTableRows": [
         {
-            "countryCode": "AF",
-            "countryDesc": "Afghanistan",
-            "region": "",
-            "currency": "AFN",
+            "userName": "USER-04",
+            "erpUserId": "BP02",
+            "locationId": "",
+            "ipAddress": "14.194.107.230:8117",
+            "device": "desktop",
+            "role": "Super Admin",
+            "browser": "",
+            "os": "",
+            "networkType": "",
+            "screenResolution": "",
+            "loginTime": "7/24/2025, 12:50:40 PM",
+            "logoutTime": "",
+            "sessionDuration": "0h 11m 29s",
+            "loginStatus": "success",
             "status": ""
-        },
-        {
-            "countryCode": "AL",
-            "countryDesc": "Albania",
-            "region": "",
-            "currency": "EUR",
+          },
+          {
+            "userName": "ERP-1",
+            "erpUserId": "BP02",
+            "locationId": "",
+            "ipAddress": "14.194.107.230:13024",
+            "device": "desktop",
+            "role": "Super Admin",
+            "browser": "",
+            "os": "",
+            "networkType": "",
+            "screenResolution": "",
+            "loginTime": "7/24/2025, 12:46:44 PM",
+            "logoutTime": "",
+            "sessionDuration": "0h 15m 25s",
+            "loginStatus": "success",
             "status": ""
-        },
-        {
-            "countryCode": "DZ",
-            "countryDesc": "Algeria",
-            "region": "",
-            "currency": "DZD",
+          },
+          {
+            "userName": "VIKAS",
+            "erpUserId": "BP02",
+            "locationId": "",
+            "ipAddress": "223.178.86.123:16798",
+            "device": "desktop",
+            "role": "Super Admin",
+            "browser": "",
+            "os": "",
+            "networkType": "",
+            "screenResolution": "",
+            "loginTime": "7/23/2025, 9:00:52 PM",
+            "logoutTime": "",
+            "sessionDuration": "16h 1m 17s",
+            "loginStatus": "success",
             "status": ""
-        },
-        {
-            "countryCode": "AS",
-            "countryDesc": "American Samoa",
-            "region": "",
-            "currency": "USD",
+          },
+          {
+            "userName": "ESHIPJET",
+            "erpUserId": "BP02",
+            "locationId": "",
+            "ipAddress": "98.63.244.92:50428",
+            "device": "desktop",
+            "role": "Super Admin",
+            "browser": "",
+            "os": "",
+            "networkType": "",
+            "screenResolution": "",
+            "loginTime": "7/23/2025, 8:16:29 PM",
+            "logoutTime": "",
+            "sessionDuration": "16h 45m 39s",
+            "loginStatus": "success",
             "status": ""
-        },
-        {
-            "countryCode": "AD",
-            "countryDesc": "Andorra",
-            "region": "",
-            "currency": "EUR",
+          },
+          {
+            "userName": "KVIDADALA",
+            "erpUserId": "BP02",
+            "locationId": "",
+            "ipAddress": "183.82.235.16:7016",
+            "device": "desktop",
+            "role": "Super Admin",
+            "browser": "",
+            "os": "",
+            "networkType": "",
+            "screenResolution": "",
+            "loginTime": "7/23/2025, 5:18:23 AM",
+            "logoutTime": "",
+            "sessionDuration": "31h 43m 46s",
+            "loginStatus": "success",
             "status": ""
-        },
-        {
-            "countryCode": "AO",
-            "countryDesc": "Angola",
-            "region": "",
-            "currency": "AOA",
+          },
+          {
+            "userName": "SATUTLURI",
+            "erpUserId": "BP02",
+            "locationId": "",
+            "ipAddress": "149.20.204.119:1105",
+            "device": "desktop",
+            "role": "Super Admin",
+            "browser": "",
+            "os": "",
+            "networkType": "",
+            "screenResolution": "",
+            "loginTime": "7/22/2025, 6:29:58 PM",
+            "logoutTime": "",
+            "sessionDuration": "42h 32m 11s",
+            "loginStatus": "success",
             "status": ""
-        }
+          },
+          {
+            "userName": "PGUDE",
+            "erpUserId": "BP02",
+            "locationId": "",
+            "ipAddress": "152.57.99.185:59969",
+            "device": "desktop",
+            "role": "Super Admin",
+            "browser": "",
+            "os": "",
+            "networkType": "",
+            "screenResolution": "",
+            "loginTime": "7/22/2025, 1:22:10 PM",
+            "logoutTime": "",
+            "sessionDuration": "47h 39m 59s",
+            "loginStatus": "success",
+            "status": ""
+          },
+          {
+            "userName": "MREINA1",
+            "erpUserId": "BP02",
+            "locationId": "",
+            "ipAddress": "149.20.204.119:1075",
+            "device": "desktop",
+            "role": "Shipper",
+            "browser": "",
+            "os": "",
+            "networkType": "",
+            "screenResolution": "",
+            "loginTime": "7/18/2025, 10:58:43 PM",
+            "logoutTime": "",
+            "sessionDuration": "134h 3m 26s",
+            "loginStatus": "success",
+            "status": ""
+          },
+          {
+            "userName": "LWALKER",
+            "erpUserId": "BP02",
+            "locationId": "",
+            "ipAddress": "149.20.204.119:1072",
+            "device": "desktop",
+            "role": "Shipper",
+            "browser": "",
+            "os": "",
+            "networkType": "",
+            "screenResolution": "",
+            "loginTime": "7/18/2025, 10:57:54 PM",
+            "logoutTime": "",
+            "sessionDuration": "134h 4m 15s",
+            "loginStatus": "success",
+            "status": ""
+          },
+          {
+            "userName": "YGUPTA",
+            "erpUserId": "BP02",
+            "locationId": "",
+            "ipAddress": "149.20.204.119:1250",
+            "device": "desktop",
+            "role": "Super Admin",
+            "browser": "",
+            "os": "",
+            "networkType": "",
+            "screenResolution": "",
+            "loginTime": "7/18/2025, 8:49:01 PM",
+            "logoutTime": "",
+            "sessionDuration": "136h 13m 8s",
+            "loginStatus": "success",
+            "status": ""
+          },
+          {
+            "userName": "TAJAY",
+            "erpUserId": "BP02",
+            "locationId": "",
+            "ipAddress": "103.57.135.40:10250",
+            "device": "desktop",
+            "role": "Super Admin",
+            "browser": "",
+            "os": "",
+            "networkType": "",
+            "screenResolution": "",
+            "loginTime": "7/18/2025, 2:08:50 PM",
+            "logoutTime": "",
+            "sessionDuration": "142h 53m 19s",
+            "loginStatus": "success",
+            "status": ""
+          },
+          {
+            "userName": "PDORNEY",
+            "erpUserId": "BP02",
+            "locationId": "",
+            "ipAddress": "149.20.204.119:9533",
+            "device": "desktop",
+            "role": "Super Admin",
+            "browser": "",
+            "os": "",
+            "networkType": "",
+            "screenResolution": "",
+            "loginTime": "7/17/2025, 5:25:29 PM",
+            "logoutTime": "",
+            "sessionDuration": "163h 36m 40s",
+            "loginStatus": "success",
+            "status": ""
+          },
+          {
+            "userName": "AJAY",
+            "erpUserId": "BP02",
+            "locationId": "",
+            "ipAddress": "103.57.135.40:9174",
+            "device": "desktop",
+            "role": "Super Admin",
+            "browser": "",
+            "os": "",
+            "networkType": "",
+            "screenResolution": "",
+            "loginTime": "7/17/2025, 7:38:48 AM",
+            "logoutTime": "",
+            "sessionDuration": "173h 23m 21s",
+            "loginStatus": "success",
+            "status": ""
+          },
+          {
+            "userName": "BCERNIGLIA",
+            "erpUserId": "BP02",
+            "locationId": "",
+            "ipAddress": "",
+            "device": "",
+            "role": "Super Admin",
+            "browser": "",
+            "os": "",
+            "networkType": "",
+            "screenResolution": "",
+            "loginTime": "",
+            "logoutTime": "",
+            "sessionDuration": "0h 0m 0.00s",
+            "loginStatus": "success",
+            "status": ""
+          },
+          {
+            "userName": "jebbecke",
+            "erpUserId": "BP02",
+            "locationId": "",
+            "ipAddress": "",
+            "device": "",
+            "role": "Super Admin",
+            "browser": "",
+            "os": "",
+            "networkType": "",
+            "screenResolution": "",
+            "loginTime": "",
+            "logoutTime": "",
+            "sessionDuration": "0h 0m 0.00s",
+            "loginStatus": "success",
+            "status": ""
+          },
+          {
+            "userName": "SAP-01",
+            "erpUserId": "BP02",
+            "locationId": "",
+            "ipAddress": "",
+            "device": "",
+            "role": "Super Admin",
+            "browser": "",
+            "os": "",
+            "networkType": "",
+            "screenResolution": "",
+            "loginTime": "",
+            "logoutTime": "",
+            "sessionDuration": "0h 0m 0.00s",
+            "loginStatus": "success",
+            "status": ""
+          }
+        
     ],
     "CarrierData": [
         {
@@ -10178,23 +10340,88 @@
         }
     ],
     "EUCountriesTableColumns": [
-        {
-            "key": "countryCode",
-            "label": "Country Code",
-            "visible": true
-        },
-        {
-            "key": "countryDesc",
-            "label": "Country Description",
-            "visible": true
-        },
-        {
-            "key": "status",
-            "label": "Status",
-            "visible": true
-        }
+        { "key": "locationId", "label": "Location ID", "visible": true },
+        { "key": "contactName", "label": "Contact Name", "visible": true },
+        { "key": "companyName", "label": "Company Name", "visible": true },
+        { "key": "phoneNumber", "label": "Phone Number", "visible": true },
+        { "key": "emailAddress", "label": "Email Address", "visible": true },
+        { "key": "sapCustomerId", "label": "SAP Customer ID", "visible": true },
+        { "key": "customerId", "label": "Customer ID", "visible": true },
+        { "key": "addressLine1", "label": "Address Line 1", "visible": true },
+        { "key": "addressLine2", "label": "Address Line 2", "visible": true },
+        { "key": "addressLine3", "label": "Address Line 3", "visible": true },
+        { "key": "city", "label": "City", "visible": true },
+        { "key": "stateProvince", "label": "State / Province", "visible": true },
+        { "key": "postalCode", "label": "Postal Code", "visible": true },
+        { "key": "country", "label": "Country", "visible": true },
+        { "key": "addressCategory", "label": "Address Category", "visible": true },
+        { "key": "addressType", "label": "Address Type", "visible": true },
+        { "key": "costCenter", "label": "Cost Center", "visible": true },
+        { "key": "lockerNo", "label": "Locker No", "visible": true },
+        { "key": "lockerLocation", "label": "Locker Location", "visible": true },
+        { "key": "lockerAccessCode", "label": "Locker Access Code", "visible": true },
+        { "key": "buildingNo", "label": "Building No", "visible": true },
+        { "key": "floorNo", "label": "Floor No", "visible": true },
+        { "key": "mailStop", "label": "Mail Stop", "visible": true },
+        { "key": "status", "label": "Status", "visible": true },
+        { "key": "rfidTag", "label": "RFID Tag", "visible": true }
     ],
-    "EUCountriesTableRows": [],
+    "EUCountriesTableRows": [
+        {
+            "locationId": "BP01",
+            "contactName": "test",
+            "companyName": "test",
+            "phoneNumber": "46457",
+            "emailAddress": "test@test.com",
+            "sapCustomerId": "65364",
+            "customerId": "346",
+            "addressLine1": "test",
+            "addressLine2": "test",
+            "addressLine3": "test",
+            "city": "TES",
+            "stateProvince": "4364",
+            "postalCode": "AF",
+            "country": "Billing Address",
+            "addressCategory": "Residential",
+            "addressType": "Warehouse Cost Center",
+            "costCenter": "4654",
+            "lockerNo": "346",
+            "lockerLocation": "346",
+            "lockerAccessCode": "46",
+            "buildingNo": "44",
+            "floorNo": "5",
+            "mailStop": "",
+            "status": "",
+            "rfidTag": ""
+          },
+          {
+            "locationId": "BP02",
+            "contactName": "New",
+            "companyName": "New",
+            "phoneNumber": "65465466",
+            "emailAddress": "New@gmail.com",
+            "sapCustomerId": "65465",
+            "customerId": "kjkh",
+            "addressLine1": "New",
+            "addressLine2": "New",
+            "addressLine3": "New",
+            "city": "NEW",
+            "stateProvince": "54654",
+            "postalCode": "US",
+            "country": "Billing Address",
+            "addressCategory": "Commercial",
+            "addressType": "Warehouse Cost Center",
+            "costCenter": "",
+            "lockerNo": "",
+            "lockerLocation": "",
+            "lockerAccessCode": "",
+            "buildingNo": "",
+            "floorNo": "",
+            "mailStop": "",
+            "status": "",
+            "rfidTag": ""
+          }
+    ],
     "ShipmentErrorLogsTableColumns": [
     {
         "key": "userId",

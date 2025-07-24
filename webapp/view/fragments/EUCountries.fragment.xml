@@ -1,11 +1,11 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
     <Toolbar width="auto" height="15%" class="toolbarbottomborder fixedLayout">
-			<Text text="EU Countries" class="toolBarHeader sapUiTinyMarginBegin pageTitle" ></Text>
+			<Text text="Return Address" class="toolBarHeader sapUiTinyMarginBegin pageTitle" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button  text="Add EU Countries" press="onAddEUCountriesPress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="10rem" ></Button>
-                    <Button type="Success" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button>
+                    <Button  text="Add Return Address" press="onAddEUCountriesPress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="10rem" ></Button>
+                    <!-- <Button type="Success" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button> -->
                 </HBox>
 		</Toolbar>
 
@@ -13,7 +13,7 @@
 			<HBox width="100%" >
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="1" class="NumberSizeTitle1"></Text>
-					<Text text="Total EU Countries" class="NumberSizeTitle2"></Text>
+					<Text text="Total Return Address" class="NumberSizeTitle2"></Text>
 					<Button class="totalProgress-request-button request-button" press="handleManifestFilterBtnPress" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="33%">

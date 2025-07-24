@@ -9081,9 +9081,9 @@ sap.ui.define([
                 oController._displayTables("_IDPackageTypesTable", "PackageTypeTableColumns", "PackageTypeTableRows", "Package Types");
                 oPageContainer.to(oView.createId("_ID_PackageTypes_TableScrollContainer"));
                 
-            } else if (oCurrObj && oCurrObj.name === "Dangerous Goods") {
+            } else if (oCurrObj && oCurrObj.name === "Document Catalog") {
                 oController._handleDisplayDangerousGoodsTable();
-                oController._displayTables("_IDDangerousGoodsTable", "DangerousGoodsTableColumns", "DangerousGoodsTableRows", "Dangerous Goods");
+                oController._displayTables("_IDDangerousGoodsTable", "DangerousGoodsTableColumns", "DangerousGoodsTableRows", "Document Catalog");
                 oPageContainer.to(oView.createId("_ID_DangerousGoods_TableScrollContainer"));
 
             } else if (oCurrObj && oCurrObj.name === "Third Party") {
@@ -9162,14 +9162,15 @@ sap.ui.define([
 
                 this.OpenUnlockDeliveryNumberDialog();
 
-            } else if (oCurrObj && oCurrObj.name === "Countries") {
-
-                oController._displayTables("_ID_CountriesTable", "CountriesTableColumns", "CountriesTableRows", "Countries");
+            } else if (oCurrObj && oCurrObj.name === "User Audit Trail") {
+                eshipjetModel.setProperty("/commonValues/toolPageHeader", false);
+                eshipjetModel.setProperty("/commonValues/allViewsFooter", false);
+                oController._displayTables("_ID_CountriesTable", "CountriesTableColumns", "CountriesTableRows", "User Audit Trail");
                 oPageContainer.to(oView.createId("_ID_Countries_TableScrollContainer"));
 
-            } else if (oCurrObj && oCurrObj.name === "EU Countries") {
+            } else if (oCurrObj && oCurrObj.name === "Return Address") {
 
-                oController._displayTables("_ID_EUCountriesTable", "EUCountriesTableColumns", "EUCountriesTableRows", "EU Countries");
+                oController._displayTables("_ID_EUCountriesTable", "EUCountriesTableColumns", "EUCountriesTableRows", "Return Address");
                 oPageContainer.to(oView.createId("_ID_EUCountries_TableScrollContainer"));
             } else if (oCurrObj && oCurrObj.name === "Shipment Error Logs") {
 

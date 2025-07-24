@@ -1,10 +1,14 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
-
+	<Toolbar class="" height="3rem" >
+					<Text text="User Audit Trail"/>
+					<ToolbarSpacer ></ToolbarSpacer>
+					<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn ship-now-decline_btn" type="Ghost" />
+				</Toolbar>
     <Toolbar width="auto" height="15%" class="toolbarbottomborder fixedLayout">
-			<Text text="Countries" class="toolBarHeader sapUiTinyMarginBegin pageTitle" ></Text>
+			<Text text="UserAuditTrail" class="toolBarHeader sapUiTinyMarginBegin pageTitle" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button text="Add Countries" press="onAddCountriesPress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="10rem" ></Button>
+                    <Button text="Add User Audit Trail" press="onAddUserAuditTrailPress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="10rem" ></Button>
                     <Button type="Success" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button>
                 </HBox>
 		</Toolbar>
@@ -13,7 +17,7 @@
 			<HBox width="100%" >
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="1" class="NumberSizeTitle1"></Text>
-					<Text text="Total Countries" class="NumberSizeTitle2"></Text>
+					<Text text="Total UserAuditTrail" class="NumberSizeTitle2"></Text>
 					<Button class="totalProgress-request-button request-button" press="handleManifestFilterBtnPress" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="33%">
@@ -36,7 +40,7 @@
         <OverflowToolbar style="Clear">										
             <ToolbarSpacer />
                 <Button icon="sap-icon://action" ></Button>
-                <Button icon="sap-icon://action-settings" press="openCountriesColNamesPopover"></Button>
+                <Button icon="sap-icon://action-settings" press="openUserAuditTrailColNamesPopover"></Button>
         </OverflowToolbar>
     </ui:extension>	
     <ui:footer>

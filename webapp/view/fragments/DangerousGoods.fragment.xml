@@ -1,11 +1,11 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
     <Toolbar width="auto"  height="3rem" class="toolbarbottomborder fixedLayout ordersDarkThemeToolbar">
-			<Text text="Dangerous Goods" class="toolBarHeader sapUiTinyMarginBegin whiteColor" ></Text>
+			<Text text="Document Catalog" class="toolBarHeader sapUiTinyMarginBegin whiteColor" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button  text="Add Dangerous Goods" press="onAddAddDangerousGoodsPress" class="Master-toolbar__button" width="8rem" ></Button>
-                    <Button type="Success" press="onDangerousGoodsArrowPress" icon="sap-icon://navigation-down-arrow" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button>
+                    <Button  text="Add Document Catalog" press="onAddAddDangerousGoodsPress" class="Master-toolbar__button" width="11rem" ></Button>
+                    <!-- <Button type="Success" press="onDangerousGoodsArrowPress" icon="sap-icon://navigation-down-arrow" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button> -->
                 </HBox>
 		</Toolbar>
 
@@ -13,7 +13,7 @@
 			<HBox width="100%" >
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="1" class="NumberSizeTitle1"></Text>
-					<Text text="Total Dangerous Goodss" class="NumberSizeTitle2"></Text>
+					<Text text="Total Document Catalogs" class="NumberSizeTitle2"></Text>
 					<Button class="totalProgress-request-button request-button"  press="handleManifestFilterBtnPress" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="33%">
