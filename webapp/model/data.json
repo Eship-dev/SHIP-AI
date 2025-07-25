@@ -4900,7 +4900,12 @@
       "key": "status",
       "label": "Status",
       "visible": true
-     }
+     },
+     {
+        "key": "actions",
+        "label": "Actions",
+        "visible": true
+       }
   ],
   "UsersTableRows": [
     {
@@ -5054,7 +5059,7 @@
         { "key": "connectionType", "label": "Connection Type", "visible": true },
         { "key": "colorPicker", "label": "Color Picker", "visible": true },
         { "key": "status", "label": "Status", "visible": true },
-        { "key": "actionsforCarrierCatalog", "label": "Actions", "visible": true }
+        { "key": "actions", "label": "Actions", "visible": true }
       ],
       "CarrierCatalogTableRows": [
                 {

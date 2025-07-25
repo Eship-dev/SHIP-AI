@@ -9207,13 +9207,20 @@ sap.ui.define([
                     columnLabel = oContext.getObject().label;
 
                     if (columnName === "actions") {
-                        var oHBox = new sap.m.HBox({}); // Create Text instance 
-                        var Link1 = new sap.m.Link({ text: "View" });
-                        var Link2 = new sap.m.Link({ endIcon: "sap-icon://navigation-down-arrow" });
-                        oHBox.addItem(Link1);
-                        oHBox.addItem(Link2);
-                        var Link1 = new sap.m.Link({ text: "View" });
-                        var Link2 = new sap.m.Link({ endIcon: "sap-icon://navigation-down-arrow" });
+                        var oHBox = new sap.m.HBox({ alignItems: "Center", justifyContent: "Start" });
+                        var Link1 = new sap.m.Link({ 
+                            text: "View", 
+                            press: function () {
+                                // handle view press if needed
+                            }
+                        });
+                        var Link2 = new sap.m.Button({
+                            icon: "sap-icon://megamenu",
+                            type: "Transparent",
+                            press: function (oEvent) {
+                                // handle dropdown press if needed
+                            }
+                        });
                         oHBox.addItem(Link1);
                         oHBox.addItem(Link2);
                         return new sap.ui.table.Column({
@@ -9222,6 +9229,7 @@ sap.ui.define([
                             visible: oContext.getObject().visible,
                             sortProperty: columnName
                         });
+
                     } else if (columnName === "status") {
                         var oSwitch = new sap.m.Switch({ type: "AcceptReject" });
                         return new sap.ui.table.Column({
@@ -10221,78 +10229,65 @@ sap.ui.define([
         },
 
 
-        // _handleDisplayUsersTable: function () {
-        //     var that = this;
-        //     const oView = oController.getView();
-        //     var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
-        //     var UsersTableColumns = eshipjetModel.getData().UsersTableColumns;
-        //     const oTable = oView.byId("_IDUsersTable");
-        //     oTable.setModel(eshipjetModel);
-        //     var count = 0;
-        //     for (var i = 0; i < UsersTableColumns.length; i++) {
-        //         if (UsersTableColumns[i].visible === true) {
-        //             count += 1
-        //         }
-        //     }
-        //     oTable.bindColumns("/UsersTableColumns", function (sId, oContext) {
-        //         columnName = oContext.getObject().key;
-        //         label = oContext.getObject().label;
-        //         var minWidth = "100%";
-        //         if (count >= 14) {
-        //             var minWidth = "130px";
-        //         }
-        //         if (columnName === "actions") {
-        //             var oHBox = new sap.m.HBox({}); // Create Text instance 
-        //             var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
-        //             var Btn2 = new sap.m.Button({
-        //                 icon: "sap-icon://megamenu", type: "Transparent",
-        //                 press: function (oEvent) {
-        //                     that.handleDownArrowPress(oEvent);
-        //                 }
-        //             });
-        //             oHBox.addItem(Btn1);
-        //             oHBox.addItem(Btn2);
-        //             return new sap.ui.table.Column({
-        //                 label: oResourceBundle.getText(columnName),
-        //                 template: oHBox,
-        //                 visible: oContext.getObject().visible,
-        //                 width: minWidth,
-        //                 sortProperty: columnName
-        //             });
-        //         } else if (columnName === "status") {
-        //             var oSwitch = new sap.m.Switch({ type: "AcceptReject" });
-        //             return new sap.ui.table.Column({
-        //                 label: oResourceBundle.getText(columnName),
-        //                 template: oSwitch,
-        //                 visible: oContext.getObject().visible,
-        //                 width: minWidth,
-        //                 sortProperty: columnName
-        //             });
-        //         } else {
-        //             return new sap.ui.table.Column({
-        //                 label: oResourceBundle.getText(columnName),
-        //                 template: columnName,
-        //                 visible: oContext.getObject().visible,
-        //                 width: minWidth,
-        //                 sortProperty: columnName
-        //             });
-        //         }
-        //     });
-        //     oTable.bindRows("/UsersTableRows");
-        // },
         _handleDisplayUsersTable: function () {
-            const oView = this.getView();
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var UsersTableColumns = eshipjetModel.getData().UsersTableColumns;
             const oTable = oView.byId("_IDUsersTable");
-            const eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
-        
-            // Set the model for the table
             oTable.setModel(eshipjetModel);
-        
-            // Bind only rows; columns are defined in the view now
+            var count = 0;
+            for (var i = 0; i < UsersTableColumns.length; i++) {
+                if (UsersTableColumns[i].visible === true) {
+                    count += 1
+                }
+            }
+            oTable.bindColumns("/UsersTableColumns", function (sId, oContext) {
+                columnName = oContext.getObject().key;
+                label = oContext.getObject().label;
+                var minWidth = "100%";
+                if (count >= 14) {
+                    var minWidth = "130px";
+                }
+                if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "status") {
+                    var oSwitch = new sap.m.Switch({ type: "AcceptReject" });
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oSwitch,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }
+            });
             oTable.bindRows("/UsersTableRows");
         },
-        
-
 
         onSearchUsers: function (oEvent) {
             var sQuery = oEvent.getParameter("query") || oEvent.getSource().getValue();
