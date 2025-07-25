@@ -8,7 +8,7 @@
 					<ToolbarSpacer/>
 						<HBox class="sapUiLargeMarginEnd" >
 							<Text text="P" class="audit-style" tooltip="Packed Count" width="auto" ></Text>
-							<Text text="{eshipjetModel>/HuCount}" class="audit-style sapUiTinyMarginEnd" tooltip="Audited Today"  width="auto" ></Text>
+							<Text text="{eshipjetModel>/HandlingUnitsLength}" class="audit-style sapUiTinyMarginEnd" tooltip="Audited Today"  width="auto" ></Text>
 
 							<Text text="S" class="billed-style" tooltip="Shipped Today"  width="auto" ></Text>
 							<Text text="{eshipjetModel>/TodayShipmentsLength}" class="billed-style sapUiLargeMarginEnd" tooltip="Billed Today"  width="auto" ></Text>
