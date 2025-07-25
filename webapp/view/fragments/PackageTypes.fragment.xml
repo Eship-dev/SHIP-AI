@@ -6,7 +6,7 @@
 				<ToolbarSpacer />
 					<HBox>
 						<Button  text="Add Package Type"  press="onAddAddPackageTypePress" class="Master-toolbar__button" width="8rem" ></Button>
-						<Button type="Success" press="onADDLocImpPress" icon="sap-icon://navigation-down-arrow" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button>
+						<!-- <Button type="Success" press="onADDLocImpPress" icon="sap-icon://navigation-down-arrow" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button> -->
                 	</HBox>
 		</Toolbar>
 

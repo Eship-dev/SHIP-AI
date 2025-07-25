@@ -5,7 +5,7 @@
 				<ToolbarSpacer />
 					<HBox>
                     <Button  text="Add Third Party" press="onAddThirdPartyPress" class="Master-toolbar__button " width="8rem" ></Button>
-                    <Button type="Success" icon="sap-icon://navigation-down-arrow" press="onThirdPartyArrowPress" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button>
+                    <!-- <Button type="Success" icon="sap-icon://navigation-down-arrow" press="onThirdPartyArrowPress" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button> -->
                 </HBox>
 		</Toolbar>
 

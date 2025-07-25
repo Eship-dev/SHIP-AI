@@ -5780,6 +5780,11 @@
             "key": "environment",
             "label": "Environment",
             "visible": true
+        },
+        {
+            "key": "actions",
+            "label": "Actions",
+            "visible": true
         }
     ],
     "CostCenterTableRows": [
@@ -5861,6 +5866,11 @@
           {
             "key": "status",
             "label": "Status",
+            "visible": true
+          },
+          {
+            "key": "actions",
+            "label": "Actions",
             "visible": true
           }
         ],
@@ -7714,7 +7724,62 @@
             "visible": true
         }
     ],
-    "PaymentTypesTableRows": [],
+    "PaymentTypesTableRows": [
+        {
+            "paymentType": "BP20",
+            "paymentCode": "Third Party",
+            "desc": "THIRDPARTY",
+            "status": "Third Party"
+          },
+          {
+            "paymentType": "BP16",
+            "paymentCode": "Third Party",
+            "desc": "THIRDPARTY",
+            "status": "Third Party"
+          },
+          {
+            "paymentType": "BP18",
+            "paymentCode": "Third Party",
+            "desc": "THIRDPARTY",
+            "status": "Third Party"
+          },
+          {
+            "paymentType": "BP08",
+            "paymentCode": "Third Party",
+            "desc": "THIRDPARTY",
+            "status": "Third Party"
+          },
+          {
+            "paymentType": "BP17",
+            "paymentCode": "Third Party",
+            "desc": "THIRDPARTY",
+            "status": "Third Party"
+          },
+          {
+            "paymentType": "BP03",
+            "paymentCode": "Third Party",
+            "desc": "THIRDPARTY",
+            "status": "Third Party"
+          },
+          {
+            "paymentType": "BP14",
+            "paymentCode": "Third Party",
+            "desc": "THIRDPARTY",
+            "status": "Third Party"
+          },
+          {
+            "paymentType": "BP04",
+            "paymentCode": "Third Party",
+            "desc": "THIRDPARTY",
+            "status": "Third Party"
+          },
+          {
+            "paymentType": "BP20",
+            "paymentCode": "Collect",
+            "desc": "Collect",
+            "status": "Collect"
+          }
+    ],
     "SMTPConfigsTableColumns": [
         {
             "key": "locationName",
@@ -7787,6 +7852,11 @@
         {
             "key": "status",
             "label": "Status",
+            "visible": true
+        },
+        {
+            "key": "actions",
+            "label": "Actions",
             "visible": true
         }
     ],

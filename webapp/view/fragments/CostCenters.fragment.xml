@@ -3,11 +3,11 @@
 
 
 	<Toolbar width="auto" height="3rem" class="toolbarbottomborder fixedLayout ordersDarkThemeToolbar">
-			<Text text="Locations" class="toolBarHeader sapUiTinyMarginBegin whiteColor" ></Text>
+			<Text text="Cost Center" class="toolBarHeader sapUiTinyMarginBegin whiteColor" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-						<Button  text="Add Location"  press="onAddLocationPress" class="Master-toolbar__button" width="8rem" ></Button>
-						<Button type="Success" press="onADDLocImpPress" icon="sap-icon://navigation-down-arrow" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button>
+						<Button  text="Add Cost Center"  press="onAddLocationPress" class="Master-toolbar__button" width="8rem" ></Button>
+						<!-- <Button type="Success" press="onADDLocImpPress" icon="sap-icon://navigation-down-arrow" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button> -->
                 	</HBox>
 		</Toolbar>
 
@@ -15,7 +15,7 @@
 			<HBox width="100%" >
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="1" class="NumberSizeTitle1"></Text>
-					<Text text="Total Locations" class="NumberSizeTitle2"></Text>
+					<Text text="Total CostCenter" class="NumberSizeTitle2"></Text>
 					<Button class="totalProgress-request-button request-button" icon="false" width="100%"  ></Button>
 				</VBox>
 				<VBox class="sapUiTinyMargin" width="33%">

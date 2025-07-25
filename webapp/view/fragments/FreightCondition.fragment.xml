@@ -6,8 +6,8 @@
 			<Text text="Freight Condition" class="toolBarHeader sapUiTinyMarginBegin whiteColor" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-						<Button  text="Add Freight Condition"  press="onAddFreightConditionPress" class="Master-toolbar__button" width="8rem" ></Button>
-						<Button type="Success" press="onADDLocImpPress" icon="sap-icon://navigation-down-arrow" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button>
+						<Button  text="Add Freight Condition"  press="onAddFreightConditionPress" class="Master-toolbar__button" width="12rem" ></Button>
+						<!-- <Button type="Success" press="onADDLocImpPress" icon="sap-icon://navigation-down-arrow" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button> -->
                 	</HBox>
 		</Toolbar>
 
