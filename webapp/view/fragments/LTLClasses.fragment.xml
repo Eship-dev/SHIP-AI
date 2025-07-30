@@ -4,7 +4,7 @@
 			<Text text="Carrier Address" class="toolBarHeader sapUiTinyMarginBegin whiteColor" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button  text="Add Carrier Address" press="onAddCarrierAddressPress" class="Master-toolbar__button" width="8rem" ></Button>
+                    <Button  text="Add Carrier Address" press="onAddCarrierAddressPress" class="Master-toolbar__button" width="12rem" ></Button>
                     <!-- <Button type="Success" icon="sap-icon://navigation-down-arrow" press="onCarrier AddressArrowPress" class="Master-toolbar__button sapUiTinyMarginEnd" ></Button> -->
                 </HBox>
 		</Toolbar>
@@ -36,7 +36,7 @@
             <ToolbarSpacer />
             <SearchField width="10rem" class="sapUiSmallMarginBottom forsearchhigh" liveChange="onSearchCarrier Address" />
             <Button icon="sap-icon://action" press="onCarrierAddressExportToExcel" type="Transparent" class="ordersIcons" />
-            <Button icon="sap-icon://action-settings" press="openCarrierAddressColNamesPopover" type="Transparent" class="ordersIcons" />
+            <Button icon="sap-icon://action-settings" press="openLTLClassesColNamesPopover" type="Transparent" class="ordersIcons" />
             <customData>
                 <core:CustomData key="remember" value="true" />
                 <core:CustomData key="showClearButton" value="true" />
@@ -45,7 +45,7 @@
         </Toolbar>
 
         <ui:Table
-            id="_IDCarrierAddressTable"
+            id="_IDLTLClassTable"
             width="100%"
             class="headerContent sapUiTinyMarginTop rowRightLine ordersTableRightBorder"
             visibleRowCount="10"

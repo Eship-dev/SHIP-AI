@@ -6784,34 +6784,163 @@
         }
     ],
     "LtlClassesTableColumns": [
-        {
-            "key": "locationName",
-            "label": "Location Name",
-            "visible": true
-        },
-        {
-            "key": "ltlClass",
-            "label": "LTL Class",
-            "visible": true
-        },
-        {
-            "key": "shipMethod",
-            "label": "Ship Method",
-            "visible": true
-        },
-        {
-            "key": "status",
-            "label": "Status",
-            "visible": true
-        }
+        { "key": "carrierID", "label": "Carrier ID", "visible": true },
+        { "key": "sapCarrierID", "label": "SAP Carrier ID / Partner ID", "visible": true },
+        { "key": "scacCode", "label": "SCAC Code", "visible": true },
+        { "key": "carrierName", "label": "Carrier Name", "visible": true },
+        { "key": "carrierType", "label": "Carrier Type", "visible": true },
+        { "key": "addressLine1", "label": "Address Line 1", "visible": true },
+        { "key": "city", "label": "City", "visible": true },
+        { "key": "state", "label": "State / Province", "visible": true },
+        { "key": "postalCode", "label": "Postal Code", "visible": true },
+        { "key": "country", "label": "Country", "visible": true },
+        { "key": "actions", "label": "Actions", "visible": true }
     ],
     "LtlClassesTableRows": [
         {
-            "locationName": "Eshipjet Software Inc.",
-            "ltlClass": "50",
-            "shipMethod": "YRC",
-            "status": ""
-        }
+            "carrierID": "OTCARRLTL",
+            "sapCarrierID": "OTCARRLTL",
+            "scacCode": "SCAC",
+            "carrierName": "OTC",
+            "carrierType": "OneTime",
+            "addressLine1": "500 Palmetto Logistics Pkwy",
+            "city": "Palmetto",
+            "state": "GA",
+            "postalCode": "30268-1283",
+            "country": "US"
+          },
+          {
+            "carrierID": "OTCARRLTL",
+            "sapCarrierID": "OTCARRLTL",
+            "scacCode": "SCAC",
+            "carrierName": "HEART LOGISTICS",
+            "carrierType": "OneTime",
+            "addressLine1": "500 Palmetto Logistics Pkwy",
+            "city": "Palmetto",
+            "state": "GA",
+            "postalCode": "30268-1283",
+            "country": "US"
+          },
+          {
+            "carrierID": "OTCARRLTL",
+            "sapCarrierID": "OTCARRLTL",
+            "scacCode": "SCAC",
+            "carrierName": "TForce",
+            "carrierType": "OneTime",
+            "addressLine1": "500 Palmetto Logistics Pkwy",
+            "city": "Palmetto",
+            "state": "GA",
+            "postalCode": "30268-1283",
+            "country": "US"
+          },
+          {
+            "carrierID": "OTCARRLTL",
+            "sapCarrierID": "OTCARRLTL",
+            "scacCode": "Forward Air",
+            "carrierName": "OTC",
+            "carrierType": "OneTime",
+            "addressLine1": "500 Palmetto Logistics Pkwy",
+            "city": "Palmetto",
+            "state": "GA",
+            "postalCode": "30268-1283",
+            "country": "US"
+          },
+          {
+            "carrierID": "OTCARRLTL",
+            "sapCarrierID": "OTCARRLTL",
+            "scacCode": "SCAC",
+            "carrierName": "ALFA TRANS INC",
+            "carrierType": "OneTime",
+            "addressLine1": "500 Palmetto Logistics Pkwy",
+            "city": "Palmetto",
+            "state": "GA",
+            "postalCode": "30268-1283",
+            "country": "US"
+          },
+          {
+            "carrierID": "OTCARRLTL",
+            "sapCarrierID": "OTCARRLTL",
+            "scacCode": "STI",
+            "carrierName": "OTC",
+            "carrierType": "OneTime",
+            "addressLine1": "500 Palmetto Logistics Pkwy",
+            "city": "Palmetto",
+            "state": "GA",
+            "postalCode": "30268-1283",
+            "country": "US"
+          },
+          {
+            "carrierID": "OTCARRLTL",
+            "sapCarrierID": "OTCARRLTL",
+            "scacCode": "SCAC",
+            "carrierName": "BRAT XPRESS LOGISTICS LLC",
+            "carrierType": "OneTime",
+            "addressLine1": "500 Palmetto Logistics Pkwy",
+            "city": "Palmetto",
+            "state": "GA",
+            "postalCode": "30268-1283",
+            "country": "US"
+          },
+          {
+            "carrierID": "OTCARRLTL",
+            "sapCarrierID": "OTCARRLTL",
+            "scacCode": "SCAC",
+            "carrierName": "EFTA TRUCKING LLC",
+            "carrierType": "OneTime",
+            "addressLine1": "500 Palmetto Logistics Pkwy",
+            "city": "Palmetto",
+            "state": "GA",
+            "postalCode": "30268-1283",
+            "country": "US"
+          },
+          {
+            "carrierID": "OTCARRLTL",
+            "sapCarrierID": "OTCARRLTL",
+            "scacCode": "SCAC",
+            "carrierName": "TForce Freight",
+            "carrierType": "OneTime",
+            "addressLine1": "500 Palmetto Logistics Pkwy",
+            "city": "Palmetto",
+            "state": "GA",
+            "postalCode": "30268-1283",
+            "country": "US"
+          },
+          {
+            "carrierID": "OTCARRLTL",
+            "sapCarrierID": "OTCARRLTL",
+            "scacCode": "SCAC",
+            "carrierName": "FORWARD AIR",
+            "carrierType": "OneTime",
+            "addressLine1": "500 Palmetto Logistics Pkwy",
+            "city": "Palmetto",
+            "state": "GA",
+            "postalCode": "30268-1283",
+            "country": "US"
+          },
+          {
+            "carrierID": "OTCARRLTL",
+            "sapCarrierID": "OTCARRLTL",
+            "scacCode": "SCAC",
+            "carrierName": "WELKEBA TRUCKING LLC",
+            "carrierType": "OneTime",
+            "addressLine1": "500 Palmetto Logistics Pkwy",
+            "city": "Palmetto",
+            "state": "GA",
+            "postalCode": "30268-1283",
+            "country": "US"
+          },
+          {
+            "carrierID": "OTCARRLTL",
+            "sapCarrierID": "OTCARRLTL",
+            "scacCode": "TFIN",
+            "carrierName": "TFORCE Freight",
+            "carrierType": "OneTime",
+            "addressLine1": "500 Palmetto Logistics Pkwy",
+            "city": "Palmetto",
+            "state": "GA",
+            "postalCode": "30268-1283",
+            "country": "US"
+          }
     ],
     "NmfcTableColumns": [
         {

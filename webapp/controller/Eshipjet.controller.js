@@ -16501,7 +16501,7 @@ sap.ui.define([
 
         OpenCompanySettingsDialog: function () {
             var oView = this.getView();
-            if (!this.byId("CompanySettingsopenDialog")) {
+            if (!this.byId("_IDGenAlcoholEditDialogUpdateCompanySettings")) {
                 Fragment.load({
                     id: oView.getId(),
                     name: "com.eshipjet.zeshipjet.view.fragments.UpdateCompanySettingsPopover",
@@ -16511,17 +16511,17 @@ sap.ui.define([
                     oDialog.open();
                 });
             } else {
-                this.byId("CompanySettingsopenDialog").open(); // Open existing dialog
+                this.byId("_IDGenAlcoholEditDialogUpdateCompanySettings").open(); // Open existing dialog
             }
         },
-        CompanySettingsCancelDialog: function () {
-            this.byId("CompanySettingsopenDialog").close();
+        onUpdateCompanySettingsCancelPress: function () {
+            this.byId("_IDGenAlcoholEditDialogUpdateCompanySettings").close();
         },
         CompanySettingsSaveDialog: function () {
-            this.byId("CompanySettingsopenDialog").close();
+            this.byId("_IDGenAlcoholEditDialogUpdateCompanySettings").close();
         },
         CompanySettingsClosePress: function () {
-            this.byId("CompanySettingsopenDialog").close();
+            this.byId("_IDGenAlcoholEditDialogUpdateCompanySettings").close();
         },
 
         OpenResetPasswordDialog: function () {

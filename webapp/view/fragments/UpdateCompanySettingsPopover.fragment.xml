@@ -1,0 +1,87 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:ui="sap.ui.table"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+>
+    <Dialog
+        id="_IDGenAlcoholEditDialogUpdateCompanySettings"
+        title="Alcohol"
+        contentWidth="40vh"
+        contentHeight="95%"
+        verticalScrolling="false"
+        horizontalScrolling="false"
+        class="rightSideDialogSpecialOptionsMasterPrint"
+    >
+        <!-- Custom Header -->
+
+        <Toolbar>
+            <Title text="Update Company Settings" />
+            <ToolbarSpacer />
+            <Button
+                icon="sap-icon://decline"
+                class="Decline_Btn ship-now-decline_btn"
+                press="onUpdateCompanySettingsCancelPress"
+            />
+        </Toolbar>
+
+        <ScrollContainer
+            height="100%"
+            width="100%"
+            horizontal="true"
+            vertical="true"
+        >
+            <content>
+                <f:SimpleForm
+                editable="true"
+                class="customSimpleFormShadow"
+                width="auto"
+                layout="ColumnLayout"
+                columnsM="2"
+                columnsL="2"
+                columnsXL="2"
+            >
+                <f:content>
+                    <Toolbar ariaLabelledBy="idShipFrom">
+                        <Button
+                            icon="sap-icon://customer-briefing"
+                            press="handleAddLocPress"
+                        />
+                        <Title
+                            id="idAddCompanySettingsFrom2"
+                            text="Company Information"
+                        />
+                    </Toolbar>
+                    <Label text="Company ID" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Company Name" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                </f:content>
+            </f:SimpleForm>
+            
+               
+
+            </content>
+        </ScrollContainer>
+        <!-- Footer -->
+        <footer>
+            <OverflowToolbar class="sapMPopoverFooter1">
+                <Button
+                    text="Cancel"
+                    press="CompanySettingsSaveDialog"
+                />
+                <ToolbarSpacer />
+                <Button
+                    type="Emphasized"
+                    text="Submit"
+                    press="CompanySettingsSaveDialog"
+                />
+            </OverflowToolbar>
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>
