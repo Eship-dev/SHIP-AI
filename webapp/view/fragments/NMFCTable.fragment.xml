@@ -1,14 +1,14 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
-    <Toolbar width="auto" height="15%" class="toolbarbottomborder fixedLayout">
-			<Text text="NMFC Classes"  class="toolBarHeader sapUiTinyMarginBegin pageTitle" ></Text>
+    <Toolbar width="auto" height="4rem" class="toolbarbottomborder fixedLayout ordersDarkThemeToolbar">
+			<Text text="NMFC Classes"  class="toolBarHeader sapUiTinyMarginBegin whiteColor" ></Text>
 				<ToolbarSpacer />
 					<HBox>
-                    <Button  text="Add NMFC Class" press="onAddNMFCClassPress" class="ship-req-toolbar__button sapUiTinyMarginBottom" width="10rem" ></Button>
-                    <Button type="Success" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button>
+                    <Button  text="Add NMFC Class" press="onAddNMFCClassPress" class="Master-toolbar__button" width="10rem" ></Button>
+                    <!-- <Button type="Success" icon="sap-icon://navigation-down-arrow" class="ship-req-toolbar__button sapUiTinyMarginBottom sapUiTinyMarginEnd" ></Button> -->
                 </HBox>
 		</Toolbar>
-        <Toolbar height="15%" >
+        <Toolbar height="25%" class="sapUiTinyMarginBottom whiteBackground " >
 			<HBox width="100%" >
 				<VBox class="sapUiTinyMargin" width="33%">
 					<Text text="1" class="NumberSizeTitle1"></Text>

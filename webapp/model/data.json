@@ -7910,58 +7910,43 @@
           }
     ],
     "SMTPConfigsTableColumns": [
+        { "label": "Location ID", "key": "locationId" },
+        { "label": "SMTP Server Name", "key": "smtpServerName" },
+        { "label": "Port No", "key": "portNo" },
+        { "label": "Email Address", "key": "emailAddress" },
+        { "label": "User ID", "key": "userId" },
+        { "label": "Password", "key": "password" },
+        { "label": "Email Priority", "key": "emailPriority" },
+        { "label": "User Email", "key": "userEmail" },
+        { "label": "SSL", "key": "ssl" },
+        { "label": "Status", "key": "status" }
+      ],
+      "SMTPConfigsTableRows": [
         {
-            "key": "locationName",
-            "label": "Location Name",
-            "visible": true
+          "locationId": "BP02",
+          "smtpServerName": "smtp.office365.com",
+          "portNo": "587",
+          "emailAddress": "notify@eshipjet.ai",
+          "userId": "notify@eshipjet.ai",
+          "password": "Eship@09",
+          "emailPriority": "Low",
+          "userEmail": "notify@eshipjet.ai",
+          "ssl": "",
+          "status": ""
         },
         {
-            "key": "smtpServerName",
-            "label": "SMTP Server Name",
-            "visible": true
-        },
-        {
-            "key": "portNo",
-            "label": "Port No",
-            "visible": true
-        },
-        {
-            "key": "email",
-            "label": "Email",
-            "visible": true
-        },
-        {
-            "key": "userID",
-            "label": "User ID",
-            "visible": true
-        },
-        {
-            "key": "password",
-            "label": "Password",
-            "visible": true
-        },
-        {
-            "key": "emailPriority",
-            "label": "Email Priority",
-            "visible": true
-        },
-        {
-            "key": "userEmail",
-            "label": "User Email",
-            "visible": true
-        },
-        {
-            "key": "ssl",
-            "label": "SSL",
-            "visible": true
-        },
-        {
-            "key": "status",
-            "label": "Status",
-            "visible": true
+          "locationId": "BP01",
+          "smtpServerName": "smtp.office365.com",
+          "portNo": "587",
+          "emailAddress": "notify@eshipjet.ai",
+          "userId": "notify@eshipjet.ai",
+          "password": "Eship@09",
+          "emailPriority": "Low",
+          "userEmail": "notify@eshipjet.ai",
+          "ssl": "",
+          "status": ""
         }
-    ],
-    "SMTPConfigsTableRows": [],
+      ],
     "ERPTableColumns": [
         {
             "key": "locationName",

@@ -63,7 +63,139 @@
                     />
                 </f:content>
             </f:SimpleForm>
+
+
+              <f:SimpleForm
+                editable="true"
+                class="customSimpleFormShadow"
+                width="auto"
+                layout="ColumnLayout"
+                columnsM="2"
+                columnsL="2"
+                columnsXL="2"
+            >
+                <f:content>
+                    <Toolbar ariaLabelledBy="idShipFrom">
+                        <Button
+                            icon="sap-icon://customer-briefing"
+                            press="handleAddLocPress"
+                        />
+                        <Title
+                            id="idAddCompanySettingsFrom23"
+                            text="Address Information"
+                        />
+                    </Toolbar>
+                    <Label text="First Name" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Address Line 1" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="City" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Postal Code" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Phone Number" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Last Name" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Address Line 2" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="State / Province / Region" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Country" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Email Address" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                </f:content>
+            </f:SimpleForm>
             
+          <f:SimpleForm
+                editable="true"
+                class="customSimpleFormShadow"
+                width="auto"
+                layout="ColumnLayout"
+                columnsM="2"
+                columnsL="2"
+                columnsXL="2"
+            >
+                <f:content>
+                    <Toolbar ariaLabelledBy="idShipFrom">
+                        <Button
+                            icon="sap-icon://customer-briefing"
+                            press="handleAddLocPress"
+                        />
+                        <Title
+                            id="idAddCompanySettingsFrom2234"
+                            text="Subscription Details"
+                        />
+                    </Toolbar>
+                    <Label text="Number of Locations" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Per Shipment Cost" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                     <Label text="Payment Method" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                </f:content>
+            </f:SimpleForm>
+
+
+            <f:SimpleForm
+                editable="true"
+                class="customSimpleFormShadow"
+                width="auto"
+                layout="ColumnLayout"
+                columnsM="2"
+                columnsL="2"
+                columnsXL="2"
+            >
+                <f:content>
+                    <Toolbar ariaLabelledBy="idShipFrom">
+                        <Button
+                            icon="sap-icon://customer-briefing"
+                            press="handleAddLocPress"
+                        />
+                        <Title
+                            id="idAddCompanySettingsFrom223422"
+                            text="License Information"
+                        />
+                    </Toolbar>
+                    <Label text="License Key" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Label text="Expiration Date" />
+                    <Input
+                        class="sapUiSmallMarginBottom create-ship-req_input"
+                    />
+                    <Button text="Apply"></Button>
+                </f:content>
+            </f:SimpleForm>
+
                
 
             </content>
