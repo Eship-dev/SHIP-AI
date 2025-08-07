@@ -544,6 +544,10 @@
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ShipmentErrorLogs" type="XML" />
 					</ScrollContainer>
 
+					<ScrollContainer	id="_ID_CommonErrorLogs_TableScrollContainer" horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
+						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.CommonErrorLogs" type="XML" />
+					</ScrollContainer>
+
 					<ScrollContainer	id="_ID_CreateShipReqLabel_TableScrollContainer"	horizontal="false"	vertical="true"	height="calc(100% - 50px)"	class="sapUiContentPadding">
 						<core:Fragment fragmentName="com.eshipjet.zeshipjet.view.fragments.ShipReqLabel.CreateShipReqLabelClick" type="XML" />
 					</ScrollContainer> 

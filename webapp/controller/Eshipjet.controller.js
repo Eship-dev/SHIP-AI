@@ -9094,6 +9094,11 @@ sap.ui.define([
 
                 oController._displayTables("_IDLTLClassTable", "LtlClassesTableColumns", "LtlClassesTableRows", "LTL Classes");
                 oPageContainer.to(oView.createId("_ID_LTLClasses_TableScrollContainer"));
+            
+            } else if (oCurrObj && oCurrObj.name === "Common Error Logs") {
+
+                oController._displayTables("_IDCommonErrorLogsTable", "CommonErrorLogsTableColumns", "CommonErrorLogsTableRows", "Common Error Logs");
+                oPageContainer.to(oView.createId("_ID_CommonErrorLogs_TableScrollContainer"));
 
             } else if (oCurrObj && oCurrObj.name === "NMFC Class") {
 
@@ -12701,6 +12706,151 @@ sap.ui.define([
 
         // LTLClasses Column Names Popover code changes End here
 
+        // CommonErrorLogs Column Names Popover code changes starts here
+
+        openCommonErrorLogsColNamesPopover: function (oEvent) {
+            var oButton = oEvent.getSource(),
+                oView = this.getView();
+            if (!this._pCommonErrorLogsPopover) {
+                this._pCommonErrorLogsPopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.CommonErrorLogsTableColumns",
+                    controller: this
+                }).then(function (oPopover) {
+                    oView.addDependent(oPopover);
+                    return oPopover;
+                });
+            }
+            this._pCommonErrorLogsPopover.then(function (oPopover) {
+                oController.CommonErrorLogsColumnsVisiblity();
+                oPopover.openBy(oButton);
+            });
+        },
+
+        CommonErrorLogsColumnsVisiblity: function () {
+            var oView = oController.getView();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var aColumns = eshipjetModel.getProperty("/CommonErrorLogsTableColumns");
+            var oCommonErrorLogsTable = oView.byId("myCommonErrorLogsColumnSelectId");
+            var aTableItems = oCommonErrorLogsTable.getItems();
+
+            aColumns.map(function (oColObj) {
+                aTableItems.map(function (oItem) {
+                    if (oColObj.key === oItem.getBindingContext("eshipjetModel").getObject().key && oColObj.visible) {
+                        oItem.setSelected(true);
+                    }
+                });
+            });
+        },
+
+        onCommonErrorLogsColNameSearch: function (oEvent) {
+            var aFilters = [];
+            var sQuery = oEvent.getSource().getValue();
+            if (sQuery && sQuery.length > 0) {
+                var filter = new Filter("label", FilterOperator.Contains, sQuery);
+                aFilters.push(filter);
+            }
+            // update list binding
+            var oList = oController.getView().byId("myCommonErrorLogsColumnSelectId");
+            var oBinding = oList.getBinding("items");
+            oBinding.filter(aFilters, "Application");
+
+        },
+
+        onCommonErrorLogsColSelectOkPress: function () {
+            var oView = this.getView();
+            var oCommonErrorLogsTable = oView.byId("myCommonErrorLogsColumnSelectId");
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            var oTable = oView.byId("_IDCommonErrorLogsTable")
+            oTable.setModel(eshipjetModel);
+
+            var oCommonErrorLogsTblItems = oCommonErrorLogsTable.getItems();
+            var aColumnsData = eshipjetModel.getProperty("/CommonErrorLogsTableColumns");
+            oCommonErrorLogsTblItems.map(function (oTableItems) {
+                aColumnsData.map(function (oColObj) {
+                    if (oTableItems.getBindingContext("eshipjetModel").getObject().key === oColObj.key) {
+                        if (oTableItems.getSelected()) {
+                            oColObj.visible = true;
+                        } else {
+                            oColObj.visible = false;
+                        }
+                    }
+                })
+            });
+            eshipjetModel.updateBindings(true);
+            oCommonErrorLogsTable.setModel(eshipjetModel);
+            this._handleDisplayCommonErrorLogsTable();
+            this._pCommonErrorLogsPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+        onCommonErrorLogsColSelectClosePress: function () {
+            this._pCommonErrorLogsPopover.then(function (oPopover) {
+                oPopover.close();
+            });
+        },
+
+        _handleDisplayCommonErrorLogsTable: function () {
+            var that = this;
+            const oView = oController.getView();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel"), columnName, label, oTemplate, oHboxControl;
+            var CommonErrorLogsTableColumns = eshipjetModel.getData().CommonErrorLogsTableColumns;
+            const oTable = oView.byId("_IDCommonErrorLogsTable");
+            oTable.setModel(eshipjetModel);
+            var count = 0;
+            for (var i = 0; i < CommonErrorLogsTableColumns.length; i++) {
+                if (CommonErrorLogsTableColumns[i].visible === true) {
+                    count += 1
+                }
+            }
+            oTable.bindColumns("/CommonErrorLogsTableColumns", function (sId, oContext) {
+                columnName = oContext.getObject().key;
+                label = oContext.getObject().label;
+                var minWidth = "100%";
+                if (count >= 14) {
+                    var minWidth = "130px";
+                }
+                if (columnName === "actions") {
+                    var oHBox = new sap.m.HBox({}); // Create Text instance 
+                    var Btn1 = new sap.m.Button({ text: "View Now", type: "Transparent" });
+                    var Btn2 = new sap.m.Button({
+                        icon: "sap-icon://megamenu", type: "Transparent",
+                        press: function (oEvent) {
+                            that.handleDownArrowPress(oEvent);
+                        }
+                    });
+                    oHBox.addItem(Btn1);
+                    oHBox.addItem(Btn2);
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oHBox,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else if (columnName === "status") {
+                    var oSwitch = new sap.m.Switch({ type: "AcceptReject" });
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: oSwitch,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                } else {
+                    return new sap.ui.table.Column({
+                        label: oResourceBundle.getText(columnName),
+                        template: columnName,
+                        visible: oContext.getObject().visible,
+                        width: minWidth,
+                        sortProperty: columnName
+                    });
+                }
+            });
+            oTable.bindRows("/CommonErrorLogsTableRows");
+        },
+
+        // CommonErrorLogs Column Names Popover code changes End here
 
         // NMFC Column Names Popover code changes starts here
 

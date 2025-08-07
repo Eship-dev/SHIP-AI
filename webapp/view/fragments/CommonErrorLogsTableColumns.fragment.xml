@@ -1,0 +1,38 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover  contentWidth="18%" placement="Left" contentHeight="30%" showArrow="false" >
+		<customHeader>
+			<VBox >
+				<Toolbar class="toolbarbottomborder">
+					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="Columns"></Title>
+					<ToolbarSpacer ></ToolbarSpacer>					
+					<Button icon="sap-icon://decline" press="onCommonErrorLogsColSelectClosePress" class="Decline_Btn ship-now-decline_btn" ></Button>
+				</Toolbar>
+				<SearchField placeholder="Search Columns" class="sapUiSmallMarginEnd sapUiTinyMarginBottom columnConfigSearch"  liveChange="onCommonErrorLogsColNameSearch"></SearchField>
+			</VBox>
+		</customHeader>
+		<content>
+        <Table	id="myCommonErrorLogsColumnSelectId" mode="MultiSelect" items="{path : 'eshipjetModel>/CommonErrorLogsTableColumns'}" >
+		<ColumnListItem id="_IDGenCommonErrorLogsColumnListItem1" vAlign="Middle">
+			<cells>				
+				<Text text="{eshipjetModel>label}" />				
+			</cells>
+		</ColumnListItem>
+		<columns>
+			<Column >
+				<header>
+					<Text text="Select All" />
+				</header>
+			</Column>			
+		</columns>
+        </Table>
+        </content>
+        <footer>
+            <Toolbar >
+                <ToolbarSpacer />
+                <Button text="Apply" press="onCommonErrorLogsColSelectOkPress" type="Emphasized"></Button>               
+            </Toolbar>
+        </footer>      
+	</Popover>   
+</core:FragmentDefinition>

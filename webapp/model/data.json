@@ -4110,6 +4110,9 @@
         },
         {
             "name": "Lock/Unlock User"
+        },
+        {
+            "name": "Common Error Logs"
         }
     ],
     "AddIconListSet2": [
@@ -13781,7 +13784,21 @@
           "ProductId": "P1004",
           "Name": "Epson EcoTank M1170"
         }
-      ]
+      ],
+      "CommonErrorLogsTableColumns": [
+        { "label": "Id", "key": "id" },
+        { "label": "Details", "key": "details" },
+        { "label": "Created At", "key": "createdAt" },
+        { "label": "Created Date", "key": "createdDate" },
+        { "label": "PGI Status", "key": "pgiStatus" },
+        { "label": "Document Number", "key": "documentNumber" },
+        { "label": "Location", "key": "location" },
+        { "label": "Carrier", "key": "carrier" },
+        { "label": "Error Message", "key": "errorMessage" },
+        { "label": "User Id", "key": "userId" },
+        { "label": "Type", "key": "type" }
+      ],
+      "CommonErrorLogsTableRows": []
       
     
 }
