@@ -2854,3 +2854,38 @@ button, input, optgroup, select, textarea {
   margin: 3px !important;
   border: 1px solid #d1d1d1; /* Light grey border */
 }
+
+.customShippingDocumentsToolbar {
+  background-color: #007bff !important; /* Bootstrap-like bright blue */
+  color: white !important;
+  padding: 0.5rem 1rem;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+/* Ensure the title text inside is white */
+.customShippingDocumentsToolbar .sapMTitle {
+  color: white;
+  font-weight: bold;
+  background-color: #007bff !important;
+}
+
+.customUserInfoToolbar .sapUiIcon::before {
+  color: #0a6ed1;
+  content: attr(data-sap-ui-icon-content);
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  font-weight: bold !important;
+  font-size: 1.10rem !important;
+  margin-bottom: 50px !important;
+}
+
+.customUserInfoToolbar .sapMTitle {
+  color: #0a6ed1;
+  font-weight: bold; /* Optional */
+}
+
+.scanAndShip-toolbar-height {
+  height: 4rem !important;
+  align-items: normal !important; /* Optional: centers items vertically */
+}

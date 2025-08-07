@@ -43,6 +43,9 @@
         "ShippingPoint": false,
         "plant": ""
     },
+    "documentsLength": false,
+    "shippingChargesLength": false,
+    "trackingLength": false,
     "lengthOfDimensions": "",
     "widthOfDimensions": "",
     "heightOfDimensions": "",

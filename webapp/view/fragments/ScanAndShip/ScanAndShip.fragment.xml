@@ -1,7 +1,8 @@
-<core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
-	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
+<core:FragmentDefinition xmlns="sap.m" xmlns:ui="sap.ui.table" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
     <VBox class="scan-ship-page">
-	<Toolbar class="sapUiTinyMargin scan-ship-toolbar">
+
+	<Toolbar height="30rem" class="scan-ship-toolbar scanAndShip-toolbar-height whiteBackground">
         <Title text="Scan and Ship" class="scan-ship-toolbar__title"/>
         <Input class="scan-ship-toolbar__input" id="userscanShipInput"  value="{eshipjetModel>/sShipAndScan}" submit="getManifestHeaderForScanShip"   placeholder="Enter SAP DN, Handing Unit or ODO" ></Input>
         <!-- <TextArea width="20rem" rows="2" id="userInput" placeholder="Enter SAP DN, Handing Unit or ODO" ></TextArea> -->
@@ -16,8 +17,7 @@
             </HBox>
         <ToolbarSpacer /> -->
         <ToolbarSpacer />
-        <Button class="scan-ship-toolbar__button scan-ship-toolbar__button_void" text="Void Now" type="Reject"></Button>
-        
+        <Button class="scan-ship-toolbar__button scan-ship-toolbar__button_void" text="Void Now" type="Reject" ></Button>
 	</Toolbar>
     
         <!-- <ui:Table class="sapUiTinyMargin scan-ship-table" fixedColumnCount="1"  	rowActionCount="0"	id="idScanAndShipTable"
@@ -53,7 +53,7 @@
         <ui:Table
 							id="idScanAndShipTable"
 							rows="{eshipjetModel>/scanShipTableData2}"
-							class="sapUiSmallMarginBegin sapUiSmallMarginEnd rowRightLine ordersTableRightBorder"
+							class="rowRightLine ordersTableRightBorder whiteBackground sapUiTinyMarginTop"
 							selectionMode="None"
 							visibleRowCount="14" >
 

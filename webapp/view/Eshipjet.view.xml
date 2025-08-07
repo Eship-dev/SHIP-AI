@@ -44,7 +44,7 @@
 					</tnt:NavigationListItem>
 					<tnt:NavigationListItem text="Manifest" icon="sap-icon://customfont/track_icon" key="Manifest">
 					</tnt:NavigationListItem>
-					<tnt:NavigationListItem text="Scan Ship" icon="sap-icon://customfont/quickship_icon" key="ScanShip">
+					<tnt:NavigationListItem text="Scan &amp; Ship" icon="sap-icon://customfont/quickship_icon" key="ScanShip">
 					</tnt:NavigationListItem>
 					<tnt:NavigationListItem text="Dashboard" icon="sap-icon://customfont/dashboard_icon" key="Dashboard">
 					</tnt:NavigationListItem>

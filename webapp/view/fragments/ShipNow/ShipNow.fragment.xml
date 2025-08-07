@@ -1359,16 +1359,21 @@
 										<VBox>
 											<f:SimpleForm id="InternationalDetails" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="6">
 												<f:content>
+													<Label text="Customs Declared Value" />
+													<Input value="{eshipjetModel>/payorCountryCode}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
+													<Label text="Currency" />
+													<Input value="{eshipjetModel>/permitNo}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text="INT Duties/Taxes" />
 													<ComboBox items="{eshipjetModel>/Packages/Weight}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
-													<Label text="Payor Country Code" />
-													<Input value="{eshipjetModel>/payorCountryCode}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
-													<Label text="Permit No" />
-													<Input value="{eshipjetModel>/permitNo}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
+													<Label text="Duties Account No" />
+													<Input value="{eshipjetModel>/dutiesAccountNo}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" ></Input>
+													<Label text="ITN/XTN (SED/EEI)" />
+													<Input value="{eshipjetModel>/itn_xtn}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
 
-													<Label text="Payor Zip Code" />
+
+													<!-- <Label text="Payor Zip Code" />
 													<Input value="{eshipjetModel>/payorZipCode}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text="Ship From Tax No" />
 													<Input value="{eshipjetModel>/InternationalDetails/shipFromTaxNo}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
@@ -1376,21 +1381,16 @@
 													<ComboBox items="{eshipjetModel>/B13AFillingOption}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
 													</ComboBox>
-
-													<Label text="ITN/XTN (SED/EEI)" />
-													<Input value="{eshipjetModel>/itn_xtn}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text="Booking Confirm No" />
 													<Input value="{eshipjetModel>/bookingConfirmNo}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text="Customs Declared Value" />
 													<Input value="{eshipjetModel>/customsDeclaredValue}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
-
 													<Label text="ATLAS MRN No" />
 													<Input value="{eshipjetModel>/atlasMRNNo}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" ></Input>
 													<Label text="Ship To Tax No" />
 													<Input value="{eshipjetModel>/InternationalDetails/shipFromTaxNo}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text="Currency" />
 													<Input value="{eshipjetModel>/Currency}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}"  maxLength="3" class="create-ship-req_input" ></Input>
-
 													<Label text="Documents Content Type"></Label>
 													<ComboBox items="{eshipjetModel>/documentContentType}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" >
 														<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>key}" />
@@ -1401,53 +1401,42 @@
 													</ComboBox>
 													<Label text="Compli. Statement" />
 													<Input value="{eshipjetModel>/compilStatement}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
-
-													<Label text="Duties Account No" />
-													<Input value="{eshipjetModel>/dutiesAccountNo}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" ></Input>
 													<Label text="Freight Forwarder Tax No" />
 													<Input value="{eshipjetModel>/freightForwordTaxNo}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
 													<Label text=" " visible="false" />
-													<CheckBox text="Dutiable" selected="" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="sapUiSmallMarginTop" />
+													<CheckBox text="Dutiable" selected="" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="sapUiSmallMarginTop" /> -->
 												</f:content>
 											</f:SimpleForm>
 
-											<Table inset="false" items="{eshipjetModel>/HandlingUnitItems}">
+											<Table inset="false" items="{eshipjetModel>/HandlingUnitItems}" >
+												<headerToolbar>
+													<OverflowToolbar class="customShippingDocumentsToolbar" height="2rem" >
+														<content>
+															<Title text="International Commodity Details" level="H2" />
+														</content>
+													</OverflowToolbar>
+												</headerToolbar>
 												<columns>
 													<Column width="auto">
-														<Text text="H.U." />
+														<Text text="Marks #" />
 													</Column>
 													<Column width="auto">
-														<Text text="Product No" />
-													</Column>
-													<Column width="auto">
-														<Text text="License No" />
-													</Column>
-													<Column width="auto">
-														<Text text="ECCN" />
+														<Text text="Harmonized Code" />
 													</Column>
 													<Column width="auto">
 														<Text text="Description" />
 													</Column>
 													<Column width="auto">
-														<Text text="UOM" />
-													</Column>
-													<Column width="auto">
-														<Text text="Currency" />
-													</Column>
-													<Column width="auto">
 														<Text text="Country of MFR" />
 													</Column>
-													<Column width="8rem">
-														<Text text="Harmonized Code" />
-													</Column>
 													<Column width="auto">
-														<Text text="Weight" />
+														<Text text="Unit Weight(LB)" />
 													</Column>
 													<Column width="auto">
 														<Text text="Quantity" />
 													</Column>
 													<Column width="auto">
-														<Text text="Unit Value" />
+														<Text text="Unit Price(Customs Value)" />
 													</Column>
 												</columns>
 												<items>
@@ -1460,11 +1449,6 @@
 															<Text text="{eshipjetModel>Material}" />
 															<Text text="{eshipjetModel>HandlingUnitAltUnitOfMeasure}" />
 															<Text text="{}" />
-															<Text text="{}" />
-															<Text text="{}" />
-															<Text text="{}" />
-															<Text text="{eshipjetModel>HandlingUnitQuantity}" />
-															<Text text="{eshipjetModel>HandlingUnitQuantityUnit}" />
 														</cells>
 													</ColumnListItem>
 												</items>
@@ -1476,7 +1460,14 @@
 
 									<!-- Charges Tab Starts here -->
 									<IconTabFilter text="Shipping Charges" key="Charges">
-											<Table items="{eshipjetModel>/shippingCharges}">
+								<Table items="{eshipjetModel>/shippingCharges}" visible="{eshipjetModel>/shippingChargesLength}" >
+									<headerToolbar>
+										<OverflowToolbar class="customShippingDocumentsToolbar" height="2rem" >
+											<content>
+												<Title text="Shipping Charges" level="H2" />
+											</content>
+										</OverflowToolbar>
+									</headerToolbar>
 									<columns>
 										<Column>
 											<Text text="Desctiption" />
@@ -1502,7 +1493,14 @@
 
 									<!-- Documents Tab Starts here -->
 									<IconTabFilter text="Documents" key="Documents">
-									<Table items="{eshipjetModel>/shippingDocuments}">
+									<Table items="{eshipjetModel>/shippingDocuments}" visible="{eshipjetModel>/documentsLength}" >
+										<headerToolbar>
+											<OverflowToolbar class="customShippingDocumentsToolbar" height="2rem" >
+												<content>
+													<Title text="Shipping Documents" level="H2" />
+												</content>
+											</OverflowToolbar>
+										</headerToolbar>
 										<columns>
 											<Column>
 												<Text text="#" />
@@ -1536,10 +1534,9 @@
 										</items>
 									</Table>
 
-								<HBox justifyContent="SpaceBetween" width="100%" >
+								<HBox justifyContent="SpaceBetween" width="100%" visible="{eshipjetModel>/documentsLength}" >
 									<VBox class="shipnowUserInfoSimpleFormShadow" width="30%" >
-										<Toolbar class="customLine" >
-											<!-- <Button icon="sap-icon://person-placeholder" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" /> -->
+										<Toolbar class="customLine customUserInfoToolbar" >
 											<core:Icon src="sap-icon://person-placeholder" class="sapUiTinyMarginBegin" >
 												<core:layoutData>
 													<FlexItemData growFactor="1" />
@@ -1579,8 +1576,15 @@
 								</IconTabFilter>
 
 									<!-- Track Tab Starts here -->
-									<IconTabFilter text="Track and Trace" key="Track" >
-										<Table items="{eshipjetModel>/trackingArray}">
+									<IconTabFilter text="Track &amp; Trace" key="Track" >
+										<Table items="{eshipjetModel>/trackingArray}" visible="{eshipjetModel>/trackingLength}" >
+											<headerToolbar>
+												<OverflowToolbar class="customShippingDocumentsToolbar" height="2rem" >
+													<content>
+														<Title text="Track &amp; Trace" level="H2" />
+													</content>
+												</OverflowToolbar>
+											</headerToolbar>
 											<columns>
 												<Column >
 													<Text text="Location Name" />

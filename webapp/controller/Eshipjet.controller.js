@@ -1485,13 +1485,16 @@ sap.ui.define([
             eshipjetModel.setProperty("/shipNowShipFromInputStatus", false);
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             ShipNowDataModel.setProperty("/ShipToAddress", {});
-
+8
             var oToolPage = this.byId("toolPage");
             oToolPage.setSideExpanded(false);
             eshipjetModel.setProperty("/shippingCharges",[]);
             eshipjetModel.setProperty("/shippingDocuments",[]);
             eshipjetModel.setProperty("/HandlingUnitItems",[]);
             eshipjetModel.setProperty("/HandlingUnits",[]);
+            eshipjetModel.setProperty("/documentsLength", false);
+            eshipjetModel.setProperty("/shippingChargesLength", false);
+            eshipjetModel.setProperty("/trackingLength", false);
             if (sKey === "Dashboard") {
                 eshipjetModel.setProperty("/commonValues/toolPageHeader", true);
                 eshipjetModel.setProperty("/commonValues/allViewsFooter", true);
@@ -1669,6 +1672,9 @@ sap.ui.define([
             eshipjetModel.setProperty("/sFromViewName", "SHIP_NOW");
             eshipjetModel.setProperty("/selectPaymentType", "");
             eshipjetModel.setProperty("/invoiceNo", "");
+            eshipjetModel.setProperty("/documentsLength", false);
+            eshipjetModel.setProperty("/shippingChargesLength", false);
+            eshipjetModel.setProperty("/trackingLength", false);
             var oCommonValues = {
                 sapDeliveryNumber :"",
                 ShipNowShipMethodSelectedKey:"",
@@ -2072,6 +2078,9 @@ sap.ui.define([
                                             };
                                             trackingArray.push(trackingObj);
                                             eshipjetModel.setProperty("/trackingArray", trackingArray);
+                                            if(trackingArray.length > 0){
+                                                eshipjetModel.setProperty("/trackingLength", true);
+                                            }
                                         }
                                     }
                                     // if(response && response.shippingCharges && response.shippingCharges.length > 0 ){
@@ -2097,6 +2106,9 @@ sap.ui.define([
                                             }
                                         }
                                         eshipjetModel.setProperty("/shippingDocuments", ashippingDocuments);
+                                        if(ashippingDocuments.length > 0){
+                                            eshipjetModel.setProperty("/documentsLength", true);
+                                        }
                                     }
                             // Below code is for Charges
                                     if(response && response.shippingCharges && response.shippingCharges.length > 0 ){
@@ -2121,6 +2133,9 @@ sap.ui.define([
                                             oShippingCharges.push(obj);
                                         }
                                         eshipjetModel.setProperty("/shippingCharges", oShippingCharges);
+                                        if(oShippingCharges.length > 0){
+                                            eshipjetModel.setProperty("/shippingChargesLength", true);
+                                        }
                                     }
 
 
@@ -3772,6 +3787,9 @@ sap.ui.define([
                                 { "description": "Fuel", "amount": aFilteredData[0].Fuel && aFilteredData[0].Fuel !== "" ? parseFloat(aFilteredData[0].Fuel).toFixed(2) : "0.00", "currency": "USD" }
                             ];
                             eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
+                            if(aShippingCharges.length > 0){
+                                eshipjetModel.setProperty("/shippingChargesLength", true);
+                            }
                             var shippingDocuments = response.shippingDocuments;
                             var ashippingDocuments = [];
                             var tepmShippingDocs = [];
@@ -3826,6 +3844,9 @@ sap.ui.define([
                         
                             eshipjetModel.setProperty("/shippingDocuments", tepmShippingDocs);
                             eshipjetModel.setProperty("/tepmShippingDocs", ashippingDocuments );
+                            if(ashippingDocuments.length > 0){
+                                eshipjetModel.setProperty("/documentsLength", true);
+                            };
 
                             var trackingArray = [];
                             for(var i=0; i<aFilteredData.length; i++){
@@ -3855,6 +3876,9 @@ sap.ui.define([
                                 };
                                 trackingArray.push(trackingObj);
                                 eshipjetModel.setProperty("/trackingArray", trackingArray);
+                                if(trackingArray.length > 0){
+                                    eshipjetModel.setProperty("/trackingLength", true);
+                                }
                             }
                             eshipjetModel.updateBindings(true);
 
