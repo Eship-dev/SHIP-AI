@@ -2119,12 +2119,14 @@ sap.ui.define([
                                                 var discount = shippingCharges[i].amount * 0.20;
                                                 var discountFreightAmount = shippingCharges[i].amount - discount;
                                                 var obj = {
+                                                    "serialNo": i + 1,
                                                     "description": shippingCharges[i].description,
                                                     "amount": discountFreightAmount,
                                                     "currency": shippingCharges[i].currency
                                                 };
                                             }else{
                                                 var obj = {
+                                                    "serialNo": i + 1,
                                                     "description": shippingCharges[i].description,
                                                     "amount": shippingCharges[i].amount,
                                                     "currency": shippingCharges[i].currency
@@ -3782,9 +3784,9 @@ sap.ui.define([
                         eshipjetModel.setProperty("/commonValues/shipNowVoidSelectShipNow", shipNowVoidStatusShipNow);
                         if(aFilteredData && aFilteredData.length > 0){
                             var aShippingCharges = [
-                                { "description": "Freight Amount", "amount": parseInt(aFilteredData[0].Freightamt).toFixed(2), "currency": "USD" },
-                                { "description": "Discount Amount", "amount": parseInt(aFilteredData[0].Discountamt).toFixed(2), "currency": "USD" },
-                                { "description": "Fuel", "amount": aFilteredData[0].Fuel && aFilteredData[0].Fuel !== "" ? parseFloat(aFilteredData[0].Fuel).toFixed(2) : "0.00", "currency": "USD" }
+                                { "serialNo": "1", "description": "Freight Amount", "amount": parseInt(aFilteredData[0].Freightamt).toFixed(2), "currency": "USD" },
+                                { "serialNo": "2", "description": "Discount Amount", "amount": parseInt(aFilteredData[0].Discountamt).toFixed(2), "currency": "USD" },
+                                { "serialNo": "3", "description": "Fuel", "amount": aFilteredData[0].Fuel && aFilteredData[0].Fuel !== "" ? parseFloat(aFilteredData[0].Fuel).toFixed(2) : "0.00", "currency": "USD" }
                             ];
                             eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
                             if(aShippingCharges.length > 0){

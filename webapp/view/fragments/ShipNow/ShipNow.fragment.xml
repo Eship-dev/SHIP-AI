@@ -1460,7 +1460,7 @@
 
 									<!-- Charges Tab Starts here -->
 									<IconTabFilter text="Shipping Charges" key="Charges">
-								<Table items="{eshipjetModel>/shippingCharges}" visible="{eshipjetModel>/shippingChargesLength}" >
+								<Table items="{eshipjetModel>/shippingCharges}" visible="{eshipjetModel>/shippingChargesLength}" class="sapUiLargeMarginBottom" >
 									<headerToolbar>
 										<OverflowToolbar class="customShippingDocumentsToolbar" height="2rem" >
 											<content>
@@ -1470,10 +1470,19 @@
 									</headerToolbar>
 									<columns>
 										<Column>
+											<Text text="#" />
+										</Column>
+										<Column	 minScreenWidth="Tablet" demandPopin="true">
+											<Text text="Freight Condition ID" />
+										</Column>
+										<Column	 minScreenWidth="Desktop"  demandPopin="true">
+											<Text text="SAP Freight Condition ID" />
+										</Column>
+										<Column>
 											<Text text="Desctiption" />
 										</Column>
 										<Column	 minScreenWidth="Tablet"	demandPopin="true">
-											<Text text="Amount" />
+											<Text text="Charges" />
 										</Column>
 										<Column	 minScreenWidth="Desktop"  demandPopin="true">
 											<Text text="Currency" />
@@ -1482,13 +1491,109 @@
 									<items>
 										<ColumnListItem vAlign="Middle">
 											<cells>
+												<Text  text="{eshipjetModel>serialNo}" />
 												<Text  text="{eshipjetModel>description}" />
-												<Text  text="{eshipjetModel>amount}" />
+												<Text  text="" />
+												<Text  text="{eshipjetModel>description}" />
+												<Text text="{= '$ ' + ${eshipjetModel>amount} }" class="shippingChargesTotalAmount" />
 												<Text  text="{eshipjetModel>currency}" />
 											</cells>
 										</ColumnListItem>
 									</items>
 								</Table>
+
+								<HBox justifyContent="SpaceBetween" width="100%" visible="{eshipjetModel>/shippingChargesLength}" >
+									<VBox class="shipnowUserInfoSimpleFormShadow shippingDetailsStartingBorder" width="30%" >
+										<Toolbar class="customLine customUserInfoToolbar" >
+											<core:Icon src="sap-icon://shipping-status" class="sapUiTinyMarginBegin" >
+												<core:layoutData>
+													<FlexItemData growFactor="1" />
+												</core:layoutData>
+											</core:Icon>
+											<Title text="Shipment Details : 56018970" />
+										</Toolbar>
+										<HBox justifyContent="SpaceBetween" width="100%" >
+											<VBox width="50%" class="sapUiSmallMargin" >
+												<Label text="Tracking ID:" class="fontBold" />
+												<Text text="1ZXXXXXXXXXXXXXXXX" class="lightFontColor" />
+											</VBox>
+											<VBox width="50%" class="sapUiSmallMargin" >
+												<Label text="Ship Date:" class="fontBold" />
+												<Text text="08/08/2025, 4:51 PM" class="lightFontColor" />
+											</VBox>
+										</HBox>
+
+										<HBox justifyContent="SpaceBetween" width="100%" >
+											<VBox width="50%" class="sapUiSmallMargin" >
+												<Label text="Payer" class="fontBold" />
+												<Text text="SENDER" class-="payerFontColor" />
+											</VBox>
+											<VBox width="50%" class="sapUiSmallMargin" >
+												<Label text="Carrier / Service Name" class="fontBold" />
+												<Text text="UPS - UPS Ground" class="lightFontColor" />
+											</VBox>
+										</HBox>
+
+										<HBox justifyContent="SpaceBetween" width="100%" >
+											<VBox width="50%" class="sapUiSmallMargin" >
+												<Label text="Zone" class="fontBold" />
+												<Text text="" class="lightFontColor" />
+											</VBox>
+											<VBox width="50%" class="sapUiSmallMargin" >
+												<Label text="Packages / Weight" class="fontBold" />
+												<Text text="1 /" class="lightFontColor" />
+											</VBox>
+										</HBox>
+									</VBox>
+
+									<VBox class="shipnowUserInfoSimpleFormShadow ChargesSummaryStartingBorder" width="30%" >
+										<Toolbar class="customLine ChargesSummaryToolbar" >
+											<core:Icon src="sap-icon://wallet" class="sapUiTinyMarginBegin" >
+												<core:layoutData>
+													<FlexItemData growFactor="1" />
+												</core:layoutData>
+											</core:Icon>
+											<Title text="Charges Summary" />
+										</Toolbar>
+											<HBox class="sapUiTinyMargin fontBold">
+												<Label text="Base Charge: " class="fontBold" />
+												<Text text="$18.27" class="fontBoldWithGreenColor" />
+											</HBox>
+											<HBox class="sapUiTinyMargin fontBold">
+												<Label text="Discount: " class="fontBold" />
+												<Text text="-$0.00" class="fontBoldWithRedColor" />
+											</HBox>
+											<HBox class="sapUiTinyMargin fontBold">
+												<Label text="Misc Charges: " class="fontBold" />
+												<Text text="$3.11" class="fontBoldWithGreenColor" />
+											</HBox>
+										<Toolbar height="1px" class="sapUiTinyMargin" ></Toolbar>
+										<HBox class="sapUiTinyMargin">
+											<Label text="Total Charge: " class="totalChargesFontSize"/>
+											<Text text="$21.38" class="fontBoldWithDarkmagentaColor" />
+										</HBox>
+									</VBox>
+
+									<VBox class="shipnowUserInfoSimpleFormShadow AddressesStartingBorder" width="30%" >
+										<Toolbar class="customLine AddressesToolbar" >
+											<core:Icon src="sap-icon://person-placeholder" class="sapUiTinyMarginBegin" >
+												<core:layoutData>
+													<FlexItemData growFactor="1" />
+												</core:layoutData>
+											</core:Icon>
+											<Title text="Addresses" />
+										</Toolbar>
+											<Label text="Sender: " class="fontBold sapUiSmallMarginBegin" />
+											<Text text="Drive DeVilbiss Healthcare" class="sapUiSmallMarginBegin" />
+											<Text text="200 Docks Corner Rd 200 Docks Corner Rd" class="sapUiSmallMarginBegin" />
+											<Text text="South Brunswick NJ 08810" class="sapUiSmallMarginBegin" />
+											<Toolbar height="1px" class="sapUiTinyMargin" ></Toolbar>
+											<Label text="Recipient: " class="fontBold sapUiSmallMarginBegin" />
+											<Text text="Comfort Medical Supply, Inc"  class="sapUiSmallMarginBegin"/>
+											<Text text="1273 Central Park Blvd 1273 Central Park Blvd"  class="sapUiSmallMarginBegin"/>
+											<Text text="Fredericksburg VA 22401-4912"  class="sapUiSmallMarginBegin"/>
+									</VBox>
+								</HBox>
 									</IconTabFilter>
 
 									<!-- Documents Tab Starts here -->
