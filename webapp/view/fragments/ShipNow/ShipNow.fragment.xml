@@ -1515,11 +1515,11 @@
 										<HBox justifyContent="SpaceBetween" width="100%" >
 											<VBox width="50%" class="sapUiSmallMargin" >
 												<Label text="Tracking ID:" class="fontBold" />
-												<Text text="1ZXXXXXXXXXXXXXXXX" class="lightFontColor" />
+												<Text text="{eshipjetModel>/trackingArray/0/TrackingNumber}" class="lightFontColor" />
 											</VBox>
 											<VBox width="50%" class="sapUiSmallMargin" >
 												<Label text="Ship Date:" class="fontBold" />
-												<Text text="08/08/2025, 4:51 PM" class="lightFontColor" />
+												<Text text="{path: 'eshipjetModel>/pickupDate',  formatter: '.formatter.formatCustomDateTimeForOrders'}" class="lightFontColor" />
 											</VBox>
 										</HBox>
 
@@ -1530,7 +1530,7 @@
 											</VBox>
 											<VBox width="50%" class="sapUiSmallMargin" >
 												<Label text="Carrier / Service Name" class="fontBold" />
-												<Text text="UPS - UPS Ground" class="lightFontColor" />
+												<Text text="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey} - {eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}"  class="lightFontColor" />
 											</VBox>
 										</HBox>
 
@@ -1541,7 +1541,7 @@
 											</VBox>
 											<VBox width="50%" class="sapUiSmallMargin" >
 												<Label text="Packages / Weight" class="fontBold" />
-												<Text text="1 /" class="lightFontColor" />
+												<Text text="{eshipjetModel>/HandlingUnitsLength} / " class="lightFontColor" />
 											</VBox>
 										</HBox>
 									</VBox>
@@ -1557,20 +1557,20 @@
 										</Toolbar>
 											<HBox class="sapUiTinyMargin fontBold">
 												<Label text="Base Charge: " class="fontBold" />
-												<Text text="$18.27" class="fontBoldWithGreenColor" />
+												<Text text="{= '$ ' + ${eshipjetModel>/shippingCharges/0/amount} }" class="fontBoldWithGreenColor" />
 											</HBox>
 											<HBox class="sapUiTinyMargin fontBold">
 												<Label text="Discount: " class="fontBold" />
-												<Text text="-$0.00" class="fontBoldWithRedColor" />
+												<Text text="{= '$ ' + ${eshipjetModel>/shippingCharges/1/amount} }" class="fontBoldWithRedColor" />
 											</HBox>
 											<HBox class="sapUiTinyMargin fontBold">
 												<Label text="Misc Charges: " class="fontBold" />
-												<Text text="$3.11" class="fontBoldWithGreenColor" />
+												<Text text="{= '$ ' + ${eshipjetModel>/shippingCharges/2/amount} }" class="fontBoldWithGreenColor" />
 											</HBox>
 										<Toolbar height="1px" class="sapUiTinyMargin" ></Toolbar>
 										<HBox class="sapUiTinyMargin">
 											<Label text="Total Charge: " class="totalChargesFontSize"/>
-											<Text text="$21.38" class="fontBoldWithDarkmagentaColor" />
+											<Text text="{eshipjetModel>/totalFreightFuel}" class="fontBoldWithDarkmagentaColor" />
 										</HBox>
 									</VBox>
 
@@ -1584,14 +1584,24 @@
 											<Title text="Addresses" />
 										</Toolbar>
 											<Label text="Sender: " class="fontBold sapUiSmallMarginBegin" />
-											<Text text="Drive DeVilbiss Healthcare" class="sapUiSmallMarginBegin" />
-											<Text text="200 Docks Corner Rd 200 Docks Corner Rd" class="sapUiSmallMarginBegin" />
-											<Text text="South Brunswick NJ 08810" class="sapUiSmallMarginBegin" />
+											<Text text="{ShipNowDataModel>/ShipFromAddress/ShipFromCOMPANY}" class="sapUiSmallMarginBegin" />
+											<Text text="{ShipNowDataModel>/ShipFromAddress/ShipFromADDRESS_LINE1}"  class="sapUiSmallMarginBegin" />
+											<HBox>
+												<Text text="{ShipNowDataModel>/ShipFromAddress/ShipFromCITY}" 
+													class="sapUiSmallMarginBottom sapUiSmallMarginBegin" />
+												<Text text="{ShipNowDataModel>/ShipFromAddress/ShipFromSTATE}" 
+													class="sapUiSmallMarginBottom sapUiSmallMarginBegin" />
+											</HBox>
 											<Toolbar height="1px" class="sapUiTinyMargin" ></Toolbar>
 											<Label text="Recipient: " class="fontBold sapUiSmallMarginBegin" />
-											<Text text="Comfort Medical Supply, Inc"  class="sapUiSmallMarginBegin"/>
-											<Text text="1273 Central Park Blvd 1273 Central Park Blvd"  class="sapUiSmallMarginBegin"/>
-											<Text text="Fredericksburg VA 22401-4912"  class="sapUiSmallMarginBegin"/>
+												<Text text="{ShipNowDataModel>/ShipToAddress/BusinessPartnerName1}" class="sapUiSmallMarginBegin" />
+											<Text text="{ShipNowDataModel>/ShipToAddress/StreetName}"  class="sapUiSmallMarginBegin" />
+											<HBox>
+												<Text text="{ShipNowDataModel>/ShipToAddress/Region}" 
+													class="sapUiSmallMarginBottom sapUiSmallMarginBegin" />
+												<Text text="{ShipNowDataModel>/ShipToAddress/CityName}" 
+													class="sapUiSmallMarginBottom sapUiSmallMarginBegin" />
+											</HBox>
 									</VBox>
 								</HBox>
 									</IconTabFilter>

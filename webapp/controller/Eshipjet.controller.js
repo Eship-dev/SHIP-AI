@@ -3795,6 +3795,13 @@ sap.ui.define([
                             var shippingDocuments = response.shippingDocuments;
                             var ashippingDocuments = [];
                             var tepmShippingDocs = [];
+
+                            var freight = parseFloat(aFilteredData[0].Freightamt) || 0;
+                            var fuel = parseFloat(aFilteredData[0].Fuel) || 0;
+                            var totalAmount = (freight + fuel).toFixed(2);
+
+                            eshipjetModel.setProperty("/totalFreightFuel", totalAmount);
+
                             tepmShippingDocs.push({
                                 "srNo": 1,
                                 "contentType": "Label",
