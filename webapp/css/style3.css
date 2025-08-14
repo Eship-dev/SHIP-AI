@@ -1637,6 +1637,7 @@ sapMPopover .sapMPopoverCont {
   border-radius: 6px !important;
   height: 40px !important;
   cursor: pointer;
+  border-color: green !important;
 }
 
 .scan-ship-toolbar1__button:hover > span {
@@ -1647,6 +1648,7 @@ sapMPopover .sapMPopoverCont {
   transform: scale(1.05);
   transition: all 0.3s ease;
   border-radius: 6px !important;
+  border-color: green !important;
 }
 
 .shiptype-ship-toolbar1__button {
@@ -1672,6 +1674,7 @@ sapMPopover .sapMPopoverCont {
   border-radius: 1% !important;
   display: flex !important;
   align-items: center;
+  border-color: #4E9C2D !important;
 }
 
 .validateAddress__button:hover > span {
@@ -1681,6 +1684,7 @@ sapMPopover .sapMPopoverCont {
   animation: animateBtn 1s infinite;
   transform: scale(1.05);
   transition: all 0.3s ease;
+   border-color: #4E9C2D !important;
   border-radius: 1% !important;
 }
 
@@ -2218,13 +2222,16 @@ button, input, optgroup, select, textarea {
 
 
 .totalPkgsNumberData {
-  color: white !important;
-  padding: 5px 15px !important;
-  margin-left: 8px;
-  border-radius: 6px;
-  font-weight: bold;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-  background-color: rgb(81, 0, 231) !important;
+     width: 55px !important;
+    color: #fff !important;
+    background-color: rgb(81, 0, 231) !important;
+    padding: 10px 24px !important;
+    margin-left: 0px;
+    margin-top: -6px !important;
+    border-radius: 6px;
+    font-weight: 700;
+    box-shadow: 2px 2px 8px #0003;
+     height: 37px;
 }
 
 .pickStatusNumberData {
@@ -2235,6 +2242,18 @@ button, input, optgroup, select, textarea {
   font-weight: bold;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
   background-color: rgb(0, 159, 53) !important;
+}
+.pickStatusNumberData2{
+    width: 55px !important;
+    color: #fff !important;
+    background-color: coral !important;
+    padding: 10px 24px !important;
+    margin-left: 0px;
+    margin-top: -6px !important;
+    border-radius: 6px;
+    font-weight: 700;
+    box-shadow: 2px 2px 8px #0003;
+    height: 37px;
 }
 
 .TransparentBackground{
@@ -2451,6 +2470,7 @@ button, input, optgroup, select, textarea {
 .saveBtn {
   height: 40px !important;
   width: 60px !important;
+   border-color: #4E9C2D !important;
   border-color: green !important;
   color: green !important;
 }

@@ -1891,7 +1891,7 @@
         {
             "name": "SNStatus",
             "label": "SN Status",
-            "visible": false
+            "visible": true
         },
         {
             "name": "PackageMaterial",

@@ -1023,19 +1023,21 @@ button {
   animation: animateBtn 1s infinite;
   transform: scale(1.05);
   transition: all 0.3s ease;
-  border-radius: 1% !important;
+  border-radius: 8% !important;
 }
 
 .Ship-Now-toolbar1__button_red:hover bdi {
   color: #fff !important;
-  border-radius: 1% !important;
+  border-radius: 8% !important;
 }
 
 .Ship-Now-toolbar1__button_red span {
   color: unset !important;
   height: 100% !important;
+  border-color: red !important;
+  border-radius: 8% !important;
   padding-left: 18px;
-  border-radius: 1% !important;
+  border-radius: 8% !important;
   display: flex !important;
   align-items: center;
   height: 80px;
@@ -1045,14 +1047,14 @@ button {
 /* Dark Theme Styles */
 body.dark-theme {
   .Ship-Now-toolbar1__button_red > span {
-    border-radius: 1% !important;
+    border-radius: 8% !important;
     background-color: darkred !important;
     color: #fff !important;
   }
 
   .Ship-Now-toolbar1__button_red:focus {
     border: none;
-    border-radius: 1% !important;
+    border-radius: 8% !important;
   }
 }
 
@@ -1129,6 +1131,7 @@ body.dark-theme {
   background-color: #03a9f4 !important;
   color: #fff !important;
   height: 123% !important;
+  border-color: #03a9f4 !important;
   padding-left: 22px;
   width: 85px !important;
   border: 2px solid #03a9f4 !important;
@@ -1140,11 +1143,13 @@ body.dark-theme {
 
 .Ship-Now-toolbar1__button_Pack:hover bdi {
   color: #fff !important;
+  border-color: #03a9f4 !important;
   border-radius: 1% !important;
 }
 
 .Ship-Now-toolbar1__button_Pack span {
   color: #03a9f4 !important;
+  border-color: #03a9f4 !important;
   height: 123% !important;
   padding-left: 22px;
   border-radius: 1% !important;
@@ -1158,12 +1163,14 @@ body.dark-theme {
 body.dark-theme {
   .Ship-Now-toolbar1__button_Pack > span {
     border-radius: 1% !important;
+    border-color: #03a9f4 !important;
     background-color: #03a9f4 !important;
     color: #fff !important;
   }
 
   .Ship-Now-toolbar1__button_Pack:focus {
     border: none;
+    border-color: #03a9f4 !important;
     border-radius: 1% !important;
   }
 }
@@ -1219,6 +1226,7 @@ body.dark-theme {
 
 .Ship-Now-toolbar1__button_PackAll:hover > span {
   background-color: #ef6c00 !important;
+  border-color: #ef6c00 !important;
   color: #fff !important;
   height: 123% !important;
   padding-left: 9px;
@@ -1232,11 +1240,13 @@ body.dark-theme {
 
 .Ship-Now-toolbar1__button_PackAll:hover bdi {
   color: #fff !important;
+  border-color: #ef6c00 !important;
   border-radius: 1% !important;
 }
 
 .Ship-Now-toolbar1__button_PackAll span {
   color: #ef6c00 !important;
+  border-color: #ef6c00 !important;
   height: 123% !important;
   padding-left: 9px;
   border-radius: 1% !important;
@@ -1250,12 +1260,14 @@ body.dark-theme {
 body.dark-theme {
   .Ship-Now-toolbar1__button_PackAll > span {
     border-radius: 1% !important;
+    border-color: #ef6c00 !important;
     background-color: #ef6c00 !important;
     color: #fff !important;
   }
 
   .Ship-Now-toolbar1__button_PackAll:focus {
     border: none;
+    border-color: #ef6c00 !important;
     border-radius: 1% !important;
   }
 }
@@ -1309,6 +1321,7 @@ body.dark-theme {
 
 .Ship-Now-toolbar1__button_MultiPack:hover > span {
   background-color: #c515f6 !important;
+  border-color: #c515f6!important;
   color: #fff !important;
   height: 123% !important;
   padding-left: 0px;
@@ -1322,11 +1335,13 @@ body.dark-theme {
 
 .Ship-Now-toolbar1__button_MultiPack:hover bdi {
   color: #fff !important;
+  border-color: #c515f6!important;
   border-radius: 1% !important;
 }
 
 .Ship-Now-toolbar1__button_MultiPack span {
   color: #c515f6 !important;
+  border-color: #c515f6!important;
   height: 123% !important;
   padding-left: 0px;
   border-radius: 1% !important;
@@ -1340,12 +1355,14 @@ body.dark-theme {
 body.dark-theme {
   .Ship-Now-toolbar1__button_MultiPack > span {
     border-radius: 1% !important;
+    border-color: #c515f6!important;
     background-color: #c515f6 !important;
     color: #fff !important;
   }
 
   .Ship-Now-toolbar1__button_MultiPack:focus {
     border: none;
+    border-color: #c515f6!important;
     border-radius: 1% !important;
   }
 }
