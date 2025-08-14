@@ -592,7 +592,7 @@
 					<core:ListItem key="postGoodsIssue" text="Post Goods Issue" icon="sap-icon://accept" />
 					<core:ListItem key="reversePGI" text="Reverse PGI" icon="sap-icon://refresh" />
 				</Select> -->
-				<Button text="More Actions" visible="{eshipjetModel>/commonValues/shipNowVoidSelectShipNow}" press="onMoreActionsPress" icon="sap-icon://dropdown" class="moreActions-btn" iconFirst="false" />
+				<Button text="More Actions" press="onMoreActionsPress" icon="sap-icon://dropdown" class="moreActions-btn" iconFirst="false" />
 
 			<ToolbarSpacer/>
 				<!-- <Button text="Save" press="createHandlingUnits" class="scan-ship-toolbar1__button sapUiTinyMargin sapUiLargeMarginEnd" visible="{eshipjetModel>/commonValues/shipNowVoidSelectSave}" type="Ghost" width="5%"  /> -->

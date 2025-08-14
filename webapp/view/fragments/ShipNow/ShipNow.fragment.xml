@@ -1476,7 +1476,8 @@
 
 
 									<!-- Charges Tab Starts here -->
-									<IconTabFilter text="Shipping Charges" key="Charges">
+									<IconTabFilter text="Shipping Charges" key="Charges" >
+							<VBox justifyContent="end" height="100%" >
 								<Table items="{eshipjetModel>/shippingCharges}" visible="{eshipjetModel>/shippingChargesLength}" class="sapUiLargeMarginBottom" >
 									<headerToolbar>
 										<OverflowToolbar class="customShippingDocumentsToolbar" height="2rem" >
@@ -1621,6 +1622,7 @@
 											</HBox>
 									</VBox>
 								</HBox>
+							</VBox>
 									</IconTabFilter>
 
 									<!-- Documents Tab Starts here -->

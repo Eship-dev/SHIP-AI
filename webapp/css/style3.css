@@ -1140,7 +1140,7 @@ td[rowspan] {
 }
 
 .shipNow-IconTabBar-Width{
-  min-width: 15rem !important;
+  min-width: 25rem !important;
  
 }
 .sapMScrollCont.sapUiContentPadding > .sapMScrollContScroll {
@@ -2357,7 +2357,7 @@ button, input, optgroup, select, textarea {
   & .sapMITBInLine {
       & .sapMITBHead {
           .sapMITBVertical.sapMITBFilter {
-              min-width: auto !important;
+              min-width: 15rem !important;
               flex-grow: 1;
               justify-content: center !important;
           }
