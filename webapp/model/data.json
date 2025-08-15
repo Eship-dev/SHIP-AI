@@ -43,6 +43,7 @@
         "ShippingPoint": false,
         "plant": ""
     },
+    "hideTrackPackDetails": true,
     "documentsLength": false,
     "shippingChargesLength": false,
     "trackingLength": false,

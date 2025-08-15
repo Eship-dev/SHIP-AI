@@ -1485,7 +1485,7 @@ sap.ui.define([
             eshipjetModel.setProperty("/shipNowShipFromInputStatus", false);
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             ShipNowDataModel.setProperty("/ShipToAddress", {});
-8
+
             var oToolPage = this.byId("toolPage");
             oToolPage.setSideExpanded(false);
             eshipjetModel.setProperty("/shippingCharges",[]);
@@ -1675,6 +1675,7 @@ sap.ui.define([
             eshipjetModel.setProperty("/documentsLength", false);
             eshipjetModel.setProperty("/shippingChargesLength", false);
             eshipjetModel.setProperty("/trackingLength", false);
+            eshipjetModel.setProperty("/hideTrackPackDetails", true);
             var oCommonValues = {
                 sapDeliveryNumber :"",
                 ShipNowShipMethodSelectedKey:"",
@@ -3529,6 +3530,13 @@ sap.ui.define([
                 oController.shipNowData(sDeveliveryNumber, "ShipNow", myResolve);                                                    
             });
             await myPromise;
+            var ShipNowShipMethodSelectedKey = eshipjetModel.getProperty("/commonValues/ShipNowShipMethodSelectedKey");
+            var carrierName = ShipNowShipMethodSelectedKey.toUpperCase();
+            if(carrierName === "UPS" || carrierName === "FEDEX" || carrierName === "USPS"){
+                eshipjetModel.setProperty("/hideTrackPackDetails", false);
+            }else{
+                eshipjetModel.setProperty("/hideTrackPackDetails", true);
+            }
         },
 
         onDeliveryNumberLiveChange: function (oEvent) {
@@ -3902,6 +3910,15 @@ sap.ui.define([
                             eshipjetModel.setProperty("/invoiceNo", invoiceNums);
                             
                         }
+
+                        var ShipNowShipMethodSelectedKey = eshipjetModel.getProperty("/commonValues/ShipNowShipMethodSelectedKey");
+                        var carrierName = ShipNowShipMethodSelectedKey.toUpperCase();
+                        if(carrierName === "UPS" || carrierName === "FEDEX" || carrierName === "USPS"){
+                            eshipjetModel.setProperty("/hideTrackPackDetails", false);
+                        }else{
+                            eshipjetModel.setProperty("/hideTrackPackDetails", true);
+                        }
+
                         oController.checkPostGoodsIssueStatus(sDeveliveryNumber);
                     }
                     // oController.onCloseBusyDialog();
@@ -17302,6 +17319,13 @@ sap.ui.define([
                     eshipjetModel.setProperty("/carrierServiceCode_display", item.ServiceCode);
                 }
             });
+            var ShipNowShipMethodSelectedKey = eshipjetModel.getProperty("/commonValues/ShipNowShipMethodSelectedKey");
+            var carrierName = ShipNowShipMethodSelectedKey.toUpperCase();
+            if(carrierName === "UPS" || carrierName === "FEDEX" || carrierName === "USPS"){
+                eshipjetModel.setProperty("/hideTrackPackDetails", false);
+            }else{
+                eshipjetModel.setProperty("/hideTrackPackDetails", true);
+            }
         },
 
         onShopNowShipMethodTypeChange : function(oEvent){

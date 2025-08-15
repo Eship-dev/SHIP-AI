@@ -2,8 +2,8 @@
 	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
 	    		<Toolbar class="" height="3rem" >
-					<Button icon="sap-icon://past" id="shipNowRecentShips" type="Transparent" press="onOpenRecentShipmentPopover" />
-					<Text text="Ship Now"/>
+					<Button icon="sap-icon://past" class="recentBtnStyle" id="shipNowRecentShips" type="Transparent" press="onOpenRecentShipmentPopover" />
+					<Text text="Ship Now" class="sapUiTinyMarginBegin" />
 					
 					<ToolbarSpacer/>
 						<HBox class="sapUiLargeMarginEnd" >
@@ -340,7 +340,7 @@
 													</VBox>
 													<VBox >
 														<Label text="Service Name" />
-														<ComboBox class="create-ship-req_input" id="idServiceName" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange"     selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
+														<ComboBox class="create-ship-req_input" id="idServiceName" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange" selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
 															<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
 														</ComboBox>
 													</VBox>
@@ -1139,13 +1139,13 @@
 								</HBox> -->
 								
 								<HBox height="3rem" width="35%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="SpaceBetween" >
-									<FlexBox>
+									<FlexBox visible="{eshipjetModel>/hideTrackPackDetails}" >
 										<Label text="Pkg Material" class="sapUiSmallMarginTop" width="auto" />
 										<ComboBox items="{eshipjetModel>/packageMaterial}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" selectedKey="{eshipjetModel>/selectedPackageMat}" class="create-ship-req_input sapUiTinyMarginBegin" width="11rem" >
 											<core:Item key="{eshipjetModel>Product}" text="{eshipjetModel>Product}" />
 										</ComboBox>
 									</FlexBox>
-									<FlexBox>
+									<FlexBox visible="{eshipjetModel>/hideTrackPackDetails}" >
 										<Input value="{eshipjetModel>/commonValues/lengthOfDimensions}" placeholder="L" class="create-ship-req_input sapUiTinyMarginBegin" width="3rem" ></Input>
 										<Input value="{eshipjetModel>/commonValues/widthOfDimensions}" placeholder="W" class="create-ship-req_input sapUiTinyMarginBegin" width="3rem" ></Input>
 										<Input value="{eshipjetModel>/commonValues/heightOfDimensions}" placeholder="H" class="create-ship-req_input sapUiTinyMarginBegin" width="3rem" ></Input>
@@ -1162,8 +1162,8 @@
 									</FlexBox>
                                 </HBox>
 								<HBox height="3rem" width="30%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="Start" >
-									<Text text="Tracking / Pro#" class="sapUiTinyMargin" ></Text>
-									<Input value="{}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input sapUiTinyMargin" width="auto" ></Input>
+									<Text text="Tracking / Pro#" class="sapUiTinyMargin" visible="{eshipjetModel>/hideTrackPackDetails}" ></Text>
+									<Input value="{eshipjetModel>/trackingArray/0/TrackingNumber}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input sapUiTinyMargin" width="auto" visible="{eshipjetModel>/hideTrackPackDetails}" ></Input>
 								</HBox>
 								<HBox height="3rem" width="5%" class="whiteBackground" alignItems="Center" justifyContent="Center" >
 									<Button icon="sap-icon://message-error" type="Transparent" class="void-button" press="onShipNowVoidPress" visible="{eshipjetModel>/commonValues/shipNowVoidSelect}" tooltip="Void Now" ></Button>
@@ -1186,7 +1186,7 @@
 										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="20rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/0/visible}" >
+								<ui:Column width="15rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/0/visible}" >
 									<Label text="Material / SAP HU ID" />
 									<ui:template>
 									<HBox justifyContent="End" alignItems="End">
@@ -1200,7 +1200,7 @@
 										<Text text="" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="15rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/2/visible}" >
+								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/2/visible}" >
 									<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="Weight (LB)" />
 									</HBox>
@@ -1477,7 +1477,7 @@
 
 									<!-- Charges Tab Starts here -->
 									<IconTabFilter text="Shipping Charges" key="Charges" >
-							<VBox justifyContent="end" height="100%" >
+							<VBox height="100%" >
 								<Table items="{eshipjetModel>/shippingCharges}" visible="{eshipjetModel>/shippingChargesLength}" class="sapUiLargeMarginBottom" >
 									<headerToolbar>
 										<OverflowToolbar class="customShippingDocumentsToolbar" height="2rem" >
