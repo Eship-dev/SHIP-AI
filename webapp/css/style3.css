@@ -2375,6 +2375,11 @@ button, input, optgroup, select, textarea {
               0px -4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.whiteBackgroundShipnow  {
+  background-color: white !important;
+  padding: 4px !important;
+}
+
 .blueBackground  {
   padding: 4px !important;
   background-color: rgb(86, 136, 248) !important;

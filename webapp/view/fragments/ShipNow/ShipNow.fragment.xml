@@ -1,9 +1,9 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"    	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
 
-	    		<Toolbar class="" height="3rem" >
+	    		<Toolbar class="whiteBackgroundShipnow" height="4rem" >
 					<Button icon="sap-icon://past" class="recentBtnStyle" id="shipNowRecentShips" type="Transparent" press="onOpenRecentShipmentPopover" />
-					<Text text="Ship Now" class="sapUiTinyMarginBegin" />
+					<Text text="Ship Now" class="sapUiTinyMarginBegin main-tittle-css" />
 					
 					<ToolbarSpacer/>
 						<HBox class="sapUiLargeMarginEnd" >
@@ -47,14 +47,14 @@
 
 						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn ship-now-decline_btn" type="Ghost" />
 				</Toolbar>
-							<Toolbar class="sapUiTinyMarginBottom scan-ship-toolbar1" height="15%">
+							<Toolbar class="sapUiTinyMarginBottom scan-ship-toolbar1" height="10%">
 									<ComboBox class="create-ship-req_input sapUiTinyMargin sapUiSmallMarginBegin" width="16%" selectedKey="SAPS4HANAPrivate" >
 										<core:Item key="SAPS4HANAPublic" text="SAP S/4 HANA Public Cloud Edition" />
 										<core:Item key="SAPS4HANAPrivate" text="SAP S/4 HANA Private Cloud Edition" />	
 										<core:Item key="EWMOBD" text="EWM Outbound Delivery" />	
 										<core:Item key="manual" text="Manual" />											
 									</ComboBox>
-								<Input width="9%" placeholder="Licence Plate" class="sapUiSmallMarginBottom sapUiTinyMarginTop create-ship-req_input" />
+								<Input width="6%" placeholder="Licence Plate" class="sapUiSmallMarginBottom sapUiTinyMarginTop create-ship-req_input" />
 
                                 <!-- <Input ></Input> -->
 									<!-- <Label text="SAP Delivery Number" class="sapdeliverynumberbgcolor sapUiSmallMarginTop sapUiMediumMarginEnd sapUiSmallMarginBegin" width="12%" wrapping="false" labelFor="SAPDelLabel"/> -->
@@ -70,9 +70,9 @@
 
 									<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch" value="{eshipjetModel>/commonValues/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
 									<Input id="idSapDeliveryNumber" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{eshipjetModel>/commonValues/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle sapDeliveryNumberInptBold create-ship-req_input sapUiTinyMarginTop sapUiLargeMarginEnd custom-input2" width="10%" editable="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog"  liveChange="onDeliveryNumberLiveChange" ></Input>
-									<Button text="Get" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" type="Ghost" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" press="onShipNowGetPress" width="4%"></Button>
+									<Button text="Get" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" type="Ghost" class="Ship-Now-toolbar1__button_green_Get saveBtn sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" press="onShipNowGetPress" width="4%"></Button>
 									<Label text="Ship Type" visible="{eshipjetModel>/commonValues/showShipType}" class="sapUiSmallMargin" ></Label>
-									<Text text="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}" visible="{eshipjetModel>/commonValues/showShipType}" class="ship-type-value sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" ></Text>
+									<Text width="3%" text="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}" visible="{eshipjetModel>/commonValues/showShipType}" class="ship-type-value sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" ></Text>
 
 									<Label text="Plant" visible="{eshipjetModel>/commonValues/ShippingPoint}" class="sapUiSmallMargin" ></Label>
 									<Text text="{eshipjetModel>/commonValues/plant}" visible="{eshipjetModel>/commonValues/showShipType}" class="plant-type-style sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" ></Text>
@@ -81,7 +81,7 @@
 									<DatePicker class="create-ship-req_input sapUiTinyMargin" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" id="DP1" width="8%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
 									<ToolbarSpacer ></ToolbarSpacer>
 									 <Button text="Clear" press="onShipNowNewPress" class="Ship-Now-toolbar1__button_red clearBtn sapUiTinyMargin" type="Ghost" />
-									<Button text="New" press="onShipNowNewPress" class="scan-ship-toolbar1__button saveBtn sapUiTinyMargin" type="Ghost" ></Button>
+									<Button text="New" press="onShipNowNewPress" class="Ship-Now-toolbar1__button_green saveBtn sapUiTinyMargin sapUiLargeMarginEnd" type="Ghost" ></Button>
                             </Toolbar>
 							<!-- Icon Tab Bar Starts here -->			
 							<IconTabBar id="idIconTabBarFiori2" selectedKey = "Pack" expandable="false" enableTabReordering="true" class="shipNow-IconTabBar-Width customTabStyle" >
@@ -1261,7 +1261,7 @@
 										</HBox>
 									<ui:template>
 										<HBox justifyContent="Center" alignItems="Center">
-												<Button icon="sap-icon://tag" type="Transparent" press="onSerialNumPress" enabled="{= ${eshipjetModel>Hunumber} > 0 }" ></Button>
+												<Button icon="sap-icon://tag" type="Transparent" press="onSerialNumPress" enabled="{= ${eshipjetModel>} > 0 }" ></Button>
 											</HBox>
 									</ui:template>
 								</ui:Column>
