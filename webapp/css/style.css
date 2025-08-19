@@ -1169,7 +1169,7 @@ body.dark-theme {
   color: #fff !important;
   height: 69px;
   padding-left: 18px;
-  width: 87px;
+  width: 71px;
   border: 1px solid #4E9C2D !important;
   animation: animateBtn 1s infinite;
   transform: scale(1.05);
@@ -1192,7 +1192,7 @@ body.dark-theme {
   display: flex !important;
   align-items: center;
   height: 80px;
-  width: 87px;
+  width: 71px;
 }
 
 /* Dark Theme Styles */
