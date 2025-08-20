@@ -15,7 +15,7 @@
             <Toolbar>
                 <Title text="HULabel" />
                 <ToolbarSpacer />
-                <Button icon="sap-icon://decline" press="onCloseHULabelDialog" />
+                <Button icon="sap-icon://decline" press="onCloseAlcoholDialog" />
             </Toolbar>
        <!-- <content>
         <VBox width="100%" height="100%">
@@ -30,9 +30,9 @@
 
         <footer>
             <OverflowToolbar class="sapMPopoverFooter1">
-                <Button text="Cancel" press="onCloseHULabelDialog" />
+                <Button text="Cancel" press="onCloseAlcoholDialog" />
                 <ToolbarSpacer />
-                <Button text="Save" type="Emphasized" press="onSaveHULabelData" />
+                <Button text="Save" type="Emphasized" press="onCloseAlcoholDialog" />
             </OverflowToolbar>
         </footer>
 
