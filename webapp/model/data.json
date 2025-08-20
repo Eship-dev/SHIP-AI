@@ -10854,11 +10854,11 @@
     "moreActionsList": [
         {
             "moreActionItem": "Post Goods Issue",
-            "moreActionIcon": "sap-icon://accept"
+            "moreActionIcon": "sap-icon://sys-enter"
         },
         {
             "moreActionItem": "Reverse PGI",
-            "moreActionIcon": "sap-icon://refresh"
+            "moreActionIcon": "sap-icon://sys-cancel"
         }
     ],
     "carrierconfiguration": [

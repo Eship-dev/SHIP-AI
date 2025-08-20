@@ -45,7 +45,7 @@
 
 
 
-						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="Decline_Btn ship-now-decline_btn" type="Ghost" />
+						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="shipNowCloseBtnStyle" type="Ghost" />
 				</Toolbar>
 							<Toolbar class="sapUiTinyMarginBottom scan-ship-toolbar1" height="10%">
 									<ComboBox class="create-ship-req_input sapUiTinyMargin sapUiSmallMarginBegin" width="16%" selectedKey="SAPS4HANAPrivate" >

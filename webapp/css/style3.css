@@ -2465,17 +2465,47 @@ button, input, optgroup, select, textarea {
 }
 
 .moreActions-btn {
-  background-color: #fff;
-  color: #000;
-  border: 0px solid #000;
-  width: 120px !important;
-  margin-right: 80px !important;
-  span:before {
-    display: none !important;
-  }
-  bdi {
-    color: #000;
-  }
+  height: 2.5rem !important;
+  min-height: 2.5rem !important;
+  background-color: #fff !important;
+  border: 1px solid #0070f2 !important; /* SAP blue */
+  color: #0070f2 !important;
+  border-radius: 6px;
+  padding: 0 1rem !important;
+}
+
+/* Inner button */
+.moreActions-btn .sapMBtnInner {
+  height: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit !important; /* ensures it follows parent */
+}
+
+/* ✅ Text span fix */
+.moreActions-btn .sapMBtnContent {
+  color: inherit !important;
+  font-weight: 500; /* optional: make text a bit bolder */
+}
+
+/* Icon inherits color */
+.moreActions-btn .sapUiIcon {
+  color: inherit !important;
+}
+
+/* Hover */
+.moreActions-btn:hover {
+  background-color: #0070f2 !important;
+  color: #fff !important;
+  border-color: #0070f2 !important;
+}
+
+.moreActions-btn:hover .sapMBtnContent,
+.moreActions-btn:hover .sapUiIcon {
+  color: #fff !important;
 }
 
 .customValueHelpIcon .sapUiIcon {
@@ -3012,7 +3042,7 @@ button, input, optgroup, select, textarea {
   height: 3rem !important;
   width: 3rem !important;
   padding: 0 !important;
-  border-right: 1px solid black;
+  border-right: 1px solid rgb(119, 119, 119);
   transform: scale(1.2);
 }
 
@@ -3031,3 +3061,120 @@ button, input, optgroup, select, textarea {
   transform: scale(1.3);
   transition: transform 0.2s ease;
 }
+
+
+/* .pgiBtnStyle:hover > span {
+  background-color: #4E9C2D !important;
+  color: #fff !important;
+  height: 69px;
+  padding-left: 18px;
+  width: 100px;
+  border: 1px solid #4E9C2D !important;
+  animation: animateBtn 1s infinite;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+  border-radius: 8% !important;
+}
+
+.pgiBtnStyle:hover bdi {
+  color: #fff !important;
+  border-radius: 8% !important;
+} */
+
+/* ✅ Common Button Size */
+.pgiBtnStyle,
+.ReversePGIBtnStyle {
+  height: 2.3rem !important;
+  width: 8rem !important;
+  min-height: 2.3rem !important;
+  line-height: 2.3rem !important; /* makes text/icon centered */
+  margin-bottom: 1rem !important;
+}
+
+/* Target UI5 button inner container */
+.pgiBtnStyle .sapMBtnInner,
+.ReversePGIBtnStyle .sapMBtnInner {
+  height: 2.3rem !important;
+  line-height: 2.3rem !important;
+}
+
+/* ✅ PGI Button (Green) */
+.pgiBtnStyle span {
+  background-color: #4E9C2D !important;
+  color: #fff !important;
+  border-color: #4E9C2D !important;
+  border-radius: 8% !important;
+  padding-left: 12px;
+  display: flex !important;
+  align-items: center;
+  margin-right: 3px !important;
+}
+
+/* ✅ Reverse PGI Button (Red) */
+.ReversePGIBtnStyle span {
+  background-color: #ff4444 !important;
+  color: #fff !important;
+  border-color: #ff4444 !important;
+  border-radius: 8% !important;
+  padding-left: 13px;
+  display: flex !important;
+  align-items: center;
+  margin-right: 3px !important;
+}
+
+/* ✅ Dark Theme Styles */
+body.dark-theme .pgiBtnStyle span {
+  background-color: #4E9C2D !important;
+  color: #fff !important;
+}
+
+body.dark-theme .ReversePGIBtnStyle span {
+  background-color: #ff4444 !important;
+  color: #fff !important;
+}
+
+
+
+.sapMPopover.hidePopoverBackground {
+  box-shadow: none !important;
+  margin-right: 5rem !important;
+}
+
+.sapMPopover.hidePopoverBackground .sapMPopoverCont {
+  background-color: transparent !important;
+}
+
+
+.pgiBtnSize .sapUiSizeCompact .sapMBtn{
+  height: 3rem;
+  padding: 0.1875rem 0;
+}
+
+
+.shipNowCloseBtnStyle {
+  height: 3rem !important;
+  width: 3rem !important;
+  padding: 0 !important;
+  transform: scale(1.2);
+}
+
+/* Center the icon */
+.shipNowCloseBtnStyle .sapMBtnInner {
+  height: 100% !important;
+  width: 100% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(1.2);
+}
+
+/* 🔴 Hover effect (background + icon color) */
+.shipNowCloseBtnStyle:hover .sapMBtnInner {
+  background-color: #ff4444 !important; /* red background */
+  /* border-radius: 6px !important; */
+}
+
+.shipNowCloseBtnStyle:hover .sapMBtnInner .sapUiIcon {
+  color: #fff !important; /* icon turns white */
+}
+

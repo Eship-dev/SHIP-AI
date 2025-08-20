@@ -4,23 +4,16 @@
 	<Popover 
         id="idMoreActionsPopover"
         showHeader="false" 
-        contentWidth="auto" 
+        contentWidth="auto"
         showArrow="true"
-        class="sapUiResponsivePadding--header sapUiResponsivePadding--footer sapUiSmallMarginBottom"
+        class="hidePopoverBackground sapUiLargeMarginBottom"
         placement="Top" 
         contentHeight="auto" >
 		<content>
-        <List
-            id="moreActionsList"
-            items="{/moreActionsList}"
-            mode="SingleSelectMaster"
-            includeItemInSelection="true"
-            itemPress="onMoreActionItemPress" >
-            <StandardListItem
-                title="{moreActionItem}"
-                icon="{moreActionIcon}"
-                type="Active" />
-        </List>
+        <HBox >
+            <Button text="PGI" icon="sap-icon://sys-enter" class="pgiBtnStyle" ></Button>
+            <Button text="Reverse PGI" icon="sap-icon://sys-cancel" class="ReversePGIBtnStyle" ></Button>
+        </HBox>
         </content>
     </Popover>
 </core:FragmentDefinition>
