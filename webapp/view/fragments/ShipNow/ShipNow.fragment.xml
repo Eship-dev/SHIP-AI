@@ -1288,7 +1288,7 @@
 										</HBox>
 									<ui:template>
 										<HBox justifyContent="Center" alignItems="Center">
-												<Button icon="sap-icon://attachment" type="Transparent" press="" enabled="{= ${eshipjetModel>Hunumber} > 0 }" ></Button>
+												<Button icon="sap-icon://attachment" type="Transparent" press="HUDialogPress" enabled="{= ${eshipjetModel>Hunumber} > 0 }" ></Button>
 											</HBox>
 									</ui:template>
 								</ui:Column>
@@ -1478,7 +1478,9 @@
 									<!-- Charges Tab Starts here -->
 									<IconTabFilter text="Shipping Charges" key="Charges" >
 							<VBox height="100%" >
-								<Table items="{eshipjetModel>/shippingCharges}" visible="{eshipjetModel>/shippingChargesLength}" class="sapUiLargeMarginBottom" >
+								<Table items="{eshipjetModel>/shippingCharges}" visible="{eshipjetModel>/shippingChargesLength}" class="sapUiLargeMarginBottom"
+								    
+									 >
 									<headerToolbar>
 										<OverflowToolbar class="customShippingDocumentsToolbar" height="2rem" >
 											<content>
@@ -1520,7 +1522,7 @@
 									</items>
 								</Table>
 
-								<HBox justifyContent="SpaceBetween" width="100%" visible="{eshipjetModel>/shippingChargesLength}" >
+								<HBox justifyContent="SpaceBetween" width="100%" visible="{eshipjetModel>/shippingChargesLength}" class="sapUiLargeMarginTop TopHeight" >
 									<VBox class="shipnowUserInfoSimpleFormShadow shippingDetailsStartingBorder" width="30%" >
 										<Toolbar class="customLine customUserInfoToolbar" >
 											<core:Icon src="sap-icon://shipping-status" class="sapUiTinyMarginBegin" >
@@ -1668,7 +1670,7 @@
 										</items>
 									</Table>
 
-								<HBox justifyContent="SpaceBetween" width="100%" visible="{eshipjetModel>/documentsLength}" >
+								<HBox justifyContent="SpaceBetween" width="95%" visible="{eshipjetModel>/documentsLength}" >
 									<VBox class="shipnowUserInfoSimpleFormShadow" width="30%" >
 										<Toolbar class="customLine customUserInfoToolbar" >
 											<core:Icon src="sap-icon://person-placeholder" class="sapUiTinyMarginBegin" >
@@ -1696,16 +1698,16 @@
 											singleContainerFullSize="false" >
 											<f:content>
 												<Label text="Shipped By" />
-												<Input value="{eshipjetModel>/userName}" enabled="false" />
+												<Input value="{eshipjetModel>/userName}" class="create-ship-req_input" enabled="false" />
 												<Label text="SAP User ID" />
-												<Input value="{eshipjetModel>/userName}" enabled="false" />
+												<Input value="{eshipjetModel>/userName}" class="create-ship-req_input" enabled="false" />
 												<Label text="Ship Date-Time" />
-												<DatePicker valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" enabled="false" />
+												<DatePicker valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" enabled="false" class="create-ship-req_input" />
 											</f:content>
 										</f:SimpleForm>
 									</VBox>
 
-									<Button text="Get Missing Documents" ></Button>
+									<Button text="Get Missing Documents" height="3rem"  class="Ship-Now-toolbar1__button_greenDoc saveBtn sapUiTinyMargin sapUiLargeMarginEnd" type="Ghost" ></Button>
 								</HBox>
 								</IconTabFilter>
 

@@ -1116,6 +1116,53 @@ body.dark-theme {
 
 
 
+.Ship-Now-toolbar1__button_greenDoc:hover > span {
+  background-color: #4E9C2D !important;
+  color: #fff !important;
+  height: 90px;
+  padding-left: 18px;
+  width: 200px;
+  border: 1px solid #4E9C2D !important;
+  animation: animateBtn 1s infinite;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+  border-radius: 7% !important;
+}
+
+.Ship-Now-toolbar1__button_greenDoc:hover bdi {
+  color: #fff !important;
+  border-radius: 7% !important;
+}
+
+.Ship-Now-toolbar1__button_greenDoc span {
+  color: #4E9C2D !important;
+  height: 100% !important;
+  border-color: #4E9C2D !important;
+  border-radius: 7% !important;
+  padding-left: 18px;
+  border-radius: 7% !important;
+  display: flex !important;
+  align-items: center;
+  height: 80px;
+  width: 200px;
+}
+
+/* Dark Theme Styles */
+body.dark-theme {
+  .Ship-Now-toolbar1__button_greenDoc > span {
+    border-radius: 7% !important;
+    background-color: darkred !important;
+    color: #fff !important;
+  }
+
+  .Ship-Now-toolbar1__button_greenDoc:focus {
+    border: none;
+    border-radius: 7% !important;
+  }
+}
+
+
+
 .Ship-Now-toolbar1__button_greenSP:hover > span {
   background-color: #4E9C2D !important; /* changed C → green */
   color: #fff !important;

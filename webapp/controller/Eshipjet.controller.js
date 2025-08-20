@@ -4599,6 +4599,26 @@ sap.ui.define([
             this.byId("_IDGenAlcoholEditDialog").close();
         },
 
+         HUDialogPress: function() {
+            var oView = this.getView();
+
+            if (!this.byId("_IDGenHULabelDialog")) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.SpecialOptions.HULabelDialog",
+                    controller: this
+                }).then(function(oDialog) {
+                    oView.addDependent(oDialog);
+                    oDialog.open();
+                });
+            } else {
+                this.byId("_IDGenHULabelDialog").open();
+            }
+        },
+
+        onCloseAlcoholDialog: function() {
+            this.byId("_IDGenHULabelDialog").close();
+        },
 
         onOpenFedExHoldAtLoctionEditDialog: function() {
             var oView = this.getView();
