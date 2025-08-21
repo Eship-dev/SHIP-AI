@@ -2526,7 +2526,21 @@ button, input, optgroup, select, textarea {
   border-color: green !important;
   color: green !important;
 }
-
+.firebrickColor{
+  color: firebrick;
+  font-weight: bold !important;
+  border: none;
+}
+.namecolorrc{
+  color: #3b5998 !important;
+  font-weight: bold !important;
+  border: none;
+}
+.carriercolortext{
+   color: #6f42c1 !important;
+  font-weight: bold !important;
+  border: none;
+}
 
 .shipnow-icon-tabbar *:focus-visible {
   outline: none !important

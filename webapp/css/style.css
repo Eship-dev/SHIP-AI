@@ -1324,53 +1324,171 @@ body.dark-theme {
   padding-top: 10px;
 }
 
-.Ship-Now-toolbar1__button_Pack:hover > span {
-  background-color: #03a9f4 !important;
-  color: #fff !important;
-  height: 123% !important;
+.saveBtnPack {
+  height: 40px !important;
+  width: 60px !important;
+   border-color: #03a9f4 !important;
   border-color: #03a9f4 !important;
-  padding-left: 22px;
-  width: 85px !important;
-  border: 2px solid #03a9f4 !important;
-  animation: animateBtn 1s infinite;
-  transform: scale(1.05);
-  transition: all 0.3s ease;
-  border-radius: 7% !important;
+  color: #03a9f4 !important;
+}
+
+.Ship-Now-toolbar1__button_Pack:hover > span {
+ background-color: #03a9f4 !important;
+  color: #fff !important;
+  height: 69px;
+  padding-left: 19px;
+  width: 87px;
+  border: 1px solid #03a9f4 !important;
+  border-radius: 8% !important;
 }
 
 .Ship-Now-toolbar1__button_Pack:hover bdi {
   color: #fff !important;
-  border-color: #03a9f4 !important;
-  border-radius: 7% !important;
+  border-radius: 8% !important;
 }
 
 .Ship-Now-toolbar1__button_Pack span {
-  color: #03a9f4 !important;
+  color: unset !important;
+  height: 100% !important;
   border-color: #03a9f4 !important;
-  height: 123% !important;
-  padding-left: 22px;
-  border-radius: 7% !important;
+  border-radius: 8% !important;
+  padding-left: 19px;
+  border-radius: 8% !important;
   display: flex !important;
   align-items: center;
-  height: 106px;
-  width: 85px !important;
+  height: 80px;
+  width: 87px;
 }
 
 /* Dark Theme Styles */
 body.dark-theme {
   .Ship-Now-toolbar1__button_Pack > span {
-    border-radius: 7% !important;
-    border-color: #03a9f4 !important;
-    background-color: #03a9f4 !important;
+    border-radius: 8% !important;
+    background-color: darkred !important;
     color: #fff !important;
   }
 
   .Ship-Now-toolbar1__button_Pack:focus {
     border: none;
-    border-color: #03a9f4 !important;
-    border-radius: 7% !important;
+    border-radius: 8% !important;
   }
 }
+
+.Ship-Now-toolbar1__button_Pack:focus .sapMBtnInner {
+  outline: none !important;
+}
+
+
+.saveBtnPackAll {
+  height: 40px !important;
+  width: 60px !important;
+   border-color: #ef6c00 !important;
+  border-color: #ef6c00 !important;
+  color: #ef6c00 !important;
+}
+
+.Ship-Now-toolbar1__button_PackAll:hover > span {
+  background-color: #ef6c00 !important;
+  color: #fff !important;
+  height: 69px ;
+  padding-left: 11px;
+  width: 87px;
+  border: 1px solid #ef6c00 !important;
+  border-radius: 8% !important;
+}
+
+.Ship-Now-toolbar1__button_PackAll:hover bdi {
+  color: #fff !important;
+  border-radius: 8% !important;
+}
+
+.Ship-Now-toolbar1__button_PackAll span {
+ color: unset !important;
+  height: 100% !important;
+  border-color: #ef6c00 !important;
+  border-radius: 8% !important;
+  padding-left: 11px;
+  border-radius: 8% !important;
+  display: flex !important;
+  align-items: center;
+  height: 80px;
+  width: 87px;
+}
+
+/* Dark Theme Styles */
+body.dark-theme {
+  .Ship-Now-toolbar1__button_PackAll > span {
+    border-radius: 8% !important;
+    background-color: darkred !important;
+    color: #fff !important;
+  }
+
+  .Ship-Now-toolbar1__button_PackAll:focus {
+    border: none;
+    border-radius: 8% !important;
+  }
+}
+
+.Ship-Now-toolbar1__button_PackAll:focus .sapMBtnInner {
+  outline: none !important;
+}
+
+
+
+.saveBtnMultiPack {
+  height: 40px !important;
+  width: 60px !important;
+   border-color: #c515f6 !important;
+  border-color: #c515f6 !important;
+  color: #c515f6 !important;
+}
+
+.Ship-Now-toolbar1__button_MultiPack:hover > span {
+  background-color: #c515f6 !important;
+  color: #fff !important;
+  height: 69px;
+  padding-left: 4px;
+  width: 87px;
+  border: 1px solid #c515f6 !important;
+  border-radius: 8% !important;
+}
+
+.Ship-Now-toolbar1__button_MultiPack:hover bdi {
+  color: #fff !important;
+  border-radius: 8% !important;
+}
+
+.Ship-Now-toolbar1__button_MultiPack span {
+  color: unset !important;
+  height: 100% !important;
+  border-color: #c515f6 !important;
+  border-radius: 8% !important;
+  padding-left: 4px;
+  border-radius: 8% !important;
+  display: flex !important;
+  align-items: center;
+  height: 80px;
+  width: 87px;
+}
+
+/* Dark Theme Styles */
+body.dark-theme {
+  .Ship-Now-toolbar1__button_MultiPack > span {
+    border-radius: 8% !important;
+    background-color: #c515f6 !important;
+    color: #fff !important;
+  }
+
+  .Ship-Now-toolbar1__button_MultiPack:focus {
+    border: none;
+    border-radius: 8% !important;
+  }
+}
+.Ship-Now-toolbar1__button_MultiPack:focus .sapMBtnInner {
+  outline: none !important;
+}
+
+
 
 .Ship-Now-toolbar1__button_DGPack:hover > span {
   background-color: #03a9f4 !important;
@@ -1414,59 +1532,8 @@ body.dark-theme {
     border-radius: 7% !important;
   }
 }
-
-
-
-
-
-
-
-.Ship-Now-toolbar1__button_PackAll:hover > span {
-  background-color: #ef6c00 !important;
-  border-color: #ef6c00 !important;
-  color: #fff !important;
-  height: 123% !important;
-  padding-left: 9px;
-  width: 85px !important;
-  border: 2px solid #ef6c00 !important;
-  animation: animateBtn 1s infinite;
-  transform: scale(1.05);
-  transition: all 0.3s ease;
-  border-radius: 7% !important;
-}
-
-.Ship-Now-toolbar1__button_PackAll:hover bdi {
-  color: #fff !important;
-  border-color: #ef6c00 !important;
-  border-radius: 7% !important;
-}
-
-.Ship-Now-toolbar1__button_PackAll span {
-  color: #ef6c00 !important;
-  border-color: #ef6c00 !important;
-  height: 123% !important;
-  padding-left: 9px;
-  border-radius: 7% !important;
-  display: flex !important;
-  align-items: center;
-  height: 106px;
-  width: 85px !important;
-}
-
-/* Dark Theme Styles */
-body.dark-theme {
-  .Ship-Now-toolbar1__button_PackAll > span {
-    border-radius: 7% !important;
-    border-color: #ef6c00 !important;
-    background-color: #ef6c00 !important;
-    color: #fff !important;
-  }
-
-  .Ship-Now-toolbar1__button_PackAll:focus {
-    border: none;
-    border-color: #ef6c00 !important;
-    border-radius: 7% !important;
-  }
+.Ship-Now-toolbar1__button_DGPack:focus .sapMBtnInner {
+  outline: none !important;
 }
 
 
@@ -1516,53 +1583,7 @@ body.dark-theme {
 }
 
 
-.Ship-Now-toolbar1__button_MultiPack:hover > span {
-  background-color: #c515f6 !important;
-  border-color: #c515f6!important;
-  color: #fff !important;
-  height: 123% !important;
-  padding-left: 0px;
-  width: 91px !important;
-  border: 2px solid #c515f6 !important;
-  animation: animateBtn 1s infinite;
-  transform: scale(1.05);
-  transition: all 0.3s ease;
-  border-radius: 7% !important;
-}
 
-.Ship-Now-toolbar1__button_MultiPack:hover bdi {
-  color: #fff !important;
-  border-color: #c515f6!important;
-  border-radius: 7% !important;
-}
-
-.Ship-Now-toolbar1__button_MultiPack span {
-  color: #c515f6 !important;
-  border-color: #c515f6!important;
-  height: 123% !important;
-  padding-left: 0px;
-  border-radius: 7% !important;
-  display: flex !important;
-  align-items: center;
-  height: 106px;
-  width: 91px !important;
-}
-
-/* Dark Theme Styles */
-body.dark-theme {
-  .Ship-Now-toolbar1__button_MultiPack > span {
-    border-radius: 7% !important;
-    border-color: #c515f6!important;
-    background-color: #c515f6 !important;
-    color: #fff !important;
-  }
-
-  .Ship-Now-toolbar1__button_MultiPack:focus {
-    border: none;
-    border-color: #c515f6!important;
-    border-radius: 7% !important;
-  }
-}
 
 
 .icon-dashboard_icon .path1:before {

@@ -331,23 +331,23 @@
 										<VBox class="scan-ship-toolbar1">
 
 										<HBox alignContent="Center" >
-												<HBox height="4.5rem" width="25%" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" >
-													<VBox >
+												<HBox height="4.5rem" width="48%" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" >
+													<VBox class="sapUiMediumMarginEnd" >
 														<Label text="Carrier Name" />
-														<ComboBox class="create-ship-req_input sapUiTinyMarginEnd" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
+														<ComboBox class="create-ship-req_input" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
 															<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
 														</ComboBox>
 													</VBox>
-													<VBox >
+													<VBox class="sapUiMediumMarginEnd" >
 														<Label text="Service Name" />
 														<ComboBox class="create-ship-req_input" id="idServiceName" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{serviceNamesList>/carrierServices}"   selectionChange="onServiceNowDropdownChange" selectedKey="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}">
 															<core:Item key="{serviceNamesList>ShippingType}" text="{serviceNamesList>ServiceName}" />
 														</ComboBox>
 													</VBox>
-												</HBox>
+												<!-- </HBox>
 
-												<HBox height="4.5rem" width="25%" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" >
-													<VBox class="sapUiTinyMarginEnd" >
+												<HBox height="4.5rem" width="25%" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" > -->
+													<VBox class="sapUiMediumMarginEnd" >
 														<Label text="Payment Type" />
 														<ComboBox class="create-ship-req_input" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/PaymentTypes}" selectedKey="{eshipjetModel>/selectPaymentType}" >
 															<core:Item key="{eshipjetModel>key}" text="{eshipjetModel>text}" />
@@ -358,26 +358,26 @@
 														<Input value="{eshipjetModel>/accountNumber}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input" />
 													</VBox>
 												</HBox>
-												<HBox height="4.5rem" width="25%" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" >
-													<VBox class="sapUiTinyMarginEnd" >
+												<HBox height="4.5rem" width="23%" class="whiteBackground sapUiTinyMarginEnd packScreenPadding" alignItems="Center" >
+													<VBox class="sapUiMediumMarginEnd" >
 														<Label text="Postal Code" />
 														<!-- <ComboBox class="create-ship-req_input" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/carrierconfiguration1}" selectedKey="{eshipjetModel>/commonValues/ShipNowShipMethodSelectedKey}" selectionChange="onShopNowShipMethodTypeChange"  >
 															<core:Item key="{eshipjetModel>CarrierName}" text="{eshipjetModel>CarrierName}" />
 														</ComboBox> -->
 														<Input value="{ShipNowDataModel>/ShipToAddress/PostalCode}" width="auto" class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Input>
 													</VBox>
-													<VBox class="sapUiTinyMarginTop" >
+													<VBox class="" >
 														<Label text="Country" />
-														<ComboBox class="sapUiSmallMarginBottom create-ship-req_input" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipToAddress/Country}" >
+														<ComboBox class="create-ship-req_input" width="auto" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" items="{eshipjetModel>/countriesList}" selectedKey="{ShipNowDataModel>/ShipToAddress/Country}" >
 															<core:Item key="{eshipjetModel>code}" text="{eshipjetModel>name}" />												
 														</ComboBox>
 													</VBox>
 												</HBox>
 
-												<HBox height="4.5rem" width="25%" class="whiteBackground packScreenPadding" alignItems="Center" >
-													<VBox class="sapUiTinyMarginEnd" >
+												<HBox height="4.5rem" width="30%" class="whiteBackground packScreenPadding" alignItems="Center" >
+													<VBox class="sapUiMediumMarginEnd" >
 														<Label text="Group ID / Cust Grp2" />
-														<Input value="" width="auto" class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Input>
+														<Input value="" width="10rem" class="create-ship-req_input" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Input>
 													</VBox>
 													<VBox >
 														<Label text="Stage Location" />
@@ -1154,11 +1154,11 @@
 
 								<HBox height="3rem" width="37%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="SpaceBetween" >
 								   <FlexBox justifyContent="SpaceBetween" width="100%" >
-										<Button text="Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_Pack sapUiSmallMarginBegin sapUiTinyMarginBottom" type="Ghost" width="auto" press="onPackPress" ></Button>
-										<Button text="Pack All" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_PackAll" type="Ghost" width="auto" press="onPackAllPress" ></Button>
+										<Button text="Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_Pack saveBtnPack sapUiSmallMarginBegin" type="Ghost" width="auto" press="onPackPress" ></Button>
+										<Button text="Pack All" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_PackAll saveBtnPackAll" type="Ghost" width="auto" press="onPackAllPress" ></Button>
 										<!-- <Button text="DG Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_DGPack sapUiTinyMarginEnd" type="Ghost" width="auto" ></Button>
 										<Button text="DG Pack All" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_DGPackAll sapUiTinyMarginEnd" type="Ghost" width="auto" ></Button> -->
-										<Button text="Multi Pack" press="onMultiPackPress" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_MultiPack sapUiSmallMarginEnd" type="Ghost" width="auto" ></Button>
+										<Button text="Multi Pack" press="onMultiPackPress" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_MultiPack  saveBtnMultiPack sapUiLargeMarginEnd" type="Ghost" width="auto" ></Button>
 									</FlexBox>
                                 </HBox>
 								<HBox height="3rem" width="30%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="Start" >
