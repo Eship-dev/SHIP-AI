@@ -2508,6 +2508,10 @@ button, input, optgroup, select, textarea {
   color: #fff !important;
 }
 
+.moreActions-btn:focus .sapMBtnInner {
+  outline: none !important;
+}
+
 .customValueHelpIcon .sapUiIcon {
   font-family: SAP-icons;
   content: "\e00d"; /* Unicode for sap-icon://search */
@@ -2935,7 +2939,7 @@ button, input, optgroup, select, textarea {
 .shipnowUserInfoSimpleFormShadow {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1), 
               0px -4px 8px rgba(0, 0, 0, 0.1); /* Top and bottom shadow */
-  border-radius: 5px;
+  border-radius: 10px !important;
   background-color: #ffffff;
   margin: 3px !important;
   border: 1px solid #d1d1d1; /* Light grey border */
@@ -3192,3 +3196,122 @@ body.dark-theme .ReversePGIBtnStyle span {
   color: #fff !important; /* icon turns white */
 }
 
+
+
+
+
+
+.shipNowBtnStyle {
+  height: 2.5rem !important;
+  min-height: 2.5rem !important;
+  background-color: #108600 !important;
+  border: 1px solid #108600 !important; /* SAP blue */
+  color: #ffffff !important;
+  border-radius: 6px;
+  padding: 0 1rem !important;
+}
+
+/* Inner button */
+.shipNowBtnStyle .sapMBtnInner {
+  height: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit !important; /* ensures it follows parent */
+}
+
+/* ✅ Text span fix */
+.shipNowBtnStyle .sapMBtnContent {
+  color: inherit !important;
+  font-weight: 500; /* optional: make text a bit bolder */
+}
+
+/* Icon inherits color */
+.shipNowBtnStyle .sapUiIcon {
+  color: inherit !important;
+}
+
+/* Hover */
+.shipNowBtnStyle:hover {
+  background-color: #ffffff !important;
+  color: #108600 !important;
+  border-color: #108600 !important;
+}
+
+.shipNowBtnStyle:hover .sapMBtnContent,
+.shipNowBtnStyle:hover .sapUiIcon {
+  color: #108600 !important;
+}
+
+.shipNowBtnStyle:focus .sapMBtnInner {
+  outline: none !important;
+}
+
+.internationalDetailsTableHeight{
+  width: 100% !important;
+  height: calc(65vh - 5rem) !important;
+  background-color: white !important;
+  padding: 4px !important;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1), 
+              0px -4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.getMissingDocsBtnStyle {
+  height: 2.5rem !important;
+  min-height: 2.5rem !important;
+  background-color: #fff !important;
+  border: 1px solid #4E9C2D !important; /* SAP blue */
+  color: #4E9C2D !important;
+  border-radius: 6px;
+  padding: 0 1rem !important;
+}
+
+/* Inner button */
+.getMissingDocsBtnStyle .sapMBtnInner {
+  height: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit !important; /* ensures it follows parent */
+}
+
+/* ✅ Text span fix */
+.getMissingDocsBtnStyle .sapMBtnContent {
+  color: inherit !important;
+  font-weight: 500; /* optional: make text a bit bolder */
+}
+
+/* Icon inherits color */
+.getMissingDocsBtnStyle .sapUiIcon {
+  color: inherit !important;
+}
+
+/* Hover */
+.getMissingDocsBtnStyle:hover {
+  background-color: #4E9C2D !important;
+  color: #fff !important;
+  border-color: #4E9C2D !important;
+}
+
+.getMissingDocsBtnStyle:hover .sapMBtnContent,
+.getMissingDocsBtnStyle:hover .sapUiIcon {
+  color: #fff !important;
+}
+
+.getMissingDocsBtnStyle:focus .sapMBtnInner {
+  outline: none !important;
+}
+
+.trackAndTraceTableHeight{
+  width: 100% !important;
+  height: calc(75vh - 5rem) !important;
+  background-color: white !important;
+  padding: 4px !important;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1), 
+              0px -4px 8px rgba(0, 0, 0, 0.1);
+}

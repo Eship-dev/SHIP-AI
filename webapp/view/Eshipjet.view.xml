@@ -567,16 +567,14 @@
 
 		<OverflowToolbar class="eship-footer1 ship-now-footer" visible="{eshipjetModel>/commonValues/shipNowViewFooter}">
 			<HBox>
-				<Text text="SAP User ID " class="todayscss sapUiTinyMarginEnd sapUiSmallMarginBegin" />
-				<Text text=": " class="todayscss" />
-				<Text text=" " />
+				<Text text="SAP User ID : " class="todayscss sapUiTinyMarginEnd sapUiSmallMarginBegin" />
 				<Text text="{eshipjetModel>/userName}" class="greenTexttoday" />
 				<!-- <Text text="{eshipjetModel>/TodayShipmentsLength}" class="todayscssNumber sapUiTinyMarginBegin " /> -->
 			</HBox>
 
 			<ToolbarSpacer/>
 				<!-- <Button text="Get Shipping Rates" class="ship-now-footer_ship-rates btngetshipments"/> -->
-				<Button text="Get Shipping Rates" visible="{eshipjetModel>/commonValues/shipNowVoidSelectShipNow}" class="ship-now-footer_ship-now" type="Success" width="auto" press="onShipRatePress" />
+				<Button text="Get Shipping Rates" visible="{eshipjetModel>/commonValues/shipNowVoidSelectShipNow}" class="shipNowBtnStyle" type="Ghost" width="auto" press="onShipRatePress" />
 				<!-- <ComboBox class="create-ship-req_input" items="" placeholder="More Actions" editable="false" >
 					<HBox>
 						<core:Item key="postGoodsIssue" text="Post Goods Issue" />
@@ -596,8 +594,8 @@
 
 			<ToolbarSpacer/>
 				<!-- <Button text="Save" press="createHandlingUnits" class="scan-ship-toolbar1__button sapUiTinyMargin sapUiLargeMarginEnd" visible="{eshipjetModel>/commonValues/shipNowVoidSelectSave}" type="Ghost" width="5%"  /> -->
-				<Button text="Ship Now" press="onShipNowPress" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" visible="{eshipjetModel>/commonValues/shipNowVoidSelectShipNow}" type="Ghost" class="Ship-Now-toolbar1__button_greenSP saveBtn  sapUiMediumMarginEnd" />
-				<Button text="Void" press="onShipNowVoidPress"  visible="{eshipjetModel>/commonValues/shipNowVoidSelect}" type="Ghost" class="btnShipNowVoid sapUiMediumMarginEnd" width="" />
+				<Button text="Ship Now" press="onShipNowPress" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" visible="{eshipjetModel>/commonValues/shipNowVoidSelectShipNow}" type="Ghost" class="shipNowBtnStyle sapUiMediumMarginEnd" />
+				<Button text="Void" press="onShipNowVoidPress"  visible="{eshipjetModel>/commonValues/shipNowVoidSelect}" type="Ghost" class="shipNowBtnStyle sapUiMediumMarginEnd" />
 		</OverflowToolbar>
 
 		<Toolbar class="sapUiLargeMarginBottom eship-req-footer" visible="{eshipjetModel>/commonValues/createShipReqViewFooter}" >

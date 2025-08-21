@@ -427,17 +427,17 @@ button.ship-tile-button span {
 
 .create-ship-req_input {
   height: auto !important;
-  
+  border-radius: 4px;
 }
 
 .create-ship-req_input > div {
   height: auto !important;
-
+  border-radius: 4px;
 }
 
 .create-ship-req_input input {
   height: 35px !important;
-  border-radius: 2% !important;
+  border-radius: 4px !important;
 }
 
 @keyframes animateBtn {
