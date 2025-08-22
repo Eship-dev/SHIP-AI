@@ -3307,6 +3307,14 @@ body.dark-theme .ReversePGIBtnStyle span {
   outline: none !important;
 }
 
+.removeBtnOutline:focus .sapMBtnInner  {
+  outline: none !important;
+}
+
+.removeInputOutline:focus .sapMInputBaseInner  {
+  outline: none !important;
+}
+
 .trackAndTraceTableHeight{
   width: 100% !important;
   height: calc(75vh - 5rem) !important;

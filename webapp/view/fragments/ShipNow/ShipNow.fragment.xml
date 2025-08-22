@@ -45,10 +45,10 @@
 
 
 
-						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="shipNowCloseBtnStyle" type="Ghost" />
+						<Button  icon="sap-icon://decline" press="onShipNowClosePress" class="shipNowCloseBtnStyle removeBtnOutline" type="Ghost" />
 				</Toolbar>
 							<Toolbar class="sapUiTinyMarginBottom scan-ship-toolbar1" height="10%">
-									<ComboBox class="create-ship-req_input sapUiTinyMargin sapUiSmallMarginBegin" width="16%" selectedKey="SAPS4HANAPrivate" >
+									<ComboBox class="create-ship-req_input sapUiTinyMargin sapUiSmallMarginBegin removeInputOutline" width="16%" selectedKey="SAPS4HANAPrivate" >
 										<core:Item key="SAPS4HANAPublic" text="SAP S/4 HANA Public Cloud Edition" />
 										<core:Item key="SAPS4HANAPrivate" text="SAP S/4 HANA Private Cloud Edition" />	
 										<core:Item key="EWMOBD" text="EWM Outbound Delivery" />	
@@ -63,14 +63,14 @@
 										<core:Item key="SAPDeliveryNumber01" text="SAP Delivery Number 02" />												
 									</ComboBox> -->
 					<Button text="{eshipjetModel>/SAPDeliveryNo}"
-						class="sapUiTinyMargin"
+						class="sapUiTinyMargin removeBtnOutline"
 						type="Transparent"
 						width="12rem"
 						press="onOpenSAPDeliveryList" />
 
 									<!-- <SearchField class="sapUiSmallMarginBottum sapUiSmallMargin" id="idShipNowSearch" value="{eshipjetModel>/commonValues/sapDeliveryNumber}" search="onShipNowSearchDialog"  width="15%" /> -->
-									<Input id="idSapDeliveryNumber" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{eshipjetModel>/commonValues/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle sapDeliveryNumberInptBold create-ship-req_input sapUiTinyMarginTop sapUiSmallMarginEnd custom-input2" width="10%" editable="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog"  liveChange="onDeliveryNumberLiveChange" ></Input>
-									<Button text="Get" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" type="Ghost" class="Ship-Now-toolbar1__button_green_Get saveBtn sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" press="onShipNowGetPress" width="4%"></Button>
+									<Input id="idSapDeliveryNumber" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" value="{eshipjetModel>/commonValues/sapDeliveryNumber}" submit="onShipNowGetPress" class="customInputStyle sapDeliveryNumberInptBold create-ship-req_input sapUiTinyMarginTop sapUiSmallMarginEnd custom-input2 removeInputOutline" width="10%" editable="true" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onShipNowSearchDialog"  liveChange="onDeliveryNumberLiveChange" ></Input>
+									<Button text="Get" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" type="Ghost" class="Ship-Now-toolbar1__button_green_Get removeBtnOutline saveBtn sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" press="onShipNowGetPress" width="4%"></Button>
 									<Label text="Ship Type" visible="{eshipjetModel>/commonValues/showShipType}" class="sapUiSmallMargin" ></Label>
 									<Text width="3%" text="{eshipjetModel>/commonValues/ShipNowShipsrvNameSelectedKey}" visible="{eshipjetModel>/commonValues/showShipType}" class="ship-type-value sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" ></Text>
 
@@ -78,10 +78,10 @@
 									<Text text="{eshipjetModel>/commonValues/plant}" visible="{eshipjetModel>/commonValues/showShipType}" class="plant-type-style sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" ></Text>
 									<!-- <Button text="Consolidation" class="scan-ship-toolbar1__button sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginEnd" type="Ghost" press="handleConsolidationPress" width="8%"></Button> -->
 									<Label text="Ship Date" class="sapUiSmallMarginTop sapUiSmallMarginBegin" labelFor="DP1" width="6%" />
-									<DatePicker class="create-ship-req_input sapUiTinyMargin" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" id="DP1" width="8%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
+									<DatePicker class="create-ship-req_input removeInputOutline sapUiTinyMargin" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" id="DP1" width="8%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
 									<ToolbarSpacer ></ToolbarSpacer>
-									 <Button text="Clear" press="onShipNowNewPress" class="Ship-Now-toolbar1__button_red clearBtn sapUiTinyMargin" type="Ghost" />
-									<Button text="New" press="onShipNowNewPress" class="Ship-Now-toolbar1__button_green saveBtn sapUiTinyMargin sapUiLargeMarginEnd" type="Ghost" ></Button>
+									 <Button text="Clear" press="onShipNowNewPress" class="Ship-Now-toolbar1__button_red removeBtnOutline clearBtn sapUiTinyMargin" type="Ghost" />
+									<Button text="New" press="onShipNowNewPress" class="Ship-Now-toolbar1__button_green removeBtnOutline saveBtn sapUiTinyMargin sapUiLargeMarginEnd" type="Ghost" ></Button>
                             </Toolbar>
 							<!-- Icon Tab Bar Starts here -->			
 							<IconTabBar id="idIconTabBarFiori2" selectedKey = "Pack" expandable="false" enableTabReordering="true" class="shipNow-IconTabBar-Width customTabStyle" >
@@ -1425,7 +1425,7 @@
 												</f:content>
 											</f:SimpleForm>
 
-											<Table inset="false" items="{eshipjetModel>/HandlingUnitItems}" class="internationalDetailsTableHeight sapUiTinyMarginTop" >
+											<!-- <Table inset="false" items="{eshipjetModel>/HandlingUnitItems}" class="internationalDetailsTableHeight sapUiTinyMarginTop" >
 												<headerToolbar>
 													<OverflowToolbar class="customShippingDocumentsToolbar" height="2rem" >
 														<content>
@@ -1469,7 +1469,65 @@
 														</cells>
 													</ColumnListItem>
 												</items>
-											</Table>
+											</Table> -->
+
+
+			<ui:Table
+				rows="{eshipjetModel>/HandlingUnitItems}"
+				selectionMode="None"
+				class="internationalDetailsTableHeight sapUiTinyMarginTop" >
+				<ui:extension>
+					<OverflowToolbar class="customShippingDocumentsToolbar" height="2rem" >
+						<content>
+							<Title text="International Commodity Details" level="H2" />
+						</content>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column width="auto" >
+						<Label text="Marks #" />
+						<ui:template>
+							<Text text="{eshipjetModel>HandlingUnitExternalID}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto">
+						<Label text="Harmonized Code" />
+						<ui:template>
+							<Input value="{eshipjetModel>Material}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" >
+						<Label text="Description" />
+						<ui:template>
+							<Text text="" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" >
+						<Label text="Country of MFR" />
+						<ui:template>
+							<Text text="" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto"  hAlign="End" >
+						<Label text="Unit Weight(LB)" />
+						<ui:template>
+							<Text text="{eshipjetModel>Material}" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto"  hAlign="End" >
+						<Label text="Quantity" />
+						<ui:template>
+							<Text text="{eshipjetModel>HandlingUnitAltUnitOfMeasure}" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" hAlign="End" >
+						<Label text="Unit Price(Customs Value)" />
+						<ui:template>
+							<Text text="" />
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
 
 										</VBox>
 									</IconTabFilter>
@@ -1478,9 +1536,7 @@
 									<!-- Charges Tab Starts here -->
 									<IconTabFilter text="Shipping Charges" key="Charges" >
 							<VBox height="100%" >
-								<Table items="{eshipjetModel>/shippingCharges}" visible="{eshipjetModel>/shippingChargesLength}" class="sapUiLargeMarginBottom whiteBackground"
-								    
-									 >
+								<!-- <Table items="{eshipjetModel>/shippingCharges}" visible="{eshipjetModel>/shippingChargesLength}" class="sapUiLargeMarginBottom whiteBackground" >
 									<headerToolbar>
 										<OverflowToolbar class="customShippingDocumentsToolbar" height="2rem" >
 											<content>
@@ -1520,7 +1576,66 @@
 											</cells>
 										</ColumnListItem>
 									</items>
-								</Table>
+								</Table> -->
+
+
+			<ui:Table
+				rows="{eshipjetModel>/shippingCharges}" 
+				class="sapUiLargeMarginBottom whiteBackground" 
+				selectionMode="None"
+				 visible="{eshipjetModel>/shippingChargesLength}" >
+				<ui:extension>
+					<OverflowToolbar class="customShippingDocumentsToolbar" height="2rem" >
+						<content>
+							<Title text="Shipping Charges" level="H2" />
+						</content>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column width="auto" >
+						<Label text="Marks #" />
+						<ui:template>
+							<Text text="{eshipjetModel>HandlingUnitExternalID}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto">
+						<Label text="Harmonized Code" />
+						<ui:template>
+							<Input value="{eshipjetModel>Material}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" >
+						<Label text="Description" />
+						<ui:template>
+							<Text text="" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" >
+						<Label text="Country of MFR" />
+						<ui:template>
+							<Text text="" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto"  hAlign="End" >
+						<Label text="Unit Weight(LB)" />
+						<ui:template>
+							<Text text="{eshipjetModel>Material}" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto"  hAlign="End" >
+						<Label text="Quantity" />
+						<ui:template>
+							<Text text="{eshipjetModel>HandlingUnitAltUnitOfMeasure}" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" hAlign="End" >
+						<Label text="Unit Price(Customs Value)" />
+						<ui:template>
+							<Text text="" />
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
 
 								<HBox justifyContent="SpaceBetween" width="100%" visible="{eshipjetModel>/shippingChargesLength}" class="sapUiLargeMarginTop TopHeight" >
 									<VBox class="shipnowUserInfoSimpleFormShadow shippingDetailsStartingBorder" width="30%" >
@@ -1629,7 +1744,7 @@
 
 									<!-- Documents Tab Starts here -->
 									<IconTabFilter text="Documents" key="Documents">
-									<Table items="{eshipjetModel>/shippingDocuments}" visible="{eshipjetModel>/documentsLength}" class="whiteBackground sapUiSmallMarginBottom" >
+									<!-- <Table items="{eshipjetModel>/shippingDocuments}" class="whiteBackground sapUiSmallMarginBottom" >
 										<headerToolbar>
 											<OverflowToolbar class="customShippingDocumentsToolbar" height="2rem" >
 												<content>
@@ -1668,9 +1783,69 @@
 												</cells>
 											</ColumnListItem>
 										</items>
-									</Table>
+									</Table> -->
 
-								<HBox justifyContent="SpaceBetween" width="95%" visible="{eshipjetModel>/documentsLength}" >
+
+			<ui:Table
+				rows="{eshipjetModel>/shippingDocuments}"
+				selectionMode="None"
+				class="whiteBackground sapUiSmallMarginBottom"
+				visible="{eshipjetModel>/documentsLength}" >
+				<ui:extension>
+					<OverflowToolbar class="customShippingDocumentsToolbar" height="2rem" >
+						<Title text="Shipping Documents" level="H2" />
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column width="6rem" hAlign="Center" >
+						<Label text="#" />
+						<ui:template>
+							<Text text="{eshipjetModel>srNo}" wrapping="false" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto">
+						<Label text="Document Provider" />
+						<ui:template>
+							<Input value="{eshipjetModel>docProvider}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" >
+						<Label text="Document ID" />
+						<ui:template>
+							<Text text="{eshipjetModel>docType}" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" >
+						<Label text="SAP Output Type" />
+						<ui:template>
+							<Text text="{eshipjetModel>docType}" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto">
+						<Label text="Description" />
+						<ui:template>
+							<Text text="{eshipjetModel>contentType}" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto">
+						<Label text="Document Type" />
+						<ui:template>
+							<Text text="{eshipjetModel>contentType}" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="8rem" hAlign="Center" >
+						<Label text="Action" />
+						<ui:template>
+							<HBox >
+								<Button text="View" type="Transparent" press="onShippingDocumentsViewPress" ></Button>
+								<Button icon="sap-icon://megamenu" type="Transparent" ></Button>
+							</HBox>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+
+								<HBox justifyContent="SpaceBetween" width="100%" visible="{eshipjetModel>/documentsLength}" >
 									<VBox class="shipnowUserInfoSimpleFormShadow" width="30%" >
 										<Toolbar class="customLine customUserInfoToolbar" >
 											<core:Icon src="sap-icon://person-placeholder" class="sapUiTinyMarginBegin" >
@@ -1713,7 +1888,7 @@
 
 									<!-- Track Tab Starts here -->
 									<IconTabFilter text="Track &amp; Trace" key="Track" >
-										<Table items="{eshipjetModel>/trackingArray}" visible="{eshipjetModel>/trackingLength}" class="whiteBackground trackAndTraceTableHeight" >
+										<!-- <Table items="{eshipjetModel>/trackingArray}" visible="{eshipjetModel>/trackingLength}" class="whiteBackground trackAndTraceTableHeight" >
 											<headerToolbar>
 												<OverflowToolbar class="customShippingDocumentsToolbar" height="2rem" >
 													<content>
@@ -1819,7 +1994,104 @@
 													</cells>
 												</ColumnListItem>
 											</items>
-										</Table>
+										</Table> -->
+
+
+			<ui:Table
+				rows="{eshipjetModel>/trackingArray}" 
+				class="whiteBackground trackAndTraceTableHeight" 
+				selectionMode="None" >
+				<ui:extension>
+					<OverflowToolbar class="customShippingDocumentsToolbar" height="2rem" >
+						<content>
+							<Title text="Track &amp; Trace" level="H2" />
+						</content>
+					</OverflowToolbar>
+				</ui:extension>
+				<ui:columns>
+					<ui:Column width="auto" >
+						<Label text="Plant ID" />
+						<ui:template>
+							<Text text="{eshipjetModel>Plant}" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" >
+						<Label text="Order ID" />
+						<ui:template>
+							<Text text="{eshipjetModel>Delivery}" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" >
+						<Label text="Carrier Name" />
+						<ui:template>
+							<Text text="" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" >
+						<Label text="Ship Type" />
+						<ui:template>
+							<Text text="" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" >
+						<Label text="Service ID" />
+						<ui:template>
+							<Text text="" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" >
+						<Label text="Service Name" />
+						<ui:template>
+							<Text text="{eshipjetModel>ShipmentType}" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" >
+						<Label text="Type" />
+						<ui:template>
+							<Text text="{eshipjetModel>ShipmentType}" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" >
+						<Label text="PGI" />
+						<ui:template>
+							<Text text="{eshipjetModel>CarrierCode}" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" visible="false" >
+						<Label text="Ship Date- Time" />
+						<ui:template>
+							<Text text="{path: 'eshipjetModel>CreatedDate', formatter: '.formatter.formatDate'}" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" visible="false" >
+						<Label text="Del'd Date-Time" />
+						<ui:template>
+							<Text text="{path: 'eshipjetModel>ShipDate', formatter: '.formatter.formatDate'}" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" >
+						<Label text="Tracking / Pro #" />
+						<ui:template>
+							<Link text="{eshipjetModel>TrackingNumber}" press="onTrackingNumberPress" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" >
+						<Label text="Status" />
+						<ui:template>
+							<Text text="{path: 'eshipjetModel>TrackingStatus', formatter: '.formatter.formatShipmentType'}" />
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" >
+						<HBox justifyContent="SpaceBetween" width="100%" >
+							<Label text="SAP User ID" class="sapUiTinyMarginTop" />
+							<Button icon="sap-icon://action-settings" press="onTrackTableColumConfigPress" type="Transparent" class="sapUiMediumMarginBegin" ></Button>
+						</HBox>
+						<ui:template>
+							<Text text="KUMAR" />
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
 
 									</IconTabFilter>
 
