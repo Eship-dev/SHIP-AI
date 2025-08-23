@@ -1,7 +1,7 @@
 <core:FragmentDefinition
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
-	<Popover	id="myShipNowHandlingUnitPopover"  contentWidth="20%"	 placement="Left" contentHeight="40%">
+	<Popover	id="myShipNowHandlingUnitPopover"  contentWidth="15%"	 placement="Left" contentHeight="30%" class="whiteBackgroundColumnConfig sapUiTinyMarginEnd packScreenPadding" >
 		<customHeader>
 			<VBox id="_IDGenShipNowHandlingUnitVBox">
 				<Toolbar id="_IDGenShipNowHandlingUnitHBox" class="toolbarbottomborder">
@@ -9,7 +9,7 @@
 					<ToolbarSpacer id="_IDGenShipNowHandlingUnitToolbarSpacer1" ></ToolbarSpacer>					
 					<Button id="_IDShipNowHandlingUnitCloseIconPopover" icon="sap-icon://decline" press="onShipNowHandlingUnitColSelectClosePress" class="Decline_Btn ship-now-decline_btn" ></Button>
 				</Toolbar>
-				<SearchField id="_IDGenShipNowHandlingUnitSearchField" placeholder="Search Columns"   liveChange="onShipNowHandlingUnitColNameSearch"></SearchField>
+				<SearchField id="_IDGenShipNowHandlingUnitSearchField" placeholder="Search Columns" class="sapUiSmallMarginEnd sapUiTinyMarginBottom columnConfigSearch"  liveChange="onShipNowHandlingUnitColNameSearch"></SearchField>
 			</VBox>
 		</customHeader>
 		<content>
@@ -29,9 +29,9 @@
         </Table>
         </content>
         <footer>
-            <Toolbar id="_IDGenShipNowHandlingUnitToolbar" >
+            <Toolbar id="_IDGenShipNowHandlingUnitToolbar" class="whiteBackground" >
                 <ToolbarSpacer id="_IDGenShipNowHandlingUnitToolbarSpacer"/>
-                <Button id="_IDGenShipNowHandlingUnitButton" text="Apply" press="onShipNowHandlingUnitColSelectOkPress" type="Emphasized"></Button>               
+                <Button id="_IDGenShipNowHandlingUnitButton" text="Apply" press="onShipNowHandlingUnitColSelectOkPress" class="Ship-Now-toolbar1__button_ColumnConfig" ></Button>               
             </Toolbar>
         </footer>      
 	</Popover>   

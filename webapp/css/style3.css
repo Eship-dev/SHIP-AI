@@ -2387,6 +2387,7 @@ button, input, optgroup, select, textarea {
 }
 .whiteBackground  {
   background-color: white !important;
+  border-color: white !important;
   padding: 4px !important;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1), 
               0px -4px 8px rgba(0, 0, 0, 0.1);
@@ -2435,9 +2436,71 @@ button, input, optgroup, select, textarea {
 }
 
 .columnConfigSearch .sapUiSizeCompact .sapMSFF {
-  padding-left: 1% !important;
-  padding-top: 1% !important;
+  padding-left: 2% !important;
+  padding-top: 2% !important;
 }
+.whiteBackgroundColumnConfig {
+  background-color: white !important;
+  border-color: white !important;
+  padding: 4px !important;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2),
+              0px -6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.saveBtnColumnConfig {
+  height: 40px !important;
+  width: 60px !important;
+   border-color: #4E9C2D !important;
+  border-color: #4E9C2D !important;
+  color: #4E9C2D !important;
+}
+
+.Ship-Now-toolbar1__button_ColumnConfig:hover > span {
+  background-color: #4E9C2D !important;
+  color: #fff !important;
+  height: 69px ;
+  padding-left: 16px;
+  width: 87px;
+  border: 1px solid #4E9C2D !important;
+  border-radius: 8% !important;
+}
+
+.Ship-Now-toolbar1__button_ColumnConfig:hover bdi {
+  color: #fff !important;
+  border-radius: 8% !important;
+}
+
+.Ship-Now-toolbar1__button_ColumnConfig span {
+ color: black !important;
+  height: 100% !important;
+  border-color: #4E9C2D !important;
+  border-radius: 8% !important;
+  padding-left: 16px;
+  border-radius: 8% !important;
+  display: flex !important;
+  align-items: center;
+  height: 80px;
+  width: 87px;
+}
+
+/* Dark Theme Styles */
+body.dark-theme {
+  .Ship-Now-toolbar1__button_ColumnConfig > span {
+    border-radius: 8% !important;
+    background-color: darkred !important;
+    color: #fff !important;
+  }
+
+  .Ship-Now-toolbar1__button_ColumnConfig:focus {
+    border: none;
+    border-radius: 8% !important;
+  }
+}
+
+.Ship-Now-toolbar1__button_ColumnConfig:focus .sapMBtnInner {
+  outline: none !important;
+}
+
 
 .getShippingRates-btn {
   background-color: #fff;

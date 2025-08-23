@@ -1,13 +1,13 @@
 <core:FragmentDefinition
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
-	<Popover  contentWidth="18%" placement="Auto" contentHeight="25%" showArrow="false" >
+	<Popover  contentWidth="15%" placement="Auto" contentHeight="30%" showArrow="false" class="whiteBackgroundColumnConfig sapUiTinyMarginEnd packScreenPadding" >
 		<customHeader>
 			<VBox >
 				<Toolbar class="toolbarbottomborder">
 					<Title  class="sapUiTinyMarginBegin sapUiTinyMarginTop" text="Columns"></Title>
 					<ToolbarSpacer ></ToolbarSpacer>					
-					<Button icon="sap-icon://decline" press="onShipNowHUColumnConfigSelectClosePress" class="Decline_Btn ship-now-decline_btn" ></Button>
+					<Button icon="sap-icon://decline" press="onShipNowHUColumnConfigSelectClosePress" type="Transparent" class="Decline_Btn ship-now-decline_btn" ></Button>
 				</Toolbar>
 				<SearchField placeholder="Search Columns" class="sapUiSmallMarginEnd sapUiTinyMarginBottom columnConfigSearch" liveChange="onShipNowHUColumnConfigNameSearch"></SearchField>
 			</VBox>
@@ -29,9 +29,9 @@
         </Table>
         </content>
         <footer>
-            <Toolbar >
+            <Toolbar  class="whiteBackground" height="3rem" >
                 <ToolbarSpacer />
-                <Button text="Apply" press="onShipNowHUColumnConfigSelectOkPress" type="Emphasized"></Button>               
+                <Button text="Apply" press="onShipNowHUColumnConfigSelectOkPress" type="" class="Ship-Now-toolbar1__button_ColumnConfig" ></Button>               
             </Toolbar>
         </footer>      
 	</Popover>   
