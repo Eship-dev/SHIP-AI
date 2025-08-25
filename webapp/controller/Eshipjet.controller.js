@@ -20757,7 +20757,79 @@ sap.ui.define([
         onLogOutPress:function(){
             clearInterval(this.timerInterval);
             window.location.href = "/sap/public/bc/icf/logoff";
-        }
+        },
+
+        onTrackTableColumConfigPress: function (oEvent) {
+            var oButton = oEvent.getSource();
+            var oView = this.getView();
+            var oController = this;
+        
+            if (!this._pTrackTracePopover) {
+                this._pTrackTracePopover = Fragment.load({
+                    id: oView.getId(),
+                    name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.TrackTraceTableColumns",
+                    controller: this
+                }).then(function (oTrackTracePopover) {
+                    oView.addDependent(oTrackTracePopover);
+                    return oTrackTracePopover;
+                });
+            }
+        
+            this._pTrackTracePopover.then(function (oTrackTracePopover) {
+                oController._syncTrackTraceColumnSelections();
+                oTrackTracePopover.openBy(oButton);
+            });
+        },
+        
+        _syncTrackTraceColumnSelections: function () {
+            var oTable = Fragment.byId(this.getView().getId(), "myTrackTraceColumnSelectId");
+            if (!oTable) return;
+        
+            var aItems = oTable.getItems();
+            aItems.forEach(function (oItem) {
+                var oContext = oItem.getBindingContext("eshipjetModel");
+                if (oContext) {
+                    var oData = oContext.getObject();
+                    oItem.setSelected(oData.visible === true);
+                }
+            });
+        },
+        
+        onTrackTraceColNameSearch: function (oEvent) {
+            var sQuery = oEvent.getSource().getValue();
+            var oTable = Fragment.byId(this.getView().getId(), "myTrackTraceColumnSelectId");
+            if (!oTable) return;
+        
+            var oBinding = oTable.getBinding("items");
+            var aFilters = [];
+            if (sQuery) {
+                aFilters.push(new Filter("label", FilterOperator.Contains, sQuery));
+            }
+            oBinding.filter(aFilters);
+        },
+        
+        onTrackTraceColSelectClosePress: function () {
+            this._pTrackTracePopover.then(function (oTrackTracePopover) {
+                oTrackTracePopover.close();
+            });
+        },
+        
+        onTrackTraceColSelectOkPress: function () {
+            var oTable = Fragment.byId(this.getView().getId(), "myTrackTraceColumnSelectId");
+            var oModel = this.getOwnerComponent().getModel("eshipjetModel");
+        
+            oTable.getItems().forEach(function (oItem) {
+                var oContext = oItem.getBindingContext("eshipjetModel");
+                if (oContext) {
+                    var oData = oContext.getObject();
+                    oData.visible = oItem.getSelected();
+                }
+            });
+        
+            oModel.refresh(true);
+            this.onTrackTraceColSelectClosePress();
+            // optionally call refresh on your orders table
+        },
 
     });
 });

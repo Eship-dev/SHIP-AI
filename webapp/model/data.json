@@ -13802,7 +13802,77 @@
         { "label": "User Id", "key": "userId" },
         { "label": "Type", "key": "type" }
       ],
-      "CommonErrorLogsTableRows": []
+      "CommonErrorLogsTableRows": [],
+
+      "trackTraceTableData": {
+        "trackTraceColumns": [
+            {
+                "name": "Plant",
+                "label": "Plant ID",
+                "visible": true
+            },
+            {
+                "name": "Delivery",
+                "label": "Order ID",
+                "visible": true
+            },
+            {
+                "name": "CarrierCode",
+                "label": "Carrier Name",
+                "visible": true
+            },
+            {
+                "name": "Shipmentid",
+                "label": "Ship Type",
+                "visible": true
+            },
+            {
+                "name": "ServiceID",
+                "label": "Service ID",
+                "visible": true
+            },
+            {
+                "name": "ServiceName",
+                "label": "Service Name",
+                "visible": true
+            },
+            {
+                "name": "Shipmenttype",
+                "label": "Type",
+                "visible": true
+            },
+            {
+                "name": "PGI",
+                "label": "PGI",
+                "visible": true
+            },
+            {
+                "name": "ShipDate",
+                "label": "Ship Date- Time",
+                "visible": false
+            },
+            {
+                "name": "DateAdded",
+                "label": "Del'd Date-Time",
+                "visible": false
+            },
+            {
+                "name": "TrackingNumber",
+                "label": "Tracking / Pro #",
+                "visible": true
+            },
+            {
+                "name": "TrackingStatus",
+                "label": "Status",
+                "visible": true
+            },
+            {
+                "name": "SAPUserID",
+                "label": "SAP User ID",
+                "visible": true
+            }
+        ]
+    }
       
     
 }
