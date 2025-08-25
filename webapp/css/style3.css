@@ -2450,8 +2450,6 @@ button, input, optgroup, select, textarea {
 .saveBtnColumnConfig {
   height: 40px !important;
   width: 60px !important;
-   border-color: #4E9C2D !important;
-  border-color: #4E9C2D !important;
   color: #4E9C2D !important;
 }
 
@@ -2473,7 +2471,7 @@ button, input, optgroup, select, textarea {
 .Ship-Now-toolbar1__button_ColumnConfig span {
  color: black !important;
   height: 100% !important;
-  border-color: #4E9C2D !important;
+ border-color: #000 !important;
   border-radius: 8% !important;
   padding-left: 16px;
   border-radius: 8% !important;

@@ -1,4 +1,4 @@
-<core:FragmentDefinition
+ <core:FragmentDefinition
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
 	<Popover  contentWidth="15%" placement="Auto" contentHeight="30%" showArrow="false" class="whiteBackgroundColumnConfig sapUiTinyMarginEnd packScreenPadding" >
