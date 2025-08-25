@@ -1493,7 +1493,7 @@
 					<ui:Column width="auto">
 						<Label text="Harmonized Code" />
 						<ui:template>
-							<Input value="{eshipjetModel>Material}"/>
+							<Text text="{eshipjetModel>Material}"/>
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="auto" >
@@ -1583,7 +1583,8 @@
 				rows="{eshipjetModel>/shippingCharges}" 
 				class="sapUiLargeMarginBottom whiteBackground" 
 				selectionMode="None"
-				 visible="{eshipjetModel>/shippingChargesLength}" >
+				visible="{eshipjetModel>/shippingChargesLength}"
+				visibleRowCount="{= ${eshipjetModel>/shippingChargesArrayLength} }">
 				<ui:extension>
 					<OverflowToolbar class="customShippingDocumentsToolbar" height="2rem" >
 						<content>
@@ -1593,45 +1594,39 @@
 				</ui:extension>
 				<ui:columns>
 					<ui:Column width="auto" >
-						<Label text="Marks #" />
+						<Label text="#" />
 						<ui:template>
-							<Text text="{eshipjetModel>HandlingUnitExternalID}" wrapping="false" />
+							<Text text="{eshipjetModel>serialNo}" wrapping="false" />
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="auto">
-						<Label text="Harmonized Code" />
+						<Label text="Freight Condition ID" />
 						<ui:template>
-							<Input value="{eshipjetModel>Material}"/>
+							<Text text="{eshipjetModel>description}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="auto" >
+						<Label text="SAP Freight Condition ID" />
+						<ui:template>
+							<Text text="" />
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="auto" >
 						<Label text="Description" />
 						<ui:template>
-							<Text text="" />
-						</ui:template>
-					</ui:Column>
-					<ui:Column width="auto" >
-						<Label text="Country of MFR" />
-						<ui:template>
-							<Text text="" />
+							<Text text="{eshipjetModel>description}" />
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="auto"  hAlign="End" >
-						<Label text="Unit Weight(LB)" />
+						<Label text="Charges" />
 						<ui:template>
-							<Text text="{eshipjetModel>Material}" />
+							<Text text="{= '$ ' + ${eshipjetModel>amount} }" class="fontBoldWithGreenColor" />
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="auto"  hAlign="End" >
-						<Label text="Quantity" />
+						<Label text="Currency" />
 						<ui:template>
-							<Text text="{eshipjetModel>HandlingUnitAltUnitOfMeasure}" />
-						</ui:template>
-					</ui:Column>
-					<ui:Column width="auto" hAlign="End" >
-						<Label text="Unit Price(Customs Value)" />
-						<ui:template>
-							<Text text="" />
+							<Text text="{eshipjetModel>currency}" />
 						</ui:template>
 					</ui:Column>
 				</ui:columns>
@@ -1790,7 +1785,8 @@
 				rows="{eshipjetModel>/shippingDocuments}"
 				selectionMode="None"
 				class="whiteBackground sapUiSmallMarginBottom"
-				visible="{eshipjetModel>/documentsLength}" >
+				visible="{eshipjetModel>/documentsLength}"
+				visibleRowCount="{= ${eshipjetModel>/shippingDocumentsLength} }" >
 				<ui:extension>
 					<OverflowToolbar class="customShippingDocumentsToolbar" height="2rem" >
 						<Title text="Shipping Documents" level="H2" />
@@ -1806,7 +1802,7 @@
 					<ui:Column width="auto">
 						<Label text="Document Provider" />
 						<ui:template>
-							<Input value="{eshipjetModel>docProvider}"/>
+							<Text text="{eshipjetModel>docProvider}"/>
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="auto" >
@@ -2000,7 +1996,9 @@
 			<ui:Table
 				rows="{eshipjetModel>/trackingArray}" 
 				class="whiteBackground trackAndTraceTableHeight" 
-				selectionMode="None" >
+				selectionMode="None"
+				visible="{eshipjetModel>/trackingLength}"
+				visibleRowCount="{= ${eshipjetModel>/trackingArrayLength} }" >
 				<ui:extension>
 					<OverflowToolbar class="customShippingDocumentsToolbar" height="2rem" >
 						<content>
@@ -2024,49 +2022,49 @@
 					<ui:Column width="auto" >
 						<Label text="Carrier Name" />
 						<ui:template>
-							<Text text="" />
+							<Text text="{eshipjetModel>CarrierCode}" />
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="auto" >
 						<Label text="Ship Type" />
 						<ui:template>
-							<Text text="" />
+							<Text text="{eshipjetModel>Shipmentid}" />
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="auto" >
 						<Label text="Service ID" />
 						<ui:template>
-							<Text text="" />
+							<Text text="{eshipjetModel>ServiceID}" />
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="auto" >
 						<Label text="Service Name" />
 						<ui:template>
-							<Text text="{eshipjetModel>ShipmentType}" />
+							<Text text="{eshipjetModel>ServiceName}" />
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="auto" >
 						<Label text="Type" />
 						<ui:template>
-							<Text text="{eshipjetModel>ShipmentType}" />
+							<Text text="{= ${eshipjetModel>Shipmenttype} === 'O' ? 'Parcel' : 'LTL' }" />
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="auto" >
 						<Label text="PGI" />
 						<ui:template>
-							<Text text="{eshipjetModel>CarrierCode}" />
+							<Text text="{eshipjetModel>PGI}" class="greenColorForIcon" />
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="auto" visible="false" >
 						<Label text="Ship Date- Time" />
 						<ui:template>
-							<Text text="{path: 'eshipjetModel>CreatedDate', formatter: '.formatter.formatDate'}" />
+							<Text text="{path: 'eshipjetModel>ShipDate', formatter: '.formatter.formatDate'}" />
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="auto" visible="false" >
 						<Label text="Del'd Date-Time" />
 						<ui:template>
-							<Text text="{path: 'eshipjetModel>ShipDate', formatter: '.formatter.formatDate'}" />
+							<Text text="{path: 'eshipjetModel>DateAdded', formatter: '.formatter.formatDate'}" />
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="auto" >
@@ -2078,7 +2076,7 @@
 					<ui:Column width="auto" >
 						<Label text="Status" />
 						<ui:template>
-							<Text text="{path: 'eshipjetModel>TrackingStatus', formatter: '.formatter.formatShipmentType'}" />
+							<Text text="{path: 'eshipjetModel>TrackingStatus', formatter: '.formatter.formatShipmentType'}" class="greenColorForIcon" />
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="auto" >
@@ -2087,7 +2085,7 @@
 							<Button icon="sap-icon://action-settings" press="onTrackTableColumConfigPress" type="Transparent" class="sapUiMediumMarginBegin" ></Button>
 						</HBox>
 						<ui:template>
-							<Text text="KUMAR" />
+							<Text text="{eshipjetModel>SAPUserID}" />
 						</ui:template>
 					</ui:Column>
 				</ui:columns>

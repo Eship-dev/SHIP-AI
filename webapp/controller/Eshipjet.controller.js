@@ -1996,7 +1996,7 @@ sap.ui.define([
                 "Notes": Notes
             };
 
-            var packObj = obj.Packages[0];
+             var packObj = obj.Packages[0];
             var tempArray = [];
             if(HandlingUnits && HandlingUnits.length > 0 && HandlingUnits[0].Hunumber && HandlingUnits[0].Hunumber.length > 0){
                 // HandlingUnits.forEach(function(itm, idx ){
@@ -2160,10 +2160,11 @@ sap.ui.define([
                                 }
                             },
                             error: function (error) {
-                                reject(error);
-                                MessageBox.warning(error.responseText);
+                                // MessageBox.warning(error.responseText);
+                                MessageBox.warning(error.statusText);
                                 console.log("Error:", error);
                                 oController.onCloseBusyDialog();
+                                reject(error);
                             }
                         });
                     // });
@@ -3797,6 +3798,7 @@ sap.ui.define([
                                 { "serialNo": "3", "description": "Fuel", "amount": aFilteredData[0].Fuel && aFilteredData[0].Fuel !== "" ? parseFloat(aFilteredData[0].Fuel).toFixed(2) : "0.00", "currency": "USD" }
                             ];
                             eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
+                            eshipjetModel.setProperty("/shippingChargesArrayLength", aShippingCharges.length);
                             if(aShippingCharges.length > 0){
                                 eshipjetModel.setProperty("/shippingChargesLength", true);
                             }
@@ -3861,6 +3863,7 @@ sap.ui.define([
                         
                             eshipjetModel.setProperty("/shippingDocuments", tepmShippingDocs);
                             eshipjetModel.setProperty("/tepmShippingDocs", ashippingDocuments );
+                            eshipjetModel.setProperty("/shippingDocumentsLength", tepmShippingDocs.length);
                             if(ashippingDocuments.length > 0){
                                 eshipjetModel.setProperty("/documentsLength", true);
                             };
@@ -3868,31 +3871,23 @@ sap.ui.define([
                             var trackingArray = [];
                             for(var i=0; i<aFilteredData.length; i++){
                                 var trackingObj = {
-                                    "COMPANY":aFilteredData[i].Company,
-                                    "ConsolidationId": aFilteredData[i].Consolidation,
-                                    "DocumentNumber": aFilteredData[i].Delivery,
-                                    "CreatedDate": aFilteredData[i].Createddate,
-                                    "ShipDate": aFilteredData[i].DateAdded,
-                                    "ShipmentType": aFilteredData[i].Shipmenttype,
+                                    "Plant":aFilteredData[i].Plant,
+                                    "Delivery": aFilteredData[i].Delivery,
                                     "CarrierCode": aFilteredData[i].CarrierCode,
-                                    "ERPCarrierID": aFilteredData[i].CarrierCode,
+                                    "Shipmentid": aFilteredData[i].Shipmentid,
+                                    "ServiceID": aFilteredData[i].CarrierDesc,
                                     "ServiceName": aFilteredData[i].CarrierDesc,
+                                    "Shipmenttype": aFilteredData[i].Shipmenttype,
+                                    "PGI": "Successful",
+                                    "ShipDate": aFilteredData[i].Createddate,
+                                    "DateAdded": aFilteredData[i].DateAdded,
                                     "TrackingNumber": aFilteredData[i].TrackingNumber,
                                     "TrackingStatus": aFilteredData[i].Shipprocess,
-                                    "SHIP_TO_CONTACT": aFilteredData[i].Contact,
-                                    "SHIP_TO_COMPANY": aFilteredData[i].Company,
-                                    "SHIP_TO_ADDRESS_LINE1": aFilteredData[i].Address1,
-                                    "SHIP_TO_STATE": aFilteredData[i].RecRegion,
-                                    "SHIP_TO_CITY": aFilteredData[i].City,
-                                    "SHIP_TO_ZIPCODE": aFilteredData[i].RecPostalcode,
-                                    "SHIP_TO_COUNTRY": aFilteredData[i].Country,
-                                    "SHIP_TO_EMAIL": aFilteredData[i].Emailaddress,
-                                    "RequesterName": "",
-                                    "ConnectedTo": "SAP ECC 6.0",
-                                    "orderType": "Delivery Number"
+                                    "SAPUserID": "KUMAR"
                                 };
                                 trackingArray.push(trackingObj);
                                 eshipjetModel.setProperty("/trackingArray", trackingArray);
+                                eshipjetModel.setProperty("/trackingArrayLength", trackingArray.length);
                                 if(trackingArray.length > 0){
                                     eshipjetModel.setProperty("/trackingLength", true);
                                 }
