@@ -2485,7 +2485,7 @@ button, input, optgroup, select, textarea {
 body.dark-theme {
   .Ship-Now-toolbar1__button_ColumnConfig > span {
     border-radius: 8% !important;
-    background-color: darkred !important;
+    background-color: white !important;
     color: #fff !important;
   }
 

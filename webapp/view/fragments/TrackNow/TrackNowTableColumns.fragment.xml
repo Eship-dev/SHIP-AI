@@ -1,7 +1,7 @@
 <core:FragmentDefinition
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
-	<Popover  contentWidth="20%" placement="Left" contentHeight="40%" showArrow="false">
+	<Popover  contentWidth="20%" placement="Left" contentHeight="40%" showArrow="false" class="whiteBackgroundColumnConfig sapUiTinyMarginEnd packScreenPadding">
 		<customHeader>
 			<VBox >
 				<Toolbar class="toolbarbottomborder">
@@ -29,9 +29,9 @@
         </Table>
         </content>
         <footer>
-            <Toolbar >
+            <Toolbar class="whiteBackground">
                 <ToolbarSpacer />
-                <Button text="Apply" press="onoTrackNowColSelectOkPress" type="Emphasized"></Button>               
+                <Button text="Apply" press="onoTrackNowColSelectOkPress" class="Ship-Now-toolbar1__button_ColumnConfig" ></Button>               
             </Toolbar>
         </footer>      
 	</Popover>   
