@@ -997,7 +997,13 @@
 										<Text text="{eshipjetModel>DeliveryDocumentItemText}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/2/visible}" >
+								<ui:Column width="15rem" visible="{eshipjetModel>/ShipNowProductsTableColumns/2/visible}">
+									<Label text="Document Number" />
+									<ui:template>
+										<Text text="{eshipjetModel>DocumentNumber}" wrapping="false" />
+									</ui:template>
+								</ui:Column>
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/3/visible}" >
 								<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="Dimensions" />
 								</HBox>
@@ -1007,7 +1013,7 @@
 									</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/3/visible}" >
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/4/visible}" >
 									<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="Total Qty" />
 									</HBox>
@@ -1017,7 +1023,7 @@
 									</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/4/visible}" >
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/5/visible}" >
 									<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="Balance Qty" />
 									</HBox>
@@ -1027,7 +1033,7 @@
 									</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/5/visible}" >
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/6/visible}" >
 									<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="Partial Qty" />
 									</HBox>
@@ -1037,7 +1043,7 @@
 									</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/6/visible}" >
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/7/visible}" >
 								<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="Pkg Material" />
 								</HBox>
@@ -1047,7 +1053,7 @@
 									</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/7/visible}" >
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/8/visible}" >
 								<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="Weight (LB)" />
 								</HBox>
@@ -1057,7 +1063,7 @@
 									</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/8/visible}" >
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/9/visible}" >
 								<HBox justifyContent="End" alignItems="End" width="100%">
 									<Label text="Unit Cost" />
 								</HBox>
@@ -1067,7 +1073,7 @@
 									</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/9/visible}">
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/10/visible}">
 										<HBox justifyContent="Center" alignItems="Center" width="100%">
 											<Label text="Is Serial"/>
 										</HBox>
@@ -1078,7 +1084,7 @@
 										</ui:template>
 									</ui:Column>
 
-									<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/10/visible}">
+									<ui:Column width="auto" visible="{eshipjetModel>/ShipNowProductsTableColumns/11/visible}">
 										<HBox justifyContent="Center" alignItems="Center" width="100%">
 											<Label text="SN #"/>
 										</HBox>
@@ -1186,7 +1192,7 @@
 										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="18rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/0/visible}" >
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/0/visible}" >
 									<Label text="Material / SAP HU ID" />
 									<ui:template>
 									<HBox justifyContent="Start" alignItems="Start">
@@ -1194,7 +1200,7 @@
 									</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="15rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/1/visible}">
+								<ui:Column width="12rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/1/visible}">
 									<Label text="Created By" />
 									<ui:template>
 										<Text text="" wrapping="false" />
@@ -1220,7 +1226,7 @@
 										</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="15rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/4/visible}" >
+								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/4/visible}" >
 									<HBox justifyContent="Center" alignItems="Center" width="100%">
 									<Label text="Box Count" />
 									</HBox>
@@ -1248,14 +1254,14 @@
 										<Text text="{eshipjetModel>CommodityDesc}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="15rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/8/visible}" >
+								<ui:Column width="auto" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/8/visible}" >
 									<Label text="Tracking/Pro #" />
 									<ui:template>
 										<!-- <Text text="{eshipjetModel>HandlingUnitPackingObjectKey}" wrapping="false" /> -->
 										<Link text="{eshipjetModel>TrackingNumber}" press="onTrackingNumberPress" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="13rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/9/visible}" >
+								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/9/visible}" >
 									<HBox justifyContent="Center" alignItems="Center" width="100%">
 											<Label text="SN #"/>
 										</HBox>
@@ -1265,7 +1271,7 @@
 											</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="12rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/10/visible}" >
+								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/10/visible}" >
 								<HBox justifyContent="Center" alignItems="Center" width="100%">
 									<Label text="SN Status" />
 									</HBox>
@@ -1281,7 +1287,7 @@
 										<Text text="{eshipjetModel>Pacmatnr}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="13rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/12/visible}" >
+								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/12/visible}" >
 									<!-- <Label text="HU Label" />
 									<ui:template>
 										<Text text="{eshipjetModel>HuLabel}" wrapping="false" />

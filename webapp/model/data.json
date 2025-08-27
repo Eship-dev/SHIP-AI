@@ -1792,6 +1792,11 @@
             "visible": true
         },
         {
+            "name": "DocumentNumber",
+            "label": "Document Number",
+            "visible": false
+        },
+        {
             "name": "ItemWeightUnit",
             "label": "Dimensions",
             "visible": true
@@ -1862,7 +1867,7 @@
         {
             "name": "BoxCount",
             "label": "Box Count",
-            "visible": true
+            "visible": false
         },
         {
             "name": "class",
