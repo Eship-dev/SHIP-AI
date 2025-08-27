@@ -26,21 +26,21 @@
             <Table id="HandlingUnitTableId" items="{eshipjetModel>/handlingUnitItems}">
                 <columns>
                     <Column>
-                        <Text text="Product"/>
-                    </Column>
-                    <Column>
-                        <Text text="Description"/>
+                        <Text text="Handling Unit Number"/>
                     </Column>
                     <Column>
                         <Text text="Quantity"/>
+                    </Column>
+                    <Column>
+                        <Text text="Total Weight"/>
                     </Column>
                 </columns>
                 <items>
                     <ColumnListItem>
                         <cells>
-                            <Text text="{eshipjetModel>HandlingUnitExternalID}"/>
-                            <Text text="{eshipjetModel>Material}"/>
-                            <Text text="{eshipjetModel>HandlingUnitQuantity}"/>
+                            <Text text="{eshipjetModel>Hunumber}"/>
+                            <Text text="{= parseFloat(${eshipjetModel>Qty}).toFixed(2) }"/>
+                            <Text text="{= parseFloat(${eshipjetModel>Totalweight}).toFixed(2) }"/>
                         </cells>
                     </ColumnListItem>
                 </items>

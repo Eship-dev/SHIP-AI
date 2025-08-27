@@ -1819,13 +1819,13 @@
 					<ui:Column width="auto" >
 						<Label text="Document ID" />
 						<ui:template>
-							<Text text="{eshipjetModel>docType}" />
+							<Text text="{= ${eshipjetModel>docType} ? ${eshipjetModel>docType}.toUpperCase() : '' }" />
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="auto" >
 						<Label text="SAP Output Type" />
 						<ui:template>
-							<Text text="{eshipjetModel>docType}" />
+							<Text text="{= ${eshipjetModel>docType} ? ${eshipjetModel>docType}.toUpperCase() : '' }" />
 						</ui:template>
 					</ui:Column>
 					<ui:Column width="auto">

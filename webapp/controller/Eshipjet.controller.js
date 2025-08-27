@@ -3750,7 +3750,7 @@ sap.ui.define([
                                 // Wait for both functions to finish before resolving itemPromise
                                 Promise.all([
                                     Promise.resolve().then(() => oController.getSalesOrder(aProductTable)),
-                                    Promise.resolve().then(() => oController.getHandlingUnit(sDeveliveryNumber))
+                                    // Promise.resolve().then(() => oController.getHandlingUnit(sDeveliveryNumber))
                                 ]).then(resolve);
                             } else {
                                 resolve();
@@ -3933,7 +3933,7 @@ sap.ui.define([
                             eshipjetModel.setProperty("/commonValues/widthOfDimensions", "48");
                             eshipjetModel.setProperty("/commonValues/heightOfDimensions", "");
                         }
-
+                        oController.getHandlingUnit(sDeveliveryNumber);
                         oController.checkPostGoodsIssueStatus(sDeveliveryNumber);
                     }
                     // oController.onCloseBusyDialog();
@@ -15868,33 +15868,35 @@ sap.ui.define([
 
         handleHULinkPress: function (oEvent) {
             var oView = this.getView();
+            var oController = this;
             var currentObj = oEvent.getSource().getBindingContext('eshipjetModel').getObject();
-            var handlingUnitItems = currentObj.to_HandlingUnitItem.results;
-            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel")
-            eshipjetModel.setProperty("/handlingUnitItems", handlingUnitItems);
 
-            // var ItemsInfoModel = new JSONModel(currentObj);
-            // oController.getView().setModel(ItemsInfoModel, "ItemsInfoModel");
+            // Set the selected handling unit to the model
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/handlingUnitItems", [currentObj]);
 
-            oController.HandlingUnitDlg = oController.byId("idHandlingUnitDialog1");
+            // Check if the fragment/dialog already exists
             if (!oController.HandlingUnitDlg) {
+                // Load the fragment only once
                 Fragment.load({
                     id: oView.getId(),
                     name: "com.eshipjet.zeshipjet.view.fragments.ShipNow.HandlingUnitDialog",
-                    controller: this
+                    controller: oController
                 }).then(function (oHandlingUnitDialog) {
+                    oController.HandlingUnitDlg = oHandlingUnitDialog; // store reference
                     oView.addDependent(oHandlingUnitDialog);
                     oHandlingUnitDialog.open();
                 });
             } else {
+                // Reuse the already loaded dialog
                 oController.HandlingUnitDlg.open();
             }
         },
+
         onHandlingUnitDialogClosePress: function () {
-            oController.byId("idHandlingUnitDialog1").close();
-        },
-        onHandlingUnitDialogClosePress: function () {
-            this.byId("idHandlingUnitDialog1").close();
+            if (this.HandlingUnitDlg) {
+                this.HandlingUnitDlg.close();
+            }
         },
 
 
@@ -17060,13 +17062,15 @@ sap.ui.define([
                 aTravelHistoryData.forEach(function(item, idx){
                     item.Status = item.Status.replace("UPS", oCurrentObject.CarrierCode);
                 });   
-                oController.TrackDialogWithUrl();             
+                // oController.TrackDialogWithUrl();
+                oController.TrackDialogWithOutUrl();          
             }else if(oCurrentObject.CarrierCode.toUpperCase() === "UPS"){
                 sUrl = "https://drivemedical.eshipjet.site/next-gen-tracking?Carrier=UPS&TrackingNumber="+oCurrentObject.TrackingNumber;
                 aTravelHistoryData.forEach(function(item, idx){
                     item.Status = item.Status.replace("FedEx", oCurrentObject.CarrierCode);
                 });
-                oController.TrackDialogWithUrl();
+                // oController.TrackDialogWithUrl();
+                oController.TrackDialogWithOutUrl();
             }else{
                 oController.TrackDialogWithOutUrl();
             };
