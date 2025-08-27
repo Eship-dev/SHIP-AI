@@ -1277,7 +1277,8 @@
 									</HBox>
 									<ui:template>
 									<HBox justifyContent="Center" alignItems="Center">
-										 <core:Icon src="sap-icon://circle-task-2"  class="pgi-style greenColorForIcon ordersSmallText" enabled="{= ${eshipjetModel>Hunumber} > 0 }"/>
+										 <core:Icon src="sap-icon://circle-task-2"    class="ordersSmallText"
+                color="{= ${eshipjetModel>Hunumber} > 0 ? 'green' : 'grey' }"  enabled="{= ${eshipjetModel>Hunumber} > 0 }"/>
 										 </HBox>
 									</ui:template>
 								</ui:Column>
