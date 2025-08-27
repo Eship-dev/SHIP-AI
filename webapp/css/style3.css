@@ -3262,6 +3262,54 @@ body.dark-theme .ReversePGIBtnStyle span {
 
 
 
+.voidIconBtnStyle {
+  height: 2.5rem !important;
+  min-height: 2.5rem !important;
+  background-color: #ff0101 !important;
+  border: 1px solid #ff0101 !important; /* SAP blue */
+  color: #ffffff !important;
+  border-radius: 6px;
+  padding: 0 1rem !important;
+}
+
+/* Inner button */
+.voidIconBtnStyle .sapMBtnInner {
+  height: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit !important; /* ensures it follows parent */
+}
+
+/* ✅ Text span fix */
+.voidIconBtnStyle .sapMBtnContent {
+  color: inherit !important;
+  font-weight: 500; /* optional: make text a bit bolder */
+}
+
+/* Icon inherits color */
+.voidIconBtnStyle .sapUiIcon {
+  color: inherit !important;
+}
+
+/* Hover */
+.voidIconBtnStyle:hover {
+  background-color: #ffffff !important;
+  color: #ff0101 !important;
+  border-color: #ff0101 !important;
+}
+
+.voidIconBtnStyle:hover .sapMBtnContent,
+.voidIconBtnStyle:hover .sapUiIcon {
+  color: #ff0101 !important;
+}
+
+.voidIconBtnStyle:focus .sapMBtnInner {
+  outline: none !important;
+}
+
 .shipNowBtnStyle {
   height: 2.5rem !important;
   min-height: 2.5rem !important;
@@ -3384,3 +3432,5 @@ body.dark-theme .ReversePGIBtnStyle span {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1), 
               0px -4px 8px rgba(0, 0, 0, 0.1);
 }
+
+

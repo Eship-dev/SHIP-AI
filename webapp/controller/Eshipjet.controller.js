@@ -3551,6 +3551,9 @@ sap.ui.define([
                 eshipjetModel.setProperty("/hideTrackPackDetails", false);
             }else{
                 eshipjetModel.setProperty("/hideTrackPackDetails", true);
+                eshipjetModel.setProperty("/commonValues/lengthOfDimensions", "40");
+                eshipjetModel.setProperty("/commonValues/widthOfDimensions", "48");
+                eshipjetModel.setProperty("/commonValues/heightOfDimensions", "");
             }
         },
 
@@ -3926,6 +3929,9 @@ sap.ui.define([
                             eshipjetModel.setProperty("/hideTrackPackDetails", false);
                         }else{
                             eshipjetModel.setProperty("/hideTrackPackDetails", true);
+                            eshipjetModel.setProperty("/commonValues/lengthOfDimensions", "40");
+                            eshipjetModel.setProperty("/commonValues/widthOfDimensions", "48");
+                            eshipjetModel.setProperty("/commonValues/heightOfDimensions", "");
                         }
 
                         oController.checkPostGoodsIssueStatus(sDeveliveryNumber);
@@ -4139,15 +4145,24 @@ sap.ui.define([
             var selectedItems = productTable.getSelectedIndices();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var selectedPackageMat = eshipjetModel.getProperty("/selectedPackageMat");
+
+            var packAddProductTable = eshipjetModel.getProperty("/commonValues/packAddProductTable");
+            var tableCount = 0;
+
+            packAddProductTable.forEach(function(item) {
+                if (item.Material) {
+                    tableCount += 1;
+                }
+            });
             if(selectedPackageMat === ""){
                 MessageBox.warning("Please Select Package Material");
-            }else if(selectedItems.length === 0){
+            }else if(selectedItems.length !== 0 && tableCount !== 1){
                 MessageBox.warning("Please Select atleast one record from Product Table");
             }else{
                 var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
                 var totalWeight = 0;
                 var ItemsInfo = [];
-                for (var i = 0; i < selectedItems.length; i++) {
+                for (var i = 0; i < 1; i++) {
                     var currentObj = productTable.getContextByIndex(i).getObject();
                     if(currentObj.partialQty === "" || currentObj.partialQty === undefined){
                         MessageBox.warning("Please add partial quantity for at least one valid product.");
@@ -17354,6 +17369,9 @@ sap.ui.define([
                 eshipjetModel.setProperty("/hideTrackPackDetails", false);
             }else{
                 eshipjetModel.setProperty("/hideTrackPackDetails", true);
+                eshipjetModel.setProperty("/commonValues/lengthOfDimensions", "40");
+                eshipjetModel.setProperty("/commonValues/widthOfDimensions", "48");
+                eshipjetModel.setProperty("/commonValues/heightOfDimensions", "");
             }
         },
 
@@ -17829,6 +17847,16 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowUPSSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowUSPSSelect", false );
              }
+
+            var carrierName = ShipNowShipMethodSelectedKey.toUpperCase();
+            if(carrierName === "UPS" || carrierName === "FEDEX" || carrierName === "USPS"){
+                eshipjetModel.setProperty("/hideTrackPackDetails", false);
+            }else{
+                eshipjetModel.setProperty("/hideTrackPackDetails", true);
+                eshipjetModel.setProperty("/commonValues/lengthOfDimensions", "40");
+                eshipjetModel.setProperty("/commonValues/widthOfDimensions", "48");
+                eshipjetModel.setProperty("/commonValues/heightOfDimensions", "");
+            }
         },
 
         // add location popover down arrow 

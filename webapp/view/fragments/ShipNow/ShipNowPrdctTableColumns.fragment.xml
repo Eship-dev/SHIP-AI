@@ -31,7 +31,7 @@
         <footer>
             <Toolbar class="whiteBackground" >
                 <ToolbarSpacer />
-                <Button text="Apply" press="onShipNowPrdColSelectOkPress" class="Ship-Now-toolbar1__button_ColumnConfig"></Button>               
+                <Button text="Apply" press="onShipNowPrdColSelectOkPress" type="Ghost" class="Ship-Now-toolbar1__button_green removeBtnOutline saveBtn sapUiTinyMargin sapUiLargeMarginEnd" ></Button>               
             </Toolbar>
         </footer>      
 	</Popover>   

@@ -1152,9 +1152,9 @@
 										</ComboBox>
 									</FlexBox>
 									<FlexBox visible="{eshipjetModel>/hideTrackPackDetails}" >
-										<Input value="{eshipjetModel>/commonValues/lengthOfDimensions}" placeholder="L" class="create-ship-req_input sapUiTinyMarginBegin" width="3rem" ></Input>
-										<Input value="{eshipjetModel>/commonValues/widthOfDimensions}" placeholder="W" class="create-ship-req_input sapUiTinyMarginBegin" width="3rem" ></Input>
-										<Input value="{eshipjetModel>/commonValues/heightOfDimensions}" placeholder="H" class="create-ship-req_input sapUiTinyMarginBegin" width="3rem" ></Input>
+										<Input value="{eshipjetModel>/commonValues/lengthOfDimensions}" placeholder="L" class="create-ship-req_input sapUiTinyMarginBegin" width="3rem" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Input>
+										<Input value="{eshipjetModel>/commonValues/widthOfDimensions}" placeholder="W" class="create-ship-req_input sapUiTinyMarginBegin" width="3rem" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Input>
+										<Input value="{eshipjetModel>/commonValues/heightOfDimensions}" placeholder="H" class="create-ship-req_input sapUiTinyMarginBegin" width="3rem" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" ></Input>
 									</FlexBox>
 								</HBox>
 
@@ -1172,7 +1172,7 @@
 									<Input value="{eshipjetModel>/trackingArray/0/TrackingNumber}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="create-ship-req_input sapUiTinyMargin" width="auto" visible="{eshipjetModel>/hideTrackPackDetails}" ></Input>
 								</HBox>
 								<HBox height="3rem" width="5%" class="whiteBackground" alignItems="Center" justifyContent="Center" >
-									<Button icon="sap-icon://message-error" type="Transparent" class="void-button" press="onShipNowVoidPress" visible="{eshipjetModel>/commonValues/shipNowVoidSelect}" tooltip="Void Now" ></Button>
+									<Button icon="sap-icon://message-error" type="Transparent" class="voidIconBtnStyle" press="onShipNowVoidPress" visible="{eshipjetModel>/commonValues/shipNowVoidSelect}" tooltip="Void Now" ></Button>
 									<Button icon="sap-icon://shipping-status" type="Transparent" class="shipNowBtnStyle" press="onShipNowPress" visible="{eshipjetModel>/commonValues/shipNowVoidSelectShipNow}" tooltip="Ship Now" ></Button>
 								</HBox>
 							</HBox>
@@ -1222,7 +1222,7 @@
 									</HBox>
 									<ui:template>
 									<HBox justifyContent="End" alignItems="End">
-										<Text text="10 X 12 X 12" visible="{= !!${eshipjetModel>HandlingUnitLength} }" wrapping="false" />
+										<Text text="10 X 12 X 12" visible="{= ${eshipjetModel>Hunumber} > 0 ? true : false }" wrapping="false" />
 										</HBox>
 									</ui:template>
 								</ui:Column>
