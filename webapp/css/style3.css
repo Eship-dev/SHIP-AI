@@ -1259,7 +1259,7 @@ sapMPopover .sapMPopoverCont {
   background-color: #E3F2FD !important;
   color: #007ad9 !important;
   font-weight: bold !important;
-  padding: 6px 14px !important;
+  padding: 8px 14px !important;
   border-radius: 3px !important;
   border: 2px solid #007ad9 !important;
   text-align: center !important;
@@ -1276,7 +1276,7 @@ sapMPopover .sapMPopoverCont {
   background-color: #e0fdd6 !important;
   color: #107815 !important;
   font-weight: bold !important;
-  padding: 6px 14px !important;
+  padding: 8px 14px !important;
   border-radius: 3px !important;
   border: 2px solid #107815 !important;
   text-align: center !important;

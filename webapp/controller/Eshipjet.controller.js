@@ -24,10 +24,11 @@ sap.ui.define([
         PlacementType = library.PlacementType,
         oController, oResourceBundle, eshipjetModel, oShipperCopilotModel;
     const SortOrder = CoreLibrary.SortOrder;
-
+    
     return Controller.extend("com.eshipjet.zeshipjet.controller.Eshipjet", {
         formatter: formatter,
         onInit: function () {
+            
             // this.getMasterData();
 
             // var sAudioPath = sap.ui.require.toUrl("com/eshipjet/zeshipjet/audio/Lock.mp3");
@@ -62,7 +63,19 @@ sap.ui.define([
                     seconds: seconds.toString().padStart(2, "0")
                 });
             }, 1000);
-            
+
+            this.getView().addEventDelegate({ 
+                onkeydown: function (oEvent) {                // <- oEvent is provided here
+            if (oEvent.key === "F2" || oEvent.keyCode === 113 || oEvent.which === 113) {
+                oEvent.preventDefault();
+                var oBtn = this.byId("idShipNowBtn");
+                if (oBtn && oBtn.getEnabled() && oBtn.getVisible()) {
+                oBtn.firePress();
+                }
+            }
+            }.bind(this)                                  // <- keep controller context
+         }, this);
+
             this._pageSize = 50;
             this._currentPage = 1;
             this.setupFreightQuotePagination();
@@ -1760,10 +1773,11 @@ sap.ui.define([
             var HandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
             oController.onOpenBusyDialog();
             var oShipNowDataModel = this.getOwnerComponent().getModel("ShipNowDataModel");
-
+            sap.m.MessageToast.show("Ship Now triggered!");
             var currentDate = new Date();
             var shipDate = currentDate.toISOString();
-            
+           
+
             eshipjetModel.setProperty("/commonValues/shipNowGetBtn", true);
             var sapDeliveryNumber = eshipjetModel.getProperty("/commonValues/sapDeliveryNumber");
             var carrier = eshipjetModel.getProperty("/commonValues/ShipNowShipMethodSelectedKey");

@@ -1186,10 +1186,10 @@
 										<Text text="{eshipjetModel>SerialNumber}" wrapping="false" />
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="15rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/0/visible}" >
+								<ui:Column width="18rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/0/visible}" >
 									<Label text="Material / SAP HU ID" />
 									<ui:template>
-									<HBox justifyContent="End" alignItems="End">
+									<HBox justifyContent="Start" alignItems="Start">
 							 		<Link text="{eshipjetModel>Hunumber}" press="handleHULinkPress" wrapping="false" />
 									</HBox>
 									</ui:template>
@@ -1252,7 +1252,7 @@
 									<Label text="Tracking/Pro #" />
 									<ui:template>
 										<!-- <Text text="{eshipjetModel>HandlingUnitPackingObjectKey}" wrapping="false" /> -->
-										<Link text="{eshipjetModel>TrackingPro}" press="onTrackingNumberPress" wrapping="false" />
+										<Link text="{eshipjetModel>TrackingNumber}" press="onTrackingNumberPress" wrapping="false" />
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="13rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/9/visible}" >
@@ -1261,14 +1261,18 @@
 										</HBox>
 									<ui:template>
 										<HBox justifyContent="Center" alignItems="Center">
-												<Button icon="sap-icon://tag" type="Transparent" press="onSerialNumPress" enabled="{= ${eshipjetModel>} > 0 }" ></Button>
+												<Button icon="sap-icon://tag" type="Transparent" press="onSerialNumPress" enabled="{= ${eshipjetModel>Hunumber} > 0 }" ></Button>
 											</HBox>
 									</ui:template>
 								</ui:Column>
-								<ui:Column width="10rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/10/visible}" >
+								<ui:Column width="12rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/10/visible}" >
+								<HBox justifyContent="Center" alignItems="Center" width="100%">
 									<Label text="SN Status" />
+									</HBox>
 									<ui:template>
-										<Text text="{eshipjetModel>HuLabel}" wrapping="false" />
+									<HBox justifyContent="Center" alignItems="Center">
+										 <core:Icon src="sap-icon://circle-task-2"  class="pgi-style greenColorForIcon ordersSmallText" enabled="{= ${eshipjetModel>Hunumber} > 0 }"/>
+										 </HBox>
 									</ui:template>
 								</ui:Column>
 								<ui:Column width="8rem" visible="{eshipjetModel>/ShipNowHandlingUnitTableColumns/11/visible}" >

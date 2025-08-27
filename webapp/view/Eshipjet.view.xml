@@ -594,7 +594,7 @@
 
 			<ToolbarSpacer/>
 				<!-- <Button text="Save" press="createHandlingUnits" class="scan-ship-toolbar1__button sapUiTinyMargin sapUiLargeMarginEnd" visible="{eshipjetModel>/commonValues/shipNowVoidSelectSave}" type="Ghost" width="5%"  /> -->
-				<Button text="Ship Now" press="onShipNowPress" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" visible="{eshipjetModel>/commonValues/shipNowVoidSelectShipNow}" type="Ghost" class="shipNowBtnStyle sapUiMediumMarginEnd" />
+				<Button text="Ship Now" press="onShipNowPress" id="idShipNowBtn" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" visible="{eshipjetModel>/commonValues/shipNowVoidSelectShipNow}" type="Ghost" class="shipNowBtnStyle sapUiMediumMarginEnd" />
 				<Button text="Void" press="onShipNowVoidPress"  visible="{eshipjetModel>/commonValues/shipNowVoidSelect}" type="Ghost" class="shipNowBtnStyle sapUiMediumMarginEnd" />
 		</OverflowToolbar>
 
