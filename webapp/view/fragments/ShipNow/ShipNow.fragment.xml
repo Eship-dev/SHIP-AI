@@ -1147,8 +1147,11 @@
 								<HBox height="3rem" width="35%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="SpaceBetween" >
 									<FlexBox >
 										<Label text="Pkg Material" class="sapUiSmallMarginTop" width="auto" />
-										<ComboBox items="{eshipjetModel>/packageMaterial}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" selectedKey="{eshipjetModel>/selectedPackageMat}" class="create-ship-req_input sapUiTinyMarginBegin" width="11rem" >
+										<!-- <ComboBox items="{eshipjetModel>/packageMaterial}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" selectedKey="{eshipjetModel>/selectedPackageMat}" class="create-ship-req_input sapUiTinyMarginBegin" width="11rem" >
 											<core:Item key="{eshipjetModel>Product}" text="{eshipjetModel>Product}" />
+										</ComboBox> -->
+										<ComboBox enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" selectedKey="PALLET" class="create-ship-req_input sapUiTinyMarginBegin" width="11rem" >
+											<core:Item key="PALLET" text="PALLET" />
 										</ComboBox>
 									</FlexBox>
 									<FlexBox visible="{eshipjetModel>/hideTrackPackDetails}" >

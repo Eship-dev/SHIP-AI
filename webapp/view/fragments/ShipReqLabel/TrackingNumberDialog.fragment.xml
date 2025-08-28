@@ -77,13 +77,14 @@
                     <!-- Third Row: Delivered To -->
                     <HBox class="customRow" width="100%" >
                       <Label text="Delivered To:" class="customLabel" width="15rem" />
-                      <Text text="{eshipjetModel>/TrackingNumberTableRows/COMPANY}" class="customTextField centerText" width="15rem" />
+                      <Text text="{ShipNowDataModel>/ShipToAddress/FullName}" class="customTextField centerText" width="15rem" />
                     </HBox>
                     
                     <!-- Fourth Row: Ship Date -->
                     <HBox class="customRow" width="100%" >
                       <Label text="Ship Date:" class="customLabel" width="15rem" />  
-                      <Text text="{path: 'eshipjetModel>/TrackingNumberTableRows/ShipDate', formatter: '.formatter.formatDate'}" class="customTextField centerText" width="15rem" />
+                      <!-- <Text text="{path: 'eshipjetModel>/TrackingNumberTableRows/ShipDate', formatter: '.formatter.formatDate'}" class="customTextField centerText" width="15rem" /> -->
+                      <Text text="{path: 'eshipjetModel>/pickupDate',  formatter: '.formatter.formatCustomDateTimeForOrders'}" class="customTextField centerText" width="15rem"  />
                     </HBox>
                     
                     <!-- Fifth Row: Standard Transit -->

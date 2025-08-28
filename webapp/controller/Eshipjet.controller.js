@@ -3532,6 +3532,7 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/shipNowTheArmorySelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowUPSSelect", false );
                 eshipjetModel.setProperty("/commonValues/shipNowUSPSSelect", false );
+            eshipjetModel.setProperty("/HandlingUnits", []);
             eshipjetModel.setProperty("/shippingCharges", []);
             eshipjetModel.setProperty("/shippingDocuments", []);
             eshipjetModel.setProperty("/trackingArray", []);
@@ -3750,7 +3751,7 @@ sap.ui.define([
                                 // Wait for both functions to finish before resolving itemPromise
                                 Promise.all([
                                     Promise.resolve().then(() => oController.getSalesOrder(aProductTable)),
-                                    // Promise.resolve().then(() => oController.getHandlingUnit(sDeveliveryNumber))
+                                    Promise.resolve().then(() => oController.getHandlingUnit(sDeveliveryNumber))
                                 ]).then(resolve);
                             } else {
                                 resolve();
@@ -3786,6 +3787,7 @@ sap.ui.define([
                 filters: aFilters,
                 success:function(response){
                     eshipjetModel.setProperty("/getManifestHeader", response.results);
+                    eshipjetModel.setProperty("/commonValues/ShipNowShipMethodSelectedKey", response.results[0].CarrierCode);
                     
                     if (response && response.results.length > 0) {
                         oController.onShopNowShipMethodChangeFromQuoteNow(response.results[0].CarrierCode, response.results[0].CarrierDesc);
@@ -4035,6 +4037,7 @@ sap.ui.define([
                         eshipjetModel.setProperty("/commonValues/SalesOrder", oData.results[0].SalesOrder);
                         eshipjetModel.setProperty("/commonValues/PurchaseOrder", oData.results[0].PurchaseOrderByCustomer);
                     }
+                    // oController.onCloseBusyDialog();
                 },
                 error: function(oErr){
                     var err = oErr;
