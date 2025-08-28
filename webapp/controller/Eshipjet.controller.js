@@ -120,7 +120,7 @@ sap.ui.define([
             var userId = sap.ushell.Container.getUser().getId();
             var userName;
             if (!userId || userId.toUpperCase() === "DEFAULT_USER") {
-                userName = "Guest"; // or "User"
+                userName = "Test User"; // or "User"
             }else{
                 userName = userId.split('.')[0].toLowerCase();
                 userName = userName.charAt(0).toUpperCase() + userName.slice(1);
@@ -2375,7 +2375,7 @@ sap.ui.define([
                 "FromPostalcode": ShipNowDataModel.getProperty("/ShipFromAddress/ShipFromZIPCODE"),
                 "FromCountry": ShipNowDataModel.getProperty("/ShipFromAddress/ShipFromCOUNTRY"),
                 "FromPhone": ShipNowDataModel.getProperty("/ShipFromAddress/ShipFromPHONE"),
-                "EnteredBy": "dm_atla",
+                "EnteredBy": eshipjetModel.getProperty("/userName"),
                 "Sammg": "",
                 "Lifnr": "",
                 "Waerk": "USD",
