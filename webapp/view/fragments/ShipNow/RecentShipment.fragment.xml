@@ -1,5 +1,5 @@
 <core:FragmentDefinition	xmlns="sap.m"    xmlns:ui="sap.ui.table"  	xmlns:l="sap.ui.layout"	xmlns:f="sap.ui.layout.form"	xmlns:core="sap.ui.core">
-    <Popover	id="myPopoverRecentShipment"  contentWidth="40%" contentHeight="70%" placement="Bottom" class="whiteBackground">  
+    <Popover	id="myPopoverRecentShipment"  contentWidth="30%" contentHeight="70%" placement="Bottom" class="whiteBackground">  
 		<customHeader>
 			<VBox id="_IDGenVBoxRecentShipment">
 				<Toolbar id="_IDGenHBoxRecentShipment" class="toolbarbottomborder">
@@ -16,13 +16,13 @@
 
 		<ColumnListItem  vAlign="Middle" press="onRecentShipmentsItemPress" type="Active" >
 			<cells>
-				<Text text="" width="auto"  ></Text>	
+				<!-- <Text text="" width="auto"  ></Text>	 -->
 			  	<Text text="{eshipjetModel>Delivery}" class="customObjectStatus"  width="auto"  />
 				<Text text="{eshipjetModel>Plant}"  width="3rem" class="firebrickColor" ></Text>
 				<Text text="{eshipjetModel>EnteredBy}"  width="auto" class="namecolorrc" ></Text>
                 <Text text="{ path: 'eshipjetModel>Createddate', formatter: '.formatter.formatCustomDateTimeForOrders' }"  width="auto" />	
                 <!-- <Text text="{eshipjetModel>Company}"  wrapping="false" />	 -->
-                <Text text="{eshipjetModel>Carriertype}"  width="auto" class="carriercolortext" />
+                <Text text="{eshipjetModel>Carriertype}"  width="auto" class="namecolorrc" ></Text>
 			</cells>
 		</ColumnListItem>
 		<columns>	

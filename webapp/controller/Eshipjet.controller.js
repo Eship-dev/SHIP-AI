@@ -120,10 +120,10 @@ sap.ui.define([
             var userId = sap.ushell.Container.getUser().getId();
             var userName;
             if (!userId || userId.toUpperCase() === "DEFAULT_USER") {
-                userName = "Test User"; // or "User"
+                userName = "TEST USER"; // or "User"
             }else{
                 userName = userId.split('.')[0].toLowerCase();
-                userName = userName.charAt(0).toUpperCase() + userName.slice(1);
+                userName = userName.toUpperCase();
             }
             
             eshipjetModel.setProperty("/userName", userName);
@@ -320,9 +320,9 @@ sap.ui.define([
                 // this._handleDisplayShipReqTable();
                 oController.getShipReqLabelHistoryShipments();
             } else if (sKey === "ShipNow") {
-                jQuery.sap.delayedCall(500, this, function() {
-                    this.getView().byId("idSapDeliveryNumber").focus();
-                });
+                // jQuery.sap.delayedCall(500, this, function() {
+                //     this.getView().byId("idSapDeliveryNumber").focus();
+                // });
                 eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", "0");
                 oController.onShipNowNavigateInitialProcess();
                 var aBusinessPartnersTable = eshipjetModel.getProperty("/BusinessPartners") || [];
@@ -343,6 +343,7 @@ sap.ui.define([
                 // this._handleDisplayShipNowProductsTable();
                 // this._handleDisplayShipNowHandlingUnitTable();
             } else if (sKey === "QuoteNow") {
+                eshipjetModel.setProperty("/commonValues/quoteNowDeliveryNumbInput","");
                 eshipjetModel.setProperty("/commonValues/allViewsFooter", true);
                 eshipjetModel.setProperty("/commonValues/shipNowViewFooter", false);
                 eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
@@ -436,6 +437,7 @@ sap.ui.define([
         },
         
         onShipNowNavigateInitialProcess:function(){
+            oController.onOpenBusyDialog();
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             eshipjetModel.setProperty("/sFromViewName", "SHIP_NOW");
             var obj = {
@@ -465,12 +467,14 @@ sap.ui.define([
             eshipjetModel.setProperty("/commonValues/shipNowBtnStatus", true);
             oController.onPackSectionEmptyRows();
             oController.getTodayShipments();
-            var sFromScreen = eshipjetModel.getProperty("/sFromScreen");
-            if(sFromScreen === "QUOTE_NOW"){
-                oController.onShipNowGetPress()
+            var sFromScreen = eshipjetModel.getProperty("/sFromViewName");
+            if(sFromScreen === "SHIP_NOW"){
+                this.byId("pageContainer").to(this.getView().createId("ShipNow"));
+                oController.onShipNowGetPress();
             }
-
+            oController.onCloseBusyDialog();
         },
+
         handleUserNamePress: function (event) {
             var oPopover = new Popover({
                 showHeader: false,
@@ -1740,9 +1744,9 @@ sap.ui.define([
             // eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", "0");
             eshipjetModel.setProperty("/commonValues", oCommonValues);        
             eshipjetModel.setProperty("/accountNumber", "");
-            jQuery.sap.delayedCall(500, this, function() {
-                this.getView().byId("idSapDeliveryNumber").focus();
-            });
+            // jQuery.sap.delayedCall(500, this, function() {
+            //     this.getView().byId("idSapDeliveryNumber").focus();
+            // });
             oController.onPackSectionEmptyRows();     
             var oIconTabBar = this.byId("idIconTabBarFiori2");
             oIconTabBar.setSelectedKey("Pack");       
@@ -1770,6 +1774,10 @@ sap.ui.define([
         onShipNowPress: function () {       
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             var packAddProductTable = eshipjetModel.getProperty("/commonValues/packAddProductTable");
+            var carrierCode = eshipjetModel.getProperty("/commonValues/ShipNowShipMethodSelectedKey").toUpperCase();
+            // if(carrierCode !=== "FEDEX" && carrierCode !=== "UPS" && packAddProductTable.length > 0){
+            //     return MessageBox.warning("Please Pack all products");
+            // }
             var HandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
             oController.onOpenBusyDialog();
             var oShipNowDataModel = this.getOwnerComponent().getModel("ShipNowDataModel");
@@ -1980,7 +1988,7 @@ sap.ui.define([
                     "Password": password,
                     "TrackURL": "",
                     "AccessKey": AccessKey,
-                    // "LabelType": "ZPL",
+                    "LabelType": "ZPL",
                     "ServiceID": eshipjetModel.getProperty("/commonValues/ShipNowShipsrvNameSelectedKey"),
                     "Reference1": HandlingUnits[0].HandlingUnitExternalID,
                     "Reference2": "",
@@ -2032,6 +2040,27 @@ sap.ui.define([
             }
 
 
+            // Product Table
+            var productTable = eshipjetModel.getProperty("/commonValues/packAddProductTable");
+            if (productTable && productTable.length > 0) {
+                $.each(productTable, function (index, itm) {
+                    if (itm.BalanceQty > 0) {
+                        for (var i = 0; i < itm.BalanceQty; i++) {
+                            packObj = obj.Packages[0];
+                            packObj.HU = itm.DeliveryDocument;
+                            packObj.Weight = itm.ItemNetWeight;
+                            tempArray.push(jQuery.extend(true, {}, packObj));
+                            packObj = {};
+                        }
+                        obj.CarrierDetails.InvoiceNo = itm.DeliveryDocument;
+                        huNums = huNums + "," + itm.DeliveryDocument;
+                    }
+                });
+                obj["Packages"] = tempArray;
+                eshipjetModel.setProperty("/invoiceNo", huNums);
+            }
+
+
             // var getShipRatePromise = new Promise((resolve, reject) => {
             //     oController.onShipRateRequest(resolve, reject, "ShipNow");
             // });
@@ -2051,161 +2080,131 @@ sap.ui.define([
                             contentType: "application/json",
                             data: JSON.stringify(obj),
                             success: function (response) {
-                                resolve(response);
                                 console.log("Success:", response);
-                                if(response && response.status === "Success"){
-                                    eshipjetModel.setProperty("/ShipNowPostResponse", response);
-                                    if(response.Packages.length > 0){
-                                        var trackingArray = [];
+                                resolve(response);
 
+                                if (!response || !response.status) {
+                                    sap.m.MessageBox.error("Invalid response received from shipping engine.");
+                                    oController.onCloseBusyDialog();
+                                    return;
+                                }
+
+                                // --- Success case ---
+                                if (response.status === "Success") {
+                                    eshipjetModel.setProperty("/ShipNowPostResponse", response);
+
+                                    // 🔹 1. Handle Packages & Tracking Numbers
+                                    if (Array.isArray(response.Packages) && response.Packages.length > 0) {
+                                        var trackingArray = [];
                                         var ShipNowShipsrvNameSelectedKey = eshipjetModel.getProperty("/commonValues/ShipNowShipsrvNameSelectedKey");
                                         var serviceNameDropdown = eshipjetModel.getProperty("/serviceNameDropdown");
-                                        for(var i=0; i<serviceNameDropdown.length; i++){
-                                            if(serviceNameDropdown[i].serviceCode === ShipNowShipsrvNameSelectedKey){
-                                                var serviceName = serviceNameDropdown[i].serviceName;
+                                        var serviceName = "";
+
+                                        serviceNameDropdown.forEach(function (srv) {
+                                            if (srv.serviceCode === ShipNowShipsrvNameSelectedKey) {
+                                                serviceName = srv.serviceName;
                                             }
-                                        }
-                                // Below code is for Tracking   
-                                        for(var i=0; i<response.Packages.length; i++){
-                                            var trackingObj = {
-                                                "COMPANY": response.Shipper.COMPANY,
-                                                "ConsolidationId": response.HeaderInfo.ConsolidationId,
-                                                "DocumentNumber": response.HeaderInfo.DocumentNumber,
-                                                "CreatedDate": response.HeaderInfo.CreatedDate,
-                                                "ShipDate": response.HeaderInfo.ShipDate,
-                                                "ShipmentType": response.HeaderInfo.ShipmentType,
-                                                "CarrierCode": response.CarrierDetails.Carrier,
+                                        });
+
+                                        response.Packages.forEach(function (pkg) {
+                                            trackingArray.push({
+                                                "COMPANY": response.Shipper?.COMPANY || "",
+                                                "ConsolidationId": response.HeaderInfo?.ConsolidationId || "",
+                                                "DocumentNumber": response.HeaderInfo?.DocumentNumber || "",
+                                                "CreatedDate": response.HeaderInfo?.CreatedDate || "",
+                                                "ShipDate": response.HeaderInfo?.ShipDate || "",
+                                                "ShipmentType": response.HeaderInfo?.ShipmentType || "",
+                                                "CarrierCode": response.CarrierDetails?.Carrier || "",
                                                 "ERPCarrierID": serviceName,
-                                                "ServiceName" : eshipjetModel.getProperty("/carrierServiceName_dis"),
-                                                "TrackingNumber": response.Packages[i].TrackingNumber,
-                                                "TrackingStatus": response.TrackingStatus,
-                                                "SHIP_TO_CONTACT": response.ShipTo.CONTACT,
-                                                "SHIP_TO_COMPANY": response.ShipTo.COMPANY,
-                                                "SHIP_TO_ADDRESS_LINE1": response.ShipTo.ADDRESS_LINE1,
-                                                "SHIP_TO_STATE": response.ShipTo.STATE,
-                                                "SHIP_TO_CITY": response.ShipTo.CITY,
-                                                "SHIP_TO_ZIPCODE": response.ShipTo.ZIPCODE,
-                                                "SHIP_TO_COUNTRY": response.ShipTo.COUNTRY,
-                                                "SHIP_TO_EMAIL": response.ShipTo.UpdatedUser,
-                                                "RequesterName": response.ShipFrom.EMAIL,
+                                                "ServiceName": eshipjetModel.getProperty("/carrierServiceName_dis"),
+                                                "TrackingNumber": pkg.TrackingNumber,
+                                                "TrackingStatus": response.TrackingStatus || "",
+                                                "SHIP_TO_CONTACT": response.ShipTo?.CONTACT || "",
+                                                "SHIP_TO_COMPANY": response.ShipTo?.COMPANY || "",
+                                                "SHIP_TO_ADDRESS_LINE1": response.ShipTo?.ADDRESS_LINE1 || "",
+                                                "SHIP_TO_STATE": response.ShipTo?.STATE || "",
+                                                "SHIP_TO_CITY": response.ShipTo?.CITY || "",
+                                                "SHIP_TO_ZIPCODE": response.ShipTo?.ZIPCODE || "",
+                                                "SHIP_TO_COUNTRY": response.ShipTo?.COUNTRY || "",
+                                                "SHIP_TO_EMAIL": response.ShipTo?.UpdatedUser || "",
+                                                "RequesterName": response.ShipFrom?.EMAIL || "",
                                                 "ConnectedTo": "SAP ECC 6.0",
                                                 "orderType": "Delivery Number"
-                                            };
-                                            trackingArray.push(trackingObj);
-                                            eshipjetModel.setProperty("/trackingArray", trackingArray);
-                                            if(trackingArray.length > 0){
-                                                eshipjetModel.setProperty("/trackingLength", true);
-                                            }
-                                        }
-                                    }
-                                    // if(response && response.shippingCharges && response.shippingCharges.length > 0 ){
-                                    //     eshipjetModel.setProperty("/shippingCharges", response.shippingCharges);
-                                    // }
+                                            });
+                                        });
 
-                            // Below code is for Documents
-                                    if(response && response.shippingDocuments && response.shippingDocuments.length > 0 ){
-                                        var shippingDocuments = response.shippingDocuments;
-                                        var ashippingDocuments = [];
-                                        for(var i=0; i<shippingDocuments.length; i++){
-                                            if(shippingDocuments[i].docName !== ""){
-                                                ashippingDocuments.push(
-                                                    {
-                                                        "srNo": i+1,
-                                                        "contentType": shippingDocuments[i].contentType,
-                                                        "copiesToPrint": shippingDocuments[i].copiesToPrint,
-                                                        "docName": shippingDocuments[i].docName,
-                                                        "docProvider": shippingDocuments[i].docProvider,
-                                                        "docType": shippingDocuments[i].docType,
-                                                        "encodedLabel": shippingDocuments[i].encodedLabel,
-                                                })
-                                            }
-                                        }
+                                        eshipjetModel.setProperty("/trackingArray", trackingArray);
+                                        eshipjetModel.setProperty("/trackingLength", trackingArray.length > 0);
+                                    }
+
+                                    // 🔹 2. Handle Shipping Documents
+                                    if (Array.isArray(response.shippingDocuments) && response.shippingDocuments.length > 0) {
+                                        var ashippingDocuments = response.shippingDocuments
+                                            .filter(doc => doc.docName !== "")
+                                            .map((doc, idx) => ({
+                                                "srNo": idx + 1,
+                                                "contentType": doc.contentType,
+                                                "copiesToPrint": doc.copiesToPrint,
+                                                "docName": doc.docName,
+                                                "docProvider": doc.docProvider,
+                                                "docType": doc.docType,
+                                                "encodedLabel": doc.encodedLabel
+                                            }));
+
                                         eshipjetModel.setProperty("/shippingDocuments", ashippingDocuments);
-                                        if(ashippingDocuments.length > 0){
-                                            eshipjetModel.setProperty("/documentsLength", true);
-                                        }
+                                        eshipjetModel.setProperty("/documentsLength", ashippingDocuments.length > 0);
                                     }
-                            // Below code is for Charges
-                                    if(response && response.shippingCharges && response.shippingCharges.length > 0 ){
-                                        var shippingCharges = response.shippingCharges;
-                                        var oShippingCharges = [];
-                                        for(var i=0; i<shippingCharges.length; i++){
-                                            if(shippingCharges[i].description === "Discount Freight"){
-                                                var discount = shippingCharges[i].amount * 0.20;
-                                                var discountFreightAmount = shippingCharges[i].amount - discount;
-                                                var obj = {
-                                                    "serialNo": i + 1,
-                                                    "description": shippingCharges[i].description,
-                                                    "amount": discountFreightAmount,
-                                                    "currency": shippingCharges[i].currency
+
+                                    // 🔹 3. Handle Shipping Charges
+                                    if (Array.isArray(response.shippingCharges) && response.shippingCharges.length > 0) {
+                                        var oShippingCharges = response.shippingCharges
+                                            .filter(charge => charge.description !== undefined)
+                                            .map((charge, idx) => {
+                                                var amount = parseFloat(charge.amount);
+                                                if (charge.description === "Discount Freight") {
+                                                    var discount = amount * 0.20;
+                                                    amount = amount - discount;
+                                                }
+                                                return {
+                                                    "serialNo": idx + 1,
+                                                    "description": charge.description,
+                                                    "amount": amount.toFixed(2),
+                                                    "currency": charge.currency
                                                 };
-                                            }else{
-                                                var obj = {
-                                                    "serialNo": i + 1,
-                                                    "description": shippingCharges[i].description,
-                                                    "amount": shippingCharges[i].amount,
-                                                    "currency": shippingCharges[i].currency
-                                                };
-                                            }
-                                            oShippingCharges.push(obj);
-                                        }
+                                            });
+
                                         eshipjetModel.setProperty("/shippingCharges", oShippingCharges);
-                                        if(oShippingCharges.length > 0){
-                                            eshipjetModel.setProperty("/shippingChargesLength", true);
-                                        }
+                                        eshipjetModel.setProperty("/shippingChargesLength", oShippingCharges.length > 0);
                                     }
 
-
-                                    //post to manifest service
-                                    // oController.getManifestData(response);
-                                    
-                                    //  oController.updateManifestHeaderSet();         
+                                    // 🔹 4. Post-process (like printing labels / updating manifest)
                                     oController.showLabelAfterShipmentSuccess(response);
+                                    // oController.getManifestData(response);
+                                    // oController.updateManifestHeaderSet();
 
-                                }else if(response && response.status === "Error"){
-                                    var sError = "Shipment process failed reasons:\n";
-                                    if(response && response.Errors && response.Errors.length > 0){
-                                        response.Errors.forEach(function(item){
-                                            sError = sError + item+"\n";
-                                        });                               
+                                }
+                                // --- Error case ---
+                                else if (response.status === "Error") {
+                                    var sError = "Shipment process failed. Reasons:\n";
+                                    if (Array.isArray(response.Errors) && response.Errors.length > 0) {
+                                        response.Errors.forEach(err => {
+                                            sError += "- " + err + "\n";
+                                        });
                                     }
                                     sap.m.MessageBox.error(sError);
                                     oController.onCloseBusyDialog();
                                 }
                             },
                             error: function (error) {
-                                // MessageBox.warning(error.responseText);
-                                MessageBox.warning(error.statusText);
                                 console.log("Error:", error);
+                                sap.m.MessageBox.warning(error.statusText || "Unknown error occurred while posting shipment.");
                                 oController.onCloseBusyDialog();
                                 reject(error);
                             }
-                        });
-                    // });
-                    
-                    // myPromise.then(
-                    //     function(response) {
-                    //         oController.updateManifestHeaderSet();
-                    //          //oController.FreightQuoteUpdatedSrvData();
-                    //         // var myOutbounddeliveryPromise = new Promise((resolve, reject) => {                            
-                    //         //     oController.ApiOutboundDeliverySrvData(resolve, reject, response);
-                    //         // });
-                    //         // myOutbounddeliveryPromise.then(function(){
-                              
-                    //         //     oController.onCloseBusyDialog();
-                    //         // });                                              
-                    //     },
-                    //     function(error) {
-                    //         oController.onCloseBusyDialog();
-                    //     // myDisplayer(error);
-                    //     }
-                    // );                  
-            },
-            function(error) {
-                   
+                        });                
             });          
-
         },
+
         addDurationToCurrentTime:function(durationStr, baseDate = new Date()) {
             const match = durationStr.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
             if (!match) return null;
@@ -2262,7 +2261,7 @@ sap.ui.define([
             if (HandlingUnitsLength === "0" || HandlingUnitsLength === 0) {
                 HandlingUnitsLength = 1
             };
-            var grossWeight, shippingDocName, packingSlip, billOfLading;
+            var grossWeight, shippingDocName, packingSlip, billOfLading, encodedLabel;
             var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
             var shippingDocuments = eshipjetModel.getProperty("/shippingDocuments");
             var aHandlingUnits = eshipjetModel.getProperty("/HandlingUnits");
@@ -2335,7 +2334,8 @@ sap.ui.define([
                 "Accountnumber": eshipjetModel.getProperty("/accountNumber"),
                 "Dutytaxpaytype": "SENDER",
                 "Dtaccountnumber": "",
-                "Dimensions": dimensions ? dimensions.toString() : "10X12X12",
+                "Dimensions": "10X12X12",
+                // "Dimensions": dimensions ? dimensions.toString() : "10X12X12",
                 "Aesitn": "",
                 "Vhilm": eshipjetModel.getProperty("/selectedPackageMat"),
                 "Emailaddress": ShipNowDataModel.getProperty("/ShipToAddress/EMAIL"),
@@ -2452,6 +2452,7 @@ sap.ui.define([
                 "Labelurl": shippingDocName,
                 "PackURL" : packingSlip,
                 "BOLURL": billOfLading,
+                "label_encode": encodedLabel,
                 "DgUrl": "",
                 "Multi": "",
                 "Legno": "",
@@ -2476,7 +2477,7 @@ sap.ui.define([
                 "TimeAdded": timeAdded ? timeAdded : ""
             };
             // var packCount = 0;
-            var Count  = 0
+            var Count  = 0;
             if(aHUnitsFilterData && aHUnitsFilterData.length > 0) {
                 aHUnitsFilterData.forEach(function(item, index){
                     Count = Count  + 1 
@@ -2487,23 +2488,28 @@ sap.ui.define([
                     // oManifestDataObj["Labelurl"] = shippingDocuments[index].docName;
                     oManifestDataObj["Pkgcount"] = Count.toString();
                     oManifestDataObj["TrackingNumber"] = trackingArray[index].TrackingNumber;
-                    oManifestDataObj["Labelurl"] = shippingDocuments[index].docName;
+                    if(shippingDocuments[index].contentType.toUpperCase() === "LABEL" && shippingDocuments[index].contentType.toUpperCase() !== "PACKING SLIP" && shippingDocuments[index].contentType.toUpperCase() !== "BILL OF LADING"){
+                        oManifestDataObj["Labelurl"] = shippingDocuments[index].docName;
+                        oManifestDataObj["label_encode"] = shippingDocuments[index].encodedLabel;
+                    }
                     for(var i=0; i<shippingDocuments.length; i++){
-                        if(shippingDocuments[i].contentType === "Packing Slip"){
+                        // if(shippingDocuments[i].contentType.toUpperCase() === "LABEL"){
+                        //     oManifestDataObj["Labelurl"] = shippingDocuments[i].docName;
+                        //     oManifestDataObj["label_encode"] = shippingDocuments[i].encodedLabel;
+                        // }else 
+                        if(shippingDocuments[i].contentType.toUpperCase() === "PACKING SLIP"){
                             oManifestDataObj["PackURL"] = shippingDocuments[i].docName;
-                        }else if(shippingDocuments[i].contentType === "Bill Of Lading"){
+                        }else if(shippingDocuments[i].contentType.toUpperCase() === "BILL OF LADING"){
                             oManifestDataObj["BOLURL"] = shippingDocuments[i].docName;
                         }
                     };
-                    // if(shippingDocuments[shippingDocuments.length - 1].contentType === "Packing Slip"){
-                    //     oManifestDataObj["PackURL"] = shippingDocuments[shippingDocuments.length - 1].docName;
-                    // }
                     aManifestData.push(jQuery.extend(true, {}, oManifestDataObj));
                 });
             }else{
                 for(var i=0; i<shippingDocuments.length; i++){
                     if(shippingDocuments[i].contentType === "Label"){
                         oManifestDataObj["Labelurl"] = shippingDocuments[i].docName;
+                        oManifestDataObj["label_encode"] = shippingDocuments[i].encodedLabel;
                     }else if(shippingDocuments[i].contentType === "Packing Slip"){
                         oManifestDataObj["PackURL"] = shippingDocuments[i].docName;
                     }else if(shippingDocuments[i].contentType === "Bill Of Lading"){
@@ -2512,6 +2518,21 @@ sap.ui.define([
                 };
                 aManifestData.push(oManifestDataObj);
             };
+
+            for(var i=0; i<shippingDocuments.length; i++){
+                // if(shippingDocuments[i].contentType.toUpperCase() === "LABEL" && shippingDocuments[i].docProvider.toUpperCase() !== "GENERIC"){
+                //     aManifestData[i]["Labelurl"] = shippingDocuments[i].docName;
+                //     aManifestData[i]["label_encode"] = shippingDocuments[i].encodedLabel;
+                // }else 
+                if(shippingDocuments[i].contentType.toUpperCase() === "LABEL" && shippingDocuments[i].docProvider.toUpperCase() === "GENERIC"){
+                    if( aHUnitsFilterData.length>i-2 ){
+                        aManifestData[i-2]["Labelurl"] = shippingDocuments[i].docName;
+                        aManifestData[i-2]["label_encode"] = shippingDocuments[i].encodedLabel;
+                    }
+                }
+            };
+            
+
             var oPayload = {
                 "Vbeln": sapDeliveryNumber,
                 "ToManifestData": aManifestData
@@ -3158,12 +3179,12 @@ sap.ui.define([
                 var docType = doc.docType.toUpperCase();
                 var contentType = doc.contentType.toUpperCase();
         
-                if (docType === "PDF" && contentType !== "PACKING SLIP") {
+                if (docType === "PDF" && contentType !== "PACKING SLIP" && contentType !== "BILL OF LADING") {
                     var oIframe = new sap.ui.core.HTML({
                         content: "<iframe src='" + doc.docName + "' width='500px' height='600px'></iframe>"
                     });
                     oCarousel.addPage(oIframe);
-                } else if (docType === "PNG" && contentType !== "PACKING SLIP") {
+                } else if (docType === "PNG" && contentType !== "PACKING SLIP" && contentType !== "BILL OF LADING") {
                     var oImage = new sap.m.Image({
                         src: doc.docName,
                         class: "sapUiSmallMargin",
@@ -3171,7 +3192,7 @@ sap.ui.define([
                         height: "620px"
                     });
                     oCarousel.addPage(oImage);
-                } else if (docType === "ZPL" || docType ===  "ZPLII" && contentType !== "PACKING SLIP") {
+                } else if (docType === "ZPL" || docType ===  "ZPLII" && contentType !== "PACKING SLIP" && contentType !== "BILL OF LADING") {
                     hasZpl = true;
                     // Assume ZPL is available in response (not model)
                         if (response.shippingDocuments[i].contentType === "Label" && response.shippingDocuments[i].encodedLabel) {
@@ -3336,9 +3357,9 @@ sap.ui.define([
             eshipjetModel.setProperty("/selectPaymentType", "");
             eshipjetModel.setProperty("/shipNowShipFromInputStatus", false);
 
-            jQuery.sap.delayedCall(500, this, function() {
-                this.getView().byId("idSapDeliveryNumber").focus();
-            });
+            // jQuery.sap.delayedCall(500, this, function() {
+            //     this.getView().byId("idSapDeliveryNumber").focus();
+            // });
             
             this.onPackSectionEmptyRows();
             // this.byId("idAfterShipmentLabelDialog").close();
@@ -3347,74 +3368,127 @@ sap.ui.define([
 
         
         onShippingDocumentsViewPress:function(oEvent){
-            var currentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
-            var shippingDocuments = eshipjetModel.getProperty("/shippingDocuments");
+            var oController = this;
+            var eshipjetModel = this.getView().getModel("eshipjetModel");
             var tepmShippingDocs = eshipjetModel.getProperty("/tepmShippingDocs");
-            var docName = currentObj.docName, hasZpl = false, aPromises = [];
+            var currentObj = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
+
+            var hasZpl = false, aPromises = [];
             this._contentType = currentObj.contentType;
             if (this._contentType === "Label") {
                 this._contentType = "Carrier Label";
             }
-            this._dialogContent;
+
             var oCarousel = new sap.m.Carousel({});
-                if(currentObj.docType.toUpperCase() === "PDF" && currentObj.contentType.toUpperCase() === "LABEL"){
-                    for(var i=0; i<tepmShippingDocs.length; i++) {
-                        var oIframe = new sap.ui.core.HTML({
-                                content: "<iframe src='"+ tepmShippingDocs[i].docName +"' width='500px' height='600px'></iframe>"
-                            })
-                        oCarousel.addPage(oIframe);
-                    }
-                }else if(currentObj.docType.toUpperCase() === "PNG" && currentObj.contentType.toUpperCase() === "LABEL"){
-                    for(var i=0; i<tepmShippingDocs.length; i++) {
-                        var oImage = new sap.m.Image({
-                            class: "sapUiSmallMargin",
-                            src: tepmShippingDocs[i].docName,
-                            width: "500px",
-                            height: "620px"
-                        });
-                        oCarousel.addPage(oImage);
-                    }
-                }else if(currentObj.docType.toUpperCase() === "PDF" && currentObj.contentType.toUpperCase() === "PACKING SLIP"){
+
+            // PDF - Label
+            if (currentObj.docType.toUpperCase() === "PDF" && currentObj.contentType.toUpperCase() === "LABEL" && currentObj.contentType.toUpperCase() !== "PACKING SLIP" && currentObj.contentType.toUpperCase() !== "BILL OF LADING") {
+                tepmShippingDocs.forEach(function (doc) {
                     var oIframe = new sap.ui.core.HTML({
-                            content: "<iframe src='"+ currentObj.docName +"' width='500px' height='600px'></iframe>"
-                        })
+                        content: "<iframe src='" + doc.docName + "' width='500px' height='600px'></iframe>"
+                    });
                     oCarousel.addPage(oIframe);
-                }
-                // else if (currentObj.docType.toUpperCase() === "ZPL" || currentObj.docType.toUpperCase() ===  "ZPLII") {
-                    
-                    
-                // }
-                else{
-                    sap.m.MessageToast.show(currentObj.contentType + " doesn't exist");
-                    return
-                }
-                this._dialogContent = oCarousel;
+                });
+            }
+            // PNG - Label
+            else if (currentObj.docType.toUpperCase() === "PNG" && currentObj.contentType.toUpperCase() === "LABEL") {
+                tepmShippingDocs.forEach(function (doc) {
+                    var oImage = new sap.m.Image({
+                        class: "sapUiSmallMargin",
+                        src: doc.docName,
+                        width: "500px",
+                        height: "620px"
+                    });
+                    oCarousel.addPage(oImage);
+                });
+            }
+            // Packing Slip (PDF)
+            else if (currentObj.docType.toUpperCase() === "PDF" && currentObj.contentType.toUpperCase() === "PACKING SLIP") {
+                var oIframePacking = new sap.ui.core.HTML({
+                    content: "<iframe src='" + currentObj.docName + "' width='500px' height='600px'></iframe>"
+                });
+                oCarousel.addPage(oIframePacking);
+            }
+
+            // Bill of Lading (PDF)
+            else if (currentObj.docType.toUpperCase() === "PDF" && currentObj.contentType.toUpperCase() === "BILL OF LADING") {
+                var oIframeBOL = new sap.ui.core.HTML({
+                    content: "<iframe src='" + currentObj.docName + "' width='500px' height='600px'></iframe>"
+                });
+                oCarousel.addPage(oIframeBOL);
+            }
+
+            // ZPL / ZPLII
+            else if ((currentObj.docType.toUpperCase() === "ZPL" || currentObj.docType.toUpperCase() === "ZPLII")
+                && currentObj.contentType.toUpperCase() !== "PACKING SLIP") {
+                hasZpl = true;
+                tepmShippingDocs.forEach(function (doc) {
+                    if (doc.contentType === "Label" && doc.encodedLabel) {
+                        var zplData = doc.encodedLabel;
+                        aPromises.push(oController.convertZplToPng(zplData));
+                    }
+                });
+            }
+            else {
+                sap.m.MessageToast.show(currentObj.contentType + " doesn't exist");
+                return;
+            }
+
+            // Function to build and open dialog
+            function openDialog() {
+                var oDialog = new sap.m.Dialog({
+                    contentWidth: "500px",
+                    contentHeight: "620px",
+                    content: [oCarousel]
+                });
+
+                // Close button
                 var oDeclineButton = new sap.m.Button({
                     icon: "sap-icon://decline",
                     class: "Decline_Btn ship-now-decline_btn",
                     type: "Transparent",
                     press: function () {
-                        this._oShippingDocumentDialog.close();
-                    }.bind(this)
+                        oDialog.close();
+                    }
                 });
-                // **Create a toolbar as a custom header**
+
+                // Header with title + button
                 var oCustomHeader = new sap.m.Toolbar({
                     content: [
-                        new sap.m.Title({ text: this._contentType, level: "H2" }),
-                        new sap.m.ToolbarSpacer(), // Pushes the Decline button to the right
+                        new sap.m.Title({ text: oController._contentType, level: "H2" }),
+                        new sap.m.ToolbarSpacer(),
                         oDeclineButton
                     ]
                 });
-            //if (!this._oShippingDocumentDialog) {
-                this._oShippingDocumentDialog = new Dialog({
-                    customHeader: oCustomHeader,
-                    contentWidth: "500px",
-                    contentHeight: "620px",
-                    content: [this._dialogContent]
+
+                oDialog.setCustomHeader(oCustomHeader);
+                oController.getView().addDependent(oDialog);
+                oDialog.open();
+
+                // Store reference if needed later
+                oController._oShippingDocumentDialog = oDialog;
+            }
+
+            // If ZPL: wait for conversion first
+            if (hasZpl && aPromises.length > 0) {
+                Promise.all(aPromises).then(function (responses) {
+                    responses.forEach(function (imgUrl) {
+                        var oImage = new sap.m.Image({
+                            src: imgUrl,
+                            width: "500px",
+                            height: "620px"
+                        });
+                        oCarousel.addPage(oImage);
+                    });
+                    openDialog();
+                }).catch(function (error) {
+                    console.error("Error converting ZPL:", error);
+                    MessageBox.error("Error displaying ZPL label.");
                 });
-                this.getView().addDependent(this._oShippingDocumentDialog);
-            //}
-            this._oShippingDocumentDialog.open();
+            } else {
+                // Direct open (PDF/PNG/Packing Slip)
+                openDialog();
+            }
         },
 
         // getManifestData:function(response){
@@ -3536,7 +3610,7 @@ sap.ui.define([
             eshipjetModel.setProperty("/shippingCharges", []);
             eshipjetModel.setProperty("/shippingDocuments", []);
             eshipjetModel.setProperty("/trackingArray", []);
-            eshipjetModel.setProperty("/commonValues/ShipNowShipMethodSelectedKey","");
+            // eshipjetModel.setProperty("/commonValues/ShipNowShipMethodSelectedKey","");
             eshipjetModel.setProperty("/commonValues/accountNumber","");    
             eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", "");
             eshipjetModel.setProperty("/commonValues/shipNowBtnStatus", true);
@@ -3546,6 +3620,12 @@ sap.ui.define([
                 oController.shipNowData(sDeveliveryNumber, "ShipNow", myResolve);                                                    
             });
             await myPromise;
+            if(eshipjetModel.getProperty("/commonValues/QuoteNowShipMethodSelectedKey") !== "" && eshipjetModel.getProperty("/commonValues/QuoteNowSelectedServiceName") !== ""){
+                eshipjetModel.setProperty("/commonValues/ShipNowShipMethodSelectedKey", eshipjetModel.getProperty("/commonValues/QuoteNowShipMethodSelectedKey"));
+                eshipjetModel.setProperty("/commonValues/ShipNowShipsrvNameSelectedKey", eshipjetModel.getProperty("/commonValues/QuoteNowSelectedServiceName"));
+                eshipjetModel.setProperty("/commonValues/QuoteNowShipMethodSelectedKey", "");
+                eshipjetModel.setProperty("/commonValues/QuoteNowSelectedServiceName", "");
+            };
             var ShipNowShipMethodSelectedKey = eshipjetModel.getProperty("/commonValues/ShipNowShipMethodSelectedKey");
             var carrierName = ShipNowShipMethodSelectedKey.toUpperCase();
             if(carrierName === "UPS" || carrierName === "FEDEX" || carrierName === "USPS"){
@@ -3787,7 +3867,9 @@ sap.ui.define([
                 filters: aFilters,
                 success:function(response){
                     eshipjetModel.setProperty("/getManifestHeader", response.results);
-                    eshipjetModel.setProperty("/commonValues/ShipNowShipMethodSelectedKey", response.results[0].CarrierCode);
+                    if(response.results.length > 0){
+                        eshipjetModel.setProperty("/commonValues/ShipNowShipMethodSelectedKey", response.results[0].CarrierCode);
+                    }
                     
                     if (response && response.results.length > 0) {
                         oController.onShopNowShipMethodChangeFromQuoteNow(response.results[0].CarrierCode, response.results[0].CarrierDesc);
@@ -3835,7 +3917,7 @@ sap.ui.define([
                                 "srNo": 1,
                                 "contentType": "Label",
                                 "copiesToPrint": 1,
-                                "encodedLabel": "",
+                                "encodedLabel": aFilteredData[0].LabelEncode,
                                 "docProvider": aFilteredData[0].Carriertype,
                                 "docType": aFilteredData[0].Labelurl.split(".")[aFilteredData[0].Labelurl.split(".").length-1],
                                 "docName": aFilteredData[0].Labelurl,
@@ -3846,7 +3928,7 @@ sap.ui.define([
                                         "srNo": i+1,
                                         "contentType": "Label",
                                         "copiesToPrint": 1,
-                                        "encodedLabel": "",
+                                        "encodedLabel": aFilteredData[i].LabelEncode,
                                         "docProvider": aFilteredData[i].Carriertype,
                                         "docType": aFilteredData[i].Labelurl.split(".")[aFilteredData[i].Labelurl.split(".").length-1],
                                         "docName": aFilteredData[i].Labelurl,
@@ -3860,7 +3942,7 @@ sap.ui.define([
                                 "srNo": 2,
                                 "contentType": "Packing Slip",
                                 "copiesToPrint": 1,
-                                "encodedLabel": "",
+                                "encodedLabel": aFilteredData[0].LabelEncode,
                                 "docProvider": "Eshipjet",
                                 "docType": aFilteredData[0].PackURL.split(".")[aFilteredData[0].PackURL.split(".").length-1],
                                 "docName": aFilteredData[0].PackURL,
@@ -3872,7 +3954,7 @@ sap.ui.define([
                                     "srNo": 3,
                                     "contentType": "Bill Of lading",
                                     "copiesToPrint": 1,
-                                    "encodedLabel": "",
+                                    "encodedLabel": aFilteredData[0].LabelEncode,
                                     "docProvider": "Eshipjet",
                                     "docType": aFilteredData[0].BolURL.split(".")[aFilteredData[0].BolURL.split(".").length-1],
                                     "docName": aFilteredData[0].BolURL,
@@ -4626,9 +4708,11 @@ sap.ui.define([
             this.byId("_IDGenAlcoholEditDialog").close();
         },
 
-         HUDialogPress: function() {
+        HUDialogPress: function(oEvent) {
             var oView = this.getView();
-
+            var oContext = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
+            var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
+            eshipjetModel.setProperty("/currentHuObj", oContext)
             if (!this.byId("_IDGenHULabelDialog")) {
                 Fragment.load({
                     id: oView.getId(),
@@ -4646,6 +4730,30 @@ sap.ui.define([
         onCloseAlcoholDialog: function() {
             this.byId("_IDGenHULabelDialog").close();
         },
+            onDownloadHuLabelAsPng: function() {
+                var fnCapture = function () {
+                var oLayout = this.byId("idHuLabelLayout").getDomRef();
+                window.html2canvas(oLayout).then(function(canvas) {
+                    var link = document.createElement("a");
+                    link.download = "HULabel.png";
+                    link.href = canvas.toDataURL("image/png");
+                    link.click();
+                });
+            }.bind(this);
+            if (!window.html2canvas) {
+                jQuery.sap.includeScript(
+                    "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js",
+                    "html2canvasLoaded",
+                    fnCapture
+                );
+            } else {
+                fnCapture();
+            }
+        },
+formatQty: function(value) {
+    if (!value) return "";
+    return parseFloat(value); // removes trailing zeros
+},
 
         onOpenFedExHoldAtLoctionEditDialog: function() {
             var oView = this.getView();
@@ -5914,9 +6022,9 @@ sap.ui.define([
                 eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", "0"); 
                 eshipjetModel.setProperty("/commonValues/shipNowBtnStatus", true);
                 eshipjetModel.setProperty("/commonValues/showShipType", false);
-                jQuery.sap.delayedCall(500, this, function() {
-                    this.getView().byId("idSapDeliveryNumber").focus();
-                });
+                // jQuery.sap.delayedCall(500, this, function() {
+                //     this.getView().byId("idSapDeliveryNumber").focus();
+                // });
 
                 var aBusinessPartnersTable = eshipjetModel.getProperty("/BusinessPartners") || [];
                 while (aBusinessPartnersTable.length < 5) {
@@ -18551,17 +18659,17 @@ sap.ui.define([
                 "TotalWeight": "020"
             },
             "Shipper": {
-                "COMPANY": "Eshipjet Software Inc.",
-                "CONTACT": "Steve Marsh",
-                "ADDRESS_LINE1": "5717 Legacy",
-                "ADDRESS_LINE2": "Suite 250",
-                "ADDRESS_LINE3": null,
-                "CITY": "Plano",
-                "STATE": "TX",
-                "ZIPCODE": "75024",
-                "COUNTRY": "US",
-                "PHONE": "(888) 464 2360",
-                "EMAIL": "info@eshipjet.ai"
+                "COMPANY": oShipDataModel.getProperty("/ShipFromAddress/ShipFromCOMPANY"),
+                "CONTACT": oShipDataModel.getProperty("/ShipFromAddress/ShipFromCONTACT"),
+                "ADDRESS_LINE1": oShipDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE1"),
+                "ADDRESS_LINE2": oShipDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE2"),
+                "ADDRESS_LINE3": oShipDataModel.getProperty("/ShipFromAddress/ShipFromADDRESS_LINE3"),
+                "CITY": oShipDataModel.getProperty("/ShipFromAddress/ShipFromCITY"),
+                "STATE": oShipDataModel.getProperty("/ShipFromAddress/ShipFromSTATE"),
+                "ZIPCODE": oShipDataModel.getProperty("/ShipFromAddress/ShipFromZIPCODE"),
+                "COUNTRY": oShipDataModel.getProperty("/ShipFromAddress/ShipFromCOUNTRY"),
+                "PHONE": oShipDataModel.getProperty("/ShipFromAddress/ShipFromPHONE"),
+                "EMAIL": oShipDataModel.getProperty("/ShipFromAddress/ShipFromEMAIL")
             },
             "ShipTo": {
                 "COMPANY": oShipDataModel.getProperty("/ShipToAddress/FullName"),
@@ -18578,17 +18686,17 @@ sap.ui.define([
                 "TAXID": null
             },
             "SoldTo": {
-                "COMPANY": "",
-                "CONTACT": "",
-                "ADDRESS_LINE1": "",
-                "ADDRESS_LINE2": "",
-                "ADDRESS_LINE3": "",
-                "CITY": "",
-                "STATE": "",
-                "ZIPCODE": "",
-                "COUNTRY": "",
-                "PHONE": "",
-                "EMAIL": ""
+                "COMPANY": oShipDataModel.getProperty("/ShipToAddress/FullName"),
+                "CONTACT": oShipDataModel.getProperty("/ShipToAddress/BusinessPartnerName1"),
+                "ADDRESS_LINE1": oShipDataModel.getProperty("/ShipToAddress/StreetName"),
+                "ADDRESS_LINE2": "Suite 250",
+                "ADDRESS_LINE3": null,
+                "CITY": oShipDataModel.getProperty("/ShipToAddress/CityName"),
+                "STATE": oShipDataModel.getProperty("/ShipToAddress/Region"),
+                "ZIPCODE": oShipDataModel.getProperty("/ShipToAddress/PostalCode"),
+                "COUNTRY": oShipDataModel.getProperty("/ShipToAddress/Country"),
+                "PHONE": oShipDataModel.getProperty("/ShipToAddress/PhoneNumber"),
+                "EMAIL": "info@eshipjet.ai",
             },
             "Packages": [
                 {
@@ -18625,7 +18733,7 @@ sap.ui.define([
                     "Sno": 1,
                     "HU": 1371,
                     "Weight": "11",
-                    "Dimension": "5x5x5",
+                    "Dimension": "10X12X12",
                     "PackageSpecialServiceTyeps": []
                 }
             ],
@@ -18733,7 +18841,7 @@ sap.ui.define([
                     "ServiceName": "",
                     "PaymentType": "Sender",
                     "ShippingAccount": "B24W72",
-                    "BillingAccount": "",
+                    "BillingAccount": "89W74E",
                     "BillingCountry": "",
                     "BillingZipCode": "",
                     "Reference1": "EWM17-CU02",
@@ -18743,30 +18851,30 @@ sap.ui.define([
                     "Note": "",
                     "UserId": "6ljUpEbuu1OlOk7ow932lsxXHISUET0WKjTn59GzQ5MRdEbA",
                     "Password": "ioZmsfcbrzlWfGh7wGMhqHL6sY4EAaKzZObullipni0cEGJGChjFmGpkcdCWQynK",
-                    "AccessKey": ""
-                },
-                {
-                    "Carrier": "USPS",
-                    "ShippingAccount": "3087617",
-                    "PaymentType": "Sender",
-                    "BillingAccount": "",
-                    "BillingCountry": "",
-                    "BillingZipCode": "",
-                    "Note": "",
-                    "Reference1": "",
-                    "Reference2": "",
-                    "Reference3": "",
-                    "Reference4": "",
-                    "ServiceName": "Priority",
-                    "costCenter": "",
-                    "PoNo": "",
-                    "InvoiceNo": "",
-                    "UserId": "3087617",
-                    "Password": "October2024!",
                     "AccessKey": null
                 },
+                // {
+                //     "Carrier": "USPS",
+                //     "ShippingAccount": "3087617",
+                //     "PaymentType": "Sender",
+                //     "BillingAccount": "",
+                //     "BillingCountry": "",
+                //     "BillingZipCode": "",
+                //     "Note": "",
+                //     "Reference1": "",
+                //     "Reference2": "",
+                //     "Reference3": "",
+                //     "Reference4": "",
+                //     "ServiceName": "Priority",
+                //     "costCenter": "",
+                //     "PoNo": "",
+                //     "InvoiceNo": "",
+                //     "UserId": "3087617",
+                //     "Password": "October2024!",
+                //     "AccessKey": null
+                // },
                 {
-                    "Carrier": "dhl",
+                    "Carrier": "DHL",
                     "ServiceName": "P",
                     "PaymentType": "Sender",
                     "ShippingAccount": "965278629",
@@ -18780,8 +18888,8 @@ sap.ui.define([
                     "Note": "",
                     "UserId": "apT2vB7mV1qR1b",
                     "Password": "U#3mO^1vY!5mT@0j",
-                    "AccessKey": "",
-                    "RefreshKey": ""
+                    "AccessKey": null,
+                    "RefreshKey": null
                 }
             ],
             "ShipFrom": {
@@ -18797,7 +18905,7 @@ sap.ui.define([
                 "PHONE": oShipDataModel.getProperty("/ShipFromAddress/ShipFromPHONE"),
                 "EMAIL": oShipDataModel.getProperty("/ShipFromAddress/ShipFromEMAIL")
             }
-        };       
+        };
         oController.onOpenBusyDialog();
         // var sPath = "https://eshipjet-stg-scpn-byargfehdgdtf8f3.francecentral-01.azurewebsites.net/Rateall "; 
         var sPath = "https://carrier-api-v1.eshipjet.site/rateall"
@@ -18851,16 +18959,15 @@ sap.ui.define([
                             eshipjetModel.setProperty("/shippingCharges", aShippingCharges);
                         }
                         
-
                     }
                 }
                 // oController.onCloseBusyDialog();
             },
             error: function (oError) {
+                sap.m.MessageBox.error(oError.statusText);
                 // Handle error            
-                reject();    
-                var errMsg = JSON.parse(oError.responseText).error.message.value;
-                sap.m.MessageBox.error(errMsg);
+                // reject();    
+                // var errMsg = JSON.parse(oError.responseText).error.message.value;
                 oController.onCloseBusyDialog();
                 
             }
@@ -18890,6 +18997,7 @@ sap.ui.define([
 
 
     onOpenShipNowShippinRateDialog:function(){    
+        oController.onOpenBusyDialog();
         var oView = oController.getView();
         if (!oController.byId("_IDGenShipNowShppindRateDialog")) {
             Fragment.load({
@@ -18903,6 +19011,7 @@ sap.ui.define([
         } else {
             this.byId("_IDGenShipNowShppindRateDialog").open(); 
         }
+        oController.onCloseBusyDialog();
     },
     onCloseShipNowShippinRateDialog:function(){
         oController.byId("_ShippingRateTableId").removeSelections();
@@ -18925,10 +19034,10 @@ sap.ui.define([
 
             eshipjetModel.setProperty("/shipRateSelectItem", oCarrier);  
             oController.oSelectObj = aSelectedItems[0].getBindingContext("eshipjetModel").getObject(); 
-            eshipjetModel.setProperty("/commonValues/ShipNowShipMethodSelectedKey", oController.oSelectObj.Carrier.toUpperCase());
-            eshipjetModel.setProperty("/commonValues/ShipNowSelectedServiceName", oController.oSelectObj.serviceName);
+            eshipjetModel.setProperty("/commonValues/QuoteNowShipMethodSelectedKey", oController.oSelectObj.Carrier.toUpperCase());
+            eshipjetModel.setProperty("/commonValues/QuoteNowSelectedServiceName", oController.oSelectObj.serviceName);
 
-            oController.onShopNowShipMethodChangeFromQuoteNow(eshipjetModel.getProperty("/commonValues/ShipNowShipMethodSelectedKey"), oController.oSelectObj.serviceName);
+            oController.onShopNowShipMethodChangeFromQuoteNow(oController.oSelectObj.Carrier.toUpperCase(), oController.oSelectObj.serviceName);
             // eshipjetModel.setProperty("/commonValues/ShipNowShipsrvNameSelectedKey", oController._getShippingType(oController.oSelectObj.serviceCode));
             
             
@@ -18939,19 +19048,69 @@ sap.ui.define([
             
         if(sFromViewName === "QUOTE_NOW"){
             var sKey = "ShipNow";
-                eshipjetModel.setProperty("/commonValues/toolPageHeader", false);
-                eshipjetModel.setProperty("/commonValues/allViewsFooter", false);
-                eshipjetModel.setProperty("/commonValues/shipNowViewFooter", true);
-                eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
-                eshipjetModel.setProperty("/commonValues/routingGuidFooter", false);
-                eshipjetModel.setProperty("/showDarkThemeSwitch", false);
-                eshipjetModel.setProperty("/commonValues/darkTheme", false);
-                document.body.classList.remove("dark-theme");
-                eshipjetModel.setProperty("/commonValues/shipNowGetBtn", true);
-                eshipjetModel.setProperty("/sFromViewName", "SHIP_NOW");
-                oController.onPackSectionEmptyRows();
-            eshipjetModel.setProperty("/SideNavigation", false);
+            //     eshipjetModel.setProperty("/commonValues/toolPageHeader", false);
+            //     eshipjetModel.setProperty("/commonValues/allViewsFooter", false);
+            //     eshipjetModel.setProperty("/commonValues/shipNowViewFooter", true);
+            //     eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
+            //     eshipjetModel.setProperty("/commonValues/routingGuidFooter", false);
+            //     eshipjetModel.setProperty("/showDarkThemeSwitch", false);
+            //     eshipjetModel.setProperty("/commonValues/darkTheme", false);
+            //     document.body.classList.remove("dark-theme");
+            //     eshipjetModel.setProperty("/commonValues/shipNowGetBtn", true);
+            //     eshipjetModel.setProperty("/sFromViewName", "SHIP_NOW");
+            //     oController.onPackSectionEmptyRows();
+            // eshipjetModel.setProperty("/SideNavigation", false);
+            // this.byId("pageContainer").to(this.getView().createId(sKey));
+
+            eshipjetModel.setProperty("/commonValues/toolPageHeader", false);
+            eshipjetModel.setProperty("/commonValues/allViewsFooter", false);
+            eshipjetModel.setProperty("/commonValues/shipNowViewFooter", true);
+            eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
+            eshipjetModel.setProperty("/sFromViewName", "SHIP_NOW");
             this.byId("pageContainer").to(this.getView().createId(sKey));
+            var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
+            var obj = {
+                "ShipFromCONTACT": "Steve Marsh",
+                "ShipFromCOMPANY": "Eshipjet Software Inc.",
+                "ShipFromPHONE": "(888) 464-2360",
+                "ShipFromEMAIL": "info@eshipjet.ai",
+                "ShipFromCITY": "Plano",
+                "ShipFromSTATE": "TX",
+                "ShipFromCOUNTRY": "US",
+                "ShipFromZIPCODE": "75024",
+                "ShipFromADDRESS_LINE1": "5717 Legacy",
+                "ShipFromADDRESS_LINE2": "Suite 250",
+                "LocationType": "Commercial"
+            };
+            ShipNowDataModel.setProperty("/ShipFromAddress", obj);
+            ShipNowDataModel.setProperty("/ShipToAddress", "");
+            eshipjetModel.setProperty("/BusinessPartners", []);
+            eshipjetModel.setProperty("/commonValues/shipNowGetBtn", true);
+            eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", "0"); 
+            eshipjetModel.setProperty("/commonValues/shipNowBtnStatus", true);
+            eshipjetModel.setProperty("/commonValues/showShipType", false);
+            // jQuery.sap.delayedCall(500, this, function() {
+            //     this.getView().byId("idSapDeliveryNumber").focus();
+            // });
+
+            var aBusinessPartnersTable = eshipjetModel.getProperty("/BusinessPartners") || [];
+            while (aBusinessPartnersTable.length < 5) {
+                aBusinessPartnersTable.push(
+                    { PartnerType: "Ship From", "FullName": "Eshipjet Software Inc.", "BusinessPartnerName1":"Steve Marsh", "StreetName":"5717 Legacy", "HouseNumber":"Suite 250", "Region":"Plano", "CityName":"TX", "PostalCode":"75024", "Country":"US", "PhoneNumber":"(888) 464-2360", "email":"info@eshipjet.ai" },
+                    { PartnerType: "Shipper", "FullName": "Eshipjet Software Inc.", "BusinessPartnerName1":"Steve Marsh", "StreetName":"5717 Legacy", "HouseNumber":"Suite 250", "Region":"Plano", "CityName":"TX", "PostalCode":"75024", "Country":"US", "PhoneNumber":"(888) 464-2360", "email":"info@eshipjet.ai" },
+                    { PartnerType: "Freight Forwarder", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  },
+                    { PartnerType: "Importer", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  },
+                    { PartnerType: "Third Party", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  }
+                );
+            }
+
+            eshipjetModel.setProperty("/BusinessPartners", aBusinessPartnersTable);
+
+            var oIconTabBar = this.byId("idIconTabBarFiori2");
+            oIconTabBar.setSelectedKey("Pack");
+
+            oController.onPackSectionEmptyRows();
+            oController.getTodayShipments();
             
             oController.onShipNowNavigateInitialProcess();
         }              

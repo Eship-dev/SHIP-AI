@@ -3434,3 +3434,58 @@ body.dark-theme .ReversePGIBtnStyle span {
 }
 
 
+/* Outer border */
+.huLabelContainer {
+  border: 1px dotted black;
+  padding: 10px;
+  background-color: #fff;
+}
+
+/* Big number at bottom */
+.bigNumber {
+    font-size: 105px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 0px;
+    margin-left: 79px;
+}
+
+/* Horizontal line separator */
+.huLine {
+  border-bottom: 1px solid black;
+  margin: 8px 0;
+  width: 100%;
+}
+
+/* Header (Ship To left, Date right) */
+.huLabelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+.huLabelLeft { text-align: left; flex: 1; }
+.huLabelRight { text-align: right; flex: 1; }
+
+/* Count row: Serial - UPS - Count */
+.huLabelCountRow {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  font-weight: bold;
+  width: 100%;
+}
+.huBold{
+  font-weight: bold;
+  font-size: large;
+}
+.huSerialNumber { text-align: left; flex: 1; }
+.huCarrier { text-align: center; flex: 1; }
+.huCountText { text-align: right; flex: 1; }
+
+/* Table styling */
+.sapMListTbl {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+.sapMListTblCell { text-align: center; }

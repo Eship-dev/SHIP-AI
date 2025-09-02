@@ -78,12 +78,16 @@ sap.ui.define([
         },
 
         formatCustomDateTimeForOrders: function (oDate) {
-            if (!oDate) return "";
+            if (!oDate) {
+                return "";
+            }
+            const oJSDate = oDate instanceof Date ? oDate : new Date(oDate);
             const oDateFormat = sap.ui.core.format.DateFormat.getDateTimeInstance({
-                pattern: "MM/dd/yyyy HH:mm"
+                pattern: "MM/dd/yyyy HH:mm",
+                UTC: false
             });
-            return oDateFormat.format(new Date(oDate));
-          },
+            return oDateFormat.format(oJSDate);
+        },
 
           formatCustomDateShipmentTable: function (sDateStr) {
             if (!sDateStr) return "";

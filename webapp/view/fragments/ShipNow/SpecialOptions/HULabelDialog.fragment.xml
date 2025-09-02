@@ -1,40 +1,91 @@
-<core:FragmentDefinition xmlns="sap.m" 
-    xmlns:core="sap.ui.core" 
-    xmlns:f="sap.ui.layout.form">
-
-    <Dialog id="_IDGenHULabelDialog"
-            class="sapUiSmallMargin"
-            showHeader="false"
-            contentWidth="60vh"
-            contentHeight="75%"
-            verticalScrolling="false"
-            horizontalScrolling="false"
-           >
-        
-       
-            <Toolbar>
-                <Title text="HULabel" />
-                <ToolbarSpacer />
-                <Button icon="sap-icon://decline" press="onCloseAlcoholDialog" />
-            </Toolbar>
-       <!-- <content>
-        <VBox width="100%" height="100%">
-           
-            <core:HTML
-                id="idHUPdfViewer"
-                content="<iframe src='' width='100%' height='600px' frameborder='0'></iframe>" />
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+<Dialog id="_IDGenHULabelDialog"
+    showHeader="false"
+    contentWidth="60vh"
+    contentHeight="75%">
+    <!-- Toolbar -->
+    <Toolbar>
+        <Title text="HU Label" />
+        <ToolbarSpacer />
+        <Button icon="sap-icon://decline" press="onCloseAlcoholDialog" />
+    </Toolbar>
+    <content>
+        <VBox id="idHuLabelLayout" class="huLabelContainer sapUiSmallMargin">
+            <!-- Ship To & Date Block -->
+            <HBox class="huLabelHeader">
+                <VBox class="huLabelLeft">
+                    <Text text="Ship To:" />
+                    <Text text="{ShipNowDataModel>/ShipToAddress/FullName}" class="huBold"/>
+                    <Text text="{ShipNowDataModel>/ShipToAddress/StreetName}" class="huBold" />
+                    <Text text="{ShipNowDataModel>/ShipToAddress/Region} {ShipNowDataModel>/ShipToAddress/CityName}" class="huBold"/>
+                </VBox>
+                <VBox class="huLabelRight">
+                    <Text text="Date: {path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM.dd.yyyy'}}" />
+                    <Text text="Del #: {eshipjetModel>/commonValues/sapDeliveryNumber}" class="sapUiSmallMarginTop" />
+                    <Text text="PO #: {eshipjetModel>/commonValues/PurchaseOrder}" class="sapUiSmallMarginTop"/>
+                </VBox>
+            </HBox>
+            <!-- Count Row -->
+            <HBox class="huLabelCountRow">
+                <Text text="1" class="huSerialNumber sapUiTinyMarginEnd"/>
+                <Text text="OF" class="huSerialNumber sapUiTinyMarginEnd"/>
+                <Text text="{eshipjetModel>/currentHuObj/SerialNumber}" class="huCountText sapUiLargeMarginEnd"/>
+                 <Text text="{eshipjetModel>/currentHuObj/CarrierCode}" class="huCarrier "/>
+            </HBox>
+            <HBox class="huLine"/>
+            <!-- HU ID -->
+            <Text text="HU ID: {eshipjetModel>/currentHuObj/Hunumber}" />
+<VBox class="sapUiSmallMargin">
+    <!-- Static Demo QR PNG -->
+    <Image
+        src="/css/images/testqrups.png"
+        width="300px"
+        height="40px"
+    />
+</VBox>
+            <HBox class="huLine"/>
+            <!-- Material Table -->
+            <Table inset="false" fixedLayout="true" width="100%">
+                <columns>
+                    <Column hAlign="Center"><Text text="MATERIAL" /></Column>
+                    <Column hAlign="Center"><Text text="QTY" /></Column>
+                    <Column hAlign="Center"><Text text="UOM" /></Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{eshipjetModel>/currentHuObj/Delmatnr}" />
+                            <!-- formatter ensures Qty = 3 not 3.000000000 -->
+                            <Text text="{path: 'eshipjetModel>/currentHuObj/Qty', formatter: '.formatQty'}" />
+                            <Text text="{eshipjetModel>/currentHuObj/Meins}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            <HBox class="huLine"/>
+            <!-- Weight & Pallets -->
+           <HBox class="huWeightRow" justifyContent="SpaceBetween">
+                <Text text="Gross Weight" class="huBold"/>
+                <Text text="{eshipjetModel>/currentHuObj/Totalweight} LB" class="huBold"/>
+            </HBox>
+            <HBox class="huWeightRow" justifyContent="SpaceBetween">
+                <Text text="Tot. No. of Pallets" class="huBold"/>
+                <Text text=" {eshipjetModel>/currentHuObj/BoxCount}" class="sapUiLargeMarginEnd huBold"/>
+                <Text text="MIXED PALLET" />
+            </HBox>
+            <HBox class="huLine"/>
+            <!-- Big Number -->
+            <Text text="9180" class="bigNumber"/>
         </VBox>
-    </content> -->
-
-    
-
-        <footer>
-            <OverflowToolbar class="sapMPopoverFooter1">
-                <Button text="Cancel" press="onCloseAlcoholDialog" />
-                <ToolbarSpacer />
-                <Button text="Save" type="Emphasized" press="onCloseAlcoholDialog" />
-            </OverflowToolbar>
-        </footer>
-
-    </Dialog>
+    </content>
+    <!-- Footer -->
+    <footer>
+        <OverflowToolbar>
+            <Button text="Close" press="onCloseAlcoholDialog"/>
+            <ToolbarSpacer/>
+            <Button text="Print" press="onDownloadHuLabelAsPng" />
+        </OverflowToolbar>
+    </footer>
+</Dialog>
 </core:FragmentDefinition>
