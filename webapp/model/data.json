@@ -12424,6 +12424,16 @@
                     "ShippingType": "AB"
                 }
             ]
+        },
+        {
+            "CarrierName": "SAIA",
+            "carrierServices": [
+                {
+                    "ServiceName": "Standard",
+                    "ServiceCode": "STND",
+                    "ShippingType": "AB"
+                }
+            ]
         }
     ],
     "ordersFilterData": [

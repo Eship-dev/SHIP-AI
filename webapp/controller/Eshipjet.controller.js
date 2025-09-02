@@ -64,17 +64,28 @@ sap.ui.define([
                 });
             }, 1000);
 
-            this.getView().addEventDelegate({ 
-                onkeydown: function (oEvent) {                // <- oEvent is provided here
-            if (oEvent.key === "F2" || oEvent.keyCode === 113 || oEvent.which === 113) {
-                oEvent.preventDefault();
-                var oBtn = this.byId("idShipNowBtn");
-                if (oBtn && oBtn.getEnabled() && oBtn.getVisible()) {
-                oBtn.firePress();
-                }
-            }
-            }.bind(this)                                  // <- keep controller context
-         }, this);
+                    this.getView().addEventDelegate({
+                onkeydown: function (oEvent) {
+                    var mKeyActions = {
+                        // keyCode : buttonId
+                        113: "idShipNowBtn",   // F2
+                        114: "idPackAllBtn",   // F3
+                        115: "clearbtnf4",     // F4
+                        119: "shipNowRecentShips",       // F5
+                        117: "idPackBtn"       // F6
+                    };
+
+                    var sBtnId = mKeyActions[oEvent.keyCode];
+                    if (sBtnId) {
+                        oEvent.preventDefault();
+                        var oBtn = this.byId(sBtnId);
+                        if (oBtn && oBtn.getEnabled() && oBtn.getVisible()) {
+                            oBtn.firePress();
+                        }
+                    }
+                }.bind(this) // keep controller context
+            }, this);
+
 
             this._pageSize = 50;
             this._currentPage = 1;
@@ -1812,7 +1823,7 @@ sap.ui.define([
             }else if(carrier && carrier.toUpperCase() === "USPS"){
                 id = "3087617";
                 password = "October2024!";
-            }else if(carrier && carrier.toUpperCase() === "ABFS"){
+            }else if(carrier && carrier.toUpperCase() === "ABFS" || carrier && carrier.toUpperCase() === "SAIA" ){
                 id = "ABFESHIPJET";
                 password = "Legacy!@3";
                 AccessKey= "JVG9SX85";
@@ -2068,6 +2079,8 @@ sap.ui.define([
                 var sPath;
                 if(carrier === "ABFS"){
                     sPath = "https://carrier-api-v1.eshipjet.site/ABF";
+                } else if (carrier === "SAIA") {
+                    sPath = "https://carrier-api-v1.eshipjet.site/generic";
                 }else{
                     sPath = "https://carrier-api-v1.eshipjet.site/"+carrier;
                     // sPath = "https://eshipjet-qas.drivemedical.com/qas/"+carrier;
