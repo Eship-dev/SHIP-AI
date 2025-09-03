@@ -546,7 +546,9 @@ body.dark-theme {
     border: none;
   }
 
-
+.huimg{
+      margin-left: 90px !important;
+}
   .scan-ship-table__toolbar .sapUiIcon::before {
     color: #fff;
   }

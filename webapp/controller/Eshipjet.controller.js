@@ -64,27 +64,65 @@ sap.ui.define([
                 });
             }, 1000);
 
-                    this.getView().addEventDelegate({
-                onkeydown: function (oEvent) {
-                    var mKeyActions = {
-                        // keyCode : buttonId
-                        113: "idShipNowBtn",   // F2
-                        114: "idPackAllBtn",   // F3
-                        115: "clearbtnf4",     // F4
-                        119: "shipNowRecentShips",       // F5
-                        117: "idPackBtn"       // F6
-                    };
 
-                    var sBtnId = mKeyActions[oEvent.keyCode];
-                    if (sBtnId) {
-                        oEvent.preventDefault();
-                        var oBtn = this.byId(sBtnId);
-                        if (oBtn && oBtn.getEnabled() && oBtn.getVisible()) {
-                            oBtn.firePress();
-                        }
-                    }
-                }.bind(this) // keep controller context
-            }, this);
+
+                 
+            
+                
+// this.getView().addEventDelegate({
+//     onkeydown: function (oEvent) {
+//         var mKeyMap = {
+//             113: "idShipNowBtn",      // F2
+//             114: "idPackAllBtn",      // F3
+//             115: "clearbtnf4",        // F4
+//             117: "idPackBtn",         // F6
+//             121: "shipNowRecentShips" // F10
+//         };
+
+//         var sBtnId = mKeyMap[oEvent.keyCode];
+//         if (sBtnId) {
+//             oEvent.preventDefault();
+//             var oBtn = this.byId(sBtnId);
+//             console.log("Key pressed:", oEvent.keyCode, "→ Button:", sBtnId, "Found:", !!oBtn);
+
+//             if (oBtn && oBtn.getEnabled() && oBtn.getVisible()) {
+//                 console.log("Firing press for", sBtnId);
+//                 oBtn.firePress();
+//             }
+//         }
+//     }.bind(this)
+// }, this);
+
+// Attach global keydown (so F3/F10 aren’t eaten by browser UI before UI5 gets them)
+    document.addEventListener("keydown", function (oEvent) {
+        var mKeyMap = {
+            113: "idShipNowBtn",      // F2
+            114: "idPackAllBtn",      // F3
+            115: "clearbtnf4",        // F4
+            117: "idPackBtn",         // F6
+            121: "shipNowRecentShips" // F10
+        };
+
+        var sBtnId = mKeyMap[oEvent.keyCode];
+        if (sBtnId) {
+            console.log("Pressed:", oEvent.key, oEvent.keyCode, "→", sBtnId);
+            oEvent.preventDefault();
+
+            // Use view.createId() so local IDs are resolved
+            var oBtn = oController.byId(sBtnId);
+
+            if (oBtn && oBtn.getEnabled() && oBtn.getVisible()) {
+                oBtn.firePress();
+            } else {
+                console.warn("Button not found or not enabled/visible:", sBtnId);
+            }
+        }
+    });
+
+
+
+
+
 
 
             this._pageSize = 50;
@@ -4733,6 +4771,12 @@ sap.ui.define([
             var oContext = oEvent.getSource().getBindingContext("eshipjetModel").getObject();
             var eshipjetModel = oController.getOwnerComponent().getModel("eshipjetModel");
             eshipjetModel.setProperty("/currentHuObj", oContext)
+
+            // Set updated object
+            eshipjetModel.setProperty("/currentHuObj/lastFourNums", oContext.Delivery.slice(-4));
+
+
+
             if (!this.byId("_IDGenHULabelDialog")) {
                 Fragment.load({
                     id: oView.getId(),
@@ -4774,6 +4818,14 @@ formatQty: function(value) {
     if (!value) return "";
     return parseFloat(value); // removes trailing zeros
 },
+
+formatDeliveryNumber: function (sDeliveryNumber) {
+    if (sDeliveryNumber && sDeliveryNumber.length >= 4) {
+        return + sDeliveryNumber.slice(-4); // last 4 digits
+    }
+    return sD,eliveryNumber || "";
+},
+
 
         onOpenFedExHoldAtLoctionEditDialog: function() {
             var oView = this.getView();

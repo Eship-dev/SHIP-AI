@@ -3443,11 +3443,11 @@ body.dark-theme .ReversePGIBtnStyle span {
 
 /* Big number at bottom */
 .bigNumber {
-    font-size: 105px;
+    font-size: 112px;
     font-weight: bold;
     text-align: center;
-    margin-top: 0px;
-    margin-left: 79px;
+    margin-top: 39px;
+    margin-left: 136px;
 }
 
 /* Horizontal line separator */

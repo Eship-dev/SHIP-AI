@@ -36,7 +36,7 @@
             <HBox class="huLine"/>
             <!-- HU ID -->
             <Text text="HU ID: {eshipjetModel>/currentHuObj/Hunumber}" />
-<VBox class="sapUiSmallMargin">
+<VBox class="sapUiSmallMargin sapUiSmallMarginBegin huimg">
     <!-- Static Demo QR PNG -->
     <Image
         src="/css/images/testqrups.png"
@@ -76,7 +76,7 @@
             </HBox>
             <HBox class="huLine"/>
             <!-- Big Number -->
-            <Text text="9180" class="bigNumber"/>
+            <Text text="{eshipjetModel>/currentHuObj/lastFourNums}" class="bigNumber"/>
         </VBox>
     </content>
     <!-- Footer -->
