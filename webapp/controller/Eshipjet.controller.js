@@ -261,8 +261,13 @@ sap.ui.define([
         },
 
         onItemSelect: function (oEvent) {
-            var oItem = oEvent.getParameter("item");
-            var sKey = oItem.getKey();            
+            if(oEvent === "ShipNow"){
+                var sKey = "ShipNow";
+            }else{
+                var oItem = oEvent.getParameter("item");
+                var sKey = oItem.getKey();
+            }
+                        
             // eshipjetModel.setSizeLimit(9999999);
             eshipjetModel.setProperty("/commonValues/sapDeliveryNumber",""); //80000001
             var oToolPage = this.byId("toolPage");
@@ -3431,8 +3436,8 @@ sap.ui.define([
                 oCarousel.addPage(oIframeBOL);
             }
 
-            // ZPL / ZPLII
-            else if ((currentObj.docType.toUpperCase() === "ZPL" || currentObj.docType.toUpperCase() === "ZPLII")
+            // ZPL / ZPLII / TXT
+            else if ((currentObj.docType.toUpperCase() === "ZPL" || currentObj.docType.toUpperCase() === "ZPLII" || currentObj.docType.toUpperCase() === "TXT")
                 && currentObj.contentType.toUpperCase() !== "PACKING SLIP") {
                 hasZpl = true;
                 tepmShippingDocs.forEach(function (doc) {
@@ -3633,21 +3638,23 @@ sap.ui.define([
                 oController.shipNowData(sDeveliveryNumber, "ShipNow", myResolve);                                                    
             });
             await myPromise;
-            if(eshipjetModel.getProperty("/commonValues/QuoteNowShipMethodSelectedKey") !== "" && eshipjetModel.getProperty("/commonValues/QuoteNowSelectedServiceName") !== ""){
+            if(eshipjetModel.getProperty("/commonValues/QuoteNowShipMethodSelectedKey") !== "" && eshipjetModel.getProperty("/commonValues/QuoteNowSelectedServiceName") !== "" && eshipjetModel.getProperty("/commonValues/QuoteNowShipMethodSelectedKey") !== undefined && eshipjetModel.getProperty("/commonValues/QuoteNowSelectedServiceName") !== undefined){
                 eshipjetModel.setProperty("/commonValues/ShipNowShipMethodSelectedKey", eshipjetModel.getProperty("/commonValues/QuoteNowShipMethodSelectedKey"));
                 eshipjetModel.setProperty("/commonValues/ShipNowShipsrvNameSelectedKey", eshipjetModel.getProperty("/commonValues/QuoteNowSelectedServiceName"));
                 eshipjetModel.setProperty("/commonValues/QuoteNowShipMethodSelectedKey", "");
                 eshipjetModel.setProperty("/commonValues/QuoteNowSelectedServiceName", "");
             };
-            var ShipNowShipMethodSelectedKey = eshipjetModel.getProperty("/commonValues/ShipNowShipMethodSelectedKey");
-            var carrierName = ShipNowShipMethodSelectedKey.toUpperCase();
-            if(carrierName === "UPS" || carrierName === "FEDEX" || carrierName === "USPS"){
-                eshipjetModel.setProperty("/hideTrackPackDetails", false);
-            }else{
-                eshipjetModel.setProperty("/hideTrackPackDetails", true);
-                eshipjetModel.setProperty("/commonValues/lengthOfDimensions", "40");
-                eshipjetModel.setProperty("/commonValues/widthOfDimensions", "48");
-                eshipjetModel.setProperty("/commonValues/heightOfDimensions", "");
+            var carrierName = eshipjetModel.getProperty("/commonValues/ShipNowShipMethodSelectedKey");
+            // var carrierName = ShipNowShipMethodSelectedKey.toUpperCase();
+            if(carrierName !== "" && carrierName !== undefined){
+                if(carrierName.toUpperCase() === "UPS" || carrierName.toUpperCase() === "FEDEX" || carrierName.toUpperCase() === "USPS"){
+                    eshipjetModel.setProperty("/hideTrackPackDetails", false);
+                }else{
+                    eshipjetModel.setProperty("/hideTrackPackDetails", true);
+                    eshipjetModel.setProperty("/commonValues/lengthOfDimensions", "40");
+                    eshipjetModel.setProperty("/commonValues/widthOfDimensions", "48");
+                    eshipjetModel.setProperty("/commonValues/heightOfDimensions", "");
+                }
             }
         },
 
@@ -5988,7 +5995,11 @@ formatQty: function(value) {
             var oToolPage = this.byId("toolPage");
             oToolPage.setSideExpanded(false);
             var eshipjetModel = this.getOwnerComponent().getModel("eshipjetModel");
-            var tileTitle = oEvent.getParameters().domRef.innerText;
+            if(oEvent === "ShipNow"){
+                var tileTitle = "Ship Now";
+            }else{
+                var tileTitle = oEvent.getParameters().domRef.innerText;
+            }
             if (tileTitle === "Orders") {
                 // this._handleDisplayShipReqTable();
                 oController.getShipReqLabelHistoryShipments();
@@ -19032,106 +19043,100 @@ formatQty: function(value) {
     },
 
     onPickCarrierSubmit:function(oEvent){
+        
+        var sFromViewName = eshipjetModel.getProperty("/sFromViewName");
+
         var oTable  = oController.byId("_ShippingRateTableId"),        
-        aSelectedItems = oTable.getSelectedItems(), oCarrier,
-        sFromViewName = eshipjetModel.getProperty("/sFromViewName");
+        aSelectedItems = oTable.getSelectedItems(), oCarrier;
         // var RecentShipmentSet = oEshipjetModel.getData().RecentShipmentSet;
         // RecentShipmentSet[RecentShipmentSet.length-1]["Carrier"] = oCarrier.Carrier;
         // RecentShipmentSet["Carrier"] = oCarrier;
-
-        if(aSelectedItems && aSelectedItems.length > 0){
-            oCarrier = oTable.getSelectedItem().getBindingContext("eshipjetModel").getObject();
-            oCarrier.discountFreight = oCarrier.discountFreight.toString();
-            oCarrier.publishedFreight = oCarrier.publishedFreight.toString();
-            // oCarrier.discountFreight_Cal = oCarrier.discountFreight_Cal.toString();
-
-            eshipjetModel.setProperty("/shipRateSelectItem", oCarrier);  
-            oController.oSelectObj = aSelectedItems[0].getBindingContext("eshipjetModel").getObject(); 
-            eshipjetModel.setProperty("/commonValues/QuoteNowShipMethodSelectedKey", oController.oSelectObj.Carrier.toUpperCase());
-            eshipjetModel.setProperty("/commonValues/QuoteNowSelectedServiceName", oController.oSelectObj.serviceName);
-
-            oController.onShopNowShipMethodChangeFromQuoteNow(oController.oSelectObj.Carrier.toUpperCase(), oController.oSelectObj.serviceName);
-            // eshipjetModel.setProperty("/commonValues/ShipNowShipsrvNameSelectedKey", oController._getShippingType(oController.oSelectObj.serviceCode));
-            
-            
-            // eshipjetModel.setProperty("/commonValues/ShipNowShipsrvNameSelectedKey", oController.oSelectObj.serviceName);
-            // eshipjetModel.setProperty("/accountNumber", oController.oSelectObj.AccountNumber); 
-            // eshipjetModel.setProperty("/carrierServiceCode_display", oController.oSelectObj.serviceCode);
-            // eshipjetModel.setProperty("/carrierServiceName_dis",oController.oSelectObj.serviceName);  
-            
-        if(sFromViewName === "QUOTE_NOW"){
-            var sKey = "ShipNow";
+        if(aSelectedItems && aSelectedItems.length === 0){
+            MessageBox.information("Please select one carrier");
+        }
+        else if(aSelectedItems && aSelectedItems.length > 0){
+            if(sFromViewName === "QUOTE_NOW"){
+                oController.onItemSelect("ShipNow");
+                //     eshipjetModel.setProperty("/commonValues/toolPageHeader", false);
+                //     eshipjetModel.setProperty("/commonValues/allViewsFooter", false);
+                //     eshipjetModel.setProperty("/commonValues/shipNowViewFooter", true);
+                //     eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
+                //     eshipjetModel.setProperty("/commonValues/routingGuidFooter", false);
+                //     eshipjetModel.setProperty("/showDarkThemeSwitch", false);
+                //     eshipjetModel.setProperty("/commonValues/darkTheme", false);
+                //     document.body.classList.remove("dark-theme");
+                //     eshipjetModel.setProperty("/commonValues/shipNowGetBtn", true);
+                //     eshipjetModel.setProperty("/sFromViewName", "SHIP_NOW");
+                //     oController.onPackSectionEmptyRows();
+                // eshipjetModel.setProperty("/SideNavigation", false);
+                // this.byId("pageContainer").to(this.getView().createId(sKey));
+// -----Latels---
             //     eshipjetModel.setProperty("/commonValues/toolPageHeader", false);
             //     eshipjetModel.setProperty("/commonValues/allViewsFooter", false);
             //     eshipjetModel.setProperty("/commonValues/shipNowViewFooter", true);
             //     eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
-            //     eshipjetModel.setProperty("/commonValues/routingGuidFooter", false);
-            //     eshipjetModel.setProperty("/showDarkThemeSwitch", false);
-            //     eshipjetModel.setProperty("/commonValues/darkTheme", false);
-            //     document.body.classList.remove("dark-theme");
-            //     eshipjetModel.setProperty("/commonValues/shipNowGetBtn", true);
             //     eshipjetModel.setProperty("/sFromViewName", "SHIP_NOW");
-            //     oController.onPackSectionEmptyRows();
-            // eshipjetModel.setProperty("/SideNavigation", false);
-            // this.byId("pageContainer").to(this.getView().createId(sKey));
+            //     var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
+            //     var obj = {
+            //         "ShipFromCONTACT": "Steve Marsh",
+            //         "ShipFromCOMPANY": "Eshipjet Software Inc.",
+            //         "ShipFromPHONE": "(888) 464-2360",
+            //         "ShipFromEMAIL": "info@eshipjet.ai",
+            //         "ShipFromCITY": "Plano",
+            //         "ShipFromSTATE": "TX",
+            //         "ShipFromCOUNTRY": "US",
+            //         "ShipFromZIPCODE": "75024",
+            //         "ShipFromADDRESS_LINE1": "5717 Legacy",
+            //         "ShipFromADDRESS_LINE2": "Suite 250",
+            //         "LocationType": "Commercial"
+            //     };
+            //     ShipNowDataModel.setProperty("/ShipFromAddress", obj);
+            //     ShipNowDataModel.setProperty("/ShipToAddress", "");
+            //     eshipjetModel.setProperty("/BusinessPartners", []);
+            //     eshipjetModel.setProperty("/commonValues/shipNowGetBtn", true);
+            //     eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", "0"); 
+            //     eshipjetModel.setProperty("/commonValues/shipNowBtnStatus", true);
+            //     eshipjetModel.setProperty("/commonValues/showShipType", false);
+            //     // jQuery.sap.delayedCall(500, this, function() {
+            //     //     this.getView().byId("idSapDeliveryNumber").focus();
+            //     // });
 
-            eshipjetModel.setProperty("/commonValues/toolPageHeader", false);
-            eshipjetModel.setProperty("/commonValues/allViewsFooter", false);
-            eshipjetModel.setProperty("/commonValues/shipNowViewFooter", true);
-            eshipjetModel.setProperty("/commonValues/createShipReqViewFooter", false);
-            eshipjetModel.setProperty("/sFromViewName", "SHIP_NOW");
-            this.byId("pageContainer").to(this.getView().createId(sKey));
-            var ShipNowDataModel = oController.getView().getModel("ShipNowDataModel");
-            var obj = {
-                "ShipFromCONTACT": "Steve Marsh",
-                "ShipFromCOMPANY": "Eshipjet Software Inc.",
-                "ShipFromPHONE": "(888) 464-2360",
-                "ShipFromEMAIL": "info@eshipjet.ai",
-                "ShipFromCITY": "Plano",
-                "ShipFromSTATE": "TX",
-                "ShipFromCOUNTRY": "US",
-                "ShipFromZIPCODE": "75024",
-                "ShipFromADDRESS_LINE1": "5717 Legacy",
-                "ShipFromADDRESS_LINE2": "Suite 250",
-                "LocationType": "Commercial"
-            };
-            ShipNowDataModel.setProperty("/ShipFromAddress", obj);
-            ShipNowDataModel.setProperty("/ShipToAddress", "");
-            eshipjetModel.setProperty("/BusinessPartners", []);
-            eshipjetModel.setProperty("/commonValues/shipNowGetBtn", true);
-            eshipjetModel.setProperty("/commonValues/OverallGoodsMovementStatus", "0"); 
-            eshipjetModel.setProperty("/commonValues/shipNowBtnStatus", true);
-            eshipjetModel.setProperty("/commonValues/showShipType", false);
-            // jQuery.sap.delayedCall(500, this, function() {
-            //     this.getView().byId("idSapDeliveryNumber").focus();
-            // });
-
-            var aBusinessPartnersTable = eshipjetModel.getProperty("/BusinessPartners") || [];
-            while (aBusinessPartnersTable.length < 5) {
-                aBusinessPartnersTable.push(
-                    { PartnerType: "Ship From", "FullName": "Eshipjet Software Inc.", "BusinessPartnerName1":"Steve Marsh", "StreetName":"5717 Legacy", "HouseNumber":"Suite 250", "Region":"Plano", "CityName":"TX", "PostalCode":"75024", "Country":"US", "PhoneNumber":"(888) 464-2360", "email":"info@eshipjet.ai" },
-                    { PartnerType: "Shipper", "FullName": "Eshipjet Software Inc.", "BusinessPartnerName1":"Steve Marsh", "StreetName":"5717 Legacy", "HouseNumber":"Suite 250", "Region":"Plano", "CityName":"TX", "PostalCode":"75024", "Country":"US", "PhoneNumber":"(888) 464-2360", "email":"info@eshipjet.ai" },
-                    { PartnerType: "Freight Forwarder", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  },
-                    { PartnerType: "Importer", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  },
-                    { PartnerType: "Third Party", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  }
-                );
+            //     var aBusinessPartnersTable = eshipjetModel.getProperty("/BusinessPartners") || [];
+            //     while (aBusinessPartnersTable.length < 5) {
+            //         aBusinessPartnersTable.push(
+            //             { PartnerType: "Ship From", "FullName": "Eshipjet Software Inc.", "BusinessPartnerName1":"Steve Marsh", "StreetName":"5717 Legacy", "HouseNumber":"Suite 250", "Region":"Plano", "CityName":"TX", "PostalCode":"75024", "Country":"US", "PhoneNumber":"(888) 464-2360", "email":"info@eshipjet.ai" },
+            //             { PartnerType: "Shipper", "FullName": "Eshipjet Software Inc.", "BusinessPartnerName1":"Steve Marsh", "StreetName":"5717 Legacy", "HouseNumber":"Suite 250", "Region":"Plano", "CityName":"TX", "PostalCode":"75024", "Country":"US", "PhoneNumber":"(888) 464-2360", "email":"info@eshipjet.ai" },
+            //             { PartnerType: "Freight Forwarder", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  },
+            //             { PartnerType: "Importer", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  },
+            //             { PartnerType: "Third Party", "FullName": "", "BusinessPartnerName1":"", "StreetName":"", "HouseNumber":"", "Region":"", "CityName":"", "PostalCode":"", "Country":"", "PhoneNumber":"", "email":""  }
+            //         );
+            //     }
             }
 
-            eshipjetModel.setProperty("/BusinessPartners", aBusinessPartnersTable);
+            // oCarrier = oTable.getSelectedItem().getBindingContext("eshipjetModel").getObject();
+            // oCarrier.discountFreight = oCarrier.discountFreight.toString();
+            // oCarrier.publishedFreight = oCarrier.publishedFreight.toString();
+            // // oCarrier.discountFreight_Cal = oCarrier.discountFreight_Cal.toString();
 
-            var oIconTabBar = this.byId("idIconTabBarFiori2");
-            oIconTabBar.setSelectedKey("Pack");
+            // eshipjetModel.setProperty("/shipRateSelectItem", oCarrier);  
+            oController.oSelectObj = aSelectedItems[0].getBindingContext("eshipjetModel").getObject();
+            // eshipjetModel.setProperty("/commonValues/QuoteNowShipMethodSelectedKey", oController.oSelectObj.Carrier.toUpperCase());
+            // eshipjetModel.setProperty("/commonValues/QuoteNowSelectedServiceName", oController.oSelectObj.serviceName);
+            oController.onShopNowShipMethodChangeFromQuoteNow(oController.oSelectObj.Carrier.toUpperCase(), oController.oSelectObj.serviceName);
+            // eshipjetModel.setProperty("/BusinessPartners", aBusinessPartnersTable);
+            // var oIconTabBar = this.byId("idIconTabBarFiori2");
+            // oIconTabBar.setSelectedKey("Pack");
 
-            oController.onPackSectionEmptyRows();
-            oController.getTodayShipments();
             
-            oController.onShipNowNavigateInitialProcess();
-        }              
-        }else{
-            MessageToast.show("Please select the item from list");
-        }   
-        eshipjetModel.updateBindings(true);
-        oController.onCloseShipNowShippinRateDialog();
+            // oController.onPackSectionEmptyRows();
+            // oController.getTodayShipments();
+            // oController.onShipNowNavigateInitialProcess();
+            // eshipjetModel.updateBindings(true);
+
+            oController.onCloseShipNowShippinRateDialog();
+                      
+        }  
+        
     },
 
     onShopNowShipMethodChangeFromQuoteNow:function(selectedKey, serviceName){
@@ -20605,6 +20610,7 @@ formatQty: function(value) {
                 eshipjetModel.setProperty("/commonValues/sapDeliveryNumber", quoteNowDeliveryNum);
                 eshipjetModel.setProperty("/sFromViewName", "QUOTE_NOW");
                 oController.onShipNowGetPress();
+                oController.onCloseBusyDialog();
             }
         },
         onQuoteNowClearPress:function(){

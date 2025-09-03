@@ -1309,7 +1309,7 @@
 								<ui:Column visible="true" width="4rem" >
 									<Button icon="sap-icon://action-settings" type="Transparent" press="onShipNowHUColumnConfigPress" ></Button>
 									<ui:template>
-										<Button icon="sap-icon://delete" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" type="Transparent" tooltip="Delete" press="onShipNowHandlingUnitDelPress" class="customDeleteButton" ></Button>
+										<Button icon="sap-icon://delete" enabled="{= ${eshipjetModel>Hunumber} > 0 }" type="Transparent" tooltip="Delete" press="onShipNowHandlingUnitDelPress" class="customDeleteButton" ></Button>
 									</ui:template>
 								</ui:Column>
 							</ui:columns>
