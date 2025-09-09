@@ -590,11 +590,11 @@
 					<core:ListItem key="postGoodsIssue" text="Post Goods Issue" icon="sap-icon://accept" />
 					<core:ListItem key="reversePGI" text="Reverse PGI" icon="sap-icon://refresh" />
 				</Select> -->
-				<Button text="More Actions" press="onMoreActionsPress" class="moreActions-btn" iconFirst="false" />
+				<Button text="More Actions" press="onMoreActionsPress" tooltip="F3" class="moreActions-btn" iconFirst="false" />
 
 			<ToolbarSpacer/>
 				<!-- <Button text="Save" press="createHandlingUnits" class="scan-ship-toolbar1__button sapUiTinyMargin sapUiLargeMarginEnd" visible="{eshipjetModel>/commonValues/shipNowVoidSelectSave}" type="Ghost" width="5%"  /> -->
-				<Button text="Ship Now" press="onShipNowPress" id="idShipNowBtn" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" visible="{eshipjetModel>/commonValues/shipNowVoidSelectShipNow}" type="Ghost" class="shipNowBtnStyle sapUiMediumMarginEnd" />
+				<Button text="Ship Now" press="onShipNowPress" tooltip="F2" id="idShipNowBtn" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" visible="{eshipjetModel>/commonValues/shipNowVoidSelectShipNow}" type="Ghost" class="shipNowBtnStyle sapUiMediumMarginEnd" />
 				<Button text="Void" press="onShipNowVoidPress"  visible="{eshipjetModel>/commonValues/shipNowVoidSelect}" type="Ghost" class="shipNowBtnStyle sapUiMediumMarginEnd" />
 		</OverflowToolbar>
 

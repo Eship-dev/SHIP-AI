@@ -1071,6 +1071,158 @@ body.dark-theme {
 }
 
 
+.clearbutton-btn {
+  height: 2.5rem !important;
+  min-height: 2.5rem !important;
+  background-color: #fff !important;
+  border: 1px solid red !important; /* SAP blue */
+  color: #fff !important;
+  border-radius: 6px;
+  padding: 0 1rem !important;
+}
+
+/* Inner button */
+.clearbutton-btn .sapMBtnInner {
+  height: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit !important; /* ensures it follows parent */
+}
+
+/* ✅ Text span fix */
+.clearbutton-btn .sapMBtnContent {
+  color: inherit !important;
+  font-weight: 500; /* optional: make text a bit bolder */
+}
+
+/* Icon inherits color */
+.clearbutton-btn .sapUiIcon {
+  color: inherit !important;
+}
+
+/* Hover */
+.clearbutton-btn:hover {
+  background-color: red !important;
+  color: #fff !important;
+  border-color: red !important;
+}
+
+.clearbutton-btn:hover .sapMBtnContent,
+.clearbutton-btn:hover .sapUiIcon {
+  color: #fff !important;
+}
+
+.clearbutton-btn:focus .sapMBtnInner {
+  outline: none !important;
+}
+
+
+
+.clearbutton-btn {
+  height: 2.5rem !important;
+  min-height: 2.5rem !important;
+  background-color: #fff !important;
+  border: 1px solid red !important; /* SAP blue */
+  color: #fff !important;
+  border-radius: 6px;
+  padding: 0 1rem !important;
+}
+
+/* Inner button */
+.clearbutton-btn .sapMBtnInner {
+  height: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit !important; /* ensures it follows parent */
+}
+
+/* ✅ Text span fix */
+.clearbutton-btn .sapMBtnContent {
+  color: inherit !important;
+  font-weight: 500; /* optional: make text a bit bolder */
+}
+
+/* Icon inherits color */
+.clearbutton-btn .sapUiIcon {
+  color: inherit !important;
+}
+
+/* Hover */
+.clearbutton-btn:hover {
+  background-color: red !important;
+  color: #fff !important;
+  border-color: red !important;
+}
+
+.clearbutton-btn:hover .sapMBtnContent,
+.clearbutton-btn:hover .sapUiIcon {
+  color: #fff !important;
+}
+
+.clearbutton-btn:focus .sapMBtnInner {
+  outline: none !important;
+}
+
+
+
+.Newbutton-btn {
+  height: 2.5rem !important;
+  width: 78px;
+  min-height: 2.5rem !important;
+  background-color: #fff !important;
+  border: 1px solid #4E9C2D !important; /* SAP blue */
+  color: #fff !important;
+  border-radius: 6px;
+  padding: 0 1rem !important;
+}
+
+/* Inner button */
+.Newbutton-btn .sapMBtnInner {
+  height: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit !important; /* ensures it follows parent */
+}
+
+/* ✅ Text span fix */
+.Newbutton-btn .sapMBtnContent {
+  color: inherit !important;
+  font-weight: 500; /* optional: make text a bit bolder */
+}
+
+/* Icon inherits color */
+.Newbutton-btn .sapUiIcon {
+  color: inherit !important;
+}
+
+/* Hover */
+.Newbutton-btn:hover {
+  background-color: #4E9C2D!important;
+  color: #fff !important;
+  border-color: #4E9C2D !important;
+}
+
+.Newbutton-btn:hover .sapMBtnContent,
+.Newbutton-btn:hover .sapUiIcon {
+  color: #fff !important;
+}
+
+.Newbutton-btn:focus .sapMBtnInner {
+  outline: none !important;
+}
+
+
+
+
 .Ship-Now-toolbar1__button_green:hover > span {
   background-color: #4E9C2D !important;
   color: #fff !important;
@@ -1116,6 +1268,10 @@ body.dark-theme {
   }
 }
 
+/* .sapUiIconTooltip, 
+.sapUiInvisibleText {
+  display: none !important;
+} */
 
 
 .Ship-Now-toolbar1__button_greenDoc:hover > span {
@@ -1326,13 +1482,7 @@ body.dark-theme {
   padding-top: 10px;
 }
 
-.saveBtnPack {
-  height: 40px !important;
-  width: 60px !important;
-   border-color: #03a9f4 !important;
-  border-color: #03a9f4 !important;
-  color: #03a9f4 !important;
-}
+
 
 .Ship-Now-toolbar1__button_Pack:hover > span {
  background-color: #03a9f4 !important;
@@ -1381,13 +1531,122 @@ body.dark-theme {
 }
 
 
+.packbutton-btn {
+  height: 2.5rem !important;
+  min-height: 2.5rem !important;
+  background-color: #fff !important;
+  border: 1px solid #03a9f4 !important; /* SAP blue */
+  color: #03a9f4 !important;
+  border-radius: 6px;
+  padding: 0 1rem !important;
+}
+
+/* Inner button */
+.packbutton-btn .sapMBtnInner {
+  height: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit !important; /* ensures it follows parent */
+}
+
+/* ✅ Text span fix */
+.packbutton-btn .sapMBtnContent {
+  color: inherit !important;
+  font-weight: 500; /* optional: make text a bit bolder */
+}
+
+/* Icon inherits color */
+.packbutton-btn .sapUiIcon {
+  color: inherit !important;
+}
+
+/* Hover */
+.packbutton-btn:hover {
+  background-color: #03a9f4!important;
+  color: #fff !important;
+  border-color: #03a9f4 !important;
+}
+
+.packbutton-btn:hover .sapMBtnContent,
+.packbutton-btn:hover .sapUiIcon {
+  color: #fff !important;
+}
+
+.packbutton-btn:focus .sapMBtnInner {
+  outline: none !important;
+}
+
+.saveBtnPack {
+  height: 40px !important;
+  width: 88px !important;
+   border-color: #03a9f4 !important;
+  border-color: #03a9f4 !important;
+  color: #03a9f4 !important;
+}
+
+
+
+
+
+
+.packallbutton-btn {
+  height: 2.5rem !important;
+  min-height: 2.5rem !important;
+  background-color: #fff !important;
+  border: 1px solid #ef6c00 !important; /* SAP blue */
+  color:  #ef6c00 !important;
+  border-radius: 6px;
+  padding: 0 1rem !important;
+}
+
+/* Inner button */
+.packallbutton-btn .sapMBtnInner {
+  height: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit !important; /* ensures it follows parent */
+}
+
+/* ✅ Text span fix */
+.packallbutton-btn .sapMBtnContent {
+  color: inherit !important;
+  font-weight: 500; /* optional: make text a bit bolder */
+}
+
+/* Icon inherits color */
+.packallbutton-btn .sapUiIcon {
+  color: inherit !important;
+}
+
+/* Hover */
+.packallbutton-btn:hover {
+  background-color:  #ef6c00 !important;
+  color: #fff !important;
+  border-color:  #ef6c00  !important;
+}
+
+.packallbutton-btn:hover .sapMBtnContent,
+.packallbutton-btn:hover .sapUiIcon {
+  color: #fff !important;
+}
+
+.packallbutton-btn:focus .sapMBtnInner {
+  outline: none !important;
+}
 .saveBtnPackAll {
   height: 40px !important;
-  width: 60px !important;
-   border-color: #ef6c00 !important;
-  border-color: #ef6c00 !important;
+  width: 99px !important;
+   border-color:  #ef6c00  !important;
+  border-color:  #ef6c00  !important;
   color: #ef6c00 !important;
 }
+
 
 .Ship-Now-toolbar1__button_PackAll:hover > span {
   background-color: #ef6c00 !important;
@@ -1437,13 +1696,65 @@ body.dark-theme {
 
 
 
+
+
+
+.Multipackbutton-btn {
+  height: 2.5rem !important;
+  min-height: 2.5rem !important;
+  background-color: #fff !important;
+  border: 1px solid #c515f6 !important; /* SAP blue */
+  color:  #c515f6 !important;
+  border-radius: 6px;
+  padding: 0 1rem !important;
+}
+
+/* Inner button */
+.Multipackbutton-btn .sapMBtnInner {
+  height: 100% !important;
+  background: transparent !important;
+  border: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit !important; /* ensures it follows parent */
+}
+
+/* ✅ Text span fix */
+.Multipackbutton-btn .sapMBtnContent {
+  color: inherit !important;
+  font-weight: 500; /* optional: make text a bit bolder */
+}
+
+/* Icon inherits color */
+.Multipackbutton-btn .sapUiIcon {
+  color: inherit !important;
+}
+
+/* Hover */
+.Multipackbutton-btn:hover {
+  background-color:  #c515f6 !important;
+  color: #fff !important;
+  border-color:  #c515f6  !important;
+}
+
+.Multipackbutton-btn:hover .sapMBtnContent,
+.Multipackbutton-btn:hover .sapUiIcon {
+  color: #fff !important;
+}
+
+.Multipackbutton-btn:focus .sapMBtnInner {
+  outline: none !important;
+}
 .saveBtnMultiPack {
   height: 40px !important;
-  width: 60px !important;
-   border-color: #c515f6 !important;
-  border-color: #c515f6 !important;
+  width: 114px !important;
+   border-color:  #c515f6  !important;
+  border-color:  #c515f6  !important;
   color: #c515f6 !important;
 }
+
+
 
 .Ship-Now-toolbar1__button_MultiPack:hover > span {
   background-color: #c515f6 !important;

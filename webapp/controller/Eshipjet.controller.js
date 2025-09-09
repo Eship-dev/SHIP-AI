@@ -93,31 +93,156 @@ sap.ui.define([
 //     }.bind(this)
 // }, this);
 
-// Attach global keydown (so F3/F10 aren’t eaten by browser UI before UI5 gets them)
-    document.addEventListener("keydown", function (oEvent) {
-        var mKeyMap = {
-            113: "idShipNowBtn",      // F2
-            114: "idPackAllBtn",      // F3
-            115: "clearbtnf4",        // F4
-            117: "idPackBtn",         // F6
-            121: "shipNowRecentShips" // F10
-        };
+                    // let lastKeyHandled = null;
 
-        var sBtnId = mKeyMap[oEvent.keyCode];
-        if (sBtnId) {
-            console.log("Pressed:", oEvent.key, oEvent.keyCode, "→", sBtnId);
-            oEvent.preventDefault();
+                    // document.addEventListener("keydown", function (oEvent) {
+                    //     var mKeyMap = {
+                    //         114: "onPackPress",          // F3
+                    //         117: "onPackAllPress",       // F6
+                    //     };
 
-            // Use view.createId() so local IDs are resolved
-            var oBtn = oController.byId(sBtnId);
+                    //     var sFnName = mKeyMap[oEvent.keyCode];
+                    //     if (sFnName) {
+                    //         if (lastKeyHandled === oEvent.keyCode) return;
+                    //         lastKeyHandled = oEvent.keyCode;
 
-            if (oBtn && oBtn.getEnabled() && oBtn.getVisible()) {
-                oBtn.firePress();
-            } else {
-                console.warn("Button not found or not enabled/visible:", sBtnId);
-            }
+                    //         oEvent.preventDefault();
+                    //         if (typeof oController[sFnName] === "function") {
+                    //             oController[sFnName]();
+                    //         } else {
+                    //             console.warn("Function", sFnName, "not found in controller");
+                    //         }
+                    //     }
+                    // });
+
+//   document.addEventListener("keydown", function (oEvent) {
+//         var mKeyMap = {
+//             114: "idPackBtn",   // F3
+//         117: "idPackAllBtn" // F6
+//         };
+
+//         var sBtnId = mKeyMap[oEvent.keyCode];
+//         if (sBtnId) {
+//             console.log("Pressed:", oEvent.key, oEvent.keyCode, "→", sBtnId);
+//             oEvent.preventDefault();
+
+//             // Use view.createId() so local IDs are resolved
+//             var oBtn = oController.byId(sBtnId);
+
+//             if (oBtn && oBtn.getEnabled() && oBtn.getVisible()) {
+//                 oBtn.firePress();
+//             } else {
+//                 console.warn("Button not found or not enabled/visible:", sBtnId);
+//             }
+//         }
+//     });
+
+
+
+    let lastKeyHandled = null;
+
+document.addEventListener("keydown", function (oEvent) {
+    if (oEvent.ctrlKey || oEvent.repeat) return; // ignore Ctrl+Fn and key hold
+
+    var mKeyMap = {
+       
+        114: "idPackBtn",                  // F3 → button
+     
+        117: "idPackAllBtn",               // F6 → button
+        118: "onOpenRecentShipmentPopover" // F7 → function + button
+    };
+
+    var sTarget = mKeyMap[oEvent.keyCode];
+    if (!sTarget) return;
+
+    oEvent.preventDefault();
+
+    // Prevent duplicate handling
+    if (lastKeyHandled === sTarget) return;
+    lastKeyHandled = sTarget;
+
+    // Special case: F7 opens popover with button
+    if (sTarget === "onOpenRecentShipmentPopover") {
+        var oBtn = oController.byId("shipNowRecentShips");
+        if (oBtn) {
+            sap.ui.getCore().applyChanges();
+            oController.onOpenRecentShipmentPopover({
+                getSource: () => oBtn
+            });
         }
-    });
+        return;
+    }
+
+    // If target is a button ID → firePress
+    var oBtn = oController.byId(sTarget);
+    if (oBtn) {
+        if (oBtn.getEnabled() && oBtn.getVisible()) {
+            oBtn.firePress();
+        }
+        return;
+    }
+
+    // Otherwise treat it as controller function name
+    if (typeof oController[sTarget] === "function") {
+        oController[sTarget]();
+    } else {
+        console.warn("Target", sTarget, "not found as Button or Controller function");
+    }
+});
+
+document.addEventListener("keyup", function () {
+    lastKeyHandled = null; // reset after key is released
+});
+
+
+
+
+
+
+                    document.addEventListener("keyup", function () {
+                        lastKeyHandled = null;
+                    });
+                    var mKeyMap = {
+                        113: "onShipNowPress",              // F2            
+                        115: "onShipNowNewPress",           // F4
+                        118: "onOpenRecentShipmentPopover"  // F7
+                    };
+
+                    document.addEventListener("keydown", function (oEvent) {
+                        if (oEvent.ctrlKey) return;
+
+                        var sFnName = mKeyMap[oEvent.keyCode];
+                        if (!sFnName) return;
+
+                        oEvent.preventDefault();
+
+                        // Prevent duplicate trigger
+                        if (sFnName === "onPackPress" || sFnName === "onPackAllPress") {
+                            // Fire the controller function directly
+                            if (typeof oController[sFnName] === "function") {
+                                oController[sFnName]();
+                            }
+                            return;
+                        }
+
+                        if (sFnName === "onOpenRecentShipmentPopover") {
+                            var oBtn = oController.byId("shipNowRecentShips");
+                            if (oBtn) {
+                                sap.ui.getCore().applyChanges();
+                                oController.onOpenRecentShipmentPopover({
+                                    getSource: function () { return oBtn; }
+                                });
+                            }
+                            return;
+                        }
+
+                        if (typeof oController[sFnName] === "function") {
+                            oController[sFnName]();
+                        } else {
+                            console.warn("Function", sFnName, "not found on controller");
+                        }
+                    });
+
 
 
 
@@ -1366,6 +1491,10 @@ sap.ui.define([
                 var obj = eshipjetModel.getProperty("/commonValues/packAddProductTable")[sPathArray[sPathArray.length - 1]];
                 obj["partialQty"] = 0;
                 MessageBox.warning("Partial quantity cannot be greater than balance quantity.");
+
+                 // 🔥 Write back to model immediately
+                currObj.partialQty = currValue;
+                oEvent.getSource().getModel("eshipjetModel").updateBindings(true);
             }
         },
 

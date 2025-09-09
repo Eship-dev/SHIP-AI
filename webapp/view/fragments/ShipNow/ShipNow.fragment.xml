@@ -80,8 +80,8 @@
 									<Label text="Ship Date" class="sapUiSmallMarginTop sapUiSmallMarginBegin" labelFor="DP1" width="6%" />
 									<DatePicker class="create-ship-req_input removeInputOutline sapUiTinyMargin" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" id="DP1" width="8%" valueFormat="MM/dd/yyyy" displayFormat="MM/dd/yyyy" change="handleChange" value="{path: 'eshipjetModel>/pickupDate', type: 'sap.ui.model.type.Date', formatOptions: {pattern: 'MM/dd/yyyy'}}" />
 									<ToolbarSpacer ></ToolbarSpacer>
-									 <Button text="Clear" press="onShipNowNewPress" class="Ship-Now-toolbar1__button_red removeBtnOutline clearBtn sapUiTinyMargin" type="Ghost" id="clearbtnf4" />
-									<Button text="New" press="onShipNowNewPress" class="Ship-Now-toolbar1__button_green removeBtnOutline saveBtn sapUiTinyMargin sapUiLargeMarginEnd" type="Ghost" ></Button>
+									 <Button text="Clear" press="onShipNowNewPress" tooltip="F4" class="clearbutton-btn removeBtnOutline clearBtn sapUiTinyMargin" type="Ghost" id="clearbtnf4" />
+									<Button text="New" press="onShipNowNewPress" tooltip="F4" class="Newbutton-btn removeBtnOutline saveBtn sapUiTinyMargin " type="Ghost"  ></Button>
                             </Toolbar>
 							<!-- Icon Tab Bar Starts here -->			
 							<IconTabBar id="idIconTabBarFiori2" selectedKey = "Pack" expandable="false" enableTabReordering="true" class="shipNow-IconTabBar-Width customTabStyle" >
@@ -1039,7 +1039,7 @@
 									</HBox>
 									<ui:template>
 									<HBox justifyContent="End" alignItems="End" width="100%">
-										<Input value="{eshipjetModel>partialQty}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" liveChange="onPartialQtyChange" />
+										<Input value="{eshipjetModel>partialQty}" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" liveChange="onPartialQtyChange"  valueLiveUpdate="true" />
 									</HBox>
 									</ui:template>
 								</ui:Column>
@@ -1163,11 +1163,11 @@
 
 								<HBox height="3rem" width="37%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="SpaceBetween" >
 								   <FlexBox justifyContent="SpaceBetween" width="100%" >
-										<Button text="Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_Pack saveBtnPack sapUiSmallMarginBegin" type="Ghost" width="auto" press="onPackPress" id="idPackBtn" ></Button>
-										<Button text="Pack All" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_PackAll saveBtnPackAll" type="Ghost" width="auto" press="onPackAllPress" id="idPackAllBtn" ></Button>
+										<Button text="Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="packbutton-btn saveBtnPack sapUiSmallMarginBegin" tooltip="F3" type="Ghost" width="auto" press="onPackPress" id="idPackBtn" ></Button>
+										<Button text="Pack All" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="packallbutton-btn saveBtnPackAll" type="Ghost" tooltip="F6" width="auto" press="onPackAllPress" id="idPackAllBtn" ></Button>
 										<!-- <Button text="DG Pack" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_DGPack sapUiTinyMarginEnd" type="Ghost" width="auto" ></Button>
 										<Button text="DG Pack All" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_DGPackAll sapUiTinyMarginEnd" type="Ghost" width="auto" ></Button> -->
-										<Button text="Multi Pack" press="onMultiPackPress" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Ship-Now-toolbar1__button_MultiPack  saveBtnMultiPack sapUiLargeMarginEnd" type="Ghost" width="auto" ></Button>
+										<Button text="Multi Pack" press="onMultiPackPress" enabled="{eshipjetModel>/commonValues/shipNowBtnStatus}" class="Multipackbutton-btn  saveBtnMultiPack sapUiLargeMarginEnd" type="Ghost" width="auto" ></Button>
 									</FlexBox>
                                 </HBox>
 								<HBox height="3rem" width="30%" class="whiteBackground sapUiTinyMarginEnd" alignItems="Center" justifyContent="Start" >

@@ -26,12 +26,12 @@
 			</cells>
 		</ColumnListItem>
 		<columns>	
-			<Column ></Column>				
-			<Column ></Column>				
-			<Column ></Column>				
-			<Column ></Column>
-			<Column ></Column>				
-			<Column ></Column>			
+			<!-- <Column ></Column>				 -->
+			<Column width="20%"></Column>				
+			<Column width="15%"></Column>				
+			<Column width="20%"></Column>
+			<Column width="25%"></Column>				
+			<Column width="20%"></Column>			
 		</columns>
         </Table>
             </content>        
